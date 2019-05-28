@@ -1,0 +1,197 @@
+syntax = "proto3";
+
+package atomix.map;
+
+import "google/protobuf/duration.proto";
+import "atomix/headers/headers.proto";
+import "atomix/primitive/primitive.proto";
+
+option java_package = "io.atomix.api.map";
+option java_multiple_files = true;
+
+message CreateRequest {
+    atomix.primitive.PrimitiveId map_id = 1;
+    google.protobuf.Duration timeout = 2;
+}
+
+message CreateResponse {
+    atomix.headers.SessionHeader header = 1;
+}
+
+message KeepAliveRequest {
+    atomix.primitive.PrimitiveId map_id = 1;
+    atomix.headers.SessionHeader header = 2;
+}
+
+message KeepAliveResponse {
+    atomix.headers.SessionHeader header = 1;
+}
+
+message CloseRequest {
+    atomix.primitive.PrimitiveId map_id = 1;
+    atomix.headers.SessionHeader header = 2;
+    bool delete = 3;
+}
+
+message CloseResponse {
+
+}
+
+message ExistsRequest {
+    atomix.primitive.PrimitiveId map_id = 1;
+    atomix.headers.SessionQueryHeader header = 2;
+    string key = 3;
+}
+
+message ExistsResponse {
+    atomix.headers.SessionResponseHeader header = 1;
+    bool contains_key = 2;
+}
+
+message SizeRequest {
+    atomix.primitive.PrimitiveId map_id = 1;
+    atomix.headers.SessionQueryHeader header = 2;
+}
+
+message SizeResponse {
+    atomix.headers.SessionResponseHeader header = 1;
+    int32 size = 2;
+}
+
+message PutRequest {
+    atomix.primitive.PrimitiveId map_id = 1;
+    atomix.headers.SessionCommandHeader header = 2;
+    string key = 3;
+    bytes value = 4;
+    int64 version = 5;
+    int64 ttl = 6;
+}
+
+message PutResponse {
+    atomix.headers.SessionResponseHeader header = 1;
+    ResponseStatus status = 2;
+    bytes previous_value = 3;
+    int64 previous_version = 4;
+}
+
+message ReplaceRequest {
+    atomix.primitive.PrimitiveId map_id = 1;
+    atomix.headers.SessionCommandHeader header = 2;
+    string key = 3;
+    bytes previous_value = 4;
+    int64 previous_version = 5;
+    bytes new_value = 6;
+    int64 ttl = 7;
+}
+
+message ReplaceResponse {
+    atomix.headers.SessionResponseHeader header = 1;
+    ResponseStatus status = 2;
+    bytes previous_value = 3;
+    int64 previous_version = 4;
+}
+
+message GetRequest {
+    atomix.primitive.PrimitiveId map_id = 1;
+    atomix.headers.SessionQueryHeader header = 2;
+    string key = 3;
+}
+
+message GetResponse {
+    atomix.headers.SessionResponseHeader header = 1;
+    bytes value = 2;
+    int64 version = 3;
+}
+
+message RemoveRequest {
+    atomix.primitive.PrimitiveId map_id = 1;
+    atomix.headers.SessionCommandHeader header = 2;
+    string key = 3;
+    bytes value = 4;
+    int64 version = 5;
+}
+
+message RemoveResponse {
+    atomix.headers.SessionResponseHeader header = 1;
+    ResponseStatus status = 2;
+    bytes previous_value = 3;
+    int64 previous_version = 4;
+}
+
+message ClearRequest {
+    atomix.primitive.PrimitiveId map_id = 1;
+    atomix.headers.SessionCommandHeader header = 2;
+}
+
+message ClearResponse {
+    atomix.headers.SessionResponseHeader header = 1;
+}
+
+message EntriesRequest {
+    atomix.primitive.PrimitiveId map_id = 1;
+    atomix.headers.SessionQueryHeader header = 2;
+}
+
+message EntriesResponse {
+    atomix.headers.SessionResponseHeader header = 1;
+    string key = 2;
+    bytes value = 3;
+    int64 version = 4;
+}
+
+message EventRequest {
+    atomix.primitive.PrimitiveId map_id = 1;
+    atomix.headers.SessionCommandHeader header = 2;
+}
+
+message EventResponse {
+    atomix.headers.SessionResponseHeader header = 1;
+    Type type = 2;
+    string key = 3;
+    bytes old_value = 4;
+    int64 old_version = 5;
+    bytes new_value = 6;
+    int64 new_version = 7;
+
+    enum Type {
+        INSERTED = 0;
+        UPDATED = 1;
+        REMOVED = 2;
+    }
+}
+
+enum ResponseStatus {
+    OK = 0;
+    NOOP = 1;
+    WRITE_LOCK = 2;
+    PRECONDITION_FAILED = 3;
+}
+
+// Map service
+service MapService {
+
+    rpc Create (CreateRequest) returns (CreateResponse) {}
+
+    rpc KeepAlive (KeepAliveRequest) returns (KeepAliveResponse) {}
+
+    rpc Close (CloseRequest) returns (CloseResponse) {}
+
+    rpc Size (SizeRequest) returns (SizeResponse) {}
+
+    rpc Exists (ExistsRequest) returns (ExistsResponse) {}
+
+    rpc Put (PutRequest) returns (PutResponse) {}
+
+    rpc Replace (ReplaceRequest) returns (ReplaceResponse) {}
+
+    rpc Get (GetRequest) returns (GetResponse) {}
+
+    rpc Remove (RemoveRequest) returns (RemoveResponse) {}
+
+    rpc Clear (ClearRequest) returns (ClearResponse) {}
+
+    rpc Events (EventRequest) returns (stream EventResponse) {}
+
+    rpc Entries (EntriesRequest) returns (stream EntriesResponse) {}
+
+}

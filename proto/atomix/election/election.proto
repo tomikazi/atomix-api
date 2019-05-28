@@ -1,0 +1,172 @@
+syntax = "proto3";
+
+import "google/protobuf/duration.proto";
+import "atomix/headers/headers.proto";
+import "atomix/primitive/primitive.proto";
+
+package atomix.election;
+
+option java_package = "io.atomix.api.election";
+option java_multiple_files = true;
+
+message CreateRequest {
+    atomix.primitive.PrimitiveId election_id = 1;
+    google.protobuf.Duration timeout = 2;
+}
+
+message CreateResponse {
+    atomix.headers.SessionHeader header = 1;
+}
+
+message KeepAliveRequest {
+    atomix.primitive.PrimitiveId election_id = 1;
+    atomix.headers.SessionHeader header = 2;
+}
+
+message KeepAliveResponse {
+    atomix.headers.SessionHeader header = 1;
+}
+
+message CloseRequest {
+    atomix.primitive.PrimitiveId election_id = 1;
+    atomix.headers.SessionHeader header = 2;
+    bool delete = 3;
+}
+
+message CloseResponse {
+
+}
+
+message EnterRequest {
+    atomix.primitive.PrimitiveId election_id = 1;
+    atomix.headers.SessionCommandHeader header = 2;
+    string candidate_id = 3;
+}
+
+message EnterResponse {
+    atomix.headers.SessionResponseHeader header = 1;
+    uint64 term = 2;
+    uint64 timestamp = 3;
+    string leader = 4;
+    repeated string candidates = 5;
+}
+
+message WithdrawRequest {
+    atomix.primitive.PrimitiveId election_id = 1;
+    atomix.headers.SessionCommandHeader header = 2;
+    string candidate_id = 3;
+}
+
+message WithdrawResponse {
+    atomix.headers.SessionResponseHeader header = 1;
+    bool succeeded = 2;
+}
+
+message AnointRequest {
+    atomix.primitive.PrimitiveId election_id = 1;
+    atomix.headers.SessionCommandHeader header = 2;
+    string candidate_id = 3;
+}
+
+message AnointResponse {
+    atomix.headers.SessionResponseHeader header = 1;
+    bool succeeded = 2;
+}
+
+message PromoteRequest {
+    atomix.primitive.PrimitiveId election_id = 1;
+    atomix.headers.SessionCommandHeader header = 2;
+    string candidate_id = 3;
+}
+
+message PromoteResponse {
+    atomix.headers.SessionResponseHeader header = 1;
+    bool succeeded = 2;
+}
+
+message EvictRequest {
+    atomix.primitive.PrimitiveId election_id = 1;
+    atomix.headers.SessionCommandHeader header = 2;
+    string candidate_id = 3;
+}
+
+message EvictResponse {
+    atomix.headers.SessionResponseHeader header = 1;
+    bool succeeded = 2;
+}
+
+message GetLeadershipRequest {
+    atomix.primitive.PrimitiveId election_id = 1;
+    atomix.headers.SessionQueryHeader header = 2;
+}
+
+message GetLeadershipResponse {
+    atomix.headers.SessionResponseHeader header = 1;
+    uint64 term = 2;
+    uint64 timestamp = 3;
+    string leader = 4;
+    repeated string candidates = 5;
+}
+
+message EventRequest {
+    atomix.primitive.PrimitiveId election_id = 1;
+    atomix.headers.SessionCommandHeader header = 2;
+}
+
+message EventResponse {
+    atomix.headers.SessionResponseHeader header = 1;
+    Type type = 2;
+    uint64 term = 3;
+    uint64 timestamp = 4;
+    string leader = 5;
+    repeated string candidates = 6;
+
+    enum Type {
+        CHANGED = 0;
+    }
+}
+
+// Leader election service
+service LeaderElectionService {
+
+    rpc Create(CreateRequest) returns (CreateResponse) {
+
+    }
+
+    rpc KeepAlive(KeepAliveRequest) returns (KeepAliveResponse) {
+
+    }
+
+    rpc Close(CloseRequest) returns (CloseResponse) {
+
+    }
+
+    rpc Enter(EnterRequest) returns (EnterResponse) {
+
+    }
+
+    rpc Withdraw(WithdrawRequest) returns (WithdrawResponse) {
+
+    }
+
+    rpc Anoint(AnointRequest) returns (AnointResponse) {
+
+    }
+
+    rpc Promote(PromoteRequest) returns (PromoteResponse) {
+
+    }
+
+    rpc Evict(EvictRequest) returns (EvictResponse) {
+
+    }
+
+    rpc GetLeadership(GetLeadershipRequest) returns (GetLeadershipResponse) {
+
+    }
+
+    rpc Events(EventRequest) returns (stream EventResponse) {
+
+    }
+
+}

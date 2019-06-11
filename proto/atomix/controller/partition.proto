@@ -16,12 +16,11 @@ message PartitionGroupId {
     string namespace = 2;
 }
 
-// Partition node configuration
+// Partition configuration
 message PartitionConfig {
     PartitionId partition = 1;
     NodeConfig controller = 2;
-    NodeConfig node = 3;
-    repeated NodeConfig members = 4;
+    repeated NodeConfig members = 3;
 }
 
 // Node configuration

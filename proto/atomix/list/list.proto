@@ -60,6 +60,17 @@ message AppendResponse {
     ResponseStatus status = 2;
 }
 
+message GetRequest {
+    atomix.headers.RequestHeader header = 1;
+    uint32 index = 2;
+}
+
+message GetResponse {
+    atomix.headers.ResponseHeader header = 1;
+    ResponseStatus status = 2;
+    string value = 3;
+}
+
 message InsertRequest {
     atomix.headers.RequestHeader header = 1;
     uint32 index = 2;
@@ -124,47 +135,51 @@ enum ResponseStatus {
 // List service
 service ListService {
 
-    rpc Create(CreateRequest) returns (CreateResponse) {
+    rpc Create (CreateRequest) returns (CreateResponse) {
 
     }
 
-    rpc KeepAlive(KeepAliveRequest) returns (KeepAliveResponse) {
+    rpc KeepAlive (KeepAliveRequest) returns (KeepAliveResponse) {
 
     }
 
-    rpc Close(CloseRequest) returns (CloseResponse) {
+    rpc Close (CloseRequest) returns (CloseResponse) {
 
     }
 
-    rpc Size(SizeRequest) returns (SizeResponse) {
+    rpc Size (SizeRequest) returns (SizeResponse) {
 
     }
 
-    rpc Contains(ContainsRequest) returns (ContainsResponse) {
+    rpc Contains (ContainsRequest) returns (ContainsResponse) {
 
     }
 
-    rpc Append(AppendRequest) returns (AppendResponse) {
+    rpc Append (AppendRequest) returns (AppendResponse) {
 
     }
 
-    rpc Insert(InsertRequest) returns (InsertResponse) {
+    rpc Insert (InsertRequest) returns (InsertResponse) {
 
     }
 
-    rpc Remove(RemoveRequest) returns (RemoveResponse) {
+    rpc Get (GetRequest) returns (GetResponse) {
 
     }
 
-    rpc Clear(ClearRequest) returns (ClearResponse) {
+    rpc Remove (RemoveRequest) returns (RemoveResponse) {
 
     }
 
-    rpc Listen(EventRequest) returns (stream EventResponse) {
+    rpc Clear (ClearRequest) returns (ClearResponse) {
 
     }
 
-    rpc Iterate(IterateRequest) returns (stream IterateResponse) {
+    rpc Listen (EventRequest) returns (stream EventResponse) {
+
+    }
+
+    rpc Iterate (IterateRequest) returns (stream IterateResponse) {
 
     }
 }

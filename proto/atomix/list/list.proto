@@ -103,6 +103,7 @@ message ClearResponse {
 
 message EventRequest {
     atomix.headers.RequestHeader header = 1;
+    bool replay = 2;
 }
 
 message EventResponse {
@@ -111,8 +112,9 @@ message EventResponse {
     string value = 3;
 
     enum Type {
-        ADDED = 0;
-        REMOVED = 1;
+        NONE = 0;
+        ADDED = 1;
+        REMOVED = 2;
     }
 }
 
@@ -175,7 +177,7 @@ service ListService {
 
     }
 
-    rpc Listen (EventRequest) returns (stream EventResponse) {
+    rpc Events (EventRequest) returns (stream EventResponse) {
 
     }
 

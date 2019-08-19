@@ -7,8 +7,7 @@ protoc -I=$proto_imports --gogofaster_out=import_path=atomix/protocols/log:proto
 
 protoc -I=$proto_imports --gogofaster_out=import_path=atomix/primitive,plugins=grpc:proto proto/atomix/primitive/*.proto
 protoc -I=$proto_imports --gogofaster_out=Matomix/primitive/primitive.proto=github.com/atomix/atomix-api/proto/atomix/primitive,import_path=atomix/headers,plugins=grpc:proto proto/atomix/headers/*.proto
-protoc -I=$proto_imports --gogofaster_out=import_path=atomix/controller,plugins=grpc:proto proto/atomix/controller/*.proto
-protoc -I=$proto_imports --gogofaster_out=Matomix/partition/partition.proto=github.com/atomix/atomix-api/proto/atomix/partition,import_path=atomix/controller,plugins=grpc:proto proto/atomix/controller/*.proto
+protoc -I=$proto_imports --gogofaster_out=Mgoogle/protobuf/any.proto=github.com/gogo/protobuf/types,Matomix/partition/partition.proto=github.com/atomix/atomix-api/proto/atomix/partition,import_path=atomix/controller,plugins=grpc:proto proto/atomix/controller/*.proto
 protoc -I=$proto_imports --gogofaster_out=Matomix/headers/headers.proto=github.com/atomix/atomix-api/proto/atomix/headers,import_path=atomix/counter,plugins=grpc:proto proto/atomix/counter/*.proto
 protoc -I=$proto_imports --gogofaster_out=Matomix/headers/headers.proto=github.com/atomix/atomix-api/proto/atomix/headers,import_path=atomix/election,plugins=grpc:proto proto/atomix/election/*.proto
 protoc -I=$proto_imports --gogofaster_out=Matomix/headers/headers.proto=github.com/atomix/atomix-api/proto/atomix/headers,import_path=atomix/list,plugins=grpc:proto proto/atomix/list/*.proto

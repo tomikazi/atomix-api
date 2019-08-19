@@ -7,7 +7,7 @@ import (
 	fmt "fmt"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
-	protobuf "google/protobuf"
+	types "github.com/gogo/protobuf/types"
 	io "io"
 	math "math"
 	math_bits "math/bits"
@@ -421,9 +421,9 @@ func (m *PartitionEndpoint) GetPort() int32 {
 
 // Partition group specification
 type PartitionGroupSpec struct {
-	Partitions    uint32        `protobuf:"varint,1,opt,name=partitions,proto3" json:"partitions,omitempty"`
-	PartitionSize uint32        `protobuf:"varint,2,opt,name=partition_size,json=partitionSize,proto3" json:"partition_size,omitempty"`
-	Protocol      *protobuf.Any `protobuf:"bytes,3,opt,name=protocol,proto3" json:"protocol,omitempty"`
+	Partitions    uint32     `protobuf:"varint,1,opt,name=partitions,proto3" json:"partitions,omitempty"`
+	PartitionSize uint32     `protobuf:"varint,2,opt,name=partition_size,json=partitionSize,proto3" json:"partition_size,omitempty"`
+	Protocol      *types.Any `protobuf:"bytes,3,opt,name=protocol,proto3" json:"protocol,omitempty"`
 }
 
 func (m *PartitionGroupSpec) Reset()         { *m = PartitionGroupSpec{} }
@@ -473,7 +473,7 @@ func (m *PartitionGroupSpec) GetPartitionSize() uint32 {
 	return 0
 }
 
-func (m *PartitionGroupSpec) GetProtocol() *protobuf.Any {
+func (m *PartitionGroupSpec) GetProtocol() *types.Any {
 	if m != nil {
 		return m.Protocol
 	}
@@ -2047,7 +2047,7 @@ func (m *PartitionGroupSpec) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if m.Protocol == nil {
-				m.Protocol = &protobuf.Any{}
+				m.Protocol = &types.Any{}
 			}
 			if err := m.Protocol.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err

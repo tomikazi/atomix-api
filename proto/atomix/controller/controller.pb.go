@@ -11,9 +11,7 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	io "io"
 	math "math"
-	math_bits "math/bits"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -42,25 +40,16 @@ func (*GetPartitionGroupsRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6541e67aaed2c172, []int{0}
 }
 func (m *GetPartitionGroupsRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
+	return xxx_messageInfo_GetPartitionGroupsRequest.Unmarshal(m, b)
 }
 func (m *GetPartitionGroupsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_GetPartitionGroupsRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
+	return xxx_messageInfo_GetPartitionGroupsRequest.Marshal(b, m, deterministic)
 }
 func (m *GetPartitionGroupsRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_GetPartitionGroupsRequest.Merge(m, src)
 }
 func (m *GetPartitionGroupsRequest) XXX_Size() int {
-	return m.Size()
+	return xxx_messageInfo_GetPartitionGroupsRequest.Size(m)
 }
 func (m *GetPartitionGroupsRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_GetPartitionGroupsRequest.DiscardUnknown(m)
@@ -90,25 +79,16 @@ func (*GetPartitionGroupsResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6541e67aaed2c172, []int{1}
 }
 func (m *GetPartitionGroupsResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
+	return xxx_messageInfo_GetPartitionGroupsResponse.Unmarshal(m, b)
 }
 func (m *GetPartitionGroupsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_GetPartitionGroupsResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
+	return xxx_messageInfo_GetPartitionGroupsResponse.Marshal(b, m, deterministic)
 }
 func (m *GetPartitionGroupsResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_GetPartitionGroupsResponse.Merge(m, src)
 }
 func (m *GetPartitionGroupsResponse) XXX_Size() int {
-	return m.Size()
+	return xxx_messageInfo_GetPartitionGroupsResponse.Size(m)
 }
 func (m *GetPartitionGroupsResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_GetPartitionGroupsResponse.DiscardUnknown(m)
@@ -139,25 +119,16 @@ func (*CreatePartitionGroupRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6541e67aaed2c172, []int{2}
 }
 func (m *CreatePartitionGroupRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
+	return xxx_messageInfo_CreatePartitionGroupRequest.Unmarshal(m, b)
 }
 func (m *CreatePartitionGroupRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_CreatePartitionGroupRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
+	return xxx_messageInfo_CreatePartitionGroupRequest.Marshal(b, m, deterministic)
 }
 func (m *CreatePartitionGroupRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_CreatePartitionGroupRequest.Merge(m, src)
 }
 func (m *CreatePartitionGroupRequest) XXX_Size() int {
-	return m.Size()
+	return xxx_messageInfo_CreatePartitionGroupRequest.Size(m)
 }
 func (m *CreatePartitionGroupRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_CreatePartitionGroupRequest.DiscardUnknown(m)
@@ -193,25 +164,16 @@ func (*CreatePartitionGroupResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6541e67aaed2c172, []int{3}
 }
 func (m *CreatePartitionGroupResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
+	return xxx_messageInfo_CreatePartitionGroupResponse.Unmarshal(m, b)
 }
 func (m *CreatePartitionGroupResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_CreatePartitionGroupResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
+	return xxx_messageInfo_CreatePartitionGroupResponse.Marshal(b, m, deterministic)
 }
 func (m *CreatePartitionGroupResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_CreatePartitionGroupResponse.Merge(m, src)
 }
 func (m *CreatePartitionGroupResponse) XXX_Size() int {
-	return m.Size()
+	return xxx_messageInfo_CreatePartitionGroupResponse.Size(m)
 }
 func (m *CreatePartitionGroupResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_CreatePartitionGroupResponse.DiscardUnknown(m)
@@ -234,25 +196,16 @@ func (*DeletePartitionGroupRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6541e67aaed2c172, []int{4}
 }
 func (m *DeletePartitionGroupRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
+	return xxx_messageInfo_DeletePartitionGroupRequest.Unmarshal(m, b)
 }
 func (m *DeletePartitionGroupRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_DeletePartitionGroupRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
+	return xxx_messageInfo_DeletePartitionGroupRequest.Marshal(b, m, deterministic)
 }
 func (m *DeletePartitionGroupRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_DeletePartitionGroupRequest.Merge(m, src)
 }
 func (m *DeletePartitionGroupRequest) XXX_Size() int {
-	return m.Size()
+	return xxx_messageInfo_DeletePartitionGroupRequest.Size(m)
 }
 func (m *DeletePartitionGroupRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_DeletePartitionGroupRequest.DiscardUnknown(m)
@@ -281,25 +234,16 @@ func (*DeletePartitionGroupResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6541e67aaed2c172, []int{5}
 }
 func (m *DeletePartitionGroupResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
+	return xxx_messageInfo_DeletePartitionGroupResponse.Unmarshal(m, b)
 }
 func (m *DeletePartitionGroupResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_DeletePartitionGroupResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
+	return xxx_messageInfo_DeletePartitionGroupResponse.Marshal(b, m, deterministic)
 }
 func (m *DeletePartitionGroupResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_DeletePartitionGroupResponse.Merge(m, src)
 }
 func (m *DeletePartitionGroupResponse) XXX_Size() int {
-	return m.Size()
+	return xxx_messageInfo_DeletePartitionGroupResponse.Size(m)
 }
 func (m *DeletePartitionGroupResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_DeletePartitionGroupResponse.DiscardUnknown(m)
@@ -323,25 +267,16 @@ func (*PartitionElectionRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6541e67aaed2c172, []int{6}
 }
 func (m *PartitionElectionRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
+	return xxx_messageInfo_PartitionElectionRequest.Unmarshal(m, b)
 }
 func (m *PartitionElectionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_PartitionElectionRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
+	return xxx_messageInfo_PartitionElectionRequest.Marshal(b, m, deterministic)
 }
 func (m *PartitionElectionRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_PartitionElectionRequest.Merge(m, src)
 }
 func (m *PartitionElectionRequest) XXX_Size() int {
-	return m.Size()
+	return xxx_messageInfo_PartitionElectionRequest.Size(m)
 }
 func (m *PartitionElectionRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_PartitionElectionRequest.DiscardUnknown(m)
@@ -378,25 +313,16 @@ func (*PartitionElectionResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6541e67aaed2c172, []int{7}
 }
 func (m *PartitionElectionResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
+	return xxx_messageInfo_PartitionElectionResponse.Unmarshal(m, b)
 }
 func (m *PartitionElectionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_PartitionElectionResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
+	return xxx_messageInfo_PartitionElectionResponse.Marshal(b, m, deterministic)
 }
 func (m *PartitionElectionResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_PartitionElectionResponse.Merge(m, src)
 }
 func (m *PartitionElectionResponse) XXX_Size() int {
-	return m.Size()
+	return xxx_messageInfo_PartitionElectionResponse.Size(m)
 }
 func (m *PartitionElectionResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_PartitionElectionResponse.DiscardUnknown(m)
@@ -428,25 +354,16 @@ func (*PrimaryTerm) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6541e67aaed2c172, []int{8}
 }
 func (m *PrimaryTerm) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
+	return xxx_messageInfo_PrimaryTerm.Unmarshal(m, b)
 }
 func (m *PrimaryTerm) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_PrimaryTerm.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
+	return xxx_messageInfo_PrimaryTerm.Marshal(b, m, deterministic)
 }
 func (m *PrimaryTerm) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_PrimaryTerm.Merge(m, src)
 }
 func (m *PrimaryTerm) XXX_Size() int {
-	return m.Size()
+	return xxx_messageInfo_PrimaryTerm.Size(m)
 }
 func (m *PrimaryTerm) XXX_DiscardUnknown() {
 	xxx_messageInfo_PrimaryTerm.DiscardUnknown(m)
@@ -490,37 +407,36 @@ func init() {
 func init() { proto.RegisterFile("atomix/controller/controller.proto", fileDescriptor_6541e67aaed2c172) }
 
 var fileDescriptor_6541e67aaed2c172 = []byte{
-	// 481 bytes of a gzipped FileDescriptorProto
+	// 465 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x54, 0xdd, 0x6a, 0xd4, 0x40,
-	0x14, 0xee, 0x6c, 0xca, 0x4a, 0x4f, 0x2a, 0xd2, 0xa1, 0x48, 0x9a, 0x4a, 0xba, 0x8d, 0x08, 0x0b,
-	0xd6, 0xac, 0xac, 0x57, 0xc5, 0xbb, 0xed, 0x96, 0xb2, 0x57, 0xca, 0x54, 0x50, 0xf4, 0x42, 0xd2,
-	0xe4, 0xb0, 0x0c, 0x6c, 0x32, 0xe3, 0x64, 0x2a, 0xf6, 0x05, 0x7c, 0x03, 0xdf, 0xc9, 0x4b, 0x9f,
-	0xa0, 0x48, 0x1e, 0xc0, 0x67, 0x90, 0xcd, 0xdf, 0xae, 0xdd, 0x31, 0xbb, 0x17, 0x7a, 0x95, 0x99,
-	0x33, 0xdf, 0x77, 0xbe, 0x2f, 0x39, 0x5f, 0x06, 0xfc, 0x50, 0x8b, 0x84, 0x7f, 0x19, 0x44, 0x22,
-	0xd5, 0x4a, 0xcc, 0x66, 0xa8, 0x96, 0x96, 0x81, 0x54, 0x42, 0x0b, 0xba, 0x57, 0x62, 0x82, 0xc5,
-	0x81, 0x7b, 0xbc, 0x4a, 0x93, 0xa1, 0xd2, 0x5c, 0x73, 0x91, 0x96, 0x2c, 0x77, 0x7f, 0x2a, 0xa6,
-	0xa2, 0x58, 0x0e, 0xe6, 0xab, 0xb2, 0xea, 0xbf, 0x83, 0x83, 0x0b, 0xd4, 0xaf, 0x6b, 0xec, 0x85,
-	0x12, 0xd7, 0x32, 0x63, 0xf8, 0xe9, 0x1a, 0x33, 0x4d, 0x5f, 0x42, 0x87, 0xc7, 0x0e, 0xe9, 0x91,
-	0xbe, 0x3d, 0x7c, 0x1c, 0xac, 0xa8, 0x06, 0x7f, 0xd2, 0x26, 0xf1, 0xa8, 0x9b, 0xdf, 0x1e, 0x75,
-	0x26, 0x63, 0xd6, 0xe1, 0xb1, 0xff, 0x16, 0x5c, 0x53, 0xe7, 0x4c, 0x8a, 0x34, 0x43, 0x7a, 0x0a,
-	0xdd, 0x69, 0x51, 0x71, 0x48, 0xcf, 0xea, 0xdb, 0xc3, 0xe3, 0xb5, 0xed, 0x59, 0x45, 0xf0, 0xbf,
-	0x11, 0x38, 0x3c, 0x53, 0x18, 0x6a, 0xbc, 0x03, 0xf8, 0x07, 0xae, 0xe9, 0x29, 0x6c, 0x67, 0x12,
-	0x23, 0xa7, 0x53, 0xd0, 0x9f, 0xac, 0xa5, 0x5f, 0x4a, 0x8c, 0x58, 0x41, 0xf1, 0x3d, 0x78, 0x64,
-	0xb6, 0x55, 0xbe, 0xb2, 0xff, 0x1e, 0x0e, 0xc7, 0x38, 0xc3, 0xff, 0x61, 0x7b, 0xae, 0x6d, 0xee,
-	0x5d, 0x69, 0x7f, 0x25, 0xe0, 0x34, 0x47, 0xe7, 0x33, 0x8c, 0xe6, 0xcf, 0x5a, 0x99, 0xc1, 0x6e,
-	0x13, 0x96, 0x8f, 0x8d, 0x07, 0xaf, 0xcd, 0xc3, 0x24, 0x1e, 0x3d, 0xc8, 0x6f, 0x8f, 0xec, 0x45,
-	0x61, 0xcc, 0x6c, 0xb9, 0x38, 0xa5, 0x0f, 0xa1, 0x9b, 0x60, 0x72, 0x85, 0xaa, 0xf8, 0x92, 0x3b,
-	0xac, 0xda, 0xf9, 0xaf, 0xe0, 0xc0, 0xe0, 0xa3, 0x0a, 0xc5, 0x10, 0xb6, 0x35, 0xaa, 0xa4, 0xcd,
-	0x80, 0xe2, 0x49, 0xa8, 0x6e, 0xde, 0xa0, 0x4a, 0x58, 0x81, 0xf5, 0x3f, 0x80, 0xbd, 0x54, 0xa4,
-	0x74, 0xa9, 0x85, 0x55, 0x42, 0xa8, 0x03, 0xf7, 0x64, 0x09, 0xa9, 0xcc, 0xd4, 0x5b, 0xea, 0x01,
-	0x44, 0x61, 0x1a, 0xf3, 0x38, 0xd4, 0x98, 0x39, 0x56, 0xcf, 0xea, 0xef, 0xb0, 0xa5, 0xca, 0xf0,
-	0x97, 0x05, 0x7b, 0x67, 0x8d, 0xfa, 0x25, 0xaa, 0xcf, 0x3c, 0x42, 0x7a, 0x03, 0xfb, 0xa6, 0x41,
-	0xd3, 0xc0, 0x60, 0xb8, 0x25, 0xa8, 0xee, 0x60, 0x63, 0x7c, 0x35, 0xc5, 0xad, 0xb9, 0xb4, 0x69,
-	0xce, 0x46, 0xe9, 0x96, 0xb0, 0x19, 0xa5, 0x5b, 0x03, 0xb4, 0x45, 0x33, 0xa0, 0xab, 0xff, 0x33,
-	0x3d, 0x31, 0x34, 0xfa, 0xeb, 0x85, 0xe2, 0x3e, 0xdb, 0x10, 0xdd, 0x88, 0xa6, 0x70, 0xff, 0x3c,
-	0xd5, 0xa8, 0xea, 0xa8, 0xd0, 0xa7, 0x6d, 0xa9, 0xbc, 0x13, 0x6c, 0xf7, 0x64, 0x33, 0x70, 0xad,
-	0xf6, 0x9c, 0x8c, 0x76, 0xbf, 0xe7, 0x1e, 0xf9, 0x91, 0x7b, 0xe4, 0x67, 0xee, 0x91, 0xab, 0x6e,
-	0x71, 0x47, 0xbe, 0xf8, 0x1d, 0x00, 0x00, 0xff, 0xff, 0x57, 0xe4, 0x74, 0x52, 0x95, 0x05, 0x00,
+	0x14, 0x6e, 0x36, 0x65, 0xa5, 0x27, 0x8a, 0x74, 0x28, 0x92, 0xa6, 0xb2, 0xdd, 0x8e, 0x08, 0x0b,
+	0xd6, 0xac, 0xc4, 0xab, 0xe2, 0x5d, 0xbb, 0xa5, 0xec, 0x95, 0x32, 0x15, 0x14, 0xbd, 0x90, 0x34,
+	0x39, 0x2c, 0x03, 0x49, 0x66, 0x9c, 0x4c, 0xc5, 0xbe, 0x80, 0x6f, 0xe0, 0xeb, 0xf5, 0xa2, 0x0f,
+	0xe0, 0x33, 0x48, 0x7e, 0x37, 0x76, 0xc7, 0xec, 0x5e, 0xe8, 0x55, 0x66, 0xce, 0x7c, 0xdf, 0xf9,
+	0xbe, 0xe4, 0x7c, 0x19, 0xa0, 0xa1, 0x16, 0x29, 0xff, 0x3e, 0x8d, 0x44, 0xa6, 0x95, 0x48, 0x12,
+	0x54, 0x9d, 0xa5, 0x2f, 0x95, 0xd0, 0x82, 0xec, 0x56, 0x18, 0x7f, 0x79, 0xe0, 0x1d, 0xad, 0xd2,
+	0x64, 0xa8, 0x34, 0xd7, 0x5c, 0x64, 0x15, 0xcb, 0xdb, 0x5b, 0x88, 0x85, 0x28, 0x97, 0xd3, 0x62,
+	0x55, 0x55, 0xe9, 0x47, 0xd8, 0xbf, 0x40, 0xfd, 0xae, 0xc1, 0x5e, 0x28, 0x71, 0x2d, 0x73, 0x86,
+	0x5f, 0xaf, 0x31, 0xd7, 0xe4, 0x0d, 0x0c, 0x78, 0xec, 0x5a, 0x63, 0x6b, 0xe2, 0x04, 0xcf, 0xfc,
+	0x15, 0x55, 0xff, 0x4f, 0xda, 0x3c, 0x3e, 0x1d, 0xde, 0xdd, 0x1e, 0x0e, 0xe6, 0x33, 0x36, 0xe0,
+	0x31, 0xfd, 0x00, 0x9e, 0xa9, 0x73, 0x2e, 0x45, 0x96, 0x23, 0x39, 0x81, 0xe1, 0xa2, 0xac, 0xb8,
+	0xd6, 0xd8, 0x9e, 0x38, 0xc1, 0xd1, 0xda, 0xf6, 0xac, 0x26, 0xd0, 0x9f, 0x16, 0x1c, 0x9c, 0x29,
+	0x0c, 0x35, 0xde, 0x03, 0xfc, 0x03, 0xd7, 0xe4, 0x04, 0xb6, 0x73, 0x89, 0x91, 0x3b, 0x28, 0xe9,
+	0xcf, 0xd7, 0xd2, 0x2f, 0x25, 0x46, 0xac, 0xa4, 0xd0, 0x11, 0x3c, 0x35, 0xdb, 0xaa, 0x5e, 0x99,
+	0x7e, 0x82, 0x83, 0x19, 0x26, 0xf8, 0x3f, 0x6c, 0x17, 0xda, 0xe6, 0xde, 0xb5, 0xf6, 0x0f, 0x0b,
+	0xdc, 0xf6, 0xe8, 0x3c, 0xc1, 0xa8, 0x78, 0x36, 0xca, 0x0c, 0x1e, 0xb6, 0x61, 0xf9, 0xd2, 0x7a,
+	0x18, 0xf5, 0x79, 0x98, 0xc7, 0xa7, 0x8f, 0xef, 0x6e, 0x0f, 0x9d, 0x65, 0x61, 0xc6, 0x1c, 0xb9,
+	0x3c, 0x25, 0x4f, 0x60, 0x98, 0x62, 0x7a, 0x85, 0xaa, 0xfc, 0x92, 0x3b, 0xac, 0xde, 0xd1, 0xb7,
+	0xb0, 0x6f, 0xf0, 0x51, 0x87, 0x22, 0x80, 0x6d, 0x8d, 0x2a, 0xed, 0x33, 0xa0, 0x78, 0x1a, 0xaa,
+	0x9b, 0xf7, 0xa8, 0x52, 0x56, 0x62, 0xe9, 0x67, 0x70, 0x3a, 0x45, 0x42, 0x3a, 0x2d, 0xec, 0x0a,
+	0x42, 0x5c, 0x78, 0x20, 0x2b, 0x48, 0x6d, 0xa6, 0xd9, 0x92, 0x11, 0x40, 0x14, 0x66, 0x31, 0x8f,
+	0x43, 0x8d, 0xb9, 0x6b, 0x8f, 0xed, 0xc9, 0x0e, 0xeb, 0x54, 0x82, 0x5f, 0x36, 0xec, 0x9e, 0xb5,
+	0xea, 0x97, 0xa8, 0xbe, 0xf1, 0x08, 0xc9, 0x0d, 0xec, 0x99, 0x06, 0x4d, 0x7c, 0x83, 0xe1, 0x9e,
+	0xa0, 0x7a, 0xd3, 0x8d, 0xf1, 0xf5, 0x14, 0xb7, 0x0a, 0x69, 0xd3, 0x9c, 0x8d, 0xd2, 0x3d, 0x61,
+	0x33, 0x4a, 0xf7, 0x06, 0x68, 0x8b, 0xe4, 0x40, 0x56, 0xff, 0x67, 0x72, 0x6c, 0x68, 0xf4, 0xd7,
+	0x0b, 0xc5, 0x7b, 0xb9, 0x21, 0xba, 0x15, 0xcd, 0xe0, 0xd1, 0x79, 0xa6, 0x51, 0x35, 0x51, 0x21,
+	0x2f, 0xfa, 0x52, 0x79, 0x2f, 0xd8, 0xde, 0xf1, 0x66, 0xe0, 0x46, 0xed, 0x95, 0x75, 0x35, 0x2c,
+	0x6f, 0xc5, 0xd7, 0xbf, 0x03, 0x00, 0x00, 0xff, 0xff, 0x7e, 0xac, 0xfa, 0xa7, 0x87, 0x05, 0x00,
 	0x00,
 }
 
@@ -747,1494 +663,3 @@ var _ControllerService_serviceDesc = grpc.ServiceDesc{
 	},
 	Metadata: "atomix/controller/controller.proto",
 }
-
-func (m *GetPartitionGroupsRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *GetPartitionGroupsRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *GetPartitionGroupsRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	if m.ID != nil {
-		{
-			size, err := m.ID.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintController(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *GetPartitionGroupsResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *GetPartitionGroupsResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *GetPartitionGroupsResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	if len(m.Groups) > 0 {
-		for iNdEx := len(m.Groups) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Groups[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintController(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0xa
-		}
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *CreatePartitionGroupRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *CreatePartitionGroupRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreatePartitionGroupRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	if m.Spec != nil {
-		{
-			size, err := m.Spec.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintController(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x12
-	}
-	if m.ID != nil {
-		{
-			size, err := m.ID.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintController(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *CreatePartitionGroupResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *CreatePartitionGroupResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *CreatePartitionGroupResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *DeletePartitionGroupRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *DeletePartitionGroupRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *DeletePartitionGroupRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	if m.ID != nil {
-		{
-			size, err := m.ID.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintController(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *DeletePartitionGroupResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *DeletePartitionGroupResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *DeletePartitionGroupResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *PartitionElectionRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *PartitionElectionRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *PartitionElectionRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	if len(m.Member) > 0 {
-		i -= len(m.Member)
-		copy(dAtA[i:], m.Member)
-		i = encodeVarintController(dAtA, i, uint64(len(m.Member)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if m.PartitionID != nil {
-		{
-			size, err := m.PartitionID.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintController(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *PartitionElectionResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *PartitionElectionResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *PartitionElectionResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	if m.Term != nil {
-		{
-			size, err := m.Term.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintController(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *PrimaryTerm) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *PrimaryTerm) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *PrimaryTerm) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.XXX_unrecognized != nil {
-		i -= len(m.XXX_unrecognized)
-		copy(dAtA[i:], m.XXX_unrecognized)
-	}
-	if len(m.Candidates) > 0 {
-		for iNdEx := len(m.Candidates) - 1; iNdEx >= 0; iNdEx-- {
-			i -= len(m.Candidates[iNdEx])
-			copy(dAtA[i:], m.Candidates[iNdEx])
-			i = encodeVarintController(dAtA, i, uint64(len(m.Candidates[iNdEx])))
-			i--
-			dAtA[i] = 0x1a
-		}
-	}
-	if len(m.Primary) > 0 {
-		i -= len(m.Primary)
-		copy(dAtA[i:], m.Primary)
-		i = encodeVarintController(dAtA, i, uint64(len(m.Primary)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if m.Term != 0 {
-		i = encodeVarintController(dAtA, i, uint64(m.Term))
-		i--
-		dAtA[i] = 0x8
-	}
-	return len(dAtA) - i, nil
-}
-
-func encodeVarintController(dAtA []byte, offset int, v uint64) int {
-	offset -= sovController(v)
-	base := offset
-	for v >= 1<<7 {
-		dAtA[offset] = uint8(v&0x7f | 0x80)
-		v >>= 7
-		offset++
-	}
-	dAtA[offset] = uint8(v)
-	return base
-}
-func (m *GetPartitionGroupsRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.ID != nil {
-		l = m.ID.Size()
-		n += 1 + l + sovController(uint64(l))
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func (m *GetPartitionGroupsResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if len(m.Groups) > 0 {
-		for _, e := range m.Groups {
-			l = e.Size()
-			n += 1 + l + sovController(uint64(l))
-		}
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func (m *CreatePartitionGroupRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.ID != nil {
-		l = m.ID.Size()
-		n += 1 + l + sovController(uint64(l))
-	}
-	if m.Spec != nil {
-		l = m.Spec.Size()
-		n += 1 + l + sovController(uint64(l))
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func (m *CreatePartitionGroupResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func (m *DeletePartitionGroupRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.ID != nil {
-		l = m.ID.Size()
-		n += 1 + l + sovController(uint64(l))
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func (m *DeletePartitionGroupResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func (m *PartitionElectionRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.PartitionID != nil {
-		l = m.PartitionID.Size()
-		n += 1 + l + sovController(uint64(l))
-	}
-	l = len(m.Member)
-	if l > 0 {
-		n += 1 + l + sovController(uint64(l))
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func (m *PartitionElectionResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Term != nil {
-		l = m.Term.Size()
-		n += 1 + l + sovController(uint64(l))
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func (m *PrimaryTerm) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Term != 0 {
-		n += 1 + sovController(uint64(m.Term))
-	}
-	l = len(m.Primary)
-	if l > 0 {
-		n += 1 + l + sovController(uint64(l))
-	}
-	if len(m.Candidates) > 0 {
-		for _, s := range m.Candidates {
-			l = len(s)
-			n += 1 + l + sovController(uint64(l))
-		}
-	}
-	if m.XXX_unrecognized != nil {
-		n += len(m.XXX_unrecognized)
-	}
-	return n
-}
-
-func sovController(x uint64) (n int) {
-	return (math_bits.Len64(x|1) + 6) / 7
-}
-func sozController(x uint64) (n int) {
-	return sovController(uint64((x << 1) ^ uint64((int64(x) >> 63))))
-}
-func (m *GetPartitionGroupsRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowController
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: GetPartitionGroupsRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetPartitionGroupsRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ID", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowController
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthController
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthController
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.ID == nil {
-				m.ID = &PartitionGroupId{}
-			}
-			if err := m.ID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipController(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *GetPartitionGroupsResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowController
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: GetPartitionGroupsResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetPartitionGroupsResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Groups", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowController
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthController
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthController
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Groups = append(m.Groups, &PartitionGroup{})
-			if err := m.Groups[len(m.Groups)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipController(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *CreatePartitionGroupRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowController
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: CreatePartitionGroupRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: CreatePartitionGroupRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ID", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowController
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthController
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthController
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.ID == nil {
-				m.ID = &PartitionGroupId{}
-			}
-			if err := m.ID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Spec", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowController
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthController
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthController
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Spec == nil {
-				m.Spec = &PartitionGroupSpec{}
-			}
-			if err := m.Spec.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipController(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *CreatePartitionGroupResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowController
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: CreatePartitionGroupResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: CreatePartitionGroupResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		default:
-			iNdEx = preIndex
-			skippy, err := skipController(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *DeletePartitionGroupRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowController
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: DeletePartitionGroupRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: DeletePartitionGroupRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ID", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowController
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthController
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthController
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.ID == nil {
-				m.ID = &PartitionGroupId{}
-			}
-			if err := m.ID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipController(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *DeletePartitionGroupResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowController
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: DeletePartitionGroupResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: DeletePartitionGroupResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		default:
-			iNdEx = preIndex
-			skippy, err := skipController(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *PartitionElectionRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowController
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: PartitionElectionRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: PartitionElectionRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PartitionID", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowController
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthController
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthController
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.PartitionID == nil {
-				m.PartitionID = &PartitionId{}
-			}
-			if err := m.PartitionID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Member", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowController
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthController
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthController
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Member = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipController(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *PartitionElectionResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowController
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: PartitionElectionResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: PartitionElectionResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Term", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowController
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthController
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthController
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Term == nil {
-				m.Term = &PrimaryTerm{}
-			}
-			if err := m.Term.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipController(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *PrimaryTerm) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowController
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: PrimaryTerm: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: PrimaryTerm: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Term", wireType)
-			}
-			m.Term = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowController
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Term |= int64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Primary", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowController
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthController
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthController
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Primary = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Candidates", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowController
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthController
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthController
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Candidates = append(m.Candidates, string(dAtA[iNdEx:postIndex]))
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipController(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthController
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.XXX_unrecognized = append(m.XXX_unrecognized, dAtA[iNdEx:iNdEx+skippy]...)
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func skipController(dAtA []byte) (n int, err error) {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return 0, ErrIntOverflowController
-			}
-			if iNdEx >= l {
-				return 0, io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= (uint64(b) & 0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		wireType := int(wire & 0x7)
-		switch wireType {
-		case 0:
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return 0, ErrIntOverflowController
-				}
-				if iNdEx >= l {
-					return 0, io.ErrUnexpectedEOF
-				}
-				iNdEx++
-				if dAtA[iNdEx-1] < 0x80 {
-					break
-				}
-			}
-			return iNdEx, nil
-		case 1:
-			iNdEx += 8
-			return iNdEx, nil
-		case 2:
-			var length int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return 0, ErrIntOverflowController
-				}
-				if iNdEx >= l {
-					return 0, io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				length |= (int(b) & 0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if length < 0 {
-				return 0, ErrInvalidLengthController
-			}
-			iNdEx += length
-			if iNdEx < 0 {
-				return 0, ErrInvalidLengthController
-			}
-			return iNdEx, nil
-		case 3:
-			for {
-				var innerWire uint64
-				var start int = iNdEx
-				for shift := uint(0); ; shift += 7 {
-					if shift >= 64 {
-						return 0, ErrIntOverflowController
-					}
-					if iNdEx >= l {
-						return 0, io.ErrUnexpectedEOF
-					}
-					b := dAtA[iNdEx]
-					iNdEx++
-					innerWire |= (uint64(b) & 0x7F) << shift
-					if b < 0x80 {
-						break
-					}
-				}
-				innerWireType := int(innerWire & 0x7)
-				if innerWireType == 4 {
-					break
-				}
-				next, err := skipController(dAtA[start:])
-				if err != nil {
-					return 0, err
-				}
-				iNdEx = start + next
-				if iNdEx < 0 {
-					return 0, ErrInvalidLengthController
-				}
-			}
-			return iNdEx, nil
-		case 4:
-			return iNdEx, nil
-		case 5:
-			iNdEx += 4
-			return iNdEx, nil
-		default:
-			return 0, fmt.Errorf("proto: illegal wireType %d", wireType)
-		}
-	}
-	panic("unreachable")
-}
-
-var (
-	ErrInvalidLengthController = fmt.Errorf("proto: negative length found during unmarshaling")
-	ErrIntOverflowController   = fmt.Errorf("proto: integer overflow")
-)

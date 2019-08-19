@@ -4,10 +4,11 @@ package atomix.list;
 
 import "google/protobuf/duration.proto";
 import "atomix/headers/headers.proto";
+import "gogoproto/gogo.proto";
 
 message CreateRequest {
     atomix.headers.RequestHeader header = 1;
-    google.protobuf.Duration timeout = 2;
+    google.protobuf.Duration timeout = 2 [(gogoproto.stdduration) = true];
 }
 
 message CreateResponse {

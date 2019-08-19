@@ -2,12 +2,12 @@ syntax = "proto3";
 
 package atomix.controller;
 
-import "google/protobuf/any.proto";
 import "atomix/controller/partition.proto";
+import "gogoproto/gogo.proto";
 
 // Gets a list of partition groups in the given namespace
 message GetPartitionGroupsRequest {
-    atomix.controller.PartitionGroupId id = 1;
+    atomix.controller.PartitionGroupId id = 1 [(gogoproto.customname) = "ID"];
 }
 
 // Returns a list of partition groups
@@ -17,7 +17,7 @@ message GetPartitionGroupsResponse {
 
 // Creates a new partition group
 message CreatePartitionGroupRequest {
-    atomix.controller.PartitionGroupId id = 1;
+    atomix.controller.PartitionGroupId id = 1 [(gogoproto.customname) = "ID"];
     atomix.controller.PartitionGroupSpec spec = 2;
 }
 
@@ -28,7 +28,7 @@ message CreatePartitionGroupResponse {
 
 // Deletes a partition group
 message DeletePartitionGroupRequest {
-    atomix.controller.PartitionGroupId id = 1;
+    atomix.controller.PartitionGroupId id = 1 [(gogoproto.customname) = "ID"];
 }
 
 // Returns the result of deleting a partition group
@@ -38,7 +38,7 @@ message DeletePartitionGroupResponse {
 
 // Enters a primary election
 message PartitionElectionRequest {
-    atomix.controller.PartitionId partition_id = 1;
+    atomix.controller.PartitionId partition_id = 1 [(gogoproto.customname) = "PartitionID"];
     string member = 2;
 }
 

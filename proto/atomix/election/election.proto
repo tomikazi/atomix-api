@@ -2,12 +2,13 @@ syntax = "proto3";
 
 import "google/protobuf/duration.proto";
 import "atomix/headers/headers.proto";
+import "gogoproto/gogo.proto";
 
 package atomix.election;
 
 message CreateRequest {
     atomix.headers.RequestHeader header = 1;
-    google.protobuf.Duration timeout = 2;
+    google.protobuf.Duration timeout = 2 [(gogoproto.stdduration) = true];
 }
 
 message CreateResponse {
@@ -46,7 +47,7 @@ message EnterResponse {
 
 message WithdrawRequest {
     atomix.headers.RequestHeader header = 1;
-    string candidate_id = 2;
+    string candidate_id = 2 [(gogoproto.customname) = "CandidateID"];
 }
 
 message WithdrawResponse {
@@ -56,7 +57,7 @@ message WithdrawResponse {
 
 message AnointRequest {
     atomix.headers.RequestHeader header = 1;
-    string candidate_id = 2;
+    string candidate_id = 2 [(gogoproto.customname) = "CandidateID"];
 }
 
 message AnointResponse {
@@ -66,7 +67,7 @@ message AnointResponse {
 
 message PromoteRequest {
     atomix.headers.RequestHeader header = 1;
-    string candidate_id = 2;
+    string candidate_id = 2 [(gogoproto.customname) = "CandidateID"];
 }
 
 message PromoteResponse {
@@ -76,7 +77,7 @@ message PromoteResponse {
 
 message EvictRequest {
     atomix.headers.RequestHeader header = 1;
-    string candidate_id = 2;
+    string candidate_id = 2 [(gogoproto.customname) = "CandidateID"];
 }
 
 message EvictResponse {

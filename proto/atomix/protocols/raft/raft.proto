@@ -3,11 +3,12 @@ syntax = "proto3";
 package atomix.protocols.raft;
 
 import "google/protobuf/duration.proto";
+import "gogoproto/gogo.proto";
 
 // Raft protocol configuration
 message RaftProtocol {
-    google.protobuf.Duration election_timeout = 1;
-    google.protobuf.Duration heartbeat_interval = 2;
+    google.protobuf.Duration election_timeout = 1 [(gogoproto.stdduration) = true];
+    google.protobuf.Duration heartbeat_interval = 2 [(gogoproto.stdduration) = true];
     StorageSpec storage = 3;
     CompactionSpec compaction = 4;
 }

@@ -10,10 +10,10 @@ import (
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	github_com_gogo_protobuf_types "github.com/gogo/protobuf/types"
+	types "github.com/gogo/protobuf/types"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	protobuf "google/protobuf"
 	io "io"
 	math "math"
 	math_bits "math/bits"
@@ -314,7 +314,7 @@ func (m *CloseResponse) GetHeader() *headers.ResponseHeader {
 
 type LockRequest struct {
 	Header  *headers.RequestHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Timeout *protobuf.Duration     `protobuf:"bytes,2,opt,name=timeout,proto3" json:"timeout,omitempty"`
+	Timeout *types.Duration        `protobuf:"bytes,2,opt,name=timeout,proto3" json:"timeout,omitempty"`
 }
 
 func (m *LockRequest) Reset()         { *m = LockRequest{} }
@@ -357,7 +357,7 @@ func (m *LockRequest) GetHeader() *headers.RequestHeader {
 	return nil
 }
 
-func (m *LockRequest) GetTimeout() *protobuf.Duration {
+func (m *LockRequest) GetTimeout() *types.Duration {
 	if m != nil {
 		return m.Timeout
 	}
@@ -2309,7 +2309,7 @@ func (m *LockRequest) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			if m.Timeout == nil {
-				m.Timeout = &protobuf.Duration{}
+				m.Timeout = &types.Duration{}
 			}
 			if err := m.Timeout.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err

@@ -56,7 +56,7 @@ message PutRequest {
     string key = 2;
     bytes value = 3;
     int64 version = 4;
-    int64 ttl = 5 [(gogoproto.customname) = "TTL"];
+    google.protobuf.Duration ttl = 5 [(gogoproto.customname) = "TTL", (gogoproto.stdduration) = true];
 }
 
 message PutResponse {
@@ -72,7 +72,7 @@ message ReplaceRequest {
     bytes previous_value = 3;
     int64 previous_version = 4;
     bytes new_value = 5;
-    int64 ttl = 6 [(gogoproto.customname) = "TTL"];
+    google.protobuf.Duration ttl = 6 [(gogoproto.customname) = "TTL", (gogoproto.stdduration) = true];
 }
 
 message ReplaceResponse {

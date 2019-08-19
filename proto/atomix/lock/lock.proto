@@ -34,7 +34,7 @@ message CloseResponse {
 
 message LockRequest {
     atomix.headers.RequestHeader header = 1;
-    google.protobuf.Duration timeout = 2;
+    google.protobuf.Duration timeout = 2 [(gogoproto.stdduration) = true];
 }
 
 message LockResponse {

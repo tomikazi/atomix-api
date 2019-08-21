@@ -9,7 +9,8 @@ message Name {
 }
 
 message GetPrimitivesRequest {
-    string type = 1;
+    string namespace = 1;
+    string type = 2;
 }
 
 message GetPrimitivesResponse {

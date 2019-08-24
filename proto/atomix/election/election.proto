@@ -35,7 +35,7 @@ message CloseResponse {
 
 message EnterRequest {
     atomix.headers.RequestHeader header = 1;
-    string candidate_id = 2;
+    string candidate_id = 2 [(gogoproto.customname) = "CandidateID"];
 }
 
 message EnterResponse {

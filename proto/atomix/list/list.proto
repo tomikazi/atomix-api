@@ -72,6 +72,16 @@ message GetResponse {
     string value = 3;
 }
 
+message SetRequest {
+    atomix.headers.RequestHeader header = 1;
+    uint32 index = 2;
+    string value = 3;
+}
+
+message SetResponse {
+    atomix.headers.ResponseHeader header = 1;
+    ResponseStatus status = 2;
+}
 message InsertRequest {
     atomix.headers.RequestHeader header = 1;
     uint32 index = 2;
@@ -168,6 +178,10 @@ service ListService {
     }
 
     rpc Get (GetRequest) returns (GetResponse) {
+
+    }
+
+    rpc Set (SetRequest) returns (SetResponse) {
 
     }
 

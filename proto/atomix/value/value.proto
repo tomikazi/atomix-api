@@ -39,12 +39,12 @@ message GetRequest {
 message GetResponse {
     atomix.headers.ResponseHeader header = 1;
     bytes value = 2;
-    int64 version = 3;
+    uint64 version = 3;
 }
 
 message SetRequest {
     atomix.headers.RequestHeader header = 1;
-    int64 expect_version = 2;
+    uint64 expect_version = 2;
     bytes expect_value = 3;
     bytes value = 4;
 }
@@ -63,9 +63,9 @@ message EventResponse {
     atomix.headers.ResponseHeader header = 1;
     Type type = 2;
     bytes previous_value = 3;
-    int64 previous_version = 4;
+    uint64 previous_version = 4;
     bytes new_value = 5;
-    int64 new_version = 6;
+    uint64 new_version = 6;
 
     enum Type {
         UPDATED = 0;

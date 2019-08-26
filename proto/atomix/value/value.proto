@@ -51,7 +51,7 @@ message SetRequest {
 
 message SetResponse {
     atomix.headers.ResponseHeader header = 1;
-    int64 version = 2;
+    uint64 version = 2;
     bool succeeded = 3;
 }
 

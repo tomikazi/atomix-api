@@ -44,7 +44,7 @@ message GetResponse {
 
 message SetRequest {
     atomix.headers.RequestHeader header = 1;
-    bytes expect_version = 2;
+    int64 expect_version = 2;
     bytes expect_value = 3;
     bytes value = 4;
 }

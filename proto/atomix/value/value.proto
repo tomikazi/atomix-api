@@ -52,8 +52,7 @@ message SetRequest {
 message SetResponse {
     atomix.headers.ResponseHeader header = 1;
     int64 version = 2;
-    bytes previous_value = 3;
-    int64 previous_version = 4;
+    bool succeeded = 3;
 }
 
 message EventRequest {

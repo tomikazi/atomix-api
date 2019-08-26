@@ -44,7 +44,9 @@ message GetResponse {
 
 message SetRequest {
     atomix.headers.RequestHeader header = 1;
-    bytes value = 2;
+    bytes expect_version = 2;
+    bytes expect_value = 3;
+    bytes value = 4;
 }
 
 message SetResponse {
@@ -52,19 +54,6 @@ message SetResponse {
     int64 version = 2;
     bytes previous_value = 3;
     int64 previous_version = 4;
-}
-
-message CheckAndSetRequest {
-    atomix.headers.RequestHeader header = 1;
-    bytes check = 2;
-    bytes update = 3;
-    int64 version = 4;
-}
-
-message CheckAndSetResponse {
-    atomix.headers.ResponseHeader header = 1;
-    int64 version = 2;
-    bool succeeded = 3;
 }
 
 message EventRequest {
@@ -87,31 +76,27 @@ message EventResponse {
 // Value service
 service ValueService {
 
-    rpc Create(CreateRequest) returns (CreateResponse) {
+    rpc Create (CreateRequest) returns (CreateResponse) {
 
     }
 
-    rpc KeepAlive(KeepAliveRequest) returns (KeepAliveResponse) {
+    rpc KeepAlive (KeepAliveRequest) returns (KeepAliveResponse) {
 
     }
 
-    rpc Close(CloseRequest) returns (CloseResponse) {
+    rpc Close (CloseRequest) returns (CloseResponse) {
 
     }
 
-    rpc Set(SetRequest) returns (SetResponse) {
+    rpc Set (SetRequest) returns (SetResponse) {
 
     }
 
-    rpc Get(GetRequest) returns (GetResponse) {
+    rpc Get (GetRequest) returns (GetResponse) {
 
     }
 
-    rpc CheckAndSet(CheckAndSetRequest) returns (CheckAndSetResponse) {
-
-    }
-
-    rpc Event(EventRequest) returns (stream EventResponse) {
+    rpc Events (EventRequest) returns (stream EventResponse) {
 
     }
 

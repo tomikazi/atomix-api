@@ -63,8 +63,8 @@ message PutRequest {
 message PutResponse {
     atomix.headers.ResponseHeader header = 1;
     ResponseStatus status = 2;
-    google.protobuf.Timestamp created = 3 [(gogoproto.stdduration) = true, (gogoproto.nullable) = false];
-    google.protobuf.Timestamp updated = 4 [(gogoproto.stdduration) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp created = 3 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp updated = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
     bytes previous_value = 5;
     int64 previous_version = 6;
 }
@@ -81,8 +81,8 @@ message ReplaceRequest {
 message ReplaceResponse {
     atomix.headers.ResponseHeader header = 1;
     ResponseStatus status = 2;
-    google.protobuf.Timestamp created = 3 [(gogoproto.stdduration) = true, (gogoproto.nullable) = false];
-    google.protobuf.Timestamp updated = 4 [(gogoproto.stdduration) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp created = 3 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp updated = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
     bytes previous_value = 5;
     int64 previous_version = 6;
 }
@@ -103,8 +103,8 @@ message RemoveRequest {
     string key = 2;
     bytes value = 3;
     int64 version = 4;
-    google.protobuf.Timestamp created = 5 [(gogoproto.stdduration) = true, (gogoproto.nullable) = false];
-    google.protobuf.Timestamp updated = 6 [(gogoproto.stdduration) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp created = 5 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp updated = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
 
 message RemoveResponse {
@@ -131,8 +131,8 @@ message EntriesResponse {
     string key = 2;
     bytes value = 3;
     int64 version = 4;
-    google.protobuf.Timestamp created = 5 [(gogoproto.stdduration) = true, (gogoproto.nullable) = false];
-    google.protobuf.Timestamp updated = 6 [(gogoproto.stdduration) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp created = 5 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp updated = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
 
 message EventRequest {
@@ -146,8 +146,8 @@ message EventResponse {
     string key = 3;
     bytes value = 4;
     int64 version = 5;
-    google.protobuf.Timestamp created = 6 [(gogoproto.stdduration) = true, (gogoproto.nullable) = false];
-    google.protobuf.Timestamp updated = 7 [(gogoproto.stdduration) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp created = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp updated = 7 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 
     enum Type {
         NONE = 0;

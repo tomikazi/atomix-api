@@ -96,6 +96,8 @@ message GetResponse {
     atomix.headers.ResponseHeader header = 1;
     bytes value = 2;
     int64 version = 3;
+    google.protobuf.Timestamp created = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp updated = 5 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
 
 message RemoveRequest {

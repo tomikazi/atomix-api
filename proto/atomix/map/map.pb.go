@@ -14,7 +14,6 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	_ "google/protobuf"
 	io "io"
 	math "math"
 	math_bits "math/bits"

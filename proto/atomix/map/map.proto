@@ -156,6 +156,7 @@ message EventResponse {
         INSERTED = 1;
         UPDATED = 2;
         REMOVED = 3;
+        OPEN = 4;
     }
 }
 

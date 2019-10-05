@@ -103,6 +103,7 @@ message EventResponse {
 
     enum Type {
         CHANGED = 0;
+        OPEN = 1;
     }
 }
 

@@ -91,7 +91,8 @@ message ReplaceResponse {
 
 message GetRequest {
     atomix.headers.RequestHeader header = 1;
-    string key = 2;
+    int64 index = 2;
+    string key = 3;
 }
 
 message GetResponse {

@@ -109,6 +109,64 @@ message GetResponse {
     google.protobuf.Timestamp updated = 7 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
 
+message FirstEntryRequest {
+    atomix.headers.RequestHeader header = 1;
+}
+
+message FirstEntryResponse {
+    atomix.headers.ResponseHeader header = 1;
+    int64 index = 2;
+    string key = 3;
+    bytes value = 4;
+    int64 version = 5;
+    google.protobuf.Timestamp created = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp updated = 7 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+}
+
+message LastEntryRequest {
+    atomix.headers.RequestHeader header = 1;
+}
+
+message LastEntryResponse {
+    atomix.headers.ResponseHeader header = 1;
+    int64 index = 2;
+    string key = 3;
+    bytes value = 4;
+    int64 version = 5;
+    google.protobuf.Timestamp created = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp updated = 7 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+}
+
+message PrevEntryRequest {
+    atomix.headers.RequestHeader header = 1;
+    int64 index = 2;
+}
+
+message PrevEntryResponse {
+    atomix.headers.ResponseHeader header = 1;
+    int64 index = 2;
+    string key = 3;
+    bytes value = 4;
+    int64 version = 5;
+    google.protobuf.Timestamp created = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp updated = 7 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+}
+
+message NextEntryRequest {
+    atomix.headers.RequestHeader header = 1;
+    int64 index = 2;
+}
+
+message NextEntryResponse {
+    atomix.headers.ResponseHeader header = 1;
+    int64 index = 2;
+    string key = 3;
+    bytes value = 4;
+    int64 version = 5;
+    google.protobuf.Timestamp created = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp updated = 7 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+}
+
 message RemoveRequest {
     atomix.headers.RequestHeader header = 1;
     int64 index = 2;
@@ -184,40 +242,36 @@ enum ResponseStatus {
 // IndexedMap service
 service IndexedMapService {
 
-    rpc Create (CreateRequest) returns (CreateResponse) {
-    }
+    rpc Create (CreateRequest) returns (CreateResponse);
 
-    rpc KeepAlive (KeepAliveRequest) returns (KeepAliveResponse) {
-    }
+    rpc KeepAlive (KeepAliveRequest) returns (KeepAliveResponse);
 
-    rpc Close (CloseRequest) returns (CloseResponse) {
-    }
+    rpc Close (CloseRequest) returns (CloseResponse);
 
-    rpc Size (SizeRequest) returns (SizeResponse) {
-    }
+    rpc Size (SizeRequest) returns (SizeResponse);
 
-    rpc Exists (ExistsRequest) returns (ExistsResponse) {
-    }
+    rpc Exists (ExistsRequest) returns (ExistsResponse);
 
-    rpc Put (PutRequest) returns (PutResponse) {
-    }
+    rpc Put (PutRequest) returns (PutResponse);
 
-    rpc Replace (ReplaceRequest) returns (ReplaceResponse) {
-    }
+    rpc Replace (ReplaceRequest) returns (ReplaceResponse);
 
-    rpc Get (GetRequest) returns (GetResponse) {
-    }
+    rpc Get (GetRequest) returns (GetResponse);
 
-    rpc Remove (RemoveRequest) returns (RemoveResponse) {
-    }
+    rpc FirstEntry (FirstEntryRequest) returns (FirstEntryResponse);
 
-    rpc Clear (ClearRequest) returns (ClearResponse) {
-    }
+    rpc LastEntry (LastEntryRequest) returns (LastEntryResponse);
 
-    rpc Events (EventRequest) returns (stream EventResponse) {
-    }
+    rpc PrevEntry (PrevEntryRequest) returns (PrevEntryResponse);
 
-    rpc Entries (EntriesRequest) returns (stream EntriesResponse) {
-    }
+    rpc NextEntry (NextEntryRequest) returns (NextEntryResponse);
+
+    rpc Remove (RemoveRequest) returns (RemoveResponse);
+
+    rpc Clear (ClearRequest) returns (ClearResponse);
+
+    rpc Events (EventRequest) returns (stream EventResponse);
+
+    rpc Entries (EntriesRequest) returns (stream EntriesResponse);
 
 }

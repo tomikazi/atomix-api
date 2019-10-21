@@ -211,6 +211,8 @@ message EntriesResponse {
 message EventRequest {
     atomix.headers.RequestHeader header = 1;
     bool replay = 2;
+    string key = 3;
+    int64 index = 4;
 }
 
 message EventResponse {

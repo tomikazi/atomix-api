@@ -32,12 +32,12 @@ message CloseResponse {
     atomix.headers.ResponseHeader header = 1;
 }
 
-message EnterRequest {
+message LatchRequest {
     atomix.headers.RequestHeader header = 1;
     string participant_id = 2 [(gogoproto.customname) = "ParticipantID"];
 }
 
-message EnterResponse {
+message LatchResponse {
     atomix.headers.ResponseHeader header = 1;
     Latch latch = 2;
 }
@@ -81,7 +81,7 @@ service LeaderLatchService {
 
     rpc Close(CloseRequest) returns (CloseResponse);
 
-    rpc Enter(EnterRequest) returns (EnterResponse);
+    rpc Latch(LatchRequest) returns (LatchResponse);
 
     rpc Get(GetRequest) returns (GetResponse);
 

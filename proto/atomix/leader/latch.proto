@@ -4,7 +4,7 @@ import "google/protobuf/duration.proto";
 import "atomix/headers/headers.proto";
 import "gogoproto/gogo.proto";
 
-package atomix.leaderlatch;
+package atomix.leader;
 
 message CreateRequest {
     atomix.headers.RequestHeader header = 1;

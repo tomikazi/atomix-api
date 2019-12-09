@@ -1,0 +1,90 @@
+syntax = "proto3";
+
+import "google/protobuf/duration.proto";
+import "atomix/headers/headers.proto";
+import "gogoproto/gogo.proto";
+
+package atomix.leaderlatch;
+
+message CreateRequest {
+    atomix.headers.RequestHeader header = 1;
+    google.protobuf.Duration timeout = 2 [(gogoproto.stdduration) = true];
+}
+
+message CreateResponse {
+    atomix.headers.ResponseHeader header = 1;
+}
+
+message KeepAliveRequest {
+    atomix.headers.RequestHeader header = 1;
+}
+
+message KeepAliveResponse {
+    atomix.headers.ResponseHeader header = 1;
+}
+
+message CloseRequest {
+    atomix.headers.RequestHeader header = 1;
+    bool delete = 2;
+}
+
+message CloseResponse {
+    atomix.headers.ResponseHeader header = 1;
+}
+
+message EnterRequest {
+    atomix.headers.RequestHeader header = 1;
+    string participant_id = 2 [(gogoproto.customname) = "ParticipantID"];
+}
+
+message EnterResponse {
+    atomix.headers.ResponseHeader header = 1;
+    Latch latch = 2;
+}
+
+message GetRequest {
+    atomix.headers.RequestHeader header = 1;
+}
+
+message GetResponse {
+    atomix.headers.ResponseHeader header = 1;
+    Latch latch = 2;
+}
+
+message EventRequest {
+    atomix.headers.RequestHeader header = 1;
+}
+
+message EventResponse {
+    atomix.headers.ResponseHeader header = 1;
+    Type type = 2;
+    Latch latch = 3;
+
+    enum Type {
+        CHANGED = 0;
+        OPEN = 1;
+    }
+}
+
+message Latch {
+    uint64 id = 1 [(gogoproto.customname) = "ID"];
+    string leader = 2;
+    repeated string participants = 3;
+}
+
+// Leader latch service
+service LeaderLatchService {
+
+    rpc Create(CreateRequest) returns (CreateResponse);
+
+    rpc KeepAlive(KeepAliveRequest) returns (KeepAliveResponse);
+
+    rpc Close(CloseRequest) returns (CloseResponse);
+
+    rpc Enter(EnterRequest) returns (EnterResponse);
+
+    rpc Get(GetRequest) returns (GetResponse);
+
+    rpc Events(EventRequest) returns (stream EventResponse);
+
+}

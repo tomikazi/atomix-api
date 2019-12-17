@@ -19,6 +19,13 @@ message ResponseHeader {
     uint64 response_id = 3 [(gogoproto.customname) = "ResponseID"];
     uint64 index = 4;
     string leader = 5;
+    ResponseStatus status = 6;
+}
+
+enum ResponseStatus {
+    OK = 0;
+    ERROR = 1;
+    NOT_LEADER = 2;
 }
 
 message StreamHeader {

@@ -18,6 +18,7 @@ message ResponseHeader {
     uint64 stream_id = 2 [(gogoproto.customname) = "StreamID"];
     uint64 response_id = 3 [(gogoproto.customname) = "ResponseID"];
     uint64 index = 4;
+    string leader = 5;
 }
 
 message StreamHeader {

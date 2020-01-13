@@ -20,6 +20,13 @@ message ResponseHeader {
     uint64 index = 4;
     string leader = 5;
     ResponseStatus status = 6;
+    ResponseType type = 7;
+}
+
+enum ResponseType {
+    RESPONSE = 0;
+    OPEN_STREAM = 1;
+    CLOSE_STREAM = 2;
 }
 
 enum ResponseStatus {

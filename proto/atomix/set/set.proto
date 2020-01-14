@@ -95,7 +95,6 @@ message EventResponse {
         NONE = 0;
         ADDED = 1;
         REMOVED = 2;
-        OPEN = 3;
     }
 }
 

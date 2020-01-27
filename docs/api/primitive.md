@@ -33,6 +33,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| partition | [uint64](#uint64) |  |  |
 | namespace | [string](#string) |  |  |
 | type | [string](#string) |  |  |
 

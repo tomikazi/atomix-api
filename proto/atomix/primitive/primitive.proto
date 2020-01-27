@@ -9,6 +9,7 @@ message Name {
 }
 
 message GetPrimitivesRequest {
+    uint64 partition = 3;
     string namespace = 1;
     string type = 2;
 }

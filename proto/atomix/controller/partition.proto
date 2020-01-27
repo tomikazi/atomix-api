@@ -22,6 +22,7 @@ message PartitionConfig {
     PartitionId partition = 1;
     NodeConfig controller = 2;
     repeated NodeConfig members = 3;
+    repeated PartitionId partitions = 4;
 }
 
 // Node configuration

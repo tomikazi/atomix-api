@@ -248,6 +248,7 @@ Partition configuration
 | partition | [PartitionId](#atomix.controller.PartitionId) |  |  |
 | controller | [NodeConfig](#atomix.controller.NodeConfig) |  |  |
 | members | [NodeConfig](#atomix.controller.NodeConfig) | repeated |  |
+| partitions | [PartitionId](#atomix.controller.PartitionId) | repeated |  |
 
 
 

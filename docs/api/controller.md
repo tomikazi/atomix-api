@@ -469,7 +469,7 @@ Partition identifier
 | ----- | ---- | ----- | ----------- |
 | partition | [int32](#int32) |  |  |
 | group | [PartitionGroupId](#atomix.controller.PartitionGroupId) |  |  |
-| database | [DatabaseId](#atomix.controller.DatabaseId) |  |  |
+| cluster | [ClusterId](#atomix.controller.ClusterId) |  |  |
 
 
 

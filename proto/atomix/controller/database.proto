@@ -19,11 +19,8 @@ message Database {
     // id is the database identifier
     DatabaseId id = 1 [(gogoproto.customname) = "ID"];
 
-    // clusters is a list of clusters in the database
-    repeated Cluster clusters = 2;
-
     // partitions is a list of partitions in the cluster
-    repeated Partition partitions = 3;
+    repeated Partition partitions = 2;
 }
 
 // Cluster identifier
@@ -41,7 +38,7 @@ message Cluster {
     ClusterId id = 1 [(gogoproto.customname) = "ID"];
 
     // partitions is a list of partitions in the cluster
-    repeated Partition partitions = 2;
+    repeated PartitionId partitions = 2;
 }
 
 // Cluster configuration

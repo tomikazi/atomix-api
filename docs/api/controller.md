@@ -250,7 +250,7 @@ Cluster configuration
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [ClusterId](#atomix.controller.ClusterId) |  | id is the cluster identifier |
-| partitions | [Partition](#atomix.controller.Partition) | repeated | partitions is a list of partitions in the cluster |
+| partitions | [PartitionId](#atomix.controller.PartitionId) | repeated | partitions is a list of partitions in the cluster |
 
 
 
@@ -298,7 +298,6 @@ Database configuration
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [DatabaseId](#atomix.controller.DatabaseId) |  | id is the database identifier |
-| clusters | [Cluster](#atomix.controller.Cluster) | repeated | clusters is a list of clusters in the database |
 | partitions | [Partition](#atomix.controller.Partition) | repeated | partitions is a list of partitions in the cluster |
 
 

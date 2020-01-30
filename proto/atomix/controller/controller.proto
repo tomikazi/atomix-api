@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package atomix.controller;
 
-import "atomix/controller/partition.proto";
 import "atomix/controller/database.proto";
 import "gogoproto/gogo.proto";
 

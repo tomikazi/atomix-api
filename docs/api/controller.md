@@ -28,12 +28,6 @@
     - [Database](#atomix.controller.Database)
     - [DatabaseId](#atomix.controller.DatabaseId)
     - [MemberConfig](#atomix.controller.MemberConfig)
-  
-  
-  
-  
-
-- [atomix/controller/partition.proto](#atomix/controller/partition.proto)
     - [NodeConfig](#atomix.controller.NodeConfig)
     - [Partition](#atomix.controller.Partition)
     - [PartitionConfig](#atomix.controller.PartitionConfig)
@@ -345,22 +339,6 @@ Member configuration
 
 
 
- 
-
- 
-
- 
-
- 
-
-
-
-<a name="atomix/controller/partition.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## atomix/controller/partition.proto
-
-
 
 <a name="atomix.controller.NodeConfig"></a>
 
@@ -491,6 +469,7 @@ Partition identifier
 | ----- | ---- | ----- | ----------- |
 | partition | [int32](#int32) |  |  |
 | group | [PartitionGroupId](#atomix.controller.PartitionGroupId) |  |  |
+| database | [DatabaseId](#atomix.controller.DatabaseId) |  |  |
 
 
 

@@ -13,12 +13,14 @@ message PartitionId {
 
 // Partition group name
 message PartitionGroupId {
+    option deprecated = true;
     string name = 1;
     string namespace = 2;
 }
 
 // Partition configuration
 message PartitionConfig {
+    option deprecated = true;
     PartitionId partition = 1;
     NodeConfig controller = 2;
     repeated NodeConfig members = 3;
@@ -27,6 +29,7 @@ message PartitionConfig {
 
 // Node configuration
 message NodeConfig {
+    option deprecated = true;
     string id = 1 [(gogoproto.customname) = "ID"];
     string host = 2;
     int32 port = 3;
@@ -36,6 +39,7 @@ message NodeConfig {
 
 // Partition group info
 message PartitionGroup {
+    option deprecated = true;
     PartitionGroupId id = 1 [(gogoproto.customname) = "ID"];
     PartitionGroupSpec spec = 2;
     repeated Partition partitions = 3;
@@ -55,6 +59,7 @@ message PartitionEndpoint {
 
 // Partition group specification
 message PartitionGroupSpec {
+    option deprecated = true;
     uint32 partitions = 1;
     uint32 partition_size = 2;
     google.protobuf.Any protocol = 3;

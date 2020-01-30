@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package atomix.controller;
+
+import "google/protobuf/any.proto";
+import "gogoproto/gogo.proto";
+import "atomix/controller/partition.proto";
+
+// Database identifier
+message DatabaseId {
+    // name is the name of the database
+    string name = 1;
+
+    // namespace is the namespace to which the database belongs
+    string namespace = 2;
+}
+
+// Database configuration
+message Database {
+    // id is the database identifier
+    DatabaseId id = 1 [(gogoproto.customname) = "ID"];
+
+    // clusters is a list of clusters in the database
+    repeated Cluster clusters = 2;
+
+    // partitions is a list of partitions in the cluster
+    repeated Partition partitions = 3;
+}
+
+// Cluster identifier
+message ClusterId {
+    // id is the unique numeric identifier for the cluster
+    int32 id = 1 [(gogoproto.customname) = "ID"];
+
+    // database_id is the identifier for the database to which the cluster belonds
+    DatabaseId database_id = 2 [(gogoproto.customname) = "DatabaseID"];
+}
+
+// Cluster configuration
+message Cluster {
+    // id is the cluster identifier
+    ClusterId id = 1 [(gogoproto.customname) = "ID"];
+
+    // partitions is a list of partitions in the cluster
+    repeated Partition partitions = 2;
+}
+
+// Cluster configuration
+message ClusterConfig {
+    // members is a list of cluster members
+    repeated MemberConfig members = 1;
+
+    // partitions is a list of partitions owned by the cluster
+    repeated PartitionId partitions = 2;
+}
+
+// Member configuration
+message MemberConfig {
+    // id is the unique member identifier
+    string id = 1 [(gogoproto.customname) = "ID"];
+
+    // host is the member host
+    string host = 2;
+
+    // api_port is the port to use for the client API
+    int32 api_port = 3 [(gogoproto.customname) = "APIPort", (gogoproto.jsontag) = "apiPort"];
+
+    // protocol_port is the port to use for intra-cluster communication
+    int32 protocol_port = 4 [(gogoproto.jsontag) = "protocolPort"];
+}

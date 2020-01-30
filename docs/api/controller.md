@@ -8,6 +8,8 @@
     - [CreatePartitionGroupResponse](#atomix.controller.CreatePartitionGroupResponse)
     - [DeletePartitionGroupRequest](#atomix.controller.DeletePartitionGroupRequest)
     - [DeletePartitionGroupResponse](#atomix.controller.DeletePartitionGroupResponse)
+    - [GetDatabasesRequest](#atomix.controller.GetDatabasesRequest)
+    - [GetDatabasesResponse](#atomix.controller.GetDatabasesResponse)
     - [GetPartitionGroupsRequest](#atomix.controller.GetPartitionGroupsRequest)
     - [GetPartitionGroupsResponse](#atomix.controller.GetPartitionGroupsResponse)
     - [PartitionElectionRequest](#atomix.controller.PartitionElectionRequest)
@@ -17,6 +19,18 @@
   
   
     - [ControllerService](#atomix.controller.ControllerService)
+  
+
+- [atomix/controller/database.proto](#atomix/controller/database.proto)
+    - [Cluster](#atomix.controller.Cluster)
+    - [ClusterConfig](#atomix.controller.ClusterConfig)
+    - [ClusterId](#atomix.controller.ClusterId)
+    - [Database](#atomix.controller.Database)
+    - [DatabaseId](#atomix.controller.DatabaseId)
+    - [MemberConfig](#atomix.controller.MemberConfig)
+  
+  
+  
   
 
 - [atomix/controller/partition.proto](#atomix/controller/partition.proto)
@@ -89,6 +103,36 @@ Deletes a partition group
 
 ### DeletePartitionGroupResponse
 Returns the result of deleting a partition group
+
+
+
+
+
+
+<a name="atomix.controller.GetDatabasesRequest"></a>
+
+### GetDatabasesRequest
+Gets a list of databases in a namespace
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [DatabaseId](#atomix.controller.DatabaseId) |  |  |
+
+
+
+
+
+
+<a name="atomix.controller.GetDatabasesResponse"></a>
+
+### GetDatabasesResponse
+Returns a list of databases in a namespace
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| databases | [Database](#atomix.controller.Database) | repeated |  |
 
 
 
@@ -190,6 +234,122 @@ Atomix controller service
 | DeletePartitionGroup | [DeletePartitionGroupRequest](#atomix.controller.DeletePartitionGroupRequest) | [DeletePartitionGroupResponse](#atomix.controller.DeletePartitionGroupResponse) | Deletes a partition group |
 | GetPartitionGroups | [GetPartitionGroupsRequest](#atomix.controller.GetPartitionGroupsRequest) | [GetPartitionGroupsResponse](#atomix.controller.GetPartitionGroupsResponse) | Gets a list of active partition groups |
 | EnterElection | [PartitionElectionRequest](#atomix.controller.PartitionElectionRequest) | [PartitionElectionResponse](#atomix.controller.PartitionElectionResponse) stream | Enters a primary election for a specific partition |
+| GetDatabases | [GetDatabasesRequest](#atomix.controller.GetDatabasesRequest) | [GetDatabasesResponse](#atomix.controller.GetDatabasesResponse) | GetDatabases gets a list of databases controlled by the controller |
+
+ 
+
+
+
+<a name="atomix/controller/database.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## atomix/controller/database.proto
+
+
+
+<a name="atomix.controller.Cluster"></a>
+
+### Cluster
+Cluster configuration
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [ClusterId](#atomix.controller.ClusterId) |  | id is the cluster identifier |
+| partitions | [Partition](#atomix.controller.Partition) | repeated | partitions is a list of partitions in the cluster |
+
+
+
+
+
+
+<a name="atomix.controller.ClusterConfig"></a>
+
+### ClusterConfig
+Cluster configuration
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| members | [MemberConfig](#atomix.controller.MemberConfig) | repeated | members is a list of cluster members |
+| partitions | [PartitionId](#atomix.controller.PartitionId) | repeated | partitions is a list of partitions owned by the cluster |
+
+
+
+
+
+
+<a name="atomix.controller.ClusterId"></a>
+
+### ClusterId
+Cluster identifier
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [int32](#int32) |  | id is the unique numeric identifier for the cluster |
+| database_id | [DatabaseId](#atomix.controller.DatabaseId) |  | database_id is the identifier for the database to which the cluster belonds |
+
+
+
+
+
+
+<a name="atomix.controller.Database"></a>
+
+### Database
+Database configuration
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [DatabaseId](#atomix.controller.DatabaseId) |  | id is the database identifier |
+| clusters | [Cluster](#atomix.controller.Cluster) | repeated | clusters is a list of clusters in the database |
+| partitions | [Partition](#atomix.controller.Partition) | repeated | partitions is a list of partitions in the cluster |
+
+
+
+
+
+
+<a name="atomix.controller.DatabaseId"></a>
+
+### DatabaseId
+Database identifier
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | name is the name of the database |
+| namespace | [string](#string) |  | namespace is the namespace to which the database belongs |
+
+
+
+
+
+
+<a name="atomix.controller.MemberConfig"></a>
+
+### MemberConfig
+Member configuration
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | id is the unique member identifier |
+| host | [string](#string) |  | host is the member host |
+| api_port | [int32](#int32) |  | api_port is the port to use for the client API |
+| protocol_port | [int32](#int32) |  | protocol_port is the port to use for intra-cluster communication |
+
+
+
+
+
+ 
+
+ 
+
+ 
 
  
 

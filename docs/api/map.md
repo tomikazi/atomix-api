@@ -34,7 +34,7 @@ GetPrimitivesRequest is a request for primitive metadata
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
 | namespace | [string](#string) |  |  |
-| type | [string](#string) |  |  |
+| type | [atomix.primitive.PrimitiveType](#atomix.primitive.PrimitiveType) |  |  |
 
 
 
@@ -64,7 +64,7 @@ PrimitiveMetadata indicates the type and name of a primitive
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  |  |
+| type | [atomix.primitive.PrimitiveType](#atomix.primitive.PrimitiveType) |  |  |
 | name | [atomix.primitive.Name](#atomix.primitive.Name) |  |  |
 
 

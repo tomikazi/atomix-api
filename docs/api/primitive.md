@@ -4,14 +4,11 @@
 ## Table of Contents
 
 - [atomix/primitive/primitive.proto](#atomix/primitive/primitive.proto)
-    - [GetPrimitivesRequest](#atomix.primitive.GetPrimitivesRequest)
-    - [GetPrimitivesResponse](#atomix.primitive.GetPrimitivesResponse)
     - [Name](#atomix.primitive.Name)
-    - [PrimitiveInfo](#atomix.primitive.PrimitiveInfo)
+  
+    - [PrimitiveType](#atomix.primitive.PrimitiveType)
   
   
-  
-    - [PrimitiveService](#atomix.primitive.PrimitiveService)
   
 
 - [Scalar Value Types](#scalar-value-types)
@@ -22,38 +19,6 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## atomix/primitive/primitive.proto
-
-
-
-<a name="atomix.primitive.GetPrimitivesRequest"></a>
-
-### GetPrimitivesRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| partition | [uint64](#uint64) |  |  |
-| namespace | [string](#string) |  |  |
-| type | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.GetPrimitivesResponse"></a>
-
-### GetPrimitivesResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| primitives | [PrimitiveInfo](#atomix.primitive.PrimitiveInfo) | repeated |  |
-
-
-
 
 
 
@@ -72,37 +37,32 @@ Namespaced primitive name
 
 
 
-
-<a name="atomix.primitive.PrimitiveInfo"></a>
-
-### PrimitiveInfo
+ 
 
 
+<a name="atomix.primitive.PrimitiveType"></a>
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  |  |
-| name | [Name](#atomix.primitive.Name) |  |  |
+### PrimitiveType
+PrimitiveType is a primitive type
 
-
-
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| UNKNOWN | 0 |  |
+| COUNTER | 1 |  |
+| ELECTION | 2 |  |
+| INDEXED_MAP | 3 |  |
+| LEADER_LATCH | 4 |  |
+| LIST | 5 |  |
+| LOCK | 6 |  |
+| LOG | 7 |  |
+| MAP | 8 |  |
+| SET | 9 |  |
+| VALUE | 10 |  |
 
 
  
 
  
-
- 
-
-
-<a name="atomix.primitive.PrimitiveService"></a>
-
-### PrimitiveService
-Primitive service
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| GetPrimitives | [GetPrimitivesRequest](#atomix.primitive.GetPrimitivesRequest) | [GetPrimitivesResponse](#atomix.primitive.GetPrimitivesResponse) | GetPrimitives returns a list of primitives |
 
  
 

@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package atomix.metadata;
+
+import "atomix/headers/headers.proto";
+import "atomix/primitive/primitive.proto";
+
+// GetPrimitivesRequest is a request for primitive metadata
+message GetPrimitivesRequest {
+    atomix.headers.RequestHeader header = 1;
+    string namespace = 2;
+    string type = 3;
+}
+
+// GetPrimitivesResponse is a response containing primitive metadata
+message GetPrimitivesResponse {
+    repeated PrimitiveMetadata primitives = 1;
+}
+
+// PrimitiveMetadata indicates the type and name of a primitive
+message PrimitiveMetadata {
+    string type = 1;
+    atomix.primitive.Name name = 2;
+}
+
+// MetadataService is a service for providing partition/primitive metadata
+service MetadataService {
+
+    // GetPrimitives returns a list of primitives in a partition
+    rpc GetPrimitives (GetPrimitivesRequest) returns (GetPrimitivesResponse);
+
+}

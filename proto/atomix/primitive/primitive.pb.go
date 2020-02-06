@@ -4,12 +4,8 @@
 package primitive
 
 import (
-	context "context"
 	fmt "fmt"
 	proto "github.com/gogo/protobuf/proto"
-	grpc "google.golang.org/grpc"
-	codes "google.golang.org/grpc/codes"
-	status "google.golang.org/grpc/status"
 	io "io"
 	math "math"
 	math_bits "math/bits"
@@ -25,6 +21,59 @@ var _ = math.Inf
 // A compilation error at this line likely means your copy of the
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
+
+// PrimitiveType is a primitive type
+type PrimitiveType int32
+
+const (
+	PrimitiveType_UNKNOWN      PrimitiveType = 0
+	PrimitiveType_COUNTER      PrimitiveType = 1
+	PrimitiveType_ELECTION     PrimitiveType = 2
+	PrimitiveType_INDEXED_MAP  PrimitiveType = 3
+	PrimitiveType_LEADER_LATCH PrimitiveType = 4
+	PrimitiveType_LIST         PrimitiveType = 5
+	PrimitiveType_LOCK         PrimitiveType = 6
+	PrimitiveType_LOG          PrimitiveType = 7
+	PrimitiveType_MAP          PrimitiveType = 8
+	PrimitiveType_SET          PrimitiveType = 9
+	PrimitiveType_VALUE        PrimitiveType = 10
+)
+
+var PrimitiveType_name = map[int32]string{
+	0:  "UNKNOWN",
+	1:  "COUNTER",
+	2:  "ELECTION",
+	3:  "INDEXED_MAP",
+	4:  "LEADER_LATCH",
+	5:  "LIST",
+	6:  "LOCK",
+	7:  "LOG",
+	8:  "MAP",
+	9:  "SET",
+	10: "VALUE",
+}
+
+var PrimitiveType_value = map[string]int32{
+	"UNKNOWN":      0,
+	"COUNTER":      1,
+	"ELECTION":     2,
+	"INDEXED_MAP":  3,
+	"LEADER_LATCH": 4,
+	"LIST":         5,
+	"LOCK":         6,
+	"LOG":          7,
+	"MAP":          8,
+	"SET":          9,
+	"VALUE":        10,
+}
+
+func (x PrimitiveType) String() string {
+	return proto.EnumName(PrimitiveType_name, int32(x))
+}
+
+func (PrimitiveType) EnumDescriptor() ([]byte, []int) {
+	return fileDescriptor_056a91a3aedc7ac7, []int{0}
+}
 
 // Namespaced primitive name
 type Name struct {
@@ -79,273 +128,32 @@ func (m *Name) GetNamespace() string {
 	return ""
 }
 
-type GetPrimitivesRequest struct {
-	Partition uint64 `protobuf:"varint,3,opt,name=partition,proto3" json:"partition,omitempty"`
-	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	Type      string `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
-}
-
-func (m *GetPrimitivesRequest) Reset()         { *m = GetPrimitivesRequest{} }
-func (m *GetPrimitivesRequest) String() string { return proto.CompactTextString(m) }
-func (*GetPrimitivesRequest) ProtoMessage()    {}
-func (*GetPrimitivesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_056a91a3aedc7ac7, []int{1}
-}
-func (m *GetPrimitivesRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *GetPrimitivesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_GetPrimitivesRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *GetPrimitivesRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetPrimitivesRequest.Merge(m, src)
-}
-func (m *GetPrimitivesRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *GetPrimitivesRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetPrimitivesRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetPrimitivesRequest proto.InternalMessageInfo
-
-func (m *GetPrimitivesRequest) GetPartition() uint64 {
-	if m != nil {
-		return m.Partition
-	}
-	return 0
-}
-
-func (m *GetPrimitivesRequest) GetNamespace() string {
-	if m != nil {
-		return m.Namespace
-	}
-	return ""
-}
-
-func (m *GetPrimitivesRequest) GetType() string {
-	if m != nil {
-		return m.Type
-	}
-	return ""
-}
-
-type GetPrimitivesResponse struct {
-	Primitives []*PrimitiveInfo `protobuf:"bytes,1,rep,name=primitives,proto3" json:"primitives,omitempty"`
-}
-
-func (m *GetPrimitivesResponse) Reset()         { *m = GetPrimitivesResponse{} }
-func (m *GetPrimitivesResponse) String() string { return proto.CompactTextString(m) }
-func (*GetPrimitivesResponse) ProtoMessage()    {}
-func (*GetPrimitivesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_056a91a3aedc7ac7, []int{2}
-}
-func (m *GetPrimitivesResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *GetPrimitivesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_GetPrimitivesResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *GetPrimitivesResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetPrimitivesResponse.Merge(m, src)
-}
-func (m *GetPrimitivesResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *GetPrimitivesResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetPrimitivesResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetPrimitivesResponse proto.InternalMessageInfo
-
-func (m *GetPrimitivesResponse) GetPrimitives() []*PrimitiveInfo {
-	if m != nil {
-		return m.Primitives
-	}
-	return nil
-}
-
-type PrimitiveInfo struct {
-	Type string `protobuf:"bytes,1,opt,name=type,proto3" json:"type,omitempty"`
-	Name *Name  `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-}
-
-func (m *PrimitiveInfo) Reset()         { *m = PrimitiveInfo{} }
-func (m *PrimitiveInfo) String() string { return proto.CompactTextString(m) }
-func (*PrimitiveInfo) ProtoMessage()    {}
-func (*PrimitiveInfo) Descriptor() ([]byte, []int) {
-	return fileDescriptor_056a91a3aedc7ac7, []int{3}
-}
-func (m *PrimitiveInfo) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *PrimitiveInfo) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_PrimitiveInfo.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *PrimitiveInfo) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PrimitiveInfo.Merge(m, src)
-}
-func (m *PrimitiveInfo) XXX_Size() int {
-	return m.Size()
-}
-func (m *PrimitiveInfo) XXX_DiscardUnknown() {
-	xxx_messageInfo_PrimitiveInfo.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_PrimitiveInfo proto.InternalMessageInfo
-
-func (m *PrimitiveInfo) GetType() string {
-	if m != nil {
-		return m.Type
-	}
-	return ""
-}
-
-func (m *PrimitiveInfo) GetName() *Name {
-	if m != nil {
-		return m.Name
-	}
-	return nil
-}
-
 func init() {
+	proto.RegisterEnum("atomix.primitive.PrimitiveType", PrimitiveType_name, PrimitiveType_value)
 	proto.RegisterType((*Name)(nil), "atomix.primitive.Name")
-	proto.RegisterType((*GetPrimitivesRequest)(nil), "atomix.primitive.GetPrimitivesRequest")
-	proto.RegisterType((*GetPrimitivesResponse)(nil), "atomix.primitive.GetPrimitivesResponse")
-	proto.RegisterType((*PrimitiveInfo)(nil), "atomix.primitive.PrimitiveInfo")
 }
 
 func init() { proto.RegisterFile("atomix/primitive/primitive.proto", fileDescriptor_056a91a3aedc7ac7) }
 
 var fileDescriptor_056a91a3aedc7ac7 = []byte{
-	// 287 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x52, 0x48, 0x2c, 0xc9, 0xcf,
-	0xcd, 0xac, 0xd0, 0x2f, 0x28, 0xca, 0xcc, 0xcd, 0x2c, 0xc9, 0x2c, 0x4b, 0x45, 0xb0, 0xf4, 0x0a,
-	0x8a, 0xf2, 0x4b, 0xf2, 0x85, 0x04, 0x20, 0x2a, 0xf4, 0xe0, 0xe2, 0x4a, 0x16, 0x5c, 0x2c, 0x7e,
-	0x89, 0xb9, 0xa9, 0x42, 0x42, 0x5c, 0x2c, 0x79, 0x89, 0xb9, 0xa9, 0x12, 0x8c, 0x0a, 0x8c, 0x1a,
-	0x9c, 0x41, 0x60, 0xb6, 0x90, 0x0c, 0x17, 0x27, 0x88, 0x2e, 0x2e, 0x48, 0x4c, 0x4e, 0x95, 0x60,
-	0x02, 0x4b, 0x20, 0x04, 0x94, 0xd2, 0xb8, 0x44, 0xdc, 0x53, 0x4b, 0x02, 0x60, 0x26, 0x15, 0x07,
-	0xa5, 0x16, 0x96, 0xa6, 0x16, 0x97, 0x80, 0x74, 0x15, 0x24, 0x16, 0x95, 0x64, 0x96, 0x64, 0xe6,
-	0xe7, 0x49, 0x30, 0x2b, 0x30, 0x6a, 0xb0, 0x04, 0x21, 0x04, 0x50, 0xcd, 0x64, 0x44, 0x33, 0x13,
-	0xe4, 0x8a, 0x92, 0xca, 0x02, 0x98, 0x65, 0x60, 0xb6, 0x52, 0x04, 0x97, 0x28, 0x9a, 0x3d, 0xc5,
-	0x05, 0xf9, 0x79, 0xc5, 0xa9, 0x42, 0xf6, 0x5c, 0x5c, 0x70, 0x7f, 0x14, 0x4b, 0x30, 0x2a, 0x30,
-	0x6b, 0x70, 0x1b, 0xc9, 0xeb, 0xa1, 0xfb, 0x50, 0x0f, 0xae, 0xd3, 0x33, 0x2f, 0x2d, 0x3f, 0x08,
-	0x49, 0x8b, 0x92, 0x3f, 0x17, 0x2f, 0x8a, 0x24, 0xdc, 0x7a, 0x46, 0x84, 0xf5, 0x42, 0x5a, 0xd0,
-	0x80, 0x01, 0x39, 0x89, 0xdb, 0x48, 0x0c, 0xd3, 0x7c, 0x50, 0xf0, 0x41, 0x02, 0xcc, 0xa8, 0x8c,
-	0x4b, 0x00, 0x6e, 0x60, 0x70, 0x6a, 0x51, 0x59, 0x66, 0x72, 0xaa, 0x50, 0x12, 0x17, 0x2f, 0x8a,
-	0xf3, 0x85, 0xd4, 0x30, 0x8d, 0xc0, 0x16, 0x8e, 0x52, 0xea, 0x04, 0xd5, 0x41, 0xc2, 0x41, 0x89,
-	0xc1, 0x49, 0xe2, 0xc4, 0x23, 0x39, 0xc6, 0x0b, 0x8f, 0xe4, 0x18, 0x1f, 0x3c, 0x92, 0x63, 0x9c,
-	0xf0, 0x58, 0x8e, 0xe1, 0xc2, 0x63, 0x39, 0x86, 0x1b, 0x8f, 0xe5, 0x18, 0x92, 0xd8, 0xc0, 0xf1,
-	0x6e, 0x0c, 0x08, 0x00, 0x00, 0xff, 0xff, 0x9a, 0x2e, 0x7d, 0xdb, 0x1b, 0x02, 0x00, 0x00,
-}
-
-// Reference imports to suppress errors if they are not otherwise used.
-var _ context.Context
-var _ grpc.ClientConn
-
-// This is a compile-time assertion to ensure that this generated file
-// is compatible with the grpc package it is being compiled against.
-const _ = grpc.SupportPackageIsVersion4
-
-// PrimitiveServiceClient is the client API for PrimitiveService service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type PrimitiveServiceClient interface {
-	// GetPrimitives returns a list of primitives
-	GetPrimitives(ctx context.Context, in *GetPrimitivesRequest, opts ...grpc.CallOption) (*GetPrimitivesResponse, error)
-}
-
-type primitiveServiceClient struct {
-	cc *grpc.ClientConn
-}
-
-func NewPrimitiveServiceClient(cc *grpc.ClientConn) PrimitiveServiceClient {
-	return &primitiveServiceClient{cc}
-}
-
-func (c *primitiveServiceClient) GetPrimitives(ctx context.Context, in *GetPrimitivesRequest, opts ...grpc.CallOption) (*GetPrimitivesResponse, error) {
-	out := new(GetPrimitivesResponse)
-	err := c.cc.Invoke(ctx, "/atomix.primitive.PrimitiveService/GetPrimitives", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// PrimitiveServiceServer is the server API for PrimitiveService service.
-type PrimitiveServiceServer interface {
-	// GetPrimitives returns a list of primitives
-	GetPrimitives(context.Context, *GetPrimitivesRequest) (*GetPrimitivesResponse, error)
-}
-
-// UnimplementedPrimitiveServiceServer can be embedded to have forward compatible implementations.
-type UnimplementedPrimitiveServiceServer struct {
-}
-
-func (*UnimplementedPrimitiveServiceServer) GetPrimitives(ctx context.Context, req *GetPrimitivesRequest) (*GetPrimitivesResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPrimitives not implemented")
-}
-
-func RegisterPrimitiveServiceServer(s *grpc.Server, srv PrimitiveServiceServer) {
-	s.RegisterService(&_PrimitiveService_serviceDesc, srv)
-}
-
-func _PrimitiveService_GetPrimitives_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPrimitivesRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PrimitiveServiceServer).GetPrimitives(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/atomix.primitive.PrimitiveService/GetPrimitives",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrimitiveServiceServer).GetPrimitives(ctx, req.(*GetPrimitivesRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _PrimitiveService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "atomix.primitive.PrimitiveService",
-	HandlerType: (*PrimitiveServiceServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "GetPrimitives",
-			Handler:    _PrimitiveService_GetPrimitives_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "atomix/primitive/primitive.proto",
+	// 263 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x44, 0xd0, 0xbf, 0x4f, 0x83, 0x40,
+	0x14, 0x07, 0x70, 0xae, 0xa5, 0x2d, 0xbc, 0xd6, 0xf8, 0xf2, 0x26, 0x06, 0x73, 0x69, 0x9c, 0x8c,
+	0x43, 0x1d, 0x5c, 0x5c, 0x11, 0x2e, 0x4a, 0x7a, 0x1e, 0x0d, 0x3d, 0xd4, 0xad, 0x41, 0xc3, 0xc0,
+	0x80, 0x90, 0x4a, 0x8c, 0xfe, 0x17, 0x0e, 0xfe, 0x51, 0x8e, 0x1d, 0x1d, 0x0d, 0xfc, 0x23, 0xe6,
+	0x30, 0xda, 0xe9, 0x3e, 0xf7, 0x7d, 0x3f, 0x86, 0x07, 0xf3, 0xac, 0xa9, 0xca, 0xe2, 0xf5, 0xac,
+	0xde, 0x16, 0x65, 0xd1, 0x14, 0x2f, 0xf9, 0x5e, 0x8b, 0x7a, 0x5b, 0x35, 0x15, 0xe1, 0x6f, 0xc7,
+	0xe2, 0x3f, 0x3f, 0xbe, 0x00, 0x5b, 0x65, 0x65, 0x4e, 0x04, 0xf6, 0x53, 0x56, 0xe6, 0x1e, 0x9b,
+	0xb3, 0x13, 0x37, 0xe9, 0x4d, 0x47, 0xe0, 0x9a, 0xf7, 0xb9, 0xce, 0x1e, 0x73, 0x6f, 0xd0, 0x17,
+	0xf6, 0xc1, 0xe9, 0x07, 0x83, 0x83, 0xd5, 0xdf, 0x1e, 0xfd, 0x56, 0xe7, 0x34, 0x85, 0x49, 0xaa,
+	0x96, 0x2a, 0xbe, 0x53, 0x68, 0x99, 0x4f, 0x10, 0xa7, 0x4a, 0x8b, 0x04, 0x19, 0xcd, 0xc0, 0x11,
+	0x52, 0x04, 0x3a, 0x8a, 0x15, 0x0e, 0xe8, 0x10, 0xa6, 0x91, 0x0a, 0xc5, 0xbd, 0x08, 0x37, 0x37,
+	0xfe, 0x0a, 0x87, 0x84, 0x30, 0x93, 0xc2, 0x0f, 0x45, 0xb2, 0x91, 0xbe, 0x0e, 0xae, 0xd1, 0x26,
+	0x07, 0x6c, 0x19, 0xad, 0x35, 0x8e, 0x7a, 0xc5, 0xc1, 0x12, 0xc7, 0x34, 0x81, 0xa1, 0x8c, 0xaf,
+	0x70, 0x62, 0x60, 0xe6, 0x1c, 0x83, 0xb5, 0xd0, 0xe8, 0x92, 0x0b, 0xa3, 0x5b, 0x5f, 0xa6, 0x02,
+	0xe1, 0xd2, 0xfb, 0x6c, 0x39, 0xdb, 0xb5, 0x9c, 0x7d, 0xb7, 0x9c, 0xbd, 0x77, 0xdc, 0xda, 0x75,
+	0xdc, 0xfa, 0xea, 0xb8, 0xf5, 0x30, 0xee, 0x6f, 0x70, 0xfe, 0x13, 0x00, 0x00, 0xff, 0xff, 0xde,
+	0xe8, 0xed, 0x86, 0x27, 0x01, 0x00, 0x00,
 }
 
 func (m *Name) Marshal() (dAtA []byte, err error) {
@@ -385,127 +193,6 @@ func (m *Name) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *GetPrimitivesRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *GetPrimitivesRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *GetPrimitivesRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.Partition != 0 {
-		i = encodeVarintPrimitive(dAtA, i, uint64(m.Partition))
-		i--
-		dAtA[i] = 0x18
-	}
-	if len(m.Type) > 0 {
-		i -= len(m.Type)
-		copy(dAtA[i:], m.Type)
-		i = encodeVarintPrimitive(dAtA, i, uint64(len(m.Type)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.Namespace) > 0 {
-		i -= len(m.Namespace)
-		copy(dAtA[i:], m.Namespace)
-		i = encodeVarintPrimitive(dAtA, i, uint64(len(m.Namespace)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *GetPrimitivesResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *GetPrimitivesResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *GetPrimitivesResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Primitives) > 0 {
-		for iNdEx := len(m.Primitives) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Primitives[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintPrimitive(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0xa
-		}
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *PrimitiveInfo) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *PrimitiveInfo) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *PrimitiveInfo) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.Name != nil {
-		{
-			size, err := m.Name.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintPrimitive(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.Type) > 0 {
-		i -= len(m.Type)
-		copy(dAtA[i:], m.Type)
-		i = encodeVarintPrimitive(dAtA, i, uint64(len(m.Type)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
 func encodeVarintPrimitive(dAtA []byte, offset int, v uint64) int {
 	offset -= sovPrimitive(v)
 	base := offset
@@ -529,58 +216,6 @@ func (m *Name) Size() (n int) {
 	}
 	l = len(m.Namespace)
 	if l > 0 {
-		n += 1 + l + sovPrimitive(uint64(l))
-	}
-	return n
-}
-
-func (m *GetPrimitivesRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Namespace)
-	if l > 0 {
-		n += 1 + l + sovPrimitive(uint64(l))
-	}
-	l = len(m.Type)
-	if l > 0 {
-		n += 1 + l + sovPrimitive(uint64(l))
-	}
-	if m.Partition != 0 {
-		n += 1 + sovPrimitive(uint64(m.Partition))
-	}
-	return n
-}
-
-func (m *GetPrimitivesResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if len(m.Primitives) > 0 {
-		for _, e := range m.Primitives {
-			l = e.Size()
-			n += 1 + l + sovPrimitive(uint64(l))
-		}
-	}
-	return n
-}
-
-func (m *PrimitiveInfo) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Type)
-	if l > 0 {
-		n += 1 + l + sovPrimitive(uint64(l))
-	}
-	if m.Name != nil {
-		l = m.Name.Size()
 		n += 1 + l + sovPrimitive(uint64(l))
 	}
 	return n
@@ -684,350 +319,6 @@ func (m *Name) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.Namespace = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipPrimitive(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *GetPrimitivesRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowPrimitive
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: GetPrimitivesRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetPrimitivesRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Namespace", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Namespace = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Type", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Type = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 3:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Partition", wireType)
-			}
-			m.Partition = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Partition |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		default:
-			iNdEx = preIndex
-			skippy, err := skipPrimitive(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *GetPrimitivesResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowPrimitive
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: GetPrimitivesResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: GetPrimitivesResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Primitives", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Primitives = append(m.Primitives, &PrimitiveInfo{})
-			if err := m.Primitives[len(m.Primitives)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipPrimitive(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *PrimitiveInfo) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowPrimitive
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: PrimitiveInfo: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: PrimitiveInfo: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Type", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Type = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Name == nil {
-				m.Name = &Name{}
-			}
-			if err := m.Name.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

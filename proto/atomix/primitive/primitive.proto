@@ -8,25 +8,17 @@ message Name {
     string namespace = 2;
 }
 
-message GetPrimitivesRequest {
-    uint64 partition = 3;
-    string namespace = 1;
-    string type = 2;
-}
-
-message GetPrimitivesResponse {
-    repeated PrimitiveInfo primitives = 1;
-}
-
-message PrimitiveInfo {
-    string type = 1;
-    Name name = 2;
-}
-
-// Primitive service
-service PrimitiveService {
-
-    // GetPrimitives returns a list of primitives
-    rpc GetPrimitives (GetPrimitivesRequest) returns (GetPrimitivesResponse) {}
-
+// PrimitiveType is a primitive type
+enum PrimitiveType {
+    UNKNOWN = 0;
+    COUNTER = 1;
+    ELECTION = 2;
+    INDEXED_MAP = 3;
+    LEADER_LATCH = 4;
+    LIST = 5;
+    LOCK = 6;
+    LOG = 7;
+    MAP = 8;
+    SET = 9;
+    VALUE = 10;
 }

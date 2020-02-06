@@ -14,7 +14,8 @@ message GetPrimitivesRequest {
 
 // GetPrimitivesResponse is a response containing primitive metadata
 message GetPrimitivesResponse {
-    repeated PrimitiveMetadata primitives = 1;
+    atomix.headers.ResponseHeader header = 1;
+    repeated PrimitiveMetadata primitives = 2;
 }
 
 // PrimitiveMetadata indicates the type and name of a primitive

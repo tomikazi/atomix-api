@@ -49,6 +49,7 @@ GetPrimitivesResponse is a response containing primitive metadata
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
 | primitives | [PrimitiveMetadata](#atomix.metadata.PrimitiveMetadata) | repeated |  |
 
 

@@ -4,10 +4,10 @@
 package metadata
 
 import (
-	primitive "atomix/primitive"
 	context "context"
 	fmt "fmt"
 	headers "github.com/atomix/api/proto/atomix/headers"
+	primitive "github.com/atomix/api/proto/atomix/primitive"
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"

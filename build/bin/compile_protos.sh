@@ -2,9 +2,6 @@
 
 proto_imports="./proto:${GOPATH}/src/github.com/gogo/protobuf:${GOPATH}/src/github.com/gogo/protobuf/protobuf:${GOPATH}/src"
 
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,raft.md       --gogofaster_out=Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types,import_path=atomix/protocols/raft:proto proto/atomix/protocols/raft/*.proto
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,protocols_log.md        --gogofaster_out=import_path=atomix/protocols/log:proto proto/atomix/protocols/log/*.proto
-
 protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,primitive.md  --gogofaster_out=import_path=atomix/primitive,plugins=grpc:proto proto/atomix/primitive/*.proto
 protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,headers.md    --gogofaster_out=Matomix/primitive/primitive.proto=github.com/atomix/api/proto/atomix/primitive,import_path=atomix/headers,plugins=grpc:proto proto/atomix/headers/*.proto
 protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,controller.md --gogo_out=Mgoogle/protobuf/any.proto=github.com/gogo/protobuf/types,Matomix/partition/partition.proto=github.com/atomix/api/proto/atomix/partition,import_path=atomix/controller,plugins=grpc:proto proto/atomix/controller/*.proto

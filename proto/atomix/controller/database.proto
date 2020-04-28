@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package atomix.controller;
 
-import "google/protobuf/any.proto";
 import "gogoproto/gogo.proto";
 
 // Database identifier
@@ -68,24 +67,7 @@ message MemberConfig {
 // Partition identifier
 message PartitionId {
     int32 partition = 1;
-    PartitionGroupId group = 2 [deprecated = true];
     ClusterId cluster = 3;
-}
-
-// Partition group name
-message PartitionGroupId {
-    option deprecated = true;
-    string name = 1;
-    string namespace = 2;
-}
-
-// Partition configuration
-message PartitionConfig {
-    option deprecated = true;
-    PartitionId partition = 1;
-    NodeConfig controller = 2;
-    repeated NodeConfig members = 3;
-    repeated PartitionId partitions = 4;
 }
 
 // Node configuration
@@ -98,14 +80,6 @@ message NodeConfig {
     int32 protocol_port = 5 [(gogoproto.jsontag) = "protocolPort"];
 }
 
-// Partition group info
-message PartitionGroup {
-    option deprecated = true;
-    PartitionGroupId id = 1 [(gogoproto.customname) = "ID"];
-    PartitionGroupSpec spec = 2;
-    repeated Partition partitions = 3;
-}
-
 // Partition info
 message Partition {
     int32 partition_id = 1 [(gogoproto.customname) = "PartitionID"];
@@ -116,12 +90,4 @@ message Partition {
 message PartitionEndpoint {
     string host = 1;
     int32 port = 2;
-}
-
-// Partition group specification
-message PartitionGroupSpec {
-    option deprecated = true;
-    uint32 partitions = 1;
-    uint32 partition_size = 2;
-    google.protobuf.Any protocol = 3;
 }

@@ -1,0 +1,249 @@
+/*
+Copyright 2019-present Open Networking Foundation.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+package atomix.map;
+
+import "gogoproto/gogo.proto";
+import "atomix/controller/controller.proto";
+import "atomix/primitive/primitive.proto";
+import "google/protobuf/timestamp.proto";
+
+message Message {
+    atomix.primitive.Name target = 1;
+
+    oneof message {
+        CommandRequest command = 2;
+        CommandResponse command_response = 3;
+        QueryRequest query = 4;
+        QueryResponse query_response = 5;
+        SlotLookup slot_lookup = 6;
+        GapCommitRequest gap_commit = 7;
+        GapCommitResponse gap_commit_response = 8;
+        ViewChangeRequest view_change_request = 9;
+        ViewChange view_change = 10;
+        ViewChangeRepair view_change_repair = 11;
+        ViewChangeRepairResponse view_change_repair_response = 12;
+        StartView start_view = 13;
+        ViewRepair view_repair = 14;
+        ViewRepairResponse view_repair_response = 15;
+        SyncPrepare sync_prepare = 16;
+        SyncRepair sync_repair = 17;
+        SyncRepairResponse sync_repair_response = 18;
+        SyncResponse sync_response = 19;
+        SyncCommit sync_commit = 20;
+        Recover recover = 21;
+        RecoverResponse recover_response = 22;
+        Ping ping = 23;
+    }
+}
+
+message ViewId {
+    string leader_id = 1 [(gogoproto.customname) = "LeaderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    uint64 term_id = 2 [(gogoproto.customname) = "TermID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.TermID"];
+}
+
+message CommandRequest {
+    uint64 term_id = 1 [(gogoproto.customname) = "TermID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.TermID"];
+    uint64 message_id = 2 [(gogoproto.customname) = "MessageID", (gogoproto.casttype) = "MessageID"];
+    google.protobuf.Timestamp timestamp = 3 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    bytes value = 4;
+}
+
+message CommandResponse {
+    uint64 message_id = 1 [(gogoproto.customname) = "MessageID", (gogoproto.casttype) = "MessageID"];
+    string sender_id = 2 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 3 [(gogoproto.customname) = "ViewID"];
+    uint64 index = 4 [(gogoproto.casttype) = "Index"];
+    bytes value = 5;
+}
+
+message CommandClose {
+    uint64 message_id = 1 [(gogoproto.customname) = "MessageID", (gogoproto.casttype) = "MessageID"];
+    string sender_id = 2 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 3 [(gogoproto.customname) = "ViewID"];
+}
+
+message QueryRequest {
+    uint64 term_id = 1 [(gogoproto.customname) = "TermID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.TermID"];
+    uint64 message_id = 2 [(gogoproto.customname) = "MessageID", (gogoproto.casttype) = "MessageID"];
+    google.protobuf.Timestamp timestamp = 3 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    bytes value = 4;
+}
+
+message QueryResponse {
+    uint64 message_id = 1 [(gogoproto.customname) = "MessageID", (gogoproto.casttype) = "MessageID"];
+    string sender_id = 2 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 3 [(gogoproto.customname) = "ViewID"];
+    bytes value = 4;
+}
+
+message QueryClose {
+    uint64 message_id = 1 [(gogoproto.customname) = "MessageID", (gogoproto.casttype) = "MessageID"];
+    string sender_id = 2 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 3 [(gogoproto.customname) = "ViewID"];
+}
+
+message Recover {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    string recovery_id = 2 [(gogoproto.customname) = "RecoveryID"];
+}
+
+message RecoverResponse {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    string recovery_id = 2 [(gogoproto.customname) = "RecoveryID"];
+    ViewId view_id = 3 [(gogoproto.customname) = "ViewID"];
+    uint64 message_id = 4 [(gogoproto.customname) = "MessageID", (gogoproto.casttype) = "MessageID"];
+    uint64 checkpoint_index = 5 [(gogoproto.casttype) = "Index"];
+    bytes checkpoint = 6;
+    repeated Entry log = 7;
+}
+
+message SlotLookup {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 2 [(gogoproto.customname) = "ViewID"];
+    uint64 message_id = 3 [(gogoproto.customname) = "MessageID", (gogoproto.casttype) = "MessageID"];
+}
+
+message GapCommitRequest {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 2 [(gogoproto.customname) = "ViewID"];
+    uint64 index = 3 [(gogoproto.casttype) = "Index"];
+}
+
+message GapCommitResponse {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 2 [(gogoproto.customname) = "ViewID"];
+    uint64 index = 3 [(gogoproto.casttype) = "Index"];
+}
+
+message ViewChangeRequest {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 2 [(gogoproto.customname) = "ViewID"];
+}
+
+message ViewChange {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 2 [(gogoproto.customname) = "ViewID"];
+    ViewId last_normal = 3;
+    uint64 message_id = 4 [(gogoproto.customname) = "MessageID", (gogoproto.casttype) = "MessageID"];
+    bytes no_op_filter = 5;
+    uint64 first_log_index = 6 [(gogoproto.casttype) = "Index"];
+    uint64 last_log_index = 7 [(gogoproto.casttype) = "Index"];
+}
+
+message ViewChangeRepair {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 2 [(gogoproto.customname) = "ViewID"];
+    uint64 message_id = 3 [(gogoproto.customname) = "MessageID", (gogoproto.casttype) = "MessageID"];
+    uint64 checkpoint = 4 [(gogoproto.casttype) = "Index"];
+    repeated uint64 indexs = 5 [(gogoproto.casttype) = "Index"];
+}
+
+message ViewChangeRepairResponse {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 2 [(gogoproto.customname) = "ViewID"];
+    uint64 message_id = 3 [(gogoproto.customname) = "MessageID", (gogoproto.casttype) = "MessageID"];
+    uint64 checkpoint_index = 4 [(gogoproto.casttype) = "Index"];
+    bytes checkpoint = 5;
+    repeated uint64 indexs = 6 [(gogoproto.casttype) = "Index"];
+}
+
+message StartView {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 2 [(gogoproto.customname) = "ViewID"];
+    uint64 message_id = 3 [(gogoproto.customname) = "MessageID", (gogoproto.casttype) = "MessageID"];
+    bytes no_op_filter = 4;
+    uint64 first_log_index = 5 [(gogoproto.casttype) = "Index"];
+    uint64 last_log_index = 6 [(gogoproto.casttype) = "Index"];
+}
+
+message ViewRepair {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 2 [(gogoproto.customname) = "ViewID"];
+    uint64 message_id = 3 [(gogoproto.customname) = "MessageID", (gogoproto.casttype) = "MessageID"];
+    uint64 checkpoint = 4 [(gogoproto.casttype) = "Index"];
+    repeated uint64 indexs = 5 [(gogoproto.casttype) = "Index"];
+}
+
+message ViewRepairResponse {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 2 [(gogoproto.customname) = "ViewID"];
+    uint64 checkpoint_index = 3 [(gogoproto.casttype) = "Index"];
+    bytes checkpoint = 4;
+    repeated Entry entries = 5;
+}
+
+message SyncPrepare {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 2 [(gogoproto.customname) = "ViewID"];
+    uint64 message_id = 3 [(gogoproto.customname) = "MessageID", (gogoproto.casttype) = "MessageID"];
+    bytes no_op_filter = 4;
+    uint64 first_log_index = 5 [(gogoproto.casttype) = "Index"];
+    uint64 last_log_index = 6 [(gogoproto.casttype) = "Index"];
+}
+
+message SyncRepair {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 2 [(gogoproto.customname) = "ViewID"];
+    uint64 checkpoint = 3 [(gogoproto.casttype) = "Index"];
+    repeated uint64 indexs = 4 [(gogoproto.casttype) = "Index"];
+}
+
+message SyncRepairResponse {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 2 [(gogoproto.customname) = "ViewID"];
+    uint64 checkpoint_index = 3 [(gogoproto.casttype) = "Index"];
+    bytes checkpoint = 4;
+    repeated Entry entries = 5;
+}
+
+message SyncResponse {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 2 [(gogoproto.customname) = "ViewID"];
+    uint64 index = 3 [(gogoproto.casttype) = "Index"];
+}
+
+message SyncCommit {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 2 [(gogoproto.customname) = "ViewID"];
+    uint64 message_id = 3 [(gogoproto.customname) = "MessageID", (gogoproto.casttype) = "MessageID"];
+    uint64 sync_point = 4 [(gogoproto.casttype) = "Index"];
+}
+
+message Ping {
+    string sender_id = 1 [(gogoproto.customname) = "SenderID", (gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    ViewId view_id = 2 [(gogoproto.customname) = "ViewID"];
+}
+
+message Entry {
+    uint64 index = 1 [(gogoproto.casttype) = "Index"];
+    google.protobuf.Timestamp timestamp = 2 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    uint64 message_num = 3 [(gogoproto.customname) = "MessageID", (gogoproto.casttype) = "MessageID"];
+    bytes value = 4;
+}
+
+message Indexed {
+    uint64 index = 1 [(gogoproto.casttype) = "Index"];
+    bytes value = 2;
+}
+
+// P2PMapService implements a partitioned p2p map
+service P2PMapService {
+    // Connect connects to a peer
+    rpc Connect(stream Message) returns (stream Message);
+}

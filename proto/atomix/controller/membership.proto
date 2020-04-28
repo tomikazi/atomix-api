@@ -1,0 +1,110 @@
+/*
+Copyright 2020-present Open Networking Foundation.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+package atomix.controller;
+
+import "gogoproto/gogo.proto";
+
+message Membership {
+    repeated Member members = 1;
+}
+
+// Membership group identifier
+message MembershipGroupId {
+    string name = 1;
+    string namespace = 2;
+}
+
+// Cluster membership group
+message MembershipGroup {
+    MembershipGroupId id = 1 [(gogoproto.customname) = "ID"];
+    uint64 term = 2 [(gogoproto.casttype) = "TermID"];
+    string leader = 3 [(gogoproto.casttype) = "MemberID"];
+    repeated Member members = 4;
+}
+
+// Member identifier
+message MemberId {
+    string name = 1;
+    string namespace = 2;
+}
+
+// Member is a cluster member
+message Member {
+    MemberId id = 1 [(gogoproto.customname) = "ID"];
+    string host = 2;
+    int32 port = 3;
+}
+
+// Partition group identifier
+message PartitionGroupId {
+    string name = 1;
+    string namespace = 2;
+}
+
+// Partition group state
+message PartitionGroup {
+    PartitionGroupId id = 1 [(gogoproto.customname) = "ID"];
+    repeated MembershipGroup partitions = 2;
+}
+
+message JoinClusterRequest {
+    Member member = 1;
+}
+
+message JoinClusterResponse {
+    Membership membership = 1;
+}
+
+message JoinPartitionGroupRequest {
+    MemberId member_id = 1 [(gogoproto.customname) = "MemberID"];
+    PartitionGroupId group_id = 2 [(gogoproto.customname) = "GroupID"];
+    uint32 partitions = 3;
+    uint32 replication_factor = 4;
+}
+
+message JoinPartitionGroupResponse {
+    PartitionGroup group = 1;
+}
+
+message JoinMembershipGroupRequest {
+    MemberId member_id = 1 [(gogoproto.customname) = "MemberID"];
+    MembershipGroupId group_id = 2 [(gogoproto.customname) = "GroupID"];
+}
+
+message JoinMembershipGroupResponse {
+    MembershipGroup group = 1;
+}
+
+// Atomix cluster service
+service ClusterService {
+    // Joins a member to the cluster
+    rpc JoinCluster (JoinClusterRequest) returns (stream JoinClusterResponse);
+}
+
+// Atomix partition group service
+service PartitionGroupService {
+    // Joins a member to a partition group
+    rpc JoinPartitionGroup (JoinPartitionGroupRequest) returns (stream JoinPartitionGroupResponse);
+}
+
+// Atomix membership group service
+service MembershipGroupService {
+    // Joins a member to a membership group
+    rpc JoinMembershipGroup (JoinMembershipGroupRequest) returns (stream JoinMembershipGroupResponse);
+}

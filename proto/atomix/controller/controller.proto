@@ -1,65 +1,25 @@
+/*
+Copyright 2019-present Open Networking Foundation.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
 syntax = "proto3";
 
 package atomix.controller;
 
 import "atomix/controller/database.proto";
 import "gogoproto/gogo.proto";
-
-// Gets a list of partition groups in the given namespace
-message GetPartitionGroupsRequest {
-    option deprecated = true;
-    atomix.controller.PartitionGroupId id = 1 [(gogoproto.customname) = "ID"];
-}
-
-// Returns a list of partition groups
-message GetPartitionGroupsResponse {
-    option deprecated = true;
-    repeated atomix.controller.PartitionGroup groups = 1;
-}
-
-// Creates a new partition group
-message CreatePartitionGroupRequest {
-    option deprecated = true;
-    atomix.controller.PartitionGroupId id = 1 [(gogoproto.customname) = "ID"];
-    atomix.controller.PartitionGroupSpec spec = 2;
-}
-
-// Returns the status of a partition group
-message CreatePartitionGroupResponse {
-    option deprecated = true;
-}
-
-// Deletes a partition group
-message DeletePartitionGroupRequest {
-    option deprecated = true;
-    atomix.controller.PartitionGroupId id = 1 [(gogoproto.customname) = "ID"];
-}
-
-// Returns the result of deleting a partition group
-message DeletePartitionGroupResponse {
-    option deprecated = true;
-}
-
-// Enters a primary election
-message PartitionElectionRequest {
-    option deprecated = true;
-    atomix.controller.PartitionId partition_id = 1 [(gogoproto.customname) = "PartitionID"];
-    string member = 2;
-}
-
-// Enter response
-message PartitionElectionResponse {
-    option deprecated = true;
-    PrimaryTerm term = 1;
-}
-
-// Primary term
-message PrimaryTerm {
-    option deprecated = true;
-    int64 term = 1;
-    string primary = 2;
-    repeated string candidates = 3;
-}
 
 // Gets a list of databases in a namespace
 message GetDatabasesRequest {
@@ -73,27 +33,6 @@ message GetDatabasesResponse {
 
 // Atomix controller service
 service ControllerService {
-
-    // Creates a partition group
-    rpc CreatePartitionGroup (CreatePartitionGroupRequest) returns (CreatePartitionGroupResponse) {
-        option deprecated = true;
-    }
-
-    // Deletes a partition group
-    rpc DeletePartitionGroup (DeletePartitionGroupRequest) returns (DeletePartitionGroupResponse) {
-        option deprecated = true;
-    }
-
-    // Gets a list of active partition groups
-    rpc GetPartitionGroups (GetPartitionGroupsRequest) returns (GetPartitionGroupsResponse) {
-        option deprecated = true;
-    }
-
-    // Enters a primary election for a specific partition
-    rpc EnterElection (PartitionElectionRequest) returns (stream PartitionElectionResponse) {
-        option deprecated = true;
-    }
-
     // GetDatabases gets a list of databases controlled by the controller
     rpc GetDatabases (GetDatabasesRequest) returns (GetDatabasesResponse);
 }

@@ -4,17 +4,8 @@
 ## Table of Contents
 
 - [atomix/controller/controller.proto](#atomix/controller/controller.proto)
-    - [CreatePartitionGroupRequest](#atomix.controller.CreatePartitionGroupRequest)
-    - [CreatePartitionGroupResponse](#atomix.controller.CreatePartitionGroupResponse)
-    - [DeletePartitionGroupRequest](#atomix.controller.DeletePartitionGroupRequest)
-    - [DeletePartitionGroupResponse](#atomix.controller.DeletePartitionGroupResponse)
     - [GetDatabasesRequest](#atomix.controller.GetDatabasesRequest)
     - [GetDatabasesResponse](#atomix.controller.GetDatabasesResponse)
-    - [GetPartitionGroupsRequest](#atomix.controller.GetPartitionGroupsRequest)
-    - [GetPartitionGroupsResponse](#atomix.controller.GetPartitionGroupsResponse)
-    - [PartitionElectionRequest](#atomix.controller.PartitionElectionRequest)
-    - [PartitionElectionResponse](#atomix.controller.PartitionElectionResponse)
-    - [PrimaryTerm](#atomix.controller.PrimaryTerm)
   
   
   
@@ -30,15 +21,33 @@
     - [MemberConfig](#atomix.controller.MemberConfig)
     - [NodeConfig](#atomix.controller.NodeConfig)
     - [Partition](#atomix.controller.Partition)
-    - [PartitionConfig](#atomix.controller.PartitionConfig)
     - [PartitionEndpoint](#atomix.controller.PartitionEndpoint)
-    - [PartitionGroup](#atomix.controller.PartitionGroup)
-    - [PartitionGroupId](#atomix.controller.PartitionGroupId)
-    - [PartitionGroupSpec](#atomix.controller.PartitionGroupSpec)
     - [PartitionId](#atomix.controller.PartitionId)
   
   
   
+  
+
+- [atomix/controller/membership.proto](#atomix/controller/membership.proto)
+    - [JoinClusterRequest](#atomix.controller.JoinClusterRequest)
+    - [JoinClusterResponse](#atomix.controller.JoinClusterResponse)
+    - [JoinMembershipGroupRequest](#atomix.controller.JoinMembershipGroupRequest)
+    - [JoinMembershipGroupResponse](#atomix.controller.JoinMembershipGroupResponse)
+    - [JoinPartitionGroupRequest](#atomix.controller.JoinPartitionGroupRequest)
+    - [JoinPartitionGroupResponse](#atomix.controller.JoinPartitionGroupResponse)
+    - [Member](#atomix.controller.Member)
+    - [MemberId](#atomix.controller.MemberId)
+    - [Membership](#atomix.controller.Membership)
+    - [MembershipGroup](#atomix.controller.MembershipGroup)
+    - [MembershipGroupId](#atomix.controller.MembershipGroupId)
+    - [PartitionGroup](#atomix.controller.PartitionGroup)
+    - [PartitionGroupId](#atomix.controller.PartitionGroupId)
+  
+  
+  
+    - [ClusterService](#atomix.controller.ClusterService)
+    - [MembershipGroupService](#atomix.controller.MembershipGroupService)
+    - [PartitionGroupService](#atomix.controller.PartitionGroupService)
   
 
 - [Scalar Value Types](#scalar-value-types)
@@ -49,57 +58,6 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## atomix/controller/controller.proto
-
-
-
-<a name="atomix.controller.CreatePartitionGroupRequest"></a>
-
-### CreatePartitionGroupRequest
-Creates a new partition group
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [PartitionGroupId](#atomix.controller.PartitionGroupId) |  |  |
-| spec | [PartitionGroupSpec](#atomix.controller.PartitionGroupSpec) |  |  |
-
-
-
-
-
-
-<a name="atomix.controller.CreatePartitionGroupResponse"></a>
-
-### CreatePartitionGroupResponse
-Returns the status of a partition group
-
-
-
-
-
-
-<a name="atomix.controller.DeletePartitionGroupRequest"></a>
-
-### DeletePartitionGroupRequest
-Deletes a partition group
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [PartitionGroupId](#atomix.controller.PartitionGroupId) |  |  |
-
-
-
-
-
-
-<a name="atomix.controller.DeletePartitionGroupResponse"></a>
-
-### DeletePartitionGroupResponse
-Returns the result of deleting a partition group
-
-
-
 
 
 
@@ -132,84 +90,6 @@ Returns a list of databases in a namespace
 
 
 
-
-<a name="atomix.controller.GetPartitionGroupsRequest"></a>
-
-### GetPartitionGroupsRequest
-Gets a list of partition groups in the given namespace
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [PartitionGroupId](#atomix.controller.PartitionGroupId) |  |  |
-
-
-
-
-
-
-<a name="atomix.controller.GetPartitionGroupsResponse"></a>
-
-### GetPartitionGroupsResponse
-Returns a list of partition groups
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| groups | [PartitionGroup](#atomix.controller.PartitionGroup) | repeated |  |
-
-
-
-
-
-
-<a name="atomix.controller.PartitionElectionRequest"></a>
-
-### PartitionElectionRequest
-Enters a primary election
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| partition_id | [PartitionId](#atomix.controller.PartitionId) |  |  |
-| member | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.controller.PartitionElectionResponse"></a>
-
-### PartitionElectionResponse
-Enter response
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| term | [PrimaryTerm](#atomix.controller.PrimaryTerm) |  |  |
-
-
-
-
-
-
-<a name="atomix.controller.PrimaryTerm"></a>
-
-### PrimaryTerm
-Primary term
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| term | [int64](#int64) |  |  |
-| primary | [string](#string) |  |  |
-| candidates | [string](#string) | repeated |  |
-
-
-
-
-
  
 
  
@@ -224,10 +104,6 @@ Atomix controller service
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreatePartitionGroup | [CreatePartitionGroupRequest](#atomix.controller.CreatePartitionGroupRequest) | [CreatePartitionGroupResponse](#atomix.controller.CreatePartitionGroupResponse) | Creates a partition group |
-| DeletePartitionGroup | [DeletePartitionGroupRequest](#atomix.controller.DeletePartitionGroupRequest) | [DeletePartitionGroupResponse](#atomix.controller.DeletePartitionGroupResponse) | Deletes a partition group |
-| GetPartitionGroups | [GetPartitionGroupsRequest](#atomix.controller.GetPartitionGroupsRequest) | [GetPartitionGroupsResponse](#atomix.controller.GetPartitionGroupsResponse) | Gets a list of active partition groups |
-| EnterElection | [PartitionElectionRequest](#atomix.controller.PartitionElectionRequest) | [PartitionElectionResponse](#atomix.controller.PartitionElectionResponse) stream | Enters a primary election for a specific partition |
 | GetDatabases | [GetDatabasesRequest](#atomix.controller.GetDatabasesRequest) | [GetDatabasesResponse](#atomix.controller.GetDatabasesResponse) | GetDatabases gets a list of databases controlled by the controller |
 
  
@@ -374,24 +250,6 @@ Partition info
 
 
 
-<a name="atomix.controller.PartitionConfig"></a>
-
-### PartitionConfig
-Partition configuration
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| partition | [PartitionId](#atomix.controller.PartitionId) |  |  |
-| controller | [NodeConfig](#atomix.controller.NodeConfig) |  |  |
-| members | [NodeConfig](#atomix.controller.NodeConfig) | repeated |  |
-| partitions | [PartitionId](#atomix.controller.PartitionId) | repeated |  |
-
-
-
-
-
-
 <a name="atomix.controller.PartitionEndpoint"></a>
 
 ### PartitionEndpoint
@@ -408,27 +266,153 @@ Partition endpoint
 
 
 
-<a name="atomix.controller.PartitionGroup"></a>
+<a name="atomix.controller.PartitionId"></a>
 
-### PartitionGroup
-Partition group info
+### PartitionId
+Partition identifier
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [PartitionGroupId](#atomix.controller.PartitionGroupId) |  |  |
-| spec | [PartitionGroupSpec](#atomix.controller.PartitionGroupSpec) |  |  |
-| partitions | [Partition](#atomix.controller.Partition) | repeated |  |
+| partition | [int32](#int32) |  |  |
+| cluster | [ClusterId](#atomix.controller.ClusterId) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+<a name="atomix/controller/membership.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## atomix/controller/membership.proto
+
+
+
+<a name="atomix.controller.JoinClusterRequest"></a>
+
+### JoinClusterRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| member | [Member](#atomix.controller.Member) |  |  |
 
 
 
 
 
 
-<a name="atomix.controller.PartitionGroupId"></a>
+<a name="atomix.controller.JoinClusterResponse"></a>
 
-### PartitionGroupId
-Partition group name
+### JoinClusterResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| membership | [Membership](#atomix.controller.Membership) |  |  |
+
+
+
+
+
+
+<a name="atomix.controller.JoinMembershipGroupRequest"></a>
+
+### JoinMembershipGroupRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| member_id | [MemberId](#atomix.controller.MemberId) |  |  |
+| group_id | [MembershipGroupId](#atomix.controller.MembershipGroupId) |  |  |
+
+
+
+
+
+
+<a name="atomix.controller.JoinMembershipGroupResponse"></a>
+
+### JoinMembershipGroupResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| group | [MembershipGroup](#atomix.controller.MembershipGroup) |  |  |
+
+
+
+
+
+
+<a name="atomix.controller.JoinPartitionGroupRequest"></a>
+
+### JoinPartitionGroupRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| member_id | [MemberId](#atomix.controller.MemberId) |  |  |
+| group_id | [PartitionGroupId](#atomix.controller.PartitionGroupId) |  |  |
+| partitions | [uint32](#uint32) |  |  |
+| replication_factor | [uint32](#uint32) |  |  |
+
+
+
+
+
+
+<a name="atomix.controller.JoinPartitionGroupResponse"></a>
+
+### JoinPartitionGroupResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| group | [PartitionGroup](#atomix.controller.PartitionGroup) |  |  |
+
+
+
+
+
+
+<a name="atomix.controller.Member"></a>
+
+### Member
+Member is a cluster member
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [MemberId](#atomix.controller.MemberId) |  |  |
+| host | [string](#string) |  |  |
+| port | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="atomix.controller.MemberId"></a>
+
+### MemberId
+Member identifier
 
 
 | Field | Type | Label | Description |
@@ -441,34 +425,81 @@ Partition group name
 
 
 
-<a name="atomix.controller.PartitionGroupSpec"></a>
+<a name="atomix.controller.Membership"></a>
 
-### PartitionGroupSpec
-Partition group specification
+### Membership
+
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| partitions | [uint32](#uint32) |  |  |
-| partition_size | [uint32](#uint32) |  |  |
-| protocol | [google.protobuf.Any](#google.protobuf.Any) |  |  |
+| members | [Member](#atomix.controller.Member) | repeated |  |
 
 
 
 
 
 
-<a name="atomix.controller.PartitionId"></a>
+<a name="atomix.controller.MembershipGroup"></a>
 
-### PartitionId
-Partition identifier
+### MembershipGroup
+Cluster membership group
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| partition | [int32](#int32) |  |  |
-| group | [PartitionGroupId](#atomix.controller.PartitionGroupId) |  |  |
-| cluster | [ClusterId](#atomix.controller.ClusterId) |  |  |
+| id | [MembershipGroupId](#atomix.controller.MembershipGroupId) |  |  |
+| term | [uint64](#uint64) |  |  |
+| leader | [string](#string) |  |  |
+| members | [Member](#atomix.controller.Member) | repeated |  |
+
+
+
+
+
+
+<a name="atomix.controller.MembershipGroupId"></a>
+
+### MembershipGroupId
+Membership group identifier
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| namespace | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="atomix.controller.PartitionGroup"></a>
+
+### PartitionGroup
+Partition group state
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [PartitionGroupId](#atomix.controller.PartitionGroupId) |  |  |
+| partitions | [MembershipGroup](#atomix.controller.MembershipGroup) | repeated |  |
+
+
+
+
+
+
+<a name="atomix.controller.PartitionGroupId"></a>
+
+### PartitionGroupId
+Partition group identifier
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| namespace | [string](#string) |  |  |
 
 
 
@@ -479,6 +510,36 @@ Partition identifier
  
 
  
+
+
+<a name="atomix.controller.ClusterService"></a>
+
+### ClusterService
+Atomix cluster service
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| JoinCluster | [JoinClusterRequest](#atomix.controller.JoinClusterRequest) | [JoinClusterResponse](#atomix.controller.JoinClusterResponse) stream | Joins a member to the cluster |
+
+
+<a name="atomix.controller.MembershipGroupService"></a>
+
+### MembershipGroupService
+Atomix membership group service
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| JoinMembershipGroup | [JoinMembershipGroupRequest](#atomix.controller.JoinMembershipGroupRequest) | [JoinMembershipGroupResponse](#atomix.controller.JoinMembershipGroupResponse) stream | Joins a member to a membership group |
+
+
+<a name="atomix.controller.PartitionGroupService"></a>
+
+### PartitionGroupService
+Atomix partition group service
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| JoinPartitionGroup | [JoinPartitionGroupRequest](#atomix.controller.JoinPartitionGroupRequest) | [JoinPartitionGroupResponse](#atomix.controller.JoinPartitionGroupResponse) stream | Joins a member to a partition group |
 
  
 

@@ -25,391 +25,6 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-// Gets a list of partition groups in the given namespace
-//
-// Deprecated: Do not use.
-type GetPartitionGroupsRequest struct {
-	ID                   *PartitionGroupId `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
-	XXX_unrecognized     []byte            `json:"-"`
-	XXX_sizecache        int32             `json:"-"`
-}
-
-func (m *GetPartitionGroupsRequest) Reset()         { *m = GetPartitionGroupsRequest{} }
-func (m *GetPartitionGroupsRequest) String() string { return proto.CompactTextString(m) }
-func (*GetPartitionGroupsRequest) ProtoMessage()    {}
-func (*GetPartitionGroupsRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6541e67aaed2c172, []int{0}
-}
-func (m *GetPartitionGroupsRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetPartitionGroupsRequest.Unmarshal(m, b)
-}
-func (m *GetPartitionGroupsRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetPartitionGroupsRequest.Marshal(b, m, deterministic)
-}
-func (m *GetPartitionGroupsRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetPartitionGroupsRequest.Merge(m, src)
-}
-func (m *GetPartitionGroupsRequest) XXX_Size() int {
-	return xxx_messageInfo_GetPartitionGroupsRequest.Size(m)
-}
-func (m *GetPartitionGroupsRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetPartitionGroupsRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetPartitionGroupsRequest proto.InternalMessageInfo
-
-func (m *GetPartitionGroupsRequest) GetID() *PartitionGroupId {
-	if m != nil {
-		return m.ID
-	}
-	return nil
-}
-
-// Returns a list of partition groups
-//
-// Deprecated: Do not use.
-type GetPartitionGroupsResponse struct {
-	Groups               []*PartitionGroup `protobuf:"bytes,1,rep,name=groups,proto3" json:"groups,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
-	XXX_unrecognized     []byte            `json:"-"`
-	XXX_sizecache        int32             `json:"-"`
-}
-
-func (m *GetPartitionGroupsResponse) Reset()         { *m = GetPartitionGroupsResponse{} }
-func (m *GetPartitionGroupsResponse) String() string { return proto.CompactTextString(m) }
-func (*GetPartitionGroupsResponse) ProtoMessage()    {}
-func (*GetPartitionGroupsResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6541e67aaed2c172, []int{1}
-}
-func (m *GetPartitionGroupsResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetPartitionGroupsResponse.Unmarshal(m, b)
-}
-func (m *GetPartitionGroupsResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetPartitionGroupsResponse.Marshal(b, m, deterministic)
-}
-func (m *GetPartitionGroupsResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_GetPartitionGroupsResponse.Merge(m, src)
-}
-func (m *GetPartitionGroupsResponse) XXX_Size() int {
-	return xxx_messageInfo_GetPartitionGroupsResponse.Size(m)
-}
-func (m *GetPartitionGroupsResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_GetPartitionGroupsResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_GetPartitionGroupsResponse proto.InternalMessageInfo
-
-func (m *GetPartitionGroupsResponse) GetGroups() []*PartitionGroup {
-	if m != nil {
-		return m.Groups
-	}
-	return nil
-}
-
-// Creates a new partition group
-//
-// Deprecated: Do not use.
-type CreatePartitionGroupRequest struct {
-	ID                   *PartitionGroupId   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Spec                 *PartitionGroupSpec `protobuf:"bytes,2,opt,name=spec,proto3" json:"spec,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
-	XXX_unrecognized     []byte              `json:"-"`
-	XXX_sizecache        int32               `json:"-"`
-}
-
-func (m *CreatePartitionGroupRequest) Reset()         { *m = CreatePartitionGroupRequest{} }
-func (m *CreatePartitionGroupRequest) String() string { return proto.CompactTextString(m) }
-func (*CreatePartitionGroupRequest) ProtoMessage()    {}
-func (*CreatePartitionGroupRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6541e67aaed2c172, []int{2}
-}
-func (m *CreatePartitionGroupRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreatePartitionGroupRequest.Unmarshal(m, b)
-}
-func (m *CreatePartitionGroupRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreatePartitionGroupRequest.Marshal(b, m, deterministic)
-}
-func (m *CreatePartitionGroupRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreatePartitionGroupRequest.Merge(m, src)
-}
-func (m *CreatePartitionGroupRequest) XXX_Size() int {
-	return xxx_messageInfo_CreatePartitionGroupRequest.Size(m)
-}
-func (m *CreatePartitionGroupRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreatePartitionGroupRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreatePartitionGroupRequest proto.InternalMessageInfo
-
-func (m *CreatePartitionGroupRequest) GetID() *PartitionGroupId {
-	if m != nil {
-		return m.ID
-	}
-	return nil
-}
-
-func (m *CreatePartitionGroupRequest) GetSpec() *PartitionGroupSpec {
-	if m != nil {
-		return m.Spec
-	}
-	return nil
-}
-
-// Returns the status of a partition group
-//
-// Deprecated: Do not use.
-type CreatePartitionGroupResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *CreatePartitionGroupResponse) Reset()         { *m = CreatePartitionGroupResponse{} }
-func (m *CreatePartitionGroupResponse) String() string { return proto.CompactTextString(m) }
-func (*CreatePartitionGroupResponse) ProtoMessage()    {}
-func (*CreatePartitionGroupResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6541e67aaed2c172, []int{3}
-}
-func (m *CreatePartitionGroupResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_CreatePartitionGroupResponse.Unmarshal(m, b)
-}
-func (m *CreatePartitionGroupResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_CreatePartitionGroupResponse.Marshal(b, m, deterministic)
-}
-func (m *CreatePartitionGroupResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_CreatePartitionGroupResponse.Merge(m, src)
-}
-func (m *CreatePartitionGroupResponse) XXX_Size() int {
-	return xxx_messageInfo_CreatePartitionGroupResponse.Size(m)
-}
-func (m *CreatePartitionGroupResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_CreatePartitionGroupResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_CreatePartitionGroupResponse proto.InternalMessageInfo
-
-// Deletes a partition group
-//
-// Deprecated: Do not use.
-type DeletePartitionGroupRequest struct {
-	ID                   *PartitionGroupId `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}          `json:"-"`
-	XXX_unrecognized     []byte            `json:"-"`
-	XXX_sizecache        int32             `json:"-"`
-}
-
-func (m *DeletePartitionGroupRequest) Reset()         { *m = DeletePartitionGroupRequest{} }
-func (m *DeletePartitionGroupRequest) String() string { return proto.CompactTextString(m) }
-func (*DeletePartitionGroupRequest) ProtoMessage()    {}
-func (*DeletePartitionGroupRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6541e67aaed2c172, []int{4}
-}
-func (m *DeletePartitionGroupRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeletePartitionGroupRequest.Unmarshal(m, b)
-}
-func (m *DeletePartitionGroupRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeletePartitionGroupRequest.Marshal(b, m, deterministic)
-}
-func (m *DeletePartitionGroupRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeletePartitionGroupRequest.Merge(m, src)
-}
-func (m *DeletePartitionGroupRequest) XXX_Size() int {
-	return xxx_messageInfo_DeletePartitionGroupRequest.Size(m)
-}
-func (m *DeletePartitionGroupRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeletePartitionGroupRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeletePartitionGroupRequest proto.InternalMessageInfo
-
-func (m *DeletePartitionGroupRequest) GetID() *PartitionGroupId {
-	if m != nil {
-		return m.ID
-	}
-	return nil
-}
-
-// Returns the result of deleting a partition group
-//
-// Deprecated: Do not use.
-type DeletePartitionGroupResponse struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *DeletePartitionGroupResponse) Reset()         { *m = DeletePartitionGroupResponse{} }
-func (m *DeletePartitionGroupResponse) String() string { return proto.CompactTextString(m) }
-func (*DeletePartitionGroupResponse) ProtoMessage()    {}
-func (*DeletePartitionGroupResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6541e67aaed2c172, []int{5}
-}
-func (m *DeletePartitionGroupResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DeletePartitionGroupResponse.Unmarshal(m, b)
-}
-func (m *DeletePartitionGroupResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DeletePartitionGroupResponse.Marshal(b, m, deterministic)
-}
-func (m *DeletePartitionGroupResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeletePartitionGroupResponse.Merge(m, src)
-}
-func (m *DeletePartitionGroupResponse) XXX_Size() int {
-	return xxx_messageInfo_DeletePartitionGroupResponse.Size(m)
-}
-func (m *DeletePartitionGroupResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeletePartitionGroupResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeletePartitionGroupResponse proto.InternalMessageInfo
-
-// Enters a primary election
-//
-// Deprecated: Do not use.
-type PartitionElectionRequest struct {
-	PartitionID          *PartitionId `protobuf:"bytes,1,opt,name=partition_id,json=partitionId,proto3" json:"partition_id,omitempty"`
-	Member               string       `protobuf:"bytes,2,opt,name=member,proto3" json:"member,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
-	XXX_unrecognized     []byte       `json:"-"`
-	XXX_sizecache        int32        `json:"-"`
-}
-
-func (m *PartitionElectionRequest) Reset()         { *m = PartitionElectionRequest{} }
-func (m *PartitionElectionRequest) String() string { return proto.CompactTextString(m) }
-func (*PartitionElectionRequest) ProtoMessage()    {}
-func (*PartitionElectionRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6541e67aaed2c172, []int{6}
-}
-func (m *PartitionElectionRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_PartitionElectionRequest.Unmarshal(m, b)
-}
-func (m *PartitionElectionRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_PartitionElectionRequest.Marshal(b, m, deterministic)
-}
-func (m *PartitionElectionRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PartitionElectionRequest.Merge(m, src)
-}
-func (m *PartitionElectionRequest) XXX_Size() int {
-	return xxx_messageInfo_PartitionElectionRequest.Size(m)
-}
-func (m *PartitionElectionRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_PartitionElectionRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_PartitionElectionRequest proto.InternalMessageInfo
-
-func (m *PartitionElectionRequest) GetPartitionID() *PartitionId {
-	if m != nil {
-		return m.PartitionID
-	}
-	return nil
-}
-
-func (m *PartitionElectionRequest) GetMember() string {
-	if m != nil {
-		return m.Member
-	}
-	return ""
-}
-
-// Enter response
-//
-// Deprecated: Do not use.
-type PartitionElectionResponse struct {
-	Term                 *PrimaryTerm `protobuf:"bytes,1,opt,name=term,proto3" json:"term,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}     `json:"-"`
-	XXX_unrecognized     []byte       `json:"-"`
-	XXX_sizecache        int32        `json:"-"`
-}
-
-func (m *PartitionElectionResponse) Reset()         { *m = PartitionElectionResponse{} }
-func (m *PartitionElectionResponse) String() string { return proto.CompactTextString(m) }
-func (*PartitionElectionResponse) ProtoMessage()    {}
-func (*PartitionElectionResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6541e67aaed2c172, []int{7}
-}
-func (m *PartitionElectionResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_PartitionElectionResponse.Unmarshal(m, b)
-}
-func (m *PartitionElectionResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_PartitionElectionResponse.Marshal(b, m, deterministic)
-}
-func (m *PartitionElectionResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PartitionElectionResponse.Merge(m, src)
-}
-func (m *PartitionElectionResponse) XXX_Size() int {
-	return xxx_messageInfo_PartitionElectionResponse.Size(m)
-}
-func (m *PartitionElectionResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_PartitionElectionResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_PartitionElectionResponse proto.InternalMessageInfo
-
-func (m *PartitionElectionResponse) GetTerm() *PrimaryTerm {
-	if m != nil {
-		return m.Term
-	}
-	return nil
-}
-
-// Primary term
-//
-// Deprecated: Do not use.
-type PrimaryTerm struct {
-	Term                 int64    `protobuf:"varint,1,opt,name=term,proto3" json:"term,omitempty"`
-	Primary              string   `protobuf:"bytes,2,opt,name=primary,proto3" json:"primary,omitempty"`
-	Candidates           []string `protobuf:"bytes,3,rep,name=candidates,proto3" json:"candidates,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *PrimaryTerm) Reset()         { *m = PrimaryTerm{} }
-func (m *PrimaryTerm) String() string { return proto.CompactTextString(m) }
-func (*PrimaryTerm) ProtoMessage()    {}
-func (*PrimaryTerm) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6541e67aaed2c172, []int{8}
-}
-func (m *PrimaryTerm) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_PrimaryTerm.Unmarshal(m, b)
-}
-func (m *PrimaryTerm) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_PrimaryTerm.Marshal(b, m, deterministic)
-}
-func (m *PrimaryTerm) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PrimaryTerm.Merge(m, src)
-}
-func (m *PrimaryTerm) XXX_Size() int {
-	return xxx_messageInfo_PrimaryTerm.Size(m)
-}
-func (m *PrimaryTerm) XXX_DiscardUnknown() {
-	xxx_messageInfo_PrimaryTerm.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_PrimaryTerm proto.InternalMessageInfo
-
-func (m *PrimaryTerm) GetTerm() int64 {
-	if m != nil {
-		return m.Term
-	}
-	return 0
-}
-
-func (m *PrimaryTerm) GetPrimary() string {
-	if m != nil {
-		return m.Primary
-	}
-	return ""
-}
-
-func (m *PrimaryTerm) GetCandidates() []string {
-	if m != nil {
-		return m.Candidates
-	}
-	return nil
-}
-
 // Gets a list of databases in a namespace
 type GetDatabasesRequest struct {
 	ID                   *DatabaseId `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -422,7 +37,7 @@ func (m *GetDatabasesRequest) Reset()         { *m = GetDatabasesRequest{} }
 func (m *GetDatabasesRequest) String() string { return proto.CompactTextString(m) }
 func (*GetDatabasesRequest) ProtoMessage()    {}
 func (*GetDatabasesRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6541e67aaed2c172, []int{9}
+	return fileDescriptor_6541e67aaed2c172, []int{0}
 }
 func (m *GetDatabasesRequest) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GetDatabasesRequest.Unmarshal(m, b)
@@ -461,7 +76,7 @@ func (m *GetDatabasesResponse) Reset()         { *m = GetDatabasesResponse{} }
 func (m *GetDatabasesResponse) String() string { return proto.CompactTextString(m) }
 func (*GetDatabasesResponse) ProtoMessage()    {}
 func (*GetDatabasesResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_6541e67aaed2c172, []int{10}
+	return fileDescriptor_6541e67aaed2c172, []int{1}
 }
 func (m *GetDatabasesResponse) XXX_Unmarshal(b []byte) error {
 	return xxx_messageInfo_GetDatabasesResponse.Unmarshal(m, b)
@@ -489,15 +104,6 @@ func (m *GetDatabasesResponse) GetDatabases() []*Database {
 }
 
 func init() {
-	proto.RegisterType((*GetPartitionGroupsRequest)(nil), "atomix.controller.GetPartitionGroupsRequest")
-	proto.RegisterType((*GetPartitionGroupsResponse)(nil), "atomix.controller.GetPartitionGroupsResponse")
-	proto.RegisterType((*CreatePartitionGroupRequest)(nil), "atomix.controller.CreatePartitionGroupRequest")
-	proto.RegisterType((*CreatePartitionGroupResponse)(nil), "atomix.controller.CreatePartitionGroupResponse")
-	proto.RegisterType((*DeletePartitionGroupRequest)(nil), "atomix.controller.DeletePartitionGroupRequest")
-	proto.RegisterType((*DeletePartitionGroupResponse)(nil), "atomix.controller.DeletePartitionGroupResponse")
-	proto.RegisterType((*PartitionElectionRequest)(nil), "atomix.controller.PartitionElectionRequest")
-	proto.RegisterType((*PartitionElectionResponse)(nil), "atomix.controller.PartitionElectionResponse")
-	proto.RegisterType((*PrimaryTerm)(nil), "atomix.controller.PrimaryTerm")
 	proto.RegisterType((*GetDatabasesRequest)(nil), "atomix.controller.GetDatabasesRequest")
 	proto.RegisterType((*GetDatabasesResponse)(nil), "atomix.controller.GetDatabasesResponse")
 }
@@ -505,41 +111,21 @@ func init() {
 func init() { proto.RegisterFile("atomix/controller/controller.proto", fileDescriptor_6541e67aaed2c172) }
 
 var fileDescriptor_6541e67aaed2c172 = []byte{
-	// 542 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x55, 0x5d, 0x8b, 0xd3, 0x40,
-	0x14, 0x25, 0x69, 0xa9, 0xf4, 0x66, 0x45, 0x76, 0x2c, 0x92, 0x4d, 0x75, 0xb7, 0x46, 0xd4, 0x82,
-	0x6b, 0x2a, 0x15, 0x1f, 0x56, 0xdf, 0x76, 0xbb, 0x94, 0x82, 0x0f, 0x3a, 0xf5, 0x4d, 0xb1, 0xa4,
-	0xc9, 0xa5, 0x04, 0x9a, 0x4c, 0x76, 0x32, 0xbb, 0x28, 0xf8, 0x03, 0xc4, 0x7f, 0xe0, 0x6f, 0x13,
-	0xf6, 0x61, 0x7f, 0x89, 0x74, 0xf2, 0xd1, 0xb4, 0x1d, 0xd3, 0x3e, 0xb8, 0x4f, 0x9d, 0xdc, 0x7b,
-	0xee, 0x39, 0x27, 0xcd, 0x3d, 0x09, 0xd8, 0xae, 0x60, 0x61, 0xf0, 0xad, 0xe7, 0xb1, 0x48, 0x70,
-	0x36, 0x9f, 0x23, 0x2f, 0x1d, 0x9d, 0x98, 0x33, 0xc1, 0xc8, 0x7e, 0x8a, 0x71, 0x96, 0x0d, 0xab,
-	0xb3, 0x39, 0xe6, 0xbb, 0xc2, 0x9d, 0xba, 0x09, 0xa6, 0x43, 0x56, 0x6b, 0xc6, 0x66, 0x4c, 0x1e,
-	0x7b, 0x8b, 0x53, 0x5a, 0xb5, 0xbf, 0xc0, 0xc1, 0x10, 0xc5, 0x07, 0x97, 0x8b, 0x40, 0x04, 0x2c,
-	0x1a, 0x72, 0x76, 0x19, 0x27, 0x14, 0x2f, 0x2e, 0x31, 0x11, 0xe4, 0x1d, 0xe8, 0x81, 0x6f, 0x6a,
-	0x1d, 0xad, 0x6b, 0xf4, 0x9f, 0x38, 0x1b, 0xa2, 0xce, 0xea, 0xd8, 0xc8, 0x3f, 0x6d, 0xdc, 0x5c,
-	0x1f, 0xe9, 0xa3, 0x01, 0xd5, 0x03, 0xff, 0xad, 0x6e, 0x6a, 0xf6, 0x67, 0xb0, 0x54, 0xec, 0x49,
-	0xcc, 0xa2, 0x04, 0xc9, 0x09, 0x34, 0x66, 0xb2, 0x62, 0x6a, 0x9d, 0x5a, 0xd7, 0xe8, 0x3f, 0xde,
-	0x2a, 0x41, 0xb3, 0x01, 0x49, 0xfe, 0x5b, 0x83, 0xf6, 0x19, 0x47, 0x57, 0xe0, 0x1a, 0xe8, 0x3f,
-	0xb8, 0x27, 0x27, 0x50, 0x4f, 0x62, 0xf4, 0x4c, 0x5d, 0x8e, 0x3f, 0xdd, 0x3a, 0x3e, 0x8e, 0xd1,
-	0xa3, 0x72, 0x44, 0x7a, 0xb3, 0xe1, 0xa1, 0xda, 0x5a, 0x7a, 0xeb, 0x12, 0xf3, 0x15, 0xda, 0x03,
-	0x9c, 0xe3, 0x6d, 0xd8, 0xcf, 0x3d, 0xa8, 0xf9, 0x4b, 0x1e, 0x7e, 0x69, 0x60, 0x16, 0xed, 0xf3,
-	0x39, 0x7a, 0x8b, 0xdf, 0xdc, 0x01, 0x85, 0xbd, 0x38, 0xef, 0x4d, 0x0a, 0x2f, 0x87, 0x55, 0x5e,
-	0x46, 0xfe, 0xe9, 0xbd, 0x9b, 0xeb, 0x23, 0x63, 0x59, 0x18, 0x50, 0x23, 0x5e, 0x76, 0xc9, 0x03,
-	0x68, 0x84, 0x18, 0x4e, 0x91, 0xcb, 0x7f, 0xb6, 0x49, 0xb3, 0x2b, 0x69, 0x66, 0x0c, 0x07, 0x0a,
-	0x2f, 0xd9, 0xb2, 0xf4, 0xa1, 0x2e, 0x90, 0x87, 0x55, 0x26, 0x78, 0x10, 0xba, 0xfc, 0xfb, 0x27,
-	0xe4, 0x21, 0x95, 0x58, 0x49, 0x3a, 0x01, 0xa3, 0xd4, 0x20, 0xa4, 0x44, 0x53, 0x4b, 0x61, 0xc4,
-	0x84, 0x3b, 0x71, 0x0a, 0xc9, 0x4c, 0xe5, 0x97, 0xe4, 0x10, 0xc0, 0x73, 0x23, 0x3f, 0xf0, 0x5d,
-	0x81, 0x89, 0x59, 0xeb, 0xd4, 0xba, 0x4d, 0x5a, 0xaa, 0x48, 0x81, 0xf7, 0x70, 0x7f, 0x88, 0x62,
-	0x90, 0x85, 0xad, 0xc8, 0xce, 0x9b, 0xd2, 0xe3, 0x7b, 0xa4, 0x70, 0x9b, 0x0f, 0xac, 0x3e, 0x38,
-	0xfb, 0x23, 0xb4, 0x56, 0xd9, 0x8a, 0xac, 0x34, 0xf3, 0x3c, 0xe7, 0x71, 0x69, 0x57, 0xb0, 0xd2,
-	0x25, 0xba, 0xff, 0xa7, 0x0e, 0xfb, 0x67, 0x05, 0x64, 0x8c, 0xfc, 0x2a, 0xf0, 0x90, 0xfc, 0x80,
-	0x96, 0x6a, 0x43, 0x89, 0xa3, 0x60, 0xad, 0x48, 0x99, 0xd5, 0xdb, 0x19, 0x9f, 0xde, 0x89, 0x5d,
-	0xfb, 0xa9, 0x6b, 0x0b, 0x75, 0xd5, 0x6e, 0x2a, 0xd5, 0x2b, 0x42, 0xa2, 0x54, 0xaf, 0x5a, 0xfa,
-	0x54, 0xfd, 0x0a, 0xc8, 0xe6, 0x6b, 0x89, 0x1c, 0x2b, 0xb8, 0xfe, 0xf9, 0x6e, 0xb4, 0x5e, 0xee,
-	0x88, 0x2e, 0xeb, 0x5e, 0xc0, 0xdd, 0xf3, 0x48, 0x20, 0xcf, 0x97, 0x9b, 0xbc, 0xa8, 0xca, 0xd2,
-	0x5a, 0x1c, 0xad, 0xe3, 0xdd, 0xc0, 0x25, 0xc1, 0x57, 0x1a, 0x99, 0xc0, 0x5e, 0x79, 0x9f, 0xc8,
-	0x33, 0xb5, 0xed, 0xf5, 0xf5, 0xb5, 0x9e, 0x6f, 0xc5, 0xa5, 0x3a, 0xd3, 0x86, 0xfc, 0x8e, 0xbc,
-	0xfe, 0x1b, 0x00, 0x00, 0xff, 0xff, 0x8a, 0x40, 0xb8, 0x3a, 0xb8, 0x06, 0x00, 0x00,
+	// 209 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x52, 0x4a, 0x2c, 0xc9, 0xcf,
+	0xcd, 0xac, 0xd0, 0x4f, 0xce, 0xcf, 0x2b, 0x29, 0xca, 0xcf, 0xc9, 0x49, 0x2d, 0x42, 0x62, 0xea,
+	0x15, 0x14, 0xe5, 0x97, 0xe4, 0x0b, 0x09, 0x42, 0xd4, 0xe8, 0x21, 0x24, 0xa4, 0x14, 0x30, 0xb5,
+	0xa5, 0x24, 0x96, 0x24, 0x26, 0x25, 0x16, 0xa7, 0x42, 0x34, 0x49, 0x89, 0xa4, 0xe7, 0xa7, 0xe7,
+	0x83, 0x99, 0xfa, 0x20, 0x16, 0x44, 0x54, 0xc9, 0x87, 0x4b, 0xd8, 0x3d, 0xb5, 0xc4, 0x05, 0xaa,
+	0xb4, 0x38, 0x28, 0xb5, 0xb0, 0x34, 0xb5, 0xb8, 0x44, 0xc8, 0x94, 0x8b, 0x29, 0x33, 0x45, 0x82,
+	0x51, 0x81, 0x51, 0x83, 0xdb, 0x48, 0x56, 0x0f, 0xc3, 0x3a, 0x3d, 0x98, 0x06, 0xcf, 0x14, 0x27,
+	0xb6, 0x47, 0xf7, 0xe4, 0x99, 0x3c, 0x5d, 0x82, 0x98, 0x32, 0x53, 0x94, 0x02, 0xb9, 0x44, 0x50,
+	0x4d, 0x2b, 0x2e, 0xc8, 0xcf, 0x2b, 0x4e, 0x15, 0xb2, 0xe4, 0xe2, 0x84, 0xb9, 0xa6, 0x58, 0x82,
+	0x51, 0x81, 0x59, 0x83, 0xdb, 0x48, 0x1a, 0x8f, 0xa9, 0x41, 0x08, 0xd5, 0x46, 0x25, 0x5c, 0x82,
+	0xce, 0x70, 0x15, 0xc1, 0xa9, 0x45, 0x65, 0x99, 0xc9, 0xa9, 0x42, 0xf1, 0x5c, 0x3c, 0xc8, 0xf6,
+	0x08, 0xa9, 0x61, 0x31, 0x0c, 0x8b, 0xb7, 0xa4, 0xd4, 0x09, 0xaa, 0x83, 0x38, 0x38, 0x89, 0x0d,
+	0x1c, 0x3a, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0x02, 0x64, 0x6c, 0x1b, 0x8e, 0x01, 0x00,
+	0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -554,14 +140,6 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type ControllerServiceClient interface {
-	// Creates a partition group
-	CreatePartitionGroup(ctx context.Context, in *CreatePartitionGroupRequest, opts ...grpc.CallOption) (*CreatePartitionGroupResponse, error)
-	// Deletes a partition group
-	DeletePartitionGroup(ctx context.Context, in *DeletePartitionGroupRequest, opts ...grpc.CallOption) (*DeletePartitionGroupResponse, error)
-	// Gets a list of active partition groups
-	GetPartitionGroups(ctx context.Context, in *GetPartitionGroupsRequest, opts ...grpc.CallOption) (*GetPartitionGroupsResponse, error)
-	// Enters a primary election for a specific partition
-	EnterElection(ctx context.Context, in *PartitionElectionRequest, opts ...grpc.CallOption) (ControllerService_EnterElectionClient, error)
 	// GetDatabases gets a list of databases controlled by the controller
 	GetDatabases(ctx context.Context, in *GetDatabasesRequest, opts ...grpc.CallOption) (*GetDatabasesResponse, error)
 }
@@ -572,69 +150,6 @@ type controllerServiceClient struct {
 
 func NewControllerServiceClient(cc *grpc.ClientConn) ControllerServiceClient {
 	return &controllerServiceClient{cc}
-}
-
-// Deprecated: Do not use.
-func (c *controllerServiceClient) CreatePartitionGroup(ctx context.Context, in *CreatePartitionGroupRequest, opts ...grpc.CallOption) (*CreatePartitionGroupResponse, error) {
-	out := new(CreatePartitionGroupResponse)
-	err := c.cc.Invoke(ctx, "/atomix.controller.ControllerService/CreatePartitionGroup", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *controllerServiceClient) DeletePartitionGroup(ctx context.Context, in *DeletePartitionGroupRequest, opts ...grpc.CallOption) (*DeletePartitionGroupResponse, error) {
-	out := new(DeletePartitionGroupResponse)
-	err := c.cc.Invoke(ctx, "/atomix.controller.ControllerService/DeletePartitionGroup", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *controllerServiceClient) GetPartitionGroups(ctx context.Context, in *GetPartitionGroupsRequest, opts ...grpc.CallOption) (*GetPartitionGroupsResponse, error) {
-	out := new(GetPartitionGroupsResponse)
-	err := c.cc.Invoke(ctx, "/atomix.controller.ControllerService/GetPartitionGroups", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// Deprecated: Do not use.
-func (c *controllerServiceClient) EnterElection(ctx context.Context, in *PartitionElectionRequest, opts ...grpc.CallOption) (ControllerService_EnterElectionClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_ControllerService_serviceDesc.Streams[0], "/atomix.controller.ControllerService/EnterElection", opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &controllerServiceEnterElectionClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type ControllerService_EnterElectionClient interface {
-	Recv() (*PartitionElectionResponse, error)
-	grpc.ClientStream
-}
-
-type controllerServiceEnterElectionClient struct {
-	grpc.ClientStream
-}
-
-func (x *controllerServiceEnterElectionClient) Recv() (*PartitionElectionResponse, error) {
-	m := new(PartitionElectionResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
 }
 
 func (c *controllerServiceClient) GetDatabases(ctx context.Context, in *GetDatabasesRequest, opts ...grpc.CallOption) (*GetDatabasesResponse, error) {
@@ -648,14 +163,6 @@ func (c *controllerServiceClient) GetDatabases(ctx context.Context, in *GetDatab
 
 // ControllerServiceServer is the server API for ControllerService service.
 type ControllerServiceServer interface {
-	// Creates a partition group
-	CreatePartitionGroup(context.Context, *CreatePartitionGroupRequest) (*CreatePartitionGroupResponse, error)
-	// Deletes a partition group
-	DeletePartitionGroup(context.Context, *DeletePartitionGroupRequest) (*DeletePartitionGroupResponse, error)
-	// Gets a list of active partition groups
-	GetPartitionGroups(context.Context, *GetPartitionGroupsRequest) (*GetPartitionGroupsResponse, error)
-	// Enters a primary election for a specific partition
-	EnterElection(*PartitionElectionRequest, ControllerService_EnterElectionServer) error
 	// GetDatabases gets a list of databases controlled by the controller
 	GetDatabases(context.Context, *GetDatabasesRequest) (*GetDatabasesResponse, error)
 }
@@ -664,99 +171,12 @@ type ControllerServiceServer interface {
 type UnimplementedControllerServiceServer struct {
 }
 
-func (*UnimplementedControllerServiceServer) CreatePartitionGroup(ctx context.Context, req *CreatePartitionGroupRequest) (*CreatePartitionGroupResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method CreatePartitionGroup not implemented")
-}
-func (*UnimplementedControllerServiceServer) DeletePartitionGroup(ctx context.Context, req *DeletePartitionGroupRequest) (*DeletePartitionGroupResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method DeletePartitionGroup not implemented")
-}
-func (*UnimplementedControllerServiceServer) GetPartitionGroups(ctx context.Context, req *GetPartitionGroupsRequest) (*GetPartitionGroupsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetPartitionGroups not implemented")
-}
-func (*UnimplementedControllerServiceServer) EnterElection(req *PartitionElectionRequest, srv ControllerService_EnterElectionServer) error {
-	return status.Errorf(codes.Unimplemented, "method EnterElection not implemented")
-}
 func (*UnimplementedControllerServiceServer) GetDatabases(ctx context.Context, req *GetDatabasesRequest) (*GetDatabasesResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetDatabases not implemented")
 }
 
 func RegisterControllerServiceServer(s *grpc.Server, srv ControllerServiceServer) {
 	s.RegisterService(&_ControllerService_serviceDesc, srv)
-}
-
-func _ControllerService_CreatePartitionGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreatePartitionGroupRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ControllerServiceServer).CreatePartitionGroup(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/atomix.controller.ControllerService/CreatePartitionGroup",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ControllerServiceServer).CreatePartitionGroup(ctx, req.(*CreatePartitionGroupRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ControllerService_DeletePartitionGroup_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeletePartitionGroupRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ControllerServiceServer).DeletePartitionGroup(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/atomix.controller.ControllerService/DeletePartitionGroup",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ControllerServiceServer).DeletePartitionGroup(ctx, req.(*DeletePartitionGroupRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ControllerService_GetPartitionGroups_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetPartitionGroupsRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(ControllerServiceServer).GetPartitionGroups(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/atomix.controller.ControllerService/GetPartitionGroups",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ControllerServiceServer).GetPartitionGroups(ctx, req.(*GetPartitionGroupsRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _ControllerService_EnterElection_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(PartitionElectionRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(ControllerServiceServer).EnterElection(m, &controllerServiceEnterElectionServer{stream})
-}
-
-type ControllerService_EnterElectionServer interface {
-	Send(*PartitionElectionResponse) error
-	grpc.ServerStream
-}
-
-type controllerServiceEnterElectionServer struct {
-	grpc.ServerStream
-}
-
-func (x *controllerServiceEnterElectionServer) Send(m *PartitionElectionResponse) error {
-	return x.ServerStream.SendMsg(m)
 }
 
 func _ControllerService_GetDatabases_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -782,28 +202,10 @@ var _ControllerService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*ControllerServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "CreatePartitionGroup",
-			Handler:    _ControllerService_CreatePartitionGroup_Handler,
-		},
-		{
-			MethodName: "DeletePartitionGroup",
-			Handler:    _ControllerService_DeletePartitionGroup_Handler,
-		},
-		{
-			MethodName: "GetPartitionGroups",
-			Handler:    _ControllerService_GetPartitionGroups_Handler,
-		},
-		{
 			MethodName: "GetDatabases",
 			Handler:    _ControllerService_GetDatabases_Handler,
 		},
 	},
-	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "EnterElection",
-			Handler:       _ControllerService_EnterElection_Handler,
-			ServerStreams: true,
-		},
-	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "atomix/controller/controller.proto",
 }

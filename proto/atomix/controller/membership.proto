@@ -21,7 +21,7 @@ package atomix.controller;
 import "gogoproto/gogo.proto";
 
 message Membership {
-    repeated Member members = 1;
+    repeated Member members = 1 [(gogoproto.nullable) = false];
 }
 
 // Membership group identifier
@@ -32,10 +32,10 @@ message MembershipGroupId {
 
 // Cluster membership group
 message MembershipGroup {
-    MembershipGroupId id = 1 [(gogoproto.customname) = "ID"];
+    MembershipGroupId id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
     uint64 term = 2 [(gogoproto.casttype) = "TermID"];
-    string leader = 3 [(gogoproto.casttype) = "MemberID"];
-    repeated Member members = 4;
+    MemberId leader = 3;
+    repeated Member members = 4 [(gogoproto.nullable) = false];
 }
 
 // Member identifier
@@ -46,7 +46,7 @@ message MemberId {
 
 // Member is a cluster member
 message Member {
-    MemberId id = 1 [(gogoproto.customname) = "ID"];
+    MemberId id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
     string host = 2;
     int32 port = 3;
 }
@@ -59,36 +59,38 @@ message PartitionGroupId {
 
 // Partition group state
 message PartitionGroup {
-    PartitionGroupId id = 1 [(gogoproto.customname) = "ID"];
-    repeated MembershipGroup partitions = 2;
+    PartitionGroupId id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
+    repeated MembershipGroup partitions = 2 [(gogoproto.nullable) = false];
 }
 
 message JoinClusterRequest {
     Member member = 1;
+    MembershipGroupId group_id = 2 [(gogoproto.customname) = "GroupID", (gogoproto.nullable) = false];
 }
 
 message JoinClusterResponse {
-    Membership membership = 1;
+    MembershipGroupId group_id = 1 [(gogoproto.customname) = "GroupID", (gogoproto.nullable) = false];
+    Membership membership = 2 [(gogoproto.nullable) = false];
 }
 
 message JoinPartitionGroupRequest {
     MemberId member_id = 1 [(gogoproto.customname) = "MemberID"];
-    PartitionGroupId group_id = 2 [(gogoproto.customname) = "GroupID"];
+    PartitionGroupId group_id = 2 [(gogoproto.customname) = "GroupID", (gogoproto.nullable) = false];
     uint32 partitions = 3;
     uint32 replication_factor = 4;
 }
 
 message JoinPartitionGroupResponse {
-    PartitionGroup group = 1;
+    PartitionGroup group = 1 [(gogoproto.nullable) = false];
 }
 
 message JoinMembershipGroupRequest {
     MemberId member_id = 1 [(gogoproto.customname) = "MemberID"];
-    MembershipGroupId group_id = 2 [(gogoproto.customname) = "GroupID"];
+    MembershipGroupId group_id = 2 [(gogoproto.customname) = "GroupID", (gogoproto.nullable) = false];
 }
 
 message JoinMembershipGroupResponse {
-    MembershipGroup group = 1;
+    MembershipGroup group = 1 [(gogoproto.nullable) = false];
 }
 
 // Atomix cluster service

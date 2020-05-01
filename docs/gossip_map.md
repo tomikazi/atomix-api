@@ -6,11 +6,11 @@
 - [atomix/gossip_map/gossip_map.proto](#atomix/gossip_map/gossip_map.proto)
     - [AntiEntropyAdvertisement](#atomix.map.AntiEntropyAdvertisement)
     - [AntiEntropyAdvertisement.DigestEntry](#atomix.map.AntiEntropyAdvertisement.DigestEntry)
-    - [BootstrapRequest](#atomix.map.BootstrapRequest)
     - [Digest](#atomix.map.Digest)
     - [MapValue](#atomix.map.MapValue)
     - [Message](#atomix.map.Message)
     - [Update](#atomix.map.Update)
+    - [Update.UpdatesEntry](#atomix.map.Update.UpdatesEntry)
     - [UpdateEntry](#atomix.map.UpdateEntry)
     - [UpdateRequest](#atomix.map.UpdateRequest)
   
@@ -39,6 +39,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | digest | [AntiEntropyAdvertisement.DigestEntry](#atomix.map.AntiEntropyAdvertisement.DigestEntry) | repeated |  |
+| timestamp | [bytes](#bytes) |  |  |
 
 
 
@@ -61,16 +62,6 @@
 
 
 
-<a name="atomix.map.BootstrapRequest"></a>
-
-### BootstrapRequest
-
-
-
-
-
-
-
 <a name="atomix.map.Digest"></a>
 
 ### Digest
@@ -79,7 +70,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| timestamp | [uint64](#uint64) |  |  |
+| timestamp | [bytes](#bytes) |  |  |
 | tombstone | [bool](#bool) |  |  |
 
 
@@ -111,11 +102,11 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| source | [string](#string) |  |  |
 | target | [atomix.primitive.Name](#atomix.primitive.Name) |  |  |
-| bootstrap_request | [BootstrapRequest](#atomix.map.BootstrapRequest) |  |  |
-| anti_entropy_advertisement | [AntiEntropyAdvertisement](#atomix.map.AntiEntropyAdvertisement) |  |  |
-| update_request | [UpdateRequest](#atomix.map.UpdateRequest) |  |  |
 | update | [Update](#atomix.map.Update) |  |  |
+| update_request | [UpdateRequest](#atomix.map.UpdateRequest) |  |  |
+| anti_entropy_advertisement | [AntiEntropyAdvertisement](#atomix.map.AntiEntropyAdvertisement) |  |  |
 
 
 
@@ -130,7 +121,24 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| updates | [UpdateEntry](#atomix.map.UpdateEntry) | repeated |  |
+| updates | [Update.UpdatesEntry](#atomix.map.Update.UpdatesEntry) | repeated |  |
+| timestamp | [bytes](#bytes) |  |  |
+
+
+
+
+
+
+<a name="atomix.map.Update.UpdatesEntry"></a>
+
+### Update.UpdatesEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [MapValue](#atomix.map.MapValue) |  |  |
 
 
 
@@ -162,6 +170,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | keys | [string](#string) | repeated |  |
+| timestamp | [bytes](#bytes) |  |  |
 
 
 

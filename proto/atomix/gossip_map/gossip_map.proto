@@ -22,29 +22,29 @@ import "atomix/primitive/primitive.proto";
 import "gogoproto/gogo.proto";
 
 message Message {
-    atomix.primitive.Name target = 1;
+    string source = 1 [(gogoproto.casttype) = "github.com/atomix/api/proto/atomix/controller.MemberID"];
+    atomix.primitive.Name target = 2 [(gogoproto.nullable) = false];
 
     oneof message {
-        BootstrapRequest bootstrap_request = 2;
-        AntiEntropyAdvertisement anti_entropy_advertisement = 3;
+        Update update = 3;
         UpdateRequest update_request = 4;
-        Update update = 5;
+        AntiEntropyAdvertisement anti_entropy_advertisement = 5;
     }
 }
 
-message BootstrapRequest {
-}
-
 message AntiEntropyAdvertisement {
-    map<string, Digest> digest = 1;
+    map<string, Digest> digest = 1 [(gogoproto.nullable) = false];
+    bytes timestamp = 2;
 }
 
 message UpdateRequest {
     repeated string keys = 1;
+    bytes timestamp = 2;
 }
 
 message Update {
-    repeated UpdateEntry updates = 1;
+    map<string, MapValue> updates = 1 [(gogoproto.nullable) = false];
+    bytes timestamp = 2;
 }
 
 message UpdateEntry {
@@ -53,12 +53,12 @@ message UpdateEntry {
 }
 
 message MapValue {
-    Digest digest = 1;
+    Digest digest = 1 [(gogoproto.nullable) = false];
     bytes value = 2;
 }
 
 message Digest {
-    uint64 timestamp = 1;
+    bytes timestamp = 1;
     bool tombstone = 2;
 }
 

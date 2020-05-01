@@ -307,6 +307,7 @@ Partition identifier
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | member | [Member](#atomix.controller.Member) |  |  |
+| group_id | [MembershipGroupId](#atomix.controller.MembershipGroupId) |  |  |
 
 
 
@@ -321,6 +322,7 @@ Partition identifier
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| group_id | [MembershipGroupId](#atomix.controller.MembershipGroupId) |  |  |
 | membership | [Membership](#atomix.controller.Membership) |  |  |
 
 
@@ -450,7 +452,7 @@ Cluster membership group
 | ----- | ---- | ----- | ----------- |
 | id | [MembershipGroupId](#atomix.controller.MembershipGroupId) |  |  |
 | term | [uint64](#uint64) |  |  |
-| leader | [string](#string) |  |  |
+| leader | [MemberId](#atomix.controller.MemberId) |  |  |
 | members | [Member](#atomix.controller.Member) | repeated |  |
 
 

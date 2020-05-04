@@ -80,7 +80,6 @@ DeletePrimitiveRequest is a request to delete a primitive
 | ----- | ---- | ----- | ----------- |
 | protocol | [atomix.protocol.ProtocolId](#atomix.protocol.ProtocolId) |  |  |
 | primitive | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
-| type | [PrimitiveType](#atomix.primitive.PrimitiveType) |  |  |
 
 
 
@@ -142,7 +141,7 @@ GetPrimitivesRequest is a request for primitive metadata
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | protocol | [atomix.protocol.ProtocolId](#atomix.protocol.ProtocolId) |  |  |
-| name | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+| primitive | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
 | type | [PrimitiveType](#atomix.primitive.PrimitiveType) |  |  |
 
 
@@ -174,7 +173,7 @@ PrimitiveMetadata indicates the type and name of a primitive
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | protocol | [atomix.protocol.ProtocolId](#atomix.protocol.ProtocolId) |  |  |
-| name | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+| primitive | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
 | type | [PrimitiveType](#atomix.primitive.PrimitiveType) |  |  |
 
 

@@ -7,6 +7,7 @@ import (
 	context "context"
 	fmt "fmt"
 	protocol "github.com/atomix/api/proto/atomix/protocol"
+	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -29,9 +30,9 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 // CreatePrimitiveRequest is a request to create a primitive
 type CreatePrimitiveRequest struct {
-	Protocol  *protocol.ProtocolId `protobuf:"bytes,1,opt,name=protocol,proto3" json:"protocol,omitempty"`
-	Primitive *PrimitiveId         `protobuf:"bytes,2,opt,name=primitive,proto3" json:"primitive,omitempty"`
-	Type      PrimitiveType        `protobuf:"varint,3,opt,name=type,proto3,enum=atomix.primitive.PrimitiveType" json:"type,omitempty"`
+	Protocol  protocol.ProtocolId `protobuf:"bytes,1,opt,name=protocol,proto3" json:"protocol"`
+	Primitive PrimitiveId         `protobuf:"bytes,2,opt,name=primitive,proto3" json:"primitive"`
+	Type      PrimitiveType       `protobuf:"varint,3,opt,name=type,proto3,enum=atomix.primitive.PrimitiveType" json:"type,omitempty"`
 }
 
 func (m *CreatePrimitiveRequest) Reset()         { *m = CreatePrimitiveRequest{} }
@@ -67,18 +68,18 @@ func (m *CreatePrimitiveRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CreatePrimitiveRequest proto.InternalMessageInfo
 
-func (m *CreatePrimitiveRequest) GetProtocol() *protocol.ProtocolId {
+func (m *CreatePrimitiveRequest) GetProtocol() protocol.ProtocolId {
 	if m != nil {
 		return m.Protocol
 	}
-	return nil
+	return protocol.ProtocolId{}
 }
 
-func (m *CreatePrimitiveRequest) GetPrimitive() *PrimitiveId {
+func (m *CreatePrimitiveRequest) GetPrimitive() PrimitiveId {
 	if m != nil {
 		return m.Primitive
 	}
-	return nil
+	return PrimitiveId{}
 }
 
 func (m *CreatePrimitiveRequest) GetType() PrimitiveType {
@@ -90,7 +91,7 @@ func (m *CreatePrimitiveRequest) GetType() PrimitiveType {
 
 // CreatePrimitiveResponse is a response for creating a primitive
 type CreatePrimitiveResponse struct {
-	Primitive *PrimitiveMetadata `protobuf:"bytes,1,opt,name=primitive,proto3" json:"primitive,omitempty"`
+	Primitive PrimitiveMetadata `protobuf:"bytes,1,opt,name=primitive,proto3" json:"primitive"`
 }
 
 func (m *CreatePrimitiveResponse) Reset()         { *m = CreatePrimitiveResponse{} }
@@ -126,17 +127,17 @@ func (m *CreatePrimitiveResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CreatePrimitiveResponse proto.InternalMessageInfo
 
-func (m *CreatePrimitiveResponse) GetPrimitive() *PrimitiveMetadata {
+func (m *CreatePrimitiveResponse) GetPrimitive() PrimitiveMetadata {
 	if m != nil {
 		return m.Primitive
 	}
-	return nil
+	return PrimitiveMetadata{}
 }
 
 // GetPrimitiveRequest is a request for primitive metadata
 type GetPrimitiveRequest struct {
-	Protocol  *protocol.ProtocolId `protobuf:"bytes,1,opt,name=protocol,proto3" json:"protocol,omitempty"`
-	Primitive *PrimitiveId         `protobuf:"bytes,2,opt,name=primitive,proto3" json:"primitive,omitempty"`
+	Protocol  protocol.ProtocolId `protobuf:"bytes,1,opt,name=protocol,proto3" json:"protocol"`
+	Primitive PrimitiveId         `protobuf:"bytes,2,opt,name=primitive,proto3" json:"primitive"`
 }
 
 func (m *GetPrimitiveRequest) Reset()         { *m = GetPrimitiveRequest{} }
@@ -172,23 +173,23 @@ func (m *GetPrimitiveRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetPrimitiveRequest proto.InternalMessageInfo
 
-func (m *GetPrimitiveRequest) GetProtocol() *protocol.ProtocolId {
+func (m *GetPrimitiveRequest) GetProtocol() protocol.ProtocolId {
 	if m != nil {
 		return m.Protocol
 	}
-	return nil
+	return protocol.ProtocolId{}
 }
 
-func (m *GetPrimitiveRequest) GetPrimitive() *PrimitiveId {
+func (m *GetPrimitiveRequest) GetPrimitive() PrimitiveId {
 	if m != nil {
 		return m.Primitive
 	}
-	return nil
+	return PrimitiveId{}
 }
 
 // GetPrimitiveResponse is a response containing primitive metadata
 type GetPrimitiveResponse struct {
-	Primitive *PrimitiveMetadata `protobuf:"bytes,1,opt,name=primitive,proto3" json:"primitive,omitempty"`
+	Primitive PrimitiveMetadata `protobuf:"bytes,1,opt,name=primitive,proto3" json:"primitive"`
 }
 
 func (m *GetPrimitiveResponse) Reset()         { *m = GetPrimitiveResponse{} }
@@ -224,18 +225,18 @@ func (m *GetPrimitiveResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetPrimitiveResponse proto.InternalMessageInfo
 
-func (m *GetPrimitiveResponse) GetPrimitive() *PrimitiveMetadata {
+func (m *GetPrimitiveResponse) GetPrimitive() PrimitiveMetadata {
 	if m != nil {
 		return m.Primitive
 	}
-	return nil
+	return PrimitiveMetadata{}
 }
 
 // GetPrimitivesRequest is a request for primitive metadata
 type GetPrimitivesRequest struct {
-	Protocol *protocol.ProtocolId `protobuf:"bytes,1,opt,name=protocol,proto3" json:"protocol,omitempty"`
-	Name     *PrimitiveId         `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Type     PrimitiveType        `protobuf:"varint,3,opt,name=type,proto3,enum=atomix.primitive.PrimitiveType" json:"type,omitempty"`
+	Protocol  *protocol.ProtocolId `protobuf:"bytes,1,opt,name=protocol,proto3" json:"protocol,omitempty"`
+	Primitive *PrimitiveId         `protobuf:"bytes,2,opt,name=primitive,proto3" json:"primitive,omitempty"`
+	Type      PrimitiveType        `protobuf:"varint,3,opt,name=type,proto3,enum=atomix.primitive.PrimitiveType" json:"type,omitempty"`
 }
 
 func (m *GetPrimitivesRequest) Reset()         { *m = GetPrimitivesRequest{} }
@@ -278,9 +279,9 @@ func (m *GetPrimitivesRequest) GetProtocol() *protocol.ProtocolId {
 	return nil
 }
 
-func (m *GetPrimitivesRequest) GetName() *PrimitiveId {
+func (m *GetPrimitivesRequest) GetPrimitive() *PrimitiveId {
 	if m != nil {
-		return m.Name
+		return m.Primitive
 	}
 	return nil
 }
@@ -294,7 +295,7 @@ func (m *GetPrimitivesRequest) GetType() PrimitiveType {
 
 // GetPrimitivesResponse is a response containing primitive metadata
 type GetPrimitivesResponse struct {
-	Primitives []*PrimitiveMetadata `protobuf:"bytes,1,rep,name=primitives,proto3" json:"primitives,omitempty"`
+	Primitives []PrimitiveMetadata `protobuf:"bytes,1,rep,name=primitives,proto3" json:"primitives"`
 }
 
 func (m *GetPrimitivesResponse) Reset()         { *m = GetPrimitivesResponse{} }
@@ -330,7 +331,7 @@ func (m *GetPrimitivesResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetPrimitivesResponse proto.InternalMessageInfo
 
-func (m *GetPrimitivesResponse) GetPrimitives() []*PrimitiveMetadata {
+func (m *GetPrimitivesResponse) GetPrimitives() []PrimitiveMetadata {
 	if m != nil {
 		return m.Primitives
 	}
@@ -339,9 +340,9 @@ func (m *GetPrimitivesResponse) GetPrimitives() []*PrimitiveMetadata {
 
 // PrimitiveMetadata indicates the type and name of a primitive
 type PrimitiveMetadata struct {
-	Protocol *protocol.ProtocolId `protobuf:"bytes,1,opt,name=protocol,proto3" json:"protocol,omitempty"`
-	Name     *PrimitiveId         `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Type     PrimitiveType        `protobuf:"varint,3,opt,name=type,proto3,enum=atomix.primitive.PrimitiveType" json:"type,omitempty"`
+	Protocol  protocol.ProtocolId `protobuf:"bytes,1,opt,name=protocol,proto3" json:"protocol"`
+	Primitive PrimitiveId         `protobuf:"bytes,2,opt,name=primitive,proto3" json:"primitive"`
+	Type      PrimitiveType       `protobuf:"varint,3,opt,name=type,proto3,enum=atomix.primitive.PrimitiveType" json:"type,omitempty"`
 }
 
 func (m *PrimitiveMetadata) Reset()         { *m = PrimitiveMetadata{} }
@@ -377,18 +378,18 @@ func (m *PrimitiveMetadata) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_PrimitiveMetadata proto.InternalMessageInfo
 
-func (m *PrimitiveMetadata) GetProtocol() *protocol.ProtocolId {
+func (m *PrimitiveMetadata) GetProtocol() protocol.ProtocolId {
 	if m != nil {
 		return m.Protocol
 	}
-	return nil
+	return protocol.ProtocolId{}
 }
 
-func (m *PrimitiveMetadata) GetName() *PrimitiveId {
+func (m *PrimitiveMetadata) GetPrimitive() PrimitiveId {
 	if m != nil {
-		return m.Name
+		return m.Primitive
 	}
-	return nil
+	return PrimitiveId{}
 }
 
 func (m *PrimitiveMetadata) GetType() PrimitiveType {
@@ -400,9 +401,8 @@ func (m *PrimitiveMetadata) GetType() PrimitiveType {
 
 // DeletePrimitiveRequest is a request to delete a primitive
 type DeletePrimitiveRequest struct {
-	Protocol  *protocol.ProtocolId `protobuf:"bytes,1,opt,name=protocol,proto3" json:"protocol,omitempty"`
-	Primitive *PrimitiveId         `protobuf:"bytes,2,opt,name=primitive,proto3" json:"primitive,omitempty"`
-	Type      PrimitiveType        `protobuf:"varint,3,opt,name=type,proto3,enum=atomix.primitive.PrimitiveType" json:"type,omitempty"`
+	Protocol  protocol.ProtocolId `protobuf:"bytes,1,opt,name=protocol,proto3" json:"protocol"`
+	Primitive PrimitiveId         `protobuf:"bytes,2,opt,name=primitive,proto3" json:"primitive"`
 }
 
 func (m *DeletePrimitiveRequest) Reset()         { *m = DeletePrimitiveRequest{} }
@@ -438,30 +438,23 @@ func (m *DeletePrimitiveRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_DeletePrimitiveRequest proto.InternalMessageInfo
 
-func (m *DeletePrimitiveRequest) GetProtocol() *protocol.ProtocolId {
+func (m *DeletePrimitiveRequest) GetProtocol() protocol.ProtocolId {
 	if m != nil {
 		return m.Protocol
 	}
-	return nil
+	return protocol.ProtocolId{}
 }
 
-func (m *DeletePrimitiveRequest) GetPrimitive() *PrimitiveId {
+func (m *DeletePrimitiveRequest) GetPrimitive() PrimitiveId {
 	if m != nil {
 		return m.Primitive
 	}
-	return nil
-}
-
-func (m *DeletePrimitiveRequest) GetType() PrimitiveType {
-	if m != nil {
-		return m.Type
-	}
-	return PrimitiveType_UNKNOWN
+	return PrimitiveId{}
 }
 
 // DeletePrimitiveResponse is a response for deleting a primitive
 type DeletePrimitiveResponse struct {
-	Primitive *PrimitiveMetadata `protobuf:"bytes,1,opt,name=primitive,proto3" json:"primitive,omitempty"`
+	Primitive PrimitiveMetadata `protobuf:"bytes,1,opt,name=primitive,proto3" json:"primitive"`
 }
 
 func (m *DeletePrimitiveResponse) Reset()         { *m = DeletePrimitiveResponse{} }
@@ -497,11 +490,11 @@ func (m *DeletePrimitiveResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_DeletePrimitiveResponse proto.InternalMessageInfo
 
-func (m *DeletePrimitiveResponse) GetPrimitive() *PrimitiveMetadata {
+func (m *DeletePrimitiveResponse) GetPrimitive() PrimitiveMetadata {
 	if m != nil {
 		return m.Primitive
 	}
-	return nil
+	return PrimitiveMetadata{}
 }
 
 func init() {
@@ -519,34 +512,35 @@ func init() {
 func init() { proto.RegisterFile("atomix/primitive/metadata.proto", fileDescriptor_17e942e8bf58937d) }
 
 var fileDescriptor_17e942e8bf58937d = []byte{
-	// 418 bytes of a gzipped FileDescriptorProto
+	// 448 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x4f, 0x2c, 0xc9, 0xcf,
 	0xcd, 0xac, 0xd0, 0x2f, 0x28, 0xca, 0xcc, 0xcd, 0x2c, 0xc9, 0x2c, 0x4b, 0xd5, 0xcf, 0x4d, 0x2d,
 	0x49, 0x4c, 0x49, 0x2c, 0x49, 0xd4, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x12, 0x80, 0x28, 0xd0,
 	0x83, 0x2b, 0x90, 0x92, 0x83, 0x6b, 0xc9, 0x2f, 0xc9, 0x4f, 0xce, 0xcf, 0x81, 0x33, 0x20, 0x3a,
-	0xa4, 0x14, 0x30, 0x8c, 0x84, 0xb3, 0x20, 0x2a, 0x94, 0x0e, 0x33, 0x72, 0x89, 0x39, 0x17, 0xa5,
-	0x26, 0x96, 0xa4, 0x06, 0xc0, 0x64, 0x82, 0x52, 0x0b, 0x4b, 0x53, 0x8b, 0x4b, 0x84, 0xcc, 0xb9,
-	0x38, 0x60, 0xc6, 0x49, 0x30, 0x2a, 0x30, 0x6a, 0x70, 0x1b, 0x49, 0xeb, 0xc1, 0x5d, 0x00, 0xb5,
-	0x26, 0x00, 0xca, 0xf0, 0x4c, 0x09, 0x82, 0x2b, 0x16, 0xb2, 0xe6, 0xe2, 0x84, 0x5b, 0x23, 0xc1,
-	0x04, 0xd6, 0x29, 0xab, 0x87, 0xee, 0x76, 0x3d, 0xb8, 0x7d, 0x9e, 0x29, 0x41, 0x08, 0xf5, 0x42,
-	0xc6, 0x5c, 0x2c, 0x25, 0x95, 0x05, 0xa9, 0x12, 0xcc, 0x0a, 0x8c, 0x1a, 0x7c, 0x46, 0xf2, 0x78,
-	0xf4, 0x85, 0x54, 0x16, 0xa4, 0x06, 0x81, 0x15, 0x2b, 0xc5, 0x70, 0x89, 0x63, 0x78, 0xa2, 0xb8,
-	0x20, 0x3f, 0xaf, 0x38, 0x55, 0xc8, 0x11, 0xd9, 0x31, 0x10, 0x6f, 0x28, 0xe3, 0x31, 0xd4, 0x17,
-	0x1a, 0xe4, 0x48, 0x4e, 0x52, 0xea, 0x66, 0xe4, 0x12, 0x76, 0x4f, 0x2d, 0x19, 0x1c, 0x01, 0xa4,
-	0x14, 0xc9, 0x25, 0x82, 0xea, 0x18, 0xea, 0x79, 0x74, 0x3b, 0x23, 0xaa, 0xd9, 0xc5, 0x14, 0xfb,
-	0xd4, 0x90, 0x8b, 0x25, 0x2f, 0x31, 0x97, 0x48, 0x4f, 0x82, 0x95, 0x92, 0x9b, 0x00, 0x44, 0xd1,
-	0x1c, 0x0e, 0x0d, 0x15, 0x67, 0x2e, 0x2e, 0xb8, 0xce, 0x62, 0x09, 0x46, 0x05, 0x66, 0x62, 0x83,
-	0x05, 0x49, 0x9b, 0xd2, 0x16, 0x46, 0x2e, 0x41, 0x0c, 0x15, 0x83, 0x3f, 0x50, 0x40, 0x79, 0xdb,
-	0x25, 0x35, 0x27, 0x75, 0xc8, 0xe7, 0x6d, 0x0c, 0x4f, 0x50, 0x2d, 0xc9, 0x1b, 0x2d, 0x66, 0xe6,
-	0x12, 0x80, 0x2b, 0x08, 0x4e, 0x2d, 0x2a, 0xcb, 0x4c, 0x4e, 0x15, 0x4a, 0xe3, 0xe2, 0x47, 0x2b,
-	0x4e, 0x84, 0x34, 0x30, 0xcd, 0xc5, 0x5e, 0x6c, 0x4a, 0x69, 0x12, 0xa1, 0x12, 0xea, 0xfe, 0x58,
-	0x2e, 0x1e, 0xe4, 0x54, 0x2b, 0xa4, 0x8a, 0xa9, 0x15, 0x4b, 0xb9, 0x23, 0xa5, 0x46, 0x48, 0x19,
-	0xd4, 0xf8, 0x04, 0x2e, 0x5e, 0x94, 0x4c, 0x21, 0x44, 0x40, 0x23, 0x2c, 0xbb, 0x4b, 0xa9, 0x13,
-	0x54, 0x07, 0xb5, 0x21, 0x8d, 0x8b, 0x1f, 0x2d, 0x6e, 0xb0, 0x05, 0x14, 0xf6, 0x34, 0x88, 0x2d,
-	0xa0, 0x70, 0x44, 0xb4, 0x93, 0xc4, 0x89, 0x47, 0x72, 0x8c, 0x17, 0x1e, 0xc9, 0x31, 0x3e, 0x78,
-	0x24, 0xc7, 0x38, 0xe1, 0xb1, 0x1c, 0xc3, 0x85, 0xc7, 0x72, 0x0c, 0x37, 0x1e, 0xcb, 0x31, 0x24,
-	0xb1, 0x81, 0x53, 0xa6, 0x31, 0x20, 0x00, 0x00, 0xff, 0xff, 0x38, 0xc0, 0x04, 0x7b, 0x3d, 0x07,
-	0x00, 0x00,
+	0xa4, 0x14, 0x30, 0x8c, 0x84, 0xb3, 0xa0, 0x2a, 0x44, 0xd2, 0xf3, 0xd3, 0xf3, 0xc1, 0x4c, 0x7d,
+	0x10, 0x0b, 0x22, 0xaa, 0x74, 0x9e, 0x91, 0x4b, 0xcc, 0xb9, 0x28, 0x35, 0xb1, 0x24, 0x35, 0x00,
+	0xa6, 0x3e, 0x28, 0xb5, 0xb0, 0x34, 0xb5, 0xb8, 0x44, 0xc8, 0x96, 0x8b, 0x03, 0x66, 0x89, 0x04,
+	0xa3, 0x02, 0xa3, 0x06, 0xb7, 0x91, 0xb4, 0x1e, 0xdc, 0x5d, 0x50, 0xcb, 0x03, 0xa0, 0x0c, 0xcf,
+	0x14, 0x27, 0x96, 0x13, 0xf7, 0xe4, 0x19, 0x82, 0xe0, 0x5a, 0x84, 0x1c, 0xb9, 0x38, 0xe1, 0x4e,
+	0x90, 0x60, 0x02, 0xeb, 0x97, 0xd5, 0x43, 0xf7, 0x97, 0x1e, 0xdc, 0x56, 0xb8, 0x09, 0x08, 0x5d,
+	0x42, 0xc6, 0x5c, 0x2c, 0x25, 0x95, 0x05, 0xa9, 0x12, 0xcc, 0x0a, 0x8c, 0x1a, 0x7c, 0x46, 0xf2,
+	0x78, 0x74, 0x87, 0x54, 0x16, 0xa4, 0x06, 0x81, 0x15, 0x2b, 0x25, 0x71, 0x89, 0x63, 0x78, 0xa8,
+	0xb8, 0x20, 0x3f, 0xaf, 0x38, 0x55, 0xc8, 0x1d, 0xd9, 0x49, 0x10, 0x2f, 0x29, 0xe3, 0x31, 0xd4,
+	0x17, 0x1a, 0x29, 0x18, 0x0e, 0x53, 0x9a, 0xce, 0xc8, 0x25, 0xec, 0x9e, 0x5a, 0x32, 0xf8, 0x82,
+	0x4c, 0x29, 0x9e, 0x4b, 0x04, 0xd5, 0x61, 0xd4, 0xf6, 0xfa, 0x71, 0x46, 0x54, 0x1b, 0x8a, 0x61,
+	0x7e, 0x37, 0x27, 0xc9, 0xef, 0x48, 0xbe, 0xb6, 0x26, 0xd5, 0xd7, 0xc8, 0x49, 0xc4, 0x92, 0xa4,
+	0x24, 0x02, 0xf6, 0x0e, 0x23, 0x3c, 0xa1, 0x88, 0xa2, 0x79, 0x04, 0x1a, 0x56, 0x9e, 0x5c, 0x5c,
+	0x70, 0xfd, 0xc5, 0x12, 0x8c, 0x0a, 0xcc, 0xa4, 0x05, 0x16, 0x92, 0x66, 0xa5, 0x53, 0x8c, 0x5c,
+	0x82, 0x18, 0xea, 0x86, 0x6a, 0xce, 0x9a, 0xc5, 0xc8, 0x25, 0xe6, 0x92, 0x9a, 0x93, 0x3a, 0x18,
+	0xcb, 0x0a, 0x50, 0xb6, 0xc7, 0x70, 0x1b, 0x95, 0xd3, 0xbe, 0xd1, 0x62, 0x66, 0x2e, 0x01, 0xb8,
+	0xb2, 0xe0, 0xd4, 0xa2, 0xb2, 0xcc, 0xe4, 0x54, 0xa1, 0x34, 0x2e, 0x7e, 0xb4, 0xf2, 0x46, 0x48,
+	0x03, 0xd3, 0x74, 0xec, 0x65, 0xac, 0x94, 0x26, 0x11, 0x2a, 0xa1, 0xbe, 0x88, 0xe5, 0xe2, 0x41,
+	0x4e, 0xae, 0x42, 0xaa, 0x98, 0x5a, 0xb1, 0x14, 0x49, 0x52, 0x6a, 0x84, 0x94, 0x41, 0x8d, 0x4f,
+	0xe0, 0xe2, 0x45, 0xc9, 0x0d, 0x42, 0x04, 0x34, 0xc2, 0xf2, 0xbd, 0x94, 0x3a, 0x41, 0x75, 0x50,
+	0x1b, 0xd2, 0xb8, 0xf8, 0xd1, 0x62, 0x08, 0x5b, 0x40, 0x61, 0x4f, 0x60, 0xd8, 0x02, 0x0a, 0x47,
+	0x74, 0x3b, 0x49, 0x9c, 0x78, 0x24, 0xc7, 0x78, 0xe1, 0x91, 0x1c, 0xe3, 0x83, 0x47, 0x72, 0x8c,
+	0x13, 0x1e, 0xcb, 0x31, 0x5c, 0x78, 0x2c, 0xc7, 0x70, 0xe3, 0xb1, 0x1c, 0x43, 0x12, 0x1b, 0x38,
+	0xc1, 0x19, 0x03, 0x02, 0x00, 0x00, 0xff, 0xff, 0x92, 0xd4, 0x31, 0xbd, 0x80, 0x07, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -770,30 +764,26 @@ func (m *CreatePrimitiveRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 		i--
 		dAtA[i] = 0x18
 	}
-	if m.Primitive != nil {
-		{
-			size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintMetadata(dAtA, i, uint64(size))
+	{
+		size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
 		}
-		i--
-		dAtA[i] = 0x12
+		i -= size
+		i = encodeVarintMetadata(dAtA, i, uint64(size))
 	}
-	if m.Protocol != nil {
-		{
-			size, err := m.Protocol.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintMetadata(dAtA, i, uint64(size))
+	i--
+	dAtA[i] = 0x12
+	{
+		size, err := m.Protocol.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
 		}
-		i--
-		dAtA[i] = 0xa
+		i -= size
+		i = encodeVarintMetadata(dAtA, i, uint64(size))
 	}
+	i--
+	dAtA[i] = 0xa
 	return len(dAtA) - i, nil
 }
 
@@ -817,18 +807,16 @@ func (m *CreatePrimitiveResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	_ = i
 	var l int
 	_ = l
-	if m.Primitive != nil {
-		{
-			size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintMetadata(dAtA, i, uint64(size))
+	{
+		size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
 		}
-		i--
-		dAtA[i] = 0xa
+		i -= size
+		i = encodeVarintMetadata(dAtA, i, uint64(size))
 	}
+	i--
+	dAtA[i] = 0xa
 	return len(dAtA) - i, nil
 }
 
@@ -852,30 +840,26 @@ func (m *GetPrimitiveRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Primitive != nil {
-		{
-			size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintMetadata(dAtA, i, uint64(size))
+	{
+		size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
 		}
-		i--
-		dAtA[i] = 0x12
+		i -= size
+		i = encodeVarintMetadata(dAtA, i, uint64(size))
 	}
-	if m.Protocol != nil {
-		{
-			size, err := m.Protocol.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintMetadata(dAtA, i, uint64(size))
+	i--
+	dAtA[i] = 0x12
+	{
+		size, err := m.Protocol.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
 		}
-		i--
-		dAtA[i] = 0xa
+		i -= size
+		i = encodeVarintMetadata(dAtA, i, uint64(size))
 	}
+	i--
+	dAtA[i] = 0xa
 	return len(dAtA) - i, nil
 }
 
@@ -899,18 +883,16 @@ func (m *GetPrimitiveResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Primitive != nil {
-		{
-			size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintMetadata(dAtA, i, uint64(size))
+	{
+		size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
 		}
-		i--
-		dAtA[i] = 0xa
+		i -= size
+		i = encodeVarintMetadata(dAtA, i, uint64(size))
 	}
+	i--
+	dAtA[i] = 0xa
 	return len(dAtA) - i, nil
 }
 
@@ -939,9 +921,9 @@ func (m *GetPrimitivesRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x18
 	}
-	if m.Name != nil {
+	if m.Primitive != nil {
 		{
-			size, err := m.Name.MarshalToSizedBuffer(dAtA[:i])
+			size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
 			if err != nil {
 				return 0, err
 			}
@@ -1028,30 +1010,26 @@ func (m *PrimitiveMetadata) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0x18
 	}
-	if m.Name != nil {
-		{
-			size, err := m.Name.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintMetadata(dAtA, i, uint64(size))
+	{
+		size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
 		}
-		i--
-		dAtA[i] = 0x12
+		i -= size
+		i = encodeVarintMetadata(dAtA, i, uint64(size))
 	}
-	if m.Protocol != nil {
-		{
-			size, err := m.Protocol.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintMetadata(dAtA, i, uint64(size))
+	i--
+	dAtA[i] = 0x12
+	{
+		size, err := m.Protocol.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
 		}
-		i--
-		dAtA[i] = 0xa
+		i -= size
+		i = encodeVarintMetadata(dAtA, i, uint64(size))
 	}
+	i--
+	dAtA[i] = 0xa
 	return len(dAtA) - i, nil
 }
 
@@ -1075,35 +1053,26 @@ func (m *DeletePrimitiveRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 	_ = i
 	var l int
 	_ = l
-	if m.Type != 0 {
-		i = encodeVarintMetadata(dAtA, i, uint64(m.Type))
-		i--
-		dAtA[i] = 0x18
-	}
-	if m.Primitive != nil {
-		{
-			size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintMetadata(dAtA, i, uint64(size))
+	{
+		size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
 		}
-		i--
-		dAtA[i] = 0x12
+		i -= size
+		i = encodeVarintMetadata(dAtA, i, uint64(size))
 	}
-	if m.Protocol != nil {
-		{
-			size, err := m.Protocol.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintMetadata(dAtA, i, uint64(size))
+	i--
+	dAtA[i] = 0x12
+	{
+		size, err := m.Protocol.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
 		}
-		i--
-		dAtA[i] = 0xa
+		i -= size
+		i = encodeVarintMetadata(dAtA, i, uint64(size))
 	}
+	i--
+	dAtA[i] = 0xa
 	return len(dAtA) - i, nil
 }
 
@@ -1127,18 +1096,16 @@ func (m *DeletePrimitiveResponse) MarshalToSizedBuffer(dAtA []byte) (int, error)
 	_ = i
 	var l int
 	_ = l
-	if m.Primitive != nil {
-		{
-			size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintMetadata(dAtA, i, uint64(size))
+	{
+		size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
 		}
-		i--
-		dAtA[i] = 0xa
+		i -= size
+		i = encodeVarintMetadata(dAtA, i, uint64(size))
 	}
+	i--
+	dAtA[i] = 0xa
 	return len(dAtA) - i, nil
 }
 
@@ -1159,14 +1126,10 @@ func (m *CreatePrimitiveRequest) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Protocol != nil {
-		l = m.Protocol.Size()
-		n += 1 + l + sovMetadata(uint64(l))
-	}
-	if m.Primitive != nil {
-		l = m.Primitive.Size()
-		n += 1 + l + sovMetadata(uint64(l))
-	}
+	l = m.Protocol.Size()
+	n += 1 + l + sovMetadata(uint64(l))
+	l = m.Primitive.Size()
+	n += 1 + l + sovMetadata(uint64(l))
 	if m.Type != 0 {
 		n += 1 + sovMetadata(uint64(m.Type))
 	}
@@ -1179,10 +1142,8 @@ func (m *CreatePrimitiveResponse) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Primitive != nil {
-		l = m.Primitive.Size()
-		n += 1 + l + sovMetadata(uint64(l))
-	}
+	l = m.Primitive.Size()
+	n += 1 + l + sovMetadata(uint64(l))
 	return n
 }
 
@@ -1192,14 +1153,10 @@ func (m *GetPrimitiveRequest) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Protocol != nil {
-		l = m.Protocol.Size()
-		n += 1 + l + sovMetadata(uint64(l))
-	}
-	if m.Primitive != nil {
-		l = m.Primitive.Size()
-		n += 1 + l + sovMetadata(uint64(l))
-	}
+	l = m.Protocol.Size()
+	n += 1 + l + sovMetadata(uint64(l))
+	l = m.Primitive.Size()
+	n += 1 + l + sovMetadata(uint64(l))
 	return n
 }
 
@@ -1209,10 +1166,8 @@ func (m *GetPrimitiveResponse) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Primitive != nil {
-		l = m.Primitive.Size()
-		n += 1 + l + sovMetadata(uint64(l))
-	}
+	l = m.Primitive.Size()
+	n += 1 + l + sovMetadata(uint64(l))
 	return n
 }
 
@@ -1226,8 +1181,8 @@ func (m *GetPrimitivesRequest) Size() (n int) {
 		l = m.Protocol.Size()
 		n += 1 + l + sovMetadata(uint64(l))
 	}
-	if m.Name != nil {
-		l = m.Name.Size()
+	if m.Primitive != nil {
+		l = m.Primitive.Size()
 		n += 1 + l + sovMetadata(uint64(l))
 	}
 	if m.Type != 0 {
@@ -1257,14 +1212,10 @@ func (m *PrimitiveMetadata) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Protocol != nil {
-		l = m.Protocol.Size()
-		n += 1 + l + sovMetadata(uint64(l))
-	}
-	if m.Name != nil {
-		l = m.Name.Size()
-		n += 1 + l + sovMetadata(uint64(l))
-	}
+	l = m.Protocol.Size()
+	n += 1 + l + sovMetadata(uint64(l))
+	l = m.Primitive.Size()
+	n += 1 + l + sovMetadata(uint64(l))
 	if m.Type != 0 {
 		n += 1 + sovMetadata(uint64(m.Type))
 	}
@@ -1277,17 +1228,10 @@ func (m *DeletePrimitiveRequest) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Protocol != nil {
-		l = m.Protocol.Size()
-		n += 1 + l + sovMetadata(uint64(l))
-	}
-	if m.Primitive != nil {
-		l = m.Primitive.Size()
-		n += 1 + l + sovMetadata(uint64(l))
-	}
-	if m.Type != 0 {
-		n += 1 + sovMetadata(uint64(m.Type))
-	}
+	l = m.Protocol.Size()
+	n += 1 + l + sovMetadata(uint64(l))
+	l = m.Primitive.Size()
+	n += 1 + l + sovMetadata(uint64(l))
 	return n
 }
 
@@ -1297,10 +1241,8 @@ func (m *DeletePrimitiveResponse) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Primitive != nil {
-		l = m.Primitive.Size()
-		n += 1 + l + sovMetadata(uint64(l))
-	}
+	l = m.Primitive.Size()
+	n += 1 + l + sovMetadata(uint64(l))
 	return n
 }
 
@@ -1368,9 +1310,6 @@ func (m *CreatePrimitiveRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Protocol == nil {
-				m.Protocol = &protocol.ProtocolId{}
-			}
 			if err := m.Protocol.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -1403,9 +1342,6 @@ func (m *CreatePrimitiveRequest) Unmarshal(dAtA []byte) error {
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
-			}
-			if m.Primitive == nil {
-				m.Primitive = &PrimitiveId{}
 			}
 			if err := m.Primitive.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
@@ -1512,9 +1448,6 @@ func (m *CreatePrimitiveResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Primitive == nil {
-				m.Primitive = &PrimitiveMetadata{}
-			}
 			if err := m.Primitive.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -1601,9 +1534,6 @@ func (m *GetPrimitiveRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Protocol == nil {
-				m.Protocol = &protocol.ProtocolId{}
-			}
 			if err := m.Protocol.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -1636,9 +1566,6 @@ func (m *GetPrimitiveRequest) Unmarshal(dAtA []byte) error {
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
-			}
-			if m.Primitive == nil {
-				m.Primitive = &PrimitiveId{}
 			}
 			if err := m.Primitive.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
@@ -1725,9 +1652,6 @@ func (m *GetPrimitiveResponse) Unmarshal(dAtA []byte) error {
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
-			}
-			if m.Primitive == nil {
-				m.Primitive = &PrimitiveMetadata{}
 			}
 			if err := m.Primitive.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
@@ -1824,7 +1748,7 @@ func (m *GetPrimitivesRequest) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Primitive", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -1851,10 +1775,10 @@ func (m *GetPrimitivesRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Name == nil {
-				m.Name = &PrimitiveId{}
+			if m.Primitive == nil {
+				m.Primitive = &PrimitiveId{}
 			}
-			if err := m.Name.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.Primitive.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -1959,7 +1883,7 @@ func (m *GetPrimitivesResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Primitives = append(m.Primitives, &PrimitiveMetadata{})
+			m.Primitives = append(m.Primitives, PrimitiveMetadata{})
 			if err := m.Primitives[len(m.Primitives)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -2046,16 +1970,13 @@ func (m *PrimitiveMetadata) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Protocol == nil {
-				m.Protocol = &protocol.ProtocolId{}
-			}
 			if err := m.Protocol.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Primitive", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -2082,10 +2003,7 @@ func (m *PrimitiveMetadata) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Name == nil {
-				m.Name = &PrimitiveId{}
-			}
-			if err := m.Name.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.Primitive.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -2190,9 +2108,6 @@ func (m *DeletePrimitiveRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Protocol == nil {
-				m.Protocol = &protocol.ProtocolId{}
-			}
 			if err := m.Protocol.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -2226,32 +2141,10 @@ func (m *DeletePrimitiveRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Primitive == nil {
-				m.Primitive = &PrimitiveId{}
-			}
 			if err := m.Primitive.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
-		case 3:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Type", wireType)
-			}
-			m.Type = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowMetadata
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Type |= PrimitiveType(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipMetadata(dAtA[iNdEx:])
@@ -2333,9 +2226,6 @@ func (m *DeletePrimitiveResponse) Unmarshal(dAtA []byte) error {
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
-			}
-			if m.Primitive == nil {
-				m.Primitive = &PrimitiveMetadata{}
 			}
 			if err := m.Primitive.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err

@@ -16,19 +16,19 @@ limitations under the License.
 
 syntax = "proto3";
 
-package atomix.gossip;
+package atomix.membership;
 
 import "gogoproto/gogo.proto";
 
-// Gossip group identifier
-message GossipGroupId {
+// Membership group identifier
+message MembershipGroupId {
     string name = 1;
     string namespace = 2;
 }
 
-// Gossip group
-message GossipGroup {
-    GossipGroupId id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
+// Membership group
+message MembershipGroup {
+    MembershipGroupId id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
     repeated Member members = 2 [(gogoproto.nullable) = false];
 }
 
@@ -38,24 +38,24 @@ message MemberId {
     string namespace = 2;
 }
 
-// Gossip member
+// Group member
 message Member {
     MemberId id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
     string host = 2;
     int32 port = 3;
 }
 
-message JoinGossipGroupRequest {
+message JoinMembershipGroupRequest {
     MemberId member_id = 1 [(gogoproto.customname) = "MemberID"];
-    GossipGroupId group_id = 2 [(gogoproto.customname) = "GroupID", (gogoproto.nullable) = false];
+    MembershipGroupId group_id = 2 [(gogoproto.customname) = "GroupID", (gogoproto.nullable) = false];
 }
 
-message JoinGossipGroupResponse {
-    GossipGroup group = 1 [(gogoproto.nullable) = false];
+message JoinMembershipGroupResponse {
+    MembershipGroup group = 1 [(gogoproto.nullable) = false];
 }
 
-// Gossip service
-service GossipService {
-    // Joins a member to a gossip group
-    rpc JoinGossipGroup (JoinGossipGroupRequest) returns (stream JoinGossipGroupResponse);
+// Membership service
+service MembershipService {
+    // Joins a member to a membership group
+    rpc JoinMembershipGroup (JoinMembershipGroupRequest) returns (stream JoinMembershipGroupResponse);
 }

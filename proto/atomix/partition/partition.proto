@@ -16,32 +16,32 @@ limitations under the License.
 
 syntax = "proto3";
 
-package atomix.pb;
+package atomix.partition;
 
 import "gogoproto/gogo.proto";
 
-// Replica identifier
-message ReplicaId {
+// Member identifier
+message MemberId {
     string name = 1;
     string namespace = 2;
 }
 
-// Replica is a partition replica
-message Replica {
-    ReplicaId id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
+// Member is a partition member
+message Member {
+    MemberId id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
     string host = 2;
     int32 port = 3;
 }
 
-// Replica group identifier
-message ReplicaGroupId {
+// Partition identifier
+message PartitionGroupId {
     string name = 1;
     string namespace = 2;
 }
 
-// Replica group state
-message ReplicaGroup {
-    ReplicaGroupId id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
+// Partition group state
+message PartitionGroup {
+    PartitionGroupId id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
     repeated Partition partitions = 2 [(gogoproto.nullable) = false];
 }
 
@@ -56,23 +56,23 @@ message PartitionId {
 message Partition {
     PartitionId id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
     uint64 term = 2 [(gogoproto.casttype) = "Term"];
-    ReplicaId leader = 3;
-    repeated Replica replicas = 4 [(gogoproto.nullable) = false];
+    MemberId leader = 3;
+    repeated Member members = 4 [(gogoproto.nullable) = false];
 }
 
-message JoinReplicaGroupRequest {
-    ReplicaId replica_id = 1 [(gogoproto.customname) = "ReplicaID"];
-    ReplicaGroupId group_id = 2 [(gogoproto.customname) = "GroupID", (gogoproto.nullable) = false];
+message JoinPartitionGroupRequest {
+    MemberId replica_id = 1 [(gogoproto.customname) = "MemberID"];
+    PartitionGroupId group_id = 2 [(gogoproto.customname) = "GroupID", (gogoproto.nullable) = false];
     uint32 partitions = 3;
     uint32 replication_factor = 4;
 }
 
-message JoinReplicaGroupResponse {
-    ReplicaGroup group = 1 [(gogoproto.nullable) = false];
+message JoinPartitionGroupResponse {
+    PartitionGroup group = 1 [(gogoproto.nullable) = false];
 }
 
-// Atomix replica group service
-service ReplicaGroupService {
-    // Joins a member to a replica group
-    rpc JoinReplicaGroup (JoinReplicaGroupRequest) returns (stream JoinReplicaGroupResponse);
+// Atomix partition service
+service PartitionService {
+    // Joins a member to a partition group
+    rpc JoinPartitionGroup (JoinPartitionGroupRequest) returns (stream JoinPartitionGroupResponse);
 }

@@ -4,10 +4,10 @@ package atomix.gossip.headers;
 
 import "atomix/protocol/protocol.proto";
 import "atomix/primitive/primitive.proto";
-import "atomix/gossip/gossip.proto";
+import "atomix/membership/membership.proto";
 
 message MessageHeader {
     atomix.protocol.ProtocolId protocol = 1;
     atomix.primitive.PrimitiveId primitive = 2;
-    atomix.gossip.MemberId source = 3;
+    atomix.membership.MemberId source = 3;
 }

@@ -3,109 +3,70 @@
 
 ## Table of Contents
 
-- [atomix/pb/pb.proto](#atomix/pb/pb.proto)
-    - [JoinReplicaGroupRequest](#atomix.pb.JoinReplicaGroupRequest)
-    - [JoinReplicaGroupResponse](#atomix.pb.JoinReplicaGroupResponse)
-    - [Partition](#atomix.pb.Partition)
-    - [PartitionId](#atomix.pb.PartitionId)
-    - [Replica](#atomix.pb.Replica)
-    - [ReplicaGroup](#atomix.pb.ReplicaGroup)
-    - [ReplicaGroupId](#atomix.pb.ReplicaGroupId)
-    - [ReplicaId](#atomix.pb.ReplicaId)
+- [atomix/membership/membership.proto](#atomix/membership/membership.proto)
+    - [JoinMembershipGroupRequest](#atomix.membership.JoinMembershipGroupRequest)
+    - [JoinMembershipGroupResponse](#atomix.membership.JoinMembershipGroupResponse)
+    - [Member](#atomix.membership.Member)
+    - [MemberId](#atomix.membership.MemberId)
+    - [MembershipGroup](#atomix.membership.MembershipGroup)
+    - [MembershipGroupId](#atomix.membership.MembershipGroupId)
   
   
   
-    - [ReplicaGroupService](#atomix.pb.ReplicaGroupService)
+    - [MembershipService](#atomix.membership.MembershipService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/pb/pb.proto"></a>
+<a name="atomix/membership/membership.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/pb/pb.proto
+## atomix/membership/membership.proto
 
 
 
-<a name="atomix.pb.JoinReplicaGroupRequest"></a>
+<a name="atomix.membership.JoinMembershipGroupRequest"></a>
 
-### JoinReplicaGroupRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| replica_id | [ReplicaId](#atomix.pb.ReplicaId) |  |  |
-| group_id | [ReplicaGroupId](#atomix.pb.ReplicaGroupId) |  |  |
-| partitions | [uint32](#uint32) |  |  |
-| replication_factor | [uint32](#uint32) |  |  |
-
-
-
-
-
-
-<a name="atomix.pb.JoinReplicaGroupResponse"></a>
-
-### JoinReplicaGroupResponse
+### JoinMembershipGroupRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| group | [ReplicaGroup](#atomix.pb.ReplicaGroup) |  |  |
+| member_id | [MemberId](#atomix.membership.MemberId) |  |  |
+| group_id | [MembershipGroupId](#atomix.membership.MembershipGroupId) |  |  |
 
 
 
 
 
 
-<a name="atomix.pb.Partition"></a>
+<a name="atomix.membership.JoinMembershipGroupResponse"></a>
 
-### Partition
-Partition
+### JoinMembershipGroupResponse
+
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [PartitionId](#atomix.pb.PartitionId) |  |  |
-| term | [uint64](#uint64) |  |  |
-| leader | [ReplicaId](#atomix.pb.ReplicaId) |  |  |
-| replicas | [Replica](#atomix.pb.Replica) | repeated |  |
+| group | [MembershipGroup](#atomix.membership.MembershipGroup) |  |  |
 
 
 
 
 
 
-<a name="atomix.pb.PartitionId"></a>
+<a name="atomix.membership.Member"></a>
 
-### PartitionId
-Partition identifier
+### Member
+Group member
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| namespace | [string](#string) |  |  |
-| index | [uint32](#uint32) |  |  |
-
-
-
-
-
-
-<a name="atomix.pb.Replica"></a>
-
-### Replica
-Replica is a partition replica
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [ReplicaId](#atomix.pb.ReplicaId) |  |  |
+| id | [MemberId](#atomix.membership.MemberId) |  |  |
 | host | [string](#string) |  |  |
 | port | [int32](#int32) |  |  |
 
@@ -114,26 +75,10 @@ Replica is a partition replica
 
 
 
-<a name="atomix.pb.ReplicaGroup"></a>
+<a name="atomix.membership.MemberId"></a>
 
-### ReplicaGroup
-Replica group state
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [ReplicaGroupId](#atomix.pb.ReplicaGroupId) |  |  |
-| partitions | [Partition](#atomix.pb.Partition) | repeated |  |
-
-
-
-
-
-
-<a name="atomix.pb.ReplicaGroupId"></a>
-
-### ReplicaGroupId
-Replica group identifier
+### MemberId
+Member identifier
 
 
 | Field | Type | Label | Description |
@@ -146,10 +91,26 @@ Replica group identifier
 
 
 
-<a name="atomix.pb.ReplicaId"></a>
+<a name="atomix.membership.MembershipGroup"></a>
 
-### ReplicaId
-Replica identifier
+### MembershipGroup
+Membership group
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [MembershipGroupId](#atomix.membership.MembershipGroupId) |  |  |
+| members | [Member](#atomix.membership.Member) | repeated |  |
+
+
+
+
+
+
+<a name="atomix.membership.MembershipGroupId"></a>
+
+### MembershipGroupId
+Membership group identifier
 
 
 | Field | Type | Label | Description |
@@ -168,14 +129,14 @@ Replica identifier
  
 
 
-<a name="atomix.pb.ReplicaGroupService"></a>
+<a name="atomix.membership.MembershipService"></a>
 
-### ReplicaGroupService
-Atomix replica group service
+### MembershipService
+Membership service
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| JoinReplicaGroup | [JoinReplicaGroupRequest](#atomix.pb.JoinReplicaGroupRequest) | [JoinReplicaGroupResponse](#atomix.pb.JoinReplicaGroupResponse) stream | Joins a member to a replica group |
+| JoinMembershipGroup | [JoinMembershipGroupRequest](#atomix.membership.JoinMembershipGroupRequest) | [JoinMembershipGroupResponse](#atomix.membership.JoinMembershipGroupResponse) stream | Joins a member to a membership group |
 
  
 

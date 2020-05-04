@@ -3,102 +3,74 @@
 
 ## Table of Contents
 
-- [atomix/gossip/gossip.proto](#atomix/gossip/gossip.proto)
-    - [GossipGroup](#atomix.gossip.GossipGroup)
-    - [GossipGroupId](#atomix.gossip.GossipGroupId)
-    - [JoinGossipGroupRequest](#atomix.gossip.JoinGossipGroupRequest)
-    - [JoinGossipGroupResponse](#atomix.gossip.JoinGossipGroupResponse)
-    - [Member](#atomix.gossip.Member)
-    - [MemberId](#atomix.gossip.MemberId)
+- [atomix/partition/partition.proto](#atomix/partition/partition.proto)
+    - [JoinPartitionGroupRequest](#atomix.partition.JoinPartitionGroupRequest)
+    - [JoinPartitionGroupResponse](#atomix.partition.JoinPartitionGroupResponse)
+    - [Member](#atomix.partition.Member)
+    - [MemberId](#atomix.partition.MemberId)
+    - [Partition](#atomix.partition.Partition)
+    - [PartitionGroup](#atomix.partition.PartitionGroup)
+    - [PartitionGroupId](#atomix.partition.PartitionGroupId)
+    - [PartitionId](#atomix.partition.PartitionId)
   
   
   
-    - [GossipService](#atomix.gossip.GossipService)
+    - [PartitionService](#atomix.partition.PartitionService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/gossip/gossip.proto"></a>
+<a name="atomix/partition/partition.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/gossip/gossip.proto
+## atomix/partition/partition.proto
 
 
 
-<a name="atomix.gossip.GossipGroup"></a>
+<a name="atomix.partition.JoinPartitionGroupRequest"></a>
 
-### GossipGroup
-Gossip group
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [GossipGroupId](#atomix.gossip.GossipGroupId) |  |  |
-| members | [Member](#atomix.gossip.Member) | repeated |  |
-
-
-
-
-
-
-<a name="atomix.gossip.GossipGroupId"></a>
-
-### GossipGroupId
-Gossip group identifier
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| namespace | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.gossip.JoinGossipGroupRequest"></a>
-
-### JoinGossipGroupRequest
+### JoinPartitionGroupRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| member_id | [MemberId](#atomix.gossip.MemberId) |  |  |
-| group_id | [GossipGroupId](#atomix.gossip.GossipGroupId) |  |  |
+| replica_id | [MemberId](#atomix.partition.MemberId) |  |  |
+| group_id | [PartitionGroupId](#atomix.partition.PartitionGroupId) |  |  |
+| partitions | [uint32](#uint32) |  |  |
+| replication_factor | [uint32](#uint32) |  |  |
 
 
 
 
 
 
-<a name="atomix.gossip.JoinGossipGroupResponse"></a>
+<a name="atomix.partition.JoinPartitionGroupResponse"></a>
 
-### JoinGossipGroupResponse
+### JoinPartitionGroupResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| group | [GossipGroup](#atomix.gossip.GossipGroup) |  |  |
+| group | [PartitionGroup](#atomix.partition.PartitionGroup) |  |  |
 
 
 
 
 
 
-<a name="atomix.gossip.Member"></a>
+<a name="atomix.partition.Member"></a>
 
 ### Member
-Gossip member
+Member is a partition member
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [MemberId](#atomix.gossip.MemberId) |  |  |
+| id | [MemberId](#atomix.partition.MemberId) |  |  |
 | host | [string](#string) |  |  |
 | port | [int32](#int32) |  |  |
 
@@ -107,7 +79,7 @@ Gossip member
 
 
 
-<a name="atomix.gossip.MemberId"></a>
+<a name="atomix.partition.MemberId"></a>
 
 ### MemberId
 Member identifier
@@ -122,21 +94,88 @@ Member identifier
 
 
 
- 
+
+<a name="atomix.partition.Partition"></a>
+
+### Partition
+Partition
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [PartitionId](#atomix.partition.PartitionId) |  |  |
+| term | [uint64](#uint64) |  |  |
+| leader | [MemberId](#atomix.partition.MemberId) |  |  |
+| members | [Member](#atomix.partition.Member) | repeated |  |
+
+
+
+
+
+
+<a name="atomix.partition.PartitionGroup"></a>
+
+### PartitionGroup
+Partition group state
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [PartitionGroupId](#atomix.partition.PartitionGroupId) |  |  |
+| partitions | [Partition](#atomix.partition.Partition) | repeated |  |
+
+
+
+
+
+
+<a name="atomix.partition.PartitionGroupId"></a>
+
+### PartitionGroupId
+Partition identifier
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| namespace | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="atomix.partition.PartitionId"></a>
+
+### PartitionId
+Partition identifier
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| namespace | [string](#string) |  |  |
+| index | [uint32](#uint32) |  |  |
+
+
+
+
 
  
 
  
 
+ 
 
-<a name="atomix.gossip.GossipService"></a>
 
-### GossipService
-Gossip service
+<a name="atomix.partition.PartitionService"></a>
+
+### PartitionService
+Atomix partition service
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| JoinGossipGroup | [JoinGossipGroupRequest](#atomix.gossip.JoinGossipGroupRequest) | [JoinGossipGroupResponse](#atomix.gossip.JoinGossipGroupResponse) stream | Joins a member to a gossip group |
+| JoinPartitionGroup | [JoinPartitionGroupRequest](#atomix.partition.JoinPartitionGroupRequest) | [JoinPartitionGroupResponse](#atomix.partition.JoinPartitionGroupResponse) stream | Joins a member to a partition group |
 
  
 

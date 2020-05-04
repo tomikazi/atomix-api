@@ -31,7 +31,7 @@
 | ----- | ---- | ----- | ----------- |
 | protocol | [atomix.protocol.ProtocolId](#atomix.protocol.ProtocolId) |  |  |
 | primitive | [atomix.primitive.PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
-| source | [atomix.gossip.MemberId](#atomix.gossip.MemberId) |  |  |
+| source | [atomix.membership.MemberId](#atomix.membership.MemberId) |  |  |
 
 
 

@@ -3,7 +3,7 @@ syntax = "proto3";
 package atomix.primitive;
 
 // Namespaced primitive name
-message Name {
+message PrimitiveId {
     string name = 1;
     string namespace = 2;
 }

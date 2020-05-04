@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+package atomix.pb.headers;
+
+import "atomix/protocol/protocol.proto";
+import "atomix/primitive/primitive.proto";
+
+message RequestHeader {
+    atomix.protocol.ProtocolId protocol = 1;
+    atomix.primitive.PrimitiveId primitive = 2;
+}
+
+message ResponseHeader {
+    ResponseType type = 1;
+    ResponseStatus status = 2;
+}
+
+enum ResponseType {
+    RESPONSE = 0;
+}
+
+enum ResponseStatus {
+    OK = 0;
+    ERROR = 1;
+}

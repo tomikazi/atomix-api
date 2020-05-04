@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package atomix.protocol;
+
+// Protocol info
+message Protocol {
+    ProtocolType type = 1;
+    ProtocolId id = 2;
+}
+
+// Namespaced protocol name
+message ProtocolId {
+    string namespace = 1;
+    string name = 2;
+}
+
+// Protocol type
+enum ProtocolType {
+    UNKNOWN = 0;
+    DATABASE = 1;
+    GOSSIP = 2;
+    PRIMARY_BACKUP = 3;
+}

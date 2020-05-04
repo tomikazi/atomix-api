@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package atomix.gossip.headers;
+
+import "atomix/protocol/protocol.proto";
+import "atomix/primitive/primitive.proto";
+import "atomix/gossip/gossip.proto";
+
+message MessageHeader {
+    atomix.protocol.ProtocolId protocol = 1;
+    atomix.primitive.PrimitiveId primitive = 2;
+    atomix.gossip.MemberId source = 3;
+}

@@ -1,0 +1,75 @@
+syntax = "proto3";
+
+package atomix.primitive;
+
+import "atomix/protocol/protocol.proto";
+import "atomix/primitive/primitive.proto";
+
+// CreatePrimitiveRequest is a request to create a primitive
+message CreatePrimitiveRequest {
+    atomix.protocol.ProtocolId protocol = 1;
+    atomix.primitive.PrimitiveId primitive = 2;
+    atomix.primitive.PrimitiveType type = 3;
+}
+
+// CreatePrimitiveResponse is a response for creating a primitive
+message CreatePrimitiveResponse {
+    PrimitiveMetadata primitive = 1;
+}
+
+// GetPrimitiveRequest is a request for primitive metadata
+message GetPrimitiveRequest {
+    atomix.protocol.ProtocolId protocol = 1;
+    atomix.primitive.PrimitiveId primitive = 2;
+}
+
+// GetPrimitiveResponse is a response containing primitive metadata
+message GetPrimitiveResponse {
+    PrimitiveMetadata primitive = 1;
+}
+
+// GetPrimitivesRequest is a request for primitive metadata
+message GetPrimitivesRequest {
+    atomix.protocol.ProtocolId protocol = 1;
+    atomix.primitive.PrimitiveId name = 2;
+    atomix.primitive.PrimitiveType type = 3;
+}
+
+// GetPrimitivesResponse is a response containing primitive metadata
+message GetPrimitivesResponse {
+    repeated PrimitiveMetadata primitives = 1;
+}
+
+// PrimitiveMetadata indicates the type and name of a primitive
+message PrimitiveMetadata {
+    atomix.protocol.ProtocolId protocol = 1;
+    atomix.primitive.PrimitiveId name = 2;
+    atomix.primitive.PrimitiveType type = 3;
+}
+
+// DeletePrimitiveRequest is a request to delete a primitive
+message DeletePrimitiveRequest {
+    atomix.protocol.ProtocolId protocol = 1;
+    atomix.primitive.PrimitiveId primitive = 2;
+    atomix.primitive.PrimitiveType type = 3;
+}
+
+// DeletePrimitiveResponse is a response for deleting a primitive
+message DeletePrimitiveResponse {
+    PrimitiveMetadata primitive = 1;
+}
+
+// PrimitiveService is a service for providing partition/primitive metadata
+service PrimitiveService {
+    // CreatePrimitive creates a new primitive
+    rpc CreatePrimitive (CreatePrimitiveRequest) returns (CreatePrimitiveResponse);
+
+    // GetPrimitive returns a primitive in the system
+    rpc GetPrimitive (GetPrimitiveRequest) returns (GetPrimitiveResponse);
+
+    // GetPrimitives returns a list of primitives in the system
+    rpc GetPrimitives (GetPrimitivesRequest) returns (GetPrimitivesResponse);
+
+    // DeletePrimitive deletes a primitive
+    rpc DeletePrimitive (DeletePrimitiveRequest) returns (DeletePrimitiveResponse);
+}

@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package atomix.database.lock;
+
+import "google/protobuf/duration.proto";
+import "atomix/database/headers/headers.proto";
+import "gogoproto/gogo.proto";
+
+message CreateRequest {
+    atomix.database.headers.RequestHeader header = 1;
+}
+
+message CreateResponse {
+    atomix.database.headers.ResponseHeader header = 1;
+}
+
+message CloseRequest {
+    atomix.database.headers.RequestHeader header = 1;
+    bool delete = 2;
+}
+
+message CloseResponse {
+    atomix.database.headers.ResponseHeader header = 1;
+}
+
+message LockRequest {
+    atomix.database.headers.RequestHeader header = 1;
+    google.protobuf.Duration timeout = 2 [(gogoproto.stdduration) = true];
+}
+
+message LockResponse {
+    atomix.database.headers.ResponseHeader header = 1;
+    uint64 version = 2;
+}
+
+message UnlockRequest {
+    atomix.database.headers.RequestHeader header = 1;
+    uint64 version = 2;
+}
+
+message UnlockResponse {
+    atomix.database.headers.ResponseHeader header = 1;
+    bool unlocked = 2;
+}
+
+message IsLockedRequest {
+    atomix.database.headers.RequestHeader header = 1;
+    uint64 version = 2;
+}
+
+message IsLockedResponse {
+    atomix.database.headers.ResponseHeader header = 1;
+    bool isLocked = 2;
+}
+
+// LockService implements a distributed lock
+service LockService {
+
+    // Create creates a lock
+    rpc Create (CreateRequest) returns (CreateResponse);
+
+    // Close closes a lock
+    rpc Close (CloseRequest) returns (CloseResponse);
+
+    // Lock attempts to acquire the lock
+    rpc Lock (LockRequest) returns (LockResponse);
+
+    // Unlock releases the lock
+    rpc Unlock (UnlockRequest) returns (UnlockResponse);
+
+    // IsLocked checks whether the lock is held
+    rpc IsLocked (IsLockedRequest) returns (IsLockedResponse);
+
+}

@@ -3,8 +3,24 @@
 
 ## Table of Contents
 
+- [atomix/primitive/metadata.proto](#atomix/primitive/metadata.proto)
+    - [CreatePrimitiveRequest](#atomix.primitive.CreatePrimitiveRequest)
+    - [CreatePrimitiveResponse](#atomix.primitive.CreatePrimitiveResponse)
+    - [DeletePrimitiveRequest](#atomix.primitive.DeletePrimitiveRequest)
+    - [DeletePrimitiveResponse](#atomix.primitive.DeletePrimitiveResponse)
+    - [GetPrimitiveRequest](#atomix.primitive.GetPrimitiveRequest)
+    - [GetPrimitiveResponse](#atomix.primitive.GetPrimitiveResponse)
+    - [GetPrimitivesRequest](#atomix.primitive.GetPrimitivesRequest)
+    - [GetPrimitivesResponse](#atomix.primitive.GetPrimitivesResponse)
+    - [PrimitiveMetadata](#atomix.primitive.PrimitiveMetadata)
+  
+  
+  
+    - [PrimitiveService](#atomix.primitive.PrimitiveService)
+  
+
 - [atomix/primitive/primitive.proto](#atomix/primitive/primitive.proto)
-    - [Name](#atomix.primitive.Name)
+    - [PrimitiveId](#atomix.primitive.PrimitiveId)
   
     - [PrimitiveType](#atomix.primitive.PrimitiveType)
   
@@ -15,6 +31,179 @@
 
 
 
+<a name="atomix/primitive/metadata.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## atomix/primitive/metadata.proto
+
+
+
+<a name="atomix.primitive.CreatePrimitiveRequest"></a>
+
+### CreatePrimitiveRequest
+CreatePrimitiveRequest is a request to create a primitive
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| protocol | [atomix.protocol.ProtocolId](#atomix.protocol.ProtocolId) |  |  |
+| primitive | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+| type | [PrimitiveType](#atomix.primitive.PrimitiveType) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.CreatePrimitiveResponse"></a>
+
+### CreatePrimitiveResponse
+CreatePrimitiveResponse is a response for creating a primitive
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| primitive | [PrimitiveMetadata](#atomix.primitive.PrimitiveMetadata) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.DeletePrimitiveRequest"></a>
+
+### DeletePrimitiveRequest
+DeletePrimitiveRequest is a request to delete a primitive
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| protocol | [atomix.protocol.ProtocolId](#atomix.protocol.ProtocolId) |  |  |
+| primitive | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+| type | [PrimitiveType](#atomix.primitive.PrimitiveType) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.DeletePrimitiveResponse"></a>
+
+### DeletePrimitiveResponse
+DeletePrimitiveResponse is a response for deleting a primitive
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| primitive | [PrimitiveMetadata](#atomix.primitive.PrimitiveMetadata) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.GetPrimitiveRequest"></a>
+
+### GetPrimitiveRequest
+GetPrimitiveRequest is a request for primitive metadata
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| protocol | [atomix.protocol.ProtocolId](#atomix.protocol.ProtocolId) |  |  |
+| primitive | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.GetPrimitiveResponse"></a>
+
+### GetPrimitiveResponse
+GetPrimitiveResponse is a response containing primitive metadata
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| primitive | [PrimitiveMetadata](#atomix.primitive.PrimitiveMetadata) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.GetPrimitivesRequest"></a>
+
+### GetPrimitivesRequest
+GetPrimitivesRequest is a request for primitive metadata
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| protocol | [atomix.protocol.ProtocolId](#atomix.protocol.ProtocolId) |  |  |
+| name | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+| type | [PrimitiveType](#atomix.primitive.PrimitiveType) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.GetPrimitivesResponse"></a>
+
+### GetPrimitivesResponse
+GetPrimitivesResponse is a response containing primitive metadata
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| primitives | [PrimitiveMetadata](#atomix.primitive.PrimitiveMetadata) | repeated |  |
+
+
+
+
+
+
+<a name="atomix.primitive.PrimitiveMetadata"></a>
+
+### PrimitiveMetadata
+PrimitiveMetadata indicates the type and name of a primitive
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| protocol | [atomix.protocol.ProtocolId](#atomix.protocol.ProtocolId) |  |  |
+| name | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+| type | [PrimitiveType](#atomix.primitive.PrimitiveType) |  |  |
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="atomix.primitive.PrimitiveService"></a>
+
+### PrimitiveService
+PrimitiveService is a service for providing partition/primitive metadata
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| CreatePrimitive | [CreatePrimitiveRequest](#atomix.primitive.CreatePrimitiveRequest) | [CreatePrimitiveResponse](#atomix.primitive.CreatePrimitiveResponse) | CreatePrimitive creates a new primitive |
+| GetPrimitive | [GetPrimitiveRequest](#atomix.primitive.GetPrimitiveRequest) | [GetPrimitiveResponse](#atomix.primitive.GetPrimitiveResponse) | GetPrimitive returns a primitive in the system |
+| GetPrimitives | [GetPrimitivesRequest](#atomix.primitive.GetPrimitivesRequest) | [GetPrimitivesResponse](#atomix.primitive.GetPrimitivesResponse) | GetPrimitives returns a list of primitives in the system |
+| DeletePrimitive | [DeletePrimitiveRequest](#atomix.primitive.DeletePrimitiveRequest) | [DeletePrimitiveResponse](#atomix.primitive.DeletePrimitiveResponse) | DeletePrimitive deletes a primitive |
+
+ 
+
+
+
 <a name="atomix/primitive/primitive.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -22,9 +211,9 @@
 
 
 
-<a name="atomix.primitive.Name"></a>
+<a name="atomix.primitive.PrimitiveId"></a>
 
-### Name
+### PrimitiveId
 Namespaced primitive name
 
 

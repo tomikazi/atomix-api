@@ -6,6 +6,7 @@
 - [atomix/pb/map/map.proto](#atomix/pb/map/map.proto)
     - [BackupRequest](#atomix.pb.map.BackupRequest)
     - [BackupResponse](#atomix.pb.map.BackupResponse)
+    - [Digest](#atomix.pb.map.Digest)
     - [Entry](#atomix.pb.map.Entry)
     - [GetRequest](#atomix.pb.map.GetRequest)
     - [GetResponse](#atomix.pb.map.GetResponse)
@@ -62,6 +63,22 @@
 
 
 
+<a name="atomix.pb.map.Digest"></a>
+
+### Digest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| term | [uint64](#uint64) |  |  |
+| timestamp | [uint64](#uint64) |  |  |
+
+
+
+
+
+
 <a name="atomix.pb.map.Entry"></a>
 
 ### Entry
@@ -72,6 +89,7 @@
 | ----- | ---- | ----- | ----------- |
 | key | [string](#string) |  |  |
 | value | [Value](#atomix.pb.map.Value) |  |  |
+| digest | [Digest](#atomix.pb.map.Digest) |  |  |
 
 
 
@@ -120,7 +138,7 @@
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.pb.headers.RequestHeader](#atomix.pb.headers.RequestHeader) |  |  |
 | key | [string](#string) |  |  |
-| value | [bytes](#bytes) |  |  |
+| value | [Value](#atomix.pb.map.Value) |  |  |
 
 
 
@@ -136,6 +154,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.pb.headers.ResponseHeader](#atomix.pb.headers.ResponseHeader) |  |  |
+| version | [uint64](#uint64) |  |  |
 
 
 
@@ -152,6 +171,7 @@
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.pb.headers.RequestHeader](#atomix.pb.headers.RequestHeader) |  |  |
 | key | [string](#string) |  |  |
+| value | [Value](#atomix.pb.map.Value) |  |  |
 
 
 
@@ -167,6 +187,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.pb.headers.ResponseHeader](#atomix.pb.headers.ResponseHeader) |  |  |
+| value | [Value](#atomix.pb.map.Value) |  |  |
 
 
 
@@ -182,8 +203,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | value | [bytes](#bytes) |  |  |
-| term | [uint64](#uint64) |  |  |
-| timestamp | [uint64](#uint64) |  |  |
+| version | [uint64](#uint64) |  |  |
 
 
 

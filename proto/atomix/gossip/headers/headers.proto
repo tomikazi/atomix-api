@@ -5,9 +5,10 @@ package atomix.gossip.headers;
 import "atomix/protocol/protocol.proto";
 import "atomix/primitive/primitive.proto";
 import "atomix/membership/membership.proto";
+import "gogoproto/gogo.proto";
 
 message MessageHeader {
-    atomix.protocol.ProtocolId protocol = 1;
-    atomix.primitive.PrimitiveId primitive = 2;
-    atomix.membership.MemberId source = 3;
+    atomix.protocol.ProtocolId protocol = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.PrimitiveId primitive = 2 [(gogoproto.nullable) = false];
+    atomix.membership.MemberId source = 3 [(gogoproto.nullable) = false];
 }

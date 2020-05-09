@@ -22,7 +22,7 @@ import "atomix/gossip/headers/headers.proto";
 import "gogoproto/gogo.proto";
 
 message Message {
-    atomix.gossip.headers.MessageHeader header = 1;
+    atomix.gossip.headers.MessageHeader header = 1 [(gogoproto.nullable) = false];
 
     oneof message {
         Update update = 3;

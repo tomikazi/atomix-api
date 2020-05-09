@@ -22,52 +22,60 @@ import "atomix/pb/headers/headers.proto";
 import "gogoproto/gogo.proto";
 
 message PutRequest {
-    atomix.pb.headers.RequestHeader header = 1;
+    atomix.pb.headers.RequestHeader header = 1 [(gogoproto.nullable) = false];
     string key = 2;
-    bytes value = 3;
+    Value value = 3 [(gogoproto.nullable) = false];
 }
 
 message PutResponse {
-    atomix.pb.headers.ResponseHeader header = 1;
+    atomix.pb.headers.ResponseHeader header = 1 [(gogoproto.nullable) = false];
+    uint64 version = 2;
 }
 
 message GetRequest {
-    atomix.pb.headers.RequestHeader header = 1;
+    atomix.pb.headers.RequestHeader header = 1 [(gogoproto.nullable) = false];
     string key = 2;
 }
 
 message GetResponse {
-    atomix.pb.headers.ResponseHeader header = 1;
+    atomix.pb.headers.ResponseHeader header = 1 [(gogoproto.nullable) = false];
     Value value = 2;
 }
 
 message RemoveRequest {
-    atomix.pb.headers.RequestHeader header = 1;
+    atomix.pb.headers.RequestHeader header = 1 [(gogoproto.nullable) = false];
     string key = 2;
+    Value value = 3 [(gogoproto.nullable) = false];
 }
 
 message RemoveResponse {
-    atomix.pb.headers.ResponseHeader header = 1;
+    atomix.pb.headers.ResponseHeader header = 1 [(gogoproto.nullable) = false];
+    Value value = 2;
 }
 
 message BackupRequest {
-    atomix.pb.headers.RequestHeader header = 1;
-    repeated Entry entries = 2;
+    atomix.pb.headers.RequestHeader header = 1 [(gogoproto.nullable) = false];
+    repeated Entry entries = 2 [(gogoproto.nullable) = false];
 }
 
 message BackupResponse {
-    atomix.pb.headers.ResponseHeader header = 1;
+    atomix.pb.headers.ResponseHeader header = 1 [(gogoproto.nullable) = false];
 }
 
 message Entry {
     string key = 1;
     Value value = 2;
+    Digest digest = 3 [(gogoproto.nullable) = false];
 }
 
 message Value {
     bytes value = 1;
-    uint64 term = 2 [(gogoproto.casttype) = "github.com/atomix/api/proto/atomix/pb.Term"];
-    uint64 timestamp = 3 [(gogoproto.casttype) = "github.com/atomix/api/proto/atomix/pb.Timestamp"];
+    uint64 version = 2;
+}
+
+message Digest {
+    uint64 term = 1;
+    uint64 timestamp = 2;
 }
 
 // MapService implements a partitioned primary-backup map

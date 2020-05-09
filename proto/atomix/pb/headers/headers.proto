@@ -4,10 +4,12 @@ package atomix.pb.headers;
 
 import "atomix/protocol/protocol.proto";
 import "atomix/primitive/primitive.proto";
+import "gogoproto/gogo.proto";
 
 message RequestHeader {
-    atomix.protocol.ProtocolId protocol = 1;
-    atomix.primitive.PrimitiveId primitive = 2;
+    atomix.protocol.ProtocolId protocol = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.PrimitiveId primitive = 2 [(gogoproto.nullable) = false];
+    uint32 partition = 3;
 }
 
 message ResponseHeader {

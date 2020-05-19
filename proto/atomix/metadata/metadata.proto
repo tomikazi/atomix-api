@@ -4,10 +4,11 @@ package atomix.metadata;
 
 import "atomix/headers/headers.proto";
 import "atomix/primitive/primitive.proto";
+import "gogoproto/gogo.proto";
 
 // GetPrimitivesRequest is a request for primitive metadata
 message GetPrimitivesRequest {
-    atomix.headers.RequestHeader header = 1;
+    atomix.headers.RequestHeader header = 1 [(gogoproto.nullable) = false];
     string namespace = 2;
     atomix.primitive.PrimitiveType type = 3;
 }
@@ -21,7 +22,7 @@ message GetPrimitivesResponse {
 // PrimitiveMetadata indicates the type and name of a primitive
 message PrimitiveMetadata {
     atomix.primitive.PrimitiveType type = 1;
-    atomix.primitive.Name name = 2;
+    atomix.primitive.PrimitiveId name = 2 [(gogoproto.nullable) = false];
 }
 
 // MetadataService is a service for providing partition/primitive metadata

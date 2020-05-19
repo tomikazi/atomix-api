@@ -3,70 +3,104 @@
 
 ## Table of Contents
 
-- [atomix/metadata/metadata.proto](#atomix/metadata/metadata.proto)
-    - [GetPrimitivesRequest](#atomix.metadata.GetPrimitivesRequest)
-    - [GetPrimitivesResponse](#atomix.metadata.GetPrimitivesResponse)
-    - [PrimitiveMetadata](#atomix.metadata.PrimitiveMetadata)
+- [atomix/membership/membership.proto](#atomix/membership/membership.proto)
+    - [ClusterId](#atomix.membership.ClusterId)
+    - [JoinClusterRequest](#atomix.membership.JoinClusterRequest)
+    - [JoinClusterResponse](#atomix.membership.JoinClusterResponse)
+    - [Member](#atomix.membership.Member)
+    - [MemberId](#atomix.membership.MemberId)
   
   
   
-    - [MetadataService](#atomix.metadata.MetadataService)
+    - [ClusterService](#atomix.membership.ClusterService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/metadata/metadata.proto"></a>
+<a name="atomix/membership/membership.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/metadata/metadata.proto
+## atomix/membership/membership.proto
 
 
 
-<a name="atomix.metadata.GetPrimitivesRequest"></a>
+<a name="atomix.membership.ClusterId"></a>
 
-### GetPrimitivesRequest
-GetPrimitivesRequest is a request for primitive metadata
+### ClusterId
+Cluster identifier
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| name | [string](#string) |  |  |
 | namespace | [string](#string) |  |  |
-| type | [atomix.primitive.PrimitiveType](#atomix.primitive.PrimitiveType) |  |  |
 
 
 
 
 
 
-<a name="atomix.metadata.GetPrimitivesResponse"></a>
+<a name="atomix.membership.JoinClusterRequest"></a>
 
-### GetPrimitivesResponse
-GetPrimitivesResponse is a response containing primitive metadata
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| primitives | [PrimitiveMetadata](#atomix.metadata.PrimitiveMetadata) | repeated |  |
-
-
-
-
-
-
-<a name="atomix.metadata.PrimitiveMetadata"></a>
-
-### PrimitiveMetadata
-PrimitiveMetadata indicates the type and name of a primitive
+### JoinClusterRequest
+JoinClusterRequest is a request to join a cluster
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [atomix.primitive.PrimitiveType](#atomix.primitive.PrimitiveType) |  |  |
-| name | [atomix.primitive.PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+| member | [Member](#atomix.membership.Member) |  |  |
+| cluster_id | [ClusterId](#atomix.membership.ClusterId) |  |  |
+
+
+
+
+
+
+<a name="atomix.membership.JoinClusterResponse"></a>
+
+### JoinClusterResponse
+JoinClusterResponse is a response to joining a cluster
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cluster_id | [ClusterId](#atomix.membership.ClusterId) |  |  |
+| members | [Member](#atomix.membership.Member) | repeated |  |
+
+
+
+
+
+
+<a name="atomix.membership.Member"></a>
+
+### Member
+Member is a cluster member
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [MemberId](#atomix.membership.MemberId) |  |  |
+| host | [string](#string) |  |  |
+| port | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="atomix.membership.MemberId"></a>
+
+### MemberId
+Member identifier
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  |  |
+| namespace | [string](#string) |  |  |
 
 
 
@@ -79,14 +113,14 @@ PrimitiveMetadata indicates the type and name of a primitive
  
 
 
-<a name="atomix.metadata.MetadataService"></a>
+<a name="atomix.membership.ClusterService"></a>
 
-### MetadataService
-MetadataService is a service for providing partition/primitive metadata
+### ClusterService
+Atomix cluster service
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetPrimitives | [GetPrimitivesRequest](#atomix.metadata.GetPrimitivesRequest) | [GetPrimitivesResponse](#atomix.metadata.GetPrimitivesResponse) | GetPrimitives returns a list of primitives in a partition |
+| JoinCluster | [JoinClusterRequest](#atomix.membership.JoinClusterRequest) | [JoinClusterResponse](#atomix.membership.JoinClusterResponse) stream | Joins a member to the cluster |
 
  
 

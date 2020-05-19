@@ -4,7 +4,7 @@
 ## Table of Contents
 
 - [atomix/primitive/primitive.proto](#atomix/primitive/primitive.proto)
-    - [Name](#atomix.primitive.Name)
+    - [PrimitiveId](#atomix.primitive.PrimitiveId)
   
     - [PrimitiveType](#atomix.primitive.PrimitiveType)
   
@@ -22,10 +22,10 @@
 
 
 
-<a name="atomix.primitive.Name"></a>
+<a name="atomix.primitive.PrimitiveId"></a>
 
-### Name
-Namespaced primitive name
+### PrimitiveId
+Namespaced primitive identifier
 
 
 | Field | Type | Label | Description |

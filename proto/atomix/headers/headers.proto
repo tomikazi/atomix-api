@@ -7,11 +7,11 @@ import "gogoproto/gogo.proto";
 
 message RequestHeader {
     int32 partition = 6;
-    atomix.primitive.Name name = 1;
+    atomix.primitive.PrimitiveId primitive = 1 [(gogoproto.nullable) = false];
     uint64 session_id = 2 [(gogoproto.customname) = "SessionID"];
     uint64 request_id = 3 [(gogoproto.customname) = "RequestID"];
     uint64 index = 4;
-    repeated StreamHeader streams = 5;
+    repeated StreamHeader streams = 5 [(gogoproto.nullable) = false];
 }
 
 message ResponseHeader {

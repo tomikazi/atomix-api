@@ -34,7 +34,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | partition | [int32](#int32) |  |  |
-| name | [atomix.primitive.Name](#atomix.primitive.Name) |  |  |
+| primitive | [atomix.primitive.PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
 | session_id | [uint64](#uint64) |  |  |
 | request_id | [uint64](#uint64) |  |  |
 | index | [uint64](#uint64) |  |  |

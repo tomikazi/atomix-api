@@ -18,13 +18,15 @@ syntax = "proto3";
 
 package atomix.primitive;
 
+import "atomix/database/database.proto";
 import "atomix/primitive/primitive.proto";
 import "gogoproto/gogo.proto";
 
 // CreatePrimitiveRequest is a request to create a primitive
 message CreatePrimitiveRequest {
-    atomix.primitive.PrimitiveId primitive = 1 [(gogoproto.nullable) = false];
-    atomix.primitive.PrimitiveType type = 2;
+    atomix.database.DatabaseId database = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.PrimitiveId primitive = 2 [(gogoproto.nullable) = false];
+    atomix.primitive.PrimitiveType type = 3;
 }
 
 // CreatePrimitiveResponse is a response for creating a primitive
@@ -34,7 +36,8 @@ message CreatePrimitiveResponse {
 
 // GetPrimitiveRequest is a request for primitive metadata
 message GetPrimitiveRequest {
-    atomix.primitive.PrimitiveId primitive = 1 [(gogoproto.nullable) = false];
+    atomix.database.DatabaseId database = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.PrimitiveId primitive = 2 [(gogoproto.nullable) = false];
 }
 
 // GetPrimitiveResponse is a response containing primitive metadata
@@ -44,8 +47,9 @@ message GetPrimitiveResponse {
 
 // GetPrimitivesRequest is a request for primitive metadata
 message GetPrimitivesRequest {
-    atomix.primitive.PrimitiveId primitive = 1;
-    atomix.primitive.PrimitiveType type = 2 [(gogoproto.nullable) = true];
+    atomix.database.DatabaseId database = 1;
+    atomix.primitive.PrimitiveId primitive = 2;
+    atomix.primitive.PrimitiveType type = 3 [(gogoproto.nullable) = true];
 }
 
 // GetPrimitivesResponse is a response containing primitive metadata
@@ -55,13 +59,15 @@ message GetPrimitivesResponse {
 
 // PrimitiveMetadata indicates the type and name of a primitive
 message PrimitiveMetadata {
-    atomix.primitive.PrimitiveId primitive = 1 [(gogoproto.nullable) = false];
-    atomix.primitive.PrimitiveType type = 2;
+    atomix.database.DatabaseId database = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.PrimitiveId primitive = 2 [(gogoproto.nullable) = false];
+    atomix.primitive.PrimitiveType type = 3;
 }
 
 // DeletePrimitiveRequest is a request to delete a primitive
 message DeletePrimitiveRequest {
-    atomix.primitive.PrimitiveId primitive = 1 [(gogoproto.nullable) = false];
+    atomix.database.DatabaseId database = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.PrimitiveId primitive = 2 [(gogoproto.nullable) = false];
 }
 
 // DeletePrimitiveResponse is a response for deleting a primitive

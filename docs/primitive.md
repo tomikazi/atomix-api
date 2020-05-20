@@ -46,6 +46,7 @@ CreatePrimitiveRequest is a request to create a primitive
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| database | [atomix.database.DatabaseId](#atomix.database.DatabaseId) |  |  |
 | primitive | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
 | type | [PrimitiveType](#atomix.primitive.PrimitiveType) |  |  |
 
@@ -77,6 +78,7 @@ DeletePrimitiveRequest is a request to delete a primitive
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| database | [atomix.database.DatabaseId](#atomix.database.DatabaseId) |  |  |
 | primitive | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
 
 
@@ -107,6 +109,7 @@ GetPrimitiveRequest is a request for primitive metadata
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| database | [atomix.database.DatabaseId](#atomix.database.DatabaseId) |  |  |
 | primitive | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
 
 
@@ -137,6 +140,7 @@ GetPrimitivesRequest is a request for primitive metadata
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| database | [atomix.database.DatabaseId](#atomix.database.DatabaseId) |  |  |
 | primitive | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
 | type | [PrimitiveType](#atomix.primitive.PrimitiveType) |  |  |
 
@@ -168,6 +172,7 @@ PrimitiveMetadata indicates the type and name of a primitive
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| database | [atomix.database.DatabaseId](#atomix.database.DatabaseId) |  |  |
 | primitive | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
 | type | [PrimitiveType](#atomix.primitive.PrimitiveType) |  |  |
 

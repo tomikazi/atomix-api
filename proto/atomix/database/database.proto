@@ -79,9 +79,19 @@ message PartitionEndpoint {
     int32 port = 2;
 }
 
+// Gets a database in a namespace
+message GetDatabaseRequest {
+    DatabaseId id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
+}
+
+// Returns a database in a namespace
+message GetDatabaseResponse {
+    Database database = 1;
+}
+
 // Gets a list of databases in a namespace
 message GetDatabasesRequest {
-    DatabaseId id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
+    string namespace = 1;
 }
 
 // Returns a list of databases in a namespace
@@ -91,6 +101,9 @@ message GetDatabasesResponse {
 
 // Atomix database service
 service DatabaseService {
+    // GetDatabase gets a database controlled by the controller
+    rpc GetDatabase (GetDatabaseRequest) returns (GetDatabaseResponse);
+
     // GetDatabases gets a list of databases controlled by the controller
     rpc GetDatabases (GetDatabasesRequest) returns (GetDatabasesResponse);
 }

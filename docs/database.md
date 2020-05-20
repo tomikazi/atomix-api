@@ -7,6 +7,8 @@
     - [Database](#atomix.database.Database)
     - [DatabaseConfig](#atomix.database.DatabaseConfig)
     - [DatabaseId](#atomix.database.DatabaseId)
+    - [GetDatabaseRequest](#atomix.database.GetDatabaseRequest)
+    - [GetDatabaseResponse](#atomix.database.GetDatabaseResponse)
     - [GetDatabasesRequest](#atomix.database.GetDatabasesRequest)
     - [GetDatabasesResponse](#atomix.database.GetDatabasesResponse)
     - [Partition](#atomix.database.Partition)
@@ -78,6 +80,36 @@ Database identifier
 
 
 
+<a name="atomix.database.GetDatabaseRequest"></a>
+
+### GetDatabaseRequest
+Gets a database in a namespace
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [DatabaseId](#atomix.database.DatabaseId) |  |  |
+
+
+
+
+
+
+<a name="atomix.database.GetDatabaseResponse"></a>
+
+### GetDatabaseResponse
+Returns a database in a namespace
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| database | [Database](#atomix.database.Database) |  |  |
+
+
+
+
+
+
 <a name="atomix.database.GetDatabasesRequest"></a>
 
 ### GetDatabasesRequest
@@ -86,7 +118,7 @@ Gets a list of databases in a namespace
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [DatabaseId](#atomix.database.DatabaseId) |  |  |
+| namespace | [string](#string) |  |  |
 
 
 
@@ -186,6 +218,7 @@ Atomix database service
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
+| GetDatabase | [GetDatabaseRequest](#atomix.database.GetDatabaseRequest) | [GetDatabaseResponse](#atomix.database.GetDatabaseResponse) | GetDatabase gets a database controlled by the controller |
 | GetDatabases | [GetDatabasesRequest](#atomix.database.GetDatabasesRequest) | [GetDatabasesResponse](#atomix.database.GetDatabasesResponse) | GetDatabases gets a list of databases controlled by the controller |
 
  

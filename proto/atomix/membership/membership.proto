@@ -16,7 +16,7 @@ limitations under the License.
 
 syntax = "proto3";
 
-package atomix.cluster;
+package atomix.membership;
 
 import "gogoproto/gogo.proto";
 
@@ -32,27 +32,27 @@ message MemberId {
     string namespace = 2;
 }
 
-// Member is a cluster member
+// Member is a membership member
 message Member {
     MemberId id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
     string host = 2;
     int32 port = 3;
 }
 
-// JoinClusterRequest is a request to join a cluster
+// JoinClusterRequest is a request to join a membership
 message JoinClusterRequest {
     Member member = 1;
     ClusterId cluster_id = 2 [(gogoproto.customname) = "ClusterID", (gogoproto.nullable) = false];
 }
 
-// JoinClusterResponse is a response to joining a cluster
+// JoinClusterResponse is a response to joining a membership
 message JoinClusterResponse {
     ClusterId cluster_id = 1 [(gogoproto.customname) = "ClusterID", (gogoproto.nullable) = false];
     repeated Member members = 2 [(gogoproto.nullable) = false];
 }
 
-// Atomix cluster service
-service ClusterService {
-    // Joins a member to the cluster
+// Atomix membership service
+service MembershipService {
+    // Joins a member to a cluster
     rpc JoinCluster (JoinClusterRequest) returns (stream JoinClusterResponse);
 }

@@ -27,24 +27,24 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-// Cluster identifier
-type ClusterId struct {
+// Membership group identifier
+type GroupId struct {
 	Name      string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
 }
 
-func (m *ClusterId) Reset()         { *m = ClusterId{} }
-func (m *ClusterId) String() string { return proto.CompactTextString(m) }
-func (*ClusterId) ProtoMessage()    {}
-func (*ClusterId) Descriptor() ([]byte, []int) {
+func (m *GroupId) Reset()         { *m = GroupId{} }
+func (m *GroupId) String() string { return proto.CompactTextString(m) }
+func (*GroupId) ProtoMessage()    {}
+func (*GroupId) Descriptor() ([]byte, []int) {
 	return fileDescriptor_907f8caf41e45230, []int{0}
 }
-func (m *ClusterId) XXX_Unmarshal(b []byte) error {
+func (m *GroupId) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *ClusterId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *GroupId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_ClusterId.Marshal(b, m, deterministic)
+		return xxx_messageInfo_GroupId.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -54,26 +54,26 @@ func (m *ClusterId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *ClusterId) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ClusterId.Merge(m, src)
+func (m *GroupId) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_GroupId.Merge(m, src)
 }
-func (m *ClusterId) XXX_Size() int {
+func (m *GroupId) XXX_Size() int {
 	return m.Size()
 }
-func (m *ClusterId) XXX_DiscardUnknown() {
-	xxx_messageInfo_ClusterId.DiscardUnknown(m)
+func (m *GroupId) XXX_DiscardUnknown() {
+	xxx_messageInfo_GroupId.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ClusterId proto.InternalMessageInfo
+var xxx_messageInfo_GroupId proto.InternalMessageInfo
 
-func (m *ClusterId) GetName() string {
+func (m *GroupId) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-func (m *ClusterId) GetNamespace() string {
+func (m *GroupId) GetNamespace() string {
 	if m != nil {
 		return m.Namespace
 	}
@@ -194,24 +194,24 @@ func (m *Member) GetPort() int32 {
 	return 0
 }
 
-// JoinClusterRequest is a request to join a membership
-type JoinClusterRequest struct {
-	Member    *Member   `protobuf:"bytes,1,opt,name=member,proto3" json:"member,omitempty"`
-	ClusterID ClusterId `protobuf:"bytes,2,opt,name=cluster_id,json=clusterId,proto3" json:"cluster_id"`
+// JoinGroupRequest is a request to join a membership group
+type JoinGroupRequest struct {
+	Member  *Member `protobuf:"bytes,1,opt,name=member,proto3" json:"member,omitempty"`
+	GroupID GroupId `protobuf:"bytes,2,opt,name=group_id,json=groupId,proto3" json:"group_id"`
 }
 
-func (m *JoinClusterRequest) Reset()         { *m = JoinClusterRequest{} }
-func (m *JoinClusterRequest) String() string { return proto.CompactTextString(m) }
-func (*JoinClusterRequest) ProtoMessage()    {}
-func (*JoinClusterRequest) Descriptor() ([]byte, []int) {
+func (m *JoinGroupRequest) Reset()         { *m = JoinGroupRequest{} }
+func (m *JoinGroupRequest) String() string { return proto.CompactTextString(m) }
+func (*JoinGroupRequest) ProtoMessage()    {}
+func (*JoinGroupRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_907f8caf41e45230, []int{3}
 }
-func (m *JoinClusterRequest) XXX_Unmarshal(b []byte) error {
+func (m *JoinGroupRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *JoinClusterRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *JoinGroupRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_JoinClusterRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_JoinGroupRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -221,50 +221,50 @@ func (m *JoinClusterRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, 
 		return b[:n], nil
 	}
 }
-func (m *JoinClusterRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_JoinClusterRequest.Merge(m, src)
+func (m *JoinGroupRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_JoinGroupRequest.Merge(m, src)
 }
-func (m *JoinClusterRequest) XXX_Size() int {
+func (m *JoinGroupRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *JoinClusterRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_JoinClusterRequest.DiscardUnknown(m)
+func (m *JoinGroupRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_JoinGroupRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_JoinClusterRequest proto.InternalMessageInfo
+var xxx_messageInfo_JoinGroupRequest proto.InternalMessageInfo
 
-func (m *JoinClusterRequest) GetMember() *Member {
+func (m *JoinGroupRequest) GetMember() *Member {
 	if m != nil {
 		return m.Member
 	}
 	return nil
 }
 
-func (m *JoinClusterRequest) GetClusterID() ClusterId {
+func (m *JoinGroupRequest) GetGroupID() GroupId {
 	if m != nil {
-		return m.ClusterID
+		return m.GroupID
 	}
-	return ClusterId{}
+	return GroupId{}
 }
 
-// JoinClusterResponse is a response to joining a membership
-type JoinClusterResponse struct {
-	ClusterID ClusterId `protobuf:"bytes,1,opt,name=cluster_id,json=clusterId,proto3" json:"cluster_id"`
-	Members   []Member  `protobuf:"bytes,2,rep,name=members,proto3" json:"members"`
+// JoinGroupResponse is a response to joining a membership group
+type JoinGroupResponse struct {
+	GroupID GroupId  `protobuf:"bytes,1,opt,name=group_id,json=groupId,proto3" json:"group_id"`
+	Members []Member `protobuf:"bytes,2,rep,name=members,proto3" json:"members"`
 }
 
-func (m *JoinClusterResponse) Reset()         { *m = JoinClusterResponse{} }
-func (m *JoinClusterResponse) String() string { return proto.CompactTextString(m) }
-func (*JoinClusterResponse) ProtoMessage()    {}
-func (*JoinClusterResponse) Descriptor() ([]byte, []int) {
+func (m *JoinGroupResponse) Reset()         { *m = JoinGroupResponse{} }
+func (m *JoinGroupResponse) String() string { return proto.CompactTextString(m) }
+func (*JoinGroupResponse) ProtoMessage()    {}
+func (*JoinGroupResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_907f8caf41e45230, []int{4}
 }
-func (m *JoinClusterResponse) XXX_Unmarshal(b []byte) error {
+func (m *JoinGroupResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *JoinClusterResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *JoinGroupResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_JoinClusterResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_JoinGroupResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -274,26 +274,26 @@ func (m *JoinClusterResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte,
 		return b[:n], nil
 	}
 }
-func (m *JoinClusterResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_JoinClusterResponse.Merge(m, src)
+func (m *JoinGroupResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_JoinGroupResponse.Merge(m, src)
 }
-func (m *JoinClusterResponse) XXX_Size() int {
+func (m *JoinGroupResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *JoinClusterResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_JoinClusterResponse.DiscardUnknown(m)
+func (m *JoinGroupResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_JoinGroupResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_JoinClusterResponse proto.InternalMessageInfo
+var xxx_messageInfo_JoinGroupResponse proto.InternalMessageInfo
 
-func (m *JoinClusterResponse) GetClusterID() ClusterId {
+func (m *JoinGroupResponse) GetGroupID() GroupId {
 	if m != nil {
-		return m.ClusterID
+		return m.GroupID
 	}
-	return ClusterId{}
+	return GroupId{}
 }
 
-func (m *JoinClusterResponse) GetMembers() []Member {
+func (m *JoinGroupResponse) GetMembers() []Member {
 	if m != nil {
 		return m.Members
 	}
@@ -301,40 +301,40 @@ func (m *JoinClusterResponse) GetMembers() []Member {
 }
 
 func init() {
-	proto.RegisterType((*ClusterId)(nil), "atomix.membership.ClusterId")
+	proto.RegisterType((*GroupId)(nil), "atomix.membership.GroupId")
 	proto.RegisterType((*MemberId)(nil), "atomix.membership.MemberId")
 	proto.RegisterType((*Member)(nil), "atomix.membership.Member")
-	proto.RegisterType((*JoinClusterRequest)(nil), "atomix.membership.JoinClusterRequest")
-	proto.RegisterType((*JoinClusterResponse)(nil), "atomix.membership.JoinClusterResponse")
+	proto.RegisterType((*JoinGroupRequest)(nil), "atomix.membership.JoinGroupRequest")
+	proto.RegisterType((*JoinGroupResponse)(nil), "atomix.membership.JoinGroupResponse")
 }
 
 func init() { proto.RegisterFile("atomix/membership/membership.proto", fileDescriptor_907f8caf41e45230) }
 
 var fileDescriptor_907f8caf41e45230 = []byte{
-	// 360 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x92, 0xc1, 0x4e, 0xfa, 0x40,
-	0x10, 0xc6, 0xbb, 0x85, 0x3f, 0x7f, 0x3b, 0x9c, 0x58, 0x3d, 0x54, 0x24, 0x85, 0x34, 0xd1, 0x70,
-	0x2a, 0x8a, 0x07, 0x63, 0xa2, 0x97, 0xca, 0x05, 0x13, 0x3c, 0xac, 0x77, 0x0d, 0x94, 0x0d, 0x6c,
-	0x62, 0xd9, 0xda, 0x2d, 0xc6, 0xc7, 0xf0, 0xe6, 0xd5, 0xc7, 0xe1, 0xc8, 0xd1, 0x13, 0x31, 0xe5,
-	0x45, 0x4c, 0xb7, 0x4b, 0x41, 0x41, 0x4d, 0xf4, 0xd4, 0x2f, 0x3b, 0xdf, 0x37, 0xbf, 0x99, 0x49,
-	0xc1, 0xee, 0x46, 0xdc, 0x67, 0x8f, 0x0d, 0x9f, 0xfa, 0x3d, 0x1a, 0x8a, 0x21, 0x0b, 0x56, 0xa4,
-	0x13, 0x84, 0x3c, 0xe2, 0xb8, 0x94, 0x7a, 0x9c, 0x65, 0xa1, 0xbc, 0x33, 0xe0, 0x03, 0x2e, 0xab,
-	0x8d, 0x44, 0xa5, 0x46, 0xfb, 0x1c, 0x8c, 0x8b, 0xbb, 0xb1, 0x88, 0x68, 0xd8, 0xee, 0x63, 0x0c,
-	0xf9, 0x51, 0xd7, 0xa7, 0x26, 0xaa, 0xa1, 0xba, 0x41, 0xa4, 0xc6, 0x15, 0x30, 0x92, 0xaf, 0x08,
-	0xba, 0x1e, 0x35, 0x75, 0x59, 0x58, 0x3e, 0xd8, 0x67, 0xb0, 0xd5, 0x91, 0x88, 0x5f, 0xa5, 0x19,
-	0x14, 0xd2, 0x34, 0x3e, 0x01, 0x9d, 0xf5, 0x65, 0xb2, 0xd8, 0xdc, 0x73, 0xd6, 0x86, 0x77, 0x16,
-	0x10, 0x17, 0x26, 0xb3, 0xaa, 0x16, 0xcf, 0xaa, 0x7a, 0xbb, 0x45, 0x74, 0x26, 0xa1, 0x43, 0x2e,
-	0x22, 0xd5, 0x5b, 0xea, 0xe4, 0x2d, 0xe0, 0x61, 0x64, 0xe6, 0x6a, 0xa8, 0xfe, 0x8f, 0x48, 0x6d,
-	0x3f, 0x23, 0xc0, 0x97, 0x9c, 0x8d, 0xd4, 0xb2, 0x84, 0xde, 0x8f, 0xa9, 0x88, 0xf0, 0x11, 0x14,
-	0x52, 0x8a, 0x62, 0xef, 0x7e, 0xc9, 0x26, 0xca, 0x88, 0xaf, 0x00, 0xbc, 0xb4, 0xc9, 0x2d, 0xeb,
-	0x4b, 0x6e, 0xb1, 0x59, 0xd9, 0x10, 0xcb, 0xce, 0xea, 0x96, 0xd4, 0xcc, 0xd9, 0xa5, 0x5b, 0xc4,
-	0xf0, 0x16, 0x55, 0xfb, 0x05, 0xc1, 0xf6, 0x87, 0xc9, 0x44, 0xc0, 0x47, 0x82, 0x7e, 0xe2, 0xa0,
-	0xbf, 0x72, 0xf0, 0x29, 0xfc, 0x57, 0x29, 0x53, 0xaf, 0xe5, 0xbe, 0xdd, 0xd5, 0xcd, 0x27, 0x9d,
-	0xc8, 0xc2, 0xdf, 0x14, 0x50, 0xea, 0x64, 0x9e, 0x6b, 0x1a, 0x3e, 0x30, 0x8f, 0xe2, 0x1b, 0x28,
-	0xae, 0x8c, 0x8d, 0xf7, 0x37, 0x74, 0x5b, 0x3f, 0x78, 0xf9, 0xe0, 0x27, 0x5b, 0xba, 0xfd, 0x21,
-	0x72, 0xcd, 0x49, 0x6c, 0xa1, 0x69, 0x6c, 0xa1, 0xb7, 0xd8, 0x42, 0x4f, 0x73, 0x4b, 0x9b, 0xce,
-	0x2d, 0xed, 0x75, 0x6e, 0x69, 0xbd, 0x82, 0xfc, 0x75, 0x8f, 0xdf, 0x03, 0x00, 0x00, 0xff, 0xff,
-	0x01, 0x68, 0xec, 0x20, 0x09, 0x03, 0x00, 0x00,
+	// 357 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x52, 0x3d, 0x4f, 0xfa, 0x40,
+	0x18, 0xef, 0x15, 0xfe, 0xbc, 0x3c, 0x0c, 0x7f, 0xb9, 0x38, 0x54, 0x34, 0x85, 0x54, 0x07, 0xa6,
+	0xa2, 0x38, 0x18, 0xa3, 0x53, 0x43, 0x34, 0x98, 0xb0, 0x9c, 0x8b, 0x9b, 0xe1, 0xe5, 0x52, 0x6e,
+	0x28, 0x57, 0x7b, 0xc5, 0xf8, 0x25, 0x4c, 0x9c, 0xfc, 0x4c, 0x8c, 0x8c, 0x4e, 0xc4, 0x94, 0x2f,
+	0x62, 0x7a, 0x77, 0xbc, 0xa8, 0xc8, 0xc0, 0xd4, 0x5f, 0xee, 0xf9, 0xbd, 0x3d, 0x4f, 0x0a, 0x4e,
+	0x37, 0xe6, 0x01, 0x7b, 0x69, 0x04, 0x34, 0xe8, 0xd1, 0x48, 0x0c, 0x59, 0xb8, 0x06, 0xdd, 0x30,
+	0xe2, 0x31, 0xc7, 0x65, 0xc5, 0x71, 0x57, 0x83, 0xca, 0xbe, 0xcf, 0x7d, 0x2e, 0xa7, 0x8d, 0x14,
+	0x29, 0xa2, 0x73, 0x05, 0xf9, 0xdb, 0x88, 0x8f, 0xc3, 0xf6, 0x00, 0x63, 0xc8, 0x8e, 0xba, 0x01,
+	0xb5, 0x50, 0x0d, 0xd5, 0x8b, 0x44, 0x62, 0x7c, 0x04, 0xc5, 0xf4, 0x2b, 0xc2, 0x6e, 0x9f, 0x5a,
+	0xa6, 0x1c, 0xac, 0x1e, 0x9c, 0x6b, 0x28, 0x74, 0x64, 0xc0, 0x4e, 0x6a, 0x06, 0x39, 0xa5, 0xc6,
+	0x17, 0x60, 0xb2, 0x81, 0x54, 0x96, 0x9a, 0x87, 0xee, 0xaf, 0xea, 0xee, 0x22, 0xc4, 0x83, 0xc9,
+	0xac, 0x6a, 0x24, 0xb3, 0xaa, 0xd9, 0x6e, 0x11, 0x93, 0xc9, 0xd0, 0x21, 0x17, 0xb1, 0xf6, 0x96,
+	0x38, 0x7d, 0x0b, 0x79, 0x14, 0x5b, 0x99, 0x1a, 0xaa, 0xff, 0x23, 0x12, 0x3b, 0xaf, 0x08, 0xf6,
+	0xee, 0x38, 0x1b, 0xc9, 0x55, 0x09, 0x7d, 0x1a, 0x53, 0x11, 0xe3, 0x33, 0xc8, 0xa9, 0x0c, 0x9d,
+	0x7c, 0xf0, 0x67, 0x32, 0xd1, 0x44, 0x7c, 0x03, 0x05, 0x3f, 0xb5, 0x78, 0x64, 0x03, 0x99, 0x59,
+	0x6a, 0x56, 0x36, 0x88, 0xf4, 0x41, 0xbd, 0xff, 0xba, 0xad, 0xbe, 0x70, 0x8b, 0xe4, 0x7d, 0x35,
+	0x71, 0xde, 0x11, 0x94, 0xd7, 0xfa, 0x88, 0x90, 0x8f, 0x04, 0xfd, 0xe6, 0x8e, 0x76, 0x77, 0xc7,
+	0x97, 0x90, 0xd7, 0x7c, 0xcb, 0xac, 0x65, 0xb6, 0x6e, 0xe6, 0x65, 0x53, 0x17, 0xb2, 0xe0, 0x37,
+	0x03, 0x28, 0x77, 0x96, 0x9c, 0x7b, 0x1a, 0x3d, 0xb3, 0x3e, 0xc5, 0x0f, 0x50, 0x5c, 0x96, 0xc5,
+	0xc7, 0x1b, 0xbc, 0x7e, 0x9e, 0xb6, 0x72, 0xb2, 0x9d, 0xa4, 0xf6, 0x3d, 0x45, 0x9e, 0x35, 0x49,
+	0x6c, 0x34, 0x4d, 0x6c, 0xf4, 0x99, 0xd8, 0xe8, 0x6d, 0x6e, 0x1b, 0xd3, 0xb9, 0x6d, 0x7c, 0xcc,
+	0x6d, 0xa3, 0x97, 0x93, 0xbf, 0xe7, 0xf9, 0x57, 0x00, 0x00, 0x00, 0xff, 0xff, 0x96, 0x4a, 0x19,
+	0xbf, 0xed, 0x02, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -350,7 +350,7 @@ const _ = grpc.SupportPackageIsVersion4
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type MembershipServiceClient interface {
 	// Joins a member to a cluster
-	JoinCluster(ctx context.Context, in *JoinClusterRequest, opts ...grpc.CallOption) (MembershipService_JoinClusterClient, error)
+	JoinGroup(ctx context.Context, in *JoinGroupRequest, opts ...grpc.CallOption) (MembershipService_JoinGroupClient, error)
 }
 
 type membershipServiceClient struct {
@@ -361,12 +361,12 @@ func NewMembershipServiceClient(cc *grpc.ClientConn) MembershipServiceClient {
 	return &membershipServiceClient{cc}
 }
 
-func (c *membershipServiceClient) JoinCluster(ctx context.Context, in *JoinClusterRequest, opts ...grpc.CallOption) (MembershipService_JoinClusterClient, error) {
-	stream, err := c.cc.NewStream(ctx, &_MembershipService_serviceDesc.Streams[0], "/atomix.membership.MembershipService/JoinCluster", opts...)
+func (c *membershipServiceClient) JoinGroup(ctx context.Context, in *JoinGroupRequest, opts ...grpc.CallOption) (MembershipService_JoinGroupClient, error) {
+	stream, err := c.cc.NewStream(ctx, &_MembershipService_serviceDesc.Streams[0], "/atomix.membership.MembershipService/JoinGroup", opts...)
 	if err != nil {
 		return nil, err
 	}
-	x := &membershipServiceJoinClusterClient{stream}
+	x := &membershipServiceJoinGroupClient{stream}
 	if err := x.ClientStream.SendMsg(in); err != nil {
 		return nil, err
 	}
@@ -376,17 +376,17 @@ func (c *membershipServiceClient) JoinCluster(ctx context.Context, in *JoinClust
 	return x, nil
 }
 
-type MembershipService_JoinClusterClient interface {
-	Recv() (*JoinClusterResponse, error)
+type MembershipService_JoinGroupClient interface {
+	Recv() (*JoinGroupResponse, error)
 	grpc.ClientStream
 }
 
-type membershipServiceJoinClusterClient struct {
+type membershipServiceJoinGroupClient struct {
 	grpc.ClientStream
 }
 
-func (x *membershipServiceJoinClusterClient) Recv() (*JoinClusterResponse, error) {
-	m := new(JoinClusterResponse)
+func (x *membershipServiceJoinGroupClient) Recv() (*JoinGroupResponse, error) {
+	m := new(JoinGroupResponse)
 	if err := x.ClientStream.RecvMsg(m); err != nil {
 		return nil, err
 	}
@@ -396,39 +396,39 @@ func (x *membershipServiceJoinClusterClient) Recv() (*JoinClusterResponse, error
 // MembershipServiceServer is the server API for MembershipService service.
 type MembershipServiceServer interface {
 	// Joins a member to a cluster
-	JoinCluster(*JoinClusterRequest, MembershipService_JoinClusterServer) error
+	JoinGroup(*JoinGroupRequest, MembershipService_JoinGroupServer) error
 }
 
 // UnimplementedMembershipServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedMembershipServiceServer struct {
 }
 
-func (*UnimplementedMembershipServiceServer) JoinCluster(req *JoinClusterRequest, srv MembershipService_JoinClusterServer) error {
-	return status.Errorf(codes.Unimplemented, "method JoinCluster not implemented")
+func (*UnimplementedMembershipServiceServer) JoinGroup(req *JoinGroupRequest, srv MembershipService_JoinGroupServer) error {
+	return status.Errorf(codes.Unimplemented, "method JoinGroup not implemented")
 }
 
 func RegisterMembershipServiceServer(s *grpc.Server, srv MembershipServiceServer) {
 	s.RegisterService(&_MembershipService_serviceDesc, srv)
 }
 
-func _MembershipService_JoinCluster_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(JoinClusterRequest)
+func _MembershipService_JoinGroup_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(JoinGroupRequest)
 	if err := stream.RecvMsg(m); err != nil {
 		return err
 	}
-	return srv.(MembershipServiceServer).JoinCluster(m, &membershipServiceJoinClusterServer{stream})
+	return srv.(MembershipServiceServer).JoinGroup(m, &membershipServiceJoinGroupServer{stream})
 }
 
-type MembershipService_JoinClusterServer interface {
-	Send(*JoinClusterResponse) error
+type MembershipService_JoinGroupServer interface {
+	Send(*JoinGroupResponse) error
 	grpc.ServerStream
 }
 
-type membershipServiceJoinClusterServer struct {
+type membershipServiceJoinGroupServer struct {
 	grpc.ServerStream
 }
 
-func (x *membershipServiceJoinClusterServer) Send(m *JoinClusterResponse) error {
+func (x *membershipServiceJoinGroupServer) Send(m *JoinGroupResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
@@ -438,15 +438,15 @@ var _MembershipService_serviceDesc = grpc.ServiceDesc{
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
 		{
-			StreamName:    "JoinCluster",
-			Handler:       _MembershipService_JoinCluster_Handler,
+			StreamName:    "JoinGroup",
+			Handler:       _MembershipService_JoinGroup_Handler,
 			ServerStreams: true,
 		},
 	},
 	Metadata: "atomix/membership/membership.proto",
 }
 
-func (m *ClusterId) Marshal() (dAtA []byte, err error) {
+func (m *GroupId) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -456,12 +456,12 @@ func (m *ClusterId) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *ClusterId) MarshalTo(dAtA []byte) (int, error) {
+func (m *GroupId) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *ClusterId) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *GroupId) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -565,7 +565,7 @@ func (m *Member) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *JoinClusterRequest) Marshal() (dAtA []byte, err error) {
+func (m *JoinGroupRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -575,18 +575,18 @@ func (m *JoinClusterRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *JoinClusterRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *JoinGroupRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *JoinClusterRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *JoinGroupRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
 	{
-		size, err := m.ClusterID.MarshalToSizedBuffer(dAtA[:i])
+		size, err := m.GroupID.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
 			return 0, err
 		}
@@ -610,7 +610,7 @@ func (m *JoinClusterRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *JoinClusterResponse) Marshal() (dAtA []byte, err error) {
+func (m *JoinGroupResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -620,12 +620,12 @@ func (m *JoinClusterResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *JoinClusterResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *JoinGroupResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *JoinClusterResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *JoinGroupResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -645,7 +645,7 @@ func (m *JoinClusterResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		}
 	}
 	{
-		size, err := m.ClusterID.MarshalToSizedBuffer(dAtA[:i])
+		size, err := m.GroupID.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
 			return 0, err
 		}
@@ -668,7 +668,7 @@ func encodeVarintMembership(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *ClusterId) Size() (n int) {
+func (m *GroupId) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -720,7 +720,7 @@ func (m *Member) Size() (n int) {
 	return n
 }
 
-func (m *JoinClusterRequest) Size() (n int) {
+func (m *JoinGroupRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -730,18 +730,18 @@ func (m *JoinClusterRequest) Size() (n int) {
 		l = m.Member.Size()
 		n += 1 + l + sovMembership(uint64(l))
 	}
-	l = m.ClusterID.Size()
+	l = m.GroupID.Size()
 	n += 1 + l + sovMembership(uint64(l))
 	return n
 }
 
-func (m *JoinClusterResponse) Size() (n int) {
+func (m *JoinGroupResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = m.ClusterID.Size()
+	l = m.GroupID.Size()
 	n += 1 + l + sovMembership(uint64(l))
 	if len(m.Members) > 0 {
 		for _, e := range m.Members {
@@ -758,7 +758,7 @@ func sovMembership(x uint64) (n int) {
 func sozMembership(x uint64) (n int) {
 	return sovMembership(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (m *ClusterId) Unmarshal(dAtA []byte) error {
+func (m *GroupId) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -781,10 +781,10 @@ func (m *ClusterId) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: ClusterId: wiretype end group for non-group")
+			return fmt.Errorf("proto: GroupId: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: ClusterId: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: GroupId: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1129,7 +1129,7 @@ func (m *Member) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *JoinClusterRequest) Unmarshal(dAtA []byte) error {
+func (m *JoinGroupRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1152,10 +1152,10 @@ func (m *JoinClusterRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: JoinClusterRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: JoinGroupRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: JoinClusterRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: JoinGroupRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1196,7 +1196,7 @@ func (m *JoinClusterRequest) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ClusterID", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field GroupID", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -1223,7 +1223,7 @@ func (m *JoinClusterRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.ClusterID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.GroupID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -1251,7 +1251,7 @@ func (m *JoinClusterRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *JoinClusterResponse) Unmarshal(dAtA []byte) error {
+func (m *JoinGroupResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1274,15 +1274,15 @@ func (m *JoinClusterResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: JoinClusterResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: JoinGroupResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: JoinClusterResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: JoinGroupResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ClusterID", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field GroupID", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -1309,7 +1309,7 @@ func (m *JoinClusterResponse) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.ClusterID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.GroupID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

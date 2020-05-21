@@ -20,8 +20,8 @@ package atomix.membership;
 
 import "gogoproto/gogo.proto";
 
-// Cluster identifier
-message ClusterId {
+// Membership group identifier
+message GroupId {
     string name = 1;
     string namespace = 2;
 }
@@ -39,20 +39,20 @@ message Member {
     int32 port = 3;
 }
 
-// JoinClusterRequest is a request to join a membership
-message JoinClusterRequest {
+// JoinGroupRequest is a request to join a membership group
+message JoinGroupRequest {
     Member member = 1;
-    ClusterId cluster_id = 2 [(gogoproto.customname) = "ClusterID", (gogoproto.nullable) = false];
+    GroupId group_id = 2 [(gogoproto.customname) = "GroupID", (gogoproto.nullable) = false];
 }
 
-// JoinClusterResponse is a response to joining a membership
-message JoinClusterResponse {
-    ClusterId cluster_id = 1 [(gogoproto.customname) = "ClusterID", (gogoproto.nullable) = false];
+// JoinGroupResponse is a response to joining a membership group
+message JoinGroupResponse {
+    GroupId group_id = 1 [(gogoproto.customname) = "GroupID", (gogoproto.nullable) = false];
     repeated Member members = 2 [(gogoproto.nullable) = false];
 }
 
 // Atomix membership service
 service MembershipService {
     // Joins a member to a cluster
-    rpc JoinCluster (JoinClusterRequest) returns (stream JoinClusterResponse);
+    rpc JoinGroup (JoinGroupRequest) returns (stream JoinGroupResponse);
 }

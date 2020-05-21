@@ -4,9 +4,9 @@
 ## Table of Contents
 
 - [atomix/membership/membership.proto](#atomix/membership/membership.proto)
-    - [ClusterId](#atomix.membership.ClusterId)
-    - [JoinClusterRequest](#atomix.membership.JoinClusterRequest)
-    - [JoinClusterResponse](#atomix.membership.JoinClusterResponse)
+    - [GroupId](#atomix.membership.GroupId)
+    - [JoinGroupRequest](#atomix.membership.JoinGroupRequest)
+    - [JoinGroupResponse](#atomix.membership.JoinGroupResponse)
     - [Member](#atomix.membership.Member)
     - [MemberId](#atomix.membership.MemberId)
   
@@ -26,10 +26,10 @@
 
 
 
-<a name="atomix.membership.ClusterId"></a>
+<a name="atomix.membership.GroupId"></a>
 
-### ClusterId
-Cluster identifier
+### GroupId
+Membership group identifier
 
 
 | Field | Type | Label | Description |
@@ -42,31 +42,31 @@ Cluster identifier
 
 
 
-<a name="atomix.membership.JoinClusterRequest"></a>
+<a name="atomix.membership.JoinGroupRequest"></a>
 
-### JoinClusterRequest
-JoinClusterRequest is a request to join a membership
+### JoinGroupRequest
+JoinGroupRequest is a request to join a membership group
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | member | [Member](#atomix.membership.Member) |  |  |
-| cluster_id | [ClusterId](#atomix.membership.ClusterId) |  |  |
+| group_id | [GroupId](#atomix.membership.GroupId) |  |  |
 
 
 
 
 
 
-<a name="atomix.membership.JoinClusterResponse"></a>
+<a name="atomix.membership.JoinGroupResponse"></a>
 
-### JoinClusterResponse
-JoinClusterResponse is a response to joining a membership
+### JoinGroupResponse
+JoinGroupResponse is a response to joining a membership group
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| cluster_id | [ClusterId](#atomix.membership.ClusterId) |  |  |
+| group_id | [GroupId](#atomix.membership.GroupId) |  |  |
 | members | [Member](#atomix.membership.Member) | repeated |  |
 
 
@@ -120,7 +120,7 @@ Atomix membership service
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| JoinCluster | [JoinClusterRequest](#atomix.membership.JoinClusterRequest) | [JoinClusterResponse](#atomix.membership.JoinClusterResponse) stream | Joins a member to a cluster |
+| JoinGroup | [JoinGroupRequest](#atomix.membership.JoinGroupRequest) | [JoinGroupResponse](#atomix.membership.JoinGroupResponse) stream | Joins a member to a cluster |
 
  
 

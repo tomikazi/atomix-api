@@ -3,30 +3,30 @@
 
 ## Table of Contents
 
-- [atomix/membership/membership.proto](#atomix/membership/membership.proto)
-    - [ClusterId](#atomix.membership.ClusterId)
-    - [JoinClusterRequest](#atomix.membership.JoinClusterRequest)
-    - [JoinClusterResponse](#atomix.membership.JoinClusterResponse)
-    - [Member](#atomix.membership.Member)
-    - [MemberId](#atomix.membership.MemberId)
+- [atomix/cluster/cluster.proto](#atomix/cluster/cluster.proto)
+    - [ClusterId](#atomix.cluster.ClusterId)
+    - [JoinClusterRequest](#atomix.cluster.JoinClusterRequest)
+    - [JoinClusterResponse](#atomix.cluster.JoinClusterResponse)
+    - [Member](#atomix.cluster.Member)
+    - [MemberId](#atomix.cluster.MemberId)
   
   
   
-    - [ClusterService](#atomix.membership.ClusterService)
+    - [ClusterService](#atomix.cluster.ClusterService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/membership/membership.proto"></a>
+<a name="atomix/cluster/cluster.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/membership/membership.proto
+## atomix/cluster/cluster.proto
 
 
 
-<a name="atomix.membership.ClusterId"></a>
+<a name="atomix.cluster.ClusterId"></a>
 
 ### ClusterId
 Cluster identifier
@@ -42,7 +42,7 @@ Cluster identifier
 
 
 
-<a name="atomix.membership.JoinClusterRequest"></a>
+<a name="atomix.cluster.JoinClusterRequest"></a>
 
 ### JoinClusterRequest
 JoinClusterRequest is a request to join a cluster
@@ -50,15 +50,15 @@ JoinClusterRequest is a request to join a cluster
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| member | [Member](#atomix.membership.Member) |  |  |
-| cluster_id | [ClusterId](#atomix.membership.ClusterId) |  |  |
+| member | [Member](#atomix.cluster.Member) |  |  |
+| cluster_id | [ClusterId](#atomix.cluster.ClusterId) |  |  |
 
 
 
 
 
 
-<a name="atomix.membership.JoinClusterResponse"></a>
+<a name="atomix.cluster.JoinClusterResponse"></a>
 
 ### JoinClusterResponse
 JoinClusterResponse is a response to joining a cluster
@@ -66,15 +66,15 @@ JoinClusterResponse is a response to joining a cluster
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| cluster_id | [ClusterId](#atomix.membership.ClusterId) |  |  |
-| members | [Member](#atomix.membership.Member) | repeated |  |
+| cluster_id | [ClusterId](#atomix.cluster.ClusterId) |  |  |
+| members | [Member](#atomix.cluster.Member) | repeated |  |
 
 
 
 
 
 
-<a name="atomix.membership.Member"></a>
+<a name="atomix.cluster.Member"></a>
 
 ### Member
 Member is a cluster member
@@ -82,7 +82,7 @@ Member is a cluster member
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [MemberId](#atomix.membership.MemberId) |  |  |
+| id | [MemberId](#atomix.cluster.MemberId) |  |  |
 | host | [string](#string) |  |  |
 | port | [int32](#int32) |  |  |
 
@@ -91,7 +91,7 @@ Member is a cluster member
 
 
 
-<a name="atomix.membership.MemberId"></a>
+<a name="atomix.cluster.MemberId"></a>
 
 ### MemberId
 Member identifier
@@ -113,14 +113,14 @@ Member identifier
  
 
 
-<a name="atomix.membership.ClusterService"></a>
+<a name="atomix.cluster.ClusterService"></a>
 
 ### ClusterService
 Atomix cluster service
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| JoinCluster | [JoinClusterRequest](#atomix.membership.JoinClusterRequest) | [JoinClusterResponse](#atomix.membership.JoinClusterResponse) stream | Joins a member to the cluster |
+| JoinCluster | [JoinClusterRequest](#atomix.cluster.JoinClusterRequest) | [JoinClusterResponse](#atomix.cluster.JoinClusterResponse) stream | Joins a member to the cluster |
 
  
 

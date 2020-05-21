@@ -11,7 +11,9 @@ import (
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
+	io "io"
 	math "math"
+	math_bits "math/bits"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -30,10 +32,7 @@ type DatabaseId struct {
 	// name is the name of the database
 	Name string `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	// namespace is the namespace to which the database belongs
-	Namespace            string   `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Namespace string `protobuf:"bytes,2,opt,name=namespace,proto3" json:"namespace,omitempty"`
 }
 
 func (m *DatabaseId) Reset()         { *m = DatabaseId{} }
@@ -43,16 +42,25 @@ func (*DatabaseId) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ed185fa3c5fe0f10, []int{0}
 }
 func (m *DatabaseId) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DatabaseId.Unmarshal(m, b)
+	return m.Unmarshal(b)
 }
 func (m *DatabaseId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DatabaseId.Marshal(b, m, deterministic)
+	if deterministic {
+		return xxx_messageInfo_DatabaseId.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
 }
 func (m *DatabaseId) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_DatabaseId.Merge(m, src)
 }
 func (m *DatabaseId) XXX_Size() int {
-	return xxx_messageInfo_DatabaseId.Size(m)
+	return m.Size()
 }
 func (m *DatabaseId) XXX_DiscardUnknown() {
 	xxx_messageInfo_DatabaseId.DiscardUnknown(m)
@@ -79,10 +87,7 @@ type Database struct {
 	// id is the database identifier
 	ID DatabaseId `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
 	// partitions is a list of partitions in the cluster
-	Partitions           []Partition `protobuf:"bytes,2,rep,name=partitions,proto3" json:"partitions"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+	Partitions []Partition `protobuf:"bytes,2,rep,name=partitions,proto3" json:"partitions"`
 }
 
 func (m *Database) Reset()         { *m = Database{} }
@@ -92,16 +97,25 @@ func (*Database) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ed185fa3c5fe0f10, []int{1}
 }
 func (m *Database) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Database.Unmarshal(m, b)
+	return m.Unmarshal(b)
 }
 func (m *Database) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Database.Marshal(b, m, deterministic)
+	if deterministic {
+		return xxx_messageInfo_Database.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
 }
 func (m *Database) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_Database.Merge(m, src)
 }
 func (m *Database) XXX_Size() int {
-	return xxx_messageInfo_Database.Size(m)
+	return m.Size()
 }
 func (m *Database) XXX_DiscardUnknown() {
 	xxx_messageInfo_Database.DiscardUnknown(m)
@@ -128,10 +142,7 @@ type DatabaseConfig struct {
 	// nodes is a list of database replicas
 	Replicas []ReplicaConfig `protobuf:"bytes,1,rep,name=replicas,proto3" json:"replicas"`
 	// partitions is a list of partitions owned by the replicas
-	Partitions           []PartitionId `protobuf:"bytes,2,rep,name=partitions,proto3" json:"partitions"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
+	Partitions []PartitionId `protobuf:"bytes,2,rep,name=partitions,proto3" json:"partitions"`
 }
 
 func (m *DatabaseConfig) Reset()         { *m = DatabaseConfig{} }
@@ -141,16 +152,25 @@ func (*DatabaseConfig) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ed185fa3c5fe0f10, []int{2}
 }
 func (m *DatabaseConfig) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_DatabaseConfig.Unmarshal(m, b)
+	return m.Unmarshal(b)
 }
 func (m *DatabaseConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_DatabaseConfig.Marshal(b, m, deterministic)
+	if deterministic {
+		return xxx_messageInfo_DatabaseConfig.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
 }
 func (m *DatabaseConfig) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_DatabaseConfig.Merge(m, src)
 }
 func (m *DatabaseConfig) XXX_Size() int {
-	return xxx_messageInfo_DatabaseConfig.Size(m)
+	return m.Size()
 }
 func (m *DatabaseConfig) XXX_DiscardUnknown() {
 	xxx_messageInfo_DatabaseConfig.DiscardUnknown(m)
@@ -181,10 +201,7 @@ type ReplicaConfig struct {
 	// api_port is the port to use for the client API
 	APIPort int32 `protobuf:"varint,3,opt,name=api_port,json=apiPort,proto3" json:"apiPort"`
 	// protocol_port is the port to use for intra-cluster communication
-	ProtocolPort         int32    `protobuf:"varint,4,opt,name=protocol_port,json=protocolPort,proto3" json:"protocolPort"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	ProtocolPort int32 `protobuf:"varint,4,opt,name=protocol_port,json=protocolPort,proto3" json:"protocolPort"`
 }
 
 func (m *ReplicaConfig) Reset()         { *m = ReplicaConfig{} }
@@ -194,16 +211,25 @@ func (*ReplicaConfig) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ed185fa3c5fe0f10, []int{3}
 }
 func (m *ReplicaConfig) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_ReplicaConfig.Unmarshal(m, b)
+	return m.Unmarshal(b)
 }
 func (m *ReplicaConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_ReplicaConfig.Marshal(b, m, deterministic)
+	if deterministic {
+		return xxx_messageInfo_ReplicaConfig.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
 }
 func (m *ReplicaConfig) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_ReplicaConfig.Merge(m, src)
 }
 func (m *ReplicaConfig) XXX_Size() int {
-	return xxx_messageInfo_ReplicaConfig.Size(m)
+	return m.Size()
 }
 func (m *ReplicaConfig) XXX_DiscardUnknown() {
 	xxx_messageInfo_ReplicaConfig.DiscardUnknown(m)
@@ -241,10 +267,7 @@ func (m *ReplicaConfig) GetProtocolPort() int32 {
 
 // Partition identifier
 type PartitionId struct {
-	Partition            int32    `protobuf:"varint,1,opt,name=partition,proto3" json:"partition,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Partition int32 `protobuf:"varint,1,opt,name=partition,proto3" json:"partition,omitempty"`
 }
 
 func (m *PartitionId) Reset()         { *m = PartitionId{} }
@@ -254,16 +277,25 @@ func (*PartitionId) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ed185fa3c5fe0f10, []int{4}
 }
 func (m *PartitionId) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_PartitionId.Unmarshal(m, b)
+	return m.Unmarshal(b)
 }
 func (m *PartitionId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_PartitionId.Marshal(b, m, deterministic)
+	if deterministic {
+		return xxx_messageInfo_PartitionId.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
 }
 func (m *PartitionId) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_PartitionId.Merge(m, src)
 }
 func (m *PartitionId) XXX_Size() int {
-	return xxx_messageInfo_PartitionId.Size(m)
+	return m.Size()
 }
 func (m *PartitionId) XXX_DiscardUnknown() {
 	xxx_messageInfo_PartitionId.DiscardUnknown(m)
@@ -280,11 +312,8 @@ func (m *PartitionId) GetPartition() int32 {
 
 // Partition info
 type Partition struct {
-	PartitionID          PartitionId         `protobuf:"bytes,1,opt,name=partition_id,json=partitionId,proto3" json:"partition_id"`
-	Endpoints            []PartitionEndpoint `protobuf:"bytes,2,rep,name=endpoints,proto3" json:"endpoints"`
-	XXX_NoUnkeyedLiteral struct{}            `json:"-"`
-	XXX_unrecognized     []byte              `json:"-"`
-	XXX_sizecache        int32               `json:"-"`
+	PartitionID PartitionId         `protobuf:"bytes,1,opt,name=partition_id,json=partitionId,proto3" json:"partition_id"`
+	Endpoints   []PartitionEndpoint `protobuf:"bytes,2,rep,name=endpoints,proto3" json:"endpoints"`
 }
 
 func (m *Partition) Reset()         { *m = Partition{} }
@@ -294,16 +323,25 @@ func (*Partition) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ed185fa3c5fe0f10, []int{5}
 }
 func (m *Partition) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Partition.Unmarshal(m, b)
+	return m.Unmarshal(b)
 }
 func (m *Partition) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Partition.Marshal(b, m, deterministic)
+	if deterministic {
+		return xxx_messageInfo_Partition.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
 }
 func (m *Partition) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_Partition.Merge(m, src)
 }
 func (m *Partition) XXX_Size() int {
-	return xxx_messageInfo_Partition.Size(m)
+	return m.Size()
 }
 func (m *Partition) XXX_DiscardUnknown() {
 	xxx_messageInfo_Partition.DiscardUnknown(m)
@@ -327,11 +365,8 @@ func (m *Partition) GetEndpoints() []PartitionEndpoint {
 
 // Partition endpoint
 type PartitionEndpoint struct {
-	Host                 string   `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
-	Port                 int32    `protobuf:"varint,2,opt,name=port,proto3" json:"port,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Host string `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
+	Port int32  `protobuf:"varint,2,opt,name=port,proto3" json:"port,omitempty"`
 }
 
 func (m *PartitionEndpoint) Reset()         { *m = PartitionEndpoint{} }
@@ -341,16 +376,25 @@ func (*PartitionEndpoint) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ed185fa3c5fe0f10, []int{6}
 }
 func (m *PartitionEndpoint) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_PartitionEndpoint.Unmarshal(m, b)
+	return m.Unmarshal(b)
 }
 func (m *PartitionEndpoint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_PartitionEndpoint.Marshal(b, m, deterministic)
+	if deterministic {
+		return xxx_messageInfo_PartitionEndpoint.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
 }
 func (m *PartitionEndpoint) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_PartitionEndpoint.Merge(m, src)
 }
 func (m *PartitionEndpoint) XXX_Size() int {
-	return xxx_messageInfo_PartitionEndpoint.Size(m)
+	return m.Size()
 }
 func (m *PartitionEndpoint) XXX_DiscardUnknown() {
 	xxx_messageInfo_PartitionEndpoint.DiscardUnknown(m)
@@ -374,10 +418,7 @@ func (m *PartitionEndpoint) GetPort() int32 {
 
 // Gets a database in a namespace
 type GetDatabaseRequest struct {
-	ID                   DatabaseId `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
-	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
-	XXX_unrecognized     []byte     `json:"-"`
-	XXX_sizecache        int32      `json:"-"`
+	ID DatabaseId `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
 }
 
 func (m *GetDatabaseRequest) Reset()         { *m = GetDatabaseRequest{} }
@@ -387,16 +428,25 @@ func (*GetDatabaseRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ed185fa3c5fe0f10, []int{7}
 }
 func (m *GetDatabaseRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetDatabaseRequest.Unmarshal(m, b)
+	return m.Unmarshal(b)
 }
 func (m *GetDatabaseRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetDatabaseRequest.Marshal(b, m, deterministic)
+	if deterministic {
+		return xxx_messageInfo_GetDatabaseRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
 }
 func (m *GetDatabaseRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_GetDatabaseRequest.Merge(m, src)
 }
 func (m *GetDatabaseRequest) XXX_Size() int {
-	return xxx_messageInfo_GetDatabaseRequest.Size(m)
+	return m.Size()
 }
 func (m *GetDatabaseRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_GetDatabaseRequest.DiscardUnknown(m)
@@ -413,10 +463,7 @@ func (m *GetDatabaseRequest) GetID() DatabaseId {
 
 // Returns a database in a namespace
 type GetDatabaseResponse struct {
-	Database             *Database `protobuf:"bytes,1,opt,name=database,proto3" json:"database,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
+	Database *Database `protobuf:"bytes,1,opt,name=database,proto3" json:"database,omitempty"`
 }
 
 func (m *GetDatabaseResponse) Reset()         { *m = GetDatabaseResponse{} }
@@ -426,16 +473,25 @@ func (*GetDatabaseResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ed185fa3c5fe0f10, []int{8}
 }
 func (m *GetDatabaseResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetDatabaseResponse.Unmarshal(m, b)
+	return m.Unmarshal(b)
 }
 func (m *GetDatabaseResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetDatabaseResponse.Marshal(b, m, deterministic)
+	if deterministic {
+		return xxx_messageInfo_GetDatabaseResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
 }
 func (m *GetDatabaseResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_GetDatabaseResponse.Merge(m, src)
 }
 func (m *GetDatabaseResponse) XXX_Size() int {
-	return xxx_messageInfo_GetDatabaseResponse.Size(m)
+	return m.Size()
 }
 func (m *GetDatabaseResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_GetDatabaseResponse.DiscardUnknown(m)
@@ -452,10 +508,7 @@ func (m *GetDatabaseResponse) GetDatabase() *Database {
 
 // Gets a list of databases in a namespace
 type GetDatabasesRequest struct {
-	Namespace            string   `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
 }
 
 func (m *GetDatabasesRequest) Reset()         { *m = GetDatabasesRequest{} }
@@ -465,16 +518,25 @@ func (*GetDatabasesRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ed185fa3c5fe0f10, []int{9}
 }
 func (m *GetDatabasesRequest) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetDatabasesRequest.Unmarshal(m, b)
+	return m.Unmarshal(b)
 }
 func (m *GetDatabasesRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetDatabasesRequest.Marshal(b, m, deterministic)
+	if deterministic {
+		return xxx_messageInfo_GetDatabasesRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
 }
 func (m *GetDatabasesRequest) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_GetDatabasesRequest.Merge(m, src)
 }
 func (m *GetDatabasesRequest) XXX_Size() int {
-	return xxx_messageInfo_GetDatabasesRequest.Size(m)
+	return m.Size()
 }
 func (m *GetDatabasesRequest) XXX_DiscardUnknown() {
 	xxx_messageInfo_GetDatabasesRequest.DiscardUnknown(m)
@@ -491,10 +553,7 @@ func (m *GetDatabasesRequest) GetNamespace() string {
 
 // Returns a list of databases in a namespace
 type GetDatabasesResponse struct {
-	Databases            []Database `protobuf:"bytes,1,rep,name=databases,proto3" json:"databases"`
-	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
-	XXX_unrecognized     []byte     `json:"-"`
-	XXX_sizecache        int32      `json:"-"`
+	Databases []Database `protobuf:"bytes,1,rep,name=databases,proto3" json:"databases"`
 }
 
 func (m *GetDatabasesResponse) Reset()         { *m = GetDatabasesResponse{} }
@@ -504,16 +563,25 @@ func (*GetDatabasesResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_ed185fa3c5fe0f10, []int{10}
 }
 func (m *GetDatabasesResponse) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_GetDatabasesResponse.Unmarshal(m, b)
+	return m.Unmarshal(b)
 }
 func (m *GetDatabasesResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_GetDatabasesResponse.Marshal(b, m, deterministic)
+	if deterministic {
+		return xxx_messageInfo_GetDatabasesResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
 }
 func (m *GetDatabasesResponse) XXX_Merge(src proto.Message) {
 	xxx_messageInfo_GetDatabasesResponse.Merge(m, src)
 }
 func (m *GetDatabasesResponse) XXX_Size() int {
-	return xxx_messageInfo_GetDatabasesResponse.Size(m)
+	return m.Size()
 }
 func (m *GetDatabasesResponse) XXX_DiscardUnknown() {
 	xxx_messageInfo_GetDatabasesResponse.DiscardUnknown(m)
@@ -545,41 +613,43 @@ func init() {
 func init() { proto.RegisterFile("atomix/database/database.proto", fileDescriptor_ed185fa3c5fe0f10) }
 
 var fileDescriptor_ed185fa3c5fe0f10 = []byte{
-	// 543 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x53, 0xd1, 0x6e, 0xd3, 0x30,
-	0x14, 0xc5, 0x59, 0xb7, 0x35, 0xb7, 0x1d, 0x03, 0x6f, 0x9a, 0x4a, 0x99, 0x96, 0xca, 0x80, 0x54,
-	0x09, 0xa9, 0x13, 0x9d, 0x26, 0x1e, 0x10, 0x68, 0x84, 0x02, 0xaa, 0x04, 0x52, 0x15, 0x40, 0x42,
-	0xe2, 0x61, 0xf2, 0x1a, 0x53, 0x2c, 0x6d, 0xb1, 0x49, 0x0c, 0xe2, 0x07, 0xf8, 0x05, 0xfe, 0x80,
-	0x07, 0xfe, 0x64, 0x5f, 0x91, 0x87, 0x3d, 0xee, 0x2b, 0x50, 0x9c, 0xd8, 0x4d, 0x96, 0xb5, 0x48,
-	0x3c, 0xe5, 0xc6, 0xf7, 0x9c, 0x73, 0x8f, 0x8f, 0x6d, 0xd8, 0xa3, 0x4a, 0x9c, 0xf1, 0x1f, 0xfb,
-	0x21, 0x55, 0xf4, 0x84, 0x26, 0xcc, 0x16, 0x03, 0x19, 0x0b, 0x25, 0xf0, 0x66, 0xde, 0x1f, 0x98,
-	0xe5, 0xee, 0xf6, 0x4c, 0xcc, 0x84, 0xee, 0xed, 0x67, 0x55, 0x0e, 0x23, 0xcf, 0x00, 0x46, 0x05,
-	0x62, 0x1c, 0x62, 0x0c, 0x8d, 0x88, 0x9e, 0xb1, 0x0e, 0xea, 0xa1, 0xbe, 0x1b, 0xe8, 0x1a, 0xef,
-	0x82, 0x9b, 0x7d, 0x13, 0x49, 0xa7, 0xac, 0xe3, 0xe8, 0xc6, 0x7c, 0x81, 0xfc, 0x44, 0xd0, 0x34,
-	0x02, 0xf8, 0x31, 0x38, 0x3c, 0xd4, 0xe4, 0xd6, 0xf0, 0xee, 0xe0, 0x8a, 0x81, 0xc1, 0x7c, 0x8e,
-	0x0f, 0xe7, 0xa9, 0x77, 0xe3, 0x22, 0xf5, 0x9c, 0xf1, 0x28, 0x70, 0x78, 0x88, 0x8f, 0x00, 0x24,
-	0x8d, 0x15, 0x57, 0x5c, 0x44, 0x49, 0xc7, 0xe9, 0xad, 0xf4, 0x5b, 0xc3, 0x6e, 0x4d, 0x60, 0x62,
-	0x20, 0x7e, 0x23, 0xe3, 0x07, 0x25, 0x0e, 0xf9, 0x85, 0xe0, 0xa6, 0x19, 0xf0, 0x42, 0x44, 0x9f,
-	0xf9, 0x0c, 0x1f, 0x41, 0x33, 0x66, 0xf2, 0x94, 0x4f, 0x69, 0xd2, 0x41, 0x5a, 0x72, 0xaf, 0x26,
-	0x19, 0xe4, 0x80, 0x9c, 0x51, 0xc8, 0x5a, 0x16, 0xf6, 0xaf, 0xb1, 0xb5, 0xbb, 0xd8, 0xd6, 0x38,
-	0xbc, 0xc6, 0xd8, 0x6f, 0x04, 0x1b, 0x95, 0x29, 0x78, 0xc7, 0xa6, 0xe4, 0xfa, 0x6b, 0xa5, 0x10,
-	0x30, 0x34, 0xbe, 0x88, 0x44, 0x15, 0x19, 0xeb, 0x1a, 0x3f, 0x82, 0x26, 0x95, 0xfc, 0x58, 0x8a,
-	0x58, 0x75, 0x56, 0x7a, 0xa8, 0xbf, 0xea, 0xef, 0x5c, 0xa4, 0xde, 0xfa, 0xf3, 0xc9, 0x78, 0x22,
-	0x62, 0x75, 0x99, 0x7a, 0xeb, 0x54, 0xf2, 0xac, 0x0c, 0x4c, 0x81, 0x0f, 0x61, 0x43, 0x1f, 0xed,
-	0x54, 0x9c, 0xe6, 0xbc, 0x86, 0xe6, 0xdd, 0xba, 0x4c, 0xbd, 0xb6, 0x69, 0x68, 0x46, 0xe5, 0x8f,
-	0x3c, 0x84, 0x56, 0x69, 0x23, 0xd9, 0xa9, 0xdb, 0x4d, 0x68, 0xaf, 0xab, 0xc1, 0x7c, 0x81, 0xfc,
-	0x41, 0xe0, 0x5a, 0x34, 0x7e, 0x0f, 0x6d, 0xdb, 0x3a, 0xb6, 0x17, 0x60, 0x79, 0x50, 0x5b, 0xc5,
-	0x0d, 0x28, 0x0d, 0x1d, 0x05, 0x2d, 0x59, 0x72, 0xf0, 0x0a, 0x5c, 0x16, 0x85, 0x52, 0xf0, 0x48,
-	0x99, 0xec, 0xc9, 0x62, 0xc9, 0x97, 0x05, 0xb4, 0x38, 0x81, 0x39, 0x95, 0x3c, 0x81, 0xdb, 0x35,
-	0x94, 0xcd, 0x1a, 0x95, 0xb2, 0xc6, 0xd0, 0xd0, 0x79, 0x39, 0x7a, 0xb7, 0xba, 0x26, 0x6f, 0x01,
-	0xbf, 0x66, 0xca, 0x5c, 0xac, 0x80, 0x7d, 0xfd, 0xc6, 0x12, 0xf5, 0xdf, 0xf7, 0x9c, 0xbc, 0x81,
-	0xad, 0x8a, 0x5c, 0x22, 0x45, 0x94, 0x30, 0x7c, 0x08, 0x4d, 0xc3, 0x2e, 0x54, 0xef, 0x2c, 0x54,
-	0x0d, 0x2c, 0x94, 0x1c, 0x54, 0xd4, 0x12, 0xe3, 0xae, 0xf2, 0x60, 0xd1, 0xd5, 0x07, 0xfb, 0x01,
-	0xb6, 0xab, 0xa4, 0xc2, 0xc3, 0x53, 0x70, 0x8d, 0xb0, 0x79, 0x2e, 0x8b, 0x4d, 0x98, 0x94, 0x2d,
-	0x63, 0x78, 0x8e, 0x60, 0xd3, 0x74, 0xdf, 0xb1, 0xf8, 0x3b, 0x9f, 0x32, 0xfc, 0x11, 0x5a, 0xa5,
-	0x51, 0xf8, 0x5e, 0x4d, 0xae, 0x1e, 0x6d, 0xf7, 0xfe, 0x72, 0x50, 0x61, 0xf6, 0x13, 0xb4, 0xcb,
-	0x9b, 0xc0, 0x4b, 0x59, 0x26, 0x98, 0xee, 0x83, 0x7f, 0xa0, 0x72, 0xf1, 0x93, 0x35, 0xfd, 0x2e,
-	0x0e, 0xfe, 0x06, 0x00, 0x00, 0xff, 0xff, 0x06, 0x39, 0x37, 0x2c, 0x62, 0x05, 0x00, 0x00,
+	// 570 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x9c, 0x53, 0x41, 0x6b, 0x13, 0x41,
+	0x18, 0xcd, 0x6c, 0xd3, 0x36, 0xfb, 0xa5, 0xb5, 0x3a, 0x2d, 0x65, 0x8d, 0x65, 0x13, 0x56, 0x85,
+	0x80, 0x90, 0x62, 0x4a, 0xf1, 0x20, 0x4a, 0x5d, 0xa3, 0x12, 0x50, 0x08, 0xab, 0x82, 0xe0, 0xa1,
+	0x4c, 0xb3, 0x63, 0x1c, 0x68, 0x77, 0xc6, 0xdd, 0x51, 0xfc, 0x03, 0xde, 0x3d, 0xf9, 0x0f, 0x3c,
+	0xf8, 0x4f, 0x72, 0xec, 0xd1, 0x53, 0x90, 0xe4, 0xd6, 0x5f, 0x21, 0x99, 0xdd, 0x99, 0xec, 0x36,
+	0x4d, 0x04, 0x4f, 0xfb, 0xed, 0x7c, 0xef, 0xbd, 0xef, 0xcd, 0x9b, 0x19, 0x70, 0x89, 0xe4, 0x67,
+	0xec, 0xeb, 0x7e, 0x48, 0x24, 0x39, 0x21, 0x09, 0x35, 0x45, 0x4b, 0xc4, 0x5c, 0x72, 0xbc, 0x95,
+	0xf6, 0x5b, 0x7a, 0xb9, 0xb6, 0x33, 0xe0, 0x03, 0xae, 0x7a, 0xfb, 0xd3, 0x2a, 0x85, 0x79, 0x8f,
+	0x01, 0x3a, 0x19, 0xa2, 0x1b, 0x62, 0x0c, 0xe5, 0x88, 0x9c, 0x51, 0x07, 0x35, 0x50, 0xd3, 0x0e,
+	0x54, 0x8d, 0xf7, 0xc0, 0x9e, 0x7e, 0x13, 0x41, 0xfa, 0xd4, 0xb1, 0x54, 0x63, 0xb6, 0xe0, 0x7d,
+	0x43, 0x50, 0xd1, 0x02, 0xf8, 0x01, 0x58, 0x2c, 0x54, 0xe4, 0x6a, 0xfb, 0x56, 0xeb, 0x92, 0x81,
+	0xd6, 0x6c, 0x8e, 0x0f, 0xc3, 0x51, 0xbd, 0x34, 0x1e, 0xd5, 0xad, 0x6e, 0x27, 0xb0, 0x58, 0x88,
+	0x8f, 0x00, 0x04, 0x89, 0x25, 0x93, 0x8c, 0x47, 0x89, 0x63, 0x35, 0x56, 0x9a, 0xd5, 0x76, 0x6d,
+	0x4e, 0xa0, 0xa7, 0x21, 0x7e, 0x79, 0xca, 0x0f, 0x72, 0x1c, 0xef, 0x07, 0x82, 0x6b, 0x7a, 0xc0,
+	0x53, 0x1e, 0x7d, 0x60, 0x03, 0x7c, 0x04, 0x95, 0x98, 0x8a, 0x53, 0xd6, 0x27, 0x89, 0x83, 0x94,
+	0xa4, 0x3b, 0x27, 0x19, 0xa4, 0x80, 0x94, 0x91, 0xc9, 0x1a, 0x16, 0xf6, 0xaf, 0xb0, 0xb5, 0xb7,
+	0xd8, 0x56, 0x37, 0xbc, 0xc2, 0xd8, 0x4f, 0x04, 0x9b, 0x85, 0x29, 0x78, 0xd7, 0xa4, 0x64, 0xfb,
+	0x6b, 0xb9, 0x10, 0x30, 0x94, 0x3f, 0xf2, 0x44, 0x66, 0x19, 0xab, 0x1a, 0xdf, 0x87, 0x0a, 0x11,
+	0xec, 0x58, 0xf0, 0x58, 0x3a, 0x2b, 0x0d, 0xd4, 0x5c, 0xf5, 0x77, 0xc7, 0xa3, 0xfa, 0xfa, 0x93,
+	0x5e, 0xb7, 0xc7, 0x63, 0x79, 0x31, 0xaa, 0xaf, 0x13, 0xc1, 0xa6, 0x65, 0xa0, 0x0b, 0x7c, 0x08,
+	0x9b, 0xea, 0x68, 0xfb, 0xfc, 0x34, 0xe5, 0x95, 0x15, 0xef, 0xfa, 0xc5, 0xa8, 0xbe, 0xa1, 0x1b,
+	0x8a, 0x51, 0xf8, 0xf3, 0xee, 0x41, 0x35, 0xb7, 0x91, 0xe9, 0xa9, 0x9b, 0x4d, 0x28, 0xaf, 0xab,
+	0xc1, 0x6c, 0xc1, 0xfb, 0x85, 0xc0, 0x36, 0x68, 0xfc, 0x06, 0x36, 0x4c, 0xeb, 0xd8, 0x5c, 0x80,
+	0xe5, 0x41, 0x6d, 0x67, 0x37, 0x20, 0x37, 0xb4, 0x13, 0x54, 0x45, 0xce, 0xc1, 0x73, 0xb0, 0x69,
+	0x14, 0x0a, 0xce, 0x22, 0xa9, 0xb3, 0xf7, 0x16, 0x4b, 0x3e, 0xcb, 0xa0, 0xd9, 0x09, 0xcc, 0xa8,
+	0xde, 0x43, 0xb8, 0x31, 0x87, 0x32, 0x59, 0xa3, 0x5c, 0xd6, 0x18, 0xca, 0x2a, 0x2f, 0x4b, 0xed,
+	0x56, 0xd5, 0xde, 0x2b, 0xc0, 0x2f, 0xa8, 0xd4, 0x17, 0x2b, 0xa0, 0x9f, 0x3e, 0xd3, 0x44, 0xfe,
+	0xf7, 0x3d, 0xf7, 0x5e, 0xc2, 0x76, 0x41, 0x2e, 0x11, 0x3c, 0x4a, 0x28, 0x3e, 0x84, 0x8a, 0x66,
+	0x67, 0xaa, 0x37, 0x17, 0xaa, 0x06, 0x06, 0xea, 0x1d, 0x14, 0xd4, 0x12, 0xed, 0xae, 0xf0, 0x60,
+	0xd1, 0xe5, 0x07, 0xfb, 0x16, 0x76, 0x8a, 0xa4, 0xcc, 0xc3, 0x23, 0xb0, 0xb5, 0xb0, 0x7e, 0x2e,
+	0x8b, 0x4d, 0xe8, 0x94, 0x0d, 0xa3, 0x3d, 0x44, 0xb0, 0xa5, 0xbb, 0xaf, 0x69, 0xfc, 0x85, 0xf5,
+	0x29, 0x7e, 0x07, 0xd5, 0xdc, 0x28, 0x7c, 0x7b, 0x4e, 0x6e, 0x3e, 0xda, 0xda, 0x9d, 0xe5, 0xa0,
+	0xcc, 0xec, 0x7b, 0xd8, 0xc8, 0x6f, 0x02, 0x2f, 0x65, 0xe9, 0x60, 0x6a, 0x77, 0xff, 0x81, 0x4a,
+	0xc5, 0x7d, 0x67, 0x38, 0x76, 0xd1, 0xf9, 0xd8, 0x45, 0x7f, 0xc6, 0x2e, 0xfa, 0x3e, 0x71, 0x4b,
+	0xe7, 0x13, 0xb7, 0xf4, 0x7b, 0xe2, 0x96, 0x4e, 0xd6, 0xd4, 0x8b, 0x39, 0xf8, 0x1b, 0x00, 0x00,
+	0xff, 0xff, 0x51, 0x34, 0xbb, 0x6f, 0x7c, 0x05, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -701,3 +771,1863 @@ var _DatabaseService_serviceDesc = grpc.ServiceDesc{
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "atomix/database/database.proto",
 }
+
+func (m *DatabaseId) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *DatabaseId) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *DatabaseId) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Namespace) > 0 {
+		i -= len(m.Namespace)
+		copy(dAtA[i:], m.Namespace)
+		i = encodeVarintDatabase(dAtA, i, uint64(len(m.Namespace)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.Name) > 0 {
+		i -= len(m.Name)
+		copy(dAtA[i:], m.Name)
+		i = encodeVarintDatabase(dAtA, i, uint64(len(m.Name)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *Database) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Database) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Database) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Partitions) > 0 {
+		for iNdEx := len(m.Partitions) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Partitions[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintDatabase(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x12
+		}
+	}
+	{
+		size, err := m.ID.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintDatabase(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *DatabaseConfig) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *DatabaseConfig) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *DatabaseConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Partitions) > 0 {
+		for iNdEx := len(m.Partitions) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Partitions[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintDatabase(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x12
+		}
+	}
+	if len(m.Replicas) > 0 {
+		for iNdEx := len(m.Replicas) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Replicas[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintDatabase(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *ReplicaConfig) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *ReplicaConfig) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *ReplicaConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.ProtocolPort != 0 {
+		i = encodeVarintDatabase(dAtA, i, uint64(m.ProtocolPort))
+		i--
+		dAtA[i] = 0x20
+	}
+	if m.APIPort != 0 {
+		i = encodeVarintDatabase(dAtA, i, uint64(m.APIPort))
+		i--
+		dAtA[i] = 0x18
+	}
+	if len(m.Host) > 0 {
+		i -= len(m.Host)
+		copy(dAtA[i:], m.Host)
+		i = encodeVarintDatabase(dAtA, i, uint64(len(m.Host)))
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.ID) > 0 {
+		i -= len(m.ID)
+		copy(dAtA[i:], m.ID)
+		i = encodeVarintDatabase(dAtA, i, uint64(len(m.ID)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *PartitionId) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *PartitionId) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *PartitionId) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Partition != 0 {
+		i = encodeVarintDatabase(dAtA, i, uint64(m.Partition))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *Partition) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Partition) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Partition) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Endpoints) > 0 {
+		for iNdEx := len(m.Endpoints) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Endpoints[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintDatabase(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0x12
+		}
+	}
+	{
+		size, err := m.PartitionID.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintDatabase(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *PartitionEndpoint) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *PartitionEndpoint) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *PartitionEndpoint) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Port != 0 {
+		i = encodeVarintDatabase(dAtA, i, uint64(m.Port))
+		i--
+		dAtA[i] = 0x10
+	}
+	if len(m.Host) > 0 {
+		i -= len(m.Host)
+		copy(dAtA[i:], m.Host)
+		i = encodeVarintDatabase(dAtA, i, uint64(len(m.Host)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *GetDatabaseRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetDatabaseRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetDatabaseRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.ID.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintDatabase(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *GetDatabaseResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetDatabaseResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetDatabaseResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Database != nil {
+		{
+			size, err := m.Database.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintDatabase(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *GetDatabasesRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetDatabasesRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetDatabasesRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Namespace) > 0 {
+		i -= len(m.Namespace)
+		copy(dAtA[i:], m.Namespace)
+		i = encodeVarintDatabase(dAtA, i, uint64(len(m.Namespace)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *GetDatabasesResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *GetDatabasesResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *GetDatabasesResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Databases) > 0 {
+		for iNdEx := len(m.Databases) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.Databases[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintDatabase(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
+func encodeVarintDatabase(dAtA []byte, offset int, v uint64) int {
+	offset -= sovDatabase(v)
+	base := offset
+	for v >= 1<<7 {
+		dAtA[offset] = uint8(v&0x7f | 0x80)
+		v >>= 7
+		offset++
+	}
+	dAtA[offset] = uint8(v)
+	return base
+}
+func (m *DatabaseId) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Name)
+	if l > 0 {
+		n += 1 + l + sovDatabase(uint64(l))
+	}
+	l = len(m.Namespace)
+	if l > 0 {
+		n += 1 + l + sovDatabase(uint64(l))
+	}
+	return n
+}
+
+func (m *Database) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.ID.Size()
+	n += 1 + l + sovDatabase(uint64(l))
+	if len(m.Partitions) > 0 {
+		for _, e := range m.Partitions {
+			l = e.Size()
+			n += 1 + l + sovDatabase(uint64(l))
+		}
+	}
+	return n
+}
+
+func (m *DatabaseConfig) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Replicas) > 0 {
+		for _, e := range m.Replicas {
+			l = e.Size()
+			n += 1 + l + sovDatabase(uint64(l))
+		}
+	}
+	if len(m.Partitions) > 0 {
+		for _, e := range m.Partitions {
+			l = e.Size()
+			n += 1 + l + sovDatabase(uint64(l))
+		}
+	}
+	return n
+}
+
+func (m *ReplicaConfig) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.ID)
+	if l > 0 {
+		n += 1 + l + sovDatabase(uint64(l))
+	}
+	l = len(m.Host)
+	if l > 0 {
+		n += 1 + l + sovDatabase(uint64(l))
+	}
+	if m.APIPort != 0 {
+		n += 1 + sovDatabase(uint64(m.APIPort))
+	}
+	if m.ProtocolPort != 0 {
+		n += 1 + sovDatabase(uint64(m.ProtocolPort))
+	}
+	return n
+}
+
+func (m *PartitionId) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Partition != 0 {
+		n += 1 + sovDatabase(uint64(m.Partition))
+	}
+	return n
+}
+
+func (m *Partition) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.PartitionID.Size()
+	n += 1 + l + sovDatabase(uint64(l))
+	if len(m.Endpoints) > 0 {
+		for _, e := range m.Endpoints {
+			l = e.Size()
+			n += 1 + l + sovDatabase(uint64(l))
+		}
+	}
+	return n
+}
+
+func (m *PartitionEndpoint) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Host)
+	if l > 0 {
+		n += 1 + l + sovDatabase(uint64(l))
+	}
+	if m.Port != 0 {
+		n += 1 + sovDatabase(uint64(m.Port))
+	}
+	return n
+}
+
+func (m *GetDatabaseRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.ID.Size()
+	n += 1 + l + sovDatabase(uint64(l))
+	return n
+}
+
+func (m *GetDatabaseResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Database != nil {
+		l = m.Database.Size()
+		n += 1 + l + sovDatabase(uint64(l))
+	}
+	return n
+}
+
+func (m *GetDatabasesRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Namespace)
+	if l > 0 {
+		n += 1 + l + sovDatabase(uint64(l))
+	}
+	return n
+}
+
+func (m *GetDatabasesResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.Databases) > 0 {
+		for _, e := range m.Databases {
+			l = e.Size()
+			n += 1 + l + sovDatabase(uint64(l))
+		}
+	}
+	return n
+}
+
+func sovDatabase(x uint64) (n int) {
+	return (math_bits.Len64(x|1) + 6) / 7
+}
+func sozDatabase(x uint64) (n int) {
+	return sovDatabase(uint64((x << 1) ^ uint64((int64(x) >> 63))))
+}
+func (m *DatabaseId) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDatabase
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: DatabaseId: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: DatabaseId: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Name = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Namespace", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Namespace = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDatabase(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Database) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDatabase
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Database: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Database: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ID", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.ID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Partitions", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Partitions = append(m.Partitions, Partition{})
+			if err := m.Partitions[len(m.Partitions)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDatabase(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *DatabaseConfig) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDatabase
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: DatabaseConfig: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: DatabaseConfig: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Replicas", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Replicas = append(m.Replicas, ReplicaConfig{})
+			if err := m.Replicas[len(m.Replicas)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Partitions", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Partitions = append(m.Partitions, PartitionId{})
+			if err := m.Partitions[len(m.Partitions)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDatabase(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *ReplicaConfig) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDatabase
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: ReplicaConfig: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: ReplicaConfig: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ID", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.ID = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Host", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Host = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field APIPort", wireType)
+			}
+			m.APIPort = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.APIPort |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		case 4:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ProtocolPort", wireType)
+			}
+			m.ProtocolPort = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.ProtocolPort |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDatabase(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *PartitionId) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDatabase
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: PartitionId: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: PartitionId: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Partition", wireType)
+			}
+			m.Partition = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Partition |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDatabase(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Partition) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDatabase
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Partition: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Partition: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PartitionID", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.PartitionID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Endpoints", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Endpoints = append(m.Endpoints, PartitionEndpoint{})
+			if err := m.Endpoints[len(m.Endpoints)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDatabase(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *PartitionEndpoint) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDatabase
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: PartitionEndpoint: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: PartitionEndpoint: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Host", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Host = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 2:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Port", wireType)
+			}
+			m.Port = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Port |= int32(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDatabase(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetDatabaseRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDatabase
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetDatabaseRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetDatabaseRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ID", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.ID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDatabase(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetDatabaseResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDatabase
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetDatabaseResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetDatabaseResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Database", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Database == nil {
+				m.Database = &Database{}
+			}
+			if err := m.Database.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDatabase(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetDatabasesRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDatabase
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetDatabasesRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetDatabasesRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Namespace", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Namespace = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDatabase(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *GetDatabasesResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDatabase
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: GetDatabasesResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: GetDatabasesResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Databases", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Databases = append(m.Databases, Database{})
+			if err := m.Databases[len(m.Databases)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDatabase(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDatabase
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func skipDatabase(dAtA []byte) (n int, err error) {
+	l := len(dAtA)
+	iNdEx := 0
+	depth := 0
+	for iNdEx < l {
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return 0, ErrIntOverflowDatabase
+			}
+			if iNdEx >= l {
+				return 0, io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= (uint64(b) & 0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		wireType := int(wire & 0x7)
+		switch wireType {
+		case 0:
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return 0, ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return 0, io.ErrUnexpectedEOF
+				}
+				iNdEx++
+				if dAtA[iNdEx-1] < 0x80 {
+					break
+				}
+			}
+		case 1:
+			iNdEx += 8
+		case 2:
+			var length int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return 0, ErrIntOverflowDatabase
+				}
+				if iNdEx >= l {
+					return 0, io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				length |= (int(b) & 0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if length < 0 {
+				return 0, ErrInvalidLengthDatabase
+			}
+			iNdEx += length
+		case 3:
+			depth++
+		case 4:
+			if depth == 0 {
+				return 0, ErrUnexpectedEndOfGroupDatabase
+			}
+			depth--
+		case 5:
+			iNdEx += 4
+		default:
+			return 0, fmt.Errorf("proto: illegal wireType %d", wireType)
+		}
+		if iNdEx < 0 {
+			return 0, ErrInvalidLengthDatabase
+		}
+		if depth == 0 {
+			return iNdEx, nil
+		}
+	}
+	return 0, io.ErrUnexpectedEOF
+}
+
+var (
+	ErrInvalidLengthDatabase        = fmt.Errorf("proto: negative length found during unmarshaling")
+	ErrIntOverflowDatabase          = fmt.Errorf("proto: integer overflow")
+	ErrUnexpectedEndOfGroupDatabase = fmt.Errorf("proto: unexpected end of group")
+)

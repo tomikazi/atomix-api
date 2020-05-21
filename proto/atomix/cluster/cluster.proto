@@ -16,7 +16,7 @@ limitations under the License.
 
 syntax = "proto3";
 
-package atomix.membership;
+package atomix.cluster;
 
 import "gogoproto/gogo.proto";
 

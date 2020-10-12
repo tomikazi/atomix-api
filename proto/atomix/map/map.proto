@@ -40,14 +40,14 @@ message SizeRequest {
 
 message SizeResponse {
     atomix.headers.ResponseHeader header = 1;
-    int32 size = 2;
+    uint32 size = 2;
 }
 
 message PutRequest {
     atomix.headers.RequestHeader header = 1;
     string key = 2;
     bytes value = 3;
-    int64 version = 4;
+    uint64 version = 4;
     google.protobuf.Duration ttl = 5 [(gogoproto.customname) = "TTL", (gogoproto.stdduration) = true];
 }
 
@@ -57,14 +57,14 @@ message PutResponse {
     google.protobuf.Timestamp created = 3 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
     google.protobuf.Timestamp updated = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
     bytes previous_value = 5;
-    int64 previous_version = 6;
+    uint64 previous_version = 6;
 }
 
 message ReplaceRequest {
     atomix.headers.RequestHeader header = 1;
     string key = 2;
     bytes previous_value = 3;
-    int64 previous_version = 4;
+    uint64 previous_version = 4;
     bytes new_value = 5;
     google.protobuf.Duration ttl = 6 [(gogoproto.customname) = "TTL", (gogoproto.stdduration) = true];
 }
@@ -75,7 +75,7 @@ message ReplaceResponse {
     google.protobuf.Timestamp created = 3 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
     google.protobuf.Timestamp updated = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
     bytes previous_value = 5;
-    int64 previous_version = 6;
+    uint64 previous_version = 6;
 }
 
 message GetRequest {
@@ -86,7 +86,7 @@ message GetRequest {
 message GetResponse {
     atomix.headers.ResponseHeader header = 1;
     bytes value = 2;
-    int64 version = 3;
+    uint64 version = 3;
     google.protobuf.Timestamp created = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
     google.protobuf.Timestamp updated = 5 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
@@ -95,7 +95,7 @@ message RemoveRequest {
     atomix.headers.RequestHeader header = 1;
     string key = 2;
     bytes value = 3;
-    int64 version = 4;
+    uint64 version = 4;
     google.protobuf.Timestamp created = 5 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
     google.protobuf.Timestamp updated = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
@@ -104,7 +104,7 @@ message RemoveResponse {
     atomix.headers.ResponseHeader header = 1;
     ResponseStatus status = 2;
     bytes previous_value = 3;
-    int64 previous_version = 4;
+    uint64 previous_version = 4;
 }
 
 message ClearRequest {
@@ -123,7 +123,7 @@ message EntriesResponse {
     atomix.headers.ResponseHeader header = 1;
     string key = 2;
     bytes value = 3;
-    int64 version = 4;
+    uint64 version = 4;
     google.protobuf.Timestamp created = 5 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
     google.protobuf.Timestamp updated = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
@@ -139,7 +139,7 @@ message EventResponse {
     Type type = 2;
     string key = 3;
     bytes value = 4;
-    int64 version = 5;
+    uint64 version = 5;
     google.protobuf.Timestamp created = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
     google.protobuf.Timestamp updated = 7 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 

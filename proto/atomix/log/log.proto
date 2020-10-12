@@ -44,25 +44,25 @@ message SizeResponse {
 
 message AppendRequest {
     atomix.headers.RequestHeader header = 1;
-    int64 index = 2;
+    uint64 index = 2;
     bytes value = 3;
 }
 
 message AppendResponse {
     atomix.headers.ResponseHeader header = 1;
     ResponseStatus status = 2;
-    int64 index = 3;
+    uint64 index = 3;
     google.protobuf.Timestamp timestamp = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
 
 message GetRequest {
     atomix.headers.RequestHeader header = 1;
-    int64 index = 2;
+    uint64 index = 2;
 }
 
 message GetResponse {
     atomix.headers.ResponseHeader header = 1;
-    int64 index = 2;
+    uint64 index = 2;
     bytes value = 3;
     google.protobuf.Timestamp timestamp = 5 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
@@ -73,7 +73,7 @@ message FirstEntryRequest {
 
 message FirstEntryResponse {
     atomix.headers.ResponseHeader header = 1;
-    int64 index = 2;
+    uint64 index = 2;
     bytes value = 3;
     google.protobuf.Timestamp timestamp = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
@@ -84,7 +84,7 @@ message LastEntryRequest {
 
 message LastEntryResponse {
     atomix.headers.ResponseHeader header = 1;
-    int64 index = 2;
+    uint64 index = 2;
     bytes value = 3;
     google.protobuf.Timestamp timestamp = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 
@@ -92,31 +92,31 @@ message LastEntryResponse {
 
 message PrevEntryRequest {
     atomix.headers.RequestHeader header = 1;
-    int64 index = 2;
+    uint64 index = 2;
 }
 
 message PrevEntryResponse {
     atomix.headers.ResponseHeader header = 1;
-    int64 index = 2;
+    uint64 index = 2;
     bytes value = 3;
     google.protobuf.Timestamp timestamp = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
 
 message NextEntryRequest {
     atomix.headers.RequestHeader header = 1;
-    int64 index = 2;
+    uint64 index = 2;
 }
 
 message NextEntryResponse {
     atomix.headers.ResponseHeader header = 1;
-    int64 index = 2;
+    uint64 index = 2;
     bytes value = 3;
     google.protobuf.Timestamp timestamp = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
 
 message RemoveRequest {
     atomix.headers.RequestHeader header = 1;
-    int64 index = 2;
+    uint64 index = 2;
     bytes value = 3;
     google.protobuf.Timestamp timestamp = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
@@ -124,7 +124,7 @@ message RemoveRequest {
 message RemoveResponse {
     atomix.headers.ResponseHeader header = 1;
     ResponseStatus status = 2;
-    int64 index = 3;
+    uint64 index = 3;
     bytes previous_value = 4;
 }
 
@@ -149,7 +149,7 @@ message EntriesRequest {
 
 message EntriesResponse {
     atomix.headers.ResponseHeader header = 1;
-    int64 index = 2;
+    uint64 index = 2;
     bytes value = 3;
     google.protobuf.Timestamp timestamp = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
@@ -158,13 +158,13 @@ message EntriesResponse {
 message EventRequest {
     atomix.headers.RequestHeader header = 1;
     bool replay = 2;
-    int64 index = 3;
+    uint64 index = 3;
 }
 
 message EventResponse {
     atomix.headers.ResponseHeader header = 1;
     Type type = 2;
-    int64 index = 3;
+    uint64 index = 3;
     bytes value = 4;
     google.protobuf.Timestamp timestamp = 5 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 

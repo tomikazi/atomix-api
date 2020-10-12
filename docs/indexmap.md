@@ -169,9 +169,9 @@
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
 | key | [string](#string) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 | value | [bytes](#bytes) |  |  |
-| version | [int64](#int64) |  |  |
+| version | [uint64](#uint64) |  |  |
 | created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 
@@ -191,7 +191,7 @@
 | header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
 | replay | [bool](#bool) |  |  |
 | key | [string](#string) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 
 
 
@@ -209,9 +209,9 @@
 | header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
 | type | [EventResponse.Type](#atomix.indexedmap.EventResponse.Type) |  |  |
 | key | [string](#string) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 | value | [bytes](#bytes) |  |  |
-| version | [int64](#int64) |  |  |
+| version | [uint64](#uint64) |  |  |
 | created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 
@@ -276,10 +276,10 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
-| version | [int64](#int64) |  |  |
+| version | [uint64](#uint64) |  |  |
 | created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 
@@ -297,7 +297,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 | key | [string](#string) |  |  |
 
 
@@ -314,10 +314,10 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
-| version | [int64](#int64) |  |  |
+| version | [uint64](#uint64) |  |  |
 | created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 
@@ -350,10 +350,10 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
-| version | [int64](#int64) |  |  |
+| version | [uint64](#uint64) |  |  |
 | created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 
@@ -371,7 +371,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 
 
 
@@ -387,10 +387,10 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
-| version | [int64](#int64) |  |  |
+| version | [uint64](#uint64) |  |  |
 | created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 
@@ -408,7 +408,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 
 
 
@@ -424,10 +424,10 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
-| version | [int64](#int64) |  |  |
+| version | [uint64](#uint64) |  |  |
 | created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 
@@ -445,10 +445,10 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
-| version | [int64](#int64) |  |  |
+| version | [uint64](#uint64) |  |  |
 | ttl | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
 
 
@@ -466,12 +466,12 @@
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
 | status | [ResponseStatus](#atomix.indexedmap.ResponseStatus) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 | key | [string](#string) |  |  |
 | created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | previous_value | [bytes](#bytes) |  |  |
-| previous_version | [int64](#int64) |  |  |
+| previous_version | [uint64](#uint64) |  |  |
 
 
 
@@ -487,10 +487,10 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
-| version | [int64](#int64) |  |  |
+| version | [uint64](#uint64) |  |  |
 | created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 
@@ -509,10 +509,10 @@
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
 | status | [ResponseStatus](#atomix.indexedmap.ResponseStatus) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 | key | [string](#string) |  |  |
 | previous_value | [bytes](#bytes) |  |  |
-| previous_version | [int64](#int64) |  |  |
+| previous_version | [uint64](#uint64) |  |  |
 
 
 
@@ -528,10 +528,10 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 | key | [string](#string) |  |  |
 | previous_value | [bytes](#bytes) |  |  |
-| previous_version | [int64](#int64) |  |  |
+| previous_version | [uint64](#uint64) |  |  |
 | new_value | [bytes](#bytes) |  |  |
 | ttl | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
 
@@ -550,12 +550,12 @@
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
 | status | [ResponseStatus](#atomix.indexedmap.ResponseStatus) |  |  |
-| index | [int64](#int64) |  |  |
+| index | [uint64](#uint64) |  |  |
 | key | [string](#string) |  |  |
 | created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | previous_value | [bytes](#bytes) |  |  |
-| previous_version | [int64](#int64) |  |  |
+| previous_version | [uint64](#uint64) |  |  |
 
 
 
@@ -586,7 +586,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| size | [int32](#int32) |  |  |
+| size | [uint32](#uint32) |  |  |
 
 
 

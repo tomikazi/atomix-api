@@ -3,7 +3,6 @@ syntax = "proto3";
 package atomix.value;
 
 import "atomix/headers/headers.proto";
-import "gogoproto/gogo.proto";
 
 message CreateRequest {
     atomix.headers.RequestHeader header = 1;

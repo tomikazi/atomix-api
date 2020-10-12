@@ -3,7 +3,6 @@ syntax = "proto3";
 package atomix.list;
 
 import "atomix/headers/headers.proto";
-import "gogoproto/gogo.proto";
 
 message CreateRequest {
     atomix.headers.RequestHeader header = 1;
@@ -28,7 +27,7 @@ message SizeRequest {
 
 message SizeResponse {
     atomix.headers.ResponseHeader header = 1;
-    int32 size = 2;
+    uint32 size = 2;
 }
 
 message ContainsRequest {
@@ -72,6 +71,7 @@ message SetResponse {
     atomix.headers.ResponseHeader header = 1;
     ResponseStatus status = 2;
 }
+
 message InsertRequest {
     atomix.headers.RequestHeader header = 1;
     uint32 index = 2;

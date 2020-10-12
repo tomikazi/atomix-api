@@ -162,7 +162,7 @@
 | header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
-| version | [int64](#int64) |  |  |
+| version | [uint64](#uint64) |  |  |
 | created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 
@@ -200,7 +200,7 @@
 | type | [EventResponse.Type](#atomix.map.EventResponse.Type) |  |  |
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
-| version | [int64](#int64) |  |  |
+| version | [uint64](#uint64) |  |  |
 | created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 
@@ -267,7 +267,7 @@
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
 | value | [bytes](#bytes) |  |  |
-| version | [int64](#int64) |  |  |
+| version | [uint64](#uint64) |  |  |
 | created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 
@@ -287,7 +287,7 @@
 | header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
-| version | [int64](#int64) |  |  |
+| version | [uint64](#uint64) |  |  |
 | ttl | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
 
 
@@ -308,7 +308,7 @@
 | created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | previous_value | [bytes](#bytes) |  |  |
-| previous_version | [int64](#int64) |  |  |
+| previous_version | [uint64](#uint64) |  |  |
 
 
 
@@ -326,7 +326,7 @@
 | header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
-| version | [int64](#int64) |  |  |
+| version | [uint64](#uint64) |  |  |
 | created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 
@@ -346,7 +346,7 @@
 | header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
 | status | [ResponseStatus](#atomix.map.ResponseStatus) |  |  |
 | previous_value | [bytes](#bytes) |  |  |
-| previous_version | [int64](#int64) |  |  |
+| previous_version | [uint64](#uint64) |  |  |
 
 
 
@@ -364,7 +364,7 @@
 | header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
 | key | [string](#string) |  |  |
 | previous_value | [bytes](#bytes) |  |  |
-| previous_version | [int64](#int64) |  |  |
+| previous_version | [uint64](#uint64) |  |  |
 | new_value | [bytes](#bytes) |  |  |
 | ttl | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
 
@@ -386,7 +386,7 @@
 | created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | previous_value | [bytes](#bytes) |  |  |
-| previous_version | [int64](#int64) |  |  |
+| previous_version | [uint64](#uint64) |  |  |
 
 
 
@@ -417,7 +417,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| size | [int32](#int32) |  |  |
+| size | [uint32](#uint32) |  |  |
 
 
 

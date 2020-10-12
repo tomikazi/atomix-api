@@ -428,7 +428,7 @@ func (m *SizeRequest) GetHeader() *headers.RequestHeader {
 
 type SizeResponse struct {
 	Header *headers.ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Size_  int32                   `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
+	Size_  uint32                  `protobuf:"varint,2,opt,name=size,proto3" json:"size,omitempty"`
 }
 
 func (m *SizeResponse) Reset()         { *m = SizeResponse{} }
@@ -471,7 +471,7 @@ func (m *SizeResponse) GetHeader() *headers.ResponseHeader {
 	return nil
 }
 
-func (m *SizeResponse) GetSize_() int32 {
+func (m *SizeResponse) GetSize_() uint32 {
 	if m != nil {
 		return m.Size_
 	}
@@ -480,10 +480,10 @@ func (m *SizeResponse) GetSize_() int32 {
 
 type PutRequest struct {
 	Header  *headers.RequestHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Index   int64                  `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
+	Index   uint64                 `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
 	Key     string                 `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
 	Value   []byte                 `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
-	Version int64                  `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
+	Version uint64                 `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
 	TTL     *time.Duration         `protobuf:"bytes,6,opt,name=ttl,proto3,stdduration" json:"ttl,omitempty"`
 }
 
@@ -527,7 +527,7 @@ func (m *PutRequest) GetHeader() *headers.RequestHeader {
 	return nil
 }
 
-func (m *PutRequest) GetIndex() int64 {
+func (m *PutRequest) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -548,7 +548,7 @@ func (m *PutRequest) GetValue() []byte {
 	return nil
 }
 
-func (m *PutRequest) GetVersion() int64 {
+func (m *PutRequest) GetVersion() uint64 {
 	if m != nil {
 		return m.Version
 	}
@@ -565,12 +565,12 @@ func (m *PutRequest) GetTTL() *time.Duration {
 type PutResponse struct {
 	Header          *headers.ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
 	Status          ResponseStatus          `protobuf:"varint,2,opt,name=status,proto3,enum=atomix.indexedmap.ResponseStatus" json:"status,omitempty"`
-	Index           int64                   `protobuf:"varint,3,opt,name=index,proto3" json:"index,omitempty"`
+	Index           uint64                  `protobuf:"varint,3,opt,name=index,proto3" json:"index,omitempty"`
 	Key             string                  `protobuf:"bytes,4,opt,name=key,proto3" json:"key,omitempty"`
 	Created         time.Time               `protobuf:"bytes,5,opt,name=created,proto3,stdtime" json:"created"`
 	Updated         time.Time               `protobuf:"bytes,6,opt,name=updated,proto3,stdtime" json:"updated"`
 	PreviousValue   []byte                  `protobuf:"bytes,7,opt,name=previous_value,json=previousValue,proto3" json:"previous_value,omitempty"`
-	PreviousVersion int64                   `protobuf:"varint,8,opt,name=previous_version,json=previousVersion,proto3" json:"previous_version,omitempty"`
+	PreviousVersion uint64                  `protobuf:"varint,8,opt,name=previous_version,json=previousVersion,proto3" json:"previous_version,omitempty"`
 }
 
 func (m *PutResponse) Reset()         { *m = PutResponse{} }
@@ -620,7 +620,7 @@ func (m *PutResponse) GetStatus() ResponseStatus {
 	return ResponseStatus_OK
 }
 
-func (m *PutResponse) GetIndex() int64 {
+func (m *PutResponse) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -655,7 +655,7 @@ func (m *PutResponse) GetPreviousValue() []byte {
 	return nil
 }
 
-func (m *PutResponse) GetPreviousVersion() int64 {
+func (m *PutResponse) GetPreviousVersion() uint64 {
 	if m != nil {
 		return m.PreviousVersion
 	}
@@ -664,10 +664,10 @@ func (m *PutResponse) GetPreviousVersion() int64 {
 
 type ReplaceRequest struct {
 	Header          *headers.RequestHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Index           int64                  `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
+	Index           uint64                 `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
 	Key             string                 `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
 	PreviousValue   []byte                 `protobuf:"bytes,4,opt,name=previous_value,json=previousValue,proto3" json:"previous_value,omitempty"`
-	PreviousVersion int64                  `protobuf:"varint,5,opt,name=previous_version,json=previousVersion,proto3" json:"previous_version,omitempty"`
+	PreviousVersion uint64                 `protobuf:"varint,5,opt,name=previous_version,json=previousVersion,proto3" json:"previous_version,omitempty"`
 	NewValue        []byte                 `protobuf:"bytes,6,opt,name=new_value,json=newValue,proto3" json:"new_value,omitempty"`
 	TTL             *time.Duration         `protobuf:"bytes,7,opt,name=ttl,proto3,stdduration" json:"ttl,omitempty"`
 }
@@ -712,7 +712,7 @@ func (m *ReplaceRequest) GetHeader() *headers.RequestHeader {
 	return nil
 }
 
-func (m *ReplaceRequest) GetIndex() int64 {
+func (m *ReplaceRequest) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -733,7 +733,7 @@ func (m *ReplaceRequest) GetPreviousValue() []byte {
 	return nil
 }
 
-func (m *ReplaceRequest) GetPreviousVersion() int64 {
+func (m *ReplaceRequest) GetPreviousVersion() uint64 {
 	if m != nil {
 		return m.PreviousVersion
 	}
@@ -757,12 +757,12 @@ func (m *ReplaceRequest) GetTTL() *time.Duration {
 type ReplaceResponse struct {
 	Header          *headers.ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
 	Status          ResponseStatus          `protobuf:"varint,2,opt,name=status,proto3,enum=atomix.indexedmap.ResponseStatus" json:"status,omitempty"`
-	Index           int64                   `protobuf:"varint,3,opt,name=index,proto3" json:"index,omitempty"`
+	Index           uint64                  `protobuf:"varint,3,opt,name=index,proto3" json:"index,omitempty"`
 	Key             string                  `protobuf:"bytes,4,opt,name=key,proto3" json:"key,omitempty"`
 	Created         time.Time               `protobuf:"bytes,5,opt,name=created,proto3,stdtime" json:"created"`
 	Updated         time.Time               `protobuf:"bytes,6,opt,name=updated,proto3,stdtime" json:"updated"`
 	PreviousValue   []byte                  `protobuf:"bytes,7,opt,name=previous_value,json=previousValue,proto3" json:"previous_value,omitempty"`
-	PreviousVersion int64                   `protobuf:"varint,8,opt,name=previous_version,json=previousVersion,proto3" json:"previous_version,omitempty"`
+	PreviousVersion uint64                  `protobuf:"varint,8,opt,name=previous_version,json=previousVersion,proto3" json:"previous_version,omitempty"`
 }
 
 func (m *ReplaceResponse) Reset()         { *m = ReplaceResponse{} }
@@ -812,7 +812,7 @@ func (m *ReplaceResponse) GetStatus() ResponseStatus {
 	return ResponseStatus_OK
 }
 
-func (m *ReplaceResponse) GetIndex() int64 {
+func (m *ReplaceResponse) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -847,7 +847,7 @@ func (m *ReplaceResponse) GetPreviousValue() []byte {
 	return nil
 }
 
-func (m *ReplaceResponse) GetPreviousVersion() int64 {
+func (m *ReplaceResponse) GetPreviousVersion() uint64 {
 	if m != nil {
 		return m.PreviousVersion
 	}
@@ -856,7 +856,7 @@ func (m *ReplaceResponse) GetPreviousVersion() int64 {
 
 type GetRequest struct {
 	Header *headers.RequestHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Index  int64                  `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
+	Index  uint64                 `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
 	Key    string                 `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
 }
 
@@ -900,7 +900,7 @@ func (m *GetRequest) GetHeader() *headers.RequestHeader {
 	return nil
 }
 
-func (m *GetRequest) GetIndex() int64 {
+func (m *GetRequest) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -916,10 +916,10 @@ func (m *GetRequest) GetKey() string {
 
 type GetResponse struct {
 	Header  *headers.ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Index   int64                   `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
+	Index   uint64                  `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
 	Key     string                  `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
 	Value   []byte                  `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
-	Version int64                   `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
+	Version uint64                  `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
 	Created time.Time               `protobuf:"bytes,6,opt,name=created,proto3,stdtime" json:"created"`
 	Updated time.Time               `protobuf:"bytes,7,opt,name=updated,proto3,stdtime" json:"updated"`
 }
@@ -964,7 +964,7 @@ func (m *GetResponse) GetHeader() *headers.ResponseHeader {
 	return nil
 }
 
-func (m *GetResponse) GetIndex() int64 {
+func (m *GetResponse) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -985,7 +985,7 @@ func (m *GetResponse) GetValue() []byte {
 	return nil
 }
 
-func (m *GetResponse) GetVersion() int64 {
+func (m *GetResponse) GetVersion() uint64 {
 	if m != nil {
 		return m.Version
 	}
@@ -1052,10 +1052,10 @@ func (m *FirstEntryRequest) GetHeader() *headers.RequestHeader {
 
 type FirstEntryResponse struct {
 	Header  *headers.ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Index   int64                   `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
+	Index   uint64                  `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
 	Key     string                  `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
 	Value   []byte                  `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
-	Version int64                   `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
+	Version uint64                  `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
 	Created time.Time               `protobuf:"bytes,6,opt,name=created,proto3,stdtime" json:"created"`
 	Updated time.Time               `protobuf:"bytes,7,opt,name=updated,proto3,stdtime" json:"updated"`
 }
@@ -1100,7 +1100,7 @@ func (m *FirstEntryResponse) GetHeader() *headers.ResponseHeader {
 	return nil
 }
 
-func (m *FirstEntryResponse) GetIndex() int64 {
+func (m *FirstEntryResponse) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -1121,7 +1121,7 @@ func (m *FirstEntryResponse) GetValue() []byte {
 	return nil
 }
 
-func (m *FirstEntryResponse) GetVersion() int64 {
+func (m *FirstEntryResponse) GetVersion() uint64 {
 	if m != nil {
 		return m.Version
 	}
@@ -1188,10 +1188,10 @@ func (m *LastEntryRequest) GetHeader() *headers.RequestHeader {
 
 type LastEntryResponse struct {
 	Header  *headers.ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Index   int64                   `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
+	Index   uint64                  `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
 	Key     string                  `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
 	Value   []byte                  `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
-	Version int64                   `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
+	Version uint64                  `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
 	Created time.Time               `protobuf:"bytes,6,opt,name=created,proto3,stdtime" json:"created"`
 	Updated time.Time               `protobuf:"bytes,7,opt,name=updated,proto3,stdtime" json:"updated"`
 }
@@ -1236,7 +1236,7 @@ func (m *LastEntryResponse) GetHeader() *headers.ResponseHeader {
 	return nil
 }
 
-func (m *LastEntryResponse) GetIndex() int64 {
+func (m *LastEntryResponse) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -1257,7 +1257,7 @@ func (m *LastEntryResponse) GetValue() []byte {
 	return nil
 }
 
-func (m *LastEntryResponse) GetVersion() int64 {
+func (m *LastEntryResponse) GetVersion() uint64 {
 	if m != nil {
 		return m.Version
 	}
@@ -1280,7 +1280,7 @@ func (m *LastEntryResponse) GetUpdated() time.Time {
 
 type PrevEntryRequest struct {
 	Header *headers.RequestHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Index  int64                  `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
+	Index  uint64                 `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
 }
 
 func (m *PrevEntryRequest) Reset()         { *m = PrevEntryRequest{} }
@@ -1323,7 +1323,7 @@ func (m *PrevEntryRequest) GetHeader() *headers.RequestHeader {
 	return nil
 }
 
-func (m *PrevEntryRequest) GetIndex() int64 {
+func (m *PrevEntryRequest) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -1332,10 +1332,10 @@ func (m *PrevEntryRequest) GetIndex() int64 {
 
 type PrevEntryResponse struct {
 	Header  *headers.ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Index   int64                   `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
+	Index   uint64                  `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
 	Key     string                  `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
 	Value   []byte                  `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
-	Version int64                   `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
+	Version uint64                  `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
 	Created time.Time               `protobuf:"bytes,6,opt,name=created,proto3,stdtime" json:"created"`
 	Updated time.Time               `protobuf:"bytes,7,opt,name=updated,proto3,stdtime" json:"updated"`
 }
@@ -1380,7 +1380,7 @@ func (m *PrevEntryResponse) GetHeader() *headers.ResponseHeader {
 	return nil
 }
 
-func (m *PrevEntryResponse) GetIndex() int64 {
+func (m *PrevEntryResponse) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -1401,7 +1401,7 @@ func (m *PrevEntryResponse) GetValue() []byte {
 	return nil
 }
 
-func (m *PrevEntryResponse) GetVersion() int64 {
+func (m *PrevEntryResponse) GetVersion() uint64 {
 	if m != nil {
 		return m.Version
 	}
@@ -1424,7 +1424,7 @@ func (m *PrevEntryResponse) GetUpdated() time.Time {
 
 type NextEntryRequest struct {
 	Header *headers.RequestHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Index  int64                  `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
+	Index  uint64                 `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
 }
 
 func (m *NextEntryRequest) Reset()         { *m = NextEntryRequest{} }
@@ -1467,7 +1467,7 @@ func (m *NextEntryRequest) GetHeader() *headers.RequestHeader {
 	return nil
 }
 
-func (m *NextEntryRequest) GetIndex() int64 {
+func (m *NextEntryRequest) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -1476,10 +1476,10 @@ func (m *NextEntryRequest) GetIndex() int64 {
 
 type NextEntryResponse struct {
 	Header  *headers.ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Index   int64                   `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
+	Index   uint64                  `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
 	Key     string                  `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
 	Value   []byte                  `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
-	Version int64                   `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
+	Version uint64                  `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
 	Created time.Time               `protobuf:"bytes,6,opt,name=created,proto3,stdtime" json:"created"`
 	Updated time.Time               `protobuf:"bytes,7,opt,name=updated,proto3,stdtime" json:"updated"`
 }
@@ -1524,7 +1524,7 @@ func (m *NextEntryResponse) GetHeader() *headers.ResponseHeader {
 	return nil
 }
 
-func (m *NextEntryResponse) GetIndex() int64 {
+func (m *NextEntryResponse) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -1545,7 +1545,7 @@ func (m *NextEntryResponse) GetValue() []byte {
 	return nil
 }
 
-func (m *NextEntryResponse) GetVersion() int64 {
+func (m *NextEntryResponse) GetVersion() uint64 {
 	if m != nil {
 		return m.Version
 	}
@@ -1568,10 +1568,10 @@ func (m *NextEntryResponse) GetUpdated() time.Time {
 
 type RemoveRequest struct {
 	Header  *headers.RequestHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
-	Index   int64                  `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
+	Index   uint64                 `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
 	Key     string                 `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
 	Value   []byte                 `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
-	Version int64                  `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
+	Version uint64                 `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
 	Created time.Time              `protobuf:"bytes,6,opt,name=created,proto3,stdtime" json:"created"`
 	Updated time.Time              `protobuf:"bytes,7,opt,name=updated,proto3,stdtime" json:"updated"`
 }
@@ -1616,7 +1616,7 @@ func (m *RemoveRequest) GetHeader() *headers.RequestHeader {
 	return nil
 }
 
-func (m *RemoveRequest) GetIndex() int64 {
+func (m *RemoveRequest) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -1637,7 +1637,7 @@ func (m *RemoveRequest) GetValue() []byte {
 	return nil
 }
 
-func (m *RemoveRequest) GetVersion() int64 {
+func (m *RemoveRequest) GetVersion() uint64 {
 	if m != nil {
 		return m.Version
 	}
@@ -1661,10 +1661,10 @@ func (m *RemoveRequest) GetUpdated() time.Time {
 type RemoveResponse struct {
 	Header          *headers.ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
 	Status          ResponseStatus          `protobuf:"varint,2,opt,name=status,proto3,enum=atomix.indexedmap.ResponseStatus" json:"status,omitempty"`
-	Index           int64                   `protobuf:"varint,3,opt,name=index,proto3" json:"index,omitempty"`
+	Index           uint64                  `protobuf:"varint,3,opt,name=index,proto3" json:"index,omitempty"`
 	Key             string                  `protobuf:"bytes,4,opt,name=key,proto3" json:"key,omitempty"`
 	PreviousValue   []byte                  `protobuf:"bytes,5,opt,name=previous_value,json=previousValue,proto3" json:"previous_value,omitempty"`
-	PreviousVersion int64                   `protobuf:"varint,6,opt,name=previous_version,json=previousVersion,proto3" json:"previous_version,omitempty"`
+	PreviousVersion uint64                  `protobuf:"varint,6,opt,name=previous_version,json=previousVersion,proto3" json:"previous_version,omitempty"`
 }
 
 func (m *RemoveResponse) Reset()         { *m = RemoveResponse{} }
@@ -1714,7 +1714,7 @@ func (m *RemoveResponse) GetStatus() ResponseStatus {
 	return ResponseStatus_OK
 }
 
-func (m *RemoveResponse) GetIndex() int64 {
+func (m *RemoveResponse) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -1735,7 +1735,7 @@ func (m *RemoveResponse) GetPreviousValue() []byte {
 	return nil
 }
 
-func (m *RemoveResponse) GetPreviousVersion() int64 {
+func (m *RemoveResponse) GetPreviousVersion() uint64 {
 	if m != nil {
 		return m.PreviousVersion
 	}
@@ -1877,9 +1877,9 @@ func (m *EntriesRequest) GetHeader() *headers.RequestHeader {
 type EntriesResponse struct {
 	Header  *headers.ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
 	Key     string                  `protobuf:"bytes,2,opt,name=key,proto3" json:"key,omitempty"`
-	Index   int64                   `protobuf:"varint,3,opt,name=index,proto3" json:"index,omitempty"`
+	Index   uint64                  `protobuf:"varint,3,opt,name=index,proto3" json:"index,omitempty"`
 	Value   []byte                  `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
-	Version int64                   `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
+	Version uint64                  `protobuf:"varint,5,opt,name=version,proto3" json:"version,omitempty"`
 	Created time.Time               `protobuf:"bytes,6,opt,name=created,proto3,stdtime" json:"created"`
 	Updated time.Time               `protobuf:"bytes,7,opt,name=updated,proto3,stdtime" json:"updated"`
 }
@@ -1931,7 +1931,7 @@ func (m *EntriesResponse) GetKey() string {
 	return ""
 }
 
-func (m *EntriesResponse) GetIndex() int64 {
+func (m *EntriesResponse) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -1945,7 +1945,7 @@ func (m *EntriesResponse) GetValue() []byte {
 	return nil
 }
 
-func (m *EntriesResponse) GetVersion() int64 {
+func (m *EntriesResponse) GetVersion() uint64 {
 	if m != nil {
 		return m.Version
 	}
@@ -1970,7 +1970,7 @@ type EventRequest struct {
 	Header *headers.RequestHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
 	Replay bool                   `protobuf:"varint,2,opt,name=replay,proto3" json:"replay,omitempty"`
 	Key    string                 `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
-	Index  int64                  `protobuf:"varint,4,opt,name=index,proto3" json:"index,omitempty"`
+	Index  uint64                 `protobuf:"varint,4,opt,name=index,proto3" json:"index,omitempty"`
 }
 
 func (m *EventRequest) Reset()         { *m = EventRequest{} }
@@ -2027,7 +2027,7 @@ func (m *EventRequest) GetKey() string {
 	return ""
 }
 
-func (m *EventRequest) GetIndex() int64 {
+func (m *EventRequest) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -2038,9 +2038,9 @@ type EventResponse struct {
 	Header  *headers.ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header,omitempty"`
 	Type    EventResponse_Type      `protobuf:"varint,2,opt,name=type,proto3,enum=atomix.indexedmap.EventResponse_Type" json:"type,omitempty"`
 	Key     string                  `protobuf:"bytes,3,opt,name=key,proto3" json:"key,omitempty"`
-	Index   int64                   `protobuf:"varint,4,opt,name=index,proto3" json:"index,omitempty"`
+	Index   uint64                  `protobuf:"varint,4,opt,name=index,proto3" json:"index,omitempty"`
 	Value   []byte                  `protobuf:"bytes,5,opt,name=value,proto3" json:"value,omitempty"`
-	Version int64                   `protobuf:"varint,6,opt,name=version,proto3" json:"version,omitempty"`
+	Version uint64                  `protobuf:"varint,6,opt,name=version,proto3" json:"version,omitempty"`
 	Created time.Time               `protobuf:"bytes,7,opt,name=created,proto3,stdtime" json:"created"`
 	Updated time.Time               `protobuf:"bytes,8,opt,name=updated,proto3,stdtime" json:"updated"`
 }
@@ -2099,7 +2099,7 @@ func (m *EventResponse) GetKey() string {
 	return ""
 }
 
-func (m *EventResponse) GetIndex() int64 {
+func (m *EventResponse) GetIndex() uint64 {
 	if m != nil {
 		return m.Index
 	}
@@ -2113,7 +2113,7 @@ func (m *EventResponse) GetValue() []byte {
 	return nil
 }
 
-func (m *EventResponse) GetVersion() int64 {
+func (m *EventResponse) GetVersion() uint64 {
 	if m != nil {
 		return m.Version
 	}
@@ -2194,8 +2194,8 @@ var fileDescriptor_72b98c364bce9ce1 = []byte{
 	0x16, 0x20, 0x7e, 0x80, 0x8f, 0xa9, 0x95, 0x33, 0x86, 0xf7, 0xa8, 0x1d, 0x40, 0xde, 0x47, 0x8e,
 	0x66, 0x23, 0x9a, 0x87, 0xec, 0x9e, 0xdd, 0x25, 0xa6, 0xd5, 0x75, 0x77, 0xfd, 0x4d, 0xd2, 0x46,
 	0xc6, 0xff, 0x6f, 0x03, 0x1f, 0x6b, 0x55, 0xc8, 0x6c, 0x5b, 0x27, 0x51, 0xe9, 0xff, 0x02, 0xb2,
-	0x0c, 0x25, 0xa2, 0xc1, 0x08, 0x12, 0xae, 0x75, 0xc2, 0x38, 0x4b, 0x1a, 0xf4, 0x59, 0xfb, 0x55,
-	0x02, 0x68, 0xf6, 0x49, 0xc4, 0x30, 0x5f, 0x87, 0x24, 0xcd, 0x35, 0x0a, 0x1d, 0x37, 0xd8, 0xc2,
+	0x0c, 0x25, 0xa2, 0xc1, 0x08, 0x12, 0xae, 0x75, 0xc2, 0x38, 0xcb, 0x19, 0xf4, 0x59, 0xfb, 0x55,
+	0x02, 0x68, 0xf6, 0x49, 0xc4, 0x30, 0x5f, 0x87, 0x24, 0xcd, 0x35, 0x0a, 0x9d, 0x30, 0xd8, 0xc2,
 	0x0f, 0x7e, 0x7c, 0x18, 0x7c, 0x4f, 0x6e, 0x60, 0x76, 0xfa, 0xb8, 0x98, 0x98, 0x93, 0x16, 0xb3,
 	0x06, 0x5b, 0xa0, 0x22, 0xa4, 0x06, 0xd8, 0x71, 0x2d, 0xbb, 0x5b, 0x4c, 0x52, 0x7d, 0x7f, 0x89,
 	0x6e, 0x43, 0x9c, 0x90, 0x4e, 0x51, 0xa1, 0xb6, 0xbc, 0x59, 0x61, 0x39, 0x5a, 0xf1, 0x73, 0xb4,
@@ -2249,8 +2249,8 @@ var fileDescriptor_72b98c364bce9ce1 = []byte{
 	0x7f, 0xaa, 0x84, 0x60, 0x23, 0xb5, 0xfd, 0x96, 0x84, 0x0c, 0x48, 0xf1, 0x16, 0x40, 0x78, 0xc8,
 	0x47, 0x1b, 0x0d, 0xe1, 0x21, 0x1f, 0xeb, 0x20, 0x6e, 0x49, 0x2b, 0xc5, 0xc7, 0xa7, 0x25, 0xe9,
 	0xc9, 0x69, 0x49, 0xfa, 0xe3, 0xb4, 0x24, 0x3d, 0x3c, 0x2b, 0xc5, 0x9e, 0x9c, 0x95, 0x62, 0xbf,
-	0x9d, 0x95, 0x62, 0xf7, 0x15, 0x5a, 0x8f, 0xdf, 0xff, 0x27, 0x00, 0x00, 0xff, 0xff, 0x6e, 0x51,
-	0x9c, 0x6c, 0x33, 0x1b, 0x00, 0x00,
+	0x9d, 0x95, 0x62, 0xf7, 0x15, 0x5a, 0x8f, 0xdf, 0xff, 0x27, 0x00, 0x00, 0xff, 0xff, 0xcd, 0xa3,
+	0x0d, 0x9a, 0x33, 0x1b, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -6030,7 +6030,7 @@ func (m *SizeResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Size_ |= int32(b&0x7F) << shift
+				m.Size_ |= uint32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -6138,7 +6138,7 @@ func (m *PutRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -6223,7 +6223,7 @@ func (m *PutRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Version |= int64(b&0x7F) << shift
+				m.Version |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -6386,7 +6386,7 @@ func (m *PutResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -6537,7 +6537,7 @@ func (m *PutResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.PreviousVersion |= int64(b&0x7F) << shift
+				m.PreviousVersion |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -6645,7 +6645,7 @@ func (m *ReplaceRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -6730,7 +6730,7 @@ func (m *ReplaceRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.PreviousVersion |= int64(b&0x7F) << shift
+				m.PreviousVersion |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -6927,7 +6927,7 @@ func (m *ReplaceResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -7078,7 +7078,7 @@ func (m *ReplaceResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.PreviousVersion |= int64(b&0x7F) << shift
+				m.PreviousVersion |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -7186,7 +7186,7 @@ func (m *GetRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -7326,7 +7326,7 @@ func (m *GetResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -7411,7 +7411,7 @@ func (m *GetResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Version |= int64(b&0x7F) << shift
+				m.Version |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -7674,7 +7674,7 @@ func (m *FirstEntryResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -7759,7 +7759,7 @@ func (m *FirstEntryResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Version |= int64(b&0x7F) << shift
+				m.Version |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -8022,7 +8022,7 @@ func (m *LastEntryResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -8107,7 +8107,7 @@ func (m *LastEntryResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Version |= int64(b&0x7F) << shift
+				m.Version |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -8281,7 +8281,7 @@ func (m *PrevEntryRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -8389,7 +8389,7 @@ func (m *PrevEntryResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -8474,7 +8474,7 @@ func (m *PrevEntryResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Version |= int64(b&0x7F) << shift
+				m.Version |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -8648,7 +8648,7 @@ func (m *NextEntryRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -8756,7 +8756,7 @@ func (m *NextEntryResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -8841,7 +8841,7 @@ func (m *NextEntryResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Version |= int64(b&0x7F) << shift
+				m.Version |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -9015,7 +9015,7 @@ func (m *RemoveRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -9100,7 +9100,7 @@ func (m *RemoveRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Version |= int64(b&0x7F) << shift
+				m.Version |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -9293,7 +9293,7 @@ func (m *RemoveResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -9378,7 +9378,7 @@ func (m *RemoveResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.PreviousVersion |= int64(b&0x7F) << shift
+				m.PreviousVersion |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -9785,7 +9785,7 @@ func (m *EntriesResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -9838,7 +9838,7 @@ func (m *EntriesResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Version |= int64(b&0x7F) << shift
+				m.Version |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -10064,7 +10064,7 @@ func (m *EventRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -10223,7 +10223,7 @@ func (m *EventResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Index |= int64(b&0x7F) << shift
+				m.Index |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -10276,7 +10276,7 @@ func (m *EventResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Version |= int64(b&0x7F) << shift
+				m.Version |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}

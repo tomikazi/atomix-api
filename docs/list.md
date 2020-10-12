@@ -423,7 +423,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| size | [int32](#int32) |  |  |
+| size | [uint32](#uint32) |  |  |
 
 
 

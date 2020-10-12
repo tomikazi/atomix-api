@@ -288,6 +288,7 @@
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
 | version | [uint64](#uint64) |  |  |
+| if_empty | [bool](#bool) |  |  |
 | ttl | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
 
 

@@ -49,6 +49,7 @@ message PutRequest {
     string key = 3;
     bytes value = 4;
     uint64 version = 5;
+    bool if_empty = 7;
     google.protobuf.Duration ttl = 6 [(gogoproto.customname) = "TTL", (gogoproto.stdduration) = true];
 }
 

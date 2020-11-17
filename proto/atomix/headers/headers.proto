@@ -22,6 +22,7 @@ message ResponseHeader {
     string leader = 5;
     ResponseStatus status = 6;
     ResponseType type = 7;
+    string message = 8;
 }
 
 enum ResponseType {

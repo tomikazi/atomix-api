@@ -60,6 +60,7 @@
 | leader | [string](#string) |  |  |
 | status | [ResponseStatus](#atomix.headers.ResponseStatus) |  |  |
 | type | [ResponseType](#atomix.headers.ResponseType) |  |  |
+| message | [string](#string) |  |  |
 
 
 

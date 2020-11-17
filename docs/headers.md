@@ -94,6 +94,18 @@
 | OK | 0 |  |
 | ERROR | 1 |  |
 | NOT_LEADER | 2 |  |
+| UNKNOWN | 3 |  |
+| CANCELED | 4 |  |
+| NOT_FOUND | 5 |  |
+| ALREADY_EXISTS | 6 |  |
+| UNAUTHORIZED | 7 |  |
+| FORBIDDEN | 8 |  |
+| CONFLICT | 9 |  |
+| INVALID | 10 |  |
+| UNAVAILABLE | 11 |  |
+| NOT_SUPPORTED | 12 |  |
+| TIMEOUT | 13 |  |
+| INTERNAL | 14 |  |
 
 
 

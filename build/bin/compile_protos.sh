@@ -20,8 +20,10 @@ go_import_paths="${go_import_paths},Mgoogle/protobuf/timestamp.proto=github.com/
 go_import_paths="${go_import_paths},Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types"
 
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=atomix/primitive,plugins=grpc:go  proto/atomix/storage/*.proto
+protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=atomix/timestamp,plugins=grpc:go  proto/atomix/storage/timestamp/*.proto
 
 go_import_paths="${go_import_paths},Matomix/storage/primitive.proto=github.com/atomix/api/go/atomix/storage"
+go_import_paths="${go_import_paths},Matomix/storage/timestamp/timestamp.proto=github.com/atomix/api/go/atomix/storage/timestamp"
 
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=atomix/counter,plugins=grpc:go    proto/atomix/storage/counter/*.proto
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=atomix/election,plugins=grpc:go   proto/atomix/storage/election/*.proto

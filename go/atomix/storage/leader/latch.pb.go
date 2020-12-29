@@ -4,10 +4,10 @@
 package leader
 
 import (
-	timestamp "atomix/storage/timestamp"
 	context "context"
 	fmt "fmt"
 	storage "github.com/atomix/api/go/atomix/storage"
+	timestamp "github.com/atomix/api/go/atomix/storage/timestamp"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"

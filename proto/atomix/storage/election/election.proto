@@ -17,6 +17,7 @@ limitations under the License.
 syntax = "proto3";
 
 import "google/protobuf/timestamp.proto";
+import "atomix/storage/timestamp/timestamp.proto";
 import "atomix/storage/primitive.proto";
 import "gogoproto/gogo.proto";
 
@@ -113,7 +114,7 @@ message EventResponse {
 }
 
 message Term {
-    uint64 id = 1 [(gogoproto.customname) = "ID"];
+    atomix.storage.timestamp.Epoch id = 1 [(gogoproto.nullable) = false];
     google.protobuf.Timestamp timestamp = 2 [(gogoproto.stdtime) = true];
     string leader = 3;
     repeated string candidates = 4;

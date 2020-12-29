@@ -185,37 +185,6 @@ public final class MapServiceGrpc {
     return getPutMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<atomix.storage.map.Map.ReplaceRequest,
-      atomix.storage.map.Map.ReplaceResponse> getReplaceMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "Replace",
-      requestType = atomix.storage.map.Map.ReplaceRequest.class,
-      responseType = atomix.storage.map.Map.ReplaceResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<atomix.storage.map.Map.ReplaceRequest,
-      atomix.storage.map.Map.ReplaceResponse> getReplaceMethod() {
-    io.grpc.MethodDescriptor<atomix.storage.map.Map.ReplaceRequest, atomix.storage.map.Map.ReplaceResponse> getReplaceMethod;
-    if ((getReplaceMethod = MapServiceGrpc.getReplaceMethod) == null) {
-      synchronized (MapServiceGrpc.class) {
-        if ((getReplaceMethod = MapServiceGrpc.getReplaceMethod) == null) {
-          MapServiceGrpc.getReplaceMethod = getReplaceMethod =
-              io.grpc.MethodDescriptor.<atomix.storage.map.Map.ReplaceRequest, atomix.storage.map.Map.ReplaceResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Replace"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  atomix.storage.map.Map.ReplaceRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  atomix.storage.map.Map.ReplaceResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new MapServiceMethodDescriptorSupplier("Replace"))
-              .build();
-        }
-      }
-    }
-    return getReplaceMethod;
-  }
-
   private static volatile io.grpc.MethodDescriptor<atomix.storage.map.Map.GetRequest,
       atomix.storage.map.Map.GetResponse> getGetMethod;
 
@@ -474,16 +443,6 @@ public final class MapServiceGrpc {
 
     /**
      * <pre>
-     * Replace performs a check-and-set operation on an entry in the map
-     * </pre>
-     */
-    public void replace(atomix.storage.map.Map.ReplaceRequest request,
-        io.grpc.stub.StreamObserver<atomix.storage.map.Map.ReplaceResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getReplaceMethod(), responseObserver);
-    }
-
-    /**
-     * <pre>
      * Get gets the entry for a key
      * </pre>
      */
@@ -569,13 +528,6 @@ public final class MapServiceGrpc {
                 atomix.storage.map.Map.PutRequest,
                 atomix.storage.map.Map.PutResponse>(
                   this, METHODID_PUT)))
-          .addMethod(
-            getReplaceMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                atomix.storage.map.Map.ReplaceRequest,
-                atomix.storage.map.Map.ReplaceResponse>(
-                  this, METHODID_REPLACE)))
           .addMethod(
             getGetMethod(),
             asyncUnaryCall(
@@ -685,17 +637,6 @@ public final class MapServiceGrpc {
         io.grpc.stub.StreamObserver<atomix.storage.map.Map.PutResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getPutMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Replace performs a check-and-set operation on an entry in the map
-     * </pre>
-     */
-    public void replace(atomix.storage.map.Map.ReplaceRequest request,
-        io.grpc.stub.StreamObserver<atomix.storage.map.Map.ReplaceResponse> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getReplaceMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -819,16 +760,6 @@ public final class MapServiceGrpc {
     public atomix.storage.map.Map.PutResponse put(atomix.storage.map.Map.PutRequest request) {
       return blockingUnaryCall(
           getChannel(), getPutMethod(), getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     * Replace performs a check-and-set operation on an entry in the map
-     * </pre>
-     */
-    public atomix.storage.map.Map.ReplaceResponse replace(atomix.storage.map.Map.ReplaceRequest request) {
-      return blockingUnaryCall(
-          getChannel(), getReplaceMethod(), getCallOptions(), request);
     }
 
     /**
@@ -958,17 +889,6 @@ public final class MapServiceGrpc {
 
     /**
      * <pre>
-     * Replace performs a check-and-set operation on an entry in the map
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<atomix.storage.map.Map.ReplaceResponse> replace(
-        atomix.storage.map.Map.ReplaceRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getReplaceMethod(), getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
      * Get gets the entry for a key
      * </pre>
      */
@@ -1006,12 +926,11 @@ public final class MapServiceGrpc {
   private static final int METHODID_SIZE = 2;
   private static final int METHODID_EXISTS = 3;
   private static final int METHODID_PUT = 4;
-  private static final int METHODID_REPLACE = 5;
-  private static final int METHODID_GET = 6;
-  private static final int METHODID_REMOVE = 7;
-  private static final int METHODID_CLEAR = 8;
-  private static final int METHODID_EVENTS = 9;
-  private static final int METHODID_ENTRIES = 10;
+  private static final int METHODID_GET = 5;
+  private static final int METHODID_REMOVE = 6;
+  private static final int METHODID_CLEAR = 7;
+  private static final int METHODID_EVENTS = 8;
+  private static final int METHODID_ENTRIES = 9;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1049,10 +968,6 @@ public final class MapServiceGrpc {
         case METHODID_PUT:
           serviceImpl.put((atomix.storage.map.Map.PutRequest) request,
               (io.grpc.stub.StreamObserver<atomix.storage.map.Map.PutResponse>) responseObserver);
-          break;
-        case METHODID_REPLACE:
-          serviceImpl.replace((atomix.storage.map.Map.ReplaceRequest) request,
-              (io.grpc.stub.StreamObserver<atomix.storage.map.Map.ReplaceResponse>) responseObserver);
           break;
         case METHODID_GET:
           serviceImpl.get((atomix.storage.map.Map.GetRequest) request,
@@ -1140,7 +1055,6 @@ public final class MapServiceGrpc {
               .addMethod(getSizeMethod())
               .addMethod(getExistsMethod())
               .addMethod(getPutMethod())
-              .addMethod(getReplaceMethod())
               .addMethod(getGetMethod())
               .addMethod(getRemoveMethod())
               .addMethod(getClearMethod())

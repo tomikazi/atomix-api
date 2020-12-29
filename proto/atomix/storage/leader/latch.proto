@@ -17,6 +17,7 @@ limitations under the License.
 syntax = "proto3";
 
 import "atomix/storage/primitive.proto";
+import "atomix/storage/timestamp/timestamp.proto";
 import "gogoproto/gogo.proto";
 
 package atomix.storage.leader;
@@ -72,7 +73,7 @@ message EventResponse {
 }
 
 message Latch {
-    uint64 id = 1 [(gogoproto.customname) = "ID"];
+    atomix.storage.timestamp.Epoch id = 1 [(gogoproto.nullable) = false];
     string leader = 2;
     repeated string participants = 3;
 }

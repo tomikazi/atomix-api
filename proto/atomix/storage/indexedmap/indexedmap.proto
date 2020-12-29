@@ -20,6 +20,7 @@ package atomix.storage.indexedmap;
 
 import "google/protobuf/duration.proto";
 import "google/protobuf/timestamp.proto";
+import "atomix/storage/timestamp/timestamp.proto";
 import "atomix/storage/primitive.proto";
 import "gogoproto/gogo.proto";
 
@@ -71,34 +72,7 @@ message PutRequest {
 
 message PutResponse {
     atomix.storage.ResponseHeader header = 1 [(gogoproto.nullable) = false];
-    ResponseStatus status = 2;
-    uint64 index = 3;
-    string key = 4;
-    google.protobuf.Timestamp created = 5 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
-    google.protobuf.Timestamp updated = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
-    bytes previous_value = 7;
-    uint64 previous_version = 8;
-}
-
-message ReplaceRequest {
-    atomix.storage.RequestHeader header = 1 [(gogoproto.nullable) = false];
-    uint64 index = 2;
-    string key = 3;
-    bytes previous_value = 4;
-    uint64 previous_version = 5;
-    bytes new_value = 6;
-    google.protobuf.Duration ttl = 7 [(gogoproto.customname) = "TTL", (gogoproto.stdduration) = true];
-}
-
-message ReplaceResponse {
-    atomix.storage.ResponseHeader header = 1 [(gogoproto.nullable) = false];
-    ResponseStatus status = 2;
-    uint64 index = 3;
-    string key = 4;
-    google.protobuf.Timestamp created = 5 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
-    google.protobuf.Timestamp updated = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
-    bytes previous_value = 7;
-    uint64 previous_version = 8;
+    Entry entry = 2;
 }
 
 message GetRequest {
@@ -109,12 +83,7 @@ message GetRequest {
 
 message GetResponse {
     atomix.storage.ResponseHeader header = 1 [(gogoproto.nullable) = false];
-    uint64 index = 2;
-    string key = 3;
-    bytes value = 4;
-    uint64 version = 5;
-    google.protobuf.Timestamp created = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
-    google.protobuf.Timestamp updated = 7 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    Entry entry = 2;
 }
 
 message FirstEntryRequest {
@@ -123,12 +92,7 @@ message FirstEntryRequest {
 
 message FirstEntryResponse {
     atomix.storage.ResponseHeader header = 1 [(gogoproto.nullable) = false];
-    uint64 index = 2;
-    string key = 3;
-    bytes value = 4;
-    uint64 version = 5;
-    google.protobuf.Timestamp created = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
-    google.protobuf.Timestamp updated = 7 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    Entry entry = 2;
 }
 
 message LastEntryRequest {
@@ -137,12 +101,7 @@ message LastEntryRequest {
 
 message LastEntryResponse {
     atomix.storage.ResponseHeader header = 1 [(gogoproto.nullable) = false];
-    uint64 index = 2;
-    string key = 3;
-    bytes value = 4;
-    uint64 version = 5;
-    google.protobuf.Timestamp created = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
-    google.protobuf.Timestamp updated = 7 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    Entry entry = 2;
 }
 
 message PrevEntryRequest {
@@ -152,12 +111,7 @@ message PrevEntryRequest {
 
 message PrevEntryResponse {
     atomix.storage.ResponseHeader header = 1 [(gogoproto.nullable) = false];
-    uint64 index = 2;
-    string key = 3;
-    bytes value = 4;
-    uint64 version = 5;
-    google.protobuf.Timestamp created = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
-    google.protobuf.Timestamp updated = 7 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    Entry entry = 2;
 }
 
 message NextEntryRequest {
@@ -167,31 +121,19 @@ message NextEntryRequest {
 
 message NextEntryResponse {
     atomix.storage.ResponseHeader header = 1 [(gogoproto.nullable) = false];
-    uint64 index = 2;
-    string key = 3;
-    bytes value = 4;
-    uint64 version = 5;
-    google.protobuf.Timestamp created = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
-    google.protobuf.Timestamp updated = 7 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    Entry entry = 2;
 }
 
 message RemoveRequest {
     atomix.storage.RequestHeader header = 1 [(gogoproto.nullable) = false];
     uint64 index = 2;
     string key = 3;
-    bytes value = 4;
-    uint64 version = 5;
-    google.protobuf.Timestamp created = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
-    google.protobuf.Timestamp updated = 7 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    atomix.storage.timestamp.Timestamp timestamp = 4;
 }
 
 message RemoveResponse {
     atomix.storage.ResponseHeader header = 1 [(gogoproto.nullable) = false];
-    ResponseStatus status = 2;
-    uint64 index = 3;
-    string key = 4;
-    bytes previous_value = 5;
-    uint64 previous_version = 6;
+    Entry entry = 2;
 }
 
 message ClearRequest {
@@ -208,12 +150,7 @@ message EntriesRequest {
 
 message EntriesResponse {
     atomix.storage.ResponseHeader header = 1 [(gogoproto.nullable) = false];
-    string key = 2;
-    uint64 index = 3;
-    bytes value = 4;
-    uint64 version = 5;
-    google.protobuf.Timestamp created = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
-    google.protobuf.Timestamp updated = 7 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    Entry entry = 2 [(gogoproto.nullable) = false];
 }
 
 message EventRequest {
@@ -226,12 +163,7 @@ message EventRequest {
 message EventResponse {
     atomix.storage.ResponseHeader header = 1 [(gogoproto.nullable) = false];
     Type type = 2;
-    string key = 3;
-    uint64 index = 4;
-    bytes value = 5;
-    uint64 version = 6;
-    google.protobuf.Timestamp created = 7 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
-    google.protobuf.Timestamp updated = 8 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    Entry entry = 3 [(gogoproto.nullable) = false];
 
     enum Type {
         NONE = 0;
@@ -241,11 +173,13 @@ message EventResponse {
     }
 }
 
-enum ResponseStatus {
-    OK = 0;
-    NOOP = 1;
-    WRITE_LOCK = 2;
-    PRECONDITION_FAILED = 3;
+message Entry {
+    string key = 1;
+    uint64 index = 2;
+    bytes value = 3;
+    atomix.storage.timestamp.Timestamp timestamp = 4 [(gogoproto.nullable) = false];
+    google.protobuf.Timestamp created = 5 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp updated = 6 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
 
 // IndexedMap service
@@ -265,9 +199,6 @@ service IndexedMapService {
 
     // Put puts an entry into the map
     rpc Put (PutRequest) returns (PutResponse);
-
-    // Replace performs a check-and-set operation on an entry in the map
-    rpc Replace (ReplaceRequest) returns (ReplaceResponse);
 
     // Get gets the entry for a key
     rpc Get (GetRequest) returns (GetResponse);

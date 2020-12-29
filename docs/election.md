@@ -301,7 +301,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [uint64](#uint64) |  |  |
+| id | [atomix.storage.timestamp.Epoch](#atomix.storage.timestamp.Epoch) |  |  |
 | timestamp | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | leader | [string](#string) |  |  |
 | candidates | [string](#string) | repeated |  |

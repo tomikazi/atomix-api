@@ -9,6 +9,7 @@ import betterproto
 import grpclib
 
 from .atomix import storage
+from .atomix.storage import timestamp
 
 
 class EventResponseType(betterproto.Enum):
@@ -121,7 +122,7 @@ class EventResponse(betterproto.Message):
 
 @dataclass
 class Term(betterproto.Message):
-    id: int = betterproto.uint64_field(1)
+    id: timestamp.Epoch = betterproto.message_field(1)
     timestamp: datetime = betterproto.message_field(2)
     leader: str = betterproto.string_field(3)
     candidates: List[str] = betterproto.string_field(4)

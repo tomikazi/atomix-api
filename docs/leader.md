@@ -165,7 +165,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [uint64](#uint64) |  |  |
+| id | [atomix.storage.timestamp.Epoch](#atomix.storage.timestamp.Epoch) |  |  |
 | leader | [string](#string) |  |  |
 | participants | [string](#string) | repeated |  |
 

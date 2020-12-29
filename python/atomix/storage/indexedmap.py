@@ -9,13 +9,7 @@ import betterproto
 import grpclib
 
 from .atomix import storage
-
-
-class ResponseStatus(betterproto.Enum):
-    OK = 0
-    NOOP = 1
-    WRITE_LOCK = 2
-    PRECONDITION_FAILED = 3
+from .atomix.storage import timestamp
 
 
 class EventResponseType(betterproto.Enum):
@@ -83,36 +77,7 @@ class PutRequest(betterproto.Message):
 @dataclass
 class PutResponse(betterproto.Message):
     header: storage.ResponseHeader = betterproto.message_field(1)
-    status: "ResponseStatus" = betterproto.enum_field(2)
-    index: int = betterproto.uint64_field(3)
-    key: str = betterproto.string_field(4)
-    created: datetime = betterproto.message_field(5)
-    updated: datetime = betterproto.message_field(6)
-    previous_value: bytes = betterproto.bytes_field(7)
-    previous_version: int = betterproto.uint64_field(8)
-
-
-@dataclass
-class ReplaceRequest(betterproto.Message):
-    header: storage.RequestHeader = betterproto.message_field(1)
-    index: int = betterproto.uint64_field(2)
-    key: str = betterproto.string_field(3)
-    previous_value: bytes = betterproto.bytes_field(4)
-    previous_version: int = betterproto.uint64_field(5)
-    new_value: bytes = betterproto.bytes_field(6)
-    ttl: timedelta = betterproto.message_field(7)
-
-
-@dataclass
-class ReplaceResponse(betterproto.Message):
-    header: storage.ResponseHeader = betterproto.message_field(1)
-    status: "ResponseStatus" = betterproto.enum_field(2)
-    index: int = betterproto.uint64_field(3)
-    key: str = betterproto.string_field(4)
-    created: datetime = betterproto.message_field(5)
-    updated: datetime = betterproto.message_field(6)
-    previous_value: bytes = betterproto.bytes_field(7)
-    previous_version: int = betterproto.uint64_field(8)
+    entry: "Entry" = betterproto.message_field(2)
 
 
 @dataclass
@@ -125,12 +90,7 @@ class GetRequest(betterproto.Message):
 @dataclass
 class GetResponse(betterproto.Message):
     header: storage.ResponseHeader = betterproto.message_field(1)
-    index: int = betterproto.uint64_field(2)
-    key: str = betterproto.string_field(3)
-    value: bytes = betterproto.bytes_field(4)
-    version: int = betterproto.uint64_field(5)
-    created: datetime = betterproto.message_field(6)
-    updated: datetime = betterproto.message_field(7)
+    entry: "Entry" = betterproto.message_field(2)
 
 
 @dataclass
@@ -141,12 +101,7 @@ class FirstEntryRequest(betterproto.Message):
 @dataclass
 class FirstEntryResponse(betterproto.Message):
     header: storage.ResponseHeader = betterproto.message_field(1)
-    index: int = betterproto.uint64_field(2)
-    key: str = betterproto.string_field(3)
-    value: bytes = betterproto.bytes_field(4)
-    version: int = betterproto.uint64_field(5)
-    created: datetime = betterproto.message_field(6)
-    updated: datetime = betterproto.message_field(7)
+    entry: "Entry" = betterproto.message_field(2)
 
 
 @dataclass
@@ -157,12 +112,7 @@ class LastEntryRequest(betterproto.Message):
 @dataclass
 class LastEntryResponse(betterproto.Message):
     header: storage.ResponseHeader = betterproto.message_field(1)
-    index: int = betterproto.uint64_field(2)
-    key: str = betterproto.string_field(3)
-    value: bytes = betterproto.bytes_field(4)
-    version: int = betterproto.uint64_field(5)
-    created: datetime = betterproto.message_field(6)
-    updated: datetime = betterproto.message_field(7)
+    entry: "Entry" = betterproto.message_field(2)
 
 
 @dataclass
@@ -174,12 +124,7 @@ class PrevEntryRequest(betterproto.Message):
 @dataclass
 class PrevEntryResponse(betterproto.Message):
     header: storage.ResponseHeader = betterproto.message_field(1)
-    index: int = betterproto.uint64_field(2)
-    key: str = betterproto.string_field(3)
-    value: bytes = betterproto.bytes_field(4)
-    version: int = betterproto.uint64_field(5)
-    created: datetime = betterproto.message_field(6)
-    updated: datetime = betterproto.message_field(7)
+    entry: "Entry" = betterproto.message_field(2)
 
 
 @dataclass
@@ -191,12 +136,7 @@ class NextEntryRequest(betterproto.Message):
 @dataclass
 class NextEntryResponse(betterproto.Message):
     header: storage.ResponseHeader = betterproto.message_field(1)
-    index: int = betterproto.uint64_field(2)
-    key: str = betterproto.string_field(3)
-    value: bytes = betterproto.bytes_field(4)
-    version: int = betterproto.uint64_field(5)
-    created: datetime = betterproto.message_field(6)
-    updated: datetime = betterproto.message_field(7)
+    entry: "Entry" = betterproto.message_field(2)
 
 
 @dataclass
@@ -204,20 +144,13 @@ class RemoveRequest(betterproto.Message):
     header: storage.RequestHeader = betterproto.message_field(1)
     index: int = betterproto.uint64_field(2)
     key: str = betterproto.string_field(3)
-    value: bytes = betterproto.bytes_field(4)
-    version: int = betterproto.uint64_field(5)
-    created: datetime = betterproto.message_field(6)
-    updated: datetime = betterproto.message_field(7)
+    timestamp: timestamp.Timestamp = betterproto.message_field(4)
 
 
 @dataclass
 class RemoveResponse(betterproto.Message):
     header: storage.ResponseHeader = betterproto.message_field(1)
-    status: "ResponseStatus" = betterproto.enum_field(2)
-    index: int = betterproto.uint64_field(3)
-    key: str = betterproto.string_field(4)
-    previous_value: bytes = betterproto.bytes_field(5)
-    previous_version: int = betterproto.uint64_field(6)
+    entry: "Entry" = betterproto.message_field(2)
 
 
 @dataclass
@@ -238,12 +171,7 @@ class EntriesRequest(betterproto.Message):
 @dataclass
 class EntriesResponse(betterproto.Message):
     header: storage.ResponseHeader = betterproto.message_field(1)
-    key: str = betterproto.string_field(2)
-    index: int = betterproto.uint64_field(3)
-    value: bytes = betterproto.bytes_field(4)
-    version: int = betterproto.uint64_field(5)
-    created: datetime = betterproto.message_field(6)
-    updated: datetime = betterproto.message_field(7)
+    entry: "Entry" = betterproto.message_field(2)
 
 
 @dataclass
@@ -258,12 +186,17 @@ class EventRequest(betterproto.Message):
 class EventResponse(betterproto.Message):
     header: storage.ResponseHeader = betterproto.message_field(1)
     type: "EventResponseType" = betterproto.enum_field(2)
-    key: str = betterproto.string_field(3)
-    index: int = betterproto.uint64_field(4)
-    value: bytes = betterproto.bytes_field(5)
-    version: int = betterproto.uint64_field(6)
-    created: datetime = betterproto.message_field(7)
-    updated: datetime = betterproto.message_field(8)
+    entry: "Entry" = betterproto.message_field(3)
+
+
+@dataclass
+class Entry(betterproto.Message):
+    key: str = betterproto.string_field(1)
+    index: int = betterproto.uint64_field(2)
+    value: bytes = betterproto.bytes_field(3)
+    timestamp: timestamp.Timestamp = betterproto.message_field(4)
+    created: datetime = betterproto.message_field(5)
+    updated: datetime = betterproto.message_field(6)
 
 
 class IndexedMapServiceStub(betterproto.ServiceStub):
@@ -357,38 +290,6 @@ class IndexedMapServiceStub(betterproto.ServiceStub):
             "/atomix.storage.indexedmap.IndexedMapService/Put", request, PutResponse,
         )
 
-    async def replace(
-        self,
-        *,
-        header: Optional[storage.RequestHeader] = None,
-        index: int = 0,
-        key: str = "",
-        previous_value: bytes = b"",
-        previous_version: int = 0,
-        new_value: bytes = b"",
-        ttl: Optional[timedelta] = None,
-    ) -> ReplaceResponse:
-        """
-        Replace performs a check-and-set operation on an entry in the map
-        """
-
-        request = ReplaceRequest()
-        if header is not None:
-            request.header = header
-        request.index = index
-        request.key = key
-        request.previous_value = previous_value
-        request.previous_version = previous_version
-        request.new_value = new_value
-        if ttl is not None:
-            request.ttl = ttl
-
-        return await self._unary_unary(
-            "/atomix.storage.indexedmap.IndexedMapService/Replace",
-            request,
-            ReplaceResponse,
-        )
-
     async def get(
         self,
         *,
@@ -476,10 +377,7 @@ class IndexedMapServiceStub(betterproto.ServiceStub):
         header: Optional[storage.RequestHeader] = None,
         index: int = 0,
         key: str = "",
-        value: bytes = b"",
-        version: int = 0,
-        created: Optional[datetime] = None,
-        updated: Optional[datetime] = None,
+        timestamp: Optional[timestamp.Timestamp] = None,
     ) -> RemoveResponse:
         """Remove removes an entry from the map"""
 
@@ -488,12 +386,8 @@ class IndexedMapServiceStub(betterproto.ServiceStub):
             request.header = header
         request.index = index
         request.key = key
-        request.value = value
-        request.version = version
-        if created is not None:
-            request.created = created
-        if updated is not None:
-            request.updated = updated
+        if timestamp is not None:
+            request.timestamp = timestamp
 
         return await self._unary_unary(
             "/atomix.storage.indexedmap.IndexedMapService/Remove",

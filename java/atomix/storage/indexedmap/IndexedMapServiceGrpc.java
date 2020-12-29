@@ -185,37 +185,6 @@ public final class IndexedMapServiceGrpc {
     return getPutMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<atomix.storage.indexedmap.Indexedmap.ReplaceRequest,
-      atomix.storage.indexedmap.Indexedmap.ReplaceResponse> getReplaceMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "Replace",
-      requestType = atomix.storage.indexedmap.Indexedmap.ReplaceRequest.class,
-      responseType = atomix.storage.indexedmap.Indexedmap.ReplaceResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<atomix.storage.indexedmap.Indexedmap.ReplaceRequest,
-      atomix.storage.indexedmap.Indexedmap.ReplaceResponse> getReplaceMethod() {
-    io.grpc.MethodDescriptor<atomix.storage.indexedmap.Indexedmap.ReplaceRequest, atomix.storage.indexedmap.Indexedmap.ReplaceResponse> getReplaceMethod;
-    if ((getReplaceMethod = IndexedMapServiceGrpc.getReplaceMethod) == null) {
-      synchronized (IndexedMapServiceGrpc.class) {
-        if ((getReplaceMethod = IndexedMapServiceGrpc.getReplaceMethod) == null) {
-          IndexedMapServiceGrpc.getReplaceMethod = getReplaceMethod =
-              io.grpc.MethodDescriptor.<atomix.storage.indexedmap.Indexedmap.ReplaceRequest, atomix.storage.indexedmap.Indexedmap.ReplaceResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Replace"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  atomix.storage.indexedmap.Indexedmap.ReplaceRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  atomix.storage.indexedmap.Indexedmap.ReplaceResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new IndexedMapServiceMethodDescriptorSupplier("Replace"))
-              .build();
-        }
-      }
-    }
-    return getReplaceMethod;
-  }
-
   private static volatile io.grpc.MethodDescriptor<atomix.storage.indexedmap.Indexedmap.GetRequest,
       atomix.storage.indexedmap.Indexedmap.GetResponse> getGetMethod;
 
@@ -598,16 +567,6 @@ public final class IndexedMapServiceGrpc {
 
     /**
      * <pre>
-     * Replace performs a check-and-set operation on an entry in the map
-     * </pre>
-     */
-    public void replace(atomix.storage.indexedmap.Indexedmap.ReplaceRequest request,
-        io.grpc.stub.StreamObserver<atomix.storage.indexedmap.Indexedmap.ReplaceResponse> responseObserver) {
-      asyncUnimplementedUnaryCall(getReplaceMethod(), responseObserver);
-    }
-
-    /**
-     * <pre>
      * Get gets the entry for a key
      * </pre>
      */
@@ -733,13 +692,6 @@ public final class IndexedMapServiceGrpc {
                 atomix.storage.indexedmap.Indexedmap.PutRequest,
                 atomix.storage.indexedmap.Indexedmap.PutResponse>(
                   this, METHODID_PUT)))
-          .addMethod(
-            getReplaceMethod(),
-            asyncUnaryCall(
-              new MethodHandlers<
-                atomix.storage.indexedmap.Indexedmap.ReplaceRequest,
-                atomix.storage.indexedmap.Indexedmap.ReplaceResponse>(
-                  this, METHODID_REPLACE)))
           .addMethod(
             getGetMethod(),
             asyncUnaryCall(
@@ -877,17 +829,6 @@ public final class IndexedMapServiceGrpc {
         io.grpc.stub.StreamObserver<atomix.storage.indexedmap.Indexedmap.PutResponse> responseObserver) {
       asyncUnaryCall(
           getChannel().newCall(getPutMethod(), getCallOptions()), request, responseObserver);
-    }
-
-    /**
-     * <pre>
-     * Replace performs a check-and-set operation on an entry in the map
-     * </pre>
-     */
-    public void replace(atomix.storage.indexedmap.Indexedmap.ReplaceRequest request,
-        io.grpc.stub.StreamObserver<atomix.storage.indexedmap.Indexedmap.ReplaceResponse> responseObserver) {
-      asyncUnaryCall(
-          getChannel().newCall(getReplaceMethod(), getCallOptions()), request, responseObserver);
     }
 
     /**
@@ -1059,16 +1000,6 @@ public final class IndexedMapServiceGrpc {
 
     /**
      * <pre>
-     * Replace performs a check-and-set operation on an entry in the map
-     * </pre>
-     */
-    public atomix.storage.indexedmap.Indexedmap.ReplaceResponse replace(atomix.storage.indexedmap.Indexedmap.ReplaceRequest request) {
-      return blockingUnaryCall(
-          getChannel(), getReplaceMethod(), getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
      * Get gets the entry for a key
      * </pre>
      */
@@ -1234,17 +1165,6 @@ public final class IndexedMapServiceGrpc {
 
     /**
      * <pre>
-     * Replace performs a check-and-set operation on an entry in the map
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<atomix.storage.indexedmap.Indexedmap.ReplaceResponse> replace(
-        atomix.storage.indexedmap.Indexedmap.ReplaceRequest request) {
-      return futureUnaryCall(
-          getChannel().newCall(getReplaceMethod(), getCallOptions()), request);
-    }
-
-    /**
-     * <pre>
      * Get gets the entry for a key
      * </pre>
      */
@@ -1326,16 +1246,15 @@ public final class IndexedMapServiceGrpc {
   private static final int METHODID_SIZE = 2;
   private static final int METHODID_EXISTS = 3;
   private static final int METHODID_PUT = 4;
-  private static final int METHODID_REPLACE = 5;
-  private static final int METHODID_GET = 6;
-  private static final int METHODID_FIRST_ENTRY = 7;
-  private static final int METHODID_LAST_ENTRY = 8;
-  private static final int METHODID_PREV_ENTRY = 9;
-  private static final int METHODID_NEXT_ENTRY = 10;
-  private static final int METHODID_REMOVE = 11;
-  private static final int METHODID_CLEAR = 12;
-  private static final int METHODID_EVENTS = 13;
-  private static final int METHODID_ENTRIES = 14;
+  private static final int METHODID_GET = 5;
+  private static final int METHODID_FIRST_ENTRY = 6;
+  private static final int METHODID_LAST_ENTRY = 7;
+  private static final int METHODID_PREV_ENTRY = 8;
+  private static final int METHODID_NEXT_ENTRY = 9;
+  private static final int METHODID_REMOVE = 10;
+  private static final int METHODID_CLEAR = 11;
+  private static final int METHODID_EVENTS = 12;
+  private static final int METHODID_ENTRIES = 13;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -1373,10 +1292,6 @@ public final class IndexedMapServiceGrpc {
         case METHODID_PUT:
           serviceImpl.put((atomix.storage.indexedmap.Indexedmap.PutRequest) request,
               (io.grpc.stub.StreamObserver<atomix.storage.indexedmap.Indexedmap.PutResponse>) responseObserver);
-          break;
-        case METHODID_REPLACE:
-          serviceImpl.replace((atomix.storage.indexedmap.Indexedmap.ReplaceRequest) request,
-              (io.grpc.stub.StreamObserver<atomix.storage.indexedmap.Indexedmap.ReplaceResponse>) responseObserver);
           break;
         case METHODID_GET:
           serviceImpl.get((atomix.storage.indexedmap.Indexedmap.GetRequest) request,
@@ -1480,7 +1395,6 @@ public final class IndexedMapServiceGrpc {
               .addMethod(getSizeMethod())
               .addMethod(getExistsMethod())
               .addMethod(getPutMethod())
-              .addMethod(getReplaceMethod())
               .addMethod(getGetMethod())
               .addMethod(getFirstEntryMethod())
               .addMethod(getLastEntryMethod())

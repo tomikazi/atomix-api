@@ -10,12 +10,12 @@ import betterproto
 @dataclass
 class Timestamp(betterproto.Message):
     logical_timestamp: "LogicalTimestamp" = betterproto.message_field(
-        1, group="version"
+        1, group="timestamp"
     )
     wall_clock_timestamp: "WallClockTimestamp" = betterproto.message_field(
-        2, group="version"
+        2, group="timestamp"
     )
-    epoch_timestamp: "EpochTimestamp" = betterproto.message_field(3, group="version")
+    epoch_timestamp: "EpochTimestamp" = betterproto.message_field(3, group="timestamp")
 
 
 @dataclass

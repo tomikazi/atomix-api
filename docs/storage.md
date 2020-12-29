@@ -22,9 +22,7 @@
 - [atomix/storage/primitive.proto](#atomix/storage/primitive.proto)
     - [PrimitiveId](#atomix.storage.PrimitiveId)
     - [RequestHeader](#atomix.storage.RequestHeader)
-    - [RequestState](#atomix.storage.RequestState)
     - [ResponseHeader](#atomix.storage.ResponseHeader)
-    - [ResponseState](#atomix.storage.ResponseState)
     - [ResponseStatus](#atomix.storage.ResponseStatus)
     - [StreamState](#atomix.storage.StreamState)
   
@@ -257,26 +255,6 @@ Request header
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | primitive | [PrimitiveId](#atomix.storage.PrimitiveId) |  |  |
-| state | [RequestState](#atomix.storage.RequestState) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.RequestState"></a>
-
-### RequestState
-Request state
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| partition | [uint32](#uint32) |  |  |
-| session_id | [uint64](#uint64) |  |  |
-| request_id | [uint64](#uint64) |  |  |
-| index | [uint64](#uint64) |  |  |
-| streams | [StreamState](#atomix.storage.StreamState) | repeated |  |
 
 
 
@@ -293,26 +271,6 @@ Response header
 | ----- | ---- | ----- | ----------- |
 | type | [ResponseType](#atomix.storage.ResponseType) |  |  |
 | status | [ResponseStatus](#atomix.storage.ResponseStatus) |  |  |
-| state | [ResponseState](#atomix.storage.ResponseState) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.ResponseState"></a>
-
-### ResponseState
-Response state
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| session_id | [uint64](#uint64) |  |  |
-| stream_id | [uint64](#uint64) |  |  |
-| response_id | [uint64](#uint64) |  |  |
-| index | [uint64](#uint64) |  |  |
-| leader | [string](#string) |  |  |
 
 
 

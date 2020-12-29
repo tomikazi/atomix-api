@@ -50,38 +50,14 @@ class RequestHeader(betterproto.Message):
     """Request header"""
 
     primitive: "PrimitiveId" = betterproto.message_field(1)
-    state: "RequestState" = betterproto.message_field(2)
 
 
 @dataclass
 class ResponseHeader(betterproto.Message):
     """Response header"""
 
-    state: "ResponseState" = betterproto.message_field(1)
+    type: "ResponseType" = betterproto.enum_field(1)
     status: "ResponseStatus" = betterproto.message_field(2)
-
-
-@dataclass
-class RequestState(betterproto.Message):
-    """Request state"""
-
-    partition: int = betterproto.uint32_field(1)
-    session_id: int = betterproto.uint64_field(2)
-    request_id: int = betterproto.uint64_field(3)
-    index: int = betterproto.uint64_field(4)
-    streams: List["StreamState"] = betterproto.message_field(5)
-
-
-@dataclass
-class ResponseState(betterproto.Message):
-    """Response state"""
-
-    session_id: int = betterproto.uint64_field(1)
-    stream_id: int = betterproto.uint64_field(2)
-    response_id: int = betterproto.uint64_field(3)
-    index: int = betterproto.uint64_field(4)
-    leader: str = betterproto.string_field(5)
-    type: "ResponseType" = betterproto.enum_field(6)
 
 
 @dataclass

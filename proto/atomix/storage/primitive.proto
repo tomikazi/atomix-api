@@ -30,33 +30,14 @@ message PrimitiveId {
 // Request header
 message RequestHeader {
     PrimitiveId primitive = 1 [(gogoproto.nullable) = false];
-    RequestState state = 2;
 }
 
 // Response header
 message ResponseHeader {
     ResponseType type = 1;
     ResponseStatus status = 2 [(gogoproto.nullable) = false];
-    ResponseState state = 3;
 }
 
-// Request state
-message RequestState {
-    uint32 partition = 1;
-    uint64 session_id = 2 [(gogoproto.customname) = "SessionID"];
-    uint64 request_id = 3 [(gogoproto.customname) = "RequestID"];
-    uint64 index = 4;
-    repeated StreamState streams = 5 [(gogoproto.nullable) = false];
-}
-
-// Response state
-message ResponseState {
-    uint64 session_id = 1 [(gogoproto.customname) = "SessionID"];
-    uint64 stream_id = 2 [(gogoproto.customname) = "StreamID"];
-    uint64 response_id = 3 [(gogoproto.customname) = "ResponseID"];
-    uint64 index = 4;
-    string leader = 5;
-}
 
 // Stream state
 message StreamState {

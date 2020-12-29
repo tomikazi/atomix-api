@@ -180,8 +180,7 @@ func (m *PrimitiveId) GetNamespace() string {
 
 // Request header
 type RequestHeader struct {
-	Primitive PrimitiveId   `protobuf:"bytes,1,opt,name=primitive,proto3" json:"primitive"`
-	State     *RequestState `protobuf:"bytes,2,opt,name=state,proto3" json:"state,omitempty"`
+	Primitive PrimitiveId `protobuf:"bytes,1,opt,name=primitive,proto3" json:"primitive"`
 }
 
 func (m *RequestHeader) Reset()         { *m = RequestHeader{} }
@@ -224,18 +223,10 @@ func (m *RequestHeader) GetPrimitive() PrimitiveId {
 	return PrimitiveId{}
 }
 
-func (m *RequestHeader) GetState() *RequestState {
-	if m != nil {
-		return m.State
-	}
-	return nil
-}
-
 // Response header
 type ResponseHeader struct {
 	Type   ResponseType   `protobuf:"varint,1,opt,name=type,proto3,enum=atomix.storage.ResponseType" json:"type,omitempty"`
 	Status ResponseStatus `protobuf:"bytes,2,opt,name=status,proto3" json:"status"`
-	State  *ResponseState `protobuf:"bytes,3,opt,name=state,proto3" json:"state,omitempty"`
 }
 
 func (m *ResponseHeader) Reset()         { *m = ResponseHeader{} }
@@ -285,167 +276,6 @@ func (m *ResponseHeader) GetStatus() ResponseStatus {
 	return ResponseStatus{}
 }
 
-func (m *ResponseHeader) GetState() *ResponseState {
-	if m != nil {
-		return m.State
-	}
-	return nil
-}
-
-// Request state
-type RequestState struct {
-	Partition uint32        `protobuf:"varint,1,opt,name=partition,proto3" json:"partition,omitempty"`
-	SessionID uint64        `protobuf:"varint,2,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
-	RequestID uint64        `protobuf:"varint,3,opt,name=request_id,json=requestId,proto3" json:"request_id,omitempty"`
-	Index     uint64        `protobuf:"varint,4,opt,name=index,proto3" json:"index,omitempty"`
-	Streams   []StreamState `protobuf:"bytes,5,rep,name=streams,proto3" json:"streams"`
-}
-
-func (m *RequestState) Reset()         { *m = RequestState{} }
-func (m *RequestState) String() string { return proto.CompactTextString(m) }
-func (*RequestState) ProtoMessage()    {}
-func (*RequestState) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f706c35595eab36b, []int{3}
-}
-func (m *RequestState) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *RequestState) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_RequestState.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *RequestState) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RequestState.Merge(m, src)
-}
-func (m *RequestState) XXX_Size() int {
-	return m.Size()
-}
-func (m *RequestState) XXX_DiscardUnknown() {
-	xxx_messageInfo_RequestState.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RequestState proto.InternalMessageInfo
-
-func (m *RequestState) GetPartition() uint32 {
-	if m != nil {
-		return m.Partition
-	}
-	return 0
-}
-
-func (m *RequestState) GetSessionID() uint64 {
-	if m != nil {
-		return m.SessionID
-	}
-	return 0
-}
-
-func (m *RequestState) GetRequestID() uint64 {
-	if m != nil {
-		return m.RequestID
-	}
-	return 0
-}
-
-func (m *RequestState) GetIndex() uint64 {
-	if m != nil {
-		return m.Index
-	}
-	return 0
-}
-
-func (m *RequestState) GetStreams() []StreamState {
-	if m != nil {
-		return m.Streams
-	}
-	return nil
-}
-
-// Response state
-type ResponseState struct {
-	SessionID  uint64 `protobuf:"varint,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
-	StreamID   uint64 `protobuf:"varint,2,opt,name=stream_id,json=streamId,proto3" json:"stream_id,omitempty"`
-	ResponseID uint64 `protobuf:"varint,3,opt,name=response_id,json=responseId,proto3" json:"response_id,omitempty"`
-	Index      uint64 `protobuf:"varint,4,opt,name=index,proto3" json:"index,omitempty"`
-	Leader     string `protobuf:"bytes,5,opt,name=leader,proto3" json:"leader,omitempty"`
-}
-
-func (m *ResponseState) Reset()         { *m = ResponseState{} }
-func (m *ResponseState) String() string { return proto.CompactTextString(m) }
-func (*ResponseState) ProtoMessage()    {}
-func (*ResponseState) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f706c35595eab36b, []int{4}
-}
-func (m *ResponseState) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *ResponseState) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_ResponseState.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *ResponseState) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResponseState.Merge(m, src)
-}
-func (m *ResponseState) XXX_Size() int {
-	return m.Size()
-}
-func (m *ResponseState) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResponseState.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ResponseState proto.InternalMessageInfo
-
-func (m *ResponseState) GetSessionID() uint64 {
-	if m != nil {
-		return m.SessionID
-	}
-	return 0
-}
-
-func (m *ResponseState) GetStreamID() uint64 {
-	if m != nil {
-		return m.StreamID
-	}
-	return 0
-}
-
-func (m *ResponseState) GetResponseID() uint64 {
-	if m != nil {
-		return m.ResponseID
-	}
-	return 0
-}
-
-func (m *ResponseState) GetIndex() uint64 {
-	if m != nil {
-		return m.Index
-	}
-	return 0
-}
-
-func (m *ResponseState) GetLeader() string {
-	if m != nil {
-		return m.Leader
-	}
-	return ""
-}
-
 // Stream state
 type StreamState struct {
 	StreamID   uint64 `protobuf:"varint,1,opt,name=stream_id,json=streamId,proto3" json:"stream_id,omitempty"`
@@ -456,7 +286,7 @@ func (m *StreamState) Reset()         { *m = StreamState{} }
 func (m *StreamState) String() string { return proto.CompactTextString(m) }
 func (*StreamState) ProtoMessage()    {}
 func (*StreamState) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f706c35595eab36b, []int{5}
+	return fileDescriptor_f706c35595eab36b, []int{3}
 }
 func (m *StreamState) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -509,7 +339,7 @@ func (m *ResponseStatus) Reset()         { *m = ResponseStatus{} }
 func (m *ResponseStatus) String() string { return proto.CompactTextString(m) }
 func (*ResponseStatus) ProtoMessage()    {}
 func (*ResponseStatus) Descriptor() ([]byte, []int) {
-	return fileDescriptor_f706c35595eab36b, []int{6}
+	return fileDescriptor_f706c35595eab36b, []int{4}
 }
 func (m *ResponseStatus) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -558,8 +388,6 @@ func init() {
 	proto.RegisterType((*PrimitiveId)(nil), "atomix.storage.PrimitiveId")
 	proto.RegisterType((*RequestHeader)(nil), "atomix.storage.RequestHeader")
 	proto.RegisterType((*ResponseHeader)(nil), "atomix.storage.ResponseHeader")
-	proto.RegisterType((*RequestState)(nil), "atomix.storage.RequestState")
-	proto.RegisterType((*ResponseState)(nil), "atomix.storage.ResponseState")
 	proto.RegisterType((*StreamState)(nil), "atomix.storage.StreamState")
 	proto.RegisterType((*ResponseStatus)(nil), "atomix.storage.ResponseStatus")
 }
@@ -567,53 +395,43 @@ func init() {
 func init() { proto.RegisterFile("atomix/storage/primitive.proto", fileDescriptor_f706c35595eab36b) }
 
 var fileDescriptor_f706c35595eab36b = []byte{
-	// 728 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x54, 0x4d, 0x6b, 0xeb, 0x46,
-	0x14, 0xb5, 0xfc, 0xad, 0x2b, 0xdb, 0x9d, 0x0e, 0x8f, 0x22, 0xda, 0x57, 0xf9, 0xe1, 0x55, 0xfb,
-	0x28, 0x76, 0xc9, 0x5b, 0xb6, 0xf0, 0x90, 0xad, 0x09, 0x19, 0xa2, 0x48, 0x66, 0x24, 0xa7, 0x1f,
-	0x14, 0x8c, 0x1a, 0x0d, 0x46, 0x50, 0x5b, 0xae, 0xa4, 0x94, 0x64, 0xdf, 0x1f, 0xd0, 0x3f, 0xd3,
-	0xdf, 0xd0, 0x2c, 0xb3, 0x2c, 0x14, 0x4c, 0x71, 0x76, 0xfd, 0x15, 0x65, 0x46, 0x52, 0xe4, 0x84,
-	0xa4, 0xa1, 0x2b, 0xcf, 0xdc, 0x7b, 0xce, 0xbd, 0xe7, 0x8c, 0x8f, 0x0d, 0x46, 0x90, 0xc5, 0xeb,
-	0xe8, 0x6a, 0x92, 0x66, 0x71, 0x12, 0xac, 0xf8, 0x64, 0x9b, 0x44, 0xeb, 0x28, 0x8b, 0x7e, 0xe1,
-	0xe3, 0x6d, 0x12, 0x67, 0x31, 0x1e, 0xe4, 0xfd, 0x71, 0xd1, 0xff, 0xf8, 0xd5, 0x2a, 0x5e, 0xc5,
-	0xb2, 0x35, 0x11, 0xa7, 0x1c, 0x35, 0xf2, 0x40, 0x9b, 0x97, 0x44, 0x1a, 0x62, 0x0c, 0xcd, 0xec,
-	0x7a, 0xcb, 0x75, 0xe5, 0x8d, 0xf2, 0x99, 0xca, 0xe4, 0x59, 0xd4, 0x36, 0xc1, 0x9a, 0xeb, 0xf5,
-	0xbc, 0x26, 0xce, 0xf8, 0x35, 0xa8, 0xe2, 0x33, 0xdd, 0x06, 0x17, 0x5c, 0x6f, 0xc8, 0x46, 0x55,
-	0x18, 0xfd, 0xaa, 0x40, 0x9f, 0xf1, 0x9f, 0x2f, 0x79, 0x9a, 0x9d, 0xf0, 0x20, 0xe4, 0x09, 0x7e,
-	0x0f, 0xea, 0xbd, 0x3e, 0x39, 0x5c, 0x3b, 0xfa, 0x64, 0xfc, 0x50, 0xe0, 0xf8, 0x40, 0xc7, 0xb4,
-	0x79, 0xb3, 0x1b, 0xd6, 0x58, 0xc5, 0xc1, 0x47, 0xd0, 0x4a, 0xb3, 0x20, 0xcb, 0x55, 0x68, 0x47,
-	0xaf, 0x1f, 0x93, 0x8b, 0x75, 0x9e, 0xc0, 0xb0, 0x1c, 0x3a, 0xfa, 0x5d, 0x81, 0x01, 0xe3, 0xe9,
-	0x36, 0xde, 0xa4, 0xbc, 0xd0, 0xf1, 0xe5, 0x81, 0xbf, 0xc1, 0x53, 0x53, 0x72, 0xb4, 0x7f, 0xbd,
-	0xe5, 0x85, 0xfb, 0xaf, 0xa1, 0x2d, 0xa6, 0x5d, 0xa6, 0xc5, 0x66, 0xe3, 0x39, 0x8e, 0x27, 0x51,
-	0x85, 0xf2, 0x82, 0x83, 0xdf, 0x95, 0xb2, 0x1b, 0x92, 0xfc, 0xe9, 0x7f, 0x91, 0xef, 0x75, 0xff,
-	0xa5, 0x40, 0xef, 0xd0, 0x8f, 0x78, 0xed, 0x6d, 0x90, 0x64, 0x51, 0x16, 0xc5, 0x1b, 0x29, 0xbd,
-	0xcf, 0xaa, 0x02, 0xfe, 0x02, 0x20, 0xe5, 0x69, 0x1a, 0xc5, 0x9b, 0x65, 0x14, 0x4a, 0x95, 0xcd,
-	0x69, 0x7f, 0xbf, 0x1b, 0xaa, 0x5e, 0x5e, 0xa5, 0x16, 0x53, 0x0b, 0x00, 0x0d, 0x05, 0x3a, 0xc9,
-	0x67, 0x0b, 0x74, 0xa3, 0x42, 0x17, 0x1b, 0x05, 0xba, 0x00, 0xd0, 0x10, 0xbf, 0x82, 0x56, 0xb4,
-	0x09, 0xf9, 0x95, 0xde, 0x14, 0x40, 0x96, 0x5f, 0xf0, 0x57, 0xd0, 0x49, 0xb3, 0x84, 0x07, 0xeb,
-	0x54, 0x6f, 0xbd, 0x69, 0x3c, 0xf5, 0x5d, 0x7a, 0xb2, 0x2d, 0xd5, 0x17, 0x2f, 0x52, 0x32, 0x46,
-	0x7f, 0xc8, 0x70, 0x1c, 0xd8, 0x7e, 0x64, 0x40, 0x79, 0xc1, 0xc0, 0xe7, 0xa0, 0xe6, 0xa3, 0x2a,
-	0xb7, 0xbd, 0xfd, 0x6e, 0xd8, 0xcd, 0x57, 0x52, 0x8b, 0x75, 0xf3, 0x36, 0x0d, 0xf1, 0x04, 0xb4,
-	0xa4, 0xd8, 0x54, 0x99, 0x1d, 0xec, 0x77, 0x43, 0x28, 0x05, 0x50, 0x8b, 0x41, 0x09, 0x79, 0xd6,
-	0xee, 0x47, 0xd0, 0xfe, 0x49, 0xc6, 0x47, 0x6f, 0xc9, 0xa4, 0x17, 0xb7, 0x51, 0x04, 0xda, 0x81,
-	0xcf, 0x87, 0xc2, 0x94, 0xff, 0x23, 0xac, 0xfe, 0x92, 0xb0, 0xd1, 0x0f, 0x55, 0x92, 0xf3, 0x9c,
-	0x89, 0x24, 0x5f, 0xc4, 0xe1, 0x8b, 0x49, 0x9e, 0xc5, 0x21, 0x67, 0x12, 0x89, 0x75, 0xe8, 0xac,
-	0x79, 0x9a, 0x06, 0xab, 0xf2, 0xa7, 0x5c, 0x5e, 0xdf, 0xbe, 0x17, 0x79, 0xab, 0x92, 0x8f, 0x7b,
-	0xd0, 0x65, 0xc4, 0x9b, 0xbb, 0x8e, 0x47, 0x50, 0x0d, 0x7f, 0x00, 0x9a, 0x3b, 0x27, 0xce, 0xd2,
-	0xf3, 0x19, 0x31, 0xcf, 0x90, 0x82, 0x11, 0xf4, 0x66, 0xb6, 0xeb, 0x91, 0xb2, 0x52, 0x7f, 0xfb,
-	0x8f, 0x52, 0x4d, 0x10, 0x1b, 0x71, 0x1b, 0xea, 0xee, 0x29, 0xaa, 0x61, 0x15, 0x5a, 0x84, 0x31,
-	0x97, 0x21, 0x05, 0x0f, 0x00, 0x1c, 0xd7, 0x5f, 0xda, 0xc4, 0xb4, 0x08, 0x43, 0x75, 0xac, 0x41,
-	0x67, 0xe1, 0x9c, 0x3a, 0xee, 0x37, 0x0e, 0x6a, 0x88, 0x8d, 0x33, 0xd3, 0x99, 0x11, 0x9b, 0x58,
-	0xa8, 0x89, 0xfb, 0xa0, 0x0a, 0xe8, 0xb1, 0xbb, 0x70, 0x2c, 0xd4, 0xc2, 0x18, 0x06, 0xa6, 0xcd,
-	0x88, 0x69, 0x7d, 0xb7, 0x24, 0xdf, 0x52, 0xcf, 0xf7, 0x50, 0x5b, 0x68, 0x58, 0x38, 0xe6, 0xc2,
-	0x3f, 0x71, 0x19, 0xfd, 0x9e, 0x58, 0xa8, 0x23, 0x48, 0xc7, 0x2e, 0x9b, 0x52, 0xcb, 0x22, 0x0e,
-	0xea, 0xca, 0x89, 0xae, 0x73, 0x6c, 0xd3, 0x99, 0x8f, 0x54, 0xb1, 0x8c, 0x3a, 0xe7, 0xa6, 0x4d,
-	0x2d, 0x04, 0xc2, 0xd0, 0xc2, 0x31, 0xcf, 0x4d, 0x6a, 0x9b, 0x53, 0x9b, 0x20, 0x0d, 0x7f, 0x08,
-	0x7d, 0xb1, 0xcf, 0x5b, 0xcc, 0xe7, 0x2e, 0xf3, 0x89, 0x85, 0x7a, 0x82, 0xe0, 0xd3, 0x33, 0xe2,
-	0x2e, 0x7c, 0xd4, 0x17, 0xb3, 0xa8, 0xe3, 0x13, 0xe6, 0x98, 0x36, 0x1a, 0x4c, 0xf5, 0x9b, 0xbd,
-	0xa1, 0xdc, 0xee, 0x0d, 0xe5, 0xef, 0xbd, 0xa1, 0xfc, 0x76, 0x67, 0xd4, 0x6e, 0xef, 0x8c, 0xda,
-	0x9f, 0x77, 0x46, 0xed, 0xc7, 0xb6, 0xfc, 0x4f, 0x7d, 0xf7, 0x6f, 0x00, 0x00, 0x00, 0xff, 0xff,
-	0x3f, 0x28, 0x10, 0xe6, 0x9b, 0x05, 0x00, 0x00,
+	// 570 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x84, 0x53, 0xcd, 0x6e, 0xd3, 0x4c,
+	0x14, 0x8d, 0xd3, 0x34, 0x8d, 0xaf, 0x13, 0x7f, 0xf3, 0x8d, 0x58, 0x44, 0x50, 0xb9, 0x28, 0x2b,
+	0xe8, 0x22, 0x41, 0x65, 0x8b, 0x54, 0x39, 0xf1, 0x54, 0x1d, 0xd5, 0x9d, 0x89, 0xc6, 0x76, 0xf9,
+	0x11, 0x52, 0x64, 0xea, 0x51, 0x94, 0x45, 0xea, 0x60, 0xbb, 0x88, 0xee, 0x78, 0x04, 0x1e, 0xab,
+	0xcb, 0x2e, 0x59, 0x55, 0x28, 0xdd, 0xf1, 0x14, 0x68, 0xc6, 0x36, 0x09, 0x48, 0x88, 0x95, 0x67,
+	0xee, 0xf9, 0xb9, 0xe7, 0xd8, 0x32, 0x38, 0x71, 0x91, 0x2e, 0x17, 0x9f, 0x47, 0x79, 0x91, 0x66,
+	0xf1, 0x5c, 0x8e, 0x56, 0xd9, 0x62, 0xb9, 0x28, 0x16, 0x9f, 0xe4, 0x70, 0x95, 0xa5, 0x45, 0x8a,
+	0xed, 0x12, 0x1f, 0x56, 0xf8, 0xe3, 0x47, 0xf3, 0x74, 0x9e, 0x6a, 0x68, 0xa4, 0x4e, 0x25, 0x6b,
+	0x10, 0x80, 0x35, 0xad, 0x85, 0x34, 0xc1, 0x18, 0x5a, 0xc5, 0xcd, 0x4a, 0xf6, 0x8d, 0xa7, 0xc6,
+	0x33, 0x53, 0xe8, 0xb3, 0x9a, 0x5d, 0xc5, 0x4b, 0xd9, 0x6f, 0x96, 0x33, 0x75, 0xc6, 0xfb, 0x60,
+	0xaa, 0x67, 0xbe, 0x8a, 0x2f, 0x65, 0x7f, 0x47, 0x03, 0x9b, 0xc1, 0x60, 0x0a, 0x3d, 0x21, 0x3f,
+	0x5e, 0xcb, 0xbc, 0x38, 0x95, 0x71, 0x22, 0x33, 0x7c, 0x0c, 0xe6, 0xaf, 0x78, 0xda, 0xdb, 0x3a,
+	0x7a, 0x32, 0xfc, 0x3d, 0xdf, 0x70, 0x2b, 0xc6, 0xb8, 0x75, 0x7b, 0x7f, 0xd0, 0x10, 0x1b, 0xcd,
+	0xe0, 0x8b, 0x01, 0xb6, 0x90, 0xf9, 0x2a, 0xbd, 0xca, 0x65, 0xe5, 0xf9, 0x62, 0x2b, 0xaa, 0x7d,
+	0xb4, 0xff, 0xa7, 0x5d, 0xcd, 0x0e, 0x6f, 0x56, 0xb2, 0x2a, 0xf2, 0x0a, 0xda, 0x79, 0x11, 0x17,
+	0xd7, 0xb9, 0xae, 0x62, 0x1d, 0x39, 0x7f, 0xd3, 0x04, 0x9a, 0x55, 0xa5, 0xa8, 0x34, 0x83, 0x05,
+	0x58, 0x41, 0x91, 0xc9, 0x78, 0xa9, 0x50, 0x89, 0x9f, 0x83, 0x99, 0xeb, 0xeb, 0x6c, 0x91, 0xe8,
+	0x0c, 0xad, 0x71, 0x77, 0x7d, 0x7f, 0xd0, 0x29, 0x39, 0xd4, 0x13, 0x9d, 0x12, 0xa6, 0x09, 0x1e,
+	0x81, 0x95, 0x55, 0xce, 0x8a, 0xdc, 0xd4, 0x64, 0x7b, 0x7d, 0x7f, 0x00, 0xf5, 0x42, 0xea, 0x09,
+	0xa8, 0x29, 0x34, 0x19, 0xbc, 0xdf, 0x94, 0x2d, 0xa3, 0xa8, 0xb2, 0x97, 0x69, 0xf2, 0xcf, 0xb2,
+	0x93, 0x34, 0x91, 0x42, 0x33, 0x71, 0x1f, 0xf6, 0x96, 0x32, 0xcf, 0xe3, 0x79, 0xfd, 0xe1, 0xea,
+	0xeb, 0xe1, 0x31, 0x74, 0xb7, 0x5f, 0x0e, 0xee, 0x42, 0x47, 0x90, 0x60, 0xca, 0x59, 0x40, 0x50,
+	0x03, 0xff, 0x07, 0x16, 0x9f, 0x12, 0x36, 0x0b, 0x42, 0x41, 0xdc, 0x73, 0x64, 0x60, 0x04, 0xdd,
+	0x89, 0xcf, 0x03, 0x52, 0x4f, 0x9a, 0x87, 0x3f, 0x8c, 0x8d, 0x83, 0xda, 0x88, 0xdb, 0xd0, 0xe4,
+	0x67, 0xa8, 0x81, 0x4d, 0xd8, 0x25, 0x42, 0x70, 0x81, 0x0c, 0x6c, 0x03, 0x30, 0x1e, 0xce, 0x7c,
+	0xe2, 0x7a, 0x44, 0xa0, 0x26, 0xb6, 0x60, 0x2f, 0x62, 0x67, 0x8c, 0xbf, 0x66, 0x68, 0x47, 0x6d,
+	0x9c, 0xb8, 0x6c, 0x42, 0x7c, 0xe2, 0xa1, 0x16, 0xee, 0x81, 0xa9, 0xa8, 0x27, 0x3c, 0x62, 0x1e,
+	0xda, 0xc5, 0x18, 0x6c, 0xd7, 0x17, 0xc4, 0xf5, 0xde, 0xce, 0xc8, 0x1b, 0x1a, 0x84, 0x01, 0x6a,
+	0xab, 0x0c, 0x11, 0x73, 0xa3, 0xf0, 0x94, 0x0b, 0xfa, 0x8e, 0x78, 0x68, 0x4f, 0x89, 0x4e, 0xb8,
+	0x18, 0x53, 0xcf, 0x23, 0x0c, 0x75, 0xb4, 0x23, 0x67, 0x27, 0x3e, 0x9d, 0x84, 0xc8, 0x54, 0xcb,
+	0x28, 0xbb, 0x70, 0x7d, 0xea, 0x21, 0x50, 0x85, 0x22, 0xe6, 0x5e, 0xb8, 0xd4, 0x77, 0xc7, 0x3e,
+	0x41, 0x16, 0xfe, 0x1f, 0x7a, 0x6a, 0x5f, 0x10, 0x4d, 0xa7, 0x5c, 0x84, 0xc4, 0x43, 0x5d, 0x25,
+	0x08, 0xe9, 0x39, 0xe1, 0x51, 0x88, 0x7a, 0xca, 0x8b, 0xb2, 0x90, 0x08, 0xe6, 0xfa, 0xc8, 0x1e,
+	0xf7, 0x6f, 0xd7, 0x8e, 0x71, 0xb7, 0x76, 0x8c, 0xef, 0x6b, 0xc7, 0xf8, 0xfa, 0xe0, 0x34, 0xee,
+	0x1e, 0x9c, 0xc6, 0xb7, 0x07, 0xa7, 0xf1, 0xa1, 0xad, 0xff, 0xa0, 0x97, 0x3f, 0x03, 0x00, 0x00,
+	0xff, 0xff, 0x2e, 0xe7, 0x12, 0x8b, 0x89, 0x03, 0x00, 0x00,
 }
 
 func (m *PrimitiveId) Marshal() (dAtA []byte, err error) {
@@ -680,18 +498,6 @@ func (m *RequestHeader) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.State != nil {
-		{
-			size, err := m.State.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintPrimitive(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x12
-	}
 	{
 		size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
@@ -725,18 +531,6 @@ func (m *ResponseHeader) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.State != nil {
-		{
-			size, err := m.State.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintPrimitive(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x1a
-	}
 	{
 		size, err := m.Status.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
@@ -749,113 +543,6 @@ func (m *ResponseHeader) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	dAtA[i] = 0x12
 	if m.Type != 0 {
 		i = encodeVarintPrimitive(dAtA, i, uint64(m.Type))
-		i--
-		dAtA[i] = 0x8
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *RequestState) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *RequestState) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *RequestState) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Streams) > 0 {
-		for iNdEx := len(m.Streams) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Streams[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintPrimitive(dAtA, i, uint64(size))
-			}
-			i--
-			dAtA[i] = 0x2a
-		}
-	}
-	if m.Index != 0 {
-		i = encodeVarintPrimitive(dAtA, i, uint64(m.Index))
-		i--
-		dAtA[i] = 0x20
-	}
-	if m.RequestID != 0 {
-		i = encodeVarintPrimitive(dAtA, i, uint64(m.RequestID))
-		i--
-		dAtA[i] = 0x18
-	}
-	if m.SessionID != 0 {
-		i = encodeVarintPrimitive(dAtA, i, uint64(m.SessionID))
-		i--
-		dAtA[i] = 0x10
-	}
-	if m.Partition != 0 {
-		i = encodeVarintPrimitive(dAtA, i, uint64(m.Partition))
-		i--
-		dAtA[i] = 0x8
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *ResponseState) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *ResponseState) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *ResponseState) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Leader) > 0 {
-		i -= len(m.Leader)
-		copy(dAtA[i:], m.Leader)
-		i = encodeVarintPrimitive(dAtA, i, uint64(len(m.Leader)))
-		i--
-		dAtA[i] = 0x2a
-	}
-	if m.Index != 0 {
-		i = encodeVarintPrimitive(dAtA, i, uint64(m.Index))
-		i--
-		dAtA[i] = 0x20
-	}
-	if m.ResponseID != 0 {
-		i = encodeVarintPrimitive(dAtA, i, uint64(m.ResponseID))
-		i--
-		dAtA[i] = 0x18
-	}
-	if m.StreamID != 0 {
-		i = encodeVarintPrimitive(dAtA, i, uint64(m.StreamID))
-		i--
-		dAtA[i] = 0x10
-	}
-	if m.SessionID != 0 {
-		i = encodeVarintPrimitive(dAtA, i, uint64(m.SessionID))
 		i--
 		dAtA[i] = 0x8
 	}
@@ -970,10 +657,6 @@ func (m *RequestHeader) Size() (n int) {
 	_ = l
 	l = m.Primitive.Size()
 	n += 1 + l + sovPrimitive(uint64(l))
-	if m.State != nil {
-		l = m.State.Size()
-		n += 1 + l + sovPrimitive(uint64(l))
-	}
 	return n
 }
 
@@ -988,62 +671,6 @@ func (m *ResponseHeader) Size() (n int) {
 	}
 	l = m.Status.Size()
 	n += 1 + l + sovPrimitive(uint64(l))
-	if m.State != nil {
-		l = m.State.Size()
-		n += 1 + l + sovPrimitive(uint64(l))
-	}
-	return n
-}
-
-func (m *RequestState) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Partition != 0 {
-		n += 1 + sovPrimitive(uint64(m.Partition))
-	}
-	if m.SessionID != 0 {
-		n += 1 + sovPrimitive(uint64(m.SessionID))
-	}
-	if m.RequestID != 0 {
-		n += 1 + sovPrimitive(uint64(m.RequestID))
-	}
-	if m.Index != 0 {
-		n += 1 + sovPrimitive(uint64(m.Index))
-	}
-	if len(m.Streams) > 0 {
-		for _, e := range m.Streams {
-			l = e.Size()
-			n += 1 + l + sovPrimitive(uint64(l))
-		}
-	}
-	return n
-}
-
-func (m *ResponseState) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.SessionID != 0 {
-		n += 1 + sovPrimitive(uint64(m.SessionID))
-	}
-	if m.StreamID != 0 {
-		n += 1 + sovPrimitive(uint64(m.StreamID))
-	}
-	if m.ResponseID != 0 {
-		n += 1 + sovPrimitive(uint64(m.ResponseID))
-	}
-	if m.Index != 0 {
-		n += 1 + sovPrimitive(uint64(m.Index))
-	}
-	l = len(m.Leader)
-	if l > 0 {
-		n += 1 + l + sovPrimitive(uint64(l))
-	}
 	return n
 }
 
@@ -1295,42 +922,6 @@ func (m *RequestHeader) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field State", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.State == nil {
-				m.State = &RequestState{}
-			}
-			if err := m.State.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipPrimitive(dAtA[iNdEx:])
@@ -1435,366 +1026,6 @@ func (m *ResponseHeader) Unmarshal(dAtA []byte) error {
 			if err := m.Status.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field State", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.State == nil {
-				m.State = &ResponseState{}
-			}
-			if err := m.State.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipPrimitive(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *RequestState) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowPrimitive
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: RequestState: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: RequestState: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Partition", wireType)
-			}
-			m.Partition = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Partition |= uint32(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SessionID", wireType)
-			}
-			m.SessionID = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.SessionID |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field RequestID", wireType)
-			}
-			m.RequestID = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.RequestID |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 4:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
-			}
-			m.Index = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Index |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Streams", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Streams = append(m.Streams, StreamState{})
-			if err := m.Streams[len(m.Streams)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipPrimitive(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *ResponseState) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowPrimitive
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: ResponseState: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: ResponseState: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SessionID", wireType)
-			}
-			m.SessionID = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.SessionID |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field StreamID", wireType)
-			}
-			m.StreamID = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.StreamID |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ResponseID", wireType)
-			}
-			m.ResponseID = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.ResponseID |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 4:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
-			}
-			m.Index = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Index |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Leader", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Leader = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

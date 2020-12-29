@@ -11,13 +11,6 @@ import grpclib
 from .atomix import storage
 
 
-class ResponseStatus(betterproto.Enum):
-    OK = 0
-    NOOP = 1
-    WRITE_LOCK = 2
-    PRECONDITION_FAILED = 3
-
-
 class EventResponseType(betterproto.Enum):
     NONE = 0
     APPENDED = 1
@@ -78,9 +71,8 @@ class AppendRequest(betterproto.Message):
 @dataclass
 class AppendResponse(betterproto.Message):
     header: storage.ResponseHeader = betterproto.message_field(1)
-    status: "ResponseStatus" = betterproto.enum_field(2)
-    index: int = betterproto.uint64_field(3)
-    timestamp: datetime = betterproto.message_field(4)
+    index: int = betterproto.uint64_field(2)
+    timestamp: datetime = betterproto.message_field(3)
 
 
 @dataclass
@@ -162,9 +154,8 @@ class RemoveRequest(betterproto.Message):
 @dataclass
 class RemoveResponse(betterproto.Message):
     header: storage.ResponseHeader = betterproto.message_field(1)
-    status: "ResponseStatus" = betterproto.enum_field(2)
-    index: int = betterproto.uint64_field(3)
-    previous_value: bytes = betterproto.bytes_field(4)
+    index: int = betterproto.uint64_field(2)
+    previous_value: bytes = betterproto.bytes_field(3)
 
 
 @dataclass

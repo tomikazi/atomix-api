@@ -291,8 +291,9 @@ Response header
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| state | [ResponseState](#atomix.storage.ResponseState) |  |  |
+| type | [ResponseType](#atomix.storage.ResponseType) |  |  |
 | status | [ResponseStatus](#atomix.storage.ResponseStatus) |  |  |
+| state | [ResponseState](#atomix.storage.ResponseState) |  |  |
 
 
 
@@ -312,7 +313,6 @@ Response state
 | response_id | [uint64](#uint64) |  |  |
 | index | [uint64](#uint64) |  |  |
 | leader | [string](#string) |  |  |
-| type | [ResponseType](#atomix.storage.ResponseType) |  |  |
 
 
 

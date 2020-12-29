@@ -66,9 +66,8 @@ message AppendRequest {
 
 message AppendResponse {
     atomix.storage.ResponseHeader header = 1 [(gogoproto.nullable) = false];
-    ResponseStatus status = 2;
-    uint64 index = 3;
-    google.protobuf.Timestamp timestamp = 4 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    uint64 index = 2;
+    google.protobuf.Timestamp timestamp = 3 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
 }
 
 message GetRequest {
@@ -139,9 +138,8 @@ message RemoveRequest {
 
 message RemoveResponse {
     atomix.storage.ResponseHeader header = 1 [(gogoproto.nullable) = false];
-    ResponseStatus status = 2;
-    uint64 index = 3;
-    bytes previous_value = 4;
+    uint64 index = 2;
+    bytes previous_value = 3;
 }
 
 message ClearRequest {
@@ -150,13 +148,6 @@ message ClearRequest {
 
 message ClearResponse {
     atomix.storage.ResponseHeader header = 1 [(gogoproto.nullable) = false];
-}
-
-enum ResponseStatus {
-    OK = 0;
-    NOOP = 1;
-    WRITE_LOCK = 2;
-    PRECONDITION_FAILED = 3;
 }
 
 message EntriesRequest {

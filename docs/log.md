@@ -34,7 +34,6 @@
     - [SizeResponse](#atomix.storage.log.SizeResponse)
   
     - [EventResponse.Type](#atomix.storage.log.EventResponse.Type)
-    - [ResponseStatus](#atomix.storage.log.ResponseStatus)
   
   
     - [LogService](#atomix.storage.log.LogService)
@@ -77,7 +76,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| status | [ResponseStatus](#atomix.storage.log.ResponseStatus) |  |  |
 | index | [uint64](#uint64) |  |  |
 | timestamp | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 
@@ -473,7 +471,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| status | [ResponseStatus](#atomix.storage.log.ResponseStatus) |  |  |
 | index | [uint64](#uint64) |  |  |
 | previous_value | [bytes](#bytes) |  |  |
 
@@ -525,20 +522,6 @@
 | NONE | 0 |  |
 | APPENDED | 1 |  |
 | REMOVED | 2 |  |
-
-
-
-<a name="atomix.storage.log.ResponseStatus"></a>
-
-### ResponseStatus
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| OK | 0 |  |
-| NOOP | 1 |  |
-| WRITE_LOCK | 2 |  |
-| PRECONDITION_FAILED | 3 |  |
 
 
  

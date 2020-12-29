@@ -22,7 +22,7 @@ import "google/protobuf/timestamp.proto";
 import "gogoproto/gogo.proto";
 
 message Timestamp {
-    oneof version {
+    oneof timestamp {
         LogicalTimestamp logical_timestamp = 1;
         WallClockTimestamp wall_clock_timestamp = 2;
         EpochTimestamp epoch_timestamp = 3;

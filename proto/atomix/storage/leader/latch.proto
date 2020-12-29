@@ -73,7 +73,7 @@ message EventResponse {
 }
 
 message Latch {
-    atomix.storage.timestamp.Epoch id = 1 [(gogoproto.nullable) = false];
+    atomix.storage.timestamp.Epoch id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
     string leader = 2;
     repeated string participants = 3;
 }

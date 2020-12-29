@@ -35,8 +35,9 @@ message RequestHeader {
 
 // Response header
 message ResponseHeader {
-    ResponseState state = 1;
-    ResponseStatus status = 2;
+    ResponseType type = 1;
+    ResponseStatus status = 2 [(gogoproto.nullable) = false];
+    ResponseState state = 3;
 }
 
 // Request state
@@ -55,7 +56,6 @@ message ResponseState {
     uint64 response_id = 3 [(gogoproto.customname) = "ResponseID"];
     uint64 index = 4;
     string leader = 5;
-    ResponseType type = 6;
 }
 
 // Stream state

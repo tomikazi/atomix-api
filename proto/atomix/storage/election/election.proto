@@ -114,7 +114,7 @@ message EventResponse {
 }
 
 message Term {
-    atomix.storage.timestamp.Epoch id = 1 [(gogoproto.nullable) = false];
+    atomix.storage.timestamp.Epoch id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
     google.protobuf.Timestamp timestamp = 2 [(gogoproto.stdtime) = true];
     string leader = 3;
     repeated string candidates = 4;

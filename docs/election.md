@@ -3,45 +3,45 @@
 
 ## Table of Contents
 
-- [atomix/election/election.proto](#atomix/election/election.proto)
-    - [AnointRequest](#atomix.election.AnointRequest)
-    - [AnointResponse](#atomix.election.AnointResponse)
-    - [CloseRequest](#atomix.election.CloseRequest)
-    - [CloseResponse](#atomix.election.CloseResponse)
-    - [CreateRequest](#atomix.election.CreateRequest)
-    - [CreateResponse](#atomix.election.CreateResponse)
-    - [EnterRequest](#atomix.election.EnterRequest)
-    - [EnterResponse](#atomix.election.EnterResponse)
-    - [EventRequest](#atomix.election.EventRequest)
-    - [EventResponse](#atomix.election.EventResponse)
-    - [EvictRequest](#atomix.election.EvictRequest)
-    - [EvictResponse](#atomix.election.EvictResponse)
-    - [GetTermRequest](#atomix.election.GetTermRequest)
-    - [GetTermResponse](#atomix.election.GetTermResponse)
-    - [PromoteRequest](#atomix.election.PromoteRequest)
-    - [PromoteResponse](#atomix.election.PromoteResponse)
-    - [Term](#atomix.election.Term)
-    - [WithdrawRequest](#atomix.election.WithdrawRequest)
-    - [WithdrawResponse](#atomix.election.WithdrawResponse)
+- [atomix/storage/election/election.proto](#atomix/storage/election/election.proto)
+    - [AnointRequest](#atomix.storage.election.AnointRequest)
+    - [AnointResponse](#atomix.storage.election.AnointResponse)
+    - [CloseRequest](#atomix.storage.election.CloseRequest)
+    - [CloseResponse](#atomix.storage.election.CloseResponse)
+    - [CreateRequest](#atomix.storage.election.CreateRequest)
+    - [CreateResponse](#atomix.storage.election.CreateResponse)
+    - [EnterRequest](#atomix.storage.election.EnterRequest)
+    - [EnterResponse](#atomix.storage.election.EnterResponse)
+    - [EventRequest](#atomix.storage.election.EventRequest)
+    - [EventResponse](#atomix.storage.election.EventResponse)
+    - [EvictRequest](#atomix.storage.election.EvictRequest)
+    - [EvictResponse](#atomix.storage.election.EvictResponse)
+    - [GetTermRequest](#atomix.storage.election.GetTermRequest)
+    - [GetTermResponse](#atomix.storage.election.GetTermResponse)
+    - [PromoteRequest](#atomix.storage.election.PromoteRequest)
+    - [PromoteResponse](#atomix.storage.election.PromoteResponse)
+    - [Term](#atomix.storage.election.Term)
+    - [WithdrawRequest](#atomix.storage.election.WithdrawRequest)
+    - [WithdrawResponse](#atomix.storage.election.WithdrawResponse)
   
-    - [EventResponse.Type](#atomix.election.EventResponse.Type)
+    - [EventResponse.Type](#atomix.storage.election.EventResponse.Type)
   
   
-    - [LeaderElectionService](#atomix.election.LeaderElectionService)
+    - [LeaderElectionService](#atomix.storage.election.LeaderElectionService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/election/election.proto"></a>
+<a name="atomix/storage/election/election.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/election/election.proto
+## atomix/storage/election/election.proto
 
 
 
-<a name="atomix.election.AnointRequest"></a>
+<a name="atomix.storage.election.AnointRequest"></a>
 
 ### AnointRequest
 
@@ -49,7 +49,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | candidate_id | [string](#string) |  |  |
 
 
@@ -57,7 +57,7 @@
 
 
 
-<a name="atomix.election.AnointResponse"></a>
+<a name="atomix.storage.election.AnointResponse"></a>
 
 ### AnointResponse
 
@@ -65,15 +65,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| term | [Term](#atomix.election.Term) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| term | [Term](#atomix.storage.election.Term) |  |  |
 
 
 
 
 
 
-<a name="atomix.election.CloseRequest"></a>
+<a name="atomix.storage.election.CloseRequest"></a>
 
 ### CloseRequest
 
@@ -81,7 +81,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | delete | [bool](#bool) |  |  |
 
 
@@ -89,7 +89,7 @@
 
 
 
-<a name="atomix.election.CloseResponse"></a>
+<a name="atomix.storage.election.CloseResponse"></a>
 
 ### CloseResponse
 
@@ -97,14 +97,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.election.CreateRequest"></a>
+<a name="atomix.storage.election.CreateRequest"></a>
 
 ### CreateRequest
 
@@ -112,14 +112,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.election.CreateResponse"></a>
+<a name="atomix.storage.election.CreateResponse"></a>
 
 ### CreateResponse
 
@@ -127,14 +127,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.election.EnterRequest"></a>
+<a name="atomix.storage.election.EnterRequest"></a>
 
 ### EnterRequest
 
@@ -142,7 +142,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | candidate_id | [string](#string) |  |  |
 
 
@@ -150,7 +150,7 @@
 
 
 
-<a name="atomix.election.EnterResponse"></a>
+<a name="atomix.storage.election.EnterResponse"></a>
 
 ### EnterResponse
 
@@ -158,15 +158,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| term | [Term](#atomix.election.Term) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| term | [Term](#atomix.storage.election.Term) |  |  |
 
 
 
 
 
 
-<a name="atomix.election.EventRequest"></a>
+<a name="atomix.storage.election.EventRequest"></a>
 
 ### EventRequest
 
@@ -174,14 +174,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.election.EventResponse"></a>
+<a name="atomix.storage.election.EventResponse"></a>
 
 ### EventResponse
 
@@ -189,16 +189,16 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| type | [EventResponse.Type](#atomix.election.EventResponse.Type) |  |  |
-| term | [Term](#atomix.election.Term) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| type | [EventResponse.Type](#atomix.storage.election.EventResponse.Type) |  |  |
+| term | [Term](#atomix.storage.election.Term) |  |  |
 
 
 
 
 
 
-<a name="atomix.election.EvictRequest"></a>
+<a name="atomix.storage.election.EvictRequest"></a>
 
 ### EvictRequest
 
@@ -206,7 +206,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | candidate_id | [string](#string) |  |  |
 
 
@@ -214,7 +214,7 @@
 
 
 
-<a name="atomix.election.EvictResponse"></a>
+<a name="atomix.storage.election.EvictResponse"></a>
 
 ### EvictResponse
 
@@ -222,15 +222,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| term | [Term](#atomix.election.Term) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| term | [Term](#atomix.storage.election.Term) |  |  |
 
 
 
 
 
 
-<a name="atomix.election.GetTermRequest"></a>
+<a name="atomix.storage.election.GetTermRequest"></a>
 
 ### GetTermRequest
 
@@ -238,14 +238,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.election.GetTermResponse"></a>
+<a name="atomix.storage.election.GetTermResponse"></a>
 
 ### GetTermResponse
 
@@ -253,15 +253,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| term | [Term](#atomix.election.Term) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| term | [Term](#atomix.storage.election.Term) |  |  |
 
 
 
 
 
 
-<a name="atomix.election.PromoteRequest"></a>
+<a name="atomix.storage.election.PromoteRequest"></a>
 
 ### PromoteRequest
 
@@ -269,7 +269,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | candidate_id | [string](#string) |  |  |
 
 
@@ -277,7 +277,7 @@
 
 
 
-<a name="atomix.election.PromoteResponse"></a>
+<a name="atomix.storage.election.PromoteResponse"></a>
 
 ### PromoteResponse
 
@@ -285,15 +285,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| term | [Term](#atomix.election.Term) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| term | [Term](#atomix.storage.election.Term) |  |  |
 
 
 
 
 
 
-<a name="atomix.election.Term"></a>
+<a name="atomix.storage.election.Term"></a>
 
 ### Term
 
@@ -311,7 +311,7 @@
 
 
 
-<a name="atomix.election.WithdrawRequest"></a>
+<a name="atomix.storage.election.WithdrawRequest"></a>
 
 ### WithdrawRequest
 
@@ -319,7 +319,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | candidate_id | [string](#string) |  |  |
 
 
@@ -327,7 +327,7 @@
 
 
 
-<a name="atomix.election.WithdrawResponse"></a>
+<a name="atomix.storage.election.WithdrawResponse"></a>
 
 ### WithdrawResponse
 
@@ -335,8 +335,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| term | [Term](#atomix.election.Term) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| term | [Term](#atomix.storage.election.Term) |  |  |
 
 
 
@@ -345,7 +345,7 @@
  
 
 
-<a name="atomix.election.EventResponse.Type"></a>
+<a name="atomix.storage.election.EventResponse.Type"></a>
 
 ### EventResponse.Type
 
@@ -360,22 +360,22 @@
  
 
 
-<a name="atomix.election.LeaderElectionService"></a>
+<a name="atomix.storage.election.LeaderElectionService"></a>
 
 ### LeaderElectionService
 LeaderElectionService implements a distributed leader election
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Create | [CreateRequest](#atomix.election.CreateRequest) | [CreateResponse](#atomix.election.CreateResponse) | Create creates a LeaderElection instance |
-| Close | [CloseRequest](#atomix.election.CloseRequest) | [CloseResponse](#atomix.election.CloseResponse) | Close closes a LeaderElection instance |
-| Enter | [EnterRequest](#atomix.election.EnterRequest) | [EnterResponse](#atomix.election.EnterResponse) | Enter enters the leader election |
-| Withdraw | [WithdrawRequest](#atomix.election.WithdrawRequest) | [WithdrawResponse](#atomix.election.WithdrawResponse) | Withdraw withdraws a candidate from the leader election |
-| Anoint | [AnointRequest](#atomix.election.AnointRequest) | [AnointResponse](#atomix.election.AnointResponse) | Anoint anoints a candidate leader |
-| Promote | [PromoteRequest](#atomix.election.PromoteRequest) | [PromoteResponse](#atomix.election.PromoteResponse) | Promote promotes a candidate |
-| Evict | [EvictRequest](#atomix.election.EvictRequest) | [EvictResponse](#atomix.election.EvictResponse) | Evict evicts a candidate from the election |
-| GetTerm | [GetTermRequest](#atomix.election.GetTermRequest) | [GetTermResponse](#atomix.election.GetTermResponse) | GetTerm gets the current leadership term |
-| Events | [EventRequest](#atomix.election.EventRequest) | [EventResponse](#atomix.election.EventResponse) stream | Events listens for leadership events |
+| Create | [CreateRequest](#atomix.storage.election.CreateRequest) | [CreateResponse](#atomix.storage.election.CreateResponse) | Create creates a LeaderElection instance |
+| Close | [CloseRequest](#atomix.storage.election.CloseRequest) | [CloseResponse](#atomix.storage.election.CloseResponse) | Close closes a LeaderElection instance |
+| Enter | [EnterRequest](#atomix.storage.election.EnterRequest) | [EnterResponse](#atomix.storage.election.EnterResponse) | Enter enters the leader election |
+| Withdraw | [WithdrawRequest](#atomix.storage.election.WithdrawRequest) | [WithdrawResponse](#atomix.storage.election.WithdrawResponse) | Withdraw withdraws a candidate from the leader election |
+| Anoint | [AnointRequest](#atomix.storage.election.AnointRequest) | [AnointResponse](#atomix.storage.election.AnointResponse) | Anoint anoints a candidate leader |
+| Promote | [PromoteRequest](#atomix.storage.election.PromoteRequest) | [PromoteResponse](#atomix.storage.election.PromoteResponse) | Promote promotes a candidate |
+| Evict | [EvictRequest](#atomix.storage.election.EvictRequest) | [EvictResponse](#atomix.storage.election.EvictResponse) | Evict evicts a candidate from the election |
+| GetTerm | [GetTermRequest](#atomix.storage.election.GetTermRequest) | [GetTermResponse](#atomix.storage.election.GetTermResponse) | GetTerm gets the current leadership term |
+| Events | [EventRequest](#atomix.storage.election.EventRequest) | [EventResponse](#atomix.storage.election.EventResponse) stream | Events listens for leadership events |
 
  
 

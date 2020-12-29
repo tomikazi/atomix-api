@@ -3,37 +3,37 @@
 
 ## Table of Contents
 
-- [atomix/leader/latch.proto](#atomix/leader/latch.proto)
-    - [CloseRequest](#atomix.leader.CloseRequest)
-    - [CloseResponse](#atomix.leader.CloseResponse)
-    - [CreateRequest](#atomix.leader.CreateRequest)
-    - [CreateResponse](#atomix.leader.CreateResponse)
-    - [EventRequest](#atomix.leader.EventRequest)
-    - [EventResponse](#atomix.leader.EventResponse)
-    - [GetRequest](#atomix.leader.GetRequest)
-    - [GetResponse](#atomix.leader.GetResponse)
-    - [Latch](#atomix.leader.Latch)
-    - [LatchRequest](#atomix.leader.LatchRequest)
-    - [LatchResponse](#atomix.leader.LatchResponse)
+- [atomix/storage/leader/latch.proto](#atomix/storage/leader/latch.proto)
+    - [CloseRequest](#atomix.storage.leader.CloseRequest)
+    - [CloseResponse](#atomix.storage.leader.CloseResponse)
+    - [CreateRequest](#atomix.storage.leader.CreateRequest)
+    - [CreateResponse](#atomix.storage.leader.CreateResponse)
+    - [EventRequest](#atomix.storage.leader.EventRequest)
+    - [EventResponse](#atomix.storage.leader.EventResponse)
+    - [GetRequest](#atomix.storage.leader.GetRequest)
+    - [GetResponse](#atomix.storage.leader.GetResponse)
+    - [Latch](#atomix.storage.leader.Latch)
+    - [LatchRequest](#atomix.storage.leader.LatchRequest)
+    - [LatchResponse](#atomix.storage.leader.LatchResponse)
   
-    - [EventResponse.Type](#atomix.leader.EventResponse.Type)
+    - [EventResponse.Type](#atomix.storage.leader.EventResponse.Type)
   
   
-    - [LeaderLatchService](#atomix.leader.LeaderLatchService)
+    - [LeaderLatchService](#atomix.storage.leader.LeaderLatchService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/leader/latch.proto"></a>
+<a name="atomix/storage/leader/latch.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/leader/latch.proto
+## atomix/storage/leader/latch.proto
 
 
 
-<a name="atomix.leader.CloseRequest"></a>
+<a name="atomix.storage.leader.CloseRequest"></a>
 
 ### CloseRequest
 
@@ -41,7 +41,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | delete | [bool](#bool) |  |  |
 
 
@@ -49,7 +49,7 @@
 
 
 
-<a name="atomix.leader.CloseResponse"></a>
+<a name="atomix.storage.leader.CloseResponse"></a>
 
 ### CloseResponse
 
@@ -57,14 +57,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.leader.CreateRequest"></a>
+<a name="atomix.storage.leader.CreateRequest"></a>
 
 ### CreateRequest
 
@@ -72,14 +72,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.leader.CreateResponse"></a>
+<a name="atomix.storage.leader.CreateResponse"></a>
 
 ### CreateResponse
 
@@ -87,14 +87,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.leader.EventRequest"></a>
+<a name="atomix.storage.leader.EventRequest"></a>
 
 ### EventRequest
 
@@ -102,14 +102,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.leader.EventResponse"></a>
+<a name="atomix.storage.leader.EventResponse"></a>
 
 ### EventResponse
 
@@ -117,16 +117,16 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| type | [EventResponse.Type](#atomix.leader.EventResponse.Type) |  |  |
-| latch | [Latch](#atomix.leader.Latch) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| type | [EventResponse.Type](#atomix.storage.leader.EventResponse.Type) |  |  |
+| latch | [Latch](#atomix.storage.leader.Latch) |  |  |
 
 
 
 
 
 
-<a name="atomix.leader.GetRequest"></a>
+<a name="atomix.storage.leader.GetRequest"></a>
 
 ### GetRequest
 
@@ -134,14 +134,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.leader.GetResponse"></a>
+<a name="atomix.storage.leader.GetResponse"></a>
 
 ### GetResponse
 
@@ -149,15 +149,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| latch | [Latch](#atomix.leader.Latch) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| latch | [Latch](#atomix.storage.leader.Latch) |  |  |
 
 
 
 
 
 
-<a name="atomix.leader.Latch"></a>
+<a name="atomix.storage.leader.Latch"></a>
 
 ### Latch
 
@@ -174,7 +174,7 @@
 
 
 
-<a name="atomix.leader.LatchRequest"></a>
+<a name="atomix.storage.leader.LatchRequest"></a>
 
 ### LatchRequest
 
@@ -182,7 +182,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | participant_id | [string](#string) |  |  |
 
 
@@ -190,7 +190,7 @@
 
 
 
-<a name="atomix.leader.LatchResponse"></a>
+<a name="atomix.storage.leader.LatchResponse"></a>
 
 ### LatchResponse
 
@@ -198,8 +198,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| latch | [Latch](#atomix.leader.Latch) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| latch | [Latch](#atomix.storage.leader.Latch) |  |  |
 
 
 
@@ -208,7 +208,7 @@
  
 
 
-<a name="atomix.leader.EventResponse.Type"></a>
+<a name="atomix.storage.leader.EventResponse.Type"></a>
 
 ### EventResponse.Type
 
@@ -223,18 +223,18 @@
  
 
 
-<a name="atomix.leader.LeaderLatchService"></a>
+<a name="atomix.storage.leader.LeaderLatchService"></a>
 
 ### LeaderLatchService
 Leader latch service
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Create | [CreateRequest](#atomix.leader.CreateRequest) | [CreateResponse](#atomix.leader.CreateResponse) | Create creates a leader latch |
-| Close | [CloseRequest](#atomix.leader.CloseRequest) | [CloseResponse](#atomix.leader.CloseResponse) | Close closes a leader latch |
-| Latch | [LatchRequest](#atomix.leader.LatchRequest) | [LatchResponse](#atomix.leader.LatchResponse) | Latch attempts to acquire the leader latch |
-| Get | [GetRequest](#atomix.leader.GetRequest) | [GetResponse](#atomix.leader.GetResponse) | Get gets the current leader |
-| Events | [EventRequest](#atomix.leader.EventRequest) | [EventResponse](#atomix.leader.EventResponse) stream | Events listens for leader change events |
+| Create | [CreateRequest](#atomix.storage.leader.CreateRequest) | [CreateResponse](#atomix.storage.leader.CreateResponse) | Create creates a leader latch |
+| Close | [CloseRequest](#atomix.storage.leader.CloseRequest) | [CloseResponse](#atomix.storage.leader.CloseResponse) | Close closes a leader latch |
+| Latch | [LatchRequest](#atomix.storage.leader.LatchRequest) | [LatchResponse](#atomix.storage.leader.LatchResponse) | Latch attempts to acquire the leader latch |
+| Get | [GetRequest](#atomix.storage.leader.GetRequest) | [GetResponse](#atomix.storage.leader.GetResponse) | Get gets the current leader |
+| Events | [EventRequest](#atomix.storage.leader.EventRequest) | [EventResponse](#atomix.storage.leader.EventResponse) stream | Events listens for leader change events |
 
  
 

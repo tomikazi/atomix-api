@@ -3,51 +3,51 @@
 
 ## Table of Contents
 
-- [atomix/list/list.proto](#atomix/list/list.proto)
-    - [AppendRequest](#atomix.list.AppendRequest)
-    - [AppendResponse](#atomix.list.AppendResponse)
-    - [ClearRequest](#atomix.list.ClearRequest)
-    - [ClearResponse](#atomix.list.ClearResponse)
-    - [CloseRequest](#atomix.list.CloseRequest)
-    - [CloseResponse](#atomix.list.CloseResponse)
-    - [ContainsRequest](#atomix.list.ContainsRequest)
-    - [ContainsResponse](#atomix.list.ContainsResponse)
-    - [CreateRequest](#atomix.list.CreateRequest)
-    - [CreateResponse](#atomix.list.CreateResponse)
-    - [EventRequest](#atomix.list.EventRequest)
-    - [EventResponse](#atomix.list.EventResponse)
-    - [GetRequest](#atomix.list.GetRequest)
-    - [GetResponse](#atomix.list.GetResponse)
-    - [InsertRequest](#atomix.list.InsertRequest)
-    - [InsertResponse](#atomix.list.InsertResponse)
-    - [IterateRequest](#atomix.list.IterateRequest)
-    - [IterateResponse](#atomix.list.IterateResponse)
-    - [RemoveRequest](#atomix.list.RemoveRequest)
-    - [RemoveResponse](#atomix.list.RemoveResponse)
-    - [SetRequest](#atomix.list.SetRequest)
-    - [SetResponse](#atomix.list.SetResponse)
-    - [SizeRequest](#atomix.list.SizeRequest)
-    - [SizeResponse](#atomix.list.SizeResponse)
+- [atomix/storage/list/list.proto](#atomix/storage/list/list.proto)
+    - [AppendRequest](#atomix.storage.list.AppendRequest)
+    - [AppendResponse](#atomix.storage.list.AppendResponse)
+    - [ClearRequest](#atomix.storage.list.ClearRequest)
+    - [ClearResponse](#atomix.storage.list.ClearResponse)
+    - [CloseRequest](#atomix.storage.list.CloseRequest)
+    - [CloseResponse](#atomix.storage.list.CloseResponse)
+    - [ContainsRequest](#atomix.storage.list.ContainsRequest)
+    - [ContainsResponse](#atomix.storage.list.ContainsResponse)
+    - [CreateRequest](#atomix.storage.list.CreateRequest)
+    - [CreateResponse](#atomix.storage.list.CreateResponse)
+    - [EventRequest](#atomix.storage.list.EventRequest)
+    - [EventResponse](#atomix.storage.list.EventResponse)
+    - [GetRequest](#atomix.storage.list.GetRequest)
+    - [GetResponse](#atomix.storage.list.GetResponse)
+    - [InsertRequest](#atomix.storage.list.InsertRequest)
+    - [InsertResponse](#atomix.storage.list.InsertResponse)
+    - [IterateRequest](#atomix.storage.list.IterateRequest)
+    - [IterateResponse](#atomix.storage.list.IterateResponse)
+    - [RemoveRequest](#atomix.storage.list.RemoveRequest)
+    - [RemoveResponse](#atomix.storage.list.RemoveResponse)
+    - [SetRequest](#atomix.storage.list.SetRequest)
+    - [SetResponse](#atomix.storage.list.SetResponse)
+    - [SizeRequest](#atomix.storage.list.SizeRequest)
+    - [SizeResponse](#atomix.storage.list.SizeResponse)
   
-    - [EventResponse.Type](#atomix.list.EventResponse.Type)
-    - [ResponseStatus](#atomix.list.ResponseStatus)
+    - [EventResponse.Type](#atomix.storage.list.EventResponse.Type)
+    - [ResponseStatus](#atomix.storage.list.ResponseStatus)
   
   
-    - [ListService](#atomix.list.ListService)
+    - [ListService](#atomix.storage.list.ListService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/list/list.proto"></a>
+<a name="atomix/storage/list/list.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/list/list.proto
+## atomix/storage/list/list.proto
 
 
 
-<a name="atomix.list.AppendRequest"></a>
+<a name="atomix.storage.list.AppendRequest"></a>
 
 ### AppendRequest
 
@@ -55,7 +55,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | value | [string](#string) |  |  |
 
 
@@ -63,7 +63,7 @@
 
 
 
-<a name="atomix.list.AppendResponse"></a>
+<a name="atomix.storage.list.AppendResponse"></a>
 
 ### AppendResponse
 
@@ -71,15 +71,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| status | [ResponseStatus](#atomix.list.ResponseStatus) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| status | [ResponseStatus](#atomix.storage.list.ResponseStatus) |  |  |
 
 
 
 
 
 
-<a name="atomix.list.ClearRequest"></a>
+<a name="atomix.storage.list.ClearRequest"></a>
 
 ### ClearRequest
 
@@ -87,14 +87,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.list.ClearResponse"></a>
+<a name="atomix.storage.list.ClearResponse"></a>
 
 ### ClearResponse
 
@@ -102,14 +102,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.list.CloseRequest"></a>
+<a name="atomix.storage.list.CloseRequest"></a>
 
 ### CloseRequest
 
@@ -117,7 +117,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | delete | [bool](#bool) |  |  |
 
 
@@ -125,7 +125,7 @@
 
 
 
-<a name="atomix.list.CloseResponse"></a>
+<a name="atomix.storage.list.CloseResponse"></a>
 
 ### CloseResponse
 
@@ -133,14 +133,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.list.ContainsRequest"></a>
+<a name="atomix.storage.list.ContainsRequest"></a>
 
 ### ContainsRequest
 
@@ -148,7 +148,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | value | [string](#string) |  |  |
 
 
@@ -156,7 +156,7 @@
 
 
 
-<a name="atomix.list.ContainsResponse"></a>
+<a name="atomix.storage.list.ContainsResponse"></a>
 
 ### ContainsResponse
 
@@ -164,7 +164,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 | contains | [bool](#bool) |  |  |
 
 
@@ -172,7 +172,7 @@
 
 
 
-<a name="atomix.list.CreateRequest"></a>
+<a name="atomix.storage.list.CreateRequest"></a>
 
 ### CreateRequest
 
@@ -180,14 +180,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.list.CreateResponse"></a>
+<a name="atomix.storage.list.CreateResponse"></a>
 
 ### CreateResponse
 
@@ -195,14 +195,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.list.EventRequest"></a>
+<a name="atomix.storage.list.EventRequest"></a>
 
 ### EventRequest
 
@@ -210,7 +210,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | replay | [bool](#bool) |  |  |
 
 
@@ -218,7 +218,7 @@
 
 
 
-<a name="atomix.list.EventResponse"></a>
+<a name="atomix.storage.list.EventResponse"></a>
 
 ### EventResponse
 
@@ -226,8 +226,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| type | [EventResponse.Type](#atomix.list.EventResponse.Type) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| type | [EventResponse.Type](#atomix.storage.list.EventResponse.Type) |  |  |
 | index | [uint32](#uint32) |  |  |
 | value | [string](#string) |  |  |
 
@@ -236,7 +236,7 @@
 
 
 
-<a name="atomix.list.GetRequest"></a>
+<a name="atomix.storage.list.GetRequest"></a>
 
 ### GetRequest
 
@@ -244,7 +244,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | index | [uint32](#uint32) |  |  |
 
 
@@ -252,7 +252,7 @@
 
 
 
-<a name="atomix.list.GetResponse"></a>
+<a name="atomix.storage.list.GetResponse"></a>
 
 ### GetResponse
 
@@ -260,8 +260,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| status | [ResponseStatus](#atomix.list.ResponseStatus) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| status | [ResponseStatus](#atomix.storage.list.ResponseStatus) |  |  |
 | value | [string](#string) |  |  |
 
 
@@ -269,7 +269,7 @@
 
 
 
-<a name="atomix.list.InsertRequest"></a>
+<a name="atomix.storage.list.InsertRequest"></a>
 
 ### InsertRequest
 
@@ -277,7 +277,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | index | [uint32](#uint32) |  |  |
 | value | [string](#string) |  |  |
 
@@ -286,7 +286,7 @@
 
 
 
-<a name="atomix.list.InsertResponse"></a>
+<a name="atomix.storage.list.InsertResponse"></a>
 
 ### InsertResponse
 
@@ -294,15 +294,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| status | [ResponseStatus](#atomix.list.ResponseStatus) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| status | [ResponseStatus](#atomix.storage.list.ResponseStatus) |  |  |
 
 
 
 
 
 
-<a name="atomix.list.IterateRequest"></a>
+<a name="atomix.storage.list.IterateRequest"></a>
 
 ### IterateRequest
 
@@ -310,14 +310,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.list.IterateResponse"></a>
+<a name="atomix.storage.list.IterateResponse"></a>
 
 ### IterateResponse
 
@@ -325,7 +325,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 | value | [string](#string) |  |  |
 
 
@@ -333,7 +333,7 @@
 
 
 
-<a name="atomix.list.RemoveRequest"></a>
+<a name="atomix.storage.list.RemoveRequest"></a>
 
 ### RemoveRequest
 
@@ -341,7 +341,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | index | [uint32](#uint32) |  |  |
 
 
@@ -349,7 +349,7 @@
 
 
 
-<a name="atomix.list.RemoveResponse"></a>
+<a name="atomix.storage.list.RemoveResponse"></a>
 
 ### RemoveResponse
 
@@ -357,8 +357,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| status | [ResponseStatus](#atomix.list.ResponseStatus) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| status | [ResponseStatus](#atomix.storage.list.ResponseStatus) |  |  |
 | value | [string](#string) |  |  |
 
 
@@ -366,7 +366,7 @@
 
 
 
-<a name="atomix.list.SetRequest"></a>
+<a name="atomix.storage.list.SetRequest"></a>
 
 ### SetRequest
 
@@ -374,7 +374,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | index | [uint32](#uint32) |  |  |
 | value | [string](#string) |  |  |
 
@@ -383,7 +383,7 @@
 
 
 
-<a name="atomix.list.SetResponse"></a>
+<a name="atomix.storage.list.SetResponse"></a>
 
 ### SetResponse
 
@@ -391,15 +391,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| status | [ResponseStatus](#atomix.list.ResponseStatus) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| status | [ResponseStatus](#atomix.storage.list.ResponseStatus) |  |  |
 
 
 
 
 
 
-<a name="atomix.list.SizeRequest"></a>
+<a name="atomix.storage.list.SizeRequest"></a>
 
 ### SizeRequest
 
@@ -407,14 +407,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.list.SizeResponse"></a>
+<a name="atomix.storage.list.SizeResponse"></a>
 
 ### SizeResponse
 
@@ -422,7 +422,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 | size | [uint32](#uint32) |  |  |
 
 
@@ -432,7 +432,7 @@
  
 
 
-<a name="atomix.list.EventResponse.Type"></a>
+<a name="atomix.storage.list.EventResponse.Type"></a>
 
 ### EventResponse.Type
 
@@ -445,7 +445,7 @@
 
 
 
-<a name="atomix.list.ResponseStatus"></a>
+<a name="atomix.storage.list.ResponseStatus"></a>
 
 ### ResponseStatus
 
@@ -463,25 +463,25 @@
  
 
 
-<a name="atomix.list.ListService"></a>
+<a name="atomix.storage.list.ListService"></a>
 
 ### ListService
 ListService implements a distributed list
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Create | [CreateRequest](#atomix.list.CreateRequest) | [CreateResponse](#atomix.list.CreateResponse) | Create creates a list session |
-| Close | [CloseRequest](#atomix.list.CloseRequest) | [CloseResponse](#atomix.list.CloseResponse) | Close closes a list |
-| Size | [SizeRequest](#atomix.list.SizeRequest) | [SizeResponse](#atomix.list.SizeResponse) | Size gets the number of elements in the list |
-| Contains | [ContainsRequest](#atomix.list.ContainsRequest) | [ContainsResponse](#atomix.list.ContainsResponse) | Contains returns whether the list contains a value |
-| Append | [AppendRequest](#atomix.list.AppendRequest) | [AppendResponse](#atomix.list.AppendResponse) | Append appends a value to the list |
-| Insert | [InsertRequest](#atomix.list.InsertRequest) | [InsertResponse](#atomix.list.InsertResponse) | Insert inserts a value at a specific index in the list |
-| Get | [GetRequest](#atomix.list.GetRequest) | [GetResponse](#atomix.list.GetResponse) | Get gets the value at an index in the list |
-| Set | [SetRequest](#atomix.list.SetRequest) | [SetResponse](#atomix.list.SetResponse) | Set sets the value at an index in the list |
-| Remove | [RemoveRequest](#atomix.list.RemoveRequest) | [RemoveResponse](#atomix.list.RemoveResponse) | Remove removes an element from the list |
-| Clear | [ClearRequest](#atomix.list.ClearRequest) | [ClearResponse](#atomix.list.ClearResponse) | Clear removes all elements from the list |
-| Events | [EventRequest](#atomix.list.EventRequest) | [EventResponse](#atomix.list.EventResponse) stream | Events listens for change events |
-| Iterate | [IterateRequest](#atomix.list.IterateRequest) | [IterateResponse](#atomix.list.IterateResponse) stream | Iterate streams all values in the list |
+| Create | [CreateRequest](#atomix.storage.list.CreateRequest) | [CreateResponse](#atomix.storage.list.CreateResponse) | Create creates a list session |
+| Close | [CloseRequest](#atomix.storage.list.CloseRequest) | [CloseResponse](#atomix.storage.list.CloseResponse) | Close closes a list |
+| Size | [SizeRequest](#atomix.storage.list.SizeRequest) | [SizeResponse](#atomix.storage.list.SizeResponse) | Size gets the number of elements in the list |
+| Contains | [ContainsRequest](#atomix.storage.list.ContainsRequest) | [ContainsResponse](#atomix.storage.list.ContainsResponse) | Contains returns whether the list contains a value |
+| Append | [AppendRequest](#atomix.storage.list.AppendRequest) | [AppendResponse](#atomix.storage.list.AppendResponse) | Append appends a value to the list |
+| Insert | [InsertRequest](#atomix.storage.list.InsertRequest) | [InsertResponse](#atomix.storage.list.InsertResponse) | Insert inserts a value at a specific index in the list |
+| Get | [GetRequest](#atomix.storage.list.GetRequest) | [GetResponse](#atomix.storage.list.GetResponse) | Get gets the value at an index in the list |
+| Set | [SetRequest](#atomix.storage.list.SetRequest) | [SetResponse](#atomix.storage.list.SetResponse) | Set sets the value at an index in the list |
+| Remove | [RemoveRequest](#atomix.storage.list.RemoveRequest) | [RemoveResponse](#atomix.storage.list.RemoveResponse) | Remove removes an element from the list |
+| Clear | [ClearRequest](#atomix.storage.list.ClearRequest) | [ClearResponse](#atomix.storage.list.ClearResponse) | Clear removes all elements from the list |
+| Events | [EventRequest](#atomix.storage.list.EventRequest) | [EventResponse](#atomix.storage.list.EventResponse) stream | Events listens for change events |
+| Iterate | [IterateRequest](#atomix.storage.list.IterateRequest) | [IterateResponse](#atomix.storage.list.IterateResponse) stream | Iterate streams all values in the list |
 
  
 

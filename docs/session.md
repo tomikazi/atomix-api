@@ -3,31 +3,31 @@
 
 ## Table of Contents
 
-- [atomix/session/session.proto](#atomix/session/session.proto)
-    - [CloseSessionRequest](#atomix.session.CloseSessionRequest)
-    - [CloseSessionResponse](#atomix.session.CloseSessionResponse)
-    - [KeepAliveRequest](#atomix.session.KeepAliveRequest)
-    - [KeepAliveResponse](#atomix.session.KeepAliveResponse)
-    - [OpenSessionRequest](#atomix.session.OpenSessionRequest)
-    - [OpenSessionResponse](#atomix.session.OpenSessionResponse)
+- [atomix/storage/session/session.proto](#atomix/storage/session/session.proto)
+    - [CloseSessionRequest](#atomix.storage.session.CloseSessionRequest)
+    - [CloseSessionResponse](#atomix.storage.session.CloseSessionResponse)
+    - [KeepAliveRequest](#atomix.storage.session.KeepAliveRequest)
+    - [KeepAliveResponse](#atomix.storage.session.KeepAliveResponse)
+    - [OpenSessionRequest](#atomix.storage.session.OpenSessionRequest)
+    - [OpenSessionResponse](#atomix.storage.session.OpenSessionResponse)
   
   
   
-    - [SessionService](#atomix.session.SessionService)
+    - [SessionService](#atomix.storage.session.SessionService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/session/session.proto"></a>
+<a name="atomix/storage/session/session.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/session/session.proto
+## atomix/storage/session/session.proto
 
 
 
-<a name="atomix.session.CloseSessionRequest"></a>
+<a name="atomix.storage.session.CloseSessionRequest"></a>
 
 ### CloseSessionRequest
 
@@ -35,7 +35,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | delete | [bool](#bool) |  |  |
 
 
@@ -43,7 +43,7 @@
 
 
 
-<a name="atomix.session.CloseSessionResponse"></a>
+<a name="atomix.storage.session.CloseSessionResponse"></a>
 
 ### CloseSessionResponse
 
@@ -51,14 +51,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.session.KeepAliveRequest"></a>
+<a name="atomix.storage.session.KeepAliveRequest"></a>
 
 ### KeepAliveRequest
 
@@ -66,14 +66,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.session.KeepAliveResponse"></a>
+<a name="atomix.storage.session.KeepAliveResponse"></a>
 
 ### KeepAliveResponse
 
@@ -81,14 +81,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.session.OpenSessionRequest"></a>
+<a name="atomix.storage.session.OpenSessionRequest"></a>
 
 ### OpenSessionRequest
 
@@ -96,7 +96,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | timeout | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
 
 
@@ -104,7 +104,7 @@
 
 
 
-<a name="atomix.session.OpenSessionResponse"></a>
+<a name="atomix.storage.session.OpenSessionResponse"></a>
 
 ### OpenSessionResponse
 
@@ -112,7 +112,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
@@ -125,16 +125,16 @@
  
 
 
-<a name="atomix.session.SessionService"></a>
+<a name="atomix.storage.session.SessionService"></a>
 
 ### SessionService
 Session service
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| OpenSession | [OpenSessionRequest](#atomix.session.OpenSessionRequest) | [OpenSessionResponse](#atomix.session.OpenSessionResponse) | OpenSession opens a new session |
-| KeepAlive | [KeepAliveRequest](#atomix.session.KeepAliveRequest) | [KeepAliveResponse](#atomix.session.KeepAliveResponse) | KeepAlive keeps a session alive |
-| CloseSession | [CloseSessionRequest](#atomix.session.CloseSessionRequest) | [CloseSessionResponse](#atomix.session.CloseSessionResponse) | CloseSession closes a session |
+| OpenSession | [OpenSessionRequest](#atomix.storage.session.OpenSessionRequest) | [OpenSessionResponse](#atomix.storage.session.OpenSessionResponse) | OpenSession opens a new session |
+| KeepAlive | [KeepAliveRequest](#atomix.storage.session.KeepAliveRequest) | [KeepAliveResponse](#atomix.storage.session.KeepAliveResponse) | KeepAlive keeps a session alive |
+| CloseSession | [CloseSessionRequest](#atomix.storage.session.CloseSessionRequest) | [CloseSessionResponse](#atomix.storage.session.CloseSessionResponse) | CloseSession closes a session |
 
  
 

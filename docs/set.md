@@ -3,45 +3,45 @@
 
 ## Table of Contents
 
-- [atomix/set/set.proto](#atomix/set/set.proto)
-    - [AddRequest](#atomix.set.AddRequest)
-    - [AddResponse](#atomix.set.AddResponse)
-    - [ClearRequest](#atomix.set.ClearRequest)
-    - [ClearResponse](#atomix.set.ClearResponse)
-    - [CloseRequest](#atomix.set.CloseRequest)
-    - [CloseResponse](#atomix.set.CloseResponse)
-    - [ContainsRequest](#atomix.set.ContainsRequest)
-    - [ContainsResponse](#atomix.set.ContainsResponse)
-    - [CreateRequest](#atomix.set.CreateRequest)
-    - [CreateResponse](#atomix.set.CreateResponse)
-    - [EventRequest](#atomix.set.EventRequest)
-    - [EventResponse](#atomix.set.EventResponse)
-    - [IterateRequest](#atomix.set.IterateRequest)
-    - [IterateResponse](#atomix.set.IterateResponse)
-    - [RemoveRequest](#atomix.set.RemoveRequest)
-    - [RemoveResponse](#atomix.set.RemoveResponse)
-    - [SizeRequest](#atomix.set.SizeRequest)
-    - [SizeResponse](#atomix.set.SizeResponse)
+- [atomix/storage/set/set.proto](#atomix/storage/set/set.proto)
+    - [AddRequest](#atomix.storage.set.AddRequest)
+    - [AddResponse](#atomix.storage.set.AddResponse)
+    - [ClearRequest](#atomix.storage.set.ClearRequest)
+    - [ClearResponse](#atomix.storage.set.ClearResponse)
+    - [CloseRequest](#atomix.storage.set.CloseRequest)
+    - [CloseResponse](#atomix.storage.set.CloseResponse)
+    - [ContainsRequest](#atomix.storage.set.ContainsRequest)
+    - [ContainsResponse](#atomix.storage.set.ContainsResponse)
+    - [CreateRequest](#atomix.storage.set.CreateRequest)
+    - [CreateResponse](#atomix.storage.set.CreateResponse)
+    - [EventRequest](#atomix.storage.set.EventRequest)
+    - [EventResponse](#atomix.storage.set.EventResponse)
+    - [IterateRequest](#atomix.storage.set.IterateRequest)
+    - [IterateResponse](#atomix.storage.set.IterateResponse)
+    - [RemoveRequest](#atomix.storage.set.RemoveRequest)
+    - [RemoveResponse](#atomix.storage.set.RemoveResponse)
+    - [SizeRequest](#atomix.storage.set.SizeRequest)
+    - [SizeResponse](#atomix.storage.set.SizeResponse)
   
-    - [EventResponse.Type](#atomix.set.EventResponse.Type)
-    - [ResponseStatus](#atomix.set.ResponseStatus)
+    - [EventResponse.Type](#atomix.storage.set.EventResponse.Type)
+    - [ResponseStatus](#atomix.storage.set.ResponseStatus)
   
   
-    - [SetService](#atomix.set.SetService)
+    - [SetService](#atomix.storage.set.SetService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/set/set.proto"></a>
+<a name="atomix/storage/set/set.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/set/set.proto
+## atomix/storage/set/set.proto
 
 
 
-<a name="atomix.set.AddRequest"></a>
+<a name="atomix.storage.set.AddRequest"></a>
 
 ### AddRequest
 
@@ -49,7 +49,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | value | [string](#string) |  |  |
 
 
@@ -57,7 +57,7 @@
 
 
 
-<a name="atomix.set.AddResponse"></a>
+<a name="atomix.storage.set.AddResponse"></a>
 
 ### AddResponse
 
@@ -65,8 +65,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| status | [ResponseStatus](#atomix.set.ResponseStatus) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| status | [ResponseStatus](#atomix.storage.set.ResponseStatus) |  |  |
 | added | [bool](#bool) |  |  |
 
 
@@ -74,7 +74,7 @@
 
 
 
-<a name="atomix.set.ClearRequest"></a>
+<a name="atomix.storage.set.ClearRequest"></a>
 
 ### ClearRequest
 
@@ -82,14 +82,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.set.ClearResponse"></a>
+<a name="atomix.storage.set.ClearResponse"></a>
 
 ### ClearResponse
 
@@ -97,14 +97,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.set.CloseRequest"></a>
+<a name="atomix.storage.set.CloseRequest"></a>
 
 ### CloseRequest
 
@@ -112,7 +112,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | delete | [bool](#bool) |  |  |
 
 
@@ -120,7 +120,7 @@
 
 
 
-<a name="atomix.set.CloseResponse"></a>
+<a name="atomix.storage.set.CloseResponse"></a>
 
 ### CloseResponse
 
@@ -128,14 +128,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.set.ContainsRequest"></a>
+<a name="atomix.storage.set.ContainsRequest"></a>
 
 ### ContainsRequest
 
@@ -143,7 +143,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | value | [string](#string) |  |  |
 
 
@@ -151,7 +151,7 @@
 
 
 
-<a name="atomix.set.ContainsResponse"></a>
+<a name="atomix.storage.set.ContainsResponse"></a>
 
 ### ContainsResponse
 
@@ -159,7 +159,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 | contains | [bool](#bool) |  |  |
 
 
@@ -167,7 +167,7 @@
 
 
 
-<a name="atomix.set.CreateRequest"></a>
+<a name="atomix.storage.set.CreateRequest"></a>
 
 ### CreateRequest
 
@@ -175,14 +175,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.set.CreateResponse"></a>
+<a name="atomix.storage.set.CreateResponse"></a>
 
 ### CreateResponse
 
@@ -190,14 +190,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.set.EventRequest"></a>
+<a name="atomix.storage.set.EventRequest"></a>
 
 ### EventRequest
 
@@ -205,7 +205,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | replay | [bool](#bool) |  |  |
 
 
@@ -213,7 +213,7 @@
 
 
 
-<a name="atomix.set.EventResponse"></a>
+<a name="atomix.storage.set.EventResponse"></a>
 
 ### EventResponse
 
@@ -221,8 +221,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| type | [EventResponse.Type](#atomix.set.EventResponse.Type) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| type | [EventResponse.Type](#atomix.storage.set.EventResponse.Type) |  |  |
 | value | [string](#string) |  |  |
 
 
@@ -230,7 +230,7 @@
 
 
 
-<a name="atomix.set.IterateRequest"></a>
+<a name="atomix.storage.set.IterateRequest"></a>
 
 ### IterateRequest
 
@@ -238,14 +238,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.set.IterateResponse"></a>
+<a name="atomix.storage.set.IterateResponse"></a>
 
 ### IterateResponse
 
@@ -253,7 +253,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 | value | [string](#string) |  |  |
 
 
@@ -261,7 +261,7 @@
 
 
 
-<a name="atomix.set.RemoveRequest"></a>
+<a name="atomix.storage.set.RemoveRequest"></a>
 
 ### RemoveRequest
 
@@ -269,7 +269,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | value | [string](#string) |  |  |
 
 
@@ -277,7 +277,7 @@
 
 
 
-<a name="atomix.set.RemoveResponse"></a>
+<a name="atomix.storage.set.RemoveResponse"></a>
 
 ### RemoveResponse
 
@@ -285,8 +285,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| status | [ResponseStatus](#atomix.set.ResponseStatus) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| status | [ResponseStatus](#atomix.storage.set.ResponseStatus) |  |  |
 | removed | [bool](#bool) |  |  |
 
 
@@ -294,7 +294,7 @@
 
 
 
-<a name="atomix.set.SizeRequest"></a>
+<a name="atomix.storage.set.SizeRequest"></a>
 
 ### SizeRequest
 
@@ -302,14 +302,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.set.SizeResponse"></a>
+<a name="atomix.storage.set.SizeResponse"></a>
 
 ### SizeResponse
 
@@ -317,7 +317,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 | size | [uint32](#uint32) |  |  |
 
 
@@ -327,7 +327,7 @@
  
 
 
-<a name="atomix.set.EventResponse.Type"></a>
+<a name="atomix.storage.set.EventResponse.Type"></a>
 
 ### EventResponse.Type
 
@@ -340,7 +340,7 @@
 
 
 
-<a name="atomix.set.ResponseStatus"></a>
+<a name="atomix.storage.set.ResponseStatus"></a>
 
 ### ResponseStatus
 
@@ -357,22 +357,22 @@
  
 
 
-<a name="atomix.set.SetService"></a>
+<a name="atomix.storage.set.SetService"></a>
 
 ### SetService
 Set service
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Create | [CreateRequest](#atomix.set.CreateRequest) | [CreateResponse](#atomix.set.CreateResponse) | Create creates a set session |
-| Close | [CloseRequest](#atomix.set.CloseRequest) | [CloseResponse](#atomix.set.CloseResponse) | Close closes a set |
-| Size | [SizeRequest](#atomix.set.SizeRequest) | [SizeResponse](#atomix.set.SizeResponse) | Size gets the number of elements in the set |
-| Contains | [ContainsRequest](#atomix.set.ContainsRequest) | [ContainsResponse](#atomix.set.ContainsResponse) | Contains returns whether the set contains a value |
-| Add | [AddRequest](#atomix.set.AddRequest) | [AddResponse](#atomix.set.AddResponse) | Add adds a value to the set |
-| Remove | [RemoveRequest](#atomix.set.RemoveRequest) | [RemoveResponse](#atomix.set.RemoveResponse) | Remove removes a value from the set |
-| Clear | [ClearRequest](#atomix.set.ClearRequest) | [ClearResponse](#atomix.set.ClearResponse) | Clear removes all values from the set |
-| Events | [EventRequest](#atomix.set.EventRequest) | [EventResponse](#atomix.set.EventResponse) stream | Events listens for set change events |
-| Iterate | [IterateRequest](#atomix.set.IterateRequest) | [IterateResponse](#atomix.set.IterateResponse) stream | Iterate iterates through all values in the set |
+| Create | [CreateRequest](#atomix.storage.set.CreateRequest) | [CreateResponse](#atomix.storage.set.CreateResponse) | Create creates a set session |
+| Close | [CloseRequest](#atomix.storage.set.CloseRequest) | [CloseResponse](#atomix.storage.set.CloseResponse) | Close closes a set |
+| Size | [SizeRequest](#atomix.storage.set.SizeRequest) | [SizeResponse](#atomix.storage.set.SizeResponse) | Size gets the number of elements in the set |
+| Contains | [ContainsRequest](#atomix.storage.set.ContainsRequest) | [ContainsResponse](#atomix.storage.set.ContainsResponse) | Contains returns whether the set contains a value |
+| Add | [AddRequest](#atomix.storage.set.AddRequest) | [AddResponse](#atomix.storage.set.AddResponse) | Add adds a value to the set |
+| Remove | [RemoveRequest](#atomix.storage.set.RemoveRequest) | [RemoveResponse](#atomix.storage.set.RemoveResponse) | Remove removes a value from the set |
+| Clear | [ClearRequest](#atomix.storage.set.ClearRequest) | [ClearResponse](#atomix.storage.set.ClearResponse) | Clear removes all values from the set |
+| Events | [EventRequest](#atomix.storage.set.EventRequest) | [EventResponse](#atomix.storage.set.EventResponse) stream | Events listens for set change events |
+| Iterate | [IterateRequest](#atomix.storage.set.IterateRequest) | [IterateResponse](#atomix.storage.set.IterateResponse) stream | Iterate iterates through all values in the set |
 
  
 

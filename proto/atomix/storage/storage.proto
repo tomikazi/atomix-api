@@ -1,0 +1,97 @@
+/*
+Copyright 2020-present Open Networking Foundation.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+package atomix.storage;
+
+import "gogoproto/gogo.proto";
+import "atomix/storage/primitive.proto";
+
+// Storage identifier
+message StorageId {
+    // name is the name of the storage
+    string name = 1;
+
+    // namespace is the namespace to which the storage belongs
+    string namespace = 2;
+}
+
+// Storage configuration
+message StorageConfig {
+    // nodes is a list of storage replicas
+    repeated StorageReplica replicas = 1 [(gogoproto.nullable) = false];
+
+    // partitions is a list of partitions owned by the replicas
+    repeated StoragePartition partitions = 2 [(gogoproto.nullable) = false];
+}
+
+// Replica configuration
+message StorageReplica {
+    // id is the unique member identifier
+    string id = 1 [(gogoproto.customname) = "ID"];
+
+    // host is the member host
+    string host = 2;
+
+    // api_port is the port to use for the client API
+    int32 api_port = 3 [(gogoproto.customname) = "APIPort", (gogoproto.jsontag) = "apiPort"];
+
+    // protocol_port is the port to use for intra-cluster communication
+    int32 protocol_port = 4 [(gogoproto.jsontag) = "protocolPort"];
+}
+
+// Partition identifier
+message PartitionId {
+    int32 partition = 1;
+}
+
+// Partition info
+message StoragePartition {
+    PartitionId partition_id = 1 [(gogoproto.customname) = "PartitionID", (gogoproto.nullable) = false];
+    repeated PartitionEndpoint endpoints = 2 [(gogoproto.nullable) = false];
+}
+
+// Partition endpoint
+message PartitionEndpoint {
+    string host = 1;
+    int32 port = 2;
+}
+
+message AddReplicaRequest {
+    StorageReplica replica = 1;
+}
+
+message AddReplicaResponse {
+    ResponseStatus status = 1;
+}
+
+message RemoveReplicaRequest {
+    string replica_id = 1;
+}
+
+message RemoveReplicaResponse {
+    ResponseStatus status = 1;
+}
+
+// Atomix storage service
+service StorageService {
+    // AddReplica adds a replica to the storage
+    rpc AddReplica(AddReplicaRequest) returns (AddReplicaResponse);
+
+    // RemoveReplica removes a replica from the storage
+    rpc RemoveReplica(RemoveReplicaRequest) returns (RemoveReplicaResponse);
+}

@@ -3,39 +3,39 @@
 
 ## Table of Contents
 
-- [atomix/counter/counter.proto](#atomix/counter/counter.proto)
-    - [CheckAndSetRequest](#atomix.counter.CheckAndSetRequest)
-    - [CheckAndSetResponse](#atomix.counter.CheckAndSetResponse)
-    - [CloseRequest](#atomix.counter.CloseRequest)
-    - [CloseResponse](#atomix.counter.CloseResponse)
-    - [CreateRequest](#atomix.counter.CreateRequest)
-    - [CreateResponse](#atomix.counter.CreateResponse)
-    - [DecrementRequest](#atomix.counter.DecrementRequest)
-    - [DecrementResponse](#atomix.counter.DecrementResponse)
-    - [GetRequest](#atomix.counter.GetRequest)
-    - [GetResponse](#atomix.counter.GetResponse)
-    - [IncrementRequest](#atomix.counter.IncrementRequest)
-    - [IncrementResponse](#atomix.counter.IncrementResponse)
-    - [SetRequest](#atomix.counter.SetRequest)
-    - [SetResponse](#atomix.counter.SetResponse)
+- [atomix/storage/counter/counter.proto](#atomix/storage/counter/counter.proto)
+    - [CheckAndSetRequest](#atomix.storage.counter.CheckAndSetRequest)
+    - [CheckAndSetResponse](#atomix.storage.counter.CheckAndSetResponse)
+    - [CloseRequest](#atomix.storage.counter.CloseRequest)
+    - [CloseResponse](#atomix.storage.counter.CloseResponse)
+    - [CreateRequest](#atomix.storage.counter.CreateRequest)
+    - [CreateResponse](#atomix.storage.counter.CreateResponse)
+    - [DecrementRequest](#atomix.storage.counter.DecrementRequest)
+    - [DecrementResponse](#atomix.storage.counter.DecrementResponse)
+    - [GetRequest](#atomix.storage.counter.GetRequest)
+    - [GetResponse](#atomix.storage.counter.GetResponse)
+    - [IncrementRequest](#atomix.storage.counter.IncrementRequest)
+    - [IncrementResponse](#atomix.storage.counter.IncrementResponse)
+    - [SetRequest](#atomix.storage.counter.SetRequest)
+    - [SetResponse](#atomix.storage.counter.SetResponse)
   
   
   
-    - [CounterService](#atomix.counter.CounterService)
+    - [CounterService](#atomix.storage.counter.CounterService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/counter/counter.proto"></a>
+<a name="atomix/storage/counter/counter.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/counter/counter.proto
+## atomix/storage/counter/counter.proto
 
 
 
-<a name="atomix.counter.CheckAndSetRequest"></a>
+<a name="atomix.storage.counter.CheckAndSetRequest"></a>
 
 ### CheckAndSetRequest
 
@@ -43,7 +43,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | expect | [int64](#int64) |  |  |
 | update | [int64](#int64) |  |  |
 
@@ -52,7 +52,7 @@
 
 
 
-<a name="atomix.counter.CheckAndSetResponse"></a>
+<a name="atomix.storage.counter.CheckAndSetResponse"></a>
 
 ### CheckAndSetResponse
 
@@ -60,7 +60,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 | succeeded | [bool](#bool) |  |  |
 
 
@@ -68,7 +68,7 @@
 
 
 
-<a name="atomix.counter.CloseRequest"></a>
+<a name="atomix.storage.counter.CloseRequest"></a>
 
 ### CloseRequest
 
@@ -76,7 +76,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | delete | [bool](#bool) |  |  |
 
 
@@ -84,7 +84,7 @@
 
 
 
-<a name="atomix.counter.CloseResponse"></a>
+<a name="atomix.storage.counter.CloseResponse"></a>
 
 ### CloseResponse
 
@@ -92,14 +92,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.counter.CreateRequest"></a>
+<a name="atomix.storage.counter.CreateRequest"></a>
 
 ### CreateRequest
 
@@ -107,14 +107,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.counter.CreateResponse"></a>
+<a name="atomix.storage.counter.CreateResponse"></a>
 
 ### CreateResponse
 
@@ -122,14 +122,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.counter.DecrementRequest"></a>
+<a name="atomix.storage.counter.DecrementRequest"></a>
 
 ### DecrementRequest
 
@@ -137,7 +137,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | delta | [int64](#int64) |  |  |
 
 
@@ -145,7 +145,7 @@
 
 
 
-<a name="atomix.counter.DecrementResponse"></a>
+<a name="atomix.storage.counter.DecrementResponse"></a>
 
 ### DecrementResponse
 
@@ -153,7 +153,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 | previous_value | [int64](#int64) |  |  |
 | next_value | [int64](#int64) |  |  |
 
@@ -162,7 +162,7 @@
 
 
 
-<a name="atomix.counter.GetRequest"></a>
+<a name="atomix.storage.counter.GetRequest"></a>
 
 ### GetRequest
 
@@ -170,14 +170,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.counter.GetResponse"></a>
+<a name="atomix.storage.counter.GetResponse"></a>
 
 ### GetResponse
 
@@ -185,7 +185,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 | value | [int64](#int64) |  |  |
 
 
@@ -193,7 +193,7 @@
 
 
 
-<a name="atomix.counter.IncrementRequest"></a>
+<a name="atomix.storage.counter.IncrementRequest"></a>
 
 ### IncrementRequest
 
@@ -201,7 +201,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | delta | [int64](#int64) |  |  |
 
 
@@ -209,7 +209,7 @@
 
 
 
-<a name="atomix.counter.IncrementResponse"></a>
+<a name="atomix.storage.counter.IncrementResponse"></a>
 
 ### IncrementResponse
 
@@ -217,7 +217,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 | previous_value | [int64](#int64) |  |  |
 | next_value | [int64](#int64) |  |  |
 
@@ -226,7 +226,7 @@
 
 
 
-<a name="atomix.counter.SetRequest"></a>
+<a name="atomix.storage.counter.SetRequest"></a>
 
 ### SetRequest
 
@@ -234,7 +234,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | value | [int64](#int64) |  |  |
 
 
@@ -242,7 +242,7 @@
 
 
 
-<a name="atomix.counter.SetResponse"></a>
+<a name="atomix.storage.counter.SetResponse"></a>
 
 ### SetResponse
 
@@ -250,7 +250,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 | previous_value | [int64](#int64) |  |  |
 
 
@@ -264,20 +264,20 @@
  
 
 
-<a name="atomix.counter.CounterService"></a>
+<a name="atomix.storage.counter.CounterService"></a>
 
 ### CounterService
 CounterService implements a distributed counter
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Create | [CreateRequest](#atomix.counter.CreateRequest) | [CreateResponse](#atomix.counter.CreateResponse) | Create creates a counter |
-| Close | [CloseRequest](#atomix.counter.CloseRequest) | [CloseResponse](#atomix.counter.CloseResponse) | Close closes the counter |
-| Set | [SetRequest](#atomix.counter.SetRequest) | [SetResponse](#atomix.counter.SetResponse) | Set sets the counter value |
-| Get | [GetRequest](#atomix.counter.GetRequest) | [GetResponse](#atomix.counter.GetResponse) | Get gets the current counter value |
-| Increment | [IncrementRequest](#atomix.counter.IncrementRequest) | [IncrementResponse](#atomix.counter.IncrementResponse) | Increment increments the counter value |
-| Decrement | [DecrementRequest](#atomix.counter.DecrementRequest) | [DecrementResponse](#atomix.counter.DecrementResponse) | Decrement decrements the counter value |
-| CheckAndSet | [CheckAndSetRequest](#atomix.counter.CheckAndSetRequest) | [CheckAndSetResponse](#atomix.counter.CheckAndSetResponse) | CheckAndSet performs a check-and-set operation on the counter value |
+| Create | [CreateRequest](#atomix.storage.counter.CreateRequest) | [CreateResponse](#atomix.storage.counter.CreateResponse) | Create creates a counter |
+| Close | [CloseRequest](#atomix.storage.counter.CloseRequest) | [CloseResponse](#atomix.storage.counter.CloseResponse) | Close closes the counter |
+| Set | [SetRequest](#atomix.storage.counter.SetRequest) | [SetResponse](#atomix.storage.counter.SetResponse) | Set sets the counter value |
+| Get | [GetRequest](#atomix.storage.counter.GetRequest) | [GetResponse](#atomix.storage.counter.GetResponse) | Get gets the current counter value |
+| Increment | [IncrementRequest](#atomix.storage.counter.IncrementRequest) | [IncrementResponse](#atomix.storage.counter.IncrementResponse) | Increment increments the counter value |
+| Decrement | [DecrementRequest](#atomix.storage.counter.DecrementRequest) | [DecrementResponse](#atomix.storage.counter.DecrementResponse) | Decrement decrements the counter value |
+| CheckAndSet | [CheckAndSetRequest](#atomix.storage.counter.CheckAndSetRequest) | [CheckAndSetResponse](#atomix.storage.counter.CheckAndSetResponse) | CheckAndSet performs a check-and-set operation on the counter value |
 
  
 

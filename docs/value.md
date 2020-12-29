@@ -3,36 +3,36 @@
 
 ## Table of Contents
 
-- [atomix/value/value.proto](#atomix/value/value.proto)
-    - [CloseRequest](#atomix.value.CloseRequest)
-    - [CloseResponse](#atomix.value.CloseResponse)
-    - [CreateRequest](#atomix.value.CreateRequest)
-    - [CreateResponse](#atomix.value.CreateResponse)
-    - [EventRequest](#atomix.value.EventRequest)
-    - [EventResponse](#atomix.value.EventResponse)
-    - [GetRequest](#atomix.value.GetRequest)
-    - [GetResponse](#atomix.value.GetResponse)
-    - [SetRequest](#atomix.value.SetRequest)
-    - [SetResponse](#atomix.value.SetResponse)
+- [atomix/storage/value/value.proto](#atomix/storage/value/value.proto)
+    - [CloseRequest](#atomix.storage.value.CloseRequest)
+    - [CloseResponse](#atomix.storage.value.CloseResponse)
+    - [CreateRequest](#atomix.storage.value.CreateRequest)
+    - [CreateResponse](#atomix.storage.value.CreateResponse)
+    - [EventRequest](#atomix.storage.value.EventRequest)
+    - [EventResponse](#atomix.storage.value.EventResponse)
+    - [GetRequest](#atomix.storage.value.GetRequest)
+    - [GetResponse](#atomix.storage.value.GetResponse)
+    - [SetRequest](#atomix.storage.value.SetRequest)
+    - [SetResponse](#atomix.storage.value.SetResponse)
   
-    - [EventResponse.Type](#atomix.value.EventResponse.Type)
+    - [EventResponse.Type](#atomix.storage.value.EventResponse.Type)
   
   
-    - [ValueService](#atomix.value.ValueService)
+    - [ValueService](#atomix.storage.value.ValueService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/value/value.proto"></a>
+<a name="atomix/storage/value/value.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/value/value.proto
+## atomix/storage/value/value.proto
 
 
 
-<a name="atomix.value.CloseRequest"></a>
+<a name="atomix.storage.value.CloseRequest"></a>
 
 ### CloseRequest
 
@@ -40,7 +40,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | delete | [bool](#bool) |  |  |
 
 
@@ -48,7 +48,7 @@
 
 
 
-<a name="atomix.value.CloseResponse"></a>
+<a name="atomix.storage.value.CloseResponse"></a>
 
 ### CloseResponse
 
@@ -56,14 +56,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.value.CreateRequest"></a>
+<a name="atomix.storage.value.CreateRequest"></a>
 
 ### CreateRequest
 
@@ -71,14 +71,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.value.CreateResponse"></a>
+<a name="atomix.storage.value.CreateResponse"></a>
 
 ### CreateResponse
 
@@ -86,14 +86,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.value.EventRequest"></a>
+<a name="atomix.storage.value.EventRequest"></a>
 
 ### EventRequest
 
@@ -101,14 +101,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.value.EventResponse"></a>
+<a name="atomix.storage.value.EventResponse"></a>
 
 ### EventResponse
 
@@ -116,8 +116,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
-| type | [EventResponse.Type](#atomix.value.EventResponse.Type) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| type | [EventResponse.Type](#atomix.storage.value.EventResponse.Type) |  |  |
 | previous_value | [bytes](#bytes) |  |  |
 | previous_version | [uint64](#uint64) |  |  |
 | new_value | [bytes](#bytes) |  |  |
@@ -128,7 +128,7 @@
 
 
 
-<a name="atomix.value.GetRequest"></a>
+<a name="atomix.storage.value.GetRequest"></a>
 
 ### GetRequest
 
@@ -136,14 +136,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 
 
 
 
 
 
-<a name="atomix.value.GetResponse"></a>
+<a name="atomix.storage.value.GetResponse"></a>
 
 ### GetResponse
 
@@ -151,7 +151,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 | value | [bytes](#bytes) |  |  |
 | version | [uint64](#uint64) |  |  |
 
@@ -160,7 +160,7 @@
 
 
 
-<a name="atomix.value.SetRequest"></a>
+<a name="atomix.storage.value.SetRequest"></a>
 
 ### SetRequest
 
@@ -168,7 +168,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.RequestHeader](#atomix.headers.RequestHeader) |  |  |
+| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | expect_version | [uint64](#uint64) |  |  |
 | expect_value | [bytes](#bytes) |  |  |
 | value | [bytes](#bytes) |  |  |
@@ -178,7 +178,7 @@
 
 
 
-<a name="atomix.value.SetResponse"></a>
+<a name="atomix.storage.value.SetResponse"></a>
 
 ### SetResponse
 
@@ -186,7 +186,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.headers.ResponseHeader](#atomix.headers.ResponseHeader) |  |  |
+| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 | version | [uint64](#uint64) |  |  |
 | succeeded | [bool](#bool) |  |  |
 
@@ -197,7 +197,7 @@
  
 
 
-<a name="atomix.value.EventResponse.Type"></a>
+<a name="atomix.storage.value.EventResponse.Type"></a>
 
 ### EventResponse.Type
 
@@ -212,18 +212,18 @@
  
 
 
-<a name="atomix.value.ValueService"></a>
+<a name="atomix.storage.value.ValueService"></a>
 
 ### ValueService
 ValueService implements a distributed atomic value
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Create | [CreateRequest](#atomix.value.CreateRequest) | [CreateResponse](#atomix.value.CreateResponse) | Create creates a new value session |
-| Close | [CloseRequest](#atomix.value.CloseRequest) | [CloseResponse](#atomix.value.CloseResponse) | Close closes the value session |
-| Set | [SetRequest](#atomix.value.SetRequest) | [SetResponse](#atomix.value.SetResponse) | Set sets the value |
-| Get | [GetRequest](#atomix.value.GetRequest) | [GetResponse](#atomix.value.GetResponse) | Get gets the value |
-| Events | [EventRequest](#atomix.value.EventRequest) | [EventResponse](#atomix.value.EventResponse) stream | Events listens for value change events |
+| Create | [CreateRequest](#atomix.storage.value.CreateRequest) | [CreateResponse](#atomix.storage.value.CreateResponse) | Create creates a new value session |
+| Close | [CloseRequest](#atomix.storage.value.CloseRequest) | [CloseResponse](#atomix.storage.value.CloseResponse) | Close closes the value session |
+| Set | [SetRequest](#atomix.storage.value.SetRequest) | [SetResponse](#atomix.storage.value.SetResponse) | Set sets the value |
+| Get | [GetRequest](#atomix.storage.value.GetRequest) | [GetResponse](#atomix.storage.value.GetResponse) | Get gets the value |
+| Events | [EventRequest](#atomix.storage.value.EventRequest) | [EventResponse](#atomix.storage.value.EventResponse) stream | Events listens for value change events |
 
  
 

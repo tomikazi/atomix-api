@@ -24,7 +24,6 @@
     - [RequestHeader](#atomix.storage.RequestHeader)
     - [ResponseHeader](#atomix.storage.ResponseHeader)
     - [ResponseStatus](#atomix.storage.ResponseStatus)
-    - [StreamState](#atomix.storage.StreamState)
   
     - [ResponseCode](#atomix.storage.ResponseCode)
     - [ResponseType](#atomix.storage.ResponseType)
@@ -270,7 +269,6 @@ Response header
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | type | [ResponseType](#atomix.storage.ResponseType) |  |  |
-| status | [ResponseStatus](#atomix.storage.ResponseStatus) |  |  |
 
 
 
@@ -287,22 +285,6 @@ Response status
 | ----- | ---- | ----- | ----------- |
 | code | [ResponseCode](#atomix.storage.ResponseCode) |  |  |
 | message | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.StreamState"></a>
-
-### StreamState
-Stream state
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| stream_id | [uint64](#uint64) |  |  |
-| response_id | [uint64](#uint64) |  |  |
 
 
 

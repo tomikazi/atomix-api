@@ -35,14 +35,6 @@ message RequestHeader {
 // Response header
 message ResponseHeader {
     ResponseType type = 1;
-    ResponseStatus status = 2 [(gogoproto.nullable) = false];
-}
-
-
-// Stream state
-message StreamState {
-    uint64 stream_id = 1 [(gogoproto.customname) = "StreamID"];
-    uint64 response_id = 2 [(gogoproto.customname) = "ResponseID"];
 }
 
 // Response type

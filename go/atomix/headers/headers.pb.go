@@ -5,7 +5,7 @@ package headers
 
 import (
 	fmt "fmt"
-	primitive "github.com/atomix/api/proto/atomix/primitive"
+	primitive "github.com/atomix/api/go/atomix/primitive"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	io "io"

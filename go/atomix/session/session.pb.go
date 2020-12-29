@@ -6,7 +6,7 @@ package session
 import (
 	context "context"
 	fmt "fmt"
-	headers "github.com/atomix/api/proto/atomix/headers"
+	headers "github.com/atomix/api/go/atomix/headers"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	_ "github.com/gogo/protobuf/types"

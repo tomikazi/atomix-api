@@ -6,7 +6,7 @@ package counter
 import (
 	context "context"
 	fmt "fmt"
-	headers "github.com/atomix/api/proto/atomix/headers"
+	headers "github.com/atomix/api/go/atomix/headers"
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"

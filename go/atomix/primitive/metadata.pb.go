@@ -6,7 +6,7 @@ package primitive
 import (
 	context "context"
 	fmt "fmt"
-	database "github.com/atomix/api/proto/atomix/database"
+	database "github.com/atomix/api/go/atomix/database"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"

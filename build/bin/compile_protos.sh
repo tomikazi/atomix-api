@@ -2,18 +2,43 @@
 
 proto_imports="./proto:${GOPATH}/src/github.com/gogo/protobuf:${GOPATH}/src/github.com/gogo/protobuf/protobuf:${GOPATH}/src"
 
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,primitive.md  --gogofaster_out=Matomix/database/database.proto=github.com/atomix/api/proto/atomix/database,import_path=atomix/primitive,plugins=grpc:proto proto/atomix/primitive/*.proto
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,headers.md    --gogofaster_out=Matomix/primitive/primitive.proto=github.com/atomix/api/proto/atomix/primitive,import_path=atomix/headers,plugins=grpc:proto proto/atomix/headers/*.proto
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,database.md   --gogofaster_out=Mgoogle/protobuf/any.proto=github.com/gogo/protobuf/types,import_path=atomix/database,plugins=grpc:proto proto/atomix/database/*.proto
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,membership.md --gogofaster_out=Mgoogle/protobuf/any.proto=github.com/gogo/protobuf/types,import_path=atomix/membership,plugins=grpc:proto proto/atomix/membership/*.proto
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,counter.md    --gogofaster_out=Matomix/headers/headers.proto=github.com/atomix/api/proto/atomix/headers,import_path=atomix/counter,plugins=grpc:proto proto/atomix/counter/*.proto
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,election.md   --gogofaster_out=Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types,Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types,Matomix/headers/headers.proto=github.com/atomix/api/proto/atomix/headers,import_path=atomix/election,plugins=grpc:proto proto/atomix/election/*.proto
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,indexmap.md   --gogofaster_out=Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types,Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types,Matomix/headers/headers.proto=github.com/atomix/api/proto/atomix/headers,import_path=atomix/indexedmap,plugins=grpc:proto proto/atomix/indexedmap/*.proto
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,leader.md     --gogofaster_out=Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types,Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types,Matomix/headers/headers.proto=github.com/atomix/api/proto/atomix/headers,import_path=atomix/leader,plugins=grpc:proto proto/atomix/leader/*.proto
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,list.md       --gogofaster_out=Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types,Matomix/headers/headers.proto=github.com/atomix/api/proto/atomix/headers,import_path=atomix/list,plugins=grpc:proto proto/atomix/list/*.proto
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,lock.md       --gogofaster_out=Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types,Matomix/headers/headers.proto=github.com/atomix/api/proto/atomix/headers,import_path=atomix/lock,plugins=grpc:proto proto/atomix/lock/*.proto
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,log.md        --gogofaster_out=Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types,Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types,Matomix/headers/headers.proto=github.com/atomix/api/proto/atomix/headers,import_path=atomix/log,plugins=grpc:proto proto/atomix/log/*.proto
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,map.md        --gogofaster_out=Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types,Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types,Matomix/headers/headers.proto=github.com/atomix/api/proto/atomix/headers,import_path=atomix/map,plugins=grpc:proto proto/atomix/map/*.proto
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,session.md    --gogofaster_out=Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types,Matomix/headers/headers.proto=github.com/atomix/api/proto/atomix/headers,import_path=atomix/session,plugins=grpc:proto proto/atomix/session/*.proto
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,set.md        --gogofaster_out=Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types,Matomix/headers/headers.proto=github.com/atomix/api/proto/atomix/headers,import_path=atomix/set,plugins=grpc:proto proto/atomix/set/*.proto
-protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,value.md      --gogofaster_out=Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types,Matomix/headers/headers.proto=github.com/atomix/api/proto/atomix/headers,import_path=atomix/value,plugins=grpc:proto proto/atomix/value/*.proto
+protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,primitive.md  proto/atomix/primitive/*.proto
+protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,headers.md    proto/atomix/headers/*.proto
+protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,database.md   proto/atomix/database/*.proto
+protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,membership.md proto/atomix/membership/*.proto
+protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,counter.md    proto/atomix/counter/*.proto
+protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,election.md   proto/atomix/election/*.proto
+protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,indexmap.md   proto/atomix/indexedmap/*.proto
+protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,leader.md     proto/atomix/leader/*.proto
+protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,list.md       proto/atomix/list/*.proto
+protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,lock.md       proto/atomix/lock/*.proto
+protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,log.md        proto/atomix/log/*.proto
+protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,map.md        proto/atomix/map/*.proto
+protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,session.md    proto/atomix/session/*.proto
+protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,set.md        proto/atomix/set/*.proto
+protoc -I=$proto_imports --doc_out=docs  --doc_opt=markdown,value.md      proto/atomix/value/*.proto
+
+go_import_paths="Mgoogle/protobuf/any.proto=github.com/gogo/protobuf/types"
+go_import_paths="${go_import_paths},Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types"
+go_import_paths="${go_import_paths},Mgoogle/protobuf/duration.proto=github.com/gogo/protobuf/types"
+go_import_paths="${go_import_paths},Matomix/database/database.proto=github.com/atomix/api/go/atomix/database"
+go_import_paths="${go_import_paths},Matomix/headers/headers.proto=github.com/atomix/api/go/atomix/headers"
+
+protoc -I=$proto_imports --gogofaster_out=$go_import_paths,import_path=atomix/primitive,plugins=grpc:go  proto/atomix/primitive/*.proto
+
+go_import_paths="${go_import_paths},Matomix/primitive/primitive.proto=github.com/atomix/api/go/atomix/primitive"
+
+protoc -I=$proto_imports --gogofaster_out=$go_import_paths,import_path=atomix/headers,plugins=grpc:go    proto/atomix/headers/*.proto
+protoc -I=$proto_imports --gogofaster_out=$go_import_paths,import_path=atomix/database,plugins=grpc:go   proto/atomix/database/*.proto
+protoc -I=$proto_imports --gogofaster_out=$go_import_paths,import_path=atomix/membership,plugins=grpc:go proto/atomix/membership/*.proto
+protoc -I=$proto_imports --gogofaster_out=$go_import_paths,import_path=atomix/counter,plugins=grpc:go    proto/atomix/counter/*.proto
+protoc -I=$proto_imports --gogofaster_out=$go_import_paths,import_path=atomix/election,plugins=grpc:go   proto/atomix/election/*.proto
+protoc -I=$proto_imports --gogofaster_out=$go_import_paths,import_path=atomix/indexedmap,plugins=grpc:go proto/atomix/indexedmap/*.proto
+protoc -I=$proto_imports --gogofaster_out=$go_import_paths,import_path=atomix/leader,plugins=grpc:go     proto/atomix/leader/*.proto
+protoc -I=$proto_imports --gogofaster_out=$go_import_paths,import_path=atomix/list,plugins=grpc:go       proto/atomix/list/*.proto
+protoc -I=$proto_imports --gogofaster_out=$go_import_paths,import_path=atomix/lock,plugins=grpc:go       proto/atomix/lock/*.proto
+protoc -I=$proto_imports --gogofaster_out=$go_import_paths,import_path=atomix/log,plugins=grpc:go        proto/atomix/log/*.proto
+protoc -I=$proto_imports --gogofaster_out=$go_import_paths,import_path=atomix/map,plugins=grpc:go        proto/atomix/map/*.proto
+protoc -I=$proto_imports --gogofaster_out=$go_import_paths,import_path=atomix/session,plugins=grpc:go    proto/atomix/session/*.proto
+protoc -I=$proto_imports --gogofaster_out=$go_import_paths,import_path=atomix/set,plugins=grpc:go        proto/atomix/set/*.proto
+protoc -I=$proto_imports --gogofaster_out=$go_import_paths,import_path=atomix/value,plugins=grpc:go      proto/atomix/value/*.proto

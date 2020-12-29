@@ -46,3 +46,8 @@ protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=atomix/value
 protoc --proto_path=$proto_path \
     --python_betterproto_out=./python \
     $(find proto -name "*.proto")
+
+protoc --proto_path=$proto_path \
+    --plugin=protoc-gen-grpc-java=./protoc-gen-grpc-java-1.34.1-osx-x86_64.exe \
+    --grpc-java_out=./java \
+    $(find proto -name "*.proto")

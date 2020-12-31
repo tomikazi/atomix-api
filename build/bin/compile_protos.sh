@@ -23,7 +23,10 @@ protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=atomix/stora
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=atomix/storage/timestamp,plugins=grpc:go proto/atomix/storage/timestamp/*.proto
 
 go_import_paths="${go_import_paths},Matomix/storage/primitive.proto=github.com/atomix/api/go/atomix/storage"
+go_import_paths="${go_import_paths},Matomix/storage/storage.proto=github.com/atomix/api/go/atomix/storage"
 go_import_paths="${go_import_paths},Matomix/storage/timestamp/timestamp.proto=github.com/atomix/api/go/atomix/storage/timestamp"
+
+protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=atomix/proxy,plugins=grpc:go           proto/atomix/proxy/*.proto
 
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=atomix/storage/counter,plugins=grpc:go    proto/atomix/storage/counter/*.proto
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=atomix/storage/election,plugins=grpc:go   proto/atomix/storage/election/*.proto

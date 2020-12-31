@@ -44,54 +44,35 @@ message StorageReplica {
     // id is the unique member identifier
     string id = 1 [(gogoproto.customname) = "ID"];
 
+    // node_id is the ID of the node on which the replica is deployed
+    string node_id = 2 [(gogoproto.customname) = "NodeID"];
+
     // host is the member host
-    string host = 2;
+    string host = 3;
 
     // api_port is the port to use for the client API
-    int32 api_port = 3 [(gogoproto.customname) = "APIPort", (gogoproto.jsontag) = "apiPort"];
+    int32 api_port = 4 [(gogoproto.customname) = "APIPort", (gogoproto.jsontag) = "apiPort"];
 
     // protocol_port is the port to use for intra-cluster communication
-    int32 protocol_port = 4 [(gogoproto.jsontag) = "protocolPort"];
-}
-
-// Partition identifier
-message PartitionId {
-    int32 partition = 1;
+    int32 protocol_port = 5 [(gogoproto.jsontag) = "protocolPort"];
 }
 
 // Partition info
 message StoragePartition {
-    PartitionId partition_id = 1 [(gogoproto.customname) = "PartitionID", (gogoproto.nullable) = false];
-    repeated PartitionEndpoint endpoints = 2 [(gogoproto.nullable) = false];
+    uint32 partition_id = 1 [(gogoproto.customname) = "PartitionID"];
+    repeated string replicas = 2;
 }
 
-// Partition endpoint
-message PartitionEndpoint {
-    string host = 1;
-    int32 port = 2;
+message UpdateRequest {
+    StorageConfig config = 1 [(gogoproto.nullable) = false];
 }
 
-message AddReplicaRequest {
-    StorageReplica replica = 1;
-}
-
-message AddReplicaResponse {
-    ResponseStatus status = 1;
-}
-
-message RemoveReplicaRequest {
-    string replica_id = 1;
-}
-
-message RemoveReplicaResponse {
-    ResponseStatus status = 1;
+message UpdateResponse {
+    ResponseStatus status = 1 [(gogoproto.nullable) = false];
 }
 
 // Atomix storage service
 service StorageService {
-    // AddReplica adds a replica to the storage
-    rpc AddReplica(AddReplicaRequest) returns (AddReplicaResponse);
-
-    // RemoveReplica removes a replica from the storage
-    rpc RemoveReplica(RemoveReplicaRequest) returns (RemoveReplicaResponse);
+    // Update updates the storage configuration
+    rpc Update (UpdateRequest) returns (UpdateResponse);
 }

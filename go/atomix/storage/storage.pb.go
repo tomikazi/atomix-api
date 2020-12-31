@@ -141,12 +141,14 @@ func (m *StorageConfig) GetPartitions() []StoragePartition {
 type StorageReplica struct {
 	// id is the unique member identifier
 	ID string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	// node_id is the ID of the node on which the replica is deployed
+	NodeID string `protobuf:"bytes,2,opt,name=node_id,json=nodeId,proto3" json:"node_id,omitempty"`
 	// host is the member host
-	Host string `protobuf:"bytes,2,opt,name=host,proto3" json:"host,omitempty"`
+	Host string `protobuf:"bytes,3,opt,name=host,proto3" json:"host,omitempty"`
 	// api_port is the port to use for the client API
-	APIPort int32 `protobuf:"varint,3,opt,name=api_port,json=apiPort,proto3" json:"apiPort"`
+	APIPort int32 `protobuf:"varint,4,opt,name=api_port,json=apiPort,proto3" json:"apiPort"`
 	// protocol_port is the port to use for intra-cluster communication
-	ProtocolPort int32 `protobuf:"varint,4,opt,name=protocol_port,json=protocolPort,proto3" json:"protocolPort"`
+	ProtocolPort int32 `protobuf:"varint,5,opt,name=protocol_port,json=protocolPort,proto3" json:"protocolPort"`
 }
 
 func (m *StorageReplica) Reset()         { *m = StorageReplica{} }
@@ -189,6 +191,13 @@ func (m *StorageReplica) GetID() string {
 	return ""
 }
 
+func (m *StorageReplica) GetNodeID() string {
+	if m != nil {
+		return m.NodeID
+	}
+	return ""
+}
+
 func (m *StorageReplica) GetHost() string {
 	if m != nil {
 		return m.Host
@@ -210,62 +219,17 @@ func (m *StorageReplica) GetProtocolPort() int32 {
 	return 0
 }
 
-// Partition identifier
-type PartitionId struct {
-	Partition int32 `protobuf:"varint,1,opt,name=partition,proto3" json:"partition,omitempty"`
-}
-
-func (m *PartitionId) Reset()         { *m = PartitionId{} }
-func (m *PartitionId) String() string { return proto.CompactTextString(m) }
-func (*PartitionId) ProtoMessage()    {}
-func (*PartitionId) Descriptor() ([]byte, []int) {
-	return fileDescriptor_8acbeefcd45866af, []int{3}
-}
-func (m *PartitionId) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *PartitionId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_PartitionId.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *PartitionId) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PartitionId.Merge(m, src)
-}
-func (m *PartitionId) XXX_Size() int {
-	return m.Size()
-}
-func (m *PartitionId) XXX_DiscardUnknown() {
-	xxx_messageInfo_PartitionId.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_PartitionId proto.InternalMessageInfo
-
-func (m *PartitionId) GetPartition() int32 {
-	if m != nil {
-		return m.Partition
-	}
-	return 0
-}
-
 // Partition info
 type StoragePartition struct {
-	PartitionID PartitionId         `protobuf:"bytes,1,opt,name=partition_id,json=partitionId,proto3" json:"partition_id"`
-	Endpoints   []PartitionEndpoint `protobuf:"bytes,2,rep,name=endpoints,proto3" json:"endpoints"`
+	PartitionID uint32   `protobuf:"varint,1,opt,name=partition_id,json=partitionId,proto3" json:"partition_id,omitempty"`
+	Replicas    []string `protobuf:"bytes,2,rep,name=replicas,proto3" json:"replicas,omitempty"`
 }
 
 func (m *StoragePartition) Reset()         { *m = StoragePartition{} }
 func (m *StoragePartition) String() string { return proto.CompactTextString(m) }
 func (*StoragePartition) ProtoMessage()    {}
 func (*StoragePartition) Descriptor() ([]byte, []int) {
-	return fileDescriptor_8acbeefcd45866af, []int{4}
+	return fileDescriptor_8acbeefcd45866af, []int{3}
 }
 func (m *StoragePartition) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -294,133 +258,36 @@ func (m *StoragePartition) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_StoragePartition proto.InternalMessageInfo
 
-func (m *StoragePartition) GetPartitionID() PartitionId {
+func (m *StoragePartition) GetPartitionID() uint32 {
 	if m != nil {
 		return m.PartitionID
-	}
-	return PartitionId{}
-}
-
-func (m *StoragePartition) GetEndpoints() []PartitionEndpoint {
-	if m != nil {
-		return m.Endpoints
-	}
-	return nil
-}
-
-// Partition endpoint
-type PartitionEndpoint struct {
-	Host string `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
-	Port int32  `protobuf:"varint,2,opt,name=port,proto3" json:"port,omitempty"`
-}
-
-func (m *PartitionEndpoint) Reset()         { *m = PartitionEndpoint{} }
-func (m *PartitionEndpoint) String() string { return proto.CompactTextString(m) }
-func (*PartitionEndpoint) ProtoMessage()    {}
-func (*PartitionEndpoint) Descriptor() ([]byte, []int) {
-	return fileDescriptor_8acbeefcd45866af, []int{5}
-}
-func (m *PartitionEndpoint) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *PartitionEndpoint) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_PartitionEndpoint.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *PartitionEndpoint) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PartitionEndpoint.Merge(m, src)
-}
-func (m *PartitionEndpoint) XXX_Size() int {
-	return m.Size()
-}
-func (m *PartitionEndpoint) XXX_DiscardUnknown() {
-	xxx_messageInfo_PartitionEndpoint.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_PartitionEndpoint proto.InternalMessageInfo
-
-func (m *PartitionEndpoint) GetHost() string {
-	if m != nil {
-		return m.Host
-	}
-	return ""
-}
-
-func (m *PartitionEndpoint) GetPort() int32 {
-	if m != nil {
-		return m.Port
 	}
 	return 0
 }
 
-type AddReplicaRequest struct {
-	Replica *StorageReplica `protobuf:"bytes,1,opt,name=replica,proto3" json:"replica,omitempty"`
-}
-
-func (m *AddReplicaRequest) Reset()         { *m = AddReplicaRequest{} }
-func (m *AddReplicaRequest) String() string { return proto.CompactTextString(m) }
-func (*AddReplicaRequest) ProtoMessage()    {}
-func (*AddReplicaRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_8acbeefcd45866af, []int{6}
-}
-func (m *AddReplicaRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *AddReplicaRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_AddReplicaRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *AddReplicaRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AddReplicaRequest.Merge(m, src)
-}
-func (m *AddReplicaRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *AddReplicaRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_AddReplicaRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_AddReplicaRequest proto.InternalMessageInfo
-
-func (m *AddReplicaRequest) GetReplica() *StorageReplica {
+func (m *StoragePartition) GetReplicas() []string {
 	if m != nil {
-		return m.Replica
+		return m.Replicas
 	}
 	return nil
 }
 
-type AddReplicaResponse struct {
-	Status *ResponseStatus `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
+type UpdateRequest struct {
+	Config StorageConfig `protobuf:"bytes,1,opt,name=config,proto3" json:"config"`
 }
 
-func (m *AddReplicaResponse) Reset()         { *m = AddReplicaResponse{} }
-func (m *AddReplicaResponse) String() string { return proto.CompactTextString(m) }
-func (*AddReplicaResponse) ProtoMessage()    {}
-func (*AddReplicaResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_8acbeefcd45866af, []int{7}
+func (m *UpdateRequest) Reset()         { *m = UpdateRequest{} }
+func (m *UpdateRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateRequest) ProtoMessage()    {}
+func (*UpdateRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_8acbeefcd45866af, []int{4}
 }
-func (m *AddReplicaResponse) XXX_Unmarshal(b []byte) error {
+func (m *UpdateRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *AddReplicaResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *UpdateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_AddReplicaResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_UpdateRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -430,166 +297,113 @@ func (m *AddReplicaResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, 
 		return b[:n], nil
 	}
 }
-func (m *AddReplicaResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AddReplicaResponse.Merge(m, src)
+func (m *UpdateRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateRequest.Merge(m, src)
 }
-func (m *AddReplicaResponse) XXX_Size() int {
+func (m *UpdateRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *AddReplicaResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_AddReplicaResponse.DiscardUnknown(m)
+func (m *UpdateRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_AddReplicaResponse proto.InternalMessageInfo
+var xxx_messageInfo_UpdateRequest proto.InternalMessageInfo
 
-func (m *AddReplicaResponse) GetStatus() *ResponseStatus {
+func (m *UpdateRequest) GetConfig() StorageConfig {
+	if m != nil {
+		return m.Config
+	}
+	return StorageConfig{}
+}
+
+type UpdateResponse struct {
+	Status ResponseStatus `protobuf:"bytes,1,opt,name=status,proto3" json:"status"`
+}
+
+func (m *UpdateResponse) Reset()         { *m = UpdateResponse{} }
+func (m *UpdateResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateResponse) ProtoMessage()    {}
+func (*UpdateResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_8acbeefcd45866af, []int{5}
+}
+func (m *UpdateResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *UpdateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_UpdateResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *UpdateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateResponse.Merge(m, src)
+}
+func (m *UpdateResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *UpdateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateResponse proto.InternalMessageInfo
+
+func (m *UpdateResponse) GetStatus() ResponseStatus {
 	if m != nil {
 		return m.Status
 	}
-	return nil
-}
-
-type RemoveReplicaRequest struct {
-	ReplicaId string `protobuf:"bytes,1,opt,name=replica_id,json=replicaId,proto3" json:"replica_id,omitempty"`
-}
-
-func (m *RemoveReplicaRequest) Reset()         { *m = RemoveReplicaRequest{} }
-func (m *RemoveReplicaRequest) String() string { return proto.CompactTextString(m) }
-func (*RemoveReplicaRequest) ProtoMessage()    {}
-func (*RemoveReplicaRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_8acbeefcd45866af, []int{8}
-}
-func (m *RemoveReplicaRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *RemoveReplicaRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_RemoveReplicaRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *RemoveReplicaRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RemoveReplicaRequest.Merge(m, src)
-}
-func (m *RemoveReplicaRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *RemoveReplicaRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_RemoveReplicaRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RemoveReplicaRequest proto.InternalMessageInfo
-
-func (m *RemoveReplicaRequest) GetReplicaId() string {
-	if m != nil {
-		return m.ReplicaId
-	}
-	return ""
-}
-
-type RemoveReplicaResponse struct {
-	Status *ResponseStatus `protobuf:"bytes,1,opt,name=status,proto3" json:"status,omitempty"`
-}
-
-func (m *RemoveReplicaResponse) Reset()         { *m = RemoveReplicaResponse{} }
-func (m *RemoveReplicaResponse) String() string { return proto.CompactTextString(m) }
-func (*RemoveReplicaResponse) ProtoMessage()    {}
-func (*RemoveReplicaResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_8acbeefcd45866af, []int{9}
-}
-func (m *RemoveReplicaResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *RemoveReplicaResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_RemoveReplicaResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *RemoveReplicaResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RemoveReplicaResponse.Merge(m, src)
-}
-func (m *RemoveReplicaResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *RemoveReplicaResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_RemoveReplicaResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RemoveReplicaResponse proto.InternalMessageInfo
-
-func (m *RemoveReplicaResponse) GetStatus() *ResponseStatus {
-	if m != nil {
-		return m.Status
-	}
-	return nil
+	return ResponseStatus{}
 }
 
 func init() {
 	proto.RegisterType((*StorageId)(nil), "atomix.storage.StorageId")
 	proto.RegisterType((*StorageConfig)(nil), "atomix.storage.StorageConfig")
 	proto.RegisterType((*StorageReplica)(nil), "atomix.storage.StorageReplica")
-	proto.RegisterType((*PartitionId)(nil), "atomix.storage.PartitionId")
 	proto.RegisterType((*StoragePartition)(nil), "atomix.storage.StoragePartition")
-	proto.RegisterType((*PartitionEndpoint)(nil), "atomix.storage.PartitionEndpoint")
-	proto.RegisterType((*AddReplicaRequest)(nil), "atomix.storage.AddReplicaRequest")
-	proto.RegisterType((*AddReplicaResponse)(nil), "atomix.storage.AddReplicaResponse")
-	proto.RegisterType((*RemoveReplicaRequest)(nil), "atomix.storage.RemoveReplicaRequest")
-	proto.RegisterType((*RemoveReplicaResponse)(nil), "atomix.storage.RemoveReplicaResponse")
+	proto.RegisterType((*UpdateRequest)(nil), "atomix.storage.UpdateRequest")
+	proto.RegisterType((*UpdateResponse)(nil), "atomix.storage.UpdateResponse")
 }
 
 func init() { proto.RegisterFile("atomix/storage/storage.proto", fileDescriptor_8acbeefcd45866af) }
 
 var fileDescriptor_8acbeefcd45866af = []byte{
-	// 567 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x53, 0xcf, 0x6b, 0x13, 0x41,
-	0x14, 0xce, 0x6c, 0xd3, 0x1f, 0xfb, 0xd2, 0x94, 0x76, 0xac, 0x65, 0x89, 0x75, 0x37, 0x0e, 0x0a,
-	0x01, 0x21, 0xc5, 0x48, 0x45, 0x10, 0xc1, 0xc6, 0x56, 0x08, 0x28, 0x86, 0xc9, 0x55, 0x28, 0x6b,
-	0x76, 0x8c, 0x03, 0xcd, 0xce, 0xb8, 0x3b, 0x0d, 0xfe, 0x19, 0x5e, 0xfd, 0x07, 0x3c, 0xfa, 0x4f,
-	0x78, 0xe9, 0xb1, 0x47, 0x4f, 0x8b, 0x6c, 0x6e, 0xfd, 0x2b, 0x24, 0xb3, 0xb3, 0xc9, 0x26, 0x21,
-	0xf6, 0xe0, 0x69, 0x5f, 0xe6, 0x7d, 0xdf, 0x37, 0xef, 0xfb, 0xde, 0x04, 0x0e, 0x7d, 0x25, 0x86,
-	0xfc, 0xeb, 0x51, 0xac, 0x44, 0xe4, 0x0f, 0x58, 0xfe, 0x6d, 0xca, 0x48, 0x28, 0x81, 0x77, 0xb2,
-	0x6e, 0xd3, 0x9c, 0xd6, 0xf6, 0x07, 0x62, 0x20, 0x74, 0xeb, 0x68, 0x52, 0x65, 0xa8, 0x9a, 0xbb,
-	0xa0, 0x21, 0x23, 0x3e, 0xe4, 0x8a, 0x8f, 0x8c, 0x0a, 0x79, 0x09, 0x76, 0x2f, 0x6b, 0x75, 0x02,
-	0x8c, 0xa1, 0x1c, 0xfa, 0x43, 0xe6, 0xa0, 0x3a, 0x6a, 0xd8, 0x54, 0xd7, 0xf8, 0x10, 0xec, 0xc9,
-	0x37, 0x96, 0x7e, 0x9f, 0x39, 0x96, 0x6e, 0xcc, 0x0e, 0xc8, 0x77, 0x04, 0x55, 0xc3, 0x7f, 0x2d,
-	0xc2, 0x4f, 0x7c, 0x80, 0x5f, 0xc1, 0x56, 0xc4, 0xe4, 0x05, 0xef, 0xfb, 0xb1, 0x83, 0xea, 0x6b,
-	0x8d, 0x4a, 0xcb, 0x6d, 0xce, 0x4f, 0xda, 0x34, 0x04, 0x9a, 0xc1, 0xda, 0xe5, 0xab, 0xc4, 0x2b,
-	0xd1, 0x29, 0x0b, 0xbf, 0x01, 0x90, 0x7e, 0xa4, 0xb8, 0xe2, 0x22, 0x8c, 0x1d, 0x4b, 0x6b, 0xd4,
-	0x57, 0x68, 0x74, 0x73, 0xa0, 0x51, 0x29, 0x30, 0xc9, 0x0f, 0x04, 0x3b, 0xf3, 0x57, 0xe1, 0x03,
-	0xb0, 0x78, 0x90, 0xd9, 0x6b, 0x6f, 0xa4, 0x89, 0x67, 0x75, 0x4e, 0xa9, 0xc5, 0xb5, 0xf1, 0xcf,
-	0x22, 0x56, 0xc6, 0x9f, 0xae, 0xf1, 0x13, 0xd8, 0xf2, 0x25, 0x3f, 0x97, 0x22, 0x52, 0xce, 0x5a,
-	0x1d, 0x35, 0xd6, 0xdb, 0x07, 0x69, 0xe2, 0x6d, 0x9e, 0x74, 0x3b, 0x5d, 0x11, 0xa9, 0x9b, 0xc4,
-	0xdb, 0xf4, 0x25, 0x9f, 0x94, 0x34, 0x2f, 0xf0, 0x31, 0x54, 0x75, 0xaa, 0x7d, 0x71, 0x91, 0xf1,
-	0xca, 0x9a, 0xb7, 0x7b, 0x93, 0x78, 0xdb, 0x79, 0x43, 0x33, 0xe6, 0x7e, 0x91, 0xc7, 0x50, 0x99,
-	0xfa, 0xe8, 0x04, 0x93, 0xc4, 0xa7, 0x2e, 0xf4, 0xac, 0xeb, 0x74, 0x76, 0x40, 0x7e, 0x22, 0xd8,
-	0x5d, 0x34, 0x8f, 0x7b, 0xb0, 0x3d, 0x45, 0x9c, 0x1b, 0x87, 0x95, 0xd6, 0xbd, 0xc5, 0xd0, 0x0a,
-	0xb7, 0xb4, 0xef, 0x4c, 0xf2, 0x4a, 0x13, 0xaf, 0x70, 0xf5, 0x29, 0xad, 0xc8, 0xc2, 0x1c, 0x67,
-	0x60, 0xb3, 0x30, 0x90, 0x82, 0x87, 0x2a, 0x5f, 0xc3, 0x83, 0x95, 0x8a, 0x67, 0x06, 0x69, 0xf6,
-	0x30, 0x63, 0x92, 0x17, 0xb0, 0xb7, 0x84, 0x9a, 0x06, 0x8e, 0x0a, 0x81, 0x63, 0x28, 0xeb, 0xd0,
-	0x2c, 0x6d, 0x59, 0xd7, 0xe4, 0x1d, 0xec, 0x9d, 0x04, 0x81, 0x59, 0x1f, 0x65, 0x5f, 0x2e, 0x59,
-	0xac, 0xf0, 0x73, 0xd8, 0x34, 0x8f, 0xc5, 0x18, 0xbd, 0xe5, 0x85, 0xd1, 0x1c, 0x4e, 0xde, 0x02,
-	0x2e, 0xca, 0xc5, 0x52, 0x84, 0x31, 0xc3, 0xcf, 0x60, 0x23, 0x56, 0xbe, 0xba, 0x8c, 0x57, 0xc9,
-	0xe5, 0xc8, 0x9e, 0x46, 0x51, 0x83, 0x26, 0xc7, 0xb0, 0x4f, 0xd9, 0x50, 0x8c, 0xd8, 0xc2, 0x7c,
-	0xf7, 0x01, 0xcc, 0x85, 0xf9, 0x2e, 0x6c, 0x6a, 0x9b, 0x93, 0x4e, 0x40, 0xde, 0xc3, 0xdd, 0x05,
-	0xda, 0xff, 0xcd, 0xd1, 0xfa, 0x35, 0x7b, 0xe8, 0x3d, 0x16, 0x8d, 0x78, 0x9f, 0xe1, 0x1e, 0xc0,
-	0xcc, 0x28, 0x5e, 0x5a, 0xdb, 0x52, 0xa6, 0x35, 0xf2, 0x2f, 0x88, 0x99, 0xef, 0x03, 0x54, 0xe7,
-	0x06, 0xc7, 0x0f, 0x97, 0x07, 0x5c, 0x8e, 0xa3, 0xf6, 0xe8, 0x16, 0x54, 0xa6, 0xde, 0x76, 0xae,
-	0x52, 0x17, 0x5d, 0xa7, 0x2e, 0xfa, 0x93, 0xba, 0xe8, 0xdb, 0xd8, 0x2d, 0x5d, 0x8f, 0xdd, 0xd2,
-	0xef, 0xb1, 0x5b, 0xfa, 0xb8, 0xa1, 0xff, 0x2d, 0x4f, 0xff, 0x06, 0x00, 0x00, 0xff, 0xff, 0xd8,
-	0x22, 0x9a, 0x35, 0x10, 0x05, 0x00, 0x00,
+	// 491 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x74, 0x52, 0x4f, 0x6b, 0xdb, 0x30,
+	0x14, 0x8f, 0xdd, 0xd4, 0x69, 0x5e, 0x9a, 0xac, 0x88, 0x51, 0x4c, 0xe8, 0xec, 0xe0, 0x5d, 0x72,
+	0x4a, 0x59, 0xc6, 0x4e, 0xdb, 0x60, 0xf3, 0xc2, 0x86, 0x61, 0x94, 0xe0, 0xb0, 0xc3, 0x4e, 0x41,
+	0xb5, 0xb5, 0x4c, 0xd0, 0x58, 0x9a, 0xa5, 0x96, 0x7d, 0x8c, 0x5d, 0xf7, 0x8d, 0x0a, 0xbb, 0xf4,
+	0xb8, 0x93, 0x19, 0xce, 0xad, 0x9f, 0x62, 0x58, 0x92, 0xdd, 0xa6, 0x25, 0x27, 0x3d, 0xeb, 0xf7,
+	0xe7, 0xe9, 0xbd, 0x9f, 0xe1, 0x04, 0x4b, 0xb6, 0xa6, 0x3f, 0x4f, 0x85, 0x64, 0x39, 0x5e, 0x91,
+	0xfa, 0x9c, 0xf0, 0x9c, 0x49, 0x86, 0x06, 0x1a, 0x9d, 0x98, 0xdb, 0xe1, 0xd3, 0x15, 0x5b, 0x31,
+	0x05, 0x9d, 0x56, 0x95, 0x66, 0x0d, 0xbd, 0x07, 0x1e, 0x3c, 0xa7, 0x6b, 0x2a, 0xe9, 0x95, 0x71,
+	0x09, 0xde, 0x42, 0x77, 0xa1, 0xa1, 0x28, 0x45, 0x08, 0xda, 0x19, 0x5e, 0x13, 0xd7, 0x1a, 0x59,
+	0xe3, 0x6e, 0xac, 0x6a, 0x74, 0x02, 0xdd, 0xea, 0x14, 0x1c, 0x27, 0xc4, 0xb5, 0x15, 0x70, 0x77,
+	0x11, 0xfc, 0xb6, 0xa0, 0x6f, 0xf4, 0x1f, 0x58, 0xf6, 0x8d, 0xae, 0xd0, 0x3b, 0x38, 0xc8, 0x09,
+	0xbf, 0xa0, 0x09, 0x16, 0xae, 0x35, 0xda, 0x1b, 0xf7, 0xa6, 0xde, 0x64, 0xfb, 0xa5, 0x13, 0x23,
+	0x88, 0x35, 0x2d, 0x6c, 0x5f, 0x17, 0x7e, 0x2b, 0x6e, 0x54, 0xe8, 0x23, 0x00, 0xc7, 0xb9, 0xa4,
+	0x92, 0xb2, 0x4c, 0xb8, 0xb6, 0xf2, 0x18, 0xed, 0xf0, 0x98, 0xd7, 0x44, 0xe3, 0x72, 0x4f, 0x19,
+	0xfc, 0xb1, 0x60, 0xb0, 0xdd, 0x0a, 0x1d, 0x83, 0x4d, 0x53, 0x3d, 0x5e, 0xe8, 0x94, 0x85, 0x6f,
+	0x47, 0xb3, 0xd8, 0xa6, 0x29, 0x7a, 0x0e, 0x9d, 0x8c, 0xa5, 0x64, 0x49, 0x53, 0x3d, 0x62, 0x08,
+	0x65, 0xe1, 0x3b, 0x67, 0x2c, 0x25, 0xd1, 0x2c, 0x76, 0x2a, 0x48, 0x6f, 0xe7, 0x3b, 0x13, 0xd2,
+	0xdd, 0xd3, 0xdb, 0xa9, 0x6a, 0xf4, 0x02, 0x0e, 0x30, 0xa7, 0x4b, 0xce, 0x72, 0xe9, 0xb6, 0x47,
+	0xd6, 0x78, 0x3f, 0x3c, 0x2e, 0x0b, 0xbf, 0xf3, 0x7e, 0x1e, 0xcd, 0x59, 0x2e, 0x6f, 0x0b, 0xbf,
+	0x83, 0x39, 0xad, 0xca, 0xb8, 0x2e, 0xd0, 0x2b, 0xe8, 0xab, 0xd5, 0x27, 0xec, 0x42, 0xeb, 0xf6,
+	0x95, 0xee, 0xe8, 0xb6, 0xf0, 0x0f, 0x6b, 0x40, 0x29, 0xb6, 0xbe, 0x82, 0x73, 0x38, 0x7a, 0x38,
+	0x33, 0x9a, 0xc2, 0x61, 0x33, 0xef, 0xd2, 0x0c, 0xd6, 0x0f, 0x9f, 0x94, 0x85, 0xdf, 0x6b, 0x48,
+	0xd1, 0x2c, 0xee, 0x35, 0xa4, 0x28, 0x45, 0xc3, 0x7b, 0xf9, 0x54, 0xbb, 0xed, 0xde, 0x6d, 0x3e,
+	0xf8, 0x0c, 0xfd, 0x2f, 0x3c, 0xc5, 0x92, 0xc4, 0xe4, 0xc7, 0x25, 0x11, 0x12, 0xbd, 0x06, 0x27,
+	0x51, 0xb1, 0x2a, 0xeb, 0xde, 0xf4, 0xd9, 0x8e, 0x18, 0x74, 0xf6, 0x26, 0x03, 0x23, 0x09, 0xce,
+	0x60, 0x50, 0xbb, 0x09, 0xce, 0x32, 0x41, 0xd0, 0x1b, 0x70, 0x84, 0xc4, 0xf2, 0x52, 0x18, 0xbb,
+	0x47, 0x7f, 0x46, 0xcd, 0x5c, 0x28, 0x56, 0xed, 0xa7, 0x35, 0xd3, 0xaf, 0x4d, 0x9c, 0x0b, 0x92,
+	0x5f, 0xd1, 0x84, 0xa0, 0x4f, 0xe0, 0xe8, 0x0e, 0xe8, 0xd1, 0xc3, 0xb6, 0xe6, 0x18, 0x7a, 0xbb,
+	0x60, 0xdd, 0x2e, 0x74, 0xaf, 0x4b, 0xcf, 0xba, 0x29, 0x3d, 0xeb, 0x5f, 0xe9, 0x59, 0xbf, 0x36,
+	0x5e, 0xeb, 0x66, 0xe3, 0xb5, 0xfe, 0x6e, 0xbc, 0xd6, 0xb9, 0xa3, 0x42, 0x78, 0xf9, 0x3f, 0x00,
+	0x00, 0xff, 0xff, 0xcd, 0x9c, 0x69, 0xec, 0x8c, 0x03, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -604,10 +418,8 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type StorageServiceClient interface {
-	// AddReplica adds a replica to the storage
-	AddReplica(ctx context.Context, in *AddReplicaRequest, opts ...grpc.CallOption) (*AddReplicaResponse, error)
-	// RemoveReplica removes a replica from the storage
-	RemoveReplica(ctx context.Context, in *RemoveReplicaRequest, opts ...grpc.CallOption) (*RemoveReplicaResponse, error)
+	// Update updates the storage configuration
+	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 }
 
 type storageServiceClient struct {
@@ -618,18 +430,9 @@ func NewStorageServiceClient(cc *grpc.ClientConn) StorageServiceClient {
 	return &storageServiceClient{cc}
 }
 
-func (c *storageServiceClient) AddReplica(ctx context.Context, in *AddReplicaRequest, opts ...grpc.CallOption) (*AddReplicaResponse, error) {
-	out := new(AddReplicaResponse)
-	err := c.cc.Invoke(ctx, "/atomix.storage.StorageService/AddReplica", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-func (c *storageServiceClient) RemoveReplica(ctx context.Context, in *RemoveReplicaRequest, opts ...grpc.CallOption) (*RemoveReplicaResponse, error) {
-	out := new(RemoveReplicaResponse)
-	err := c.cc.Invoke(ctx, "/atomix.storage.StorageService/RemoveReplica", in, out, opts...)
+func (c *storageServiceClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
+	out := new(UpdateResponse)
+	err := c.cc.Invoke(ctx, "/atomix.storage.StorageService/Update", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -638,59 +441,36 @@ func (c *storageServiceClient) RemoveReplica(ctx context.Context, in *RemoveRepl
 
 // StorageServiceServer is the server API for StorageService service.
 type StorageServiceServer interface {
-	// AddReplica adds a replica to the storage
-	AddReplica(context.Context, *AddReplicaRequest) (*AddReplicaResponse, error)
-	// RemoveReplica removes a replica from the storage
-	RemoveReplica(context.Context, *RemoveReplicaRequest) (*RemoveReplicaResponse, error)
+	// Update updates the storage configuration
+	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 }
 
 // UnimplementedStorageServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedStorageServiceServer struct {
 }
 
-func (*UnimplementedStorageServiceServer) AddReplica(ctx context.Context, req *AddReplicaRequest) (*AddReplicaResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddReplica not implemented")
-}
-func (*UnimplementedStorageServiceServer) RemoveReplica(ctx context.Context, req *RemoveReplicaRequest) (*RemoveReplicaResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveReplica not implemented")
+func (*UnimplementedStorageServiceServer) Update(ctx context.Context, req *UpdateRequest) (*UpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
 }
 
 func RegisterStorageServiceServer(s *grpc.Server, srv StorageServiceServer) {
 	s.RegisterService(&_StorageService_serviceDesc, srv)
 }
 
-func _StorageService_AddReplica_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddReplicaRequest)
+func _StorageService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(StorageServiceServer).AddReplica(ctx, in)
+		return srv.(StorageServiceServer).Update(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/atomix.storage.StorageService/AddReplica",
+		FullMethod: "/atomix.storage.StorageService/Update",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServiceServer).AddReplica(ctx, req.(*AddReplicaRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-func _StorageService_RemoveReplica_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RemoveReplicaRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(StorageServiceServer).RemoveReplica(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/atomix.storage.StorageService/RemoveReplica",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(StorageServiceServer).RemoveReplica(ctx, req.(*RemoveReplicaRequest))
+		return srv.(StorageServiceServer).Update(ctx, req.(*UpdateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -700,12 +480,8 @@ var _StorageService_serviceDesc = grpc.ServiceDesc{
 	HandlerType: (*StorageServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "AddReplica",
-			Handler:    _StorageService_AddReplica_Handler,
-		},
-		{
-			MethodName: "RemoveReplica",
-			Handler:    _StorageService_RemoveReplica_Handler,
+			MethodName: "Update",
+			Handler:    _StorageService_Update_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -823,17 +599,24 @@ func (m *StorageReplica) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	if m.ProtocolPort != 0 {
 		i = encodeVarintStorage(dAtA, i, uint64(m.ProtocolPort))
 		i--
-		dAtA[i] = 0x20
+		dAtA[i] = 0x28
 	}
 	if m.APIPort != 0 {
 		i = encodeVarintStorage(dAtA, i, uint64(m.APIPort))
 		i--
-		dAtA[i] = 0x18
+		dAtA[i] = 0x20
 	}
 	if len(m.Host) > 0 {
 		i -= len(m.Host)
 		copy(dAtA[i:], m.Host)
 		i = encodeVarintStorage(dAtA, i, uint64(len(m.Host)))
+		i--
+		dAtA[i] = 0x1a
+	}
+	if len(m.NodeID) > 0 {
+		i -= len(m.NodeID)
+		copy(dAtA[i:], m.NodeID)
+		i = encodeVarintStorage(dAtA, i, uint64(len(m.NodeID)))
 		i--
 		dAtA[i] = 0x12
 	}
@@ -843,34 +626,6 @@ func (m *StorageReplica) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		i = encodeVarintStorage(dAtA, i, uint64(len(m.ID)))
 		i--
 		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *PartitionId) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *PartitionId) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *PartitionId) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.Partition != 0 {
-		i = encodeVarintStorage(dAtA, i, uint64(m.Partition))
-		i--
-		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
@@ -895,22 +650,45 @@ func (m *StoragePartition) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.Endpoints) > 0 {
-		for iNdEx := len(m.Endpoints) - 1; iNdEx >= 0; iNdEx-- {
-			{
-				size, err := m.Endpoints[iNdEx].MarshalToSizedBuffer(dAtA[:i])
-				if err != nil {
-					return 0, err
-				}
-				i -= size
-				i = encodeVarintStorage(dAtA, i, uint64(size))
-			}
+	if len(m.Replicas) > 0 {
+		for iNdEx := len(m.Replicas) - 1; iNdEx >= 0; iNdEx-- {
+			i -= len(m.Replicas[iNdEx])
+			copy(dAtA[i:], m.Replicas[iNdEx])
+			i = encodeVarintStorage(dAtA, i, uint64(len(m.Replicas[iNdEx])))
 			i--
 			dAtA[i] = 0x12
 		}
 	}
+	if m.PartitionID != 0 {
+		i = encodeVarintStorage(dAtA, i, uint64(m.PartitionID))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *UpdateRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *UpdateRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *UpdateRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
 	{
-		size, err := m.PartitionID.MarshalToSizedBuffer(dAtA[:i])
+		size, err := m.Config.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
 			return 0, err
 		}
@@ -922,7 +700,7 @@ func (m *StoragePartition) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *PartitionEndpoint) Marshal() (dAtA []byte, err error) {
+func (m *UpdateResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -932,163 +710,26 @@ func (m *PartitionEndpoint) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *PartitionEndpoint) MarshalTo(dAtA []byte) (int, error) {
+func (m *UpdateResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *PartitionEndpoint) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *UpdateResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.Port != 0 {
-		i = encodeVarintStorage(dAtA, i, uint64(m.Port))
-		i--
-		dAtA[i] = 0x10
-	}
-	if len(m.Host) > 0 {
-		i -= len(m.Host)
-		copy(dAtA[i:], m.Host)
-		i = encodeVarintStorage(dAtA, i, uint64(len(m.Host)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *AddReplicaRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *AddReplicaRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *AddReplicaRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.Replica != nil {
-		{
-			size, err := m.Replica.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintStorage(dAtA, i, uint64(size))
+	{
+		size, err := m.Status.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
 		}
-		i--
-		dAtA[i] = 0xa
+		i -= size
+		i = encodeVarintStorage(dAtA, i, uint64(size))
 	}
-	return len(dAtA) - i, nil
-}
-
-func (m *AddReplicaResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *AddReplicaResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *AddReplicaResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.Status != nil {
-		{
-			size, err := m.Status.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintStorage(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *RemoveReplicaRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *RemoveReplicaRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *RemoveReplicaRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.ReplicaId) > 0 {
-		i -= len(m.ReplicaId)
-		copy(dAtA[i:], m.ReplicaId)
-		i = encodeVarintStorage(dAtA, i, uint64(len(m.ReplicaId)))
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
-}
-
-func (m *RemoveReplicaResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *RemoveReplicaResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *RemoveReplicaResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.Status != nil {
-		{
-			size, err := m.Status.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintStorage(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0xa
-	}
+	i--
+	dAtA[i] = 0xa
 	return len(dAtA) - i, nil
 }
 
@@ -1151,6 +792,10 @@ func (m *StorageReplica) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovStorage(uint64(l))
 	}
+	l = len(m.NodeID)
+	if l > 0 {
+		n += 1 + l + sovStorage(uint64(l))
+	}
 	l = len(m.Host)
 	if l > 0 {
 		n += 1 + l + sovStorage(uint64(l))
@@ -1164,100 +809,43 @@ func (m *StorageReplica) Size() (n int) {
 	return n
 }
 
-func (m *PartitionId) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Partition != 0 {
-		n += 1 + sovStorage(uint64(m.Partition))
-	}
-	return n
-}
-
 func (m *StoragePartition) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = m.PartitionID.Size()
-	n += 1 + l + sovStorage(uint64(l))
-	if len(m.Endpoints) > 0 {
-		for _, e := range m.Endpoints {
-			l = e.Size()
+	if m.PartitionID != 0 {
+		n += 1 + sovStorage(uint64(m.PartitionID))
+	}
+	if len(m.Replicas) > 0 {
+		for _, s := range m.Replicas {
+			l = len(s)
 			n += 1 + l + sovStorage(uint64(l))
 		}
 	}
 	return n
 }
 
-func (m *PartitionEndpoint) Size() (n int) {
+func (m *UpdateRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = len(m.Host)
-	if l > 0 {
-		n += 1 + l + sovStorage(uint64(l))
-	}
-	if m.Port != 0 {
-		n += 1 + sovStorage(uint64(m.Port))
-	}
+	l = m.Config.Size()
+	n += 1 + l + sovStorage(uint64(l))
 	return n
 }
 
-func (m *AddReplicaRequest) Size() (n int) {
+func (m *UpdateResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.Replica != nil {
-		l = m.Replica.Size()
-		n += 1 + l + sovStorage(uint64(l))
-	}
-	return n
-}
-
-func (m *AddReplicaResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Status != nil {
-		l = m.Status.Size()
-		n += 1 + l + sovStorage(uint64(l))
-	}
-	return n
-}
-
-func (m *RemoveReplicaRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.ReplicaId)
-	if l > 0 {
-		n += 1 + l + sovStorage(uint64(l))
-	}
-	return n
-}
-
-func (m *RemoveReplicaResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Status != nil {
-		l = m.Status.Size()
-		n += 1 + l + sovStorage(uint64(l))
-	}
+	l = m.Status.Size()
+	n += 1 + l + sovStorage(uint64(l))
 	return n
 }
 
@@ -1568,6 +1156,38 @@ func (m *StorageReplica) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field NodeID", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowStorage
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthStorage
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthStorage
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.NodeID = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Host", wireType)
 			}
 			var stringLen uint64
@@ -1598,7 +1218,7 @@ func (m *StorageReplica) Unmarshal(dAtA []byte) error {
 			}
 			m.Host = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 3:
+		case 4:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field APIPort", wireType)
 			}
@@ -1617,7 +1237,7 @@ func (m *StorageReplica) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		case 4:
+		case 5:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field ProtocolPort", wireType)
 			}
@@ -1632,78 +1252,6 @@ func (m *StorageReplica) Unmarshal(dAtA []byte) error {
 				b := dAtA[iNdEx]
 				iNdEx++
 				m.ProtocolPort |= int32(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		default:
-			iNdEx = preIndex
-			skippy, err := skipStorage(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthStorage
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthStorage
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *PartitionId) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowStorage
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: PartitionId: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: PartitionId: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Partition", wireType)
-			}
-			m.Partition = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowStorage
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Partition |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -1762,10 +1310,10 @@ func (m *StoragePartition) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 2 {
+			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field PartitionID", wireType)
 			}
-			var msglen int
+			m.PartitionID = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowStorage
@@ -1775,115 +1323,14 @@ func (m *StoragePartition) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				msglen |= int(b&0x7F) << shift
+				m.PartitionID |= uint32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			if msglen < 0 {
-				return ErrInvalidLengthStorage
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthStorage
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.PartitionID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Endpoints", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowStorage
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthStorage
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthStorage
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Endpoints = append(m.Endpoints, PartitionEndpoint{})
-			if err := m.Endpoints[len(m.Endpoints)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipStorage(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthStorage
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthStorage
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *PartitionEndpoint) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowStorage
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: PartitionEndpoint: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: PartitionEndpoint: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Host", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Replicas", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1911,27 +1358,8 @@ func (m *PartitionEndpoint) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Host = string(dAtA[iNdEx:postIndex])
+			m.Replicas = append(m.Replicas, string(dAtA[iNdEx:postIndex]))
 			iNdEx = postIndex
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Port", wireType)
-			}
-			m.Port = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowStorage
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Port |= int32(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
 		default:
 			iNdEx = preIndex
 			skippy, err := skipStorage(dAtA[iNdEx:])
@@ -1956,7 +1384,7 @@ func (m *PartitionEndpoint) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *AddReplicaRequest) Unmarshal(dAtA []byte) error {
+func (m *UpdateRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1979,15 +1407,15 @@ func (m *AddReplicaRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: AddReplicaRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: UpdateRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: AddReplicaRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: UpdateRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Replica", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Config", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -2014,10 +1442,7 @@ func (m *AddReplicaRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Replica == nil {
-				m.Replica = &StorageReplica{}
-			}
-			if err := m.Replica.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.Config.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -2045,7 +1470,7 @@ func (m *AddReplicaRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *AddReplicaResponse) Unmarshal(dAtA []byte) error {
+func (m *UpdateResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -2068,10 +1493,10 @@ func (m *AddReplicaResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: AddReplicaResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: UpdateResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: AddReplicaResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: UpdateResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -2102,183 +1527,6 @@ func (m *AddReplicaResponse) Unmarshal(dAtA []byte) error {
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
-			}
-			if m.Status == nil {
-				m.Status = &ResponseStatus{}
-			}
-			if err := m.Status.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipStorage(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthStorage
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthStorage
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *RemoveReplicaRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowStorage
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: RemoveReplicaRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: RemoveReplicaRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ReplicaId", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowStorage
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthStorage
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthStorage
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.ReplicaId = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipStorage(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthStorage
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthStorage
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *RemoveReplicaResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowStorage
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: RemoveReplicaResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: RemoveReplicaResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Status", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowStorage
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthStorage
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthStorage
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Status == nil {
-				m.Status = &ResponseStatus{}
 			}
 			if err := m.Status.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err

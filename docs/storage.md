@@ -32,16 +32,12 @@
   
 
 - [atomix/storage/storage.proto](#atomix/storage/storage.proto)
-    - [AddReplicaRequest](#atomix.storage.AddReplicaRequest)
-    - [AddReplicaResponse](#atomix.storage.AddReplicaResponse)
-    - [PartitionEndpoint](#atomix.storage.PartitionEndpoint)
-    - [PartitionId](#atomix.storage.PartitionId)
-    - [RemoveReplicaRequest](#atomix.storage.RemoveReplicaRequest)
-    - [RemoveReplicaResponse](#atomix.storage.RemoveReplicaResponse)
     - [StorageConfig](#atomix.storage.StorageConfig)
     - [StorageId](#atomix.storage.StorageId)
     - [StoragePartition](#atomix.storage.StoragePartition)
     - [StorageReplica](#atomix.storage.StorageReplica)
+    - [UpdateRequest](#atomix.storage.UpdateRequest)
+    - [UpdateResponse](#atomix.storage.UpdateResponse)
   
   
   
@@ -345,97 +341,6 @@ Response type
 
 
 
-<a name="atomix.storage.AddReplicaRequest"></a>
-
-### AddReplicaRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| replica | [StorageReplica](#atomix.storage.StorageReplica) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.AddReplicaResponse"></a>
-
-### AddReplicaResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| status | [ResponseStatus](#atomix.storage.ResponseStatus) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.PartitionEndpoint"></a>
-
-### PartitionEndpoint
-Partition endpoint
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| host | [string](#string) |  |  |
-| port | [int32](#int32) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.PartitionId"></a>
-
-### PartitionId
-Partition identifier
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| partition | [int32](#int32) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.RemoveReplicaRequest"></a>
-
-### RemoveReplicaRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| replica_id | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.RemoveReplicaResponse"></a>
-
-### RemoveReplicaResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| status | [ResponseStatus](#atomix.storage.ResponseStatus) |  |  |
-
-
-
-
-
-
 <a name="atomix.storage.StorageConfig"></a>
 
 ### StorageConfig
@@ -476,8 +381,8 @@ Partition info
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| partition_id | [PartitionId](#atomix.storage.PartitionId) |  |  |
-| endpoints | [PartitionEndpoint](#atomix.storage.PartitionEndpoint) | repeated |  |
+| partition_id | [uint32](#uint32) |  |  |
+| replicas | [string](#string) | repeated |  |
 
 
 
@@ -493,9 +398,40 @@ Replica configuration
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | id is the unique member identifier |
+| node_id | [string](#string) |  | node_id is the ID of the node on which the replica is deployed |
 | host | [string](#string) |  | host is the member host |
 | api_port | [int32](#int32) |  | api_port is the port to use for the client API |
 | protocol_port | [int32](#int32) |  | protocol_port is the port to use for intra-cluster communication |
+
+
+
+
+
+
+<a name="atomix.storage.UpdateRequest"></a>
+
+### UpdateRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| config | [StorageConfig](#atomix.storage.StorageConfig) |  |  |
+
+
+
+
+
+
+<a name="atomix.storage.UpdateResponse"></a>
+
+### UpdateResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| status | [ResponseStatus](#atomix.storage.ResponseStatus) |  |  |
 
 
 
@@ -515,8 +451,7 @@ Atomix storage service
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| AddReplica | [AddReplicaRequest](#atomix.storage.AddReplicaRequest) | [AddReplicaResponse](#atomix.storage.AddReplicaResponse) | AddReplica adds a replica to the storage |
-| RemoveReplica | [RemoveReplicaRequest](#atomix.storage.RemoveReplicaRequest) | [RemoveReplicaResponse](#atomix.storage.RemoveReplicaResponse) | RemoveReplica removes a replica from the storage |
+| Update | [UpdateRequest](#atomix.storage.UpdateRequest) | [UpdateResponse](#atomix.storage.UpdateResponse) | Update updates the storage configuration |
 
  
 

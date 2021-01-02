@@ -16,21 +16,8 @@ limitations under the License.
 
 syntax = "proto3";
 
-package atomix.proxy;
+package atomix.primitive.meta;
 
-import "gogoproto/gogo.proto";
-import "atomix/storage/storage.proto";
-
-message UpdateRequest {
-    atomix.storage.StorageConfig config = 1 [(gogoproto.nullable) = false];
-}
-
-message UpdateResponse {
-
-}
-
-// Atomix proxy service
-service ProxyService {
-    // Update updates the storage configuration
-    rpc Update (UpdateRequest) returns (UpdateResponse);
+message Version {
+    uint64 value = 1;
 }

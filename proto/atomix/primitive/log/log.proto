@@ -1,0 +1,330 @@
+/*
+Copyright 2020-present Open Networking Foundation.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+package atomix.primitive.log;
+
+import "atomix/primitive/primitive.proto";
+import "atomix/primitive/descriptor.proto";
+import "atomix/primitive/meta/timestamp.proto";
+import "gogoproto/gogo.proto";
+
+message ExistsRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ExistsInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message ExistsInput {
+    uint64 index = 2;
+}
+
+message ExistsResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ExistsOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message ExistsOutput {
+    bool contains_index = 2;
+}
+
+message SizeRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    SizeInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message SizeInput {
+}
+
+message SizeResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    SizeOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message SizeOutput {
+    int32 size = 2;
+}
+
+message AppendRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    AppendInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message AppendInput {
+    uint64 index = 2;
+    bytes value = 3;
+}
+
+message AppendResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    AppendOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message AppendOutput {
+    uint64 index = 2;
+    atomix.primitive.meta.Timestamp timestamp = 3 [(gogoproto.nullable) = false];
+}
+
+message GetRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    GetInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message GetInput {
+    uint64 index = 2;
+}
+
+message GetResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    GetOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message GetOutput {
+    uint64 index = 2;
+    bytes value = 3;
+    atomix.primitive.meta.Timestamp timestamp = 5 [(gogoproto.nullable) = false];
+}
+
+message FirstEntryRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    FirstEntryInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message FirstEntryInput {
+}
+
+message FirstEntryResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    FirstEntryOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message FirstEntryOutput {
+    uint64 index = 2;
+    bytes value = 3;
+    atomix.primitive.meta.Timestamp timestamp = 4 [(gogoproto.nullable) = false];
+}
+
+message LastEntryRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    LastEntryInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message LastEntryInput {
+}
+
+message LastEntryResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    LastEntryOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+
+}
+
+message LastEntryOutput {
+    uint64 index = 2;
+    bytes value = 3;
+    atomix.primitive.meta.Timestamp timestamp = 4 [(gogoproto.nullable) = false];
+
+}
+
+message PrevEntryRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    PrevEntryInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message PrevEntryInput {
+    uint64 index = 2;
+}
+
+message PrevEntryResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    PrevEntryOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message PrevEntryOutput {
+    uint64 index = 2;
+    bytes value = 3;
+    atomix.primitive.meta.Timestamp timestamp = 4 [(gogoproto.nullable) = false];
+}
+
+message NextEntryRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    NextEntryInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message NextEntryInput {
+    uint64 index = 2;
+}
+
+message NextEntryResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    NextEntryOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message NextEntryOutput {
+    uint64 index = 2;
+    bytes value = 3;
+    atomix.primitive.meta.Timestamp timestamp = 4 [(gogoproto.nullable) = false];
+}
+
+message RemoveRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    RemoveInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message RemoveInput {
+    uint64 index = 2;
+    bytes value = 3;
+    atomix.primitive.meta.Timestamp timestamp = 4 [(gogoproto.nullable) = false];
+}
+
+message RemoveResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    RemoveOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message RemoveOutput {
+    uint64 index = 2;
+    bytes previous_value = 3;
+}
+
+message ClearRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ClearInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message ClearInput {
+}
+
+message ClearResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ClearOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message ClearOutput {
+}
+
+message EntriesRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    EntriesInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message EntriesInput {
+}
+
+message EntriesResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    EntriesOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message EntriesOutput {
+    uint64 index = 2;
+    bytes value = 3;
+    atomix.primitive.meta.Timestamp timestamp = 4 [(gogoproto.nullable) = false];
+}
+
+message EventRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    EventInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+
+message EventInput {
+    bool replay = 2;
+    uint64 index = 3;
+}
+
+message EventResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    EventOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message EventOutput {
+    Type type = 2;
+    uint64 index = 3;
+    bytes value = 4;
+    atomix.primitive.meta.Timestamp timestamp = 5 [(gogoproto.nullable) = false];
+
+    enum Type {
+        NONE = 0;
+        APPENDED = 1;
+        REMOVED = 2;
+    }
+}
+
+// LogService log service
+service LogService {
+    option (atomix.primitive.name) = "Log";
+
+    // Size returns the size of the log
+    rpc Size (SizeRequest) returns (SizeResponse) {
+        option (atomix.primitive.optype) = QUERY;
+    }
+
+    // Exists checks whether an index exists in the log
+    rpc Exists (ExistsRequest) returns (ExistsResponse) {
+        option (atomix.primitive.optype) = QUERY;
+    }
+
+    // Appends appends an entry into the log
+    rpc Append (AppendRequest) returns (AppendResponse) {
+        option (atomix.primitive.optype) = COMMAND;
+    }
+
+    // Get gets the entry for an index
+    rpc Get (GetRequest) returns (GetResponse) {
+        option (atomix.primitive.optype) = QUERY;
+    }
+
+    // FirstEntry gets the first entry in the log
+    rpc FirstEntry (FirstEntryRequest) returns (FirstEntryResponse) {
+        option (atomix.primitive.optype) = QUERY;
+    }
+
+    // LastEntry gets the last entry in the log
+    rpc LastEntry (LastEntryRequest) returns (LastEntryResponse) {
+        option (atomix.primitive.optype) = QUERY;
+    }
+
+    // PrevEntry gets the previous entry in the log
+    rpc PrevEntry (PrevEntryRequest) returns (PrevEntryResponse) {
+        option (atomix.primitive.optype) = QUERY;
+    }
+
+    // NextEntry gets the next entry in the log
+    rpc NextEntry (NextEntryRequest) returns (NextEntryResponse) {
+        option (atomix.primitive.optype) = QUERY;
+    }
+
+    // Remove removes an entry from the log
+    rpc Remove (RemoveRequest) returns (RemoveResponse) {
+        option (atomix.primitive.optype) = COMMAND;
+    }
+
+    // Clear removes all entries from the log
+    rpc Clear (ClearRequest) returns (ClearResponse) {
+        option (atomix.primitive.optype) = COMMAND;
+    }
+
+    // Events listens for change events
+    rpc Events (EventRequest) returns (stream EventResponse) {
+        option (atomix.primitive.optype) = COMMAND;
+    }
+
+    // Entries lists all entries in the log
+    rpc Entries (EntriesRequest) returns (stream EntriesResponse) {
+        option (atomix.primitive.optype) = QUERY;
+    }
+}
+

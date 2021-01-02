@@ -3,121 +3,56 @@
 
 ## Table of Contents
 
-- [atomix/storage/value/value.proto](#atomix/storage/value/value.proto)
-    - [CloseRequest](#atomix.storage.value.CloseRequest)
-    - [CloseResponse](#atomix.storage.value.CloseResponse)
-    - [CreateRequest](#atomix.storage.value.CreateRequest)
-    - [CreateResponse](#atomix.storage.value.CreateResponse)
-    - [EventRequest](#atomix.storage.value.EventRequest)
-    - [EventResponse](#atomix.storage.value.EventResponse)
-    - [GetRequest](#atomix.storage.value.GetRequest)
-    - [GetResponse](#atomix.storage.value.GetResponse)
-    - [SetRequest](#atomix.storage.value.SetRequest)
-    - [SetResponse](#atomix.storage.value.SetResponse)
+- [atomix/primitive/value/value.proto](#atomix/primitive/value/value.proto)
+    - [EventInput](#atomix.primitive.value.EventInput)
+    - [EventOutput](#atomix.primitive.value.EventOutput)
+    - [EventRequest](#atomix.primitive.value.EventRequest)
+    - [EventResponse](#atomix.primitive.value.EventResponse)
+    - [GetInput](#atomix.primitive.value.GetInput)
+    - [GetOutput](#atomix.primitive.value.GetOutput)
+    - [GetRequest](#atomix.primitive.value.GetRequest)
+    - [GetResponse](#atomix.primitive.value.GetResponse)
+    - [SetInput](#atomix.primitive.value.SetInput)
+    - [SetOutput](#atomix.primitive.value.SetOutput)
+    - [SetRequest](#atomix.primitive.value.SetRequest)
+    - [SetResponse](#atomix.primitive.value.SetResponse)
   
-    - [EventResponse.Type](#atomix.storage.value.EventResponse.Type)
+    - [EventOutput.Type](#atomix.primitive.value.EventOutput.Type)
   
   
-    - [ValueService](#atomix.storage.value.ValueService)
+    - [ValueService](#atomix.primitive.value.ValueService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/storage/value/value.proto"></a>
+<a name="atomix/primitive/value/value.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/storage/value/value.proto
+## atomix/primitive/value/value.proto
 
 
 
-<a name="atomix.storage.value.CloseRequest"></a>
+<a name="atomix.primitive.value.EventInput"></a>
 
-### CloseRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-| delete | [bool](#bool) |  |  |
+### EventInput
 
 
 
 
 
 
-<a name="atomix.storage.value.CloseResponse"></a>
 
-### CloseResponse
+<a name="atomix.primitive.value.EventOutput"></a>
+
+### EventOutput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.value.CreateRequest"></a>
-
-### CreateRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.value.CreateResponse"></a>
-
-### CreateResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.value.EventRequest"></a>
-
-### EventRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.value.EventResponse"></a>
-
-### EventResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| type | [EventResponse.Type](#atomix.storage.value.EventResponse.Type) |  |  |
+| type | [EventOutput.Type](#atomix.primitive.value.EventOutput.Type) |  |  |
 | previous_value | [bytes](#bytes) |  |  |
 | previous_version | [uint64](#uint64) |  |  |
 | new_value | [bytes](#bytes) |  |  |
@@ -128,30 +63,56 @@
 
 
 
-<a name="atomix.storage.value.GetRequest"></a>
+<a name="atomix.primitive.value.EventRequest"></a>
 
-### GetRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.value.GetResponse"></a>
-
-### GetResponse
+### EventRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [EventInput](#atomix.primitive.value.EventInput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.value.EventResponse"></a>
+
+### EventResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [EventOutput](#atomix.primitive.value.EventOutput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.value.GetInput"></a>
+
+### GetInput
+
+
+
+
+
+
+
+<a name="atomix.primitive.value.GetOutput"></a>
+
+### GetOutput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
 | value | [bytes](#bytes) |  |  |
 | version | [uint64](#uint64) |  |  |
 
@@ -160,15 +121,46 @@
 
 
 
-<a name="atomix.storage.value.SetRequest"></a>
+<a name="atomix.primitive.value.GetRequest"></a>
 
-### SetRequest
+### GetRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [GetInput](#atomix.primitive.value.GetInput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.value.GetResponse"></a>
+
+### GetResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [GetOutput](#atomix.primitive.value.GetOutput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.value.SetInput"></a>
+
+### SetInput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
 | expect_version | [uint64](#uint64) |  |  |
 | expect_value | [bytes](#bytes) |  |  |
 | value | [bytes](#bytes) |  |  |
@@ -178,7 +170,39 @@
 
 
 
-<a name="atomix.storage.value.SetResponse"></a>
+<a name="atomix.primitive.value.SetOutput"></a>
+
+### SetOutput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| version | [uint64](#uint64) |  |  |
+| succeeded | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.value.SetRequest"></a>
+
+### SetRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [SetInput](#atomix.primitive.value.SetInput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.value.SetResponse"></a>
 
 ### SetResponse
 
@@ -186,9 +210,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| version | [uint64](#uint64) |  |  |
-| succeeded | [bool](#bool) |  |  |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [SetOutput](#atomix.primitive.value.SetOutput) |  |  |
 
 
 
@@ -197,9 +220,9 @@
  
 
 
-<a name="atomix.storage.value.EventResponse.Type"></a>
+<a name="atomix.primitive.value.EventOutput.Type"></a>
 
-### EventResponse.Type
+### EventOutput.Type
 
 
 | Name | Number | Description |
@@ -212,18 +235,16 @@
  
 
 
-<a name="atomix.storage.value.ValueService"></a>
+<a name="atomix.primitive.value.ValueService"></a>
 
 ### ValueService
 ValueService implements a distributed atomic value
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Create | [CreateRequest](#atomix.storage.value.CreateRequest) | [CreateResponse](#atomix.storage.value.CreateResponse) | Create creates a new value session |
-| Close | [CloseRequest](#atomix.storage.value.CloseRequest) | [CloseResponse](#atomix.storage.value.CloseResponse) | Close closes the value session |
-| Set | [SetRequest](#atomix.storage.value.SetRequest) | [SetResponse](#atomix.storage.value.SetResponse) | Set sets the value |
-| Get | [GetRequest](#atomix.storage.value.GetRequest) | [GetResponse](#atomix.storage.value.GetResponse) | Get gets the value |
-| Events | [EventRequest](#atomix.storage.value.EventRequest) | [EventResponse](#atomix.storage.value.EventResponse) stream | Events listens for value change events |
+| Set | [SetRequest](#atomix.primitive.value.SetRequest) | [SetResponse](#atomix.primitive.value.SetResponse) | Set sets the value |
+| Get | [GetRequest](#atomix.primitive.value.GetRequest) | [GetResponse](#atomix.primitive.value.GetResponse) | Get gets the value |
+| Events | [EventRequest](#atomix.primitive.value.EventRequest) | [EventResponse](#atomix.primitive.value.EventResponse) stream | Events listens for value change events |
 
  
 

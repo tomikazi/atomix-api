@@ -1,0 +1,235 @@
+/*
+Copyright 2020-present Open Networking Foundation.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+package atomix.primitive.map;
+
+import "google/protobuf/duration.proto";
+import "atomix/primitive/primitive.proto";
+import "atomix/primitive/meta/timestamp.proto";
+import "atomix/primitive/descriptor.proto";
+import "gogoproto/gogo.proto";
+
+message ExistsRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ExistsInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message ExistsInput {
+    string key = 1 [(atomix.primitive.partitionkey) = true];
+}
+
+message ExistsResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ExistsOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message ExistsOutput {
+    bool contains_key = 1;
+}
+
+message SizeRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    SizeInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message SizeInput {
+}
+
+message SizeResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    repeated SizeOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message SizeOutput {
+    uint32 size = 1;
+}
+
+message PutRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    PutInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message PutInput {
+    string key = 1 [(atomix.primitive.partitionkey) = true];
+    bytes value = 2;
+    atomix.primitive.meta.Timestamp timestamp = 3;
+    bool if_empty = 4;
+    google.protobuf.Duration ttl = 5 [(gogoproto.customname) = "TTL", (gogoproto.stdduration) = true];
+}
+
+message PutResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    PutOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message PutOutput {
+    Entry entry = 1;
+}
+
+message GetRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    GetInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message GetInput {
+    string key = 1 [(atomix.primitive.partitionkey) = true];
+}
+
+message GetResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    GetOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message GetOutput {
+    Entry entry = 1;
+}
+
+message RemoveRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    RemoveInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message RemoveInput {
+    string key = 1 [(atomix.primitive.partitionkey) = true];
+    atomix.primitive.meta.Timestamp timestamp = 2;
+}
+
+message RemoveResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    RemoveOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message RemoveOutput {
+    Entry entry = 1;
+}
+
+message ClearRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ClearInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message ClearInput {
+}
+
+message ClearResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ClearOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message ClearOutput {
+}
+
+message EntriesRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    EntriesInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message EntriesInput {
+}
+
+message EntriesResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    EntriesOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message EntriesOutput {
+    Entry entry = 1 [(gogoproto.nullable) = false];
+}
+
+message EventRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    EventInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message EventInput {
+    string key = 1;
+    bool replay = 2;
+}
+
+message EventResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    EventOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message EventOutput {
+    Type type = 1;
+    Entry entry = 2 [(gogoproto.nullable) = false];
+
+    enum Type {
+        NONE = 0;
+        INSERTED = 1;
+        UPDATED = 2;
+        REMOVED = 3;
+    }
+}
+
+message Entry {
+    string key = 1;
+    bytes value = 2;
+    atomix.primitive.meta.Timestamp timestamp = 3 [(gogoproto.nullable) = false];
+}
+
+// MapService implements a distributed map
+service MapService {
+    option (atomix.primitive.name) = "Map";
+    option (atomix.primitive.partition) = true;
+
+    // Size returns the size of the map
+    rpc Size (SizeRequest) returns (SizeResponse) {
+        option (atomix.primitive.optype) = QUERY;
+    }
+
+    // Exists checks whether a key exists in the map
+    rpc Exists (ExistsRequest) returns (ExistsResponse) {
+        option (atomix.primitive.optype) = QUERY;
+        option (atomix.primitive.partitionby) = HASH;
+    }
+
+    // Put puts an entry into the map
+    rpc Put (PutRequest) returns (PutResponse) {
+        option (atomix.primitive.optype) = COMMAND;
+        option (atomix.primitive.partitionby) = HASH;
+    }
+
+    // Get gets the entry for a key
+    rpc Get (GetRequest) returns (GetResponse) {
+        option (atomix.primitive.optype) = QUERY;
+        option (atomix.primitive.partitionby) = HASH;
+    }
+
+    // Remove removes an entry from the map
+    rpc Remove (RemoveRequest) returns (RemoveResponse) {
+        option (atomix.primitive.optype) = COMMAND;
+        option (atomix.primitive.partitionby) = HASH;
+    }
+
+    // Clear removes all entries from the map
+    rpc Clear (ClearRequest) returns (ClearResponse) {
+        option (atomix.primitive.optype) = COMMAND;
+    }
+
+    // Events listens for change events
+    rpc Events (EventRequest) returns (stream EventResponse) {
+        option (atomix.primitive.optype) = COMMAND;
+    }
+
+    // Entries lists all entries in the map
+    rpc Entries (EntriesRequest) returns (stream EntriesResponse) {
+        option (atomix.primitive.optype) = QUERY;
+    }
+}

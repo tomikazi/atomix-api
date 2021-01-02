@@ -1,0 +1,107 @@
+/*
+Copyright 2020-present Open Networking Foundation.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+import "atomix/primitive/primitive.proto";
+import "atomix/primitive/descriptor.proto";
+import "atomix/primitive/meta/timestamp.proto";
+import "gogoproto/gogo.proto";
+
+package atomix.primitive.leader;
+
+message LatchRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    LatchInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message LatchInput {
+    string participant_id = 2 [(gogoproto.customname) = "ParticipantID"];
+}
+
+message LatchResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    LatchOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message LatchOutput {
+    Latch latch = 2;
+}
+
+message GetRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    GetInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message GetInput {
+}
+
+message GetResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    GetOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message GetOutput {
+    Latch latch = 2;
+}
+
+message EventRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    EventInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message EventInput {
+}
+
+message EventResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    EventOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message EventOutput {
+    Type type = 2;
+    Latch latch = 3;
+
+    enum Type {
+        CHANGED = 0;
+    }
+}
+
+message Latch {
+    atomix.primitive.meta.Epoch id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
+    string leader = 2;
+    repeated string participants = 3;
+}
+
+// Leader latch service
+service LeaderLatchService {
+    option (atomix.primitive.name) = "LeaderLatch";
+
+    // Latch attempts to acquire the leader latch
+    rpc Latch (LatchRequest) returns (LatchResponse) {
+        option (atomix.primitive.optype) = COMMAND;
+    }
+
+    // Get gets the current leader
+    rpc Get (GetRequest) returns (GetResponse) {
+        option (atomix.primitive.optype) = QUERY;
+    }
+
+    // Events listens for leader change events
+    rpc Events (EventRequest) returns (stream EventResponse) {
+        option (atomix.primitive.optype) = COMMAND;
+    }
+}

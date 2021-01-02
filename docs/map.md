@@ -3,47 +3,79 @@
 
 ## Table of Contents
 
-- [atomix/storage/map/map.proto](#atomix/storage/map/map.proto)
-    - [ClearRequest](#atomix.storage.map.ClearRequest)
-    - [ClearResponse](#atomix.storage.map.ClearResponse)
-    - [CloseRequest](#atomix.storage.map.CloseRequest)
-    - [CloseResponse](#atomix.storage.map.CloseResponse)
-    - [CreateRequest](#atomix.storage.map.CreateRequest)
-    - [CreateResponse](#atomix.storage.map.CreateResponse)
-    - [EntriesRequest](#atomix.storage.map.EntriesRequest)
-    - [EntriesResponse](#atomix.storage.map.EntriesResponse)
-    - [Entry](#atomix.storage.map.Entry)
-    - [EventRequest](#atomix.storage.map.EventRequest)
-    - [EventResponse](#atomix.storage.map.EventResponse)
-    - [ExistsRequest](#atomix.storage.map.ExistsRequest)
-    - [ExistsResponse](#atomix.storage.map.ExistsResponse)
-    - [GetRequest](#atomix.storage.map.GetRequest)
-    - [GetResponse](#atomix.storage.map.GetResponse)
-    - [PutRequest](#atomix.storage.map.PutRequest)
-    - [PutResponse](#atomix.storage.map.PutResponse)
-    - [RemoveRequest](#atomix.storage.map.RemoveRequest)
-    - [RemoveResponse](#atomix.storage.map.RemoveResponse)
-    - [SizeRequest](#atomix.storage.map.SizeRequest)
-    - [SizeResponse](#atomix.storage.map.SizeResponse)
+- [atomix/primitive/map/map.proto](#atomix/primitive/map/map.proto)
+    - [ClearInput](#atomix.primitive.map.ClearInput)
+    - [ClearOutput](#atomix.primitive.map.ClearOutput)
+    - [ClearRequest](#atomix.primitive.map.ClearRequest)
+    - [ClearResponse](#atomix.primitive.map.ClearResponse)
+    - [EntriesInput](#atomix.primitive.map.EntriesInput)
+    - [EntriesOutput](#atomix.primitive.map.EntriesOutput)
+    - [EntriesRequest](#atomix.primitive.map.EntriesRequest)
+    - [EntriesResponse](#atomix.primitive.map.EntriesResponse)
+    - [Entry](#atomix.primitive.map.Entry)
+    - [EventInput](#atomix.primitive.map.EventInput)
+    - [EventOutput](#atomix.primitive.map.EventOutput)
+    - [EventRequest](#atomix.primitive.map.EventRequest)
+    - [EventResponse](#atomix.primitive.map.EventResponse)
+    - [ExistsInput](#atomix.primitive.map.ExistsInput)
+    - [ExistsOutput](#atomix.primitive.map.ExistsOutput)
+    - [ExistsRequest](#atomix.primitive.map.ExistsRequest)
+    - [ExistsResponse](#atomix.primitive.map.ExistsResponse)
+    - [GetInput](#atomix.primitive.map.GetInput)
+    - [GetOutput](#atomix.primitive.map.GetOutput)
+    - [GetRequest](#atomix.primitive.map.GetRequest)
+    - [GetResponse](#atomix.primitive.map.GetResponse)
+    - [PutInput](#atomix.primitive.map.PutInput)
+    - [PutOutput](#atomix.primitive.map.PutOutput)
+    - [PutRequest](#atomix.primitive.map.PutRequest)
+    - [PutResponse](#atomix.primitive.map.PutResponse)
+    - [RemoveInput](#atomix.primitive.map.RemoveInput)
+    - [RemoveOutput](#atomix.primitive.map.RemoveOutput)
+    - [RemoveRequest](#atomix.primitive.map.RemoveRequest)
+    - [RemoveResponse](#atomix.primitive.map.RemoveResponse)
+    - [SizeInput](#atomix.primitive.map.SizeInput)
+    - [SizeOutput](#atomix.primitive.map.SizeOutput)
+    - [SizeRequest](#atomix.primitive.map.SizeRequest)
+    - [SizeResponse](#atomix.primitive.map.SizeResponse)
   
-    - [EventResponse.Type](#atomix.storage.map.EventResponse.Type)
+    - [EventOutput.Type](#atomix.primitive.map.EventOutput.Type)
   
   
-    - [MapService](#atomix.storage.map.MapService)
+    - [MapService](#atomix.primitive.map.MapService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/storage/map/map.proto"></a>
+<a name="atomix/primitive/map/map.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/storage/map/map.proto
+## atomix/primitive/map/map.proto
 
 
 
-<a name="atomix.storage.map.ClearRequest"></a>
+<a name="atomix.primitive.map.ClearInput"></a>
+
+### ClearInput
+
+
+
+
+
+
+
+<a name="atomix.primitive.map.ClearOutput"></a>
+
+### ClearOutput
+
+
+
+
+
+
+
+<a name="atomix.primitive.map.ClearRequest"></a>
 
 ### ClearRequest
 
@@ -51,14 +83,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [ClearInput](#atomix.primitive.map.ClearInput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.map.ClearResponse"></a>
+<a name="atomix.primitive.map.ClearResponse"></a>
 
 ### ClearResponse
 
@@ -66,75 +99,40 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [ClearOutput](#atomix.primitive.map.ClearOutput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.map.CloseRequest"></a>
+<a name="atomix.primitive.map.EntriesInput"></a>
 
-### CloseRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-| delete | [bool](#bool) |  |  |
+### EntriesInput
 
 
 
 
 
 
-<a name="atomix.storage.map.CloseResponse"></a>
 
-### CloseResponse
+<a name="atomix.primitive.map.EntriesOutput"></a>
+
+### EntriesOutput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| entry | [Entry](#atomix.primitive.map.Entry) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.map.CreateRequest"></a>
-
-### CreateRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.map.CreateResponse"></a>
-
-### CreateResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.map.EntriesRequest"></a>
+<a name="atomix.primitive.map.EntriesRequest"></a>
 
 ### EntriesRequest
 
@@ -142,14 +140,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [EntriesInput](#atomix.primitive.map.EntriesInput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.map.EntriesResponse"></a>
+<a name="atomix.primitive.map.EntriesResponse"></a>
 
 ### EntriesResponse
 
@@ -157,15 +156,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| entry | [Entry](#atomix.storage.map.Entry) |  |  |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [EntriesOutput](#atomix.primitive.map.EntriesOutput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.map.Entry"></a>
+<a name="atomix.primitive.map.Entry"></a>
 
 ### Entry
 
@@ -175,16 +174,46 @@
 | ----- | ---- | ----- | ----------- |
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
-| timestamp | [atomix.storage.timestamp.Timestamp](#atomix.storage.timestamp.Timestamp) |  |  |
-| created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
-| updated | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
+| timestamp | [atomix.primitive.meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.map.EventRequest"></a>
+<a name="atomix.primitive.map.EventInput"></a>
+
+### EventInput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| replay | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.EventOutput"></a>
+
+### EventOutput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [EventOutput.Type](#atomix.primitive.map.EventOutput.Type) |  |  |
+| entry | [Entry](#atomix.primitive.map.Entry) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.EventRequest"></a>
 
 ### EventRequest
 
@@ -192,16 +221,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-| replay | [bool](#bool) |  |  |
-| key | [string](#string) |  |  |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [EventInput](#atomix.primitive.map.EventInput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.map.EventResponse"></a>
+<a name="atomix.primitive.map.EventResponse"></a>
 
 ### EventResponse
 
@@ -209,24 +237,22 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| type | [EventResponse.Type](#atomix.storage.map.EventResponse.Type) |  |  |
-| entry | [Entry](#atomix.storage.map.Entry) |  |  |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [EventOutput](#atomix.primitive.map.EventOutput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.map.ExistsRequest"></a>
+<a name="atomix.primitive.map.ExistsInput"></a>
 
-### ExistsRequest
+### ExistsInput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | key | [string](#string) |  |  |
 
 
@@ -234,15 +260,14 @@
 
 
 
-<a name="atomix.storage.map.ExistsResponse"></a>
+<a name="atomix.primitive.map.ExistsOutput"></a>
 
-### ExistsResponse
+### ExistsOutput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 | contains_key | [bool](#bool) |  |  |
 
 
@@ -250,7 +275,69 @@
 
 
 
-<a name="atomix.storage.map.GetRequest"></a>
+<a name="atomix.primitive.map.ExistsRequest"></a>
+
+### ExistsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [ExistsInput](#atomix.primitive.map.ExistsInput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.ExistsResponse"></a>
+
+### ExistsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [ExistsOutput](#atomix.primitive.map.ExistsOutput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.GetInput"></a>
+
+### GetInput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.GetOutput"></a>
+
+### GetOutput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| entry | [Entry](#atomix.primitive.map.Entry) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.GetRequest"></a>
 
 ### GetRequest
 
@@ -258,15 +345,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-| key | [string](#string) |  |  |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [GetInput](#atomix.primitive.map.GetInput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.map.GetResponse"></a>
+<a name="atomix.primitive.map.GetResponse"></a>
 
 ### GetResponse
 
@@ -274,26 +361,25 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| entry | [Entry](#atomix.storage.map.Entry) |  |  |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [GetOutput](#atomix.primitive.map.GetOutput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.map.PutRequest"></a>
+<a name="atomix.primitive.map.PutInput"></a>
 
-### PutRequest
+### PutInput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
-| version | [uint64](#uint64) |  |  |
+| timestamp | [atomix.primitive.meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
 | if_empty | [bool](#bool) |  |  |
 | ttl | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
 
@@ -302,7 +388,38 @@
 
 
 
-<a name="atomix.storage.map.PutResponse"></a>
+<a name="atomix.primitive.map.PutOutput"></a>
+
+### PutOutput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| entry | [Entry](#atomix.primitive.map.Entry) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.PutRequest"></a>
+
+### PutRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [PutInput](#atomix.primitive.map.PutInput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.PutResponse"></a>
 
 ### PutResponse
 
@@ -310,15 +427,46 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| entry | [Entry](#atomix.storage.map.Entry) |  |  |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [PutOutput](#atomix.primitive.map.PutOutput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.map.RemoveRequest"></a>
+<a name="atomix.primitive.map.RemoveInput"></a>
+
+### RemoveInput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| timestamp | [atomix.primitive.meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.RemoveOutput"></a>
+
+### RemoveOutput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| entry | [Entry](#atomix.primitive.map.Entry) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.RemoveRequest"></a>
 
 ### RemoveRequest
 
@@ -326,16 +474,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-| key | [string](#string) |  |  |
-| timestamp | [atomix.storage.timestamp.Timestamp](#atomix.storage.timestamp.Timestamp) |  |  |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [RemoveInput](#atomix.primitive.map.RemoveInput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.map.RemoveResponse"></a>
+<a name="atomix.primitive.map.RemoveResponse"></a>
 
 ### RemoveResponse
 
@@ -343,15 +490,40 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| entry | [Entry](#atomix.storage.map.Entry) |  |  |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [RemoveOutput](#atomix.primitive.map.RemoveOutput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.map.SizeRequest"></a>
+<a name="atomix.primitive.map.SizeInput"></a>
+
+### SizeInput
+
+
+
+
+
+
+
+<a name="atomix.primitive.map.SizeOutput"></a>
+
+### SizeOutput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| size | [uint32](#uint32) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.SizeRequest"></a>
 
 ### SizeRequest
 
@@ -359,14 +531,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [SizeInput](#atomix.primitive.map.SizeInput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.map.SizeResponse"></a>
+<a name="atomix.primitive.map.SizeResponse"></a>
 
 ### SizeResponse
 
@@ -374,8 +547,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| size | [uint32](#uint32) |  |  |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [SizeOutput](#atomix.primitive.map.SizeOutput) | repeated |  |
 
 
 
@@ -384,9 +557,9 @@
  
 
 
-<a name="atomix.storage.map.EventResponse.Type"></a>
+<a name="atomix.primitive.map.EventOutput.Type"></a>
 
-### EventResponse.Type
+### EventOutput.Type
 
 
 | Name | Number | Description |
@@ -402,23 +575,21 @@
  
 
 
-<a name="atomix.storage.map.MapService"></a>
+<a name="atomix.primitive.map.MapService"></a>
 
 ### MapService
 MapService implements a distributed map
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Create | [CreateRequest](#atomix.storage.map.CreateRequest) | [CreateResponse](#atomix.storage.map.CreateResponse) | Create creates an indexed map |
-| Close | [CloseRequest](#atomix.storage.map.CloseRequest) | [CloseResponse](#atomix.storage.map.CloseResponse) | Close closes an indexed map |
-| Size | [SizeRequest](#atomix.storage.map.SizeRequest) | [SizeResponse](#atomix.storage.map.SizeResponse) | Size returns the size of the map |
-| Exists | [ExistsRequest](#atomix.storage.map.ExistsRequest) | [ExistsResponse](#atomix.storage.map.ExistsResponse) | Exists checks whether a key exists in the map |
-| Put | [PutRequest](#atomix.storage.map.PutRequest) | [PutResponse](#atomix.storage.map.PutResponse) | Put puts an entry into the map |
-| Get | [GetRequest](#atomix.storage.map.GetRequest) | [GetResponse](#atomix.storage.map.GetResponse) | Get gets the entry for a key |
-| Remove | [RemoveRequest](#atomix.storage.map.RemoveRequest) | [RemoveResponse](#atomix.storage.map.RemoveResponse) | Remove removes an entry from the map |
-| Clear | [ClearRequest](#atomix.storage.map.ClearRequest) | [ClearResponse](#atomix.storage.map.ClearResponse) | Clear removes all entries from the map |
-| Events | [EventRequest](#atomix.storage.map.EventRequest) | [EventResponse](#atomix.storage.map.EventResponse) stream | Events listens for change events |
-| Entries | [EntriesRequest](#atomix.storage.map.EntriesRequest) | [EntriesResponse](#atomix.storage.map.EntriesResponse) stream | Entries lists all entries in the map |
+| Size | [SizeRequest](#atomix.primitive.map.SizeRequest) | [SizeResponse](#atomix.primitive.map.SizeResponse) | Size returns the size of the map |
+| Exists | [ExistsRequest](#atomix.primitive.map.ExistsRequest) | [ExistsResponse](#atomix.primitive.map.ExistsResponse) | Exists checks whether a key exists in the map |
+| Put | [PutRequest](#atomix.primitive.map.PutRequest) | [PutResponse](#atomix.primitive.map.PutResponse) | Put puts an entry into the map |
+| Get | [GetRequest](#atomix.primitive.map.GetRequest) | [GetResponse](#atomix.primitive.map.GetResponse) | Get gets the entry for a key |
+| Remove | [RemoveRequest](#atomix.primitive.map.RemoveRequest) | [RemoveResponse](#atomix.primitive.map.RemoveResponse) | Remove removes an entry from the map |
+| Clear | [ClearRequest](#atomix.primitive.map.ClearRequest) | [ClearResponse](#atomix.primitive.map.ClearResponse) | Clear removes all entries from the map |
+| Events | [EventRequest](#atomix.primitive.map.EventRequest) | [EventResponse](#atomix.primitive.map.EventResponse) stream | Events listens for change events |
+| Entries | [EntriesRequest](#atomix.primitive.map.EntriesRequest) | [EntriesResponse](#atomix.primitive.map.EntriesResponse) stream | Entries lists all entries in the map |
 
  
 

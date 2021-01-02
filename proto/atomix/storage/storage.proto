@@ -19,7 +19,6 @@ syntax = "proto3";
 package atomix.storage;
 
 import "gogoproto/gogo.proto";
-import "atomix/storage/primitive.proto";
 
 // Storage identifier
 message StorageId {
@@ -68,7 +67,7 @@ message UpdateRequest {
 }
 
 message UpdateResponse {
-    ResponseStatus status = 1 [(gogoproto.nullable) = false];
+
 }
 
 // Atomix storage service

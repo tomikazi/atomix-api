@@ -3,120 +3,59 @@
 
 ## Table of Contents
 
-- [atomix/storage/lock/lock.proto](#atomix/storage/lock/lock.proto)
-    - [CloseRequest](#atomix.storage.lock.CloseRequest)
-    - [CloseResponse](#atomix.storage.lock.CloseResponse)
-    - [CreateRequest](#atomix.storage.lock.CreateRequest)
-    - [CreateResponse](#atomix.storage.lock.CreateResponse)
-    - [IsLockedRequest](#atomix.storage.lock.IsLockedRequest)
-    - [IsLockedResponse](#atomix.storage.lock.IsLockedResponse)
-    - [LockRequest](#atomix.storage.lock.LockRequest)
-    - [LockResponse](#atomix.storage.lock.LockResponse)
-    - [UnlockRequest](#atomix.storage.lock.UnlockRequest)
-    - [UnlockResponse](#atomix.storage.lock.UnlockResponse)
+- [atomix/primitive/lock/lock.proto](#atomix/primitive/lock/lock.proto)
+    - [IsLockedInput](#atomix.primitive.lock.IsLockedInput)
+    - [IsLockedOutput](#atomix.primitive.lock.IsLockedOutput)
+    - [IsLockedRequest](#atomix.primitive.lock.IsLockedRequest)
+    - [IsLockedResponse](#atomix.primitive.lock.IsLockedResponse)
+    - [LockInput](#atomix.primitive.lock.LockInput)
+    - [LockOutput](#atomix.primitive.lock.LockOutput)
+    - [LockRequest](#atomix.primitive.lock.LockRequest)
+    - [LockResponse](#atomix.primitive.lock.LockResponse)
+    - [UnlockInput](#atomix.primitive.lock.UnlockInput)
+    - [UnlockOutput](#atomix.primitive.lock.UnlockOutput)
+    - [UnlockRequest](#atomix.primitive.lock.UnlockRequest)
+    - [UnlockResponse](#atomix.primitive.lock.UnlockResponse)
   
   
   
-    - [LockService](#atomix.storage.lock.LockService)
+    - [LockService](#atomix.primitive.lock.LockService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/storage/lock/lock.proto"></a>
+<a name="atomix/primitive/lock/lock.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/storage/lock/lock.proto
+## atomix/primitive/lock/lock.proto
 
 
 
-<a name="atomix.storage.lock.CloseRequest"></a>
+<a name="atomix.primitive.lock.IsLockedInput"></a>
 
-### CloseRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-| delete | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.lock.CloseResponse"></a>
-
-### CloseResponse
+### IsLockedInput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| version | [atomix.primitive.meta.Version](#atomix.primitive.meta.Version) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.lock.CreateRequest"></a>
+<a name="atomix.primitive.lock.IsLockedOutput"></a>
 
-### CreateRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.lock.CreateResponse"></a>
-
-### CreateResponse
+### IsLockedOutput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.lock.IsLockedRequest"></a>
-
-### IsLockedRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-| version | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.lock.IsLockedResponse"></a>
-
-### IsLockedResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 | isLocked | [bool](#bool) |  |  |
 
 
@@ -124,15 +63,46 @@
 
 
 
-<a name="atomix.storage.lock.LockRequest"></a>
+<a name="atomix.primitive.lock.IsLockedRequest"></a>
 
-### LockRequest
+### IsLockedRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [IsLockedInput](#atomix.primitive.lock.IsLockedInput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.lock.IsLockedResponse"></a>
+
+### IsLockedResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [IsLockedOutput](#atomix.primitive.lock.IsLockedOutput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.lock.LockInput"></a>
+
+### LockInput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
 | timeout | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
 
 
@@ -140,7 +110,38 @@
 
 
 
-<a name="atomix.storage.lock.LockResponse"></a>
+<a name="atomix.primitive.lock.LockOutput"></a>
+
+### LockOutput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| version | [atomix.primitive.meta.Version](#atomix.primitive.meta.Version) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.lock.LockRequest"></a>
+
+### LockRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [LockInput](#atomix.primitive.lock.LockInput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.lock.LockResponse"></a>
 
 ### LockResponse
 
@@ -148,15 +149,45 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| version | [uint64](#uint64) |  |  |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [LockOutput](#atomix.primitive.lock.LockOutput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.lock.UnlockRequest"></a>
+<a name="atomix.primitive.lock.UnlockInput"></a>
+
+### UnlockInput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| version | [atomix.primitive.meta.Version](#atomix.primitive.meta.Version) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.lock.UnlockOutput"></a>
+
+### UnlockOutput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| unlocked | [bool](#bool) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.lock.UnlockRequest"></a>
 
 ### UnlockRequest
 
@@ -164,15 +195,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-| version | [uint64](#uint64) |  |  |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [UnlockInput](#atomix.primitive.lock.UnlockInput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.lock.UnlockResponse"></a>
+<a name="atomix.primitive.lock.UnlockResponse"></a>
 
 ### UnlockResponse
 
@@ -180,8 +211,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| unlocked | [bool](#bool) |  |  |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [UnlockOutput](#atomix.primitive.lock.UnlockOutput) |  |  |
 
 
 
@@ -194,18 +225,16 @@
  
 
 
-<a name="atomix.storage.lock.LockService"></a>
+<a name="atomix.primitive.lock.LockService"></a>
 
 ### LockService
 LockService implements a distributed lock
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Create | [CreateRequest](#atomix.storage.lock.CreateRequest) | [CreateResponse](#atomix.storage.lock.CreateResponse) | Create creates a lock |
-| Close | [CloseRequest](#atomix.storage.lock.CloseRequest) | [CloseResponse](#atomix.storage.lock.CloseResponse) | Close closes a lock |
-| Lock | [LockRequest](#atomix.storage.lock.LockRequest) | [LockResponse](#atomix.storage.lock.LockResponse) | Lock attempts to acquire the lock |
-| Unlock | [UnlockRequest](#atomix.storage.lock.UnlockRequest) | [UnlockResponse](#atomix.storage.lock.UnlockResponse) | Unlock releases the lock |
-| IsLocked | [IsLockedRequest](#atomix.storage.lock.IsLockedRequest) | [IsLockedResponse](#atomix.storage.lock.IsLockedResponse) | IsLocked checks whether the lock is held |
+| Lock | [LockRequest](#atomix.primitive.lock.LockRequest) | [LockResponse](#atomix.primitive.lock.LockResponse) | Lock attempts to acquire the lock |
+| Unlock | [UnlockRequest](#atomix.primitive.lock.UnlockRequest) | [UnlockResponse](#atomix.primitive.lock.UnlockResponse) | Unlock releases the lock |
+| IsLocked | [IsLockedRequest](#atomix.primitive.lock.IsLockedRequest) | [IsLockedResponse](#atomix.primitive.lock.IsLockedResponse) | IsLocked checks whether the lock is held |
 
  
 

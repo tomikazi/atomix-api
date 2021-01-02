@@ -1,0 +1,72 @@
+/*
+Copyright 2020-present Open Networking Foundation.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+package atomix.primitive;
+
+import "gogoproto/gogo.proto";
+import "atomix/primitive/descriptor.proto";
+
+// Namespaced primitive identifier
+message PrimitiveId {
+    string type = 1;
+    string name = 2;
+    string namespace = 3;
+}
+
+// Request header
+message RequestHeader {
+    PrimitiveId primitive = 1 [(gogoproto.nullable) = false];
+}
+
+// Response header
+message ResponseHeader {
+    ResponseType type = 1;
+}
+
+// Response type
+enum ResponseType {
+    RESPONSE = 0;
+    OPEN_STREAM = 1;
+    CLOSE_STREAM = 2;
+}
+
+message OpenRequest {
+    RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
+message OpenResponse {
+    ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
+message CloseRequest {
+    RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    bool delete = 2;
+}
+
+message CloseResponse {
+    ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
+// PrimitiveService is a service for managing primitive
+service PrimitiveService {
+    // Open opens a primitive
+    rpc Open (OpenRequest) returns (OpenResponse);
+
+    // Close closes a primitive
+    rpc Close (CloseRequest) returns (CloseResponse);
+}

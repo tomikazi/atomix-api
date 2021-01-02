@@ -3,53 +3,61 @@
 
 ## Table of Contents
 
-- [atomix/storage/set/set.proto](#atomix/storage/set/set.proto)
-    - [AddRequest](#atomix.storage.set.AddRequest)
-    - [AddResponse](#atomix.storage.set.AddResponse)
-    - [ClearRequest](#atomix.storage.set.ClearRequest)
-    - [ClearResponse](#atomix.storage.set.ClearResponse)
-    - [CloseRequest](#atomix.storage.set.CloseRequest)
-    - [CloseResponse](#atomix.storage.set.CloseResponse)
-    - [ContainsRequest](#atomix.storage.set.ContainsRequest)
-    - [ContainsResponse](#atomix.storage.set.ContainsResponse)
-    - [CreateRequest](#atomix.storage.set.CreateRequest)
-    - [CreateResponse](#atomix.storage.set.CreateResponse)
-    - [EventRequest](#atomix.storage.set.EventRequest)
-    - [EventResponse](#atomix.storage.set.EventResponse)
-    - [IterateRequest](#atomix.storage.set.IterateRequest)
-    - [IterateResponse](#atomix.storage.set.IterateResponse)
-    - [RemoveRequest](#atomix.storage.set.RemoveRequest)
-    - [RemoveResponse](#atomix.storage.set.RemoveResponse)
-    - [SizeRequest](#atomix.storage.set.SizeRequest)
-    - [SizeResponse](#atomix.storage.set.SizeResponse)
+- [atomix/primitive/set/set.proto](#atomix/primitive/set/set.proto)
+    - [AddInput](#atomix.primitive.set.AddInput)
+    - [AddOutput](#atomix.primitive.set.AddOutput)
+    - [AddRequest](#atomix.primitive.set.AddRequest)
+    - [AddResponse](#atomix.primitive.set.AddResponse)
+    - [ClearInput](#atomix.primitive.set.ClearInput)
+    - [ClearOutput](#atomix.primitive.set.ClearOutput)
+    - [ClearRequest](#atomix.primitive.set.ClearRequest)
+    - [ClearResponse](#atomix.primitive.set.ClearResponse)
+    - [ContainsInput](#atomix.primitive.set.ContainsInput)
+    - [ContainsOutput](#atomix.primitive.set.ContainsOutput)
+    - [ContainsRequest](#atomix.primitive.set.ContainsRequest)
+    - [ContainsResponse](#atomix.primitive.set.ContainsResponse)
+    - [ElementsInput](#atomix.primitive.set.ElementsInput)
+    - [ElementsOutput](#atomix.primitive.set.ElementsOutput)
+    - [ElementsRequest](#atomix.primitive.set.ElementsRequest)
+    - [ElementsResponse](#atomix.primitive.set.ElementsResponse)
+    - [EventInput](#atomix.primitive.set.EventInput)
+    - [EventOutput](#atomix.primitive.set.EventOutput)
+    - [EventRequest](#atomix.primitive.set.EventRequest)
+    - [EventResponse](#atomix.primitive.set.EventResponse)
+    - [RemoveInput](#atomix.primitive.set.RemoveInput)
+    - [RemoveOutput](#atomix.primitive.set.RemoveOutput)
+    - [RemoveRequest](#atomix.primitive.set.RemoveRequest)
+    - [RemoveResponse](#atomix.primitive.set.RemoveResponse)
+    - [SizeInput](#atomix.primitive.set.SizeInput)
+    - [SizeOutput](#atomix.primitive.set.SizeOutput)
+    - [SizeRequest](#atomix.primitive.set.SizeRequest)
+    - [SizeResponse](#atomix.primitive.set.SizeResponse)
   
-    - [EventResponse.Type](#atomix.storage.set.EventResponse.Type)
-    - [ResponseStatus](#atomix.storage.set.ResponseStatus)
+    - [EventOutput.Type](#atomix.primitive.set.EventOutput.Type)
   
   
-    - [SetService](#atomix.storage.set.SetService)
+    - [SetService](#atomix.primitive.set.SetService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/storage/set/set.proto"></a>
+<a name="atomix/primitive/set/set.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/storage/set/set.proto
+## atomix/primitive/set/set.proto
 
 
 
-<a name="atomix.storage.set.AddRequest"></a>
+<a name="atomix.primitive.set.AddInput"></a>
 
-### AddRequest
+### AddInput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | value | [string](#string) |  |  |
 
 
@@ -57,16 +65,14 @@
 
 
 
-<a name="atomix.storage.set.AddResponse"></a>
+<a name="atomix.primitive.set.AddOutput"></a>
 
-### AddResponse
+### AddOutput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| status | [ResponseStatus](#atomix.storage.set.ResponseStatus) |  |  |
 | added | [bool](#bool) |  |  |
 
 
@@ -74,7 +80,59 @@
 
 
 
-<a name="atomix.storage.set.ClearRequest"></a>
+<a name="atomix.primitive.set.AddRequest"></a>
+
+### AddRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [AddInput](#atomix.primitive.set.AddInput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.AddResponse"></a>
+
+### AddResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [AddOutput](#atomix.primitive.set.AddOutput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.ClearInput"></a>
+
+### ClearInput
+
+
+
+
+
+
+
+<a name="atomix.primitive.set.ClearOutput"></a>
+
+### ClearOutput
+
+
+
+
+
+
+
+<a name="atomix.primitive.set.ClearRequest"></a>
 
 ### ClearRequest
 
@@ -82,14 +140,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [ClearInput](#atomix.primitive.set.ClearInput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.set.ClearResponse"></a>
+<a name="atomix.primitive.set.ClearResponse"></a>
 
 ### ClearResponse
 
@@ -97,53 +156,22 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [ClearOutput](#atomix.primitive.set.ClearOutput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.set.CloseRequest"></a>
+<a name="atomix.primitive.set.ContainsInput"></a>
 
-### CloseRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-| delete | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.set.CloseResponse"></a>
-
-### CloseResponse
+### ContainsInput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.set.ContainsRequest"></a>
-
-### ContainsRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
 | value | [string](#string) |  |  |
 
 
@@ -151,15 +179,14 @@
 
 
 
-<a name="atomix.storage.set.ContainsResponse"></a>
+<a name="atomix.primitive.set.ContainsOutput"></a>
 
-### ContainsResponse
+### ContainsOutput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
 | contains | [bool](#bool) |  |  |
 
 
@@ -167,45 +194,103 @@
 
 
 
-<a name="atomix.storage.set.CreateRequest"></a>
+<a name="atomix.primitive.set.ContainsRequest"></a>
 
-### CreateRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.set.CreateResponse"></a>
-
-### CreateResponse
+### ContainsRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [ContainsInput](#atomix.primitive.set.ContainsInput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.set.EventRequest"></a>
+<a name="atomix.primitive.set.ContainsResponse"></a>
 
-### EventRequest
+### ContainsResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [ContainsOutput](#atomix.primitive.set.ContainsOutput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.ElementsInput"></a>
+
+### ElementsInput
+
+
+
+
+
+
+
+<a name="atomix.primitive.set.ElementsOutput"></a>
+
+### ElementsOutput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.ElementsRequest"></a>
+
+### ElementsRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [ElementsInput](#atomix.primitive.set.ElementsInput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.ElementsResponse"></a>
+
+### ElementsResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [ElementsOutput](#atomix.primitive.set.ElementsOutput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.EventInput"></a>
+
+### EventInput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
 | replay | [bool](#bool) |  |  |
 
 
@@ -213,7 +298,39 @@
 
 
 
-<a name="atomix.storage.set.EventResponse"></a>
+<a name="atomix.primitive.set.EventOutput"></a>
+
+### EventOutput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [EventOutput.Type](#atomix.primitive.set.EventOutput.Type) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.EventRequest"></a>
+
+### EventRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [EventInput](#atomix.primitive.set.EventInput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.EventResponse"></a>
 
 ### EventResponse
 
@@ -221,8 +338,22 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| type | [EventResponse.Type](#atomix.storage.set.EventResponse.Type) |  |  |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [EventOutput](#atomix.primitive.set.EventOutput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.RemoveInput"></a>
+
+### RemoveInput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
 | value | [string](#string) |  |  |
 
 
@@ -230,63 +361,14 @@
 
 
 
-<a name="atomix.storage.set.IterateRequest"></a>
+<a name="atomix.primitive.set.RemoveOutput"></a>
 
-### IterateRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.set.IterateResponse"></a>
-
-### IterateResponse
+### RemoveOutput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| value | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.set.RemoveRequest"></a>
-
-### RemoveRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
-| value | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.storage.set.RemoveResponse"></a>
-
-### RemoveResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| status | [ResponseStatus](#atomix.storage.set.ResponseStatus) |  |  |
 | removed | [bool](#bool) |  |  |
 
 
@@ -294,7 +376,64 @@
 
 
 
-<a name="atomix.storage.set.SizeRequest"></a>
+<a name="atomix.primitive.set.RemoveRequest"></a>
+
+### RemoveRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [RemoveInput](#atomix.primitive.set.RemoveInput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.RemoveResponse"></a>
+
+### RemoveResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [RemoveOutput](#atomix.primitive.set.RemoveOutput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.SizeInput"></a>
+
+### SizeInput
+
+
+
+
+
+
+
+<a name="atomix.primitive.set.SizeOutput"></a>
+
+### SizeOutput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| size | [uint32](#uint32) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.SizeRequest"></a>
 
 ### SizeRequest
 
@@ -302,14 +441,15 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.RequestHeader](#atomix.storage.RequestHeader) |  |  |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| input | [SizeInput](#atomix.primitive.set.SizeInput) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.set.SizeResponse"></a>
+<a name="atomix.primitive.set.SizeResponse"></a>
 
 ### SizeResponse
 
@@ -317,8 +457,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.storage.ResponseHeader](#atomix.storage.ResponseHeader) |  |  |
-| size | [uint32](#uint32) |  |  |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| output | [SizeOutput](#atomix.primitive.set.SizeOutput) | repeated |  |
 
 
 
@@ -327,9 +467,9 @@
  
 
 
-<a name="atomix.storage.set.EventResponse.Type"></a>
+<a name="atomix.primitive.set.EventOutput.Type"></a>
 
-### EventResponse.Type
+### EventOutput.Type
 
 
 | Name | Number | Description |
@@ -339,40 +479,25 @@
 | REMOVED | 2 |  |
 
 
-
-<a name="atomix.storage.set.ResponseStatus"></a>
-
-### ResponseStatus
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| OK | 0 |  |
-| NOOP | 1 |  |
-| WRITE_LOCK | 2 |  |
-
-
  
 
  
 
 
-<a name="atomix.storage.set.SetService"></a>
+<a name="atomix.primitive.set.SetService"></a>
 
 ### SetService
 Set service
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Create | [CreateRequest](#atomix.storage.set.CreateRequest) | [CreateResponse](#atomix.storage.set.CreateResponse) | Create creates a set session |
-| Close | [CloseRequest](#atomix.storage.set.CloseRequest) | [CloseResponse](#atomix.storage.set.CloseResponse) | Close closes a set |
-| Size | [SizeRequest](#atomix.storage.set.SizeRequest) | [SizeResponse](#atomix.storage.set.SizeResponse) | Size gets the number of elements in the set |
-| Contains | [ContainsRequest](#atomix.storage.set.ContainsRequest) | [ContainsResponse](#atomix.storage.set.ContainsResponse) | Contains returns whether the set contains a value |
-| Add | [AddRequest](#atomix.storage.set.AddRequest) | [AddResponse](#atomix.storage.set.AddResponse) | Add adds a value to the set |
-| Remove | [RemoveRequest](#atomix.storage.set.RemoveRequest) | [RemoveResponse](#atomix.storage.set.RemoveResponse) | Remove removes a value from the set |
-| Clear | [ClearRequest](#atomix.storage.set.ClearRequest) | [ClearResponse](#atomix.storage.set.ClearResponse) | Clear removes all values from the set |
-| Events | [EventRequest](#atomix.storage.set.EventRequest) | [EventResponse](#atomix.storage.set.EventResponse) stream | Events listens for set change events |
-| Iterate | [IterateRequest](#atomix.storage.set.IterateRequest) | [IterateResponse](#atomix.storage.set.IterateResponse) stream | Iterate iterates through all values in the set |
+| Size | [SizeRequest](#atomix.primitive.set.SizeRequest) | [SizeResponse](#atomix.primitive.set.SizeResponse) | Size gets the number of elements in the set |
+| Contains | [ContainsRequest](#atomix.primitive.set.ContainsRequest) | [ContainsResponse](#atomix.primitive.set.ContainsResponse) | Contains returns whether the set contains a value |
+| Add | [AddRequest](#atomix.primitive.set.AddRequest) | [AddResponse](#atomix.primitive.set.AddResponse) | Add adds a value to the set |
+| Remove | [RemoveRequest](#atomix.primitive.set.RemoveRequest) | [RemoveResponse](#atomix.primitive.set.RemoveResponse) | Remove removes a value from the set |
+| Clear | [ClearRequest](#atomix.primitive.set.ClearRequest) | [ClearResponse](#atomix.primitive.set.ClearResponse) | Clear removes all values from the set |
+| Events | [EventRequest](#atomix.primitive.set.EventRequest) | [EventResponse](#atomix.primitive.set.EventResponse) stream | Events listens for set change events |
+| Elements | [ElementsRequest](#atomix.primitive.set.ElementsRequest) | [ElementsResponse](#atomix.primitive.set.ElementsResponse) stream | Elements lists all elements in the set |
 
  
 

@@ -1,0 +1,196 @@
+/*
+Copyright 2020-present Open Networking Foundation.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+package atomix.primitive.set;
+
+import "atomix/primitive/primitive.proto";
+import "atomix/primitive/descriptor.proto";
+import "gogoproto/gogo.proto";
+
+message SizeRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    SizeInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message SizeInput {
+}
+
+message SizeResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    repeated SizeOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message SizeOutput {
+    uint32 size = 2;
+}
+
+message ContainsRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ContainsInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message ContainsInput {
+    string value = 2 [(atomix.primitive.partitionkey) = true];
+}
+
+message ContainsResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ContainsOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message ContainsOutput {
+    bool contains = 2;
+}
+
+message AddRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    AddInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message AddInput {
+    string value = 2 [(atomix.primitive.partitionkey) = true];
+}
+
+message AddResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    AddOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message AddOutput {
+    bool added = 3;
+}
+
+message RemoveRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    RemoveInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message RemoveInput {
+    string value = 2 [(atomix.primitive.partitionkey) = true];
+}
+
+message RemoveResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    RemoveOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message RemoveOutput {
+    bool removed = 3;
+}
+
+message ClearRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ClearInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message ClearInput {
+}
+
+message ClearResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ClearOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message ClearOutput {
+}
+
+message EventRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    EventInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message EventInput {
+    bool replay = 2;
+}
+
+message EventResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    EventOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message EventOutput {
+    Type type = 2;
+    string value = 3;
+
+    enum Type {
+        NONE = 0;
+        ADDED = 1;
+        REMOVED = 2;
+    }
+}
+
+message ElementsRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ElementsInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message ElementsInput {
+}
+
+message ElementsResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ElementsOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message ElementsOutput {
+    string value = 2;
+}
+
+// Set service
+service SetService {
+    option (atomix.primitive.name) = "Set";
+    option (atomix.primitive.partition) = true;
+
+    // Size gets the number of elements in the set
+    rpc Size (SizeRequest) returns (SizeResponse) {
+        option (atomix.primitive.optype) = QUERY;
+    }
+
+    // Contains returns whether the set contains a value
+    rpc Contains (ContainsRequest) returns (ContainsResponse) {
+        option (atomix.primitive.optype) = QUERY;
+        option (atomix.primitive.partitionby) = HASH;
+    }
+
+    // Add adds a value to the set
+    rpc Add (AddRequest) returns (AddResponse) {
+        option (atomix.primitive.optype) = COMMAND;
+        option (atomix.primitive.partitionby) = HASH;
+    }
+
+    // Remove removes a value from the set
+    rpc Remove (RemoveRequest) returns (RemoveResponse) {
+        option (atomix.primitive.optype) = COMMAND;
+        option (atomix.primitive.partitionby) = HASH;
+    }
+
+    // Clear removes all values from the set
+    rpc Clear (ClearRequest) returns (ClearResponse) {
+        option (atomix.primitive.optype) = COMMAND;
+    }
+
+    // Events listens for set change events
+    rpc Events (EventRequest) returns (stream EventResponse) {
+        option (atomix.primitive.optype) = COMMAND;
+    }
+
+    // Elements lists all elements in the set
+    rpc Elements (ElementsRequest) returns (stream ElementsResponse) {
+        option (atomix.primitive.optype) = QUERY;
+    }
+}

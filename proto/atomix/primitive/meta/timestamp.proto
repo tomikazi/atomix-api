@@ -16,21 +16,32 @@ limitations under the License.
 
 syntax = "proto3";
 
-package atomix.proxy;
+package atomix.primitive.meta;
 
+import "google/protobuf/timestamp.proto";
 import "gogoproto/gogo.proto";
-import "atomix/storage/storage.proto";
 
-message UpdateRequest {
-    atomix.storage.StorageConfig config = 1 [(gogoproto.nullable) = false];
+message Timestamp {
+    oneof timestamp {
+        LogicalTimestamp logical_timestamp = 1;
+        WallClockTimestamp wall_clock_timestamp = 2;
+        EpochTimestamp epoch_timestamp = 3;
+    }
 }
 
-message UpdateResponse {
-
+message LogicalTimestamp {
+    uint64 value = 1;
 }
 
-// Atomix proxy service
-service ProxyService {
-    // Update updates the storage configuration
-    rpc Update (UpdateRequest) returns (UpdateResponse);
+message WallClockTimestamp {
+    google.protobuf.Timestamp value = 1 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+}
+
+message Epoch {
+    uint64 value = 1;
+}
+
+message EpochTimestamp {
+    Epoch epoch = 1 [(gogoproto.nullable) = false];
+    uint64 sequence_number = 2;
 }

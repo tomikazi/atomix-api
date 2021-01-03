@@ -4,7 +4,6 @@
 package value
 
 import (
-	_ "atomix/primitive"
 	context "context"
 	fmt "fmt"
 	primitive "github.com/atomix/api/go/atomix/primitive"

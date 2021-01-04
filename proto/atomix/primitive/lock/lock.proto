@@ -17,6 +17,7 @@ limitations under the License.
 syntax = "proto3";
 
 import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
 import "atomix/primitive/primitive.proto";
 import "atomix/primitive/descriptor.proto";
 import "atomix/primitive/meta/version.proto";
@@ -78,13 +79,44 @@ message IsLockedOutput {
     bool isLocked = 2;
 }
 
+message Lock {
+    string owner = 1;
+    atomix.primitive.meta.Version version = 2 [(gogoproto.nullable) = false];
+    google.protobuf.Timestamp created = 3 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
+    google.protobuf.Timestamp expire = 4 [(gogoproto.stdtime) = true];
+}
+
+message Snapshot {
+    Lock lock = 1;
+    repeated string queue = 2;
+}
+
+message SnapshotRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
+message SnapshotResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    Snapshot snapshot = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message RestoreRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    Snapshot snapshot = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message RestoreResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
 // LockService implements a distributed lock
 service LockService {
-    option (atomix.primitive.name) = "Lock";
+    option (atomix.primitive.type) = "Lock";
 
     // Lock attempts to acquire the lock
     rpc Lock (LockRequest) returns (LockResponse) {
         option (atomix.primitive.optype) = COMMAND;
+        option (atomix.primitive.async) = true;
     }
 
     // Unlock releases the lock
@@ -95,5 +127,15 @@ service LockService {
     // IsLocked checks whether the lock is held
     rpc IsLocked (IsLockedRequest) returns (IsLockedResponse) {
         option (atomix.primitive.optype) = QUERY;
+    }
+
+    // Snapshot exports a snapshot of the primitive state
+    rpc Snapshot (SnapshotRequest) returns (SnapshotResponse) {
+        option (atomix.primitive.optype) = SNAPSHOT;
+    }
+
+    // Restore imports a snapshot of the primitive state
+    rpc Restore (RestoreRequest) returns (RestoreResponse) {
+        option (atomix.primitive.optype) = RESTORE;
     }
 }

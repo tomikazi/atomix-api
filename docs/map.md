@@ -33,10 +33,15 @@
     - [RemoveOutput](#atomix.primitive.map.RemoveOutput)
     - [RemoveRequest](#atomix.primitive.map.RemoveRequest)
     - [RemoveResponse](#atomix.primitive.map.RemoveResponse)
+    - [RestoreRequest](#atomix.primitive.map.RestoreRequest)
+    - [RestoreResponse](#atomix.primitive.map.RestoreResponse)
     - [SizeInput](#atomix.primitive.map.SizeInput)
     - [SizeOutput](#atomix.primitive.map.SizeOutput)
     - [SizeRequest](#atomix.primitive.map.SizeRequest)
     - [SizeResponse](#atomix.primitive.map.SizeResponse)
+    - [SnapshotEntry](#atomix.primitive.map.SnapshotEntry)
+    - [SnapshotRequest](#atomix.primitive.map.SnapshotRequest)
+    - [SnapshotResponse](#atomix.primitive.map.SnapshotResponse)
   
     - [EventOutput.Type](#atomix.primitive.map.EventOutput.Type)
   
@@ -498,6 +503,37 @@
 
 
 
+<a name="atomix.primitive.map.RestoreRequest"></a>
+
+### RestoreRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| entry | [SnapshotEntry](#atomix.primitive.map.SnapshotEntry) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.RestoreResponse"></a>
+
+### RestoreResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.map.SizeInput"></a>
 
 ### SizeInput
@@ -548,7 +584,53 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [SizeOutput](#atomix.primitive.map.SizeOutput) | repeated |  |
+| output | [SizeOutput](#atomix.primitive.map.SizeOutput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.SnapshotEntry"></a>
+
+### SnapshotEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| entry | [Entry](#atomix.primitive.map.Entry) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.SnapshotRequest"></a>
+
+### SnapshotRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.SnapshotResponse"></a>
+
+### SnapshotResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| entry | [SnapshotEntry](#atomix.primitive.map.SnapshotEntry) |  |  |
 
 
 
@@ -590,6 +672,8 @@ MapService implements a distributed map
 | Clear | [ClearRequest](#atomix.primitive.map.ClearRequest) | [ClearResponse](#atomix.primitive.map.ClearResponse) | Clear removes all entries from the map |
 | Events | [EventRequest](#atomix.primitive.map.EventRequest) | [EventResponse](#atomix.primitive.map.EventResponse) stream | Events listens for change events |
 | Entries | [EntriesRequest](#atomix.primitive.map.EntriesRequest) | [EntriesResponse](#atomix.primitive.map.EntriesResponse) stream | Entries lists all entries in the map |
+| Snapshot | [SnapshotRequest](#atomix.primitive.map.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.map.SnapshotResponse) stream | Snapshot exports a snapshot of the primitive state |
+| Restore | [RestoreRequest](#atomix.primitive.map.RestoreRequest) stream | [RestoreResponse](#atomix.primitive.map.RestoreResponse) | Restore imports a snapshot of the primitive state |
 
  
 

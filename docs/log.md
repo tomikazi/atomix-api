@@ -16,6 +16,7 @@
     - [EntriesOutput](#atomix.primitive.log.EntriesOutput)
     - [EntriesRequest](#atomix.primitive.log.EntriesRequest)
     - [EntriesResponse](#atomix.primitive.log.EntriesResponse)
+    - [Entry](#atomix.primitive.log.Entry)
     - [EventInput](#atomix.primitive.log.EventInput)
     - [EventOutput](#atomix.primitive.log.EventOutput)
     - [EventRequest](#atomix.primitive.log.EventRequest)
@@ -48,10 +49,15 @@
     - [RemoveOutput](#atomix.primitive.log.RemoveOutput)
     - [RemoveRequest](#atomix.primitive.log.RemoveRequest)
     - [RemoveResponse](#atomix.primitive.log.RemoveResponse)
+    - [RestoreRequest](#atomix.primitive.log.RestoreRequest)
+    - [RestoreResponse](#atomix.primitive.log.RestoreResponse)
     - [SizeInput](#atomix.primitive.log.SizeInput)
     - [SizeOutput](#atomix.primitive.log.SizeOutput)
     - [SizeRequest](#atomix.primitive.log.SizeRequest)
     - [SizeResponse](#atomix.primitive.log.SizeResponse)
+    - [SnapshotEntry](#atomix.primitive.log.SnapshotEntry)
+    - [SnapshotRequest](#atomix.primitive.log.SnapshotRequest)
+    - [SnapshotResponse](#atomix.primitive.log.SnapshotResponse)
   
     - [EventOutput.Type](#atomix.primitive.log.EventOutput.Type)
   
@@ -239,6 +245,22 @@
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
 | output | [EntriesOutput](#atomix.primitive.log.EntriesOutput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.log.Entry"></a>
+
+### Entry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| index | [uint64](#uint64) |  |  |
+| value | [bytes](#bytes) |  |  |
 
 
 
@@ -748,6 +770,37 @@
 
 
 
+<a name="atomix.primitive.log.RestoreRequest"></a>
+
+### RestoreRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| entry | [SnapshotEntry](#atomix.primitive.log.SnapshotEntry) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.log.RestoreResponse"></a>
+
+### RestoreResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.log.SizeInput"></a>
 
 ### SizeInput
@@ -804,6 +857,52 @@
 
 
 
+
+<a name="atomix.primitive.log.SnapshotEntry"></a>
+
+### SnapshotEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.log.SnapshotRequest"></a>
+
+### SnapshotRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.log.SnapshotResponse"></a>
+
+### SnapshotResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| entry | [SnapshotEntry](#atomix.primitive.log.SnapshotEntry) |  |  |
+
+
+
+
+
  
 
 
@@ -843,6 +942,8 @@ LogService log service
 | Clear | [ClearRequest](#atomix.primitive.log.ClearRequest) | [ClearResponse](#atomix.primitive.log.ClearResponse) | Clear removes all entries from the log |
 | Events | [EventRequest](#atomix.primitive.log.EventRequest) | [EventResponse](#atomix.primitive.log.EventResponse) stream | Events listens for change events |
 | Entries | [EntriesRequest](#atomix.primitive.log.EntriesRequest) | [EntriesResponse](#atomix.primitive.log.EntriesResponse) stream | Entries lists all entries in the log |
+| Snapshot | [SnapshotRequest](#atomix.primitive.log.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.log.SnapshotResponse) stream | Snapshot exports a snapshot of the primitive state |
+| Restore | [RestoreRequest](#atomix.primitive.log.RestoreRequest) stream | [RestoreResponse](#atomix.primitive.log.RestoreResponse) | Restore imports a snapshot of the primitive state |
 
  
 

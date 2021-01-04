@@ -28,10 +28,15 @@
     - [RemoveOutput](#atomix.primitive.set.RemoveOutput)
     - [RemoveRequest](#atomix.primitive.set.RemoveRequest)
     - [RemoveResponse](#atomix.primitive.set.RemoveResponse)
+    - [RestoreRequest](#atomix.primitive.set.RestoreRequest)
+    - [RestoreResponse](#atomix.primitive.set.RestoreResponse)
     - [SizeInput](#atomix.primitive.set.SizeInput)
     - [SizeOutput](#atomix.primitive.set.SizeOutput)
     - [SizeRequest](#atomix.primitive.set.SizeRequest)
     - [SizeResponse](#atomix.primitive.set.SizeResponse)
+    - [SnapshotEntry](#atomix.primitive.set.SnapshotEntry)
+    - [SnapshotRequest](#atomix.primitive.set.SnapshotRequest)
+    - [SnapshotResponse](#atomix.primitive.set.SnapshotResponse)
   
     - [EventOutput.Type](#atomix.primitive.set.EventOutput.Type)
   
@@ -408,6 +413,37 @@
 
 
 
+<a name="atomix.primitive.set.RestoreRequest"></a>
+
+### RestoreRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| entry | [SnapshotEntry](#atomix.primitive.set.SnapshotEntry) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.RestoreResponse"></a>
+
+### RestoreResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.set.SizeInput"></a>
 
 ### SizeInput
@@ -458,7 +494,53 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [SizeOutput](#atomix.primitive.set.SizeOutput) | repeated |  |
+| output | [SizeOutput](#atomix.primitive.set.SizeOutput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.SnapshotEntry"></a>
+
+### SnapshotEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.SnapshotRequest"></a>
+
+### SnapshotRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.SnapshotResponse"></a>
+
+### SnapshotResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| entry | [SnapshotEntry](#atomix.primitive.set.SnapshotEntry) |  |  |
 
 
 
@@ -498,6 +580,8 @@ Set service
 | Clear | [ClearRequest](#atomix.primitive.set.ClearRequest) | [ClearResponse](#atomix.primitive.set.ClearResponse) | Clear removes all values from the set |
 | Events | [EventRequest](#atomix.primitive.set.EventRequest) | [EventResponse](#atomix.primitive.set.EventResponse) stream | Events listens for set change events |
 | Elements | [ElementsRequest](#atomix.primitive.set.ElementsRequest) | [ElementsResponse](#atomix.primitive.set.ElementsResponse) stream | Elements lists all elements in the set |
+| Snapshot | [SnapshotRequest](#atomix.primitive.set.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.set.SnapshotResponse) stream | Snapshot exports a snapshot of the primitive state |
+| Restore | [RestoreRequest](#atomix.primitive.set.RestoreRequest) stream | [RestoreResponse](#atomix.primitive.set.RestoreResponse) | Restore imports a snapshot of the primitive state |
 
  
 

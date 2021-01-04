@@ -28,6 +28,11 @@
     - [PromoteOutput](#atomix.primitive.election.PromoteOutput)
     - [PromoteRequest](#atomix.primitive.election.PromoteRequest)
     - [PromoteResponse](#atomix.primitive.election.PromoteResponse)
+    - [RestoreRequest](#atomix.primitive.election.RestoreRequest)
+    - [RestoreResponse](#atomix.primitive.election.RestoreResponse)
+    - [Snapshot](#atomix.primitive.election.Snapshot)
+    - [SnapshotRequest](#atomix.primitive.election.SnapshotRequest)
+    - [SnapshotResponse](#atomix.primitive.election.SnapshotResponse)
     - [Term](#atomix.primitive.election.Term)
     - [WithdrawInput](#atomix.primitive.election.WithdrawInput)
     - [WithdrawOutput](#atomix.primitive.election.WithdrawOutput)
@@ -414,6 +419,83 @@
 
 
 
+<a name="atomix.primitive.election.RestoreRequest"></a>
+
+### RestoreRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| snapshot | [Snapshot](#atomix.primitive.election.Snapshot) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.election.RestoreResponse"></a>
+
+### RestoreResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.election.Snapshot"></a>
+
+### Snapshot
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| term | [Term](#atomix.primitive.election.Term) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.election.SnapshotRequest"></a>
+
+### SnapshotRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.election.SnapshotResponse"></a>
+
+### SnapshotResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| snapshot | [Snapshot](#atomix.primitive.election.Snapshot) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.election.Term"></a>
 
 ### Term
@@ -525,6 +607,8 @@ LeaderElectionService implements a distributed leader election
 | Evict | [EvictRequest](#atomix.primitive.election.EvictRequest) | [EvictResponse](#atomix.primitive.election.EvictResponse) | Evict evicts a candidate from the election |
 | GetTerm | [GetTermRequest](#atomix.primitive.election.GetTermRequest) | [GetTermResponse](#atomix.primitive.election.GetTermResponse) | GetTerm gets the current leadership term |
 | Events | [EventRequest](#atomix.primitive.election.EventRequest) | [EventResponse](#atomix.primitive.election.EventResponse) stream | Events listens for leadership events |
+| Snapshot | [SnapshotRequest](#atomix.primitive.election.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.election.SnapshotResponse) | Snapshot exports a snapshot of the primitive state |
+| Restore | [RestoreRequest](#atomix.primitive.election.RestoreRequest) | [RestoreResponse](#atomix.primitive.election.RestoreResponse) | Restore imports a snapshot of the primitive state |
 
  
 

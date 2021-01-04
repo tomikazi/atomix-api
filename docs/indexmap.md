@@ -54,10 +54,15 @@
     - [RemoveOutput](#atomix.primitive.indexedmap.RemoveOutput)
     - [RemoveRequest](#atomix.primitive.indexedmap.RemoveRequest)
     - [RemoveResponse](#atomix.primitive.indexedmap.RemoveResponse)
+    - [RestoreRequest](#atomix.primitive.indexedmap.RestoreRequest)
+    - [RestoreResponse](#atomix.primitive.indexedmap.RestoreResponse)
     - [SizeInput](#atomix.primitive.indexedmap.SizeInput)
     - [SizeOutput](#atomix.primitive.indexedmap.SizeOutput)
     - [SizeRequest](#atomix.primitive.indexedmap.SizeRequest)
     - [SizeResponse](#atomix.primitive.indexedmap.SizeResponse)
+    - [SnapshotEntry](#atomix.primitive.indexedmap.SnapshotEntry)
+    - [SnapshotRequest](#atomix.primitive.indexedmap.SnapshotRequest)
+    - [SnapshotResponse](#atomix.primitive.indexedmap.SnapshotResponse)
     - [Value](#atomix.primitive.indexedmap.Value)
   
     - [EventsOutput.Type](#atomix.primitive.indexedmap.EventsOutput.Type)
@@ -856,6 +861,37 @@
 
 
 
+<a name="atomix.primitive.indexedmap.RestoreRequest"></a>
+
+### RestoreRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| entry | [SnapshotEntry](#atomix.primitive.indexedmap.SnapshotEntry) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.indexedmap.RestoreResponse"></a>
+
+### RestoreResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.indexedmap.SizeInput"></a>
 
 ### SizeInput
@@ -907,6 +943,52 @@
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
 | output | [SizeOutput](#atomix.primitive.indexedmap.SizeOutput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.indexedmap.SnapshotEntry"></a>
+
+### SnapshotEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| entry | [Entry](#atomix.primitive.indexedmap.Entry) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.indexedmap.SnapshotRequest"></a>
+
+### SnapshotRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.indexedmap.SnapshotResponse"></a>
+
+### SnapshotResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| entry | [SnapshotEntry](#atomix.primitive.indexedmap.SnapshotEntry) |  |  |
 
 
 
@@ -969,6 +1051,8 @@ IndexedMap service
 | Clear | [ClearRequest](#atomix.primitive.indexedmap.ClearRequest) | [ClearResponse](#atomix.primitive.indexedmap.ClearResponse) | Clear removes all entries from the map |
 | Events | [EventsRequest](#atomix.primitive.indexedmap.EventsRequest) | [EventsResponse](#atomix.primitive.indexedmap.EventsResponse) stream | Events listens for change events |
 | Entries | [EntriesRequest](#atomix.primitive.indexedmap.EntriesRequest) | [EntriesResponse](#atomix.primitive.indexedmap.EntriesResponse) stream | Entries lists all entries in the map |
+| Snapshot | [SnapshotRequest](#atomix.primitive.indexedmap.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.indexedmap.SnapshotResponse) stream | Snapshot exports a snapshot of the primitive state |
+| Restore | [RestoreRequest](#atomix.primitive.indexedmap.RestoreRequest) stream | [RestoreResponse](#atomix.primitive.indexedmap.RestoreResponse) | Restore imports a snapshot of the primitive state |
 
  
 

@@ -30,19 +30,27 @@ message PrimitiveId {
 
 // Request header
 message RequestHeader {
-    PrimitiveId primitive = 1 [(gogoproto.nullable) = false];
+    string client_id = 1 [(gogoproto.customname) = "ClientID"];
+    PrimitiveId primitive_id = 2 [(gogoproto.customname) = "PrimitiveID", (gogoproto.nullable) = false];
+    uint64 request_id = 3 [(gogoproto.customname) = "RequestID"];
+    RequestType request_type = 4;
+}
+
+// Request type
+enum RequestType {
+    REQUEST = 0;
+    REQUEST_STREAM = 1;
 }
 
 // Response header
 message ResponseHeader {
-    ResponseType type = 1;
+    ResponseType response_type = 1;
 }
 
 // Response type
 enum ResponseType {
     RESPONSE = 0;
-    OPEN_STREAM = 1;
-    CLOSE_STREAM = 2;
+    RESPONSE_STREAM = 1;
 }
 
 message OpenRequest {

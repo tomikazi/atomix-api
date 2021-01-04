@@ -56,7 +56,7 @@ message SizeResponse {
 }
 
 message SizeOutput {
-    uint32 size = 1;
+    uint32 size = 1 [(atomix.primitive.aggregate) = SUM];
 }
 
 message PutRequest {
@@ -307,9 +307,31 @@ message IndexedMapOutput {
     }
 }
 
+message SnapshotEntry {
+    Entry entry = 1 [(gogoproto.nullable) = false];
+}
+
+message SnapshotRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
+message SnapshotResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    SnapshotEntry entry = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message RestoreRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    SnapshotEntry entry = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message RestoreResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
 // IndexedMap service
 service IndexedMapService {
-    option (atomix.primitive.name) = "IndexedMap";
+    option (atomix.primitive.type) = "IndexedMap";
 
     // Size returns the size of the map
     rpc Size (SizeRequest) returns (SizeResponse) {
@@ -369,5 +391,15 @@ service IndexedMapService {
     // Entries lists all entries in the map
     rpc Entries (EntriesRequest) returns (stream EntriesResponse) {
         option (atomix.primitive.optype) = QUERY;
+    }
+
+    // Snapshot exports a snapshot of the primitive state
+    rpc Snapshot (SnapshotRequest) returns (stream SnapshotResponse) {
+        option (atomix.primitive.optype) = SNAPSHOT;
+    }
+
+    // Restore imports a snapshot of the primitive state
+    rpc Restore (stream RestoreRequest) returns (RestoreResponse) {
+        option (atomix.primitive.optype) = RESTORE;
     }
 }

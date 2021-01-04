@@ -114,9 +114,31 @@ message CheckAndSetOutput {
     bool succeeded = 1;
 }
 
+message Snapshot {
+    int64 value = 1;
+}
+
+message SnapshotRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
+message SnapshotResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    Snapshot snapshot = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message RestoreRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    Snapshot snapshot = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message RestoreResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
 // CounterService implements a distributed counter
 service CounterService {
-    option (atomix.primitive.name) = "Counter";
+    option (atomix.primitive.type) = "Counter";
 
     // Set sets the counter value
     rpc Set (SetRequest) returns (SetResponse) {
@@ -141,5 +163,15 @@ service CounterService {
     // CheckAndSet performs a check-and-set operation on the counter value
     rpc CheckAndSet (CheckAndSetRequest) returns (CheckAndSetResponse) {
         option (atomix.primitive.optype) = COMMAND;
+    }
+
+    // Snapshot exports a snapshot of the primitive state
+    rpc Snapshot (SnapshotRequest) returns (SnapshotResponse) {
+        option (atomix.primitive.optype) = SNAPSHOT;
+    }
+
+    // Restore imports a snapshot of the primitive state
+    rpc Restore (RestoreRequest) returns (RestoreResponse) {
+        option (atomix.primitive.optype) = RESTORE;
     }
 }

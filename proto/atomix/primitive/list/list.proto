@@ -205,9 +205,31 @@ message ElementsOutput {
     string value = 2;
 }
 
+message SnapshotEntry {
+    string value = 1;
+}
+
+message SnapshotRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
+message SnapshotResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    SnapshotEntry entry = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message RestoreRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    SnapshotEntry entry = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message RestoreResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
 // ListService implements a distributed list
 service ListService {
-    option (atomix.primitive.name) = "List";
+    option (atomix.primitive.type) = "List";
 
     // Size gets the number of elements in the list
     rpc Size (SizeRequest) returns (SizeResponse) {
@@ -257,5 +279,15 @@ service ListService {
     // Elements streams all elements in the list
     rpc Elements (ElementsRequest) returns (stream ElementsResponse) {
         option (atomix.primitive.optype) = QUERY;
+    }
+
+    // Snapshot exports a snapshot of the primitive state
+    rpc Snapshot (SnapshotRequest) returns (stream SnapshotResponse) {
+        option (atomix.primitive.optype) = SNAPSHOT;
+    }
+
+    // Restore imports a snapshot of the primitive state
+    rpc Restore (stream RestoreRequest) returns (RestoreResponse) {
+        option (atomix.primitive.optype) = RESTORE;
     }
 }

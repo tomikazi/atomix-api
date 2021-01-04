@@ -679,6 +679,242 @@ func (m *Latch) GetParticipants() []string {
 	return nil
 }
 
+type Snapshot struct {
+	Latch *Latch `protobuf:"bytes,1,opt,name=latch,proto3" json:"latch,omitempty"`
+}
+
+func (m *Snapshot) Reset()         { *m = Snapshot{} }
+func (m *Snapshot) String() string { return proto.CompactTextString(m) }
+func (*Snapshot) ProtoMessage()    {}
+func (*Snapshot) Descriptor() ([]byte, []int) {
+	return fileDescriptor_5f590a03f598fc94, []int{13}
+}
+func (m *Snapshot) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Snapshot) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Snapshot.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Snapshot) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Snapshot.Merge(m, src)
+}
+func (m *Snapshot) XXX_Size() int {
+	return m.Size()
+}
+func (m *Snapshot) XXX_DiscardUnknown() {
+	xxx_messageInfo_Snapshot.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Snapshot proto.InternalMessageInfo
+
+func (m *Snapshot) GetLatch() *Latch {
+	if m != nil {
+		return m.Latch
+	}
+	return nil
+}
+
+type SnapshotRequest struct {
+	Header primitive.RequestHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header"`
+}
+
+func (m *SnapshotRequest) Reset()         { *m = SnapshotRequest{} }
+func (m *SnapshotRequest) String() string { return proto.CompactTextString(m) }
+func (*SnapshotRequest) ProtoMessage()    {}
+func (*SnapshotRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_5f590a03f598fc94, []int{14}
+}
+func (m *SnapshotRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *SnapshotRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_SnapshotRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *SnapshotRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SnapshotRequest.Merge(m, src)
+}
+func (m *SnapshotRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *SnapshotRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_SnapshotRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SnapshotRequest proto.InternalMessageInfo
+
+func (m *SnapshotRequest) GetHeader() primitive.RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return primitive.RequestHeader{}
+}
+
+type SnapshotResponse struct {
+	Header   primitive.ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header"`
+	Snapshot Snapshot                 `protobuf:"bytes,2,opt,name=snapshot,proto3" json:"snapshot"`
+}
+
+func (m *SnapshotResponse) Reset()         { *m = SnapshotResponse{} }
+func (m *SnapshotResponse) String() string { return proto.CompactTextString(m) }
+func (*SnapshotResponse) ProtoMessage()    {}
+func (*SnapshotResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_5f590a03f598fc94, []int{15}
+}
+func (m *SnapshotResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *SnapshotResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_SnapshotResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *SnapshotResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_SnapshotResponse.Merge(m, src)
+}
+func (m *SnapshotResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *SnapshotResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_SnapshotResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_SnapshotResponse proto.InternalMessageInfo
+
+func (m *SnapshotResponse) GetHeader() primitive.ResponseHeader {
+	if m != nil {
+		return m.Header
+	}
+	return primitive.ResponseHeader{}
+}
+
+func (m *SnapshotResponse) GetSnapshot() Snapshot {
+	if m != nil {
+		return m.Snapshot
+	}
+	return Snapshot{}
+}
+
+type RestoreRequest struct {
+	Header   primitive.RequestHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header"`
+	Snapshot Snapshot                `protobuf:"bytes,2,opt,name=snapshot,proto3" json:"snapshot"`
+}
+
+func (m *RestoreRequest) Reset()         { *m = RestoreRequest{} }
+func (m *RestoreRequest) String() string { return proto.CompactTextString(m) }
+func (*RestoreRequest) ProtoMessage()    {}
+func (*RestoreRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_5f590a03f598fc94, []int{16}
+}
+func (m *RestoreRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *RestoreRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_RestoreRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *RestoreRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RestoreRequest.Merge(m, src)
+}
+func (m *RestoreRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *RestoreRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_RestoreRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RestoreRequest proto.InternalMessageInfo
+
+func (m *RestoreRequest) GetHeader() primitive.RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return primitive.RequestHeader{}
+}
+
+func (m *RestoreRequest) GetSnapshot() Snapshot {
+	if m != nil {
+		return m.Snapshot
+	}
+	return Snapshot{}
+}
+
+type RestoreResponse struct {
+	Header primitive.ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header"`
+}
+
+func (m *RestoreResponse) Reset()         { *m = RestoreResponse{} }
+func (m *RestoreResponse) String() string { return proto.CompactTextString(m) }
+func (*RestoreResponse) ProtoMessage()    {}
+func (*RestoreResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_5f590a03f598fc94, []int{17}
+}
+func (m *RestoreResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *RestoreResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_RestoreResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *RestoreResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RestoreResponse.Merge(m, src)
+}
+func (m *RestoreResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *RestoreResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_RestoreResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_RestoreResponse proto.InternalMessageInfo
+
+func (m *RestoreResponse) GetHeader() primitive.ResponseHeader {
+	if m != nil {
+		return m.Header
+	}
+	return primitive.ResponseHeader{}
+}
+
 func init() {
 	proto.RegisterEnum("atomix.primitive.leader.EventOutput_Type", EventOutput_Type_name, EventOutput_Type_value)
 	proto.RegisterType((*LatchRequest)(nil), "atomix.primitive.leader.LatchRequest")
@@ -694,6 +930,11 @@ func init() {
 	proto.RegisterType((*EventResponse)(nil), "atomix.primitive.leader.EventResponse")
 	proto.RegisterType((*EventOutput)(nil), "atomix.primitive.leader.EventOutput")
 	proto.RegisterType((*Latch)(nil), "atomix.primitive.leader.Latch")
+	proto.RegisterType((*Snapshot)(nil), "atomix.primitive.leader.Snapshot")
+	proto.RegisterType((*SnapshotRequest)(nil), "atomix.primitive.leader.SnapshotRequest")
+	proto.RegisterType((*SnapshotResponse)(nil), "atomix.primitive.leader.SnapshotResponse")
+	proto.RegisterType((*RestoreRequest)(nil), "atomix.primitive.leader.RestoreRequest")
+	proto.RegisterType((*RestoreResponse)(nil), "atomix.primitive.leader.RestoreResponse")
 }
 
 func init() {
@@ -701,47 +942,54 @@ func init() {
 }
 
 var fileDescriptor_5f590a03f598fc94 = []byte{
-	// 638 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x95, 0x31, 0x6f, 0xd3, 0x4e,
-	0x18, 0xc6, 0x7d, 0x49, 0x9b, 0x7f, 0xfa, 0xa6, 0xed, 0x1f, 0x0e, 0x04, 0x26, 0x42, 0x4e, 0xea,
-	0xb4, 0xa8, 0x2c, 0x0e, 0x0a, 0x0c, 0x5d, 0x18, 0xe2, 0x24, 0x4d, 0x23, 0x55, 0x80, 0x0c, 0x62,
-	0x42, 0xaa, 0x4c, 0x7c, 0x6a, 0x4e, 0x6a, 0x62, 0x63, 0x5f, 0x22, 0x3a, 0x20, 0x21, 0x26, 0xc6,
-	0x8a, 0x01, 0x06, 0xbe, 0x05, 0x12, 0x1b, 0x1f, 0x20, 0x63, 0x47, 0xa6, 0x08, 0x25, 0x1f, 0x81,
-	0x2f, 0x80, 0x7c, 0xe7, 0xc4, 0x4e, 0x83, 0x5d, 0x40, 0x95, 0xba, 0x39, 0xbe, 0xdf, 0xfb, 0xdc,
-	0xf3, 0xde, 0x73, 0xaf, 0x03, 0x25, 0x93, 0xd9, 0x5d, 0xfa, 0xba, 0xec, 0xb8, 0xb4, 0x4b, 0x19,
-	0x1d, 0x90, 0xf2, 0x11, 0x31, 0x2d, 0xe2, 0x96, 0x8f, 0x4c, 0xd6, 0xee, 0x68, 0x8e, 0x6b, 0x33,
-	0x1b, 0xdf, 0x14, 0x90, 0x36, 0x83, 0x34, 0x01, 0xe5, 0x8b, 0x0b, 0xd5, 0x21, 0xc2, 0x4b, 0xf3,
-	0x1b, 0x0b, 0x84, 0x45, 0xbc, 0xb6, 0x4b, 0x1d, 0x66, 0xbb, 0x01, 0xb2, 0xb5, 0x80, 0x74, 0x09,
-	0x33, 0xcb, 0x8c, 0x76, 0x89, 0xc7, 0xcc, 0xae, 0x13, 0x60, 0xd7, 0x0f, 0xed, 0x43, 0x9b, 0x3f,
-	0x96, 0xfd, 0x27, 0xf1, 0x56, 0xfd, 0x88, 0x60, 0x75, 0xdf, 0xb7, 0x6a, 0x90, 0x57, 0x7d, 0xe2,
-	0x31, 0x5c, 0x85, 0x4c, 0x87, 0x9b, 0x93, 0x51, 0x11, 0x6d, 0xe7, 0x2a, 0x05, 0x6d, 0xc1, 0x7c,
-	0x80, 0xee, 0x71, 0x4c, 0xcf, 0xbe, 0xfd, 0x72, 0x0b, 0x0d, 0x47, 0x05, 0xc9, 0x08, 0x0a, 0x71,
-	0x0d, 0x96, 0x69, 0xcf, 0xe9, 0x33, 0x39, 0xc5, 0x15, 0x4a, 0x5a, 0x4c, 0xfb, 0x1a, 0xdf, 0xb8,
-	0xe5, 0xa3, 0x7a, 0xf6, 0xfd, 0x54, 0x45, 0xd4, 0xaa, 0xbb, 0x00, 0xe1, 0x32, 0xde, 0x81, 0x75,
-	0xc7, 0x74, 0x19, 0x6d, 0x53, 0xc7, 0xec, 0xb1, 0x03, 0x6a, 0x71, 0xed, 0x15, 0xfd, 0xea, 0x78,
-	0x54, 0x58, 0x7b, 0x12, 0xae, 0xb4, 0xea, 0xc6, 0x5a, 0x04, 0x6c, 0x59, 0xea, 0x67, 0x04, 0x6b,
-	0x41, 0x83, 0x9e, 0x63, 0xf7, 0x3c, 0x82, 0xf5, 0x33, 0x1d, 0x16, 0x7f, 0xd7, 0xa1, 0x60, 0x63,
-	0x5b, 0xdc, 0x85, 0x8c, 0xdd, 0x67, 0x61, 0x8f, 0x9b, 0xc9, 0x3d, 0x3e, 0xe6, 0xac, 0x9e, 0x3d,
-	0x99, 0xe9, 0x88, 0x6a, 0xb5, 0x06, 0xb9, 0x08, 0x80, 0x1f, 0xc0, 0x32, 0xbf, 0x37, 0x81, 0xaa,
-	0x92, 0xac, 0x6a, 0x08, 0x58, 0xfd, 0x80, 0x00, 0x9a, 0x84, 0x5d, 0x60, 0x82, 0xd5, 0xf9, 0x04,
-	0x37, 0x62, 0x7d, 0x34, 0x09, 0x8b, 0xc9, 0x0f, 0x20, 0x3b, 0x5d, 0x54, 0x3f, 0x21, 0xc8, 0x71,
-	0x83, 0x17, 0x98, 0x40, 0xfd, 0x4c, 0x02, 0x6a, 0x92, 0xc7, 0xd8, 0xf3, 0xaf, 0xc2, 0xca, 0x6c,
-	0xf9, 0x1f, 0x4f, 0xdf, 0x9f, 0xa0, 0xc6, 0x80, 0xf4, 0xd8, 0x65, 0x4c, 0x10, 0xdf, 0x38, 0x26,
-	0x81, 0x55, 0x80, 0x70, 0x99, 0xcf, 0x41, 0x60, 0xf3, 0x52, 0xe6, 0x80, 0xef, 0x1d, 0x9b, 0x83,
-	0x7f, 0x43, 0x22, 0x04, 0x7e, 0x08, 0x4b, 0xec, 0xd8, 0x21, 0x5c, 0x75, 0xbd, 0x72, 0xf7, 0x4f,
-	0x54, 0xb5, 0x67, 0xc7, 0x0e, 0x31, 0x78, 0x59, 0x98, 0x64, 0xfa, 0x6f, 0x92, 0xbc, 0x06, 0x4b,
-	0xbe, 0x06, 0xce, 0xc1, 0x7f, 0xb5, 0xbd, 0xea, 0xa3, 0x66, 0xa3, 0x7e, 0x45, 0x52, 0xdf, 0xc0,
-	0x32, 0x87, 0xf0, 0x0e, 0xa4, 0xa8, 0x15, 0x1c, 0xd5, 0xed, 0x45, 0x41, 0xff, 0x9b, 0xab, 0x35,
-	0x1c, 0xbb, 0xdd, 0xd1, 0xc1, 0x6f, 0x6d, 0x3c, 0x2a, 0xa4, 0x5a, 0x75, 0x23, 0x45, 0x2d, 0x7c,
-	0x03, 0x32, 0x62, 0x3b, 0xf1, 0xd1, 0x32, 0x82, 0x5f, 0x58, 0x85, 0xd5, 0xc8, 0xb7, 0xca, 0x93,
-	0xd3, 0xc5, 0xf4, 0xf6, 0x8a, 0x31, 0xf7, 0xae, 0xf2, 0x2d, 0x05, 0x78, 0x9f, 0xe3, 0xdc, 0xc5,
-	0x53, 0xe2, 0x0e, 0x68, 0x9b, 0xe0, 0x17, 0x53, 0x57, 0x5b, 0xe7, 0xb4, 0x26, 0x2e, 0x5a, 0xfe,
-	0xce, 0x79, 0x98, 0xc8, 0x59, 0x5d, 0x1a, 0xfe, 0x94, 0x25, 0xfc, 0x1c, 0xd2, 0x4d, 0xc2, 0x70,
-	0x29, 0x69, 0xa4, 0xa6, 0xca, 0x9b, 0xc9, 0x50, 0x44, 0x17, 0xe1, 0x03, 0xc8, 0xf0, 0xc0, 0xbc,
-	0x04, 0xdb, 0xd1, 0x51, 0x4a, 0xb0, 0x3d, 0x77, 0x95, 0x85, 0xed, 0x7b, 0x28, 0xff, 0xff, 0xbb,
-	0xaf, 0x72, 0x2e, 0x72, 0x5c, 0xba, 0x3c, 0x1c, 0x2b, 0xe8, 0x74, 0xac, 0xa0, 0x1f, 0x63, 0x05,
-	0x9d, 0x4c, 0x14, 0xe9, 0x74, 0xa2, 0x48, 0xdf, 0x27, 0x8a, 0xf4, 0x32, 0xc3, 0xff, 0xff, 0xee,
-	0xff, 0x0a, 0x00, 0x00, 0xff, 0xff, 0x3b, 0xe3, 0xc7, 0xc4, 0xc1, 0x07, 0x00, 0x00,
+	// 745 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x56, 0xcf, 0x4e, 0x13, 0x5f,
+	0x14, 0xee, 0x6d, 0x4b, 0x29, 0xa7, 0xfc, 0xfb, 0xdd, 0x9f, 0xd1, 0xda, 0x98, 0x69, 0xb9, 0x80,
+	0x96, 0xcd, 0xd4, 0xa0, 0x0b, 0x36, 0x26, 0x76, 0x28, 0x94, 0x26, 0x44, 0xcd, 0x80, 0xae, 0x4c,
+	0xc8, 0xd0, 0xde, 0xd0, 0x9b, 0xd0, 0xce, 0x38, 0x73, 0x21, 0xb2, 0x30, 0x31, 0x6e, 0x64, 0x49,
+	0x5c, 0xe8, 0x42, 0x13, 0xdf, 0xc1, 0xc4, 0x77, 0x60, 0xc9, 0xd2, 0x15, 0x31, 0xed, 0x23, 0xf8,
+	0x02, 0x66, 0xee, 0xcc, 0x74, 0xa6, 0xd4, 0x99, 0x02, 0x69, 0xc2, 0xee, 0x76, 0xee, 0x77, 0xbe,
+	0xf3, 0x9d, 0xfb, 0x9d, 0x73, 0x52, 0x98, 0xd7, 0xb8, 0xde, 0x62, 0x6f, 0x4b, 0x86, 0xc9, 0x5a,
+	0x8c, 0xb3, 0x43, 0x5a, 0xda, 0xa7, 0x5a, 0x83, 0x9a, 0xa5, 0x7d, 0x8d, 0xd7, 0x9b, 0xb2, 0x61,
+	0xea, 0x5c, 0xc7, 0x77, 0x1c, 0x90, 0xdc, 0x03, 0xc9, 0x0e, 0x28, 0x57, 0x18, 0x88, 0xf6, 0x21,
+	0x22, 0x34, 0x37, 0x37, 0x80, 0x68, 0x50, 0xab, 0x6e, 0x32, 0x83, 0xeb, 0xa6, 0x0b, 0x59, 0x1c,
+	0x80, 0xb4, 0x28, 0xd7, 0x4a, 0x9c, 0xb5, 0xa8, 0xc5, 0xb5, 0x96, 0xe1, 0xc2, 0x6e, 0xed, 0xe9,
+	0x7b, 0xba, 0x38, 0x96, 0xec, 0x93, 0xf3, 0x95, 0x7c, 0x46, 0x30, 0xb9, 0x69, 0x4b, 0x55, 0xe9,
+	0x9b, 0x03, 0x6a, 0x71, 0x5c, 0x86, 0x54, 0x53, 0x88, 0xcb, 0xa2, 0x02, 0x2a, 0x66, 0x96, 0xf3,
+	0xf2, 0x80, 0x78, 0x17, 0xba, 0x21, 0x60, 0x4a, 0xfa, 0xfd, 0x8f, 0xbb, 0xe8, 0xf4, 0x3c, 0x1f,
+	0x53, 0xdd, 0x40, 0xbc, 0x0a, 0x63, 0xac, 0x6d, 0x1c, 0xf0, 0x6c, 0x5c, 0x30, 0xcc, 0xcb, 0x21,
+	0xe5, 0xcb, 0x22, 0x71, 0xcd, 0x86, 0x2a, 0xe9, 0x63, 0x8f, 0xc5, 0x89, 0x25, 0xeb, 0x00, 0xfe,
+	0x35, 0x5e, 0x81, 0x69, 0x43, 0x33, 0x39, 0xab, 0x33, 0x43, 0x6b, 0xf3, 0x1d, 0xd6, 0x10, 0xdc,
+	0x13, 0xca, 0x7f, 0x9d, 0xf3, 0xfc, 0xd4, 0x0b, 0xff, 0xa6, 0x56, 0x51, 0xa7, 0x02, 0xc0, 0x5a,
+	0x83, 0x7c, 0x45, 0x30, 0xe5, 0x16, 0x68, 0x19, 0x7a, 0xdb, 0xa2, 0x58, 0xb9, 0x50, 0x61, 0xe1,
+	0x5f, 0x15, 0x3a, 0xd8, 0xd0, 0x12, 0xd7, 0x21, 0xa5, 0x1f, 0x70, 0xbf, 0xc6, 0x85, 0xe8, 0x1a,
+	0x9f, 0x0b, 0xac, 0x92, 0x3e, 0xe9, 0xf1, 0x38, 0xd1, 0x64, 0x15, 0x32, 0x01, 0x00, 0x7e, 0x0c,
+	0x63, 0xa2, 0x6f, 0x5c, 0x56, 0x29, 0x9a, 0x55, 0x75, 0xc0, 0xe4, 0x13, 0x02, 0xa8, 0x52, 0x3e,
+	0x42, 0x07, 0xcb, 0xfd, 0x0e, 0xce, 0x85, 0xea, 0xa8, 0x52, 0x1e, 0xe2, 0x1f, 0x40, 0xda, 0xbb,
+	0x24, 0x5f, 0x10, 0x64, 0x84, 0xc0, 0x11, 0x3a, 0x50, 0xb9, 0xe0, 0x00, 0x89, 0xd2, 0x18, 0xfa,
+	0xfe, 0x65, 0x98, 0xe8, 0x5d, 0x5f, 0xf3, 0xf5, 0xed, 0x09, 0x5a, 0x3b, 0xa4, 0x6d, 0x7e, 0x13,
+	0x13, 0x24, 0x12, 0x87, 0x38, 0x30, 0x09, 0xe0, 0x5f, 0x8b, 0x39, 0x70, 0x65, 0xde, 0xc8, 0x1c,
+	0x88, 0xdc, 0xa1, 0x3e, 0xd8, 0x1d, 0x12, 0x40, 0xe0, 0x27, 0x90, 0xe4, 0x47, 0x06, 0x15, 0xac,
+	0xd3, 0xcb, 0x4b, 0x97, 0x61, 0x95, 0xb7, 0x8f, 0x0c, 0xaa, 0x8a, 0x30, 0xdf, 0xc9, 0xc4, 0x55,
+	0x9c, 0xfc, 0x1f, 0x92, 0x36, 0x07, 0xce, 0xc0, 0xf8, 0xea, 0x46, 0xf9, 0x59, 0x75, 0xad, 0x32,
+	0x1b, 0x23, 0xef, 0x60, 0x4c, 0x80, 0xf0, 0x0a, 0xc4, 0x59, 0xc3, 0x7d, 0xaa, 0x7b, 0x83, 0x84,
+	0xf6, 0xce, 0x95, 0xd7, 0x0c, 0xbd, 0xde, 0x54, 0xc0, 0x2e, 0xad, 0x73, 0x9e, 0x8f, 0xd7, 0x2a,
+	0x6a, 0x9c, 0x35, 0xf0, 0x6d, 0x48, 0x39, 0xe9, 0x9c, 0xa5, 0xa5, 0xba, 0xbf, 0x30, 0x81, 0xc9,
+	0xc0, 0xae, 0xb2, 0xb2, 0x89, 0x42, 0xa2, 0x38, 0xa1, 0xf6, 0x7d, 0x23, 0x4f, 0x21, 0xbd, 0xd5,
+	0xd6, 0x0c, 0xab, 0xa9, 0x07, 0xfa, 0x13, 0x5d, 0xa5, 0xaa, 0x6d, 0x98, 0xf1, 0x18, 0x46, 0xd7,
+	0xa1, 0xe4, 0x3b, 0x82, 0x59, 0x9f, 0x76, 0x84, 0x1d, 0x55, 0x85, 0xb4, 0xe5, 0xf2, 0x0e, 0xdd,
+	0x3e, 0x9e, 0x80, 0x40, 0x43, 0xf5, 0x82, 0xc9, 0x37, 0x04, 0xd3, 0x2a, 0xb5, 0xb8, 0x6e, 0xd2,
+	0x11, 0x4e, 0xe6, 0xf5, 0xe4, 0x1d, 0x0f, 0xca, 0x7b, 0x09, 0x33, 0x3d, 0x75, 0xa3, 0x7b, 0xbe,
+	0xe5, 0x8f, 0x49, 0xc0, 0x9b, 0xe2, 0x28, 0x9a, 0x60, 0x8b, 0x9a, 0x87, 0xac, 0x4e, 0xf1, 0x6b,
+	0xaf, 0x8b, 0x17, 0x87, 0x34, 0x8d, 0x53, 0x7e, 0xee, 0xfe, 0x30, 0x98, 0x23, 0x83, 0x24, 0x4f,
+	0xff, 0x64, 0x63, 0xf8, 0x15, 0x24, 0xaa, 0x94, 0xe3, 0xf9, 0xa8, 0x15, 0xec, 0x31, 0x2f, 0x44,
+	0x83, 0x02, 0xbc, 0x08, 0xef, 0x40, 0x4a, 0x0c, 0xb8, 0x15, 0x21, 0x3b, 0xb8, 0x7a, 0x23, 0x64,
+	0xf7, 0xad, 0x3e, 0x47, 0xf6, 0x43, 0x84, 0x69, 0x60, 0xba, 0x8a, 0x43, 0x7d, 0xf4, 0xb2, 0x2c,
+	0x5d, 0x02, 0x19, 0x48, 0x14, 0xc7, 0xbb, 0x30, 0xee, 0x7a, 0x8d, 0x1f, 0x84, 0xc6, 0xf6, 0xf7,
+	0x6a, 0xae, 0x38, 0x1c, 0x18, 0xc8, 0x91, 0xc8, 0xcd, 0x7c, 0xf8, 0x99, 0xcd, 0x04, 0x9c, 0x57,
+	0xb2, 0xa7, 0x1d, 0x09, 0x9d, 0x75, 0x24, 0xf4, 0xbb, 0x23, 0xa1, 0x93, 0xae, 0x14, 0x3b, 0xeb,
+	0x4a, 0xb1, 0x5f, 0x5d, 0x29, 0xb6, 0x9b, 0x12, 0x7f, 0xfd, 0x1e, 0xfd, 0x0d, 0x00, 0x00, 0xff,
+	0xff, 0xe7, 0x69, 0x80, 0x1a, 0xbc, 0x0a, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -762,6 +1010,10 @@ type LeaderLatchServiceClient interface {
 	Get(ctx context.Context, in *GetRequest, opts ...grpc.CallOption) (*GetResponse, error)
 	// Events listens for leader change events
 	Events(ctx context.Context, in *EventRequest, opts ...grpc.CallOption) (LeaderLatchService_EventsClient, error)
+	// Snapshot exports a snapshot of the primitive state
+	Snapshot(ctx context.Context, in *SnapshotRequest, opts ...grpc.CallOption) (*SnapshotResponse, error)
+	// Restore imports a snapshot of the primitive state
+	Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error)
 }
 
 type leaderLatchServiceClient struct {
@@ -822,6 +1074,24 @@ func (x *leaderLatchServiceEventsClient) Recv() (*EventResponse, error) {
 	return m, nil
 }
 
+func (c *leaderLatchServiceClient) Snapshot(ctx context.Context, in *SnapshotRequest, opts ...grpc.CallOption) (*SnapshotResponse, error) {
+	out := new(SnapshotResponse)
+	err := c.cc.Invoke(ctx, "/atomix.primitive.leader.LeaderLatchService/Snapshot", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *leaderLatchServiceClient) Restore(ctx context.Context, in *RestoreRequest, opts ...grpc.CallOption) (*RestoreResponse, error) {
+	out := new(RestoreResponse)
+	err := c.cc.Invoke(ctx, "/atomix.primitive.leader.LeaderLatchService/Restore", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // LeaderLatchServiceServer is the server API for LeaderLatchService service.
 type LeaderLatchServiceServer interface {
 	// Latch attempts to acquire the leader latch
@@ -830,6 +1100,10 @@ type LeaderLatchServiceServer interface {
 	Get(context.Context, *GetRequest) (*GetResponse, error)
 	// Events listens for leader change events
 	Events(*EventRequest, LeaderLatchService_EventsServer) error
+	// Snapshot exports a snapshot of the primitive state
+	Snapshot(context.Context, *SnapshotRequest) (*SnapshotResponse, error)
+	// Restore imports a snapshot of the primitive state
+	Restore(context.Context, *RestoreRequest) (*RestoreResponse, error)
 }
 
 // UnimplementedLeaderLatchServiceServer can be embedded to have forward compatible implementations.
@@ -844,6 +1118,12 @@ func (*UnimplementedLeaderLatchServiceServer) Get(ctx context.Context, req *GetR
 }
 func (*UnimplementedLeaderLatchServiceServer) Events(req *EventRequest, srv LeaderLatchService_EventsServer) error {
 	return status.Errorf(codes.Unimplemented, "method Events not implemented")
+}
+func (*UnimplementedLeaderLatchServiceServer) Snapshot(ctx context.Context, req *SnapshotRequest) (*SnapshotResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Snapshot not implemented")
+}
+func (*UnimplementedLeaderLatchServiceServer) Restore(ctx context.Context, req *RestoreRequest) (*RestoreResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Restore not implemented")
 }
 
 func RegisterLeaderLatchServiceServer(s *grpc.Server, srv LeaderLatchServiceServer) {
@@ -907,6 +1187,42 @@ func (x *leaderLatchServiceEventsServer) Send(m *EventResponse) error {
 	return x.ServerStream.SendMsg(m)
 }
 
+func _LeaderLatchService_Snapshot_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(SnapshotRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LeaderLatchServiceServer).Snapshot(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/atomix.primitive.leader.LeaderLatchService/Snapshot",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LeaderLatchServiceServer).Snapshot(ctx, req.(*SnapshotRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _LeaderLatchService_Restore_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RestoreRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(LeaderLatchServiceServer).Restore(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/atomix.primitive.leader.LeaderLatchService/Restore",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(LeaderLatchServiceServer).Restore(ctx, req.(*RestoreRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _LeaderLatchService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "atomix.primitive.leader.LeaderLatchService",
 	HandlerType: (*LeaderLatchServiceServer)(nil),
@@ -918,6 +1234,14 @@ var _LeaderLatchService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Get",
 			Handler:    _LeaderLatchService_Get_Handler,
+		},
+		{
+			MethodName: "Snapshot",
+			Handler:    _LeaderLatchService_Snapshot_Handler,
+		},
+		{
+			MethodName: "Restore",
+			Handler:    _LeaderLatchService_Restore_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{
@@ -1423,6 +1747,193 @@ func (m *Latch) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *Snapshot) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Snapshot) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Snapshot) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Latch != nil {
+		{
+			size, err := m.Latch.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintLatch(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *SnapshotRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *SnapshotRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *SnapshotRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.Header.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintLatch(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *SnapshotResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *SnapshotResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *SnapshotResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.Snapshot.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintLatch(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0x12
+	{
+		size, err := m.Header.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintLatch(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *RestoreRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *RestoreRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *RestoreRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.Snapshot.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintLatch(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0x12
+	{
+		size, err := m.Header.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintLatch(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *RestoreResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *RestoreResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *RestoreResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.Header.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintLatch(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintLatch(dAtA []byte, offset int, v uint64) int {
 	offset -= sovLatch(v)
 	base := offset
@@ -1603,6 +2114,67 @@ func (m *Latch) Size() (n int) {
 			n += 1 + l + sovLatch(uint64(l))
 		}
 	}
+	return n
+}
+
+func (m *Snapshot) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Latch != nil {
+		l = m.Latch.Size()
+		n += 1 + l + sovLatch(uint64(l))
+	}
+	return n
+}
+
+func (m *SnapshotRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.Header.Size()
+	n += 1 + l + sovLatch(uint64(l))
+	return n
+}
+
+func (m *SnapshotResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.Header.Size()
+	n += 1 + l + sovLatch(uint64(l))
+	l = m.Snapshot.Size()
+	n += 1 + l + sovLatch(uint64(l))
+	return n
+}
+
+func (m *RestoreRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.Header.Size()
+	n += 1 + l + sovLatch(uint64(l))
+	l = m.Snapshot.Size()
+	n += 1 + l + sovLatch(uint64(l))
+	return n
+}
+
+func (m *RestoreResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.Header.Size()
+	n += 1 + l + sovLatch(uint64(l))
 	return n
 }
 
@@ -2928,6 +3500,505 @@ func (m *Latch) Unmarshal(dAtA []byte) error {
 				return io.ErrUnexpectedEOF
 			}
 			m.Participants = append(m.Participants, string(dAtA[iNdEx:postIndex]))
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipLatch(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Snapshot) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowLatch
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Snapshot: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Snapshot: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Latch", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowLatch
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthLatch
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Latch == nil {
+				m.Latch = &Latch{}
+			}
+			if err := m.Latch.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipLatch(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *SnapshotRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowLatch
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: SnapshotRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: SnapshotRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Header", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowLatch
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthLatch
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Header.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipLatch(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *SnapshotResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowLatch
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: SnapshotResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: SnapshotResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Header", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowLatch
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthLatch
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Header.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Snapshot", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowLatch
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthLatch
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Snapshot.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipLatch(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *RestoreRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowLatch
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: RestoreRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: RestoreRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Header", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowLatch
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthLatch
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Header.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Snapshot", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowLatch
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthLatch
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Snapshot.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipLatch(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *RestoreResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowLatch
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: RestoreResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: RestoreResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Header", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowLatch
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthLatch
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthLatch
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Header.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

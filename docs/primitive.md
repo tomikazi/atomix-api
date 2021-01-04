@@ -5,9 +5,12 @@
 
 - [atomix/primitive/descriptor.proto](#atomix/primitive/descriptor.proto)
   
+    - [AggregateStrategy](#atomix.primitive.AggregateStrategy)
     - [OperationType](#atomix.primitive.OperationType)
     - [PartitionStrategy](#atomix.primitive.PartitionStrategy)
   
+    - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
     - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
     - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
     - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
@@ -30,6 +33,7 @@
     - [RequestHeader](#atomix.primitive.RequestHeader)
     - [ResponseHeader](#atomix.primitive.ResponseHeader)
   
+    - [RequestType](#atomix.primitive.RequestType)
     - [ResponseType](#atomix.primitive.ResponseType)
   
   
@@ -49,6 +53,19 @@
  
 
 
+<a name="atomix.primitive.AggregateStrategy"></a>
+
+### AggregateStrategy
+AggregateStrategy is an enum for indicating the strategy used to aggregate a field
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| CHOOSE_FIRST | 0 |  |
+| APPEND | 1 |  |
+| SUM | 2 |  |
+
+
+
 <a name="atomix.primitive.OperationType"></a>
 
 ### OperationType
@@ -58,6 +75,8 @@ OperationType is an enum for specifying the type of operation
 | ---- | ------ | ----------- |
 | COMMAND | 0 |  |
 | QUERY | 1 |  |
+| SNAPSHOT | 2 |  |
+| RESTORE | 3 |  |
 
 
 
@@ -83,16 +102,18 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 ### File-level Extensions
 | Extension | Type | Base | Number | Description |
 | --------- | ---- | ---- | ------ | ----------- |
+| aggregate | AggregateStrategy | .google.protobuf.FieldOptions | 52005 |  |
 | header | bool | .google.protobuf.FieldOptions | 52000 |  |
 | input | bool | .google.protobuf.FieldOptions | 52001 |  |
 | output | bool | .google.protobuf.FieldOptions | 52002 |  |
 | partitionkey | bool | .google.protobuf.FieldOptions | 52003 |  |
 | partitionrange | bool | .google.protobuf.FieldOptions | 52004 |  |
+| async | bool | .google.protobuf.MethodOptions | 51003 |  |
 | opname | string | .google.protobuf.MethodOptions | 51000 |  |
 | optype | OperationType | .google.protobuf.MethodOptions | 51001 |  |
 | partitionby | PartitionStrategy | .google.protobuf.MethodOptions | 51002 |  |
-| name | string | .google.protobuf.ServiceOptions | 50000 |  |
 | partition | bool | .google.protobuf.ServiceOptions | 50001 |  |
+| type | string | .google.protobuf.ServiceOptions | 50000 |  |
 
  
 
@@ -193,7 +214,10 @@ Request header
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+| client_id | [string](#string) |  |  |
+| primitive_id | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+| request_id | [uint64](#uint64) |  |  |
+| request_type | [RequestType](#atomix.primitive.RequestType) |  |  |
 
 
 
@@ -208,13 +232,25 @@ Response header
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [ResponseType](#atomix.primitive.ResponseType) |  |  |
+| response_type | [ResponseType](#atomix.primitive.ResponseType) |  |  |
 
 
 
 
 
  
+
+
+<a name="atomix.primitive.RequestType"></a>
+
+### RequestType
+Request type
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| REQUEST | 0 |  |
+| REQUEST_STREAM | 1 |  |
+
 
 
 <a name="atomix.primitive.ResponseType"></a>
@@ -225,8 +261,7 @@ Response type
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | RESPONSE | 0 |  |
-| OPEN_STREAM | 1 |  |
-| CLOSE_STREAM | 2 |  |
+| RESPONSE_STREAM | 1 |  |
 
 
  

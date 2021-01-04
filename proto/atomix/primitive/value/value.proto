@@ -20,6 +20,7 @@ package atomix.primitive.value;
 
 import "atomix/primitive/primitive.proto";
 import "atomix/primitive/descriptor.proto";
+import "atomix/primitive/meta/version.proto";
 import "gogoproto/gogo.proto";
 
 message GetRequest {
@@ -86,9 +87,32 @@ message EventOutput {
     }
 }
 
+message Snapshot {
+    bytes value = 1;
+    atomix.primitive.meta.Version version = 2;
+}
+
+message SnapshotRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
+message SnapshotResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    Snapshot snapshot = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message RestoreRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    Snapshot snapshot = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message RestoreResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
 // ValueService implements a distributed atomic value
 service ValueService {
-    option (atomix.primitive.name) = "Value";
+    option (atomix.primitive.type) = "Value";
 
     // Set sets the value
     rpc Set (SetRequest) returns (SetResponse) {
@@ -103,5 +127,15 @@ service ValueService {
     // Events listens for value change events
     rpc Events (EventRequest) returns (stream EventResponse) {
         option (atomix.primitive.optype) = COMMAND;
+    }
+
+    // Snapshot exports a snapshot of the primitive state
+    rpc Snapshot (SnapshotRequest) returns (SnapshotResponse) {
+        option (atomix.primitive.optype) = SNAPSHOT;
+    }
+
+    // Restore imports a snapshot of the primitive state
+    rpc Restore (RestoreRequest) returns (RestoreResponse) {
+        option (atomix.primitive.optype) = RESTORE;
     }
 }

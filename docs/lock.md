@@ -8,10 +8,16 @@
     - [IsLockedOutput](#atomix.primitive.lock.IsLockedOutput)
     - [IsLockedRequest](#atomix.primitive.lock.IsLockedRequest)
     - [IsLockedResponse](#atomix.primitive.lock.IsLockedResponse)
+    - [Lock](#atomix.primitive.lock.Lock)
     - [LockInput](#atomix.primitive.lock.LockInput)
     - [LockOutput](#atomix.primitive.lock.LockOutput)
     - [LockRequest](#atomix.primitive.lock.LockRequest)
     - [LockResponse](#atomix.primitive.lock.LockResponse)
+    - [RestoreRequest](#atomix.primitive.lock.RestoreRequest)
+    - [RestoreResponse](#atomix.primitive.lock.RestoreResponse)
+    - [Snapshot](#atomix.primitive.lock.Snapshot)
+    - [SnapshotRequest](#atomix.primitive.lock.SnapshotRequest)
+    - [SnapshotResponse](#atomix.primitive.lock.SnapshotResponse)
     - [UnlockInput](#atomix.primitive.lock.UnlockInput)
     - [UnlockOutput](#atomix.primitive.lock.UnlockOutput)
     - [UnlockRequest](#atomix.primitive.lock.UnlockRequest)
@@ -95,6 +101,24 @@
 
 
 
+<a name="atomix.primitive.lock.Lock"></a>
+
+### Lock
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| owner | [string](#string) |  |  |
+| version | [atomix.primitive.meta.Version](#atomix.primitive.meta.Version) |  |  |
+| created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
+| expire | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.lock.LockInput"></a>
 
 ### LockInput
@@ -151,6 +175,84 @@
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
 | output | [LockOutput](#atomix.primitive.lock.LockOutput) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.lock.RestoreRequest"></a>
+
+### RestoreRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| snapshot | [Snapshot](#atomix.primitive.lock.Snapshot) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.lock.RestoreResponse"></a>
+
+### RestoreResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.lock.Snapshot"></a>
+
+### Snapshot
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
+| queue | [string](#string) | repeated |  |
+
+
+
+
+
+
+<a name="atomix.primitive.lock.SnapshotRequest"></a>
+
+### SnapshotRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.lock.SnapshotResponse"></a>
+
+### SnapshotResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+| snapshot | [Snapshot](#atomix.primitive.lock.Snapshot) |  |  |
 
 
 
@@ -235,6 +337,8 @@ LockService implements a distributed lock
 | Lock | [LockRequest](#atomix.primitive.lock.LockRequest) | [LockResponse](#atomix.primitive.lock.LockResponse) | Lock attempts to acquire the lock |
 | Unlock | [UnlockRequest](#atomix.primitive.lock.UnlockRequest) | [UnlockResponse](#atomix.primitive.lock.UnlockResponse) | Unlock releases the lock |
 | IsLocked | [IsLockedRequest](#atomix.primitive.lock.IsLockedRequest) | [IsLockedResponse](#atomix.primitive.lock.IsLockedResponse) | IsLocked checks whether the lock is held |
+| Snapshot | [SnapshotRequest](#atomix.primitive.lock.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.lock.SnapshotResponse) | Snapshot exports a snapshot of the primitive state |
+| Restore | [RestoreRequest](#atomix.primitive.lock.RestoreRequest) | [RestoreResponse](#atomix.primitive.lock.RestoreResponse) | Restore imports a snapshot of the primitive state |
 
  
 

@@ -263,9 +263,36 @@ message EventOutput {
     }
 }
 
+message Entry {
+    uint64 index = 1;
+    bytes value = 2;
+}
+
+message SnapshotEntry {
+    Entry entry = 1 [(gogoproto.nullable) = false];
+}
+
+message SnapshotRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
+message SnapshotResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    SnapshotEntry entry = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+}
+
+message RestoreRequest {
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    SnapshotEntry entry = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+}
+
+message RestoreResponse {
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
 // LogService log service
 service LogService {
-    option (atomix.primitive.name) = "Log";
+    option (atomix.primitive.type) = "Log";
 
     // Size returns the size of the log
     rpc Size (SizeRequest) returns (SizeResponse) {
@@ -325,6 +352,16 @@ service LogService {
     // Entries lists all entries in the log
     rpc Entries (EntriesRequest) returns (stream EntriesResponse) {
         option (atomix.primitive.optype) = QUERY;
+    }
+
+    // Snapshot exports a snapshot of the primitive state
+    rpc Snapshot (SnapshotRequest) returns (stream SnapshotResponse) {
+        option (atomix.primitive.optype) = SNAPSHOT;
+    }
+
+    // Restore imports a snapshot of the primitive state
+    rpc Restore (stream RestoreRequest) returns (RestoreResponse) {
+        option (atomix.primitive.optype) = RESTORE;
     }
 }
 

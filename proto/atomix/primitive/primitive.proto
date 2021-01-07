@@ -25,7 +25,6 @@ import "atomix/primitive/descriptor.proto";
 message PrimitiveId {
     string type = 1;
     string name = 2;
-    string namespace = 3;
 }
 
 // Request header

@@ -12,10 +12,10 @@
     - [EnterOutput](#atomix.primitive.election.EnterOutput)
     - [EnterRequest](#atomix.primitive.election.EnterRequest)
     - [EnterResponse](#atomix.primitive.election.EnterResponse)
-    - [EventInput](#atomix.primitive.election.EventInput)
-    - [EventOutput](#atomix.primitive.election.EventOutput)
-    - [EventRequest](#atomix.primitive.election.EventRequest)
-    - [EventResponse](#atomix.primitive.election.EventResponse)
+    - [EventsInput](#atomix.primitive.election.EventsInput)
+    - [EventsOutput](#atomix.primitive.election.EventsOutput)
+    - [EventsRequest](#atomix.primitive.election.EventsRequest)
+    - [EventsResponse](#atomix.primitive.election.EventsResponse)
     - [EvictInput](#atomix.primitive.election.EvictInput)
     - [EvictOutput](#atomix.primitive.election.EvictOutput)
     - [EvictRequest](#atomix.primitive.election.EvictRequest)
@@ -39,7 +39,7 @@
     - [WithdrawRequest](#atomix.primitive.election.WithdrawRequest)
     - [WithdrawResponse](#atomix.primitive.election.WithdrawResponse)
   
-    - [EventOutput.Type](#atomix.primitive.election.EventOutput.Type)
+    - [EventsOutput.Type](#atomix.primitive.election.EventsOutput.Type)
   
   
     - [LeaderElectionService](#atomix.primitive.election.LeaderElectionService)
@@ -124,11 +124,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| candidate_id | [string](#string) |  |  |
-
-
 
 
 
@@ -180,25 +175,25 @@
 
 
 
-<a name="atomix.primitive.election.EventInput"></a>
+<a name="atomix.primitive.election.EventsInput"></a>
 
-### EventInput
-
-
+### EventsInput
 
 
 
 
 
-<a name="atomix.primitive.election.EventOutput"></a>
 
-### EventOutput
+
+<a name="atomix.primitive.election.EventsOutput"></a>
+
+### EventsOutput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [EventOutput.Type](#atomix.primitive.election.EventOutput.Type) |  |  |
+| type | [EventsOutput.Type](#atomix.primitive.election.EventsOutput.Type) |  |  |
 | term | [Term](#atomix.primitive.election.Term) |  |  |
 
 
@@ -206,32 +201,32 @@
 
 
 
-<a name="atomix.primitive.election.EventRequest"></a>
+<a name="atomix.primitive.election.EventsRequest"></a>
 
-### EventRequest
+### EventsRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [EventInput](#atomix.primitive.election.EventInput) |  |  |
+| input | [EventsInput](#atomix.primitive.election.EventsInput) |  |  |
 
 
 
 
 
 
-<a name="atomix.primitive.election.EventResponse"></a>
+<a name="atomix.primitive.election.EventsResponse"></a>
 
-### EventResponse
+### EventsResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [EventOutput](#atomix.primitive.election.EventOutput) |  |  |
+| output | [EventsOutput](#atomix.primitive.election.EventsOutput) |  |  |
 
 
 
@@ -520,11 +515,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| candidate_id | [string](#string) |  |  |
-
-
 
 
 
@@ -578,9 +568,9 @@
  
 
 
-<a name="atomix.primitive.election.EventOutput.Type"></a>
+<a name="atomix.primitive.election.EventsOutput.Type"></a>
 
-### EventOutput.Type
+### EventsOutput.Type
 
 
 | Name | Number | Description |
@@ -606,7 +596,7 @@ LeaderElectionService implements a distributed leader election
 | Promote | [PromoteRequest](#atomix.primitive.election.PromoteRequest) | [PromoteResponse](#atomix.primitive.election.PromoteResponse) | Promote promotes a candidate |
 | Evict | [EvictRequest](#atomix.primitive.election.EvictRequest) | [EvictResponse](#atomix.primitive.election.EvictResponse) | Evict evicts a candidate from the election |
 | GetTerm | [GetTermRequest](#atomix.primitive.election.GetTermRequest) | [GetTermResponse](#atomix.primitive.election.GetTermResponse) | GetTerm gets the current leadership term |
-| Events | [EventRequest](#atomix.primitive.election.EventRequest) | [EventResponse](#atomix.primitive.election.EventResponse) stream | Events listens for leadership events |
+| Events | [EventsRequest](#atomix.primitive.election.EventsRequest) | [EventsResponse](#atomix.primitive.election.EventsResponse) stream | Events listens for leadership events |
 | Snapshot | [SnapshotRequest](#atomix.primitive.election.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.election.SnapshotResponse) | Snapshot exports a snapshot of the primitive state |
 | Restore | [RestoreRequest](#atomix.primitive.election.RestoreRequest) | [RestoreResponse](#atomix.primitive.election.RestoreResponse) | Restore imports a snapshot of the primitive state |
 

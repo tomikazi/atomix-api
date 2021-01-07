@@ -8,8 +8,6 @@
     - [AddOutput](#atomix.primitive.set.AddOutput)
     - [AddRequest](#atomix.primitive.set.AddRequest)
     - [AddResponse](#atomix.primitive.set.AddResponse)
-    - [ClearInput](#atomix.primitive.set.ClearInput)
-    - [ClearOutput](#atomix.primitive.set.ClearOutput)
     - [ClearRequest](#atomix.primitive.set.ClearRequest)
     - [ClearResponse](#atomix.primitive.set.ClearResponse)
     - [ContainsInput](#atomix.primitive.set.ContainsInput)
@@ -20,17 +18,16 @@
     - [ElementsOutput](#atomix.primitive.set.ElementsOutput)
     - [ElementsRequest](#atomix.primitive.set.ElementsRequest)
     - [ElementsResponse](#atomix.primitive.set.ElementsResponse)
-    - [EventInput](#atomix.primitive.set.EventInput)
-    - [EventOutput](#atomix.primitive.set.EventOutput)
-    - [EventRequest](#atomix.primitive.set.EventRequest)
-    - [EventResponse](#atomix.primitive.set.EventResponse)
+    - [EventsInput](#atomix.primitive.set.EventsInput)
+    - [EventsOutput](#atomix.primitive.set.EventsOutput)
+    - [EventsRequest](#atomix.primitive.set.EventsRequest)
+    - [EventsResponse](#atomix.primitive.set.EventsResponse)
     - [RemoveInput](#atomix.primitive.set.RemoveInput)
     - [RemoveOutput](#atomix.primitive.set.RemoveOutput)
     - [RemoveRequest](#atomix.primitive.set.RemoveRequest)
     - [RemoveResponse](#atomix.primitive.set.RemoveResponse)
     - [RestoreRequest](#atomix.primitive.set.RestoreRequest)
     - [RestoreResponse](#atomix.primitive.set.RestoreResponse)
-    - [SizeInput](#atomix.primitive.set.SizeInput)
     - [SizeOutput](#atomix.primitive.set.SizeOutput)
     - [SizeRequest](#atomix.primitive.set.SizeRequest)
     - [SizeResponse](#atomix.primitive.set.SizeResponse)
@@ -38,7 +35,7 @@
     - [SnapshotRequest](#atomix.primitive.set.SnapshotRequest)
     - [SnapshotResponse](#atomix.primitive.set.SnapshotResponse)
   
-    - [EventOutput.Type](#atomix.primitive.set.EventOutput.Type)
+    - [EventsOutput.Type](#atomix.primitive.set.EventsOutput.Type)
   
   
     - [SetService](#atomix.primitive.set.SetService)
@@ -117,26 +114,6 @@
 
 
 
-<a name="atomix.primitive.set.ClearInput"></a>
-
-### ClearInput
-
-
-
-
-
-
-
-<a name="atomix.primitive.set.ClearOutput"></a>
-
-### ClearOutput
-
-
-
-
-
-
-
 <a name="atomix.primitive.set.ClearRequest"></a>
 
 ### ClearRequest
@@ -146,7 +123,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [ClearInput](#atomix.primitive.set.ClearInput) |  |  |
 
 
 
@@ -162,7 +138,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [ClearOutput](#atomix.primitive.set.ClearOutput) |  |  |
 
 
 
@@ -288,9 +263,9 @@
 
 
 
-<a name="atomix.primitive.set.EventInput"></a>
+<a name="atomix.primitive.set.EventsInput"></a>
 
-### EventInput
+### EventsInput
 
 
 
@@ -303,15 +278,15 @@
 
 
 
-<a name="atomix.primitive.set.EventOutput"></a>
+<a name="atomix.primitive.set.EventsOutput"></a>
 
-### EventOutput
+### EventsOutput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [EventOutput.Type](#atomix.primitive.set.EventOutput.Type) |  |  |
+| type | [EventsOutput.Type](#atomix.primitive.set.EventsOutput.Type) |  |  |
 | value | [string](#string) |  |  |
 
 
@@ -319,32 +294,32 @@
 
 
 
-<a name="atomix.primitive.set.EventRequest"></a>
+<a name="atomix.primitive.set.EventsRequest"></a>
 
-### EventRequest
+### EventsRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [EventInput](#atomix.primitive.set.EventInput) |  |  |
+| input | [EventsInput](#atomix.primitive.set.EventsInput) |  |  |
 
 
 
 
 
 
-<a name="atomix.primitive.set.EventResponse"></a>
+<a name="atomix.primitive.set.EventsResponse"></a>
 
-### EventResponse
+### EventsResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [EventOutput](#atomix.primitive.set.EventOutput) |  |  |
+| output | [EventsOutput](#atomix.primitive.set.EventsOutput) |  |  |
 
 
 
@@ -444,16 +419,6 @@
 
 
 
-<a name="atomix.primitive.set.SizeInput"></a>
-
-### SizeInput
-
-
-
-
-
-
-
 <a name="atomix.primitive.set.SizeOutput"></a>
 
 ### SizeOutput
@@ -478,7 +443,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [SizeInput](#atomix.primitive.set.SizeInput) |  |  |
 
 
 
@@ -549,16 +513,17 @@
  
 
 
-<a name="atomix.primitive.set.EventOutput.Type"></a>
+<a name="atomix.primitive.set.EventsOutput.Type"></a>
 
-### EventOutput.Type
+### EventsOutput.Type
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | NONE | 0 |  |
-| ADDED | 1 |  |
-| REMOVED | 2 |  |
+| ADD | 1 |  |
+| REMOVE | 2 |  |
+| REPLAY | 3 |  |
 
 
  
@@ -578,7 +543,7 @@ Set service
 | Add | [AddRequest](#atomix.primitive.set.AddRequest) | [AddResponse](#atomix.primitive.set.AddResponse) | Add adds a value to the set |
 | Remove | [RemoveRequest](#atomix.primitive.set.RemoveRequest) | [RemoveResponse](#atomix.primitive.set.RemoveResponse) | Remove removes a value from the set |
 | Clear | [ClearRequest](#atomix.primitive.set.ClearRequest) | [ClearResponse](#atomix.primitive.set.ClearResponse) | Clear removes all values from the set |
-| Events | [EventRequest](#atomix.primitive.set.EventRequest) | [EventResponse](#atomix.primitive.set.EventResponse) stream | Events listens for set change events |
+| Events | [EventsRequest](#atomix.primitive.set.EventsRequest) | [EventsResponse](#atomix.primitive.set.EventsResponse) stream | Events listens for set change events |
 | Elements | [ElementsRequest](#atomix.primitive.set.ElementsRequest) | [ElementsResponse](#atomix.primitive.set.ElementsResponse) stream | Elements lists all elements in the set |
 | Snapshot | [SnapshotRequest](#atomix.primitive.set.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.set.SnapshotResponse) stream | Snapshot exports a snapshot of the primitive state |
 | Restore | [RestoreRequest](#atomix.primitive.set.RestoreRequest) stream | [RestoreResponse](#atomix.primitive.set.RestoreResponse) | Restore imports a snapshot of the primitive state |

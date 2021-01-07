@@ -43,10 +43,6 @@ message ExistsOutput {
 
 message SizeRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    SizeInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
-}
-
-message SizeInput {
 }
 
 message SizeResponse {
@@ -100,10 +96,6 @@ message GetOutput {
 
 message FirstEntryRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    FirstEntryInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
-}
-
-message FirstEntryInput {
 }
 
 message FirstEntryResponse {
@@ -119,10 +111,6 @@ message FirstEntryOutput {
 
 message LastEntryRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    LastEntryInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
-}
-
-message LastEntryInput {
 }
 
 message LastEntryResponse {
@@ -201,18 +189,10 @@ message RemoveOutput {
 
 message ClearRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    ClearInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
-}
-
-message ClearInput {
 }
 
 message ClearResponse {
     atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    ClearOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
-}
-
-message ClearOutput {
 }
 
 message EntriesRequest {
@@ -234,23 +214,22 @@ message EntriesOutput {
     atomix.primitive.meta.Timestamp timestamp = 4 [(gogoproto.nullable) = false];
 }
 
-message EventRequest {
+message EventsRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    EventInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+    EventsInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
 }
 
-
-message EventInput {
+message EventsInput {
     bool replay = 2;
     uint64 index = 3;
 }
 
-message EventResponse {
+message EventsResponse {
     atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    EventOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+    EventsOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
 }
 
-message EventOutput {
+message EventsOutput {
     Type type = 2;
     uint64 index = 3;
     bytes value = 4;
@@ -258,8 +237,9 @@ message EventOutput {
 
     enum Type {
         NONE = 0;
-        APPENDED = 1;
-        REMOVED = 2;
+        APPEND = 1;
+        REMOVE = 2;
+        REPLAY = 3;
     }
 }
 
@@ -345,7 +325,7 @@ service LogService {
     }
 
     // Events listens for change events
-    rpc Events (EventRequest) returns (stream EventResponse) {
+    rpc Events (EventsRequest) returns (stream EventsResponse) {
         option (atomix.primitive.optype) = COMMAND;
     }
 

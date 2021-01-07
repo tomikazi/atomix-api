@@ -44,10 +44,6 @@ message ExistsOutput {
 
 message SizeRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    SizeInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
-}
-
-message SizeInput {
 }
 
 message SizeResponse {
@@ -99,10 +95,6 @@ message GetOutput {
 
 message FirstEntryRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    FirstEntryInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
-}
-
-message FirstEntryInput {
 }
 
 message FirstEntryResponse {
@@ -116,10 +108,6 @@ message FirstEntryOutput {
 
 message LastEntryRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    LastEntryInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
-}
-
-message LastEntryInput {
 }
 
 message LastEntryResponse {
@@ -189,18 +177,10 @@ message RemoveOutput {
 
 message ClearRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    ClearInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
-}
-
-message ClearInput {
 }
 
 message ClearResponse {
     atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    ClearOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
-}
-
-message ClearOutput {
 }
 
 message EntriesRequest {
@@ -241,9 +221,10 @@ message EventsOutput {
 
     enum Type {
         NONE = 0;
-        INSERTED = 1;
-        UPDATED = 2;
-        REMOVED = 3;
+        INSERT = 1;
+        UPDATE = 2;
+        REMOVE = 3;
+        REPLAY = 4;
     }
 }
 
@@ -270,16 +251,12 @@ message IndexedMapRequest {
 
 message IndexedMapInput {
     oneof input {
-        SizeInput size = 1;
         ExistsInput exists = 2;
         PutInput put = 3;
         GetInput get = 4;
-        FirstEntryInput first_entry = 5;
-        LastEntryInput last_entry = 6;
         PrevEntryInput prev_entry = 7;
         NextEntryInput next_entry = 8;
         RemoveInput remove = 9;
-        ClearInput clear = 10;
         EventsInput events = 11;
         EntriesInput entries = 12;
     }
@@ -301,7 +278,6 @@ message IndexedMapOutput {
         PrevEntryOutput prev_entry = 7;
         NextEntryOutput next_entry = 8;
         RemoveOutput remove = 9;
-        ClearOutput clear = 10;
         EventsOutput events = 11;
         EntriesOutput entries = 12;
     }

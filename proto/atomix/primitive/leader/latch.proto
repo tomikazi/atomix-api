@@ -29,7 +29,7 @@ message LatchRequest {
 }
 
 message LatchInput {
-    string participant_id = 2 [(gogoproto.customname) = "ParticipantID"];
+
 }
 
 message LatchResponse {
@@ -47,6 +47,7 @@ message GetRequest {
 }
 
 message GetInput {
+
 }
 
 message GetResponse {
@@ -58,25 +59,27 @@ message GetOutput {
     Latch latch = 2;
 }
 
-message EventRequest {
+message EventsRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    EventInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+    EventsInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
 }
 
-message EventInput {
+message EventsInput {
+
 }
 
-message EventResponse {
+message EventsResponse {
     atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    EventOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+    EventsOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
 }
 
-message EventOutput {
+message EventsOutput {
     Type type = 2;
     Latch latch = 3;
 
     enum Type {
-        CHANGED = 0;
+        NONE = 0;
+        CHANGE = 1;
     }
 }
 
@@ -123,7 +126,7 @@ service LeaderLatchService {
     }
 
     // Events listens for leader change events
-    rpc Events (EventRequest) returns (stream EventResponse) {
+    rpc Events (EventsRequest) returns (stream EventsResponse) {
         option (atomix.primitive.optype) = COMMAND;
     }
 

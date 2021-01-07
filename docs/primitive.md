@@ -199,7 +199,6 @@ Namespaced primitive identifier
 | ----- | ---- | ----- | ----------- |
 | type | [string](#string) |  |  |
 | name | [string](#string) |  |  |
-| namespace | [string](#string) |  |  |
 
 
 

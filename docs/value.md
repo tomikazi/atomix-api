@@ -4,10 +4,10 @@
 ## Table of Contents
 
 - [atomix/primitive/value/value.proto](#atomix/primitive/value/value.proto)
-    - [EventInput](#atomix.primitive.value.EventInput)
-    - [EventOutput](#atomix.primitive.value.EventOutput)
-    - [EventRequest](#atomix.primitive.value.EventRequest)
-    - [EventResponse](#atomix.primitive.value.EventResponse)
+    - [EventsInput](#atomix.primitive.value.EventsInput)
+    - [EventsOutput](#atomix.primitive.value.EventsOutput)
+    - [EventsRequest](#atomix.primitive.value.EventsRequest)
+    - [EventsResponse](#atomix.primitive.value.EventsResponse)
     - [GetInput](#atomix.primitive.value.GetInput)
     - [GetOutput](#atomix.primitive.value.GetOutput)
     - [GetRequest](#atomix.primitive.value.GetRequest)
@@ -22,7 +22,7 @@
     - [SnapshotRequest](#atomix.primitive.value.SnapshotRequest)
     - [SnapshotResponse](#atomix.primitive.value.SnapshotResponse)
   
-    - [EventOutput.Type](#atomix.primitive.value.EventOutput.Type)
+    - [EventsOutput.Type](#atomix.primitive.value.EventsOutput.Type)
   
   
     - [ValueService](#atomix.primitive.value.ValueService)
@@ -39,25 +39,25 @@
 
 
 
-<a name="atomix.primitive.value.EventInput"></a>
+<a name="atomix.primitive.value.EventsInput"></a>
 
-### EventInput
-
-
+### EventsInput
 
 
 
 
 
-<a name="atomix.primitive.value.EventOutput"></a>
 
-### EventOutput
+
+<a name="atomix.primitive.value.EventsOutput"></a>
+
+### EventsOutput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [EventOutput.Type](#atomix.primitive.value.EventOutput.Type) |  |  |
+| type | [EventsOutput.Type](#atomix.primitive.value.EventsOutput.Type) |  |  |
 | previous_value | [bytes](#bytes) |  |  |
 | previous_version | [uint64](#uint64) |  |  |
 | new_value | [bytes](#bytes) |  |  |
@@ -68,32 +68,32 @@
 
 
 
-<a name="atomix.primitive.value.EventRequest"></a>
+<a name="atomix.primitive.value.EventsRequest"></a>
 
-### EventRequest
+### EventsRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [EventInput](#atomix.primitive.value.EventInput) |  |  |
+| input | [EventsInput](#atomix.primitive.value.EventsInput) |  |  |
 
 
 
 
 
 
-<a name="atomix.primitive.value.EventResponse"></a>
+<a name="atomix.primitive.value.EventsResponse"></a>
 
-### EventResponse
+### EventsResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [EventOutput](#atomix.primitive.value.EventOutput) |  |  |
+| output | [EventsOutput](#atomix.primitive.value.EventsOutput) |  |  |
 
 
 
@@ -215,7 +215,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | version | [uint64](#uint64) |  |  |
-| succeeded | [bool](#bool) |  |  |
 
 
 
@@ -303,14 +302,15 @@
  
 
 
-<a name="atomix.primitive.value.EventOutput.Type"></a>
+<a name="atomix.primitive.value.EventsOutput.Type"></a>
 
-### EventOutput.Type
+### EventsOutput.Type
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| UPDATED | 0 |  |
+| NONE | 0 |  |
+| UPDATE | 1 |  |
 
 
  
@@ -327,7 +327,7 @@ ValueService implements a distributed atomic value
 | ----------- | ------------ | ------------- | ------------|
 | Set | [SetRequest](#atomix.primitive.value.SetRequest) | [SetResponse](#atomix.primitive.value.SetResponse) | Set sets the value |
 | Get | [GetRequest](#atomix.primitive.value.GetRequest) | [GetResponse](#atomix.primitive.value.GetResponse) | Get gets the value |
-| Events | [EventRequest](#atomix.primitive.value.EventRequest) | [EventResponse](#atomix.primitive.value.EventResponse) stream | Events listens for value change events |
+| Events | [EventsRequest](#atomix.primitive.value.EventsRequest) | [EventsResponse](#atomix.primitive.value.EventsResponse) stream | Events listens for value change events |
 | Snapshot | [SnapshotRequest](#atomix.primitive.value.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.value.SnapshotResponse) | Snapshot exports a snapshot of the primitive state |
 | Restore | [RestoreRequest](#atomix.primitive.value.RestoreRequest) | [RestoreResponse](#atomix.primitive.value.RestoreResponse) | Restore imports a snapshot of the primitive state |
 

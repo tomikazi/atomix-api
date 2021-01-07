@@ -8,8 +8,6 @@
     - [AppendOutput](#atomix.primitive.list.AppendOutput)
     - [AppendRequest](#atomix.primitive.list.AppendRequest)
     - [AppendResponse](#atomix.primitive.list.AppendResponse)
-    - [ClearInput](#atomix.primitive.list.ClearInput)
-    - [ClearOutput](#atomix.primitive.list.ClearOutput)
     - [ClearRequest](#atomix.primitive.list.ClearRequest)
     - [ClearResponse](#atomix.primitive.list.ClearResponse)
     - [ContainsInput](#atomix.primitive.list.ContainsInput)
@@ -20,10 +18,10 @@
     - [ElementsOutput](#atomix.primitive.list.ElementsOutput)
     - [ElementsRequest](#atomix.primitive.list.ElementsRequest)
     - [ElementsResponse](#atomix.primitive.list.ElementsResponse)
-    - [EventInput](#atomix.primitive.list.EventInput)
-    - [EventOutput](#atomix.primitive.list.EventOutput)
-    - [EventRequest](#atomix.primitive.list.EventRequest)
-    - [EventResponse](#atomix.primitive.list.EventResponse)
+    - [EventsInput](#atomix.primitive.list.EventsInput)
+    - [EventsOutput](#atomix.primitive.list.EventsOutput)
+    - [EventsRequest](#atomix.primitive.list.EventsRequest)
+    - [EventsResponse](#atomix.primitive.list.EventsResponse)
     - [GetInput](#atomix.primitive.list.GetInput)
     - [GetOutput](#atomix.primitive.list.GetOutput)
     - [GetRequest](#atomix.primitive.list.GetRequest)
@@ -42,7 +40,6 @@
     - [SetOutput](#atomix.primitive.list.SetOutput)
     - [SetRequest](#atomix.primitive.list.SetRequest)
     - [SetResponse](#atomix.primitive.list.SetResponse)
-    - [SizeInput](#atomix.primitive.list.SizeInput)
     - [SizeOutput](#atomix.primitive.list.SizeOutput)
     - [SizeRequest](#atomix.primitive.list.SizeRequest)
     - [SizeResponse](#atomix.primitive.list.SizeResponse)
@@ -50,7 +47,7 @@
     - [SnapshotRequest](#atomix.primitive.list.SnapshotRequest)
     - [SnapshotResponse](#atomix.primitive.list.SnapshotResponse)
   
-    - [EventOutput.Type](#atomix.primitive.list.EventOutput.Type)
+    - [EventsOutput.Type](#atomix.primitive.list.EventsOutput.Type)
   
   
     - [ListService](#atomix.primitive.list.ListService)
@@ -124,26 +121,6 @@
 
 
 
-<a name="atomix.primitive.list.ClearInput"></a>
-
-### ClearInput
-
-
-
-
-
-
-
-<a name="atomix.primitive.list.ClearOutput"></a>
-
-### ClearOutput
-
-
-
-
-
-
-
 <a name="atomix.primitive.list.ClearRequest"></a>
 
 ### ClearRequest
@@ -153,7 +130,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [ClearInput](#atomix.primitive.list.ClearInput) |  |  |
 
 
 
@@ -169,7 +145,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [ClearOutput](#atomix.primitive.list.ClearOutput) |  |  |
 
 
 
@@ -295,9 +270,9 @@
 
 
 
-<a name="atomix.primitive.list.EventInput"></a>
+<a name="atomix.primitive.list.EventsInput"></a>
 
-### EventInput
+### EventsInput
 
 
 
@@ -310,15 +285,15 @@
 
 
 
-<a name="atomix.primitive.list.EventOutput"></a>
+<a name="atomix.primitive.list.EventsOutput"></a>
 
-### EventOutput
+### EventsOutput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [EventOutput.Type](#atomix.primitive.list.EventOutput.Type) |  |  |
+| type | [EventsOutput.Type](#atomix.primitive.list.EventsOutput.Type) |  |  |
 | index | [uint32](#uint32) |  |  |
 | value | [string](#string) |  |  |
 
@@ -327,32 +302,32 @@
 
 
 
-<a name="atomix.primitive.list.EventRequest"></a>
+<a name="atomix.primitive.list.EventsRequest"></a>
 
-### EventRequest
+### EventsRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [EventInput](#atomix.primitive.list.EventInput) |  |  |
+| input | [EventsInput](#atomix.primitive.list.EventsInput) |  |  |
 
 
 
 
 
 
-<a name="atomix.primitive.list.EventResponse"></a>
+<a name="atomix.primitive.list.EventsResponse"></a>
 
-### EventResponse
+### EventsResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [EventOutput](#atomix.primitive.list.EventOutput) |  |  |
+| output | [EventsOutput](#atomix.primitive.list.EventsOutput) |  |  |
 
 
 
@@ -630,16 +605,6 @@
 
 
 
-<a name="atomix.primitive.list.SizeInput"></a>
-
-### SizeInput
-
-
-
-
-
-
-
 <a name="atomix.primitive.list.SizeOutput"></a>
 
 ### SizeOutput
@@ -664,7 +629,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [SizeInput](#atomix.primitive.list.SizeInput) |  |  |
 
 
 
@@ -735,16 +699,17 @@
  
 
 
-<a name="atomix.primitive.list.EventOutput.Type"></a>
+<a name="atomix.primitive.list.EventsOutput.Type"></a>
 
-### EventOutput.Type
+### EventsOutput.Type
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | NONE | 0 |  |
-| ADDED | 1 |  |
-| REMOVED | 2 |  |
+| ADD | 1 |  |
+| REMOVE | 2 |  |
+| REPLAY | 3 |  |
 
 
  
@@ -767,7 +732,7 @@ ListService implements a distributed list
 | Set | [SetRequest](#atomix.primitive.list.SetRequest) | [SetResponse](#atomix.primitive.list.SetResponse) | Set sets the value at an index in the list |
 | Remove | [RemoveRequest](#atomix.primitive.list.RemoveRequest) | [RemoveResponse](#atomix.primitive.list.RemoveResponse) | Remove removes an element from the list |
 | Clear | [ClearRequest](#atomix.primitive.list.ClearRequest) | [ClearResponse](#atomix.primitive.list.ClearResponse) | Clear removes all elements from the list |
-| Events | [EventRequest](#atomix.primitive.list.EventRequest) | [EventResponse](#atomix.primitive.list.EventResponse) stream | Events listens for change events |
+| Events | [EventsRequest](#atomix.primitive.list.EventsRequest) | [EventsResponse](#atomix.primitive.list.EventsResponse) stream | Events listens for change events |
 | Elements | [ElementsRequest](#atomix.primitive.list.ElementsRequest) | [ElementsResponse](#atomix.primitive.list.ElementsResponse) stream | Elements streams all elements in the list |
 | Snapshot | [SnapshotRequest](#atomix.primitive.list.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.list.SnapshotResponse) stream | Snapshot exports a snapshot of the primitive state |
 | Restore | [RestoreRequest](#atomix.primitive.list.RestoreRequest) stream | [RestoreResponse](#atomix.primitive.list.RestoreResponse) | Restore imports a snapshot of the primitive state |

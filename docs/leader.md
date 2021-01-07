@@ -4,10 +4,10 @@
 ## Table of Contents
 
 - [atomix/primitive/leader/latch.proto](#atomix/primitive/leader/latch.proto)
-    - [EventInput](#atomix.primitive.leader.EventInput)
-    - [EventOutput](#atomix.primitive.leader.EventOutput)
-    - [EventRequest](#atomix.primitive.leader.EventRequest)
-    - [EventResponse](#atomix.primitive.leader.EventResponse)
+    - [EventsInput](#atomix.primitive.leader.EventsInput)
+    - [EventsOutput](#atomix.primitive.leader.EventsOutput)
+    - [EventsRequest](#atomix.primitive.leader.EventsRequest)
+    - [EventsResponse](#atomix.primitive.leader.EventsResponse)
     - [GetInput](#atomix.primitive.leader.GetInput)
     - [GetOutput](#atomix.primitive.leader.GetOutput)
     - [GetRequest](#atomix.primitive.leader.GetRequest)
@@ -23,7 +23,7 @@
     - [SnapshotRequest](#atomix.primitive.leader.SnapshotRequest)
     - [SnapshotResponse](#atomix.primitive.leader.SnapshotResponse)
   
-    - [EventOutput.Type](#atomix.primitive.leader.EventOutput.Type)
+    - [EventsOutput.Type](#atomix.primitive.leader.EventsOutput.Type)
   
   
     - [LeaderLatchService](#atomix.primitive.leader.LeaderLatchService)
@@ -40,25 +40,25 @@
 
 
 
-<a name="atomix.primitive.leader.EventInput"></a>
+<a name="atomix.primitive.leader.EventsInput"></a>
 
-### EventInput
-
-
+### EventsInput
 
 
 
 
 
-<a name="atomix.primitive.leader.EventOutput"></a>
 
-### EventOutput
+
+<a name="atomix.primitive.leader.EventsOutput"></a>
+
+### EventsOutput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [EventOutput.Type](#atomix.primitive.leader.EventOutput.Type) |  |  |
+| type | [EventsOutput.Type](#atomix.primitive.leader.EventsOutput.Type) |  |  |
 | latch | [Latch](#atomix.primitive.leader.Latch) |  |  |
 
 
@@ -66,32 +66,32 @@
 
 
 
-<a name="atomix.primitive.leader.EventRequest"></a>
+<a name="atomix.primitive.leader.EventsRequest"></a>
 
-### EventRequest
+### EventsRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [EventInput](#atomix.primitive.leader.EventInput) |  |  |
+| input | [EventsInput](#atomix.primitive.leader.EventsInput) |  |  |
 
 
 
 
 
 
-<a name="atomix.primitive.leader.EventResponse"></a>
+<a name="atomix.primitive.leader.EventsResponse"></a>
 
-### EventResponse
+### EventsResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [EventOutput](#atomix.primitive.leader.EventOutput) |  |  |
+| output | [EventsOutput](#atomix.primitive.leader.EventsOutput) |  |  |
 
 
 
@@ -176,11 +176,6 @@
 
 ### LatchInput
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| participant_id | [string](#string) |  |  |
 
 
 
@@ -313,14 +308,15 @@
  
 
 
-<a name="atomix.primitive.leader.EventOutput.Type"></a>
+<a name="atomix.primitive.leader.EventsOutput.Type"></a>
 
-### EventOutput.Type
+### EventsOutput.Type
 
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| CHANGED | 0 |  |
+| NONE | 0 |  |
+| CHANGE | 1 |  |
 
 
  
@@ -337,7 +333,7 @@ Leader latch service
 | ----------- | ------------ | ------------- | ------------|
 | Latch | [LatchRequest](#atomix.primitive.leader.LatchRequest) | [LatchResponse](#atomix.primitive.leader.LatchResponse) | Latch attempts to acquire the leader latch |
 | Get | [GetRequest](#atomix.primitive.leader.GetRequest) | [GetResponse](#atomix.primitive.leader.GetResponse) | Get gets the current leader |
-| Events | [EventRequest](#atomix.primitive.leader.EventRequest) | [EventResponse](#atomix.primitive.leader.EventResponse) stream | Events listens for leader change events |
+| Events | [EventsRequest](#atomix.primitive.leader.EventsRequest) | [EventsResponse](#atomix.primitive.leader.EventsResponse) stream | Events listens for leader change events |
 | Snapshot | [SnapshotRequest](#atomix.primitive.leader.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.leader.SnapshotResponse) | Snapshot exports a snapshot of the primitive state |
 | Restore | [RestoreRequest](#atomix.primitive.leader.RestoreRequest) | [RestoreResponse](#atomix.primitive.leader.RestoreResponse) | Restore imports a snapshot of the primitive state |
 

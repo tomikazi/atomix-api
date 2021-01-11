@@ -20,7 +20,7 @@ package atomix.primitive.log;
 
 import "atomix/primitive/primitive.proto";
 import "atomix/primitive/descriptor.proto";
-import "atomix/primitive/meta/timestamp.proto";
+import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
 message ExistsRequest {
@@ -70,8 +70,7 @@ message AppendResponse {
 }
 
 message AppendOutput {
-    uint64 index = 2;
-    atomix.primitive.meta.Timestamp timestamp = 3 [(gogoproto.nullable) = false];
+    Entry entry = 1;
 }
 
 message GetRequest {
@@ -89,9 +88,7 @@ message GetResponse {
 }
 
 message GetOutput {
-    uint64 index = 2;
-    bytes value = 3;
-    atomix.primitive.meta.Timestamp timestamp = 5 [(gogoproto.nullable) = false];
+    Entry entry = 1;
 }
 
 message FirstEntryRequest {
@@ -104,9 +101,7 @@ message FirstEntryResponse {
 }
 
 message FirstEntryOutput {
-    uint64 index = 2;
-    bytes value = 3;
-    atomix.primitive.meta.Timestamp timestamp = 4 [(gogoproto.nullable) = false];
+    Entry entry = 1;
 }
 
 message LastEntryRequest {
@@ -120,9 +115,7 @@ message LastEntryResponse {
 }
 
 message LastEntryOutput {
-    uint64 index = 2;
-    bytes value = 3;
-    atomix.primitive.meta.Timestamp timestamp = 4 [(gogoproto.nullable) = false];
+    Entry entry = 1;
 
 }
 
@@ -141,9 +134,7 @@ message PrevEntryResponse {
 }
 
 message PrevEntryOutput {
-    uint64 index = 2;
-    bytes value = 3;
-    atomix.primitive.meta.Timestamp timestamp = 4 [(gogoproto.nullable) = false];
+    Entry entry = 1;
 }
 
 message NextEntryRequest {
@@ -161,9 +152,7 @@ message NextEntryResponse {
 }
 
 message NextEntryOutput {
-    uint64 index = 2;
-    bytes value = 3;
-    atomix.primitive.meta.Timestamp timestamp = 4 [(gogoproto.nullable) = false];
+    Entry entry = 1;
 }
 
 message RemoveRequest {
@@ -172,9 +161,7 @@ message RemoveRequest {
 }
 
 message RemoveInput {
-    uint64 index = 2;
-    bytes value = 3;
-    atomix.primitive.meta.Timestamp timestamp = 4 [(gogoproto.nullable) = false];
+    Entry entry = 1;
 }
 
 message RemoveResponse {
@@ -183,8 +170,7 @@ message RemoveResponse {
 }
 
 message RemoveOutput {
-    uint64 index = 2;
-    bytes previous_value = 3;
+    Entry entry = 1;
 }
 
 message ClearRequest {
@@ -209,9 +195,7 @@ message EntriesResponse {
 }
 
 message EntriesOutput {
-    uint64 index = 2;
-    bytes value = 3;
-    atomix.primitive.meta.Timestamp timestamp = 4 [(gogoproto.nullable) = false];
+    Entry entry = 1;
 }
 
 message EventsRequest {
@@ -230,10 +214,8 @@ message EventsResponse {
 }
 
 message EventsOutput {
-    Type type = 2;
-    uint64 index = 3;
-    bytes value = 4;
-    atomix.primitive.meta.Timestamp timestamp = 5 [(gogoproto.nullable) = false];
+    Type type = 1;
+    Entry entry = 2;
 
     enum Type {
         NONE = 0;
@@ -244,8 +226,9 @@ message EventsOutput {
 }
 
 message Entry {
-    uint64 index = 1;
-    bytes value = 2;
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
+    uint64 index = 2;
+    bytes value = 3;
 }
 
 message SnapshotEntry {

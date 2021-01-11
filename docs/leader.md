@@ -163,7 +163,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [atomix.primitive.meta.Epoch](#atomix.primitive.meta.Epoch) |  |  |
+| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
 | leader | [string](#string) |  |  |
 | participants | [string](#string) | repeated |  |
 

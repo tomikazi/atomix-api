@@ -3,65 +3,48 @@
 
 ## Table of Contents
 
-- [atomix/storage/storage.proto](#atomix/storage/storage.proto)
-    - [StorageConfig](#atomix.storage.StorageConfig)
-    - [StorageId](#atomix.storage.StorageId)
-    - [StoragePartition](#atomix.storage.StoragePartition)
-    - [StorageReplica](#atomix.storage.StorageReplica)
-    - [UpdateRequest](#atomix.storage.UpdateRequest)
-    - [UpdateResponse](#atomix.storage.UpdateResponse)
+- [atomix/protocol/protocol.proto](#atomix/protocol/protocol.proto)
+    - [ProtocolConfig](#atomix.protocol.ProtocolConfig)
+    - [ProtocolPartition](#atomix.protocol.ProtocolPartition)
+    - [ProtocolReplica](#atomix.protocol.ProtocolReplica)
+    - [UpdateConfigRequest](#atomix.protocol.UpdateConfigRequest)
+    - [UpdateConfigResponse](#atomix.protocol.UpdateConfigResponse)
   
   
   
-    - [StorageService](#atomix.storage.StorageService)
+    - [ProtocolConfigService](#atomix.protocol.ProtocolConfigService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/storage/storage.proto"></a>
+<a name="atomix/protocol/protocol.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/storage/storage.proto
+## atomix/protocol/protocol.proto
 
 
 
-<a name="atomix.storage.StorageConfig"></a>
+<a name="atomix.protocol.ProtocolConfig"></a>
 
-### StorageConfig
-Storage configuration
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| replicas | [StorageReplica](#atomix.storage.StorageReplica) | repeated | nodes is a list of storage replicas |
-| partitions | [StoragePartition](#atomix.storage.StoragePartition) | repeated | partitions is a list of partitions owned by the replicas |
-
-
-
-
-
-
-<a name="atomix.storage.StorageId"></a>
-
-### StorageId
-Storage identifier
+### ProtocolConfig
+Protocol configuration
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | name is the name of the storage |
-| namespace | [string](#string) |  | namespace is the namespace to which the storage belongs |
+| replicas | [ProtocolReplica](#atomix.protocol.ProtocolReplica) | repeated | nodes is a list of replicas |
+| partitions | [ProtocolPartition](#atomix.protocol.ProtocolPartition) | repeated | partitions is a list of partitions owned by the replicas |
 
 
 
 
 
 
-<a name="atomix.storage.StoragePartition"></a>
+<a name="atomix.protocol.ProtocolPartition"></a>
 
-### StoragePartition
+### ProtocolPartition
 Partition info
 
 
@@ -75,9 +58,9 @@ Partition info
 
 
 
-<a name="atomix.storage.StorageReplica"></a>
+<a name="atomix.protocol.ProtocolReplica"></a>
 
-### StorageReplica
+### ProtocolReplica
 Replica configuration
 
 
@@ -94,24 +77,24 @@ Replica configuration
 
 
 
-<a name="atomix.storage.UpdateRequest"></a>
+<a name="atomix.protocol.UpdateConfigRequest"></a>
 
-### UpdateRequest
+### UpdateConfigRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| config | [StorageConfig](#atomix.storage.StorageConfig) |  |  |
+| config | [ProtocolConfig](#atomix.protocol.ProtocolConfig) |  |  |
 
 
 
 
 
 
-<a name="atomix.storage.UpdateResponse"></a>
+<a name="atomix.protocol.UpdateConfigResponse"></a>
 
-### UpdateResponse
+### UpdateConfigResponse
 
 
 
@@ -125,14 +108,14 @@ Replica configuration
  
 
 
-<a name="atomix.storage.StorageService"></a>
+<a name="atomix.protocol.ProtocolConfigService"></a>
 
-### StorageService
-Atomix storage service
+### ProtocolConfigService
+Atomix protocol configuration service
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Update | [UpdateRequest](#atomix.storage.UpdateRequest) | [UpdateResponse](#atomix.storage.UpdateResponse) | Update updates the storage configuration |
+| UpdateConfig | [UpdateConfigRequest](#atomix.protocol.UpdateConfigRequest) | [UpdateConfigResponse](#atomix.protocol.UpdateConfigResponse) | UpdateConfig updates the protocol configuration |
 
  
 

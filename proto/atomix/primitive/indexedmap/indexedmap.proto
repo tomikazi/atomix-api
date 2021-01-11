@@ -21,7 +21,7 @@ package atomix.primitive.indexedmap;
 import "google/protobuf/duration.proto";
 import "atomix/primitive/primitive.proto";
 import "atomix/primitive/descriptor.proto";
-import "atomix/primitive/meta/timestamp.proto";
+import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
 message ExistsRequest {
@@ -161,9 +161,7 @@ message RemoveRequest {
 }
 
 message RemoveInput {
-    uint64 index = 1;
-    string key = 2;
-    atomix.primitive.meta.Timestamp timestamp = 3;
+    Entry entry = 1;
 }
 
 message RemoveResponse {
@@ -240,7 +238,7 @@ message Entry {
 
 message Value {
     bytes value = 1;
-    atomix.primitive.meta.Timestamp timestamp = 2 [(gogoproto.nullable) = false];
+    atomix.primitive.meta.ObjectMeta meta = 2 [(gogoproto.nullable) = false];
     google.protobuf.Duration ttl = 3 [(gogoproto.customname) = "TTL", (gogoproto.stdduration) = true];
 }
 

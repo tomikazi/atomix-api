@@ -12,14 +12,12 @@ import (
 	io "io"
 	math "math"
 	math_bits "math/bits"
-	time "time"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
 var _ = proto.Marshal
 var _ = fmt.Errorf
 var _ = math.Inf
-var _ = time.Kitchen
 
 // This is a compile-time assertion to ensure that this generated file
 // is compatible with the proto package it is being compiled against.
@@ -29,9 +27,11 @@ const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type Timestamp struct {
 	// Types that are valid to be assigned to Timestamp:
+	//	*Timestamp_PhysicalTimestamp
 	//	*Timestamp_LogicalTimestamp
-	//	*Timestamp_WallClockTimestamp
+	//	*Timestamp_VectorTimestamp
 	//	*Timestamp_EpochTimestamp
+	//	*Timestamp_Revision
 	Timestamp isTimestamp_Timestamp `protobuf_oneof:"timestamp"`
 }
 
@@ -74,23 +74,38 @@ type isTimestamp_Timestamp interface {
 	Size() int
 }
 
-type Timestamp_LogicalTimestamp struct {
-	LogicalTimestamp *LogicalTimestamp `protobuf:"bytes,1,opt,name=logical_timestamp,json=logicalTimestamp,proto3,oneof" json:"logical_timestamp,omitempty"`
+type Timestamp_PhysicalTimestamp struct {
+	PhysicalTimestamp *PhysicalTimestamp `protobuf:"bytes,1,opt,name=physical_timestamp,json=physicalTimestamp,proto3,oneof" json:"physical_timestamp,omitempty"`
 }
-type Timestamp_WallClockTimestamp struct {
-	WallClockTimestamp *WallClockTimestamp `protobuf:"bytes,2,opt,name=wall_clock_timestamp,json=wallClockTimestamp,proto3,oneof" json:"wall_clock_timestamp,omitempty"`
+type Timestamp_LogicalTimestamp struct {
+	LogicalTimestamp *LogicalTimestamp `protobuf:"bytes,2,opt,name=logical_timestamp,json=logicalTimestamp,proto3,oneof" json:"logical_timestamp,omitempty"`
+}
+type Timestamp_VectorTimestamp struct {
+	VectorTimestamp *VectorTimestamp `protobuf:"bytes,3,opt,name=vector_timestamp,json=vectorTimestamp,proto3,oneof" json:"vector_timestamp,omitempty"`
 }
 type Timestamp_EpochTimestamp struct {
-	EpochTimestamp *EpochTimestamp `protobuf:"bytes,3,opt,name=epoch_timestamp,json=epochTimestamp,proto3,oneof" json:"epoch_timestamp,omitempty"`
+	EpochTimestamp *EpochTimestamp `protobuf:"bytes,4,opt,name=epoch_timestamp,json=epochTimestamp,proto3,oneof" json:"epoch_timestamp,omitempty"`
+}
+type Timestamp_Revision struct {
+	Revision *Revision `protobuf:"bytes,5,opt,name=revision,proto3,oneof" json:"revision,omitempty"`
 }
 
-func (*Timestamp_LogicalTimestamp) isTimestamp_Timestamp()   {}
-func (*Timestamp_WallClockTimestamp) isTimestamp_Timestamp() {}
-func (*Timestamp_EpochTimestamp) isTimestamp_Timestamp()     {}
+func (*Timestamp_PhysicalTimestamp) isTimestamp_Timestamp() {}
+func (*Timestamp_LogicalTimestamp) isTimestamp_Timestamp()  {}
+func (*Timestamp_VectorTimestamp) isTimestamp_Timestamp()   {}
+func (*Timestamp_EpochTimestamp) isTimestamp_Timestamp()    {}
+func (*Timestamp_Revision) isTimestamp_Timestamp()          {}
 
 func (m *Timestamp) GetTimestamp() isTimestamp_Timestamp {
 	if m != nil {
 		return m.Timestamp
+	}
+	return nil
+}
+
+func (m *Timestamp) GetPhysicalTimestamp() *PhysicalTimestamp {
+	if x, ok := m.GetTimestamp().(*Timestamp_PhysicalTimestamp); ok {
+		return x.PhysicalTimestamp
 	}
 	return nil
 }
@@ -102,9 +117,9 @@ func (m *Timestamp) GetLogicalTimestamp() *LogicalTimestamp {
 	return nil
 }
 
-func (m *Timestamp) GetWallClockTimestamp() *WallClockTimestamp {
-	if x, ok := m.GetTimestamp().(*Timestamp_WallClockTimestamp); ok {
-		return x.WallClockTimestamp
+func (m *Timestamp) GetVectorTimestamp() *VectorTimestamp {
+	if x, ok := m.GetTimestamp().(*Timestamp_VectorTimestamp); ok {
+		return x.VectorTimestamp
 	}
 	return nil
 }
@@ -116,17 +131,26 @@ func (m *Timestamp) GetEpochTimestamp() *EpochTimestamp {
 	return nil
 }
 
+func (m *Timestamp) GetRevision() *Revision {
+	if x, ok := m.GetTimestamp().(*Timestamp_Revision); ok {
+		return x.Revision
+	}
+	return nil
+}
+
 // XXX_OneofWrappers is for the internal use of the proto package.
 func (*Timestamp) XXX_OneofWrappers() []interface{} {
 	return []interface{}{
+		(*Timestamp_PhysicalTimestamp)(nil),
 		(*Timestamp_LogicalTimestamp)(nil),
-		(*Timestamp_WallClockTimestamp)(nil),
+		(*Timestamp_VectorTimestamp)(nil),
 		(*Timestamp_EpochTimestamp)(nil),
+		(*Timestamp_Revision)(nil),
 	}
 }
 
 type LogicalTimestamp struct {
-	Value uint64 `protobuf:"varint,1,opt,name=value,proto3" json:"value,omitempty"`
+	Time LogicalTime `protobuf:"varint,1,opt,name=time,proto3,casttype=LogicalTime" json:"time,omitempty"`
 }
 
 func (m *LogicalTimestamp) Reset()         { *m = LogicalTimestamp{} }
@@ -162,29 +186,29 @@ func (m *LogicalTimestamp) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_LogicalTimestamp proto.InternalMessageInfo
 
-func (m *LogicalTimestamp) GetValue() uint64 {
+func (m *LogicalTimestamp) GetTime() LogicalTime {
 	if m != nil {
-		return m.Value
+		return m.Time
 	}
 	return 0
 }
 
-type WallClockTimestamp struct {
-	Value time.Time `protobuf:"bytes,1,opt,name=value,proto3,stdtime" json:"value"`
+type VectorTimestamp struct {
+	Time []LogicalTime `protobuf:"varint,1,rep,packed,name=time,proto3,casttype=LogicalTime" json:"time,omitempty"`
 }
 
-func (m *WallClockTimestamp) Reset()         { *m = WallClockTimestamp{} }
-func (m *WallClockTimestamp) String() string { return proto.CompactTextString(m) }
-func (*WallClockTimestamp) ProtoMessage()    {}
-func (*WallClockTimestamp) Descriptor() ([]byte, []int) {
+func (m *VectorTimestamp) Reset()         { *m = VectorTimestamp{} }
+func (m *VectorTimestamp) String() string { return proto.CompactTextString(m) }
+func (*VectorTimestamp) ProtoMessage()    {}
+func (*VectorTimestamp) Descriptor() ([]byte, []int) {
 	return fileDescriptor_4d95b12fc10183fd, []int{2}
 }
-func (m *WallClockTimestamp) XXX_Unmarshal(b []byte) error {
+func (m *VectorTimestamp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *WallClockTimestamp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *VectorTimestamp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_WallClockTimestamp.Marshal(b, m, deterministic)
+		return xxx_messageInfo_VectorTimestamp.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -194,34 +218,78 @@ func (m *WallClockTimestamp) XXX_Marshal(b []byte, deterministic bool) ([]byte, 
 		return b[:n], nil
 	}
 }
-func (m *WallClockTimestamp) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_WallClockTimestamp.Merge(m, src)
+func (m *VectorTimestamp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_VectorTimestamp.Merge(m, src)
 }
-func (m *WallClockTimestamp) XXX_Size() int {
+func (m *VectorTimestamp) XXX_Size() int {
 	return m.Size()
 }
-func (m *WallClockTimestamp) XXX_DiscardUnknown() {
-	xxx_messageInfo_WallClockTimestamp.DiscardUnknown(m)
+func (m *VectorTimestamp) XXX_DiscardUnknown() {
+	xxx_messageInfo_VectorTimestamp.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_WallClockTimestamp proto.InternalMessageInfo
+var xxx_messageInfo_VectorTimestamp proto.InternalMessageInfo
 
-func (m *WallClockTimestamp) GetValue() time.Time {
+func (m *VectorTimestamp) GetTime() []LogicalTime {
 	if m != nil {
-		return m.Value
+		return m.Time
 	}
-	return time.Time{}
+	return nil
+}
+
+type PhysicalTimestamp struct {
+	Time PhysicalTime `protobuf:"bytes,1,opt,name=time,proto3,casttype=PhysicalTime,stdtime" json:"time"`
+}
+
+func (m *PhysicalTimestamp) Reset()         { *m = PhysicalTimestamp{} }
+func (m *PhysicalTimestamp) String() string { return proto.CompactTextString(m) }
+func (*PhysicalTimestamp) ProtoMessage()    {}
+func (*PhysicalTimestamp) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4d95b12fc10183fd, []int{3}
+}
+func (m *PhysicalTimestamp) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *PhysicalTimestamp) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_PhysicalTimestamp.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *PhysicalTimestamp) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_PhysicalTimestamp.Merge(m, src)
+}
+func (m *PhysicalTimestamp) XXX_Size() int {
+	return m.Size()
+}
+func (m *PhysicalTimestamp) XXX_DiscardUnknown() {
+	xxx_messageInfo_PhysicalTimestamp.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_PhysicalTimestamp proto.InternalMessageInfo
+
+func (m *PhysicalTimestamp) GetTime() PhysicalTime {
+	if m != nil {
+		return m.Time
+	}
+	return PhysicalTime{}
 }
 
 type Epoch struct {
-	Value uint64 `protobuf:"varint,1,opt,name=value,proto3" json:"value,omitempty"`
+	Num EpochNum `protobuf:"varint,1,opt,name=num,proto3,casttype=EpochNum" json:"num,omitempty"`
 }
 
 func (m *Epoch) Reset()         { *m = Epoch{} }
 func (m *Epoch) String() string { return proto.CompactTextString(m) }
 func (*Epoch) ProtoMessage()    {}
 func (*Epoch) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4d95b12fc10183fd, []int{3}
+	return fileDescriptor_4d95b12fc10183fd, []int{4}
 }
 func (m *Epoch) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -250,23 +318,23 @@ func (m *Epoch) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Epoch proto.InternalMessageInfo
 
-func (m *Epoch) GetValue() uint64 {
+func (m *Epoch) GetNum() EpochNum {
 	if m != nil {
-		return m.Value
+		return m.Num
 	}
 	return 0
 }
 
 type EpochTimestamp struct {
-	Epoch          Epoch  `protobuf:"bytes,1,opt,name=epoch,proto3" json:"epoch"`
-	SequenceNumber uint64 `protobuf:"varint,2,opt,name=sequence_number,json=sequenceNumber,proto3" json:"sequence_number,omitempty"`
+	Epoch    Epoch    `protobuf:"bytes,1,opt,name=epoch,proto3" json:"epoch"`
+	Sequence Sequence `protobuf:"bytes,2,opt,name=sequence,proto3" json:"sequence"`
 }
 
 func (m *EpochTimestamp) Reset()         { *m = EpochTimestamp{} }
 func (m *EpochTimestamp) String() string { return proto.CompactTextString(m) }
 func (*EpochTimestamp) ProtoMessage()    {}
 func (*EpochTimestamp) Descriptor() ([]byte, []int) {
-	return fileDescriptor_4d95b12fc10183fd, []int{4}
+	return fileDescriptor_4d95b12fc10183fd, []int{5}
 }
 func (m *EpochTimestamp) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -302,9 +370,97 @@ func (m *EpochTimestamp) GetEpoch() Epoch {
 	return Epoch{}
 }
 
-func (m *EpochTimestamp) GetSequenceNumber() uint64 {
+func (m *EpochTimestamp) GetSequence() Sequence {
 	if m != nil {
-		return m.SequenceNumber
+		return m.Sequence
+	}
+	return Sequence{}
+}
+
+type Sequence struct {
+	Num SequenceNum `protobuf:"varint,1,opt,name=num,proto3,casttype=SequenceNum" json:"num,omitempty"`
+}
+
+func (m *Sequence) Reset()         { *m = Sequence{} }
+func (m *Sequence) String() string { return proto.CompactTextString(m) }
+func (*Sequence) ProtoMessage()    {}
+func (*Sequence) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4d95b12fc10183fd, []int{6}
+}
+func (m *Sequence) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Sequence) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Sequence.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Sequence) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Sequence.Merge(m, src)
+}
+func (m *Sequence) XXX_Size() int {
+	return m.Size()
+}
+func (m *Sequence) XXX_DiscardUnknown() {
+	xxx_messageInfo_Sequence.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Sequence proto.InternalMessageInfo
+
+func (m *Sequence) GetNum() SequenceNum {
+	if m != nil {
+		return m.Num
+	}
+	return 0
+}
+
+type Revision struct {
+	Num RevisionNum `protobuf:"varint,1,opt,name=num,proto3,casttype=RevisionNum" json:"num,omitempty"`
+}
+
+func (m *Revision) Reset()         { *m = Revision{} }
+func (m *Revision) String() string { return proto.CompactTextString(m) }
+func (*Revision) ProtoMessage()    {}
+func (*Revision) Descriptor() ([]byte, []int) {
+	return fileDescriptor_4d95b12fc10183fd, []int{7}
+}
+func (m *Revision) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *Revision) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_Revision.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *Revision) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Revision.Merge(m, src)
+}
+func (m *Revision) XXX_Size() int {
+	return m.Size()
+}
+func (m *Revision) XXX_DiscardUnknown() {
+	xxx_messageInfo_Revision.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Revision proto.InternalMessageInfo
+
+func (m *Revision) GetNum() RevisionNum {
+	if m != nil {
+		return m.Num
 	}
 	return 0
 }
@@ -312,9 +468,12 @@ func (m *EpochTimestamp) GetSequenceNumber() uint64 {
 func init() {
 	proto.RegisterType((*Timestamp)(nil), "atomix.primitive.meta.Timestamp")
 	proto.RegisterType((*LogicalTimestamp)(nil), "atomix.primitive.meta.LogicalTimestamp")
-	proto.RegisterType((*WallClockTimestamp)(nil), "atomix.primitive.meta.WallClockTimestamp")
+	proto.RegisterType((*VectorTimestamp)(nil), "atomix.primitive.meta.VectorTimestamp")
+	proto.RegisterType((*PhysicalTimestamp)(nil), "atomix.primitive.meta.PhysicalTimestamp")
 	proto.RegisterType((*Epoch)(nil), "atomix.primitive.meta.Epoch")
 	proto.RegisterType((*EpochTimestamp)(nil), "atomix.primitive.meta.EpochTimestamp")
+	proto.RegisterType((*Sequence)(nil), "atomix.primitive.meta.Sequence")
+	proto.RegisterType((*Revision)(nil), "atomix.primitive.meta.Revision")
 }
 
 func init() {
@@ -322,30 +481,37 @@ func init() {
 }
 
 var fileDescriptor_4d95b12fc10183fd = []byte{
-	// 363 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x91, 0xc1, 0x4a, 0x02, 0x41,
-	0x1c, 0xc6, 0x77, 0x4d, 0x23, 0xff, 0x82, 0xda, 0x60, 0x20, 0x52, 0x6b, 0x08, 0xa2, 0x5d, 0x66,
-	0xc1, 0x2e, 0xd1, 0xd1, 0x08, 0x3a, 0x44, 0xc8, 0x12, 0x75, 0x0a, 0x19, 0x97, 0x69, 0x5b, 0x9a,
-	0x75, 0x36, 0x9d, 0xd5, 0x1e, 0xc3, 0x57, 0xe8, 0x6d, 0x3c, 0x7a, 0xec, 0x54, 0xa1, 0x2f, 0x12,
-	0x3b, 0xd3, 0x6e, 0xab, 0xb6, 0xdd, 0x66, 0x3e, 0xbe, 0xff, 0xef, 0x9b, 0x6f, 0xfe, 0xd0, 0x24,
-	0x82, 0x7b, 0xee, 0xab, 0xe9, 0x8f, 0x5c, 0xcf, 0x15, 0xee, 0x84, 0x9a, 0x1e, 0x15, 0xc4, 0x14,
-	0xae, 0x47, 0xc7, 0x82, 0x78, 0x3e, 0xf6, 0x47, 0x5c, 0x70, 0x74, 0xa0, 0x6c, 0x38, 0xb6, 0xe1,
-	0xd0, 0x56, 0xab, 0x3b, 0x9c, 0x3b, 0x8c, 0x9a, 0xd2, 0x34, 0x08, 0x1e, 0x37, 0xe7, 0x6a, 0x15,
-	0x87, 0x3b, 0x5c, 0x1e, 0xcd, 0xf0, 0xa4, 0xd4, 0xc6, 0x5b, 0x06, 0xf2, 0xb7, 0x91, 0x13, 0xdd,
-	0xc1, 0x3e, 0xe3, 0x8e, 0x6b, 0x13, 0xd6, 0x8f, 0xc7, 0xab, 0xfa, 0xb1, 0xde, 0x2e, 0x74, 0x5a,
-	0xf8, 0xcf, 0x5c, 0x7c, 0xad, 0xfc, 0x31, 0xe3, 0x4a, 0xb3, 0xca, 0x6c, 0x43, 0x43, 0x0f, 0x50,
-	0x99, 0x12, 0xc6, 0xfa, 0x36, 0xe3, 0xf6, 0x73, 0x02, 0x9d, 0x91, 0xe8, 0x93, 0x14, 0xf4, 0x3d,
-	0x61, 0xec, 0x22, 0x9c, 0x48, 0xc2, 0xd1, 0x74, 0x4b, 0x45, 0x3d, 0x28, 0x51, 0x9f, 0xdb, 0x4f,
-	0x09, 0xf2, 0x8e, 0x24, 0x37, 0x53, 0xc8, 0x97, 0xa1, 0x3b, 0x49, 0x2d, 0xd2, 0x35, 0xa5, 0x5b,
-	0x80, 0x7c, 0xcc, 0x6a, 0xb4, 0xa1, 0xbc, 0xd9, 0x12, 0x55, 0x20, 0x37, 0x21, 0x2c, 0xa0, 0xf2,
-	0x77, 0xb2, 0x96, 0xba, 0x34, 0x7a, 0x80, 0xb6, 0x1f, 0x8d, 0xce, 0x93, 0xde, 0x42, 0xa7, 0x86,
-	0xd5, 0xaa, 0x70, 0xb4, 0x2a, 0xfc, 0x9b, 0xbb, 0x37, 0xff, 0xa8, 0x6b, 0xb3, 0xcf, 0xba, 0x1e,
-	0x11, 0x8f, 0x20, 0x27, 0x1f, 0x9b, 0x12, 0x38, 0x86, 0xe2, 0x7a, 0x17, 0x74, 0x06, 0x39, 0xd9,
-	0xe5, 0x27, 0xec, 0xf0, 0xbf, 0x1f, 0xe8, 0x66, 0xc3, 0x38, 0x4b, 0x0d, 0xa0, 0x16, 0x94, 0xc6,
-	0xf4, 0x25, 0xa0, 0x43, 0x9b, 0xf6, 0x87, 0x81, 0x37, 0xa0, 0x23, 0xb9, 0x9f, 0xac, 0x55, 0x8c,
-	0xe4, 0x1b, 0xa9, 0x76, 0xab, 0xf3, 0xa5, 0xa1, 0x2f, 0x96, 0x86, 0xfe, 0xb5, 0x34, 0xf4, 0xd9,
-	0xca, 0xd0, 0x16, 0x2b, 0x43, 0x7b, 0x5f, 0x19, 0xda, 0x60, 0x57, 0x56, 0x3a, 0xfd, 0x0e, 0x00,
-	0x00, 0xff, 0xff, 0x2a, 0xe8, 0xbd, 0x09, 0xcb, 0x02, 0x00, 0x00,
+	// 470 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x7c, 0x92, 0xcf, 0x6a, 0xd4, 0x50,
+	0x14, 0x87, 0x13, 0x67, 0x46, 0xd2, 0x33, 0xa5, 0x33, 0x73, 0x51, 0x18, 0x06, 0x49, 0x34, 0x52,
+	0xdb, 0x4d, 0x6f, 0xa0, 0x82, 0xba, 0x71, 0x61, 0x40, 0x98, 0x85, 0x48, 0x49, 0xa5, 0xe0, 0x42,
+	0x24, 0x0d, 0xd7, 0xf4, 0x42, 0x32, 0x37, 0xe6, 0x1f, 0xfa, 0x10, 0x42, 0x5f, 0xc5, 0xb7, 0xe8,
+	0xb2, 0x4b, 0x57, 0x51, 0x66, 0xde, 0x62, 0x56, 0x92, 0x9b, 0x9b, 0xcb, 0x9d, 0xd8, 0xb8, 0x0b,
+	0xe7, 0x7c, 0xbf, 0x2f, 0x27, 0xe7, 0x04, 0x0e, 0xfd, 0x9c, 0xc5, 0xf4, 0x9b, 0x93, 0xa4, 0x34,
+	0xa6, 0x39, 0x2d, 0x89, 0x13, 0x93, 0xdc, 0x77, 0x72, 0x1a, 0x93, 0x2c, 0xf7, 0xe3, 0x04, 0x27,
+	0x29, 0xcb, 0x19, 0x7a, 0xd8, 0x60, 0x58, 0x62, 0xb8, 0xc6, 0x16, 0x56, 0xc8, 0x58, 0x18, 0x11,
+	0x87, 0x43, 0x97, 0xc5, 0x97, 0x6e, 0x6e, 0xf1, 0x20, 0x64, 0x21, 0xe3, 0x8f, 0x4e, 0xfd, 0xd4,
+	0x54, 0xed, 0x9f, 0x03, 0xd8, 0xfb, 0xd0, 0x92, 0xe8, 0x23, 0xa0, 0xe4, 0xea, 0x7b, 0x46, 0x03,
+	0x3f, 0xfa, 0x2c, 0xf3, 0x73, 0xfd, 0xb1, 0x7e, 0x3c, 0x3e, 0x3d, 0xc6, 0x77, 0xbe, 0x18, 0x9f,
+	0x89, 0x80, 0xb4, 0x2c, 0x35, 0x6f, 0x96, 0x74, 0x8b, 0xe8, 0x02, 0x66, 0x11, 0x0b, 0x3b, 0xe6,
+	0x7b, 0xdc, 0x7c, 0xd4, 0x63, 0x7e, 0xd7, 0xf0, 0xaa, 0x78, 0x1a, 0x75, 0x6a, 0xe8, 0x1c, 0xa6,
+	0x25, 0x09, 0x72, 0x96, 0x2a, 0xda, 0x01, 0xd7, 0x3e, 0xeb, 0xd1, 0x5e, 0x70, 0x5c, 0xb5, 0x4e,
+	0xca, 0xdd, 0x12, 0x3a, 0x83, 0x09, 0x49, 0x58, 0x70, 0xa5, 0x38, 0x87, 0xdc, 0x79, 0xd8, 0xe3,
+	0x7c, 0x5b, 0xd3, 0xaa, 0xf2, 0x80, 0xec, 0x54, 0xd0, 0x6b, 0x30, 0x52, 0x52, 0xd2, 0x8c, 0xb2,
+	0xd5, 0x7c, 0xc4, 0x55, 0x56, 0x8f, 0xca, 0x13, 0xd8, 0x52, 0xf3, 0x64, 0xc4, 0x1d, 0xc3, 0x9e,
+	0x1c, 0xc5, 0x7e, 0x09, 0xd3, 0xee, 0x6a, 0xd0, 0x53, 0x18, 0xd6, 0x00, 0xbf, 0xd5, 0xd0, 0x9d,
+	0x6c, 0x2b, 0x6b, 0xac, 0x30, 0x1e, 0x6f, 0xda, 0x2f, 0x60, 0xd2, 0xf9, 0x78, 0x25, 0x37, 0xe8,
+	0xcf, 0x7d, 0x82, 0xd9, 0x3f, 0x57, 0x46, 0x4b, 0xe5, 0x8d, 0xe3, 0xd3, 0x05, 0x6e, 0xfe, 0x3f,
+	0xdc, 0xfe, 0x7f, 0x58, 0x92, 0xee, 0xfc, 0xa6, 0xb2, 0xb4, 0x6d, 0x65, 0xed, 0xab, 0x92, 0xeb,
+	0xdf, 0x96, 0x2e, 0xf4, 0x47, 0x30, 0xe2, 0xfb, 0x43, 0x26, 0x0c, 0x56, 0x45, 0x2c, 0xbe, 0x61,
+	0x7f, 0x5b, 0x59, 0x06, 0xaf, 0xbf, 0x2f, 0x62, 0xaf, 0x6e, 0xd8, 0x3f, 0x74, 0x38, 0xd8, 0xdd,
+	0x34, 0x7a, 0x05, 0x23, 0xbe, 0x69, 0x31, 0xc6, 0xa3, 0xff, 0xdd, 0xc7, 0x1d, 0xd6, 0x83, 0x78,
+	0x4d, 0x00, 0xbd, 0x01, 0x23, 0x23, 0x5f, 0x0b, 0xb2, 0x0a, 0x88, 0xf8, 0x0f, 0xfb, 0x2e, 0x72,
+	0x2e, 0x30, 0x91, 0x97, 0x31, 0xfb, 0x04, 0x8c, 0xb6, 0x87, 0x9e, 0xa8, 0xb3, 0xf3, 0x3d, 0xb6,
+	0x2d, 0x39, 0xfe, 0x09, 0x18, 0xed, 0x71, 0xef, 0xc0, 0xdb, 0x56, 0x8b, 0xbb, 0xf3, 0x9b, 0xb5,
+	0xa9, 0xdf, 0xae, 0x4d, 0xfd, 0xcf, 0xda, 0xd4, 0xaf, 0x37, 0xa6, 0x76, 0xbb, 0x31, 0xb5, 0x5f,
+	0x1b, 0x53, 0xbb, 0xbc, 0xcf, 0x97, 0xfc, 0xfc, 0x6f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x8d, 0x22,
+	0xa0, 0x60, 0x32, 0x04, 0x00, 0x00,
 }
 
 func (m *Timestamp) Marshal() (dAtA []byte, err error) {
@@ -380,6 +546,27 @@ func (m *Timestamp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
+func (m *Timestamp_PhysicalTimestamp) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Timestamp_PhysicalTimestamp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	if m.PhysicalTimestamp != nil {
+		{
+			size, err := m.PhysicalTimestamp.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintTimestamp(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
 func (m *Timestamp_LogicalTimestamp) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
@@ -397,20 +584,20 @@ func (m *Timestamp_LogicalTimestamp) MarshalToSizedBuffer(dAtA []byte) (int, err
 			i = encodeVarintTimestamp(dAtA, i, uint64(size))
 		}
 		i--
-		dAtA[i] = 0xa
+		dAtA[i] = 0x12
 	}
 	return len(dAtA) - i, nil
 }
-func (m *Timestamp_WallClockTimestamp) MarshalTo(dAtA []byte) (int, error) {
+func (m *Timestamp_VectorTimestamp) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *Timestamp_WallClockTimestamp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *Timestamp_VectorTimestamp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
-	if m.WallClockTimestamp != nil {
+	if m.VectorTimestamp != nil {
 		{
-			size, err := m.WallClockTimestamp.MarshalToSizedBuffer(dAtA[:i])
+			size, err := m.VectorTimestamp.MarshalToSizedBuffer(dAtA[:i])
 			if err != nil {
 				return 0, err
 			}
@@ -418,7 +605,7 @@ func (m *Timestamp_WallClockTimestamp) MarshalToSizedBuffer(dAtA []byte) (int, e
 			i = encodeVarintTimestamp(dAtA, i, uint64(size))
 		}
 		i--
-		dAtA[i] = 0x12
+		dAtA[i] = 0x1a
 	}
 	return len(dAtA) - i, nil
 }
@@ -439,7 +626,28 @@ func (m *Timestamp_EpochTimestamp) MarshalToSizedBuffer(dAtA []byte) (int, error
 			i = encodeVarintTimestamp(dAtA, i, uint64(size))
 		}
 		i--
-		dAtA[i] = 0x1a
+		dAtA[i] = 0x22
+	}
+	return len(dAtA) - i, nil
+}
+func (m *Timestamp_Revision) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Timestamp_Revision) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	if m.Revision != nil {
+		{
+			size, err := m.Revision.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintTimestamp(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x2a
 	}
 	return len(dAtA) - i, nil
 }
@@ -463,15 +671,15 @@ func (m *LogicalTimestamp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Value != 0 {
-		i = encodeVarintTimestamp(dAtA, i, uint64(m.Value))
+	if m.Time != 0 {
+		i = encodeVarintTimestamp(dAtA, i, uint64(m.Time))
 		i--
 		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *WallClockTimestamp) Marshal() (dAtA []byte, err error) {
+func (m *VectorTimestamp) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -481,22 +689,63 @@ func (m *WallClockTimestamp) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *WallClockTimestamp) MarshalTo(dAtA []byte) (int, error) {
+func (m *VectorTimestamp) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *WallClockTimestamp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *VectorTimestamp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	n4, err4 := github_com_gogo_protobuf_types.StdTimeMarshalTo(m.Value, dAtA[i-github_com_gogo_protobuf_types.SizeOfStdTime(m.Value):])
-	if err4 != nil {
-		return 0, err4
+	if len(m.Time) > 0 {
+		dAtA7 := make([]byte, len(m.Time)*10)
+		var j6 int
+		for _, num := range m.Time {
+			for num >= 1<<7 {
+				dAtA7[j6] = uint8(uint64(num)&0x7f | 0x80)
+				num >>= 7
+				j6++
+			}
+			dAtA7[j6] = uint8(num)
+			j6++
+		}
+		i -= j6
+		copy(dAtA[i:], dAtA7[:j6])
+		i = encodeVarintTimestamp(dAtA, i, uint64(j6))
+		i--
+		dAtA[i] = 0xa
 	}
-	i -= n4
-	i = encodeVarintTimestamp(dAtA, i, uint64(n4))
+	return len(dAtA) - i, nil
+}
+
+func (m *PhysicalTimestamp) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *PhysicalTimestamp) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *PhysicalTimestamp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	n8, err8 := github_com_gogo_protobuf_types.StdTimeMarshalTo(m.Time, dAtA[i-github_com_gogo_protobuf_types.SizeOfStdTime(m.Time):])
+	if err8 != nil {
+		return 0, err8
+	}
+	i -= n8
+	i = encodeVarintTimestamp(dAtA, i, uint64(n8))
 	i--
 	dAtA[i] = 0xa
 	return len(dAtA) - i, nil
@@ -522,8 +771,8 @@ func (m *Epoch) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Value != 0 {
-		i = encodeVarintTimestamp(dAtA, i, uint64(m.Value))
+	if m.Num != 0 {
+		i = encodeVarintTimestamp(dAtA, i, uint64(m.Num))
 		i--
 		dAtA[i] = 0x8
 	}
@@ -550,11 +799,16 @@ func (m *EpochTimestamp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.SequenceNumber != 0 {
-		i = encodeVarintTimestamp(dAtA, i, uint64(m.SequenceNumber))
-		i--
-		dAtA[i] = 0x10
+	{
+		size, err := m.Sequence.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintTimestamp(dAtA, i, uint64(size))
 	}
+	i--
+	dAtA[i] = 0x12
 	{
 		size, err := m.Epoch.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
@@ -565,6 +819,62 @@ func (m *EpochTimestamp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	}
 	i--
 	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *Sequence) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Sequence) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Sequence) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Num != 0 {
+		i = encodeVarintTimestamp(dAtA, i, uint64(m.Num))
+		i--
+		dAtA[i] = 0x8
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *Revision) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *Revision) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *Revision) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Num != 0 {
+		i = encodeVarintTimestamp(dAtA, i, uint64(m.Num))
+		i--
+		dAtA[i] = 0x8
+	}
 	return len(dAtA) - i, nil
 }
 
@@ -591,6 +901,18 @@ func (m *Timestamp) Size() (n int) {
 	return n
 }
 
+func (m *Timestamp_PhysicalTimestamp) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.PhysicalTimestamp != nil {
+		l = m.PhysicalTimestamp.Size()
+		n += 1 + l + sovTimestamp(uint64(l))
+	}
+	return n
+}
 func (m *Timestamp_LogicalTimestamp) Size() (n int) {
 	if m == nil {
 		return 0
@@ -603,14 +925,14 @@ func (m *Timestamp_LogicalTimestamp) Size() (n int) {
 	}
 	return n
 }
-func (m *Timestamp_WallClockTimestamp) Size() (n int) {
+func (m *Timestamp_VectorTimestamp) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.WallClockTimestamp != nil {
-		l = m.WallClockTimestamp.Size()
+	if m.VectorTimestamp != nil {
+		l = m.VectorTimestamp.Size()
 		n += 1 + l + sovTimestamp(uint64(l))
 	}
 	return n
@@ -627,25 +949,53 @@ func (m *Timestamp_EpochTimestamp) Size() (n int) {
 	}
 	return n
 }
+func (m *Timestamp_Revision) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Revision != nil {
+		l = m.Revision.Size()
+		n += 1 + l + sovTimestamp(uint64(l))
+	}
+	return n
+}
 func (m *LogicalTimestamp) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.Value != 0 {
-		n += 1 + sovTimestamp(uint64(m.Value))
+	if m.Time != 0 {
+		n += 1 + sovTimestamp(uint64(m.Time))
 	}
 	return n
 }
 
-func (m *WallClockTimestamp) Size() (n int) {
+func (m *VectorTimestamp) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = github_com_gogo_protobuf_types.SizeOfStdTime(m.Value)
+	if len(m.Time) > 0 {
+		l = 0
+		for _, e := range m.Time {
+			l += sovTimestamp(uint64(e))
+		}
+		n += 1 + sovTimestamp(uint64(l)) + l
+	}
+	return n
+}
+
+func (m *PhysicalTimestamp) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = github_com_gogo_protobuf_types.SizeOfStdTime(m.Time)
 	n += 1 + l + sovTimestamp(uint64(l))
 	return n
 }
@@ -656,8 +1006,8 @@ func (m *Epoch) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Value != 0 {
-		n += 1 + sovTimestamp(uint64(m.Value))
+	if m.Num != 0 {
+		n += 1 + sovTimestamp(uint64(m.Num))
 	}
 	return n
 }
@@ -670,8 +1020,31 @@ func (m *EpochTimestamp) Size() (n int) {
 	_ = l
 	l = m.Epoch.Size()
 	n += 1 + l + sovTimestamp(uint64(l))
-	if m.SequenceNumber != 0 {
-		n += 1 + sovTimestamp(uint64(m.SequenceNumber))
+	l = m.Sequence.Size()
+	n += 1 + l + sovTimestamp(uint64(l))
+	return n
+}
+
+func (m *Sequence) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Num != 0 {
+		n += 1 + sovTimestamp(uint64(m.Num))
+	}
+	return n
+}
+
+func (m *Revision) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Num != 0 {
+		n += 1 + sovTimestamp(uint64(m.Num))
 	}
 	return n
 }
@@ -713,6 +1086,41 @@ func (m *Timestamp) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field PhysicalTimestamp", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTimestamp
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthTimestamp
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthTimestamp
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			v := &PhysicalTimestamp{}
+			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			m.Timestamp = &Timestamp_PhysicalTimestamp{v}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field LogicalTimestamp", wireType)
 			}
 			var msglen int
@@ -746,9 +1154,9 @@ func (m *Timestamp) Unmarshal(dAtA []byte) error {
 			}
 			m.Timestamp = &Timestamp_LogicalTimestamp{v}
 			iNdEx = postIndex
-		case 2:
+		case 3:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field WallClockTimestamp", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field VectorTimestamp", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -775,13 +1183,13 @@ func (m *Timestamp) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			v := &WallClockTimestamp{}
+			v := &VectorTimestamp{}
 			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
-			m.Timestamp = &Timestamp_WallClockTimestamp{v}
+			m.Timestamp = &Timestamp_VectorTimestamp{v}
 			iNdEx = postIndex
-		case 3:
+		case 4:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field EpochTimestamp", wireType)
 			}
@@ -815,6 +1223,41 @@ func (m *Timestamp) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			m.Timestamp = &Timestamp_EpochTimestamp{v}
+			iNdEx = postIndex
+		case 5:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Revision", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTimestamp
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthTimestamp
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthTimestamp
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			v := &Revision{}
+			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			m.Timestamp = &Timestamp_Revision{v}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
@@ -871,9 +1314,9 @@ func (m *LogicalTimestamp) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Time", wireType)
 			}
-			m.Value = 0
+			m.Time = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowTimestamp
@@ -883,7 +1326,7 @@ func (m *LogicalTimestamp) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Value |= uint64(b&0x7F) << shift
+				m.Time |= LogicalTime(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -912,7 +1355,7 @@ func (m *LogicalTimestamp) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *WallClockTimestamp) Unmarshal(dAtA []byte) error {
+func (m *VectorTimestamp) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -935,15 +1378,144 @@ func (m *WallClockTimestamp) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: WallClockTimestamp: wiretype end group for non-group")
+			return fmt.Errorf("proto: VectorTimestamp: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: WallClockTimestamp: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: VectorTimestamp: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType == 0 {
+				var v LogicalTime
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return ErrIntOverflowTimestamp
+					}
+					if iNdEx >= l {
+						return io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					v |= LogicalTime(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				m.Time = append(m.Time, v)
+			} else if wireType == 2 {
+				var packedLen int
+				for shift := uint(0); ; shift += 7 {
+					if shift >= 64 {
+						return ErrIntOverflowTimestamp
+					}
+					if iNdEx >= l {
+						return io.ErrUnexpectedEOF
+					}
+					b := dAtA[iNdEx]
+					iNdEx++
+					packedLen |= int(b&0x7F) << shift
+					if b < 0x80 {
+						break
+					}
+				}
+				if packedLen < 0 {
+					return ErrInvalidLengthTimestamp
+				}
+				postIndex := iNdEx + packedLen
+				if postIndex < 0 {
+					return ErrInvalidLengthTimestamp
+				}
+				if postIndex > l {
+					return io.ErrUnexpectedEOF
+				}
+				var elementCount int
+				var count int
+				for _, integer := range dAtA[iNdEx:postIndex] {
+					if integer < 128 {
+						count++
+					}
+				}
+				elementCount = count
+				if elementCount != 0 && len(m.Time) == 0 {
+					m.Time = make([]LogicalTime, 0, elementCount)
+				}
+				for iNdEx < postIndex {
+					var v LogicalTime
+					for shift := uint(0); ; shift += 7 {
+						if shift >= 64 {
+							return ErrIntOverflowTimestamp
+						}
+						if iNdEx >= l {
+							return io.ErrUnexpectedEOF
+						}
+						b := dAtA[iNdEx]
+						iNdEx++
+						v |= LogicalTime(b&0x7F) << shift
+						if b < 0x80 {
+							break
+						}
+					}
+					m.Time = append(m.Time, v)
+				}
+			} else {
+				return fmt.Errorf("proto: wrong wireType = %d for field Time", wireType)
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTimestamp(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthTimestamp
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthTimestamp
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *PhysicalTimestamp) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTimestamp
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: PhysicalTimestamp: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: PhysicalTimestamp: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Time", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -970,7 +1542,7 @@ func (m *WallClockTimestamp) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := github_com_gogo_protobuf_types.StdTimeUnmarshal(&m.Value, dAtA[iNdEx:postIndex]); err != nil {
+			if err := github_com_gogo_protobuf_types.StdTimeUnmarshal(&m.Time, dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -1029,9 +1601,9 @@ func (m *Epoch) Unmarshal(dAtA []byte) error {
 		switch fieldNum {
 		case 1:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Num", wireType)
 			}
-			m.Value = 0
+			m.Num = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowTimestamp
@@ -1041,7 +1613,7 @@ func (m *Epoch) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.Value |= uint64(b&0x7F) << shift
+				m.Num |= EpochNum(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
@@ -1133,10 +1705,10 @@ func (m *EpochTimestamp) Unmarshal(dAtA []byte) error {
 			}
 			iNdEx = postIndex
 		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field SequenceNumber", wireType)
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Sequence", wireType)
 			}
-			m.SequenceNumber = 0
+			var msglen int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowTimestamp
@@ -1146,7 +1718,165 @@ func (m *EpochTimestamp) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.SequenceNumber |= uint64(b&0x7F) << shift
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthTimestamp
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthTimestamp
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Sequence.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTimestamp(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthTimestamp
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthTimestamp
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Sequence) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTimestamp
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Sequence: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Sequence: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Num", wireType)
+			}
+			m.Num = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTimestamp
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Num |= SequenceNum(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+		default:
+			iNdEx = preIndex
+			skippy, err := skipTimestamp(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthTimestamp
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthTimestamp
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *Revision) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowTimestamp
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: Revision: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: Revision: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Num", wireType)
+			}
+			m.Num = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowTimestamp
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Num |= RevisionNum(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}

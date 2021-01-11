@@ -152,9 +152,9 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
-| timestamp | [atomix.primitive.meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
 
 
 
@@ -357,9 +357,9 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
-| timestamp | [atomix.primitive.meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
 | if_empty | [bool](#bool) |  |  |
 | ttl | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
 
@@ -423,8 +423,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
 | key | [string](#string) |  |  |
-| timestamp | [atomix.primitive.meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
 
 
 

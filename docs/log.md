@@ -95,8 +95,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  |  |
-| timestamp | [atomix.primitive.meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
+| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
 
 
 
@@ -183,9 +182,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  |  |
-| value | [bytes](#bytes) |  |  |
-| timestamp | [atomix.primitive.meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
+| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
 
 
 
@@ -232,6 +229,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
 | index | [uint64](#uint64) |  |  |
 | value | [bytes](#bytes) |  |  |
 
@@ -265,9 +263,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | type | [EventsOutput.Type](#atomix.primitive.log.EventsOutput.Type) |  |  |
-| index | [uint64](#uint64) |  |  |
-| value | [bytes](#bytes) |  |  |
-| timestamp | [atomix.primitive.meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
+| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
 
 
 
@@ -376,9 +372,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  |  |
-| value | [bytes](#bytes) |  |  |
-| timestamp | [atomix.primitive.meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
+| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
 
 
 
@@ -439,9 +433,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  |  |
-| value | [bytes](#bytes) |  |  |
-| timestamp | [atomix.primitive.meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
+| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
 
 
 
@@ -488,9 +480,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  |  |
-| value | [bytes](#bytes) |  |  |
-| timestamp | [atomix.primitive.meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
+| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
 
 
 
@@ -551,9 +541,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  |  |
-| value | [bytes](#bytes) |  |  |
-| timestamp | [atomix.primitive.meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
+| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
 
 
 
@@ -615,9 +603,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  |  |
-| value | [bytes](#bytes) |  |  |
-| timestamp | [atomix.primitive.meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
+| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
 
 
 
@@ -664,9 +650,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  |  |
-| value | [bytes](#bytes) |  |  |
-| timestamp | [atomix.primitive.meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
+| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
 
 
 
@@ -681,8 +665,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  |  |
-| previous_value | [bytes](#bytes) |  |  |
+| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
 
 
 

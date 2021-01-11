@@ -549,8 +549,7 @@ func (m *AppendResponse) GetOutput() AppendOutput {
 }
 
 type AppendOutput struct {
-	Index     uint64         `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
-	Timestamp meta.Timestamp `protobuf:"bytes,3,opt,name=timestamp,proto3" json:"timestamp"`
+	Entry *Entry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
 }
 
 func (m *AppendOutput) Reset()         { *m = AppendOutput{} }
@@ -586,18 +585,11 @@ func (m *AppendOutput) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_AppendOutput proto.InternalMessageInfo
 
-func (m *AppendOutput) GetIndex() uint64 {
+func (m *AppendOutput) GetEntry() *Entry {
 	if m != nil {
-		return m.Index
+		return m.Entry
 	}
-	return 0
-}
-
-func (m *AppendOutput) GetTimestamp() meta.Timestamp {
-	if m != nil {
-		return m.Timestamp
-	}
-	return meta.Timestamp{}
+	return nil
 }
 
 type GetRequest struct {
@@ -749,9 +741,7 @@ func (m *GetResponse) GetOutput() GetOutput {
 }
 
 type GetOutput struct {
-	Index     uint64         `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
-	Value     []byte         `protobuf:"bytes,3,opt,name=value,proto3" json:"value,omitempty"`
-	Timestamp meta.Timestamp `protobuf:"bytes,5,opt,name=timestamp,proto3" json:"timestamp"`
+	Entry *Entry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
 }
 
 func (m *GetOutput) Reset()         { *m = GetOutput{} }
@@ -787,25 +777,11 @@ func (m *GetOutput) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_GetOutput proto.InternalMessageInfo
 
-func (m *GetOutput) GetIndex() uint64 {
+func (m *GetOutput) GetEntry() *Entry {
 	if m != nil {
-		return m.Index
-	}
-	return 0
-}
-
-func (m *GetOutput) GetValue() []byte {
-	if m != nil {
-		return m.Value
+		return m.Entry
 	}
 	return nil
-}
-
-func (m *GetOutput) GetTimestamp() meta.Timestamp {
-	if m != nil {
-		return m.Timestamp
-	}
-	return meta.Timestamp{}
 }
 
 type FirstEntryRequest struct {
@@ -905,9 +881,7 @@ func (m *FirstEntryResponse) GetOutput() FirstEntryOutput {
 }
 
 type FirstEntryOutput struct {
-	Index     uint64         `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
-	Value     []byte         `protobuf:"bytes,3,opt,name=value,proto3" json:"value,omitempty"`
-	Timestamp meta.Timestamp `protobuf:"bytes,4,opt,name=timestamp,proto3" json:"timestamp"`
+	Entry *Entry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
 }
 
 func (m *FirstEntryOutput) Reset()         { *m = FirstEntryOutput{} }
@@ -943,25 +917,11 @@ func (m *FirstEntryOutput) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_FirstEntryOutput proto.InternalMessageInfo
 
-func (m *FirstEntryOutput) GetIndex() uint64 {
+func (m *FirstEntryOutput) GetEntry() *Entry {
 	if m != nil {
-		return m.Index
-	}
-	return 0
-}
-
-func (m *FirstEntryOutput) GetValue() []byte {
-	if m != nil {
-		return m.Value
+		return m.Entry
 	}
 	return nil
-}
-
-func (m *FirstEntryOutput) GetTimestamp() meta.Timestamp {
-	if m != nil {
-		return m.Timestamp
-	}
-	return meta.Timestamp{}
 }
 
 type LastEntryRequest struct {
@@ -1061,9 +1021,7 @@ func (m *LastEntryResponse) GetOutput() LastEntryOutput {
 }
 
 type LastEntryOutput struct {
-	Index     uint64         `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
-	Value     []byte         `protobuf:"bytes,3,opt,name=value,proto3" json:"value,omitempty"`
-	Timestamp meta.Timestamp `protobuf:"bytes,4,opt,name=timestamp,proto3" json:"timestamp"`
+	Entry *Entry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
 }
 
 func (m *LastEntryOutput) Reset()         { *m = LastEntryOutput{} }
@@ -1099,25 +1057,11 @@ func (m *LastEntryOutput) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_LastEntryOutput proto.InternalMessageInfo
 
-func (m *LastEntryOutput) GetIndex() uint64 {
+func (m *LastEntryOutput) GetEntry() *Entry {
 	if m != nil {
-		return m.Index
-	}
-	return 0
-}
-
-func (m *LastEntryOutput) GetValue() []byte {
-	if m != nil {
-		return m.Value
+		return m.Entry
 	}
 	return nil
-}
-
-func (m *LastEntryOutput) GetTimestamp() meta.Timestamp {
-	if m != nil {
-		return m.Timestamp
-	}
-	return meta.Timestamp{}
 }
 
 type PrevEntryRequest struct {
@@ -1269,9 +1213,7 @@ func (m *PrevEntryResponse) GetOutput() PrevEntryOutput {
 }
 
 type PrevEntryOutput struct {
-	Index     uint64         `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
-	Value     []byte         `protobuf:"bytes,3,opt,name=value,proto3" json:"value,omitempty"`
-	Timestamp meta.Timestamp `protobuf:"bytes,4,opt,name=timestamp,proto3" json:"timestamp"`
+	Entry *Entry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
 }
 
 func (m *PrevEntryOutput) Reset()         { *m = PrevEntryOutput{} }
@@ -1307,25 +1249,11 @@ func (m *PrevEntryOutput) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_PrevEntryOutput proto.InternalMessageInfo
 
-func (m *PrevEntryOutput) GetIndex() uint64 {
+func (m *PrevEntryOutput) GetEntry() *Entry {
 	if m != nil {
-		return m.Index
-	}
-	return 0
-}
-
-func (m *PrevEntryOutput) GetValue() []byte {
-	if m != nil {
-		return m.Value
+		return m.Entry
 	}
 	return nil
-}
-
-func (m *PrevEntryOutput) GetTimestamp() meta.Timestamp {
-	if m != nil {
-		return m.Timestamp
-	}
-	return meta.Timestamp{}
 }
 
 type NextEntryRequest struct {
@@ -1477,9 +1405,7 @@ func (m *NextEntryResponse) GetOutput() NextEntryOutput {
 }
 
 type NextEntryOutput struct {
-	Index     uint64         `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
-	Value     []byte         `protobuf:"bytes,3,opt,name=value,proto3" json:"value,omitempty"`
-	Timestamp meta.Timestamp `protobuf:"bytes,4,opt,name=timestamp,proto3" json:"timestamp"`
+	Entry *Entry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
 }
 
 func (m *NextEntryOutput) Reset()         { *m = NextEntryOutput{} }
@@ -1515,25 +1441,11 @@ func (m *NextEntryOutput) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_NextEntryOutput proto.InternalMessageInfo
 
-func (m *NextEntryOutput) GetIndex() uint64 {
+func (m *NextEntryOutput) GetEntry() *Entry {
 	if m != nil {
-		return m.Index
-	}
-	return 0
-}
-
-func (m *NextEntryOutput) GetValue() []byte {
-	if m != nil {
-		return m.Value
+		return m.Entry
 	}
 	return nil
-}
-
-func (m *NextEntryOutput) GetTimestamp() meta.Timestamp {
-	if m != nil {
-		return m.Timestamp
-	}
-	return meta.Timestamp{}
 }
 
 type RemoveRequest struct {
@@ -1589,9 +1501,7 @@ func (m *RemoveRequest) GetInput() RemoveInput {
 }
 
 type RemoveInput struct {
-	Index     uint64         `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
-	Value     []byte         `protobuf:"bytes,3,opt,name=value,proto3" json:"value,omitempty"`
-	Timestamp meta.Timestamp `protobuf:"bytes,4,opt,name=timestamp,proto3" json:"timestamp"`
+	Entry *Entry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
 }
 
 func (m *RemoveInput) Reset()         { *m = RemoveInput{} }
@@ -1627,25 +1537,11 @@ func (m *RemoveInput) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_RemoveInput proto.InternalMessageInfo
 
-func (m *RemoveInput) GetIndex() uint64 {
+func (m *RemoveInput) GetEntry() *Entry {
 	if m != nil {
-		return m.Index
-	}
-	return 0
-}
-
-func (m *RemoveInput) GetValue() []byte {
-	if m != nil {
-		return m.Value
+		return m.Entry
 	}
 	return nil
-}
-
-func (m *RemoveInput) GetTimestamp() meta.Timestamp {
-	if m != nil {
-		return m.Timestamp
-	}
-	return meta.Timestamp{}
 }
 
 type RemoveResponse struct {
@@ -1701,8 +1597,7 @@ func (m *RemoveResponse) GetOutput() RemoveOutput {
 }
 
 type RemoveOutput struct {
-	Index         uint64 `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
-	PreviousValue []byte `protobuf:"bytes,3,opt,name=previous_value,json=previousValue,proto3" json:"previous_value,omitempty"`
+	Entry *Entry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
 }
 
 func (m *RemoveOutput) Reset()         { *m = RemoveOutput{} }
@@ -1738,16 +1633,9 @@ func (m *RemoveOutput) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_RemoveOutput proto.InternalMessageInfo
 
-func (m *RemoveOutput) GetIndex() uint64 {
+func (m *RemoveOutput) GetEntry() *Entry {
 	if m != nil {
-		return m.Index
-	}
-	return 0
-}
-
-func (m *RemoveOutput) GetPreviousValue() []byte {
-	if m != nil {
-		return m.PreviousValue
+		return m.Entry
 	}
 	return nil
 }
@@ -1981,9 +1869,7 @@ func (m *EntriesResponse) GetOutput() EntriesOutput {
 }
 
 type EntriesOutput struct {
-	Index     uint64         `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
-	Value     []byte         `protobuf:"bytes,3,opt,name=value,proto3" json:"value,omitempty"`
-	Timestamp meta.Timestamp `protobuf:"bytes,4,opt,name=timestamp,proto3" json:"timestamp"`
+	Entry *Entry `protobuf:"bytes,1,opt,name=entry,proto3" json:"entry,omitempty"`
 }
 
 func (m *EntriesOutput) Reset()         { *m = EntriesOutput{} }
@@ -2019,25 +1905,11 @@ func (m *EntriesOutput) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_EntriesOutput proto.InternalMessageInfo
 
-func (m *EntriesOutput) GetIndex() uint64 {
+func (m *EntriesOutput) GetEntry() *Entry {
 	if m != nil {
-		return m.Index
-	}
-	return 0
-}
-
-func (m *EntriesOutput) GetValue() []byte {
-	if m != nil {
-		return m.Value
+		return m.Entry
 	}
 	return nil
-}
-
-func (m *EntriesOutput) GetTimestamp() meta.Timestamp {
-	if m != nil {
-		return m.Timestamp
-	}
-	return meta.Timestamp{}
 }
 
 type EventsRequest struct {
@@ -2197,10 +2069,8 @@ func (m *EventsResponse) GetOutput() EventsOutput {
 }
 
 type EventsOutput struct {
-	Type      EventsOutput_Type `protobuf:"varint,2,opt,name=type,proto3,enum=atomix.primitive.log.EventsOutput_Type" json:"type,omitempty"`
-	Index     uint64            `protobuf:"varint,3,opt,name=index,proto3" json:"index,omitempty"`
-	Value     []byte            `protobuf:"bytes,4,opt,name=value,proto3" json:"value,omitempty"`
-	Timestamp meta.Timestamp    `protobuf:"bytes,5,opt,name=timestamp,proto3" json:"timestamp"`
+	Type  EventsOutput_Type `protobuf:"varint,1,opt,name=type,proto3,enum=atomix.primitive.log.EventsOutput_Type" json:"type,omitempty"`
+	Entry *Entry            `protobuf:"bytes,2,opt,name=entry,proto3" json:"entry,omitempty"`
 }
 
 func (m *EventsOutput) Reset()         { *m = EventsOutput{} }
@@ -2243,30 +2113,17 @@ func (m *EventsOutput) GetType() EventsOutput_Type {
 	return EventsOutput_NONE
 }
 
-func (m *EventsOutput) GetIndex() uint64 {
+func (m *EventsOutput) GetEntry() *Entry {
 	if m != nil {
-		return m.Index
-	}
-	return 0
-}
-
-func (m *EventsOutput) GetValue() []byte {
-	if m != nil {
-		return m.Value
+		return m.Entry
 	}
 	return nil
 }
 
-func (m *EventsOutput) GetTimestamp() meta.Timestamp {
-	if m != nil {
-		return m.Timestamp
-	}
-	return meta.Timestamp{}
-}
-
 type Entry struct {
-	Index uint64 `protobuf:"varint,1,opt,name=index,proto3" json:"index,omitempty"`
-	Value []byte `protobuf:"bytes,2,opt,name=value,proto3" json:"value,omitempty"`
+	Meta  meta.ObjectMeta `protobuf:"bytes,1,opt,name=meta,proto3" json:"meta"`
+	Index uint64          `protobuf:"varint,2,opt,name=index,proto3" json:"index,omitempty"`
+	Value []byte          `protobuf:"bytes,3,opt,name=value,proto3" json:"value,omitempty"`
 }
 
 func (m *Entry) Reset()         { *m = Entry{} }
@@ -2301,6 +2158,13 @@ func (m *Entry) XXX_DiscardUnknown() {
 }
 
 var xxx_messageInfo_Entry proto.InternalMessageInfo
+
+func (m *Entry) GetMeta() meta.ObjectMeta {
+	if m != nil {
+		return m.Meta
+	}
+	return meta.ObjectMeta{}
+}
 
 func (m *Entry) GetIndex() uint64 {
 	if m != nil {
@@ -2608,88 +2472,86 @@ func init() {
 func init() { proto.RegisterFile("atomix/primitive/log/log.proto", fileDescriptor_f4021747dec9a647) }
 
 var fileDescriptor_f4021747dec9a647 = []byte{
-	// 1295 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x59, 0x5b, 0x6b, 0xe3, 0x46,
-	0x14, 0xf6, 0xc4, 0x97, 0xf5, 0x1e, 0x5f, 0xe2, 0x1d, 0x42, 0x71, 0x53, 0x70, 0x1c, 0x25, 0x4e,
-	0xf2, 0xe4, 0x2c, 0xd9, 0x96, 0x52, 0x16, 0x0a, 0xf6, 0xc6, 0x4d, 0x96, 0xa6, 0x89, 0x6b, 0x67,
-	0x03, 0x4b, 0xa1, 0x8b, 0x36, 0x19, 0xbc, 0x2a, 0xb1, 0xa5, 0x4a, 0x8a, 0x89, 0x03, 0xa5, 0xd7,
-	0x87, 0x7d, 0xeb, 0x3e, 0xf4, 0x46, 0xdb, 0x87, 0xd2, 0x9f, 0x50, 0x28, 0xf4, 0x27, 0xe4, 0x71,
-	0x1f, 0xfb, 0x54, 0x4a, 0xf2, 0x13, 0xf6, 0x0f, 0x14, 0xcd, 0xe8, 0x32, 0x92, 0x35, 0x32, 0x0d,
-	0xc2, 0x7e, 0x08, 0xc8, 0x9a, 0x4f, 0xe7, 0x3b, 0x73, 0xbe, 0xa3, 0xa3, 0x33, 0x27, 0x50, 0x91,
-	0x4d, 0xb5, 0xaf, 0x9c, 0x6f, 0x6a, 0xba, 0xd2, 0x57, 0x4c, 0x65, 0x48, 0x36, 0x4f, 0xd5, 0x9e,
-	0xf5, 0x57, 0xd7, 0x74, 0xd5, 0x54, 0xf1, 0x02, 0x5b, 0xaf, 0xbb, 0xeb, 0xf5, 0x53, 0xb5, 0xb7,
-	0x58, 0x1d, 0x7b, 0xca, 0x5b, 0xa7, 0xcf, 0x2d, 0x2e, 0x8f, 0x21, 0x4e, 0x88, 0x71, 0xac, 0x2b,
-	0x9a, 0xa9, 0xea, 0x36, 0xa4, 0x36, 0x06, 0xe9, 0x13, 0x53, 0xde, 0x34, 0x95, 0x3e, 0x31, 0x4c,
-	0xb9, 0xaf, 0xd9, 0xb0, 0x85, 0x9e, 0xda, 0x53, 0xe9, 0xe5, 0xa6, 0x75, 0xc5, 0xee, 0x4a, 0xdf,
-	0x23, 0x28, 0xb4, 0xce, 0x15, 0xc3, 0x34, 0x3a, 0xe4, 0xd3, 0x33, 0x62, 0x98, 0xb8, 0x01, 0x99,
-	0x67, 0x44, 0x3e, 0x21, 0x7a, 0x19, 0x55, 0xd1, 0x46, 0x6e, 0x6b, 0xa9, 0x3e, 0xe6, 0xba, 0x0d,
-	0xdd, 0xa5, 0xb0, 0x66, 0xf6, 0x8b, 0x3f, 0x5e, 0x47, 0x97, 0xff, 0x2c, 0x25, 0x3a, 0xf6, 0x83,
-	0xb8, 0x01, 0x69, 0x65, 0xa0, 0x9d, 0x99, 0xe5, 0x39, 0x6a, 0x61, 0xb9, 0x1e, 0xb6, 0xf9, 0x3a,
-	0xa3, 0x7d, 0x68, 0x01, 0x9b, 0xd9, 0xe7, 0x8e, 0x0d, 0xf6, 0xa4, 0xb4, 0x02, 0x39, 0x6e, 0x1d,
-	0x2f, 0x58, 0x16, 0x4f, 0xc8, 0x39, 0xb5, 0x98, 0xea, 0xb0, 0x1f, 0xd2, 0xcf, 0x08, 0x8a, 0x8e,
-	0xf3, 0x86, 0xa6, 0x0e, 0x0c, 0x82, 0x9b, 0x01, 0xef, 0xab, 0x61, 0xde, 0x33, 0xac, 0xd0, 0xfd,
-	0x6d, 0xc8, 0xa8, 0x67, 0xa6, 0xe7, 0xbf, 0x14, 0xe5, 0xff, 0x01, 0x45, 0x36, 0xb3, 0x2f, 0x5c,
-	0x2b, 0xec, 0x59, 0xe9, 0x2d, 0xc8, 0xf3, 0x08, 0x5c, 0x83, 0xe2, 0xb1, 0x3a, 0x30, 0x65, 0x65,
-	0x60, 0x3c, 0xf1, 0xf6, 0x92, 0xed, 0x14, 0x9c, 0xbb, 0x0f, 0xe9, 0x9e, 0xda, 0x90, 0xeb, 0x2a,
-	0x17, 0x24, 0x3e, 0x35, 0xa4, 0x1f, 0x10, 0xe4, 0x99, 0xc9, 0x18, 0x63, 0xd4, 0x0c, 0xc4, 0xa8,
-	0x1a, 0x1e, 0x23, 0x8b, 0x57, 0x18, 0xa1, 0x2a, 0x80, 0xb7, 0x8e, 0x31, 0xa4, 0x0c, 0xe5, 0x82,
-	0x50, 0x7b, 0xe9, 0x0e, 0xbd, 0xa6, 0xd9, 0xd9, 0xd0, 0x34, 0x32, 0x38, 0x99, 0x7a, 0x76, 0x32,
-	0x5a, 0x41, 0x76, 0xbe, 0x03, 0x39, 0x6e, 0x3d, 0x3c, 0x3b, 0xad, 0xbb, 0x43, 0xf9, 0xf4, 0x8c,
-	0x94, 0x93, 0x55, 0xb4, 0x91, 0xef, 0xb0, 0x1f, 0x34, 0x67, 0x9d, 0x2d, 0x4d, 0x3f, 0x67, 0x19,
-	0xb3, 0x50, 0x91, 0x4f, 0x20, 0xcf, 0x23, 0x04, 0x1b, 0xdb, 0x86, 0xdb, 0x6e, 0x71, 0xa1, 0x9b,
-	0x0b, 0x75, 0xd9, 0x2a, 0x42, 0xf5, 0x43, 0x07, 0xd7, 0x4c, 0x51, 0x22, 0xef, 0x41, 0xe9, 0x5b,
-	0x04, 0xb0, 0x43, 0xcc, 0x18, 0x85, 0x7d, 0xd7, 0x2f, 0x6c, 0x25, 0x3c, 0x04, 0x3b, 0xc4, 0x14,
-	0xa8, 0x5a, 0x85, 0xac, 0xb3, 0x28, 0x28, 0x38, 0xdf, 0x21, 0xc8, 0x51, 0x9f, 0x63, 0x54, 0xae,
-	0x11, 0x50, 0x6e, 0x49, 0xe8, 0xb6, 0x50, 0xb6, 0xcf, 0xe0, 0xb6, 0xbb, 0xfc, 0x7f, 0x92, 0xd1,
-	0xaf, 0x64, 0xfa, 0xa6, 0x4a, 0x1e, 0xc1, 0x9d, 0xf7, 0x14, 0xdd, 0x30, 0x5b, 0x03, 0x53, 0x1f,
-	0xc5, 0x58, 0xb8, 0x7e, 0x47, 0x80, 0x79, 0xc3, 0x31, 0x06, 0x7d, 0x37, 0x10, 0xf4, 0xb5, 0xf0,
-	0xa0, 0x7b, 0xec, 0xc2, 0xd8, 0x7f, 0x83, 0xa0, 0x14, 0x84, 0xdd, 0x5c, 0x83, 0xd4, 0x4d, 0x35,
-	0x78, 0x04, 0xa5, 0x3d, 0x39, 0x7e, 0x09, 0x7e, 0x43, 0x70, 0x87, 0xb3, 0x1b, 0xa3, 0x02, 0x3b,
-	0x01, 0x05, 0x6a, 0xe1, 0x0a, 0xb8, 0xe4, 0x42, 0x01, 0xbe, 0x46, 0x30, 0x1f, 0x40, 0xcd, 0x20,
-	0xfe, 0xbf, 0x20, 0x28, 0xb5, 0x75, 0x32, 0x8c, 0x59, 0x00, 0xbc, 0xed, 0xaf, 0x69, 0xab, 0xe1,
-	0x51, 0x72, 0x99, 0x05, 0x95, 0x6d, 0x0d, 0x8a, 0x7e, 0x88, 0xa0, 0xbe, 0x59, 0x72, 0x73, 0xbb,
-	0x98, 0xbe, 0xdc, 0x2e, 0x79, 0xa4, 0xdc, 0x01, 0xd4, 0x8c, 0xe4, 0xde, 0x27, 0xe7, 0xe6, 0x6c,
-	0xe4, 0x76, 0x99, 0xc5, 0x72, 0xfb, 0x21, 0x11, 0x72, 0x73, 0xbb, 0x98, 0xbe, 0xdc, 0x2e, 0x79,
-	0xa4, 0xdc, 0x01, 0xd4, 0x0c, 0xe4, 0xb6, 0xfa, 0xd0, 0x0e, 0xe9, 0xab, 0x43, 0x32, 0xf5, 0x3e,
-	0x94, 0xd1, 0x0a, 0x84, 0xfe, 0x1c, 0x72, 0xdc, 0xfa, 0x0c, 0x02, 0x63, 0x75, 0xb3, 0x4e, 0x60,
-	0xa6, 0xdf, 0xcd, 0x32, 0x66, 0x61, 0xee, 0xbc, 0x0f, 0x79, 0x1e, 0x21, 0x08, 0x4f, 0x0d, 0x8a,
-	0x9a, 0x4e, 0x86, 0x8a, 0x7a, 0x66, 0x3c, 0xe1, 0xe3, 0x54, 0x70, 0xee, 0x1e, 0xd1, 0xbe, 0xfd,
-	0x43, 0xc8, 0x3f, 0x38, 0x25, 0xb2, 0x1e, 0xe3, 0xc7, 0xb5, 0x0b, 0x05, 0xdb, 0x64, 0x7c, 0xa1,
-	0x93, 0x7e, 0xb4, 0xce, 0xc4, 0x03, 0x53, 0x57, 0x48, 0x9c, 0x27, 0xfa, 0xa6, 0x3f, 0x57, 0x45,
-	0x27, 0x62, 0xc6, 0x2b, 0x48, 0xd6, 0x22, 0xe4, 0x79, 0x80, 0xf4, 0x2b, 0x82, 0x79, 0xd7, 0xd3,
-	0x18, 0x93, 0xa7, 0x15, 0x48, 0x9e, 0x95, 0x48, 0x67, 0x85, 0xd9, 0xf3, 0x25, 0x82, 0x82, 0x0f,
-	0x33, 0xa3, 0xba, 0xd3, 0x1a, 0x92, 0xc1, 0x2c, 0xa6, 0x33, 0x94, 0x56, 0x20, 0xe5, 0x7d, 0xc8,
-	0x71, 0xeb, 0xf8, 0x35, 0xc8, 0xe8, 0x44, 0x3b, 0x95, 0x47, 0xf6, 0x48, 0xc3, 0xfe, 0xe5, 0x05,
-	0x2c, 0x39, 0x36, 0xb5, 0xb1, 0x37, 0x35, 0x83, 0xa9, 0x0d, 0x65, 0x16, 0xaa, 0xfe, 0x0a, 0x41,
-	0x9e, 0x87, 0xe0, 0xfb, 0x90, 0x32, 0x47, 0x1a, 0x1b, 0x4b, 0x14, 0xb7, 0xd6, 0x27, 0x1b, 0xad,
-	0x1f, 0x8e, 0x34, 0xd2, 0xa1, 0x0f, 0x85, 0x07, 0xc0, 0xcb, 0x98, 0x54, 0xfc, 0x67, 0xb1, 0x37,
-	0x21, 0x65, 0xf1, 0xe3, 0x2c, 0xa4, 0xf6, 0x0f, 0xf6, 0x5b, 0xa5, 0x04, 0x06, 0xc8, 0x34, 0xda,
-	0xed, 0xd6, 0xfe, 0x76, 0x09, 0x59, 0xd7, 0x9d, 0xd6, 0x07, 0x07, 0x47, 0xad, 0xd2, 0x1c, 0xbb,
-	0x6e, 0xef, 0x35, 0x1e, 0x97, 0x92, 0xd2, 0x3d, 0x48, 0xd3, 0x0f, 0xac, 0xe7, 0x30, 0x0a, 0x75,
-	0x78, 0x8e, 0x9f, 0x64, 0xec, 0x42, 0xa1, 0x3b, 0x90, 0x35, 0xe3, 0x99, 0xca, 0xbe, 0xce, 0xf8,
-	0x6d, 0x48, 0x13, 0xeb, 0xc2, 0x16, 0xf1, 0x0d, 0xf1, 0x7b, 0x37, 0xb2, 0x1d, 0x67, 0x78, 0xe9,
-	0x10, 0xe6, 0x1d, 0x4b, 0x31, 0x96, 0x57, 0xab, 0x47, 0xf3, 0xcc, 0xc6, 0x98, 0x69, 0x0f, 0x9c,
-	0x7d, 0x46, 0xd6, 0x17, 0x5f, 0x6c, 0xb8, 0x4c, 0xb3, 0xf7, 0xfc, 0x13, 0xfd, 0x72, 0x1a, 0xa6,
-	0xaa, 0xc7, 0xd9, 0x53, 0xdc, 0xc8, 0xb5, 0xe7, 0x01, 0xd7, 0x1e, 0xc1, 0xbc, 0xeb, 0x59, 0x7c,
-	0x61, 0xdb, 0xfa, 0x0b, 0x00, 0xf6, 0xd4, 0x5e, 0x97, 0xe8, 0x43, 0xe5, 0x98, 0xe0, 0x2e, 0xa4,
-	0xba, 0xca, 0x05, 0xc1, 0xcb, 0xe2, 0xc9, 0xa1, 0xbd, 0xdb, 0x45, 0x29, 0x0a, 0xc2, 0x58, 0xa5,
-	0xd4, 0xe5, 0xab, 0x32, 0xc2, 0x8f, 0x21, 0xc3, 0x86, 0xae, 0x78, 0x25, 0x6a, 0x68, 0xeb, 0x18,
-	0x5e, 0x8d, 0x06, 0x05, 0x4d, 0xb3, 0xd9, 0x98, 0xc8, 0xb4, 0x6f, 0x50, 0x29, 0x32, 0xed, 0x1f,
-	0xfd, 0x51, 0xd3, 0x09, 0xdc, 0x86, 0xe4, 0x0e, 0x31, 0x71, 0x55, 0x38, 0xf9, 0x71, 0x8c, 0x2e,
-	0x47, 0x20, 0x7c, 0xce, 0x12, 0x00, 0x6f, 0x28, 0x81, 0xd7, 0x27, 0x4d, 0x37, 0x1c, 0xfb, 0x1b,
-	0x93, 0x81, 0x3e, 0x9a, 0xa7, 0x70, 0xdb, 0x3d, 0x7a, 0xe3, 0xb5, 0x09, 0x27, 0x78, 0x87, 0x64,
-	0x7d, 0x22, 0x2e, 0xc8, 0xe1, 0x9e, 0xf7, 0x44, 0x1c, 0xc1, 0x93, 0xb7, 0x88, 0x63, 0xec, 0x6c,
-	0xeb, 0x71, 0xb8, 0x87, 0x0c, 0x11, 0x47, 0xf0, 0xb8, 0x27, 0xe2, 0x18, 0x3b, 0x50, 0x79, 0xf9,
-	0xc3, 0xba, 0x51, 0x51, 0xfe, 0xf8, 0x0e, 0x18, 0xa2, 0xfc, 0xf1, 0x37, 0xdb, 0x76, 0xfe, 0x1c,
-	0x41, 0x9a, 0x36, 0x92, 0x58, 0xf0, 0xa2, 0xf0, 0x8d, 0xeb, 0xe2, 0x4a, 0x24, 0xc6, 0x67, 0xf7,
-	0x23, 0xc8, 0xb0, 0x2f, 0x9b, 0xf0, 0x6d, 0xe2, 0x7b, 0x13, 0xe1, 0xdb, 0xe4, 0xfb, 0xd6, 0x33,
-	0xd3, 0x77, 0x11, 0xfe, 0x18, 0x6e, 0xd9, 0xed, 0x15, 0x5e, 0x8d, 0xec, 0xd0, 0x1c, 0xf3, 0xb5,
-	0x09, 0x28, 0x3e, 0xda, 0x77, 0x11, 0x96, 0x21, 0xeb, 0xd4, 0x39, 0x5c, 0x8b, 0xae, 0x83, 0x0e,
-	0xc3, 0xda, 0x24, 0x18, 0x47, 0x31, 0xc7, 0xb6, 0x60, 0x17, 0x4a, 0x2c, 0x94, 0x8b, 0xaf, 0xf0,
-	0xa2, 0x2d, 0x04, 0xaa, 0x2d, 0xb5, 0x9f, 0xdc, 0x40, 0x8b, 0xb7, 0xbe, 0xfa, 0xb3, 0x9c, 0xdc,
-	0x53, 0x7b, 0xcd, 0xf2, 0xe5, 0x55, 0x05, 0xbd, 0xbc, 0xaa, 0xa0, 0x7f, 0xaf, 0x2a, 0xe8, 0xc5,
-	0x75, 0x25, 0xf1, 0xf2, 0xba, 0x92, 0xf8, 0xfb, 0xba, 0x92, 0x78, 0x9a, 0xa1, 0xff, 0xc6, 0xbb,
-	0xf7, 0x5f, 0x00, 0x00, 0x00, 0xff, 0xff, 0xc1, 0xe1, 0x22, 0xb8, 0x80, 0x1c, 0x00, 0x00,
+	// 1255 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xc4, 0x59, 0x4b, 0x6f, 0x23, 0x45,
+	0x10, 0x76, 0xc7, 0x8f, 0xf5, 0x96, 0x1f, 0xf1, 0xb6, 0x22, 0x64, 0x8c, 0xe4, 0x38, 0x93, 0xe7,
+	0xc9, 0x59, 0x02, 0x08, 0xa1, 0x95, 0x56, 0xd8, 0x1b, 0x93, 0xac, 0x94, 0x4d, 0xcc, 0x78, 0x37,
+	0xd2, 0x0a, 0x09, 0x34, 0x49, 0x5a, 0xde, 0x41, 0xb6, 0x67, 0x98, 0xe9, 0x58, 0x49, 0x4e, 0x88,
+	0xd3, 0xde, 0xd8, 0x03, 0x2f, 0x01, 0x07, 0xc4, 0x4f, 0x40, 0x20, 0xf1, 0x13, 0x72, 0xdc, 0x23,
+	0x27, 0x84, 0x92, 0x9f, 0xc0, 0x1f, 0x40, 0xd3, 0x3d, 0x6f, 0xbb, 0xc7, 0xc1, 0x1a, 0x39, 0x87,
+	0x48, 0xe3, 0xe9, 0x6f, 0xea, 0xab, 0xaa, 0xaf, 0xa6, 0xa7, 0xaa, 0x03, 0x55, 0x85, 0x6a, 0x7d,
+	0xf5, 0x6c, 0x53, 0x37, 0xd4, 0xbe, 0x4a, 0xd5, 0x21, 0xd9, 0xec, 0x69, 0x5d, 0xeb, 0xaf, 0xae,
+	0x1b, 0x1a, 0xd5, 0xf0, 0x02, 0x5f, 0xaf, 0xbb, 0xeb, 0xf5, 0x9e, 0xd6, 0xad, 0xd4, 0x46, 0x9e,
+	0xf2, 0xd6, 0xd9, 0x73, 0x95, 0xa5, 0x11, 0xc4, 0x09, 0x31, 0x8f, 0x0d, 0x55, 0xa7, 0x9a, 0x61,
+	0x43, 0xa4, 0x11, 0x48, 0x9f, 0x50, 0x65, 0x53, 0x3b, 0xfa, 0x9c, 0x1c, 0x53, 0x1b, 0xb3, 0xd0,
+	0xd5, 0xba, 0x1a, 0xbb, 0xdc, 0xb4, 0xae, 0xf8, 0x5d, 0xe9, 0x5b, 0x04, 0x85, 0xd6, 0x99, 0x6a,
+	0x52, 0x53, 0x26, 0x5f, 0x9c, 0x12, 0x93, 0xe2, 0x06, 0x64, 0x5e, 0x10, 0xe5, 0x84, 0x18, 0x65,
+	0x54, 0x43, 0x1b, 0xb9, 0xad, 0xc5, 0xfa, 0x88, 0xdf, 0x36, 0x74, 0x97, 0xc1, 0x9a, 0xd9, 0x2f,
+	0x7f, 0x7b, 0x13, 0x5d, 0xfe, 0xbd, 0x98, 0x90, 0xed, 0x07, 0x71, 0x03, 0xd2, 0xea, 0x40, 0x3f,
+	0xa5, 0xe5, 0x39, 0x66, 0x61, 0xa9, 0x3e, 0x2e, 0xf2, 0x3a, 0xa7, 0x7d, 0x6c, 0x01, 0x9b, 0xd9,
+	0x97, 0x8e, 0x0d, 0xfe, 0xa4, 0xb4, 0x0c, 0x39, 0xdf, 0x3a, 0x5e, 0xb0, 0x2c, 0x9e, 0x90, 0x33,
+	0x66, 0x31, 0x25, 0xf3, 0x1f, 0xd2, 0x8f, 0x08, 0x8a, 0x8e, 0xf3, 0xa6, 0xae, 0x0d, 0x4c, 0x82,
+	0x9b, 0x21, 0xef, 0x6b, 0xe3, 0xbc, 0xe7, 0x58, 0xa1, 0xfb, 0xdb, 0x90, 0xd1, 0x4e, 0xa9, 0xe7,
+	0xbf, 0x14, 0xe5, 0xff, 0x01, 0x43, 0x36, 0xb3, 0xaf, 0x5c, 0x2b, 0xfc, 0x59, 0xe9, 0x3d, 0xc8,
+	0xfb, 0x11, 0x78, 0x15, 0x8a, 0xc7, 0xda, 0x80, 0x2a, 0xea, 0xc0, 0xfc, 0xcc, 0x8b, 0x25, 0x2b,
+	0x17, 0x9c, 0xbb, 0x8f, 0x59, 0x4c, 0x6d, 0xc8, 0x75, 0xd4, 0x0b, 0x12, 0x9f, 0x1a, 0xd2, 0x77,
+	0x08, 0xf2, 0xdc, 0x64, 0x8c, 0x39, 0x6a, 0x86, 0x72, 0x54, 0x1b, 0x9f, 0x23, 0x8b, 0x57, 0x98,
+	0xa1, 0x1a, 0x80, 0xb7, 0x8e, 0x31, 0xa4, 0x4c, 0xf5, 0x82, 0x30, 0x7b, 0x69, 0x99, 0x5d, 0xb3,
+	0xea, 0x6c, 0xe8, 0x3a, 0x19, 0x9c, 0xcc, 0xbc, 0x3a, 0x39, 0xad, 0xa0, 0x3a, 0x3f, 0x80, 0x9c,
+	0x6f, 0x7d, 0x7c, 0x75, 0x5a, 0x77, 0x87, 0x4a, 0xef, 0x94, 0x94, 0x93, 0x35, 0xb4, 0x91, 0x97,
+	0xf9, 0x0f, 0x56, 0xb3, 0x4e, 0x48, 0xb3, 0xaf, 0x59, 0xce, 0x2c, 0x54, 0xa4, 0x01, 0x79, 0x3f,
+	0x02, 0xbf, 0x0d, 0x69, 0x32, 0xa0, 0xc6, 0xb9, 0xed, 0xd8, 0x5b, 0x82, 0x17, 0xc1, 0x82, 0xc8,
+	0x1c, 0x29, 0x7d, 0x8d, 0x00, 0x76, 0x08, 0x8d, 0x51, 0xaf, 0x87, 0x41, 0xbd, 0xaa, 0xe3, 0x9d,
+	0xd8, 0x21, 0x54, 0x20, 0x56, 0x0d, 0xb2, 0xce, 0xa2, 0x60, 0x1f, 0xf9, 0x06, 0x41, 0x8e, 0xf9,
+	0x1c, 0xa3, 0x20, 0x8d, 0x90, 0x20, 0x8b, 0x42, 0xb7, 0x85, 0x6a, 0x3c, 0x84, 0xbb, 0xee, 0xf2,
+	0x34, 0x52, 0x1c, 0xc2, 0xbd, 0x8f, 0x54, 0xc3, 0xa4, 0xfc, 0x66, 0x7c, 0x1b, 0xca, 0xaf, 0x08,
+	0xb0, 0xdf, 0x70, 0x8c, 0x59, 0xdb, 0x0d, 0x65, 0x6d, 0x6d, 0x7c, 0x98, 0x1e, 0xbb, 0x30, 0x79,
+	0x2d, 0x28, 0x85, 0x51, 0xd3, 0xe4, 0xf0, 0x19, 0x94, 0xf6, 0x94, 0xf8, 0x53, 0xf8, 0x0b, 0x82,
+	0x7b, 0x3e, 0xbb, 0x31, 0x66, 0x70, 0x27, 0x94, 0xc1, 0xd5, 0xf1, 0x41, 0xba, 0xe4, 0xc2, 0x04,
+	0x6e, 0xc3, 0x7c, 0x08, 0x34, 0x4d, 0xfe, 0x7e, 0x42, 0x50, 0x6a, 0x1b, 0x64, 0x18, 0x73, 0x02,
+	0xf1, 0x76, 0x70, 0x53, 0x58, 0x19, 0xef, 0x8a, 0xcb, 0x2c, 0xd8, 0x1a, 0xd6, 0xa0, 0x18, 0x84,
+	0x08, 0x36, 0x08, 0x4b, 0x2e, 0x5f, 0x14, 0xb3, 0x97, 0xcb, 0x25, 0x8f, 0x92, 0x2b, 0x04, 0x9a,
+	0x56, 0xae, 0x7d, 0x72, 0x46, 0x6f, 0x47, 0x2e, 0x97, 0x59, 0x2c, 0x57, 0x10, 0x12, 0x21, 0x97,
+	0x2f, 0x8a, 0xd9, 0xcb, 0xe5, 0x92, 0x47, 0xc9, 0x15, 0x02, 0x4d, 0x23, 0x97, 0xd5, 0x1f, 0xc9,
+	0xa4, 0xaf, 0x0d, 0xc9, 0xcc, 0xfb, 0x23, 0x4e, 0x2b, 0x10, 0xea, 0x43, 0xc8, 0xf9, 0xd6, 0xa7,
+	0x89, 0xcc, 0x6a, 0x93, 0x9c, 0xc8, 0x66, 0xdf, 0x26, 0x71, 0xe6, 0xa8, 0x36, 0xc9, 0x8f, 0x98,
+	0x26, 0xbe, 0x8f, 0x21, 0xff, 0xa8, 0x47, 0x14, 0x23, 0xc6, 0x6f, 0x4a, 0x07, 0x0a, 0xb6, 0xc9,
+	0xf8, 0x12, 0x26, 0x7d, 0x6f, 0x8d, 0x58, 0x03, 0x6a, 0xa8, 0x24, 0xce, 0x01, 0xb1, 0x19, 0x2c,
+	0x31, 0x49, 0x9c, 0x30, 0x95, 0x88, 0x26, 0xc4, 0x22, 0xe4, 0xfd, 0x00, 0xe9, 0x67, 0x04, 0xf3,
+	0xae, 0xa7, 0x31, 0x96, 0x4c, 0x2b, 0x54, 0x32, 0xcb, 0x91, 0xce, 0x0a, 0x6b, 0xa6, 0x09, 0x85,
+	0x00, 0x64, 0xda, 0xd7, 0xbd, 0x35, 0x24, 0x83, 0xdb, 0x18, 0xd6, 0x19, 0xad, 0x40, 0x8a, 0x07,
+	0x90, 0xf3, 0xad, 0xe3, 0x37, 0x20, 0x63, 0x10, 0xbd, 0xa7, 0x9c, 0xdb, 0x13, 0xae, 0xfd, 0xcb,
+	0xdb, 0xac, 0x93, 0x23, 0x43, 0xbc, 0x1d, 0xd4, 0x2d, 0x0c, 0xf1, 0x8c, 0x59, 0xa8, 0xda, 0xef,
+	0x08, 0xf2, 0x7e, 0x08, 0x7e, 0x00, 0x29, 0x7a, 0xae, 0x13, 0xe6, 0x58, 0x71, 0x6b, 0x7d, 0xb2,
+	0xd1, 0xfa, 0xd3, 0x73, 0x9d, 0xc8, 0xec, 0x21, 0x4f, 0xf2, 0xb9, 0x1b, 0x4b, 0xfe, 0x2e, 0xa4,
+	0x2c, 0x03, 0x38, 0x0b, 0xa9, 0xfd, 0x83, 0xfd, 0x56, 0x29, 0x81, 0x01, 0x32, 0x8d, 0x76, 0xbb,
+	0xb5, 0xbf, 0x5d, 0x42, 0xd6, 0xb5, 0xdc, 0x7a, 0x72, 0x70, 0xd8, 0x2a, 0xcd, 0xf1, 0xeb, 0xf6,
+	0x5e, 0xe3, 0x79, 0x29, 0x29, 0xe9, 0x90, 0x66, 0x56, 0x2c, 0x77, 0xfb, 0x84, 0x2a, 0x76, 0x1e,
+	0xc7, 0x68, 0x6b, 0xad, 0xd6, 0x0f, 0xd8, 0x39, 0xd1, 0x13, 0x42, 0x95, 0x66, 0x8a, 0x85, 0xcf,
+	0x1e, 0xfa, 0x5f, 0x63, 0xed, 0x2e, 0x14, 0x3a, 0x03, 0x45, 0x37, 0x5f, 0x68, 0xfc, 0x9b, 0x86,
+	0xdf, 0xbf, 0x79, 0x79, 0xdb, 0xa4, 0x76, 0xc4, 0x4f, 0x61, 0xde, 0xb1, 0x14, 0xe3, 0xe6, 0x68,
+	0x35, 0x36, 0x9e, 0xd9, 0x18, 0xeb, 0xec, 0x51, 0x50, 0x53, 0xc1, 0xee, 0x10, 0xc8, 0x8d, 0xaf,
+	0xce, 0xec, 0x98, 0x7f, 0x60, 0x5f, 0x3b, 0x93, 0x6a, 0x46, 0x9c, 0x1f, 0xf2, 0xa9, 0x5c, 0x7b,
+	0x19, 0x72, 0xed, 0x19, 0xcc, 0xbb, 0x9e, 0xc5, 0x97, 0xb6, 0xad, 0x3f, 0x01, 0x60, 0x4f, 0xeb,
+	0x76, 0x88, 0x31, 0x54, 0x8f, 0x09, 0xee, 0x40, 0xaa, 0xa3, 0x5e, 0x10, 0xbc, 0x24, 0x3e, 0x46,
+	0xb2, 0xa3, 0xad, 0x48, 0x51, 0x10, 0xce, 0x2a, 0xa5, 0x2e, 0xff, 0x2d, 0x23, 0xfc, 0x1c, 0x32,
+	0xfc, 0x04, 0x0e, 0x2f, 0x47, 0x9d, 0xe0, 0x39, 0x86, 0x57, 0xa2, 0x41, 0x61, 0xd3, 0xfc, 0xa0,
+	0x44, 0x64, 0x3a, 0x70, 0x6a, 0x25, 0x32, 0x1d, 0x3c, 0x07, 0x62, 0xa6, 0x13, 0xb8, 0x0d, 0xc9,
+	0x1d, 0x42, 0x71, 0x4d, 0x78, 0x5e, 0xe0, 0x18, 0x5d, 0x8a, 0x40, 0x04, 0x9c, 0x25, 0x00, 0xde,
+	0x28, 0x8c, 0xd7, 0x27, 0x8d, 0xd4, 0x8e, 0xfd, 0x8d, 0xc9, 0xc0, 0x00, 0xcd, 0x11, 0xdc, 0x75,
+	0x07, 0x46, 0xbc, 0x36, 0x61, 0xec, 0x74, 0x48, 0xd6, 0x27, 0xe2, 0xc2, 0x1c, 0xee, 0x94, 0x23,
+	0xe2, 0x08, 0x8f, 0x9b, 0x22, 0x8e, 0x91, 0x81, 0xce, 0xe3, 0x70, 0x5b, 0x73, 0x11, 0x47, 0x78,
+	0x46, 0x12, 0x71, 0x8c, 0x4c, 0x21, 0x5e, 0xfd, 0xf0, 0x0e, 0x52, 0x54, 0x3f, 0x81, 0xae, 0x5e,
+	0x54, 0x3f, 0xc1, 0x06, 0xd9, 0xae, 0x9f, 0x43, 0x48, 0xb3, 0x36, 0x10, 0x0b, 0x5e, 0x14, 0x7f,
+	0xdb, 0x59, 0x59, 0x8e, 0xc4, 0x04, 0xec, 0x7e, 0x02, 0x19, 0xfe, 0x5d, 0x13, 0xbe, 0x4d, 0xfe,
+	0xce, 0x44, 0xf8, 0x36, 0x05, 0xbe, 0xf4, 0xdc, 0xf4, 0x7d, 0x84, 0x3f, 0x85, 0x3b, 0x76, 0x77,
+	0x84, 0x57, 0x22, 0xfb, 0x2b, 0xc7, 0xfc, 0xea, 0x04, 0x94, 0x3f, 0xdb, 0xf7, 0x11, 0x56, 0x20,
+	0xeb, 0xec, 0x73, 0x78, 0x35, 0x7a, 0x1f, 0x74, 0x18, 0xd6, 0x26, 0xc1, 0x7c, 0x14, 0x73, 0x3c,
+	0x04, 0x7b, 0xa3, 0xc4, 0x42, 0xb9, 0xfc, 0x3b, 0xbc, 0x28, 0x84, 0xd0, 0x6e, 0xcb, 0xec, 0x27,
+	0x37, 0x50, 0xe5, 0xce, 0x57, 0x7f, 0x94, 0x93, 0x7b, 0x5a, 0xb7, 0x59, 0xbe, 0xbc, 0xaa, 0xa2,
+	0xd7, 0x57, 0x55, 0xf4, 0xcf, 0x55, 0x15, 0xbd, 0xba, 0xae, 0x26, 0x5e, 0x5f, 0x57, 0x13, 0x7f,
+	0x5d, 0x57, 0x13, 0x47, 0x19, 0xf6, 0x3f, 0x9d, 0x77, 0xfe, 0x0b, 0x00, 0x00, 0xff, 0xff, 0x7c,
+	0x22, 0x1d, 0xd7, 0x8a, 0x1a, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -3776,20 +3638,17 @@ func (m *AppendOutput) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	{
-		size, err := m.Timestamp.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
+	if m.Entry != nil {
+		{
+			size, err := m.Entry.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintLog(dAtA, i, uint64(size))
 		}
-		i -= size
-		i = encodeVarintLog(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0x1a
-	if m.Index != 0 {
-		i = encodeVarintLog(dAtA, i, uint64(m.Index))
 		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -3928,27 +3787,17 @@ func (m *GetOutput) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	{
-		size, err := m.Timestamp.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
+	if m.Entry != nil {
+		{
+			size, err := m.Entry.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintLog(dAtA, i, uint64(size))
 		}
-		i -= size
-		i = encodeVarintLog(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0x2a
-	if len(m.Value) > 0 {
-		i -= len(m.Value)
-		copy(dAtA[i:], m.Value)
-		i = encodeVarintLog(dAtA, i, uint64(len(m.Value)))
 		i--
-		dAtA[i] = 0x1a
-	}
-	if m.Index != 0 {
-		i = encodeVarintLog(dAtA, i, uint64(m.Index))
-		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -4049,27 +3898,17 @@ func (m *FirstEntryOutput) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	{
-		size, err := m.Timestamp.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
+	if m.Entry != nil {
+		{
+			size, err := m.Entry.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintLog(dAtA, i, uint64(size))
 		}
-		i -= size
-		i = encodeVarintLog(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0x22
-	if len(m.Value) > 0 {
-		i -= len(m.Value)
-		copy(dAtA[i:], m.Value)
-		i = encodeVarintLog(dAtA, i, uint64(len(m.Value)))
 		i--
-		dAtA[i] = 0x1a
-	}
-	if m.Index != 0 {
-		i = encodeVarintLog(dAtA, i, uint64(m.Index))
-		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -4170,27 +4009,17 @@ func (m *LastEntryOutput) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	{
-		size, err := m.Timestamp.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
+	if m.Entry != nil {
+		{
+			size, err := m.Entry.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintLog(dAtA, i, uint64(size))
 		}
-		i -= size
-		i = encodeVarintLog(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0x22
-	if len(m.Value) > 0 {
-		i -= len(m.Value)
-		copy(dAtA[i:], m.Value)
-		i = encodeVarintLog(dAtA, i, uint64(len(m.Value)))
 		i--
-		dAtA[i] = 0x1a
-	}
-	if m.Index != 0 {
-		i = encodeVarintLog(dAtA, i, uint64(m.Index))
-		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -4329,27 +4158,17 @@ func (m *PrevEntryOutput) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	{
-		size, err := m.Timestamp.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
+	if m.Entry != nil {
+		{
+			size, err := m.Entry.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintLog(dAtA, i, uint64(size))
 		}
-		i -= size
-		i = encodeVarintLog(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0x22
-	if len(m.Value) > 0 {
-		i -= len(m.Value)
-		copy(dAtA[i:], m.Value)
-		i = encodeVarintLog(dAtA, i, uint64(len(m.Value)))
 		i--
-		dAtA[i] = 0x1a
-	}
-	if m.Index != 0 {
-		i = encodeVarintLog(dAtA, i, uint64(m.Index))
-		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -4488,27 +4307,17 @@ func (m *NextEntryOutput) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	{
-		size, err := m.Timestamp.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
+	if m.Entry != nil {
+		{
+			size, err := m.Entry.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintLog(dAtA, i, uint64(size))
 		}
-		i -= size
-		i = encodeVarintLog(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0x22
-	if len(m.Value) > 0 {
-		i -= len(m.Value)
-		copy(dAtA[i:], m.Value)
-		i = encodeVarintLog(dAtA, i, uint64(len(m.Value)))
 		i--
-		dAtA[i] = 0x1a
-	}
-	if m.Index != 0 {
-		i = encodeVarintLog(dAtA, i, uint64(m.Index))
-		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -4576,27 +4385,17 @@ func (m *RemoveInput) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	{
-		size, err := m.Timestamp.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
+	if m.Entry != nil {
+		{
+			size, err := m.Entry.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintLog(dAtA, i, uint64(size))
 		}
-		i -= size
-		i = encodeVarintLog(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0x22
-	if len(m.Value) > 0 {
-		i -= len(m.Value)
-		copy(dAtA[i:], m.Value)
-		i = encodeVarintLog(dAtA, i, uint64(len(m.Value)))
 		i--
-		dAtA[i] = 0x1a
-	}
-	if m.Index != 0 {
-		i = encodeVarintLog(dAtA, i, uint64(m.Index))
-		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -4664,17 +4463,17 @@ func (m *RemoveOutput) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if len(m.PreviousValue) > 0 {
-		i -= len(m.PreviousValue)
-		copy(dAtA[i:], m.PreviousValue)
-		i = encodeVarintLog(dAtA, i, uint64(len(m.PreviousValue)))
+	if m.Entry != nil {
+		{
+			size, err := m.Entry.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintLog(dAtA, i, uint64(size))
+		}
 		i--
-		dAtA[i] = 0x1a
-	}
-	if m.Index != 0 {
-		i = encodeVarintLog(dAtA, i, uint64(m.Index))
-		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -4874,27 +4673,17 @@ func (m *EntriesOutput) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	{
-		size, err := m.Timestamp.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
+	if m.Entry != nil {
+		{
+			size, err := m.Entry.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintLog(dAtA, i, uint64(size))
 		}
-		i -= size
-		i = encodeVarintLog(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0x22
-	if len(m.Value) > 0 {
-		i -= len(m.Value)
-		copy(dAtA[i:], m.Value)
-		i = encodeVarintLog(dAtA, i, uint64(len(m.Value)))
 		i--
-		dAtA[i] = 0x1a
-	}
-	if m.Index != 0 {
-		i = encodeVarintLog(dAtA, i, uint64(m.Index))
-		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -5043,32 +4832,22 @@ func (m *EventsOutput) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	{
-		size, err := m.Timestamp.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
+	if m.Entry != nil {
+		{
+			size, err := m.Entry.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintLog(dAtA, i, uint64(size))
 		}
-		i -= size
-		i = encodeVarintLog(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0x2a
-	if len(m.Value) > 0 {
-		i -= len(m.Value)
-		copy(dAtA[i:], m.Value)
-		i = encodeVarintLog(dAtA, i, uint64(len(m.Value)))
 		i--
-		dAtA[i] = 0x22
-	}
-	if m.Index != 0 {
-		i = encodeVarintLog(dAtA, i, uint64(m.Index))
-		i--
-		dAtA[i] = 0x18
+		dAtA[i] = 0x12
 	}
 	if m.Type != 0 {
 		i = encodeVarintLog(dAtA, i, uint64(m.Type))
 		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0x8
 	}
 	return len(dAtA) - i, nil
 }
@@ -5098,13 +4877,23 @@ func (m *Entry) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 		copy(dAtA[i:], m.Value)
 		i = encodeVarintLog(dAtA, i, uint64(len(m.Value)))
 		i--
-		dAtA[i] = 0x12
+		dAtA[i] = 0x1a
 	}
 	if m.Index != 0 {
 		i = encodeVarintLog(dAtA, i, uint64(m.Index))
 		i--
-		dAtA[i] = 0x8
+		dAtA[i] = 0x10
 	}
+	{
+		size, err := m.Meta.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintLog(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
 	return len(dAtA) - i, nil
 }
 
@@ -5438,11 +5227,10 @@ func (m *AppendOutput) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Index != 0 {
-		n += 1 + sovLog(uint64(m.Index))
+	if m.Entry != nil {
+		l = m.Entry.Size()
+		n += 1 + l + sovLog(uint64(l))
 	}
-	l = m.Timestamp.Size()
-	n += 1 + l + sovLog(uint64(l))
 	return n
 }
 
@@ -5490,15 +5278,10 @@ func (m *GetOutput) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Index != 0 {
-		n += 1 + sovLog(uint64(m.Index))
-	}
-	l = len(m.Value)
-	if l > 0 {
+	if m.Entry != nil {
+		l = m.Entry.Size()
 		n += 1 + l + sovLog(uint64(l))
 	}
-	l = m.Timestamp.Size()
-	n += 1 + l + sovLog(uint64(l))
 	return n
 }
 
@@ -5532,15 +5315,10 @@ func (m *FirstEntryOutput) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Index != 0 {
-		n += 1 + sovLog(uint64(m.Index))
-	}
-	l = len(m.Value)
-	if l > 0 {
+	if m.Entry != nil {
+		l = m.Entry.Size()
 		n += 1 + l + sovLog(uint64(l))
 	}
-	l = m.Timestamp.Size()
-	n += 1 + l + sovLog(uint64(l))
 	return n
 }
 
@@ -5574,15 +5352,10 @@ func (m *LastEntryOutput) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Index != 0 {
-		n += 1 + sovLog(uint64(m.Index))
-	}
-	l = len(m.Value)
-	if l > 0 {
+	if m.Entry != nil {
+		l = m.Entry.Size()
 		n += 1 + l + sovLog(uint64(l))
 	}
-	l = m.Timestamp.Size()
-	n += 1 + l + sovLog(uint64(l))
 	return n
 }
 
@@ -5630,15 +5403,10 @@ func (m *PrevEntryOutput) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Index != 0 {
-		n += 1 + sovLog(uint64(m.Index))
-	}
-	l = len(m.Value)
-	if l > 0 {
+	if m.Entry != nil {
+		l = m.Entry.Size()
 		n += 1 + l + sovLog(uint64(l))
 	}
-	l = m.Timestamp.Size()
-	n += 1 + l + sovLog(uint64(l))
 	return n
 }
 
@@ -5686,15 +5454,10 @@ func (m *NextEntryOutput) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Index != 0 {
-		n += 1 + sovLog(uint64(m.Index))
-	}
-	l = len(m.Value)
-	if l > 0 {
+	if m.Entry != nil {
+		l = m.Entry.Size()
 		n += 1 + l + sovLog(uint64(l))
 	}
-	l = m.Timestamp.Size()
-	n += 1 + l + sovLog(uint64(l))
 	return n
 }
 
@@ -5717,15 +5480,10 @@ func (m *RemoveInput) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Index != 0 {
-		n += 1 + sovLog(uint64(m.Index))
-	}
-	l = len(m.Value)
-	if l > 0 {
+	if m.Entry != nil {
+		l = m.Entry.Size()
 		n += 1 + l + sovLog(uint64(l))
 	}
-	l = m.Timestamp.Size()
-	n += 1 + l + sovLog(uint64(l))
 	return n
 }
 
@@ -5748,11 +5506,8 @@ func (m *RemoveOutput) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Index != 0 {
-		n += 1 + sovLog(uint64(m.Index))
-	}
-	l = len(m.PreviousValue)
-	if l > 0 {
+	if m.Entry != nil {
+		l = m.Entry.Size()
 		n += 1 + l + sovLog(uint64(l))
 	}
 	return n
@@ -5821,15 +5576,10 @@ func (m *EntriesOutput) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.Index != 0 {
-		n += 1 + sovLog(uint64(m.Index))
-	}
-	l = len(m.Value)
-	if l > 0 {
+	if m.Entry != nil {
+		l = m.Entry.Size()
 		n += 1 + l + sovLog(uint64(l))
 	}
-	l = m.Timestamp.Size()
-	n += 1 + l + sovLog(uint64(l))
 	return n
 }
 
@@ -5883,15 +5633,10 @@ func (m *EventsOutput) Size() (n int) {
 	if m.Type != 0 {
 		n += 1 + sovLog(uint64(m.Type))
 	}
-	if m.Index != 0 {
-		n += 1 + sovLog(uint64(m.Index))
-	}
-	l = len(m.Value)
-	if l > 0 {
+	if m.Entry != nil {
+		l = m.Entry.Size()
 		n += 1 + l + sovLog(uint64(l))
 	}
-	l = m.Timestamp.Size()
-	n += 1 + l + sovLog(uint64(l))
 	return n
 }
 
@@ -5901,6 +5646,8 @@ func (m *Entry) Size() (n int) {
 	}
 	var l int
 	_ = l
+	l = m.Meta.Size()
+	n += 1 + l + sovLog(uint64(l))
 	if m.Index != 0 {
 		n += 1 + sovLog(uint64(m.Index))
 	}
@@ -7009,28 +6756,9 @@ func (m *AppendOutput) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: AppendOutput: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
-			}
-			m.Index = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Index |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
+		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Timestamp", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Entry", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -7057,7 +6785,10 @@ func (m *AppendOutput) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Timestamp.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.Entry == nil {
+				m.Entry = &Entry{}
+			}
+			if err := m.Entry.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -7424,62 +7155,9 @@ func (m *GetOutput) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: GetOutput: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
-			}
-			m.Index = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Index |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
+		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
-			}
-			var byteLen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				byteLen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if byteLen < 0 {
-				return ErrInvalidLengthLog
-			}
-			postIndex := iNdEx + byteLen
-			if postIndex < 0 {
-				return ErrInvalidLengthLog
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Value = append(m.Value[:0], dAtA[iNdEx:postIndex]...)
-			if m.Value == nil {
-				m.Value = []byte{}
-			}
-			iNdEx = postIndex
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Timestamp", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Entry", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -7506,7 +7184,10 @@ func (m *GetOutput) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Timestamp.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.Entry == nil {
+				m.Entry = &Entry{}
+			}
+			if err := m.Entry.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -7768,62 +7449,9 @@ func (m *FirstEntryOutput) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: FirstEntryOutput: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
-			}
-			m.Index = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Index |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
+		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
-			}
-			var byteLen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				byteLen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if byteLen < 0 {
-				return ErrInvalidLengthLog
-			}
-			postIndex := iNdEx + byteLen
-			if postIndex < 0 {
-				return ErrInvalidLengthLog
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Value = append(m.Value[:0], dAtA[iNdEx:postIndex]...)
-			if m.Value == nil {
-				m.Value = []byte{}
-			}
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Timestamp", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Entry", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -7850,7 +7478,10 @@ func (m *FirstEntryOutput) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Timestamp.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.Entry == nil {
+				m.Entry = &Entry{}
+			}
+			if err := m.Entry.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -8112,62 +7743,9 @@ func (m *LastEntryOutput) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: LastEntryOutput: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
-			}
-			m.Index = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Index |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
+		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
-			}
-			var byteLen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				byteLen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if byteLen < 0 {
-				return ErrInvalidLengthLog
-			}
-			postIndex := iNdEx + byteLen
-			if postIndex < 0 {
-				return ErrInvalidLengthLog
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Value = append(m.Value[:0], dAtA[iNdEx:postIndex]...)
-			if m.Value == nil {
-				m.Value = []byte{}
-			}
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Timestamp", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Entry", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -8194,7 +7772,10 @@ func (m *LastEntryOutput) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Timestamp.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.Entry == nil {
+				m.Entry = &Entry{}
+			}
+			if err := m.Entry.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -8561,62 +8142,9 @@ func (m *PrevEntryOutput) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: PrevEntryOutput: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
-			}
-			m.Index = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Index |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
+		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
-			}
-			var byteLen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				byteLen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if byteLen < 0 {
-				return ErrInvalidLengthLog
-			}
-			postIndex := iNdEx + byteLen
-			if postIndex < 0 {
-				return ErrInvalidLengthLog
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Value = append(m.Value[:0], dAtA[iNdEx:postIndex]...)
-			if m.Value == nil {
-				m.Value = []byte{}
-			}
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Timestamp", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Entry", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -8643,7 +8171,10 @@ func (m *PrevEntryOutput) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Timestamp.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.Entry == nil {
+				m.Entry = &Entry{}
+			}
+			if err := m.Entry.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -9010,62 +8541,9 @@ func (m *NextEntryOutput) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: NextEntryOutput: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
-			}
-			m.Index = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Index |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
+		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
-			}
-			var byteLen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				byteLen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if byteLen < 0 {
-				return ErrInvalidLengthLog
-			}
-			postIndex := iNdEx + byteLen
-			if postIndex < 0 {
-				return ErrInvalidLengthLog
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Value = append(m.Value[:0], dAtA[iNdEx:postIndex]...)
-			if m.Value == nil {
-				m.Value = []byte{}
-			}
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Timestamp", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Entry", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -9092,7 +8570,10 @@ func (m *NextEntryOutput) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Timestamp.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.Entry == nil {
+				m.Entry = &Entry{}
+			}
+			if err := m.Entry.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -9268,62 +8749,9 @@ func (m *RemoveInput) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: RemoveInput: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
-			}
-			m.Index = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Index |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
+		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
-			}
-			var byteLen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				byteLen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if byteLen < 0 {
-				return ErrInvalidLengthLog
-			}
-			postIndex := iNdEx + byteLen
-			if postIndex < 0 {
-				return ErrInvalidLengthLog
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Value = append(m.Value[:0], dAtA[iNdEx:postIndex]...)
-			if m.Value == nil {
-				m.Value = []byte{}
-			}
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Timestamp", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Entry", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -9350,7 +8778,10 @@ func (m *RemoveInput) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Timestamp.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.Entry == nil {
+				m.Entry = &Entry{}
+			}
+			if err := m.Entry.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -9526,30 +8957,11 @@ func (m *RemoveOutput) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: RemoveOutput: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
-			}
-			m.Index = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Index |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
+		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PreviousValue", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Entry", wireType)
 			}
-			var byteLen int
+			var msglen int
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowLog
@@ -9559,24 +8971,26 @@ func (m *RemoveOutput) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				byteLen |= int(b&0x7F) << shift
+				msglen |= int(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			if byteLen < 0 {
+			if msglen < 0 {
 				return ErrInvalidLengthLog
 			}
-			postIndex := iNdEx + byteLen
+			postIndex := iNdEx + msglen
 			if postIndex < 0 {
 				return ErrInvalidLengthLog
 			}
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.PreviousValue = append(m.PreviousValue[:0], dAtA[iNdEx:postIndex]...)
-			if m.PreviousValue == nil {
-				m.PreviousValue = []byte{}
+			if m.Entry == nil {
+				m.Entry = &Entry{}
+			}
+			if err := m.Entry.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
 			}
 			iNdEx = postIndex
 		default:
@@ -10095,62 +9509,9 @@ func (m *EntriesOutput) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: EntriesOutput: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
-			}
-			m.Index = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Index |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 3:
+		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
-			}
-			var byteLen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				byteLen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if byteLen < 0 {
-				return ErrInvalidLengthLog
-			}
-			postIndex := iNdEx + byteLen
-			if postIndex < 0 {
-				return ErrInvalidLengthLog
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Value = append(m.Value[:0], dAtA[iNdEx:postIndex]...)
-			if m.Value == nil {
-				m.Value = []byte{}
-			}
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Timestamp", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Entry", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -10177,7 +9538,10 @@ func (m *EntriesOutput) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Timestamp.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.Entry == nil {
+				m.Entry = &Entry{}
+			}
+			if err := m.Entry.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -10564,7 +9928,7 @@ func (m *EventsOutput) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: EventsOutput: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 2:
+		case 1:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Type", wireType)
 			}
@@ -10583,62 +9947,9 @@ func (m *EventsOutput) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		case 3:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
-			}
-			m.Index = 0
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				m.Index |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-		case 4:
+		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
-			}
-			var byteLen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowLog
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				byteLen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if byteLen < 0 {
-				return ErrInvalidLengthLog
-			}
-			postIndex := iNdEx + byteLen
-			if postIndex < 0 {
-				return ErrInvalidLengthLog
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Value = append(m.Value[:0], dAtA[iNdEx:postIndex]...)
-			if m.Value == nil {
-				m.Value = []byte{}
-			}
-			iNdEx = postIndex
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Timestamp", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Entry", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -10665,7 +9976,10 @@ func (m *EventsOutput) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Timestamp.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.Entry == nil {
+				m.Entry = &Entry{}
+			}
+			if err := m.Entry.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -10723,6 +10037,39 @@ func (m *Entry) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Meta", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowLog
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthLog
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthLog
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Meta.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Index", wireType)
 			}
@@ -10741,7 +10088,7 @@ func (m *Entry) Unmarshal(dAtA []byte) error {
 					break
 				}
 			}
-		case 2:
+		case 3:
 			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Value", wireType)
 			}

@@ -20,7 +20,7 @@ package atomix.primitive.value;
 
 import "atomix/primitive/primitive.proto";
 import "atomix/primitive/descriptor.proto";
-import "atomix/primitive/meta/version.proto";
+import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
 message GetRequest {
@@ -87,9 +87,13 @@ message EventsOutput {
     }
 }
 
+message Value {
+    atomix.primitive.meta.ObjectMeta version = 1 [(gogoproto.nullable) = false];
+    bytes value = 2;
+}
+
 message Snapshot {
-    bytes value = 1;
-    atomix.primitive.meta.Version version = 2;
+    Value value = 1;
 }
 
 message SnapshotRequest {

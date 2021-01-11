@@ -16,8 +16,7 @@ limitations under the License.
 
 syntax = "proto3";
 
-import "google/protobuf/timestamp.proto";
-import "atomix/primitive/meta/timestamp.proto";
+import "atomix/primitive/meta/object.proto";
 import "atomix/primitive/primitive.proto";
 import "atomix/primitive/descriptor.proto";
 import "gogoproto/gogo.proto";
@@ -155,10 +154,9 @@ message EventsOutput {
 }
 
 message Term {
-    atomix.primitive.meta.Epoch id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
-    google.protobuf.Timestamp timestamp = 2 [(gogoproto.stdtime) = true];
-    string leader = 3;
-    repeated string candidates = 4;
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
+    string leader = 2;
+    repeated string candidates = 3;
 }
 
 message Snapshot {

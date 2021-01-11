@@ -47,7 +47,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| version | [atomix.primitive.meta.Version](#atomix.primitive.meta.Version) |  |  |
+| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
 
 
 
@@ -109,10 +109,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
 | owner | [string](#string) |  |  |
-| version | [atomix.primitive.meta.Version](#atomix.primitive.meta.Version) |  |  |
-| created | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
-| expire | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 
 
 
@@ -142,7 +140,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| version | [atomix.primitive.meta.Version](#atomix.primitive.meta.Version) |  |  |
+| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
 
 
 
@@ -267,7 +265,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| version | [atomix.primitive.meta.Version](#atomix.primitive.meta.Version) |  |  |
+| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
 
 
 

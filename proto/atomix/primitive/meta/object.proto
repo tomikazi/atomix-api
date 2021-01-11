@@ -18,6 +18,14 @@ syntax = "proto3";
 
 package atomix.primitive.meta;
 
-message Version {
-    uint64 value = 1;
+import "atomix/primitive/meta/timestamp.proto";
+
+message ObjectMeta {
+    Revision revision = 1;
+    oneof timestamp {
+        PhysicalTimestamp physical_timestamp = 2;
+        LogicalTimestamp logical_timestamp = 3;
+        VectorTimestamp vector_timestamp = 4;
+        EpochTimestamp epoch_timestamp = 5;
+    }
 }

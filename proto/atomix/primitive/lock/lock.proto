@@ -17,10 +17,9 @@ limitations under the License.
 syntax = "proto3";
 
 import "google/protobuf/duration.proto";
-import "google/protobuf/timestamp.proto";
 import "atomix/primitive/primitive.proto";
 import "atomix/primitive/descriptor.proto";
-import "atomix/primitive/meta/version.proto";
+import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
 package atomix.primitive.lock;
@@ -40,7 +39,7 @@ message LockResponse {
 }
 
 message LockOutput {
-    atomix.primitive.meta.Version version = 2;
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
 }
 
 message UnlockRequest {
@@ -49,7 +48,7 @@ message UnlockRequest {
 }
 
 message UnlockInput {
-    atomix.primitive.meta.Version version = 2;
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
 }
 
 message UnlockResponse {
@@ -67,7 +66,7 @@ message IsLockedRequest {
 }
 
 message IsLockedInput {
-    atomix.primitive.meta.Version version = 2;
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
 }
 
 message IsLockedResponse {
@@ -80,10 +79,8 @@ message IsLockedOutput {
 }
 
 message Lock {
-    string owner = 1;
-    atomix.primitive.meta.Version version = 2 [(gogoproto.nullable) = false];
-    google.protobuf.Timestamp created = 3 [(gogoproto.stdtime) = true, (gogoproto.nullable) = false];
-    google.protobuf.Timestamp expire = 4 [(gogoproto.stdtime) = true];
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
+    string owner = 2;
 }
 
 message Snapshot {

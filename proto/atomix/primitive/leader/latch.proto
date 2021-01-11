@@ -18,7 +18,7 @@ syntax = "proto3";
 
 import "atomix/primitive/primitive.proto";
 import "atomix/primitive/descriptor.proto";
-import "atomix/primitive/meta/timestamp.proto";
+import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
 package atomix.primitive.leader;
@@ -84,7 +84,7 @@ message EventsOutput {
 }
 
 message Latch {
-    atomix.primitive.meta.Epoch id = 1 [(gogoproto.customname) = "ID", (gogoproto.nullable) = false];
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
     string leader = 2;
     repeated string participants = 3;
 }

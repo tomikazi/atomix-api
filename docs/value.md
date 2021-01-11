@@ -21,6 +21,7 @@
     - [Snapshot](#atomix.primitive.value.Snapshot)
     - [SnapshotRequest](#atomix.primitive.value.SnapshotRequest)
     - [SnapshotResponse](#atomix.primitive.value.SnapshotResponse)
+    - [Value](#atomix.primitive.value.Value)
   
     - [EventsOutput.Type](#atomix.primitive.value.EventsOutput.Type)
   
@@ -261,8 +262,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [bytes](#bytes) |  |  |
-| version | [atomix.primitive.meta.Version](#atomix.primitive.meta.Version) |  |  |
+| value | [Value](#atomix.primitive.value.Value) |  |  |
 
 
 
@@ -294,6 +294,22 @@
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
 | snapshot | [Snapshot](#atomix.primitive.value.Snapshot) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.value.Value"></a>
+
+### Value
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| version | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
+| value | [bytes](#bytes) |  |  |
 
 
 

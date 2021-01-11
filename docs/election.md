@@ -499,8 +499,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [atomix.primitive.meta.Epoch](#atomix.primitive.meta.Epoch) |  |  |
-| timestamp | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
+| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
 | leader | [string](#string) |  |  |
 | candidates | [string](#string) | repeated |  |
 

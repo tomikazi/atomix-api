@@ -30,8 +30,8 @@ protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/a
 
 go_import_paths="${go_import_paths},Matomix/protocol/protocol.proto=github.com/atomix/api/go/atomix/protocol"
 go_import_paths="${go_import_paths},Matomix/primitive/primitive.proto=github.com/atomix/api/go/atomix/primitive"
+go_import_paths="${go_import_paths},Matomix/primitive/meta/object.proto=github.com/atomix/api/go/atomix/primitive/meta"
 go_import_paths="${go_import_paths},Matomix/primitive/meta/timestamp.proto=github.com/atomix/api/go/atomix/primitive/meta"
-go_import_paths="${go_import_paths},Matomix/primitive/meta/version.proto=github.com/atomix/api/go/atomix/primitive/meta"
 
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/proxy,plugins=grpc:go proto/atomix/proxy/*.proto
 

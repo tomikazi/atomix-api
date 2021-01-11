@@ -16,30 +16,21 @@ limitations under the License.
 
 syntax = "proto3";
 
-package atomix.storage;
+package atomix.protocol;
 
 import "gogoproto/gogo.proto";
 
-// Storage identifier
-message StorageId {
-    // name is the name of the storage
-    string name = 1;
-
-    // namespace is the namespace to which the storage belongs
-    string namespace = 2;
-}
-
-// Storage configuration
-message StorageConfig {
-    // nodes is a list of storage replicas
-    repeated StorageReplica replicas = 1 [(gogoproto.nullable) = false];
+// Protocol configuration
+message ProtocolConfig {
+    // nodes is a list of replicas
+    repeated ProtocolReplica replicas = 1 [(gogoproto.nullable) = false];
 
     // partitions is a list of partitions owned by the replicas
-    repeated StoragePartition partitions = 2 [(gogoproto.nullable) = false];
+    repeated ProtocolPartition partitions = 2 [(gogoproto.nullable) = false];
 }
 
 // Replica configuration
-message StorageReplica {
+message ProtocolReplica {
     // id is the unique member identifier
     string id = 1 [(gogoproto.customname) = "ID"];
 
@@ -57,21 +48,21 @@ message StorageReplica {
 }
 
 // Partition info
-message StoragePartition {
+message ProtocolPartition {
     uint32 partition_id = 1 [(gogoproto.customname) = "PartitionID"];
     repeated string replicas = 2;
 }
 
-message UpdateRequest {
-    StorageConfig config = 1 [(gogoproto.nullable) = false];
+message UpdateConfigRequest {
+    ProtocolConfig config = 1 [(gogoproto.nullable) = false];
 }
 
-message UpdateResponse {
+message UpdateConfigResponse {
 
 }
 
-// Atomix storage service
-service StorageService {
-    // Update updates the storage configuration
-    rpc Update (UpdateRequest) returns (UpdateResponse);
+// Atomix protocol configuration service
+service ProtocolConfigService {
+    // UpdateConfig updates the protocol configuration
+    rpc UpdateConfig (UpdateConfigRequest) returns (UpdateConfigResponse);
 }

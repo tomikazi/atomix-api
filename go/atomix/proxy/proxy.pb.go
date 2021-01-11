@@ -6,7 +6,7 @@ package proxy
 import (
 	context "context"
 	fmt "fmt"
-	storage "github.com/atomix/api/go/atomix/storage"
+	protocol "github.com/atomix/api/go/atomix/protocol"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"
@@ -28,22 +28,22 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-type UpdateRequest struct {
-	Config storage.StorageConfig `protobuf:"bytes,1,opt,name=config,proto3" json:"config"`
+type UpdateConfigRequest struct {
+	Config protocol.ProtocolConfig `protobuf:"bytes,1,opt,name=config,proto3" json:"config"`
 }
 
-func (m *UpdateRequest) Reset()         { *m = UpdateRequest{} }
-func (m *UpdateRequest) String() string { return proto.CompactTextString(m) }
-func (*UpdateRequest) ProtoMessage()    {}
-func (*UpdateRequest) Descriptor() ([]byte, []int) {
+func (m *UpdateConfigRequest) Reset()         { *m = UpdateConfigRequest{} }
+func (m *UpdateConfigRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateConfigRequest) ProtoMessage()    {}
+func (*UpdateConfigRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6e0cf5f03eb7b0e8, []int{0}
 }
-func (m *UpdateRequest) XXX_Unmarshal(b []byte) error {
+func (m *UpdateConfigRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *UpdateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *UpdateConfigRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_UpdateRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_UpdateConfigRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -53,40 +53,40 @@ func (m *UpdateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error
 		return b[:n], nil
 	}
 }
-func (m *UpdateRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateRequest.Merge(m, src)
+func (m *UpdateConfigRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateConfigRequest.Merge(m, src)
 }
-func (m *UpdateRequest) XXX_Size() int {
+func (m *UpdateConfigRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *UpdateRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateRequest.DiscardUnknown(m)
+func (m *UpdateConfigRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateConfigRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateRequest proto.InternalMessageInfo
+var xxx_messageInfo_UpdateConfigRequest proto.InternalMessageInfo
 
-func (m *UpdateRequest) GetConfig() storage.StorageConfig {
+func (m *UpdateConfigRequest) GetConfig() protocol.ProtocolConfig {
 	if m != nil {
 		return m.Config
 	}
-	return storage.StorageConfig{}
+	return protocol.ProtocolConfig{}
 }
 
-type UpdateResponse struct {
+type UpdateConfigResponse struct {
 }
 
-func (m *UpdateResponse) Reset()         { *m = UpdateResponse{} }
-func (m *UpdateResponse) String() string { return proto.CompactTextString(m) }
-func (*UpdateResponse) ProtoMessage()    {}
-func (*UpdateResponse) Descriptor() ([]byte, []int) {
+func (m *UpdateConfigResponse) Reset()         { *m = UpdateConfigResponse{} }
+func (m *UpdateConfigResponse) String() string { return proto.CompactTextString(m) }
+func (*UpdateConfigResponse) ProtoMessage()    {}
+func (*UpdateConfigResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_6e0cf5f03eb7b0e8, []int{1}
 }
-func (m *UpdateResponse) XXX_Unmarshal(b []byte) error {
+func (m *UpdateConfigResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *UpdateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *UpdateConfigResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_UpdateResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_UpdateConfigResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -96,41 +96,41 @@ func (m *UpdateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, erro
 		return b[:n], nil
 	}
 }
-func (m *UpdateResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_UpdateResponse.Merge(m, src)
+func (m *UpdateConfigResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateConfigResponse.Merge(m, src)
 }
-func (m *UpdateResponse) XXX_Size() int {
+func (m *UpdateConfigResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *UpdateResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_UpdateResponse.DiscardUnknown(m)
+func (m *UpdateConfigResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateConfigResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_UpdateResponse proto.InternalMessageInfo
+var xxx_messageInfo_UpdateConfigResponse proto.InternalMessageInfo
 
 func init() {
-	proto.RegisterType((*UpdateRequest)(nil), "atomix.proxy.UpdateRequest")
-	proto.RegisterType((*UpdateResponse)(nil), "atomix.proxy.UpdateResponse")
+	proto.RegisterType((*UpdateConfigRequest)(nil), "atomix.proxy.UpdateConfigRequest")
+	proto.RegisterType((*UpdateConfigResponse)(nil), "atomix.proxy.UpdateConfigResponse")
 }
 
 func init() { proto.RegisterFile("atomix/proxy/proxy.proto", fileDescriptor_6e0cf5f03eb7b0e8) }
 
 var fileDescriptor_6e0cf5f03eb7b0e8 = []byte{
-	// 215 bytes of a gzipped FileDescriptorProto
+	// 217 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x92, 0x48, 0x2c, 0xc9, 0xcf,
 	0xcd, 0xac, 0xd0, 0x2f, 0x28, 0xca, 0xaf, 0xa8, 0x84, 0x90, 0x7a, 0x05, 0x45, 0xf9, 0x25, 0xf9,
 	0x42, 0x3c, 0x10, 0x19, 0x3d, 0xb0, 0x98, 0x94, 0x48, 0x7a, 0x7e, 0x7a, 0x3e, 0x58, 0x42, 0x1f,
-	0xc4, 0x82, 0xa8, 0x91, 0x92, 0x81, 0xea, 0x2e, 0x2e, 0xc9, 0x2f, 0x4a, 0x4c, 0x4f, 0x85, 0xd1,
-	0x10, 0x59, 0x25, 0x1f, 0x2e, 0xde, 0xd0, 0x82, 0x94, 0xc4, 0x92, 0xd4, 0xa0, 0xd4, 0xc2, 0xd2,
-	0xd4, 0xe2, 0x12, 0x21, 0x6b, 0x2e, 0xb6, 0xe4, 0xfc, 0xbc, 0xb4, 0xcc, 0x74, 0x09, 0x46, 0x05,
-	0x46, 0x0d, 0x6e, 0x23, 0x59, 0x3d, 0xa8, 0x1d, 0x30, 0x7d, 0xc1, 0x10, 0xda, 0x19, 0xac, 0xc8,
-	0x89, 0xe5, 0xc4, 0x3d, 0x79, 0x86, 0x20, 0xa8, 0x16, 0x25, 0x01, 0x2e, 0x3e, 0x98, 0x69, 0xc5,
-	0x05, 0xf9, 0x79, 0xc5, 0xa9, 0x46, 0xc1, 0x5c, 0x3c, 0x01, 0x20, 0xc7, 0x05, 0xa7, 0x16, 0x95,
-	0x65, 0x26, 0xa7, 0x0a, 0x39, 0x73, 0xb1, 0x41, 0x54, 0x08, 0x49, 0xeb, 0x21, 0x3b, 0x5e, 0x0f,
-	0xc5, 0x15, 0x52, 0x32, 0xd8, 0x25, 0x21, 0x86, 0x3a, 0x49, 0x9c, 0x78, 0x24, 0xc7, 0x78, 0xe1,
-	0x91, 0x1c, 0xe3, 0x83, 0x47, 0x72, 0x8c, 0x13, 0x1e, 0xcb, 0x31, 0x5c, 0x78, 0x2c, 0xc7, 0x70,
-	0xe3, 0xb1, 0x1c, 0x43, 0x12, 0x1b, 0xd8, 0x57, 0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0x35,
-	0xf7, 0xd0, 0x9c, 0x33, 0x01, 0x00, 0x00,
+	0xc4, 0x82, 0xa8, 0x91, 0x92, 0x43, 0xe8, 0x2e, 0xc9, 0x4f, 0xce, 0xcf, 0x81, 0x33, 0x20, 0xf2,
+	0x4a, 0x21, 0x5c, 0xc2, 0xa1, 0x05, 0x29, 0x89, 0x25, 0xa9, 0xce, 0xf9, 0x79, 0x69, 0x99, 0xe9,
+	0x41, 0xa9, 0x85, 0xa5, 0xa9, 0xc5, 0x25, 0x42, 0xb6, 0x5c, 0x6c, 0xc9, 0x60, 0x01, 0x09, 0x46,
+	0x05, 0x46, 0x0d, 0x6e, 0x23, 0x79, 0x3d, 0x84, 0x5d, 0x10, 0xed, 0x01, 0x50, 0x06, 0x44, 0x9f,
+	0x13, 0xcb, 0x89, 0x7b, 0xf2, 0x0c, 0x41, 0x50, 0x4d, 0x4a, 0x62, 0x5c, 0x22, 0xa8, 0xa6, 0x16,
+	0x17, 0xe4, 0xe7, 0x15, 0xa7, 0x1a, 0x65, 0x73, 0x09, 0x05, 0x80, 0x1c, 0x0b, 0x11, 0x0e, 0x4e,
+	0x2d, 0x2a, 0xcb, 0x4c, 0x4e, 0x15, 0x0a, 0xe5, 0xe2, 0x41, 0x56, 0x2d, 0xa4, 0xa8, 0x87, 0xec,
+	0x31, 0x3d, 0x2c, 0xee, 0x93, 0x52, 0xc2, 0xa7, 0x04, 0x62, 0x99, 0x93, 0xc4, 0x89, 0x47, 0x72,
+	0x8c, 0x17, 0x1e, 0xc9, 0x31, 0x3e, 0x78, 0x24, 0xc7, 0x38, 0xe1, 0xb1, 0x1c, 0xc3, 0x85, 0xc7,
+	0x72, 0x0c, 0x37, 0x1e, 0xcb, 0x31, 0x24, 0xb1, 0x81, 0x7d, 0x61, 0x0c, 0x08, 0x00, 0x00, 0xff,
+	0xff, 0x9d, 0xda, 0x14, 0xbc, 0x5b, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -141,81 +141,81 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// ProxyServiceClient is the client API for ProxyService service.
+// ProxyConfigServiceClient is the client API for ProxyConfigService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type ProxyServiceClient interface {
-	// Update updates the storage configuration
-	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
+type ProxyConfigServiceClient interface {
+	// UpdateConfig updates the storage configuration
+	UpdateConfig(ctx context.Context, in *UpdateConfigRequest, opts ...grpc.CallOption) (*UpdateConfigResponse, error)
 }
 
-type proxyServiceClient struct {
+type proxyConfigServiceClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewProxyServiceClient(cc *grpc.ClientConn) ProxyServiceClient {
-	return &proxyServiceClient{cc}
+func NewProxyConfigServiceClient(cc *grpc.ClientConn) ProxyConfigServiceClient {
+	return &proxyConfigServiceClient{cc}
 }
 
-func (c *proxyServiceClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
-	out := new(UpdateResponse)
-	err := c.cc.Invoke(ctx, "/atomix.proxy.ProxyService/Update", in, out, opts...)
+func (c *proxyConfigServiceClient) UpdateConfig(ctx context.Context, in *UpdateConfigRequest, opts ...grpc.CallOption) (*UpdateConfigResponse, error) {
+	out := new(UpdateConfigResponse)
+	err := c.cc.Invoke(ctx, "/atomix.proxy.ProxyConfigService/UpdateConfig", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ProxyServiceServer is the server API for ProxyService service.
-type ProxyServiceServer interface {
-	// Update updates the storage configuration
-	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
+// ProxyConfigServiceServer is the server API for ProxyConfigService service.
+type ProxyConfigServiceServer interface {
+	// UpdateConfig updates the storage configuration
+	UpdateConfig(context.Context, *UpdateConfigRequest) (*UpdateConfigResponse, error)
 }
 
-// UnimplementedProxyServiceServer can be embedded to have forward compatible implementations.
-type UnimplementedProxyServiceServer struct {
+// UnimplementedProxyConfigServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedProxyConfigServiceServer struct {
 }
 
-func (*UnimplementedProxyServiceServer) Update(ctx context.Context, req *UpdateRequest) (*UpdateResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+func (*UnimplementedProxyConfigServiceServer) UpdateConfig(ctx context.Context, req *UpdateConfigRequest) (*UpdateConfigResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateConfig not implemented")
 }
 
-func RegisterProxyServiceServer(s *grpc.Server, srv ProxyServiceServer) {
-	s.RegisterService(&_ProxyService_serviceDesc, srv)
+func RegisterProxyConfigServiceServer(s *grpc.Server, srv ProxyConfigServiceServer) {
+	s.RegisterService(&_ProxyConfigService_serviceDesc, srv)
 }
 
-func _ProxyService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateRequest)
+func _ProxyConfigService_UpdateConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateConfigRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProxyServiceServer).Update(ctx, in)
+		return srv.(ProxyConfigServiceServer).UpdateConfig(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/atomix.proxy.ProxyService/Update",
+		FullMethod: "/atomix.proxy.ProxyConfigService/UpdateConfig",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProxyServiceServer).Update(ctx, req.(*UpdateRequest))
+		return srv.(ProxyConfigServiceServer).UpdateConfig(ctx, req.(*UpdateConfigRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _ProxyService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "atomix.proxy.ProxyService",
-	HandlerType: (*ProxyServiceServer)(nil),
+var _ProxyConfigService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "atomix.proxy.ProxyConfigService",
+	HandlerType: (*ProxyConfigServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Update",
-			Handler:    _ProxyService_Update_Handler,
+			MethodName: "UpdateConfig",
+			Handler:    _ProxyConfigService_UpdateConfig_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "atomix/proxy/proxy.proto",
 }
 
-func (m *UpdateRequest) Marshal() (dAtA []byte, err error) {
+func (m *UpdateConfigRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -225,12 +225,12 @@ func (m *UpdateRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *UpdateRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *UpdateConfigRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *UpdateRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *UpdateConfigRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -248,7 +248,7 @@ func (m *UpdateRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *UpdateResponse) Marshal() (dAtA []byte, err error) {
+func (m *UpdateConfigResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -258,12 +258,12 @@ func (m *UpdateResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *UpdateResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *UpdateConfigResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *UpdateResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *UpdateConfigResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -282,7 +282,7 @@ func encodeVarintProxy(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *UpdateRequest) Size() (n int) {
+func (m *UpdateConfigRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -293,7 +293,7 @@ func (m *UpdateRequest) Size() (n int) {
 	return n
 }
 
-func (m *UpdateResponse) Size() (n int) {
+func (m *UpdateConfigResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -308,7 +308,7 @@ func sovProxy(x uint64) (n int) {
 func sozProxy(x uint64) (n int) {
 	return sovProxy(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (m *UpdateRequest) Unmarshal(dAtA []byte) error {
+func (m *UpdateConfigRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -331,10 +331,10 @@ func (m *UpdateRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: UpdateRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: UpdateConfigRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: UpdateRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: UpdateConfigRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -394,7 +394,7 @@ func (m *UpdateRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *UpdateResponse) Unmarshal(dAtA []byte) error {
+func (m *UpdateConfigResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -417,10 +417,10 @@ func (m *UpdateResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: UpdateResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: UpdateConfigResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: UpdateResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: UpdateConfigResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

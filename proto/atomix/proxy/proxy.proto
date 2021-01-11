@@ -19,18 +19,18 @@ syntax = "proto3";
 package atomix.proxy;
 
 import "gogoproto/gogo.proto";
-import "atomix/storage/storage.proto";
+import "atomix/protocol/protocol.proto";
 
-message UpdateRequest {
-    atomix.storage.StorageConfig config = 1 [(gogoproto.nullable) = false];
+message UpdateConfigRequest {
+    atomix.protocol.ProtocolConfig config = 1 [(gogoproto.nullable) = false];
 }
 
-message UpdateResponse {
+message UpdateConfigResponse {
 
 }
 
-// Atomix proxy service
-service ProxyService {
-    // Update updates the storage configuration
-    rpc Update (UpdateRequest) returns (UpdateResponse);
+// Atomix proxy configuration service
+service ProxyConfigService {
+    // UpdateConfig updates the storage configuration
+    rpc UpdateConfig (UpdateConfigRequest) returns (UpdateConfigResponse);
 }

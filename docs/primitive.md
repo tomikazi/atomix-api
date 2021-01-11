@@ -27,8 +27,10 @@
 - [atomix/primitive/primitive.proto](#atomix/primitive/primitive.proto)
     - [CloseRequest](#atomix.primitive.CloseRequest)
     - [CloseResponse](#atomix.primitive.CloseResponse)
-    - [OpenRequest](#atomix.primitive.OpenRequest)
-    - [OpenResponse](#atomix.primitive.OpenResponse)
+    - [CreateRequest](#atomix.primitive.CreateRequest)
+    - [CreateResponse](#atomix.primitive.CreateResponse)
+    - [DeleteRequest](#atomix.primitive.DeleteRequest)
+    - [DeleteResponse](#atomix.primitive.DeleteResponse)
     - [PrimitiveId](#atomix.primitive.PrimitiveId)
     - [RequestHeader](#atomix.primitive.RequestHeader)
     - [ResponseHeader](#atomix.primitive.ResponseHeader)
@@ -137,7 +139,6 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| delete | [bool](#bool) |  |  |
 
 
 
@@ -159,9 +160,9 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 
 
-<a name="atomix.primitive.OpenRequest"></a>
+<a name="atomix.primitive.CreateRequest"></a>
 
-### OpenRequest
+### CreateRequest
 
 
 
@@ -174,9 +175,39 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 
 
-<a name="atomix.primitive.OpenResponse"></a>
+<a name="atomix.primitive.CreateResponse"></a>
 
-### OpenResponse
+### CreateResponse
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.DeleteRequest"></a>
+
+### DeleteRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| header | [RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.DeleteResponse"></a>
+
+### DeleteResponse
 
 
 
@@ -275,8 +306,9 @@ PrimitiveService is a service for managing primitive
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Open | [OpenRequest](#atomix.primitive.OpenRequest) | [OpenResponse](#atomix.primitive.OpenResponse) | Open opens a primitive |
+| Create | [CreateRequest](#atomix.primitive.CreateRequest) | [CreateResponse](#atomix.primitive.CreateResponse) | Create creates a primitive |
 | Close | [CloseRequest](#atomix.primitive.CloseRequest) | [CloseResponse](#atomix.primitive.CloseResponse) | Close closes a primitive |
+| Delete | [DeleteRequest](#atomix.primitive.DeleteRequest) | [DeleteResponse](#atomix.primitive.DeleteResponse) | Delete deletes a primitive |
 
  
 

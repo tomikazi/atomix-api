@@ -52,28 +52,38 @@ enum ResponseType {
     RESPONSE_STREAM = 1;
 }
 
-message OpenRequest {
+message CreateRequest {
     RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
 }
 
-message OpenResponse {
+message CreateResponse {
     ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
 }
 
 message CloseRequest {
     RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    bool delete = 2;
 }
 
 message CloseResponse {
     ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
 }
 
+message DeleteRequest {
+    RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
+message DeleteResponse {
+    ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
 // PrimitiveService is a service for managing primitive
 service PrimitiveService {
-    // Open opens a primitive
-    rpc Open (OpenRequest) returns (OpenResponse);
+    // Create creates a primitive
+    rpc Create (CreateRequest) returns (CreateResponse);
 
     // Close closes a primitive
     rpc Close (CloseRequest) returns (CloseResponse);
+
+    // Delete deletes a primitive
+    rpc Delete (DeleteRequest) returns (DeleteResponse);
 }

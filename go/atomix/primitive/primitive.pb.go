@@ -246,22 +246,22 @@ func (m *ResponseHeader) GetResponseType() ResponseType {
 	return ResponseType_RESPONSE
 }
 
-type OpenRequest struct {
+type CreateRequest struct {
 	Header RequestHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header"`
 }
 
-func (m *OpenRequest) Reset()         { *m = OpenRequest{} }
-func (m *OpenRequest) String() string { return proto.CompactTextString(m) }
-func (*OpenRequest) ProtoMessage()    {}
-func (*OpenRequest) Descriptor() ([]byte, []int) {
+func (m *CreateRequest) Reset()         { *m = CreateRequest{} }
+func (m *CreateRequest) String() string { return proto.CompactTextString(m) }
+func (*CreateRequest) ProtoMessage()    {}
+func (*CreateRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_056a91a3aedc7ac7, []int{3}
 }
-func (m *OpenRequest) XXX_Unmarshal(b []byte) error {
+func (m *CreateRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *OpenRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *CreateRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_OpenRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_CreateRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -271,41 +271,41 @@ func (m *OpenRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) 
 		return b[:n], nil
 	}
 }
-func (m *OpenRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_OpenRequest.Merge(m, src)
+func (m *CreateRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateRequest.Merge(m, src)
 }
-func (m *OpenRequest) XXX_Size() int {
+func (m *CreateRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *OpenRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_OpenRequest.DiscardUnknown(m)
+func (m *CreateRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_OpenRequest proto.InternalMessageInfo
+var xxx_messageInfo_CreateRequest proto.InternalMessageInfo
 
-func (m *OpenRequest) GetHeader() RequestHeader {
+func (m *CreateRequest) GetHeader() RequestHeader {
 	if m != nil {
 		return m.Header
 	}
 	return RequestHeader{}
 }
 
-type OpenResponse struct {
+type CreateResponse struct {
 	Header ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header"`
 }
 
-func (m *OpenResponse) Reset()         { *m = OpenResponse{} }
-func (m *OpenResponse) String() string { return proto.CompactTextString(m) }
-func (*OpenResponse) ProtoMessage()    {}
-func (*OpenResponse) Descriptor() ([]byte, []int) {
+func (m *CreateResponse) Reset()         { *m = CreateResponse{} }
+func (m *CreateResponse) String() string { return proto.CompactTextString(m) }
+func (*CreateResponse) ProtoMessage()    {}
+func (*CreateResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_056a91a3aedc7ac7, []int{4}
 }
-func (m *OpenResponse) XXX_Unmarshal(b []byte) error {
+func (m *CreateResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *OpenResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *CreateResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_OpenResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_CreateResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -315,19 +315,19 @@ func (m *OpenResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error)
 		return b[:n], nil
 	}
 }
-func (m *OpenResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_OpenResponse.Merge(m, src)
+func (m *CreateResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_CreateResponse.Merge(m, src)
 }
-func (m *OpenResponse) XXX_Size() int {
+func (m *CreateResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *OpenResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_OpenResponse.DiscardUnknown(m)
+func (m *CreateResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_CreateResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_OpenResponse proto.InternalMessageInfo
+var xxx_messageInfo_CreateResponse proto.InternalMessageInfo
 
-func (m *OpenResponse) GetHeader() ResponseHeader {
+func (m *CreateResponse) GetHeader() ResponseHeader {
 	if m != nil {
 		return m.Header
 	}
@@ -336,7 +336,6 @@ func (m *OpenResponse) GetHeader() ResponseHeader {
 
 type CloseRequest struct {
 	Header RequestHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header"`
-	Delete bool          `protobuf:"varint,2,opt,name=delete,proto3" json:"delete,omitempty"`
 }
 
 func (m *CloseRequest) Reset()         { *m = CloseRequest{} }
@@ -377,13 +376,6 @@ func (m *CloseRequest) GetHeader() RequestHeader {
 		return m.Header
 	}
 	return RequestHeader{}
-}
-
-func (m *CloseRequest) GetDelete() bool {
-	if m != nil {
-		return m.Delete
-	}
-	return false
 }
 
 type CloseResponse struct {
@@ -430,55 +422,146 @@ func (m *CloseResponse) GetHeader() ResponseHeader {
 	return ResponseHeader{}
 }
 
+type DeleteRequest struct {
+	Header RequestHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header"`
+}
+
+func (m *DeleteRequest) Reset()         { *m = DeleteRequest{} }
+func (m *DeleteRequest) String() string { return proto.CompactTextString(m) }
+func (*DeleteRequest) ProtoMessage()    {}
+func (*DeleteRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_056a91a3aedc7ac7, []int{7}
+}
+func (m *DeleteRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *DeleteRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_DeleteRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *DeleteRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteRequest.Merge(m, src)
+}
+func (m *DeleteRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *DeleteRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteRequest proto.InternalMessageInfo
+
+func (m *DeleteRequest) GetHeader() RequestHeader {
+	if m != nil {
+		return m.Header
+	}
+	return RequestHeader{}
+}
+
+type DeleteResponse struct {
+	Header ResponseHeader `protobuf:"bytes,1,opt,name=header,proto3" json:"header"`
+}
+
+func (m *DeleteResponse) Reset()         { *m = DeleteResponse{} }
+func (m *DeleteResponse) String() string { return proto.CompactTextString(m) }
+func (*DeleteResponse) ProtoMessage()    {}
+func (*DeleteResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_056a91a3aedc7ac7, []int{8}
+}
+func (m *DeleteResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *DeleteResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_DeleteResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *DeleteResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_DeleteResponse.Merge(m, src)
+}
+func (m *DeleteResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *DeleteResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_DeleteResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_DeleteResponse proto.InternalMessageInfo
+
+func (m *DeleteResponse) GetHeader() ResponseHeader {
+	if m != nil {
+		return m.Header
+	}
+	return ResponseHeader{}
+}
+
 func init() {
 	proto.RegisterEnum("atomix.primitive.RequestType", RequestType_name, RequestType_value)
 	proto.RegisterEnum("atomix.primitive.ResponseType", ResponseType_name, ResponseType_value)
 	proto.RegisterType((*PrimitiveId)(nil), "atomix.primitive.PrimitiveId")
 	proto.RegisterType((*RequestHeader)(nil), "atomix.primitive.RequestHeader")
 	proto.RegisterType((*ResponseHeader)(nil), "atomix.primitive.ResponseHeader")
-	proto.RegisterType((*OpenRequest)(nil), "atomix.primitive.OpenRequest")
-	proto.RegisterType((*OpenResponse)(nil), "atomix.primitive.OpenResponse")
+	proto.RegisterType((*CreateRequest)(nil), "atomix.primitive.CreateRequest")
+	proto.RegisterType((*CreateResponse)(nil), "atomix.primitive.CreateResponse")
 	proto.RegisterType((*CloseRequest)(nil), "atomix.primitive.CloseRequest")
 	proto.RegisterType((*CloseResponse)(nil), "atomix.primitive.CloseResponse")
+	proto.RegisterType((*DeleteRequest)(nil), "atomix.primitive.DeleteRequest")
+	proto.RegisterType((*DeleteResponse)(nil), "atomix.primitive.DeleteResponse")
 }
 
 func init() { proto.RegisterFile("atomix/primitive/primitive.proto", fileDescriptor_056a91a3aedc7ac7) }
 
 var fileDescriptor_056a91a3aedc7ac7 = []byte{
-	// 515 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0xcd, 0x6e, 0xd3, 0x40,
-	0x10, 0xf6, 0x96, 0x10, 0x9c, 0xb1, 0x13, 0xac, 0x2d, 0x42, 0x21, 0x12, 0xb6, 0xf1, 0x29, 0x54,
-	0xc8, 0x15, 0x41, 0xdc, 0xa9, 0x13, 0x4b, 0xf5, 0x01, 0x1a, 0xd6, 0xc9, 0x39, 0x0a, 0xf1, 0xaa,
-	0x58, 0x4a, 0x62, 0xb3, 0x36, 0x15, 0xbd, 0xc1, 0x1b, 0xf0, 0x0e, 0xbc, 0x01, 0x4f, 0xd1, 0x63,
-	0x8f, 0x9c, 0x22, 0xe4, 0xbc, 0x08, 0xb2, 0x77, 0xe3, 0x5a, 0x25, 0xbe, 0xe5, 0x36, 0x3f, 0xdf,
-	0x7c, 0xf3, 0xed, 0xcc, 0x68, 0xc1, 0x9c, 0xa7, 0xd1, 0x2a, 0xfc, 0x76, 0x1a, 0xb3, 0x70, 0x15,
-	0xa6, 0xe1, 0x15, 0xbd, 0xb3, 0xec, 0x98, 0x45, 0x69, 0x84, 0x35, 0x8e, 0xb0, 0xcb, 0x78, 0xef,
-	0xc9, 0x65, 0x74, 0x19, 0x15, 0xc9, 0xd3, 0xdc, 0xe2, 0xb8, 0xde, 0x8b, 0xff, 0x98, 0x02, 0x9a,
-	0x2c, 0x58, 0x18, 0xa7, 0x11, 0xe3, 0x10, 0xeb, 0x2d, 0x28, 0xe3, 0x5d, 0xd6, 0x0b, 0x30, 0x86,
-	0x46, 0x7a, 0x1d, 0xd3, 0x2e, 0x32, 0x51, 0xbf, 0x45, 0x0a, 0x3b, 0x8f, 0xad, 0xe7, 0x2b, 0xda,
-	0x3d, 0xe2, 0xb1, 0xdc, 0xb6, 0x7e, 0x1c, 0x41, 0x9b, 0xd0, 0x2f, 0x5f, 0x69, 0x92, 0x9e, 0xd3,
-	0x79, 0x40, 0x19, 0x7e, 0x09, 0xad, 0xc5, 0x32, 0xa4, 0xeb, 0x74, 0x16, 0x06, 0xbc, 0xdc, 0x51,
-	0xb3, 0x8d, 0x21, 0x0f, 0x8b, 0xa0, 0x37, 0x22, 0x32, 0x4f, 0x7b, 0x01, 0x9e, 0x82, 0x5a, 0x2a,
-	0xca, 0xd1, 0x39, 0xb1, 0x32, 0x78, 0x6e, 0xdf, 0x7f, 0x95, 0x5d, 0x51, 0xe6, 0x1c, 0xdf, 0x6c,
-	0x0c, 0x29, 0xdb, 0x18, 0x15, 0xb9, 0x23, 0xa2, 0xc4, 0x15, 0xed, 0xaf, 0x00, 0x18, 0x97, 0x94,
-	0x93, 0x3e, 0x30, 0x51, 0xbf, 0xe1, 0xb4, 0xb3, 0x8d, 0xd1, 0x12, 0x42, 0xbd, 0x11, 0x69, 0x09,
-	0x80, 0x17, 0xe0, 0x77, 0xa0, 0xee, 0xd0, 0xc5, 0x8b, 0x1b, 0x26, 0xea, 0x77, 0xf6, 0x89, 0x10,
-	0xd5, 0x93, 0xeb, 0x98, 0x12, 0x85, 0xdd, 0x39, 0xd6, 0x14, 0x3a, 0x84, 0x26, 0x71, 0xb4, 0x4e,
-	0xa8, 0x98, 0xc1, 0x10, 0xda, 0x4c, 0x44, 0x66, 0xe5, 0x18, 0x3b, 0x03, 0x7d, 0x1f, 0x29, 0x87,
-	0x15, 0xac, 0x2a, 0xab, 0x78, 0xd6, 0x18, 0x94, 0x8b, 0x98, 0xae, 0x45, 0x5b, 0x7c, 0x06, 0xcd,
-	0xcf, 0x05, 0x7b, 0x41, 0xa6, 0x0c, 0x8c, 0x5a, 0x85, 0x5c, 0x84, 0x23, 0x7f, 0xff, 0xfd, 0x0c,
-	0xe5, 0xc3, 0x22, 0xa2, 0xd0, 0x22, 0xa0, 0x72, 0x46, 0xde, 0x05, 0x3b, 0xf7, 0x28, 0xcd, 0x7a,
-	0x7d, 0xb5, 0x9c, 0x21, 0xa8, 0xc3, 0x65, 0x94, 0xd0, 0xc3, 0xc9, 0xc4, 0x4f, 0xa1, 0x19, 0xd0,
-	0x25, 0x4d, 0xf9, 0xa5, 0xc9, 0x44, 0x78, 0x96, 0x0f, 0x6d, 0xd1, 0xea, 0x70, 0xfa, 0x4f, 0x6c,
-	0x50, 0x2a, 0x8b, 0xc5, 0x0a, 0x3c, 0x22, 0xee, 0xc7, 0xa9, 0xeb, 0x4f, 0x34, 0x09, 0x63, 0xe8,
-	0x08, 0x67, 0xe6, 0x4f, 0x88, 0x7b, 0xf6, 0x5e, 0x43, 0x27, 0xaf, 0x41, 0xad, 0xee, 0x0c, 0xab,
-	0x20, 0x13, 0xd7, 0x1f, 0x5f, 0x7c, 0xf0, 0x5d, 0x4d, 0xc2, 0xc7, 0xf0, 0x78, 0xe7, 0x95, 0x25,
-	0x83, 0x5f, 0x08, 0xb4, 0xf2, 0x58, 0x7d, 0xca, 0xae, 0xc2, 0x05, 0xc5, 0x2e, 0x34, 0xf2, 0x5d,
-	0xe0, 0x3d, 0x87, 0x56, 0xd9, 0x7a, 0x4f, 0xaf, 0x4b, 0x8b, 0x11, 0x9c, 0xc3, 0xc3, 0x62, 0x26,
-	0x78, 0x0f, 0xb0, 0xba, 0x97, 0x9e, 0x51, 0x9b, 0xe7, 0x4c, 0x4e, 0xf7, 0x26, 0xd3, 0xd1, 0x6d,
-	0xa6, 0xa3, 0xbf, 0x99, 0x8e, 0x7e, 0x6e, 0x75, 0xe9, 0x76, 0xab, 0x4b, 0x7f, 0xb6, 0xba, 0xf4,
-	0xa9, 0x59, 0xfc, 0x10, 0x6f, 0xfe, 0x05, 0x00, 0x00, 0xff, 0xff, 0x99, 0xe5, 0x3f, 0x4a, 0x90,
-	0x04, 0x00, 0x00,
+	// 532 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x94, 0xc1, 0x6e, 0xd3, 0x40,
+	0x10, 0x86, 0xbd, 0x25, 0x84, 0x64, 0x6c, 0x87, 0x68, 0xcb, 0x21, 0x44, 0xc2, 0x36, 0x39, 0x85,
+	0x0a, 0xa5, 0x22, 0x88, 0x3b, 0x75, 0x62, 0xa9, 0x56, 0x05, 0xb4, 0xeb, 0xe4, 0x1c, 0x85, 0x78,
+	0x55, 0x2c, 0x25, 0xb1, 0x59, 0x9b, 0x8a, 0xde, 0xe0, 0x0d, 0x78, 0x16, 0x9e, 0xa2, 0xc7, 0x1e,
+	0x39, 0x45, 0xc8, 0x79, 0x07, 0xce, 0xc8, 0xde, 0xb5, 0xeb, 0xb4, 0xf6, 0x2d, 0xb7, 0x9d, 0x99,
+	0x7f, 0x7e, 0x7f, 0x3b, 0x3b, 0x09, 0x18, 0xf3, 0xc8, 0x5f, 0x79, 0xdf, 0x8f, 0x03, 0xe6, 0xad,
+	0xbc, 0xc8, 0xbb, 0xa2, 0x77, 0xa7, 0x41, 0xc0, 0xfc, 0xc8, 0xc7, 0x6d, 0xae, 0x18, 0xe4, 0xf9,
+	0xee, 0xb3, 0x4b, 0xff, 0xd2, 0x4f, 0x8b, 0xc7, 0xc9, 0x89, 0xeb, 0xba, 0x2f, 0x1f, 0x38, 0xb9,
+	0x34, 0x5c, 0x30, 0x2f, 0x88, 0x7c, 0xc6, 0x25, 0xbd, 0x77, 0x20, 0x9f, 0x67, 0x55, 0xdb, 0xc5,
+	0x18, 0x6a, 0xd1, 0x75, 0x40, 0x3b, 0xc8, 0x40, 0xfd, 0x26, 0x49, 0xcf, 0x49, 0x6e, 0x3d, 0x5f,
+	0xd1, 0xce, 0x01, 0xcf, 0x25, 0xe7, 0xde, 0xcf, 0x03, 0x50, 0x09, 0xfd, 0xfa, 0x8d, 0x86, 0xd1,
+	0x29, 0x9d, 0xbb, 0x94, 0xe1, 0x57, 0xd0, 0x5c, 0x2c, 0x3d, 0xba, 0x8e, 0x66, 0x9e, 0xcb, 0xdb,
+	0x4d, 0x25, 0xde, 0xe8, 0x8d, 0x51, 0x9a, 0xb4, 0xc7, 0xa4, 0xc1, 0xcb, 0xb6, 0x8b, 0xa7, 0xa0,
+	0xe4, 0x44, 0x89, 0x3a, 0x31, 0x96, 0x87, 0x2f, 0x06, 0xf7, 0x6f, 0x35, 0x28, 0x90, 0x99, 0x87,
+	0x37, 0x1b, 0x5d, 0x8a, 0x37, 0x7a, 0x01, 0x77, 0x4c, 0xe4, 0xa0, 0xc0, 0xfe, 0x1a, 0x80, 0x71,
+	0xa4, 0xc4, 0xf4, 0x91, 0x81, 0xfa, 0x35, 0x53, 0x8d, 0x37, 0x7a, 0x53, 0x80, 0xda, 0x63, 0xd2,
+	0x14, 0x02, 0xdb, 0xc5, 0xef, 0x41, 0xc9, 0xd4, 0xe9, 0x8d, 0x6b, 0x06, 0xea, 0xb7, 0xca, 0x20,
+	0x44, 0xf7, 0xe4, 0x3a, 0xa0, 0x44, 0x66, 0x77, 0x41, 0x6f, 0x0a, 0x2d, 0x42, 0xc3, 0xc0, 0x5f,
+	0x87, 0x54, 0xcc, 0x60, 0x04, 0x2a, 0x13, 0x99, 0x59, 0x3e, 0xc6, 0xd6, 0x50, 0x2b, 0x33, 0xe5,
+	0xb2, 0xd4, 0x55, 0x61, 0x85, 0xa8, 0x47, 0x40, 0x1d, 0x31, 0x3a, 0x8f, 0xa8, 0xf8, 0x30, 0x3e,
+	0x81, 0xfa, 0x97, 0xd4, 0x3f, 0xb5, 0x93, 0x87, 0x7a, 0x25, 0x23, 0xc7, 0x30, 0x1b, 0x3f, 0x7e,
+	0x3f, 0x47, 0xc9, 0xb8, 0x88, 0x68, 0xec, 0x4d, 0xa0, 0x95, 0x79, 0xf2, 0x2f, 0x61, 0xf3, 0x9e,
+	0xa9, 0x51, 0xcd, 0x58, 0xe9, 0x7a, 0x01, 0xca, 0x68, 0xe9, 0x87, 0xfb, 0x04, 0x75, 0x40, 0x15,
+	0x96, 0x7b, 0xe4, 0x24, 0xa0, 0x8e, 0xe9, 0x92, 0xee, 0x7b, 0xa2, 0x99, 0xe7, 0xfe, 0x48, 0x8f,
+	0x06, 0x20, 0x17, 0xd6, 0x0d, 0xcb, 0xf0, 0x84, 0x58, 0x17, 0x53, 0xcb, 0x99, 0xb4, 0x25, 0x8c,
+	0xa1, 0x25, 0x82, 0x99, 0x33, 0x21, 0xd6, 0xc9, 0x87, 0x36, 0x3a, 0x7a, 0x03, 0x4a, 0x71, 0x93,
+	0xb0, 0x02, 0x0d, 0x62, 0x39, 0xe7, 0x9f, 0x3e, 0x3a, 0x56, 0x5b, 0xc2, 0x87, 0xf0, 0x34, 0x8b,
+	0xf2, 0x96, 0xe1, 0x3f, 0x04, 0xed, 0xfc, 0x27, 0xe4, 0x50, 0x76, 0xe5, 0x2d, 0x28, 0x3e, 0x83,
+	0x3a, 0xdf, 0x0f, 0x5c, 0x32, 0x8a, 0x9d, 0x6d, 0xec, 0x1a, 0xd5, 0x02, 0x31, 0x88, 0x53, 0x78,
+	0x9c, 0xbe, 0x21, 0x2e, 0xd9, 0xfb, 0xe2, 0xbe, 0x74, 0xf5, 0xca, 0xba, 0x70, 0x3a, 0x83, 0x3a,
+	0x1f, 0x72, 0x19, 0xd6, 0xce, 0x93, 0x96, 0x61, 0xed, 0xbe, 0x8f, 0xd9, 0xb9, 0x89, 0x35, 0x74,
+	0x1b, 0x6b, 0xe8, 0x6f, 0xac, 0xa1, 0x5f, 0x5b, 0x4d, 0xba, 0xdd, 0x6a, 0xd2, 0x9f, 0xad, 0x26,
+	0x7d, 0xae, 0xa7, 0x7f, 0x85, 0x6f, 0xff, 0x07, 0x00, 0x00, 0xff, 0xff, 0xb9, 0xd0, 0x3a, 0x3d,
+	0x79, 0x05, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -493,10 +576,12 @@ const _ = grpc.SupportPackageIsVersion4
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
 type PrimitiveServiceClient interface {
-	// Open opens a primitive
-	Open(ctx context.Context, in *OpenRequest, opts ...grpc.CallOption) (*OpenResponse, error)
+	// Create creates a primitive
+	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
 	// Close closes a primitive
 	Close(ctx context.Context, in *CloseRequest, opts ...grpc.CallOption) (*CloseResponse, error)
+	// Delete deletes a primitive
+	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 }
 
 type primitiveServiceClient struct {
@@ -507,9 +592,9 @@ func NewPrimitiveServiceClient(cc *grpc.ClientConn) PrimitiveServiceClient {
 	return &primitiveServiceClient{cc}
 }
 
-func (c *primitiveServiceClient) Open(ctx context.Context, in *OpenRequest, opts ...grpc.CallOption) (*OpenResponse, error) {
-	out := new(OpenResponse)
-	err := c.cc.Invoke(ctx, "/atomix.primitive.PrimitiveService/Open", in, out, opts...)
+func (c *primitiveServiceClient) Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error) {
+	out := new(CreateResponse)
+	err := c.cc.Invoke(ctx, "/atomix.primitive.PrimitiveService/Create", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -525,43 +610,57 @@ func (c *primitiveServiceClient) Close(ctx context.Context, in *CloseRequest, op
 	return out, nil
 }
 
+func (c *primitiveServiceClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
+	out := new(DeleteResponse)
+	err := c.cc.Invoke(ctx, "/atomix.primitive.PrimitiveService/Delete", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // PrimitiveServiceServer is the server API for PrimitiveService service.
 type PrimitiveServiceServer interface {
-	// Open opens a primitive
-	Open(context.Context, *OpenRequest) (*OpenResponse, error)
+	// Create creates a primitive
+	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 	// Close closes a primitive
 	Close(context.Context, *CloseRequest) (*CloseResponse, error)
+	// Delete deletes a primitive
+	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 }
 
 // UnimplementedPrimitiveServiceServer can be embedded to have forward compatible implementations.
 type UnimplementedPrimitiveServiceServer struct {
 }
 
-func (*UnimplementedPrimitiveServiceServer) Open(ctx context.Context, req *OpenRequest) (*OpenResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Open not implemented")
+func (*UnimplementedPrimitiveServiceServer) Create(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Create not implemented")
 }
 func (*UnimplementedPrimitiveServiceServer) Close(ctx context.Context, req *CloseRequest) (*CloseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Close not implemented")
+}
+func (*UnimplementedPrimitiveServiceServer) Delete(ctx context.Context, req *DeleteRequest) (*DeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 
 func RegisterPrimitiveServiceServer(s *grpc.Server, srv PrimitiveServiceServer) {
 	s.RegisterService(&_PrimitiveService_serviceDesc, srv)
 }
 
-func _PrimitiveService_Open_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(OpenRequest)
+func _PrimitiveService_Create_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PrimitiveServiceServer).Open(ctx, in)
+		return srv.(PrimitiveServiceServer).Create(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/atomix.primitive.PrimitiveService/Open",
+		FullMethod: "/atomix.primitive.PrimitiveService/Create",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrimitiveServiceServer).Open(ctx, req.(*OpenRequest))
+		return srv.(PrimitiveServiceServer).Create(ctx, req.(*CreateRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -584,17 +683,39 @@ func _PrimitiveService_Close_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _PrimitiveService_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(DeleteRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(PrimitiveServiceServer).Delete(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/atomix.primitive.PrimitiveService/Delete",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(PrimitiveServiceServer).Delete(ctx, req.(*DeleteRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _PrimitiveService_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "atomix.primitive.PrimitiveService",
 	HandlerType: (*PrimitiveServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Open",
-			Handler:    _PrimitiveService_Open_Handler,
+			MethodName: "Create",
+			Handler:    _PrimitiveService_Create_Handler,
 		},
 		{
 			MethodName: "Close",
 			Handler:    _PrimitiveService_Close_Handler,
+		},
+		{
+			MethodName: "Delete",
+			Handler:    _PrimitiveService_Delete_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -716,7 +837,7 @@ func (m *ResponseHeader) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *OpenRequest) Marshal() (dAtA []byte, err error) {
+func (m *CreateRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -726,12 +847,12 @@ func (m *OpenRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *OpenRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *CreateRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *OpenRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *CreateRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -749,7 +870,7 @@ func (m *OpenRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *OpenResponse) Marshal() (dAtA []byte, err error) {
+func (m *CreateResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -759,12 +880,12 @@ func (m *OpenResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *OpenResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *CreateResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *OpenResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *CreateResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -802,16 +923,6 @@ func (m *CloseRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.Delete {
-		i--
-		if m.Delete {
-			dAtA[i] = 1
-		} else {
-			dAtA[i] = 0
-		}
-		i--
-		dAtA[i] = 0x10
-	}
 	{
 		size, err := m.Header.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
@@ -841,6 +952,72 @@ func (m *CloseResponse) MarshalTo(dAtA []byte) (int, error) {
 }
 
 func (m *CloseResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.Header.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintPrimitive(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *DeleteRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *DeleteRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *DeleteRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.Header.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintPrimitive(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *DeleteResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *DeleteResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *DeleteResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -919,7 +1096,7 @@ func (m *ResponseHeader) Size() (n int) {
 	return n
 }
 
-func (m *OpenRequest) Size() (n int) {
+func (m *CreateRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -930,7 +1107,7 @@ func (m *OpenRequest) Size() (n int) {
 	return n
 }
 
-func (m *OpenResponse) Size() (n int) {
+func (m *CreateResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -949,13 +1126,32 @@ func (m *CloseRequest) Size() (n int) {
 	_ = l
 	l = m.Header.Size()
 	n += 1 + l + sovPrimitive(uint64(l))
-	if m.Delete {
-		n += 2
-	}
 	return n
 }
 
 func (m *CloseResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.Header.Size()
+	n += 1 + l + sovPrimitive(uint64(l))
+	return n
+}
+
+func (m *DeleteRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.Header.Size()
+	n += 1 + l + sovPrimitive(uint64(l))
+	return n
+}
+
+func (m *DeleteResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1317,7 +1513,7 @@ func (m *ResponseHeader) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *OpenRequest) Unmarshal(dAtA []byte) error {
+func (m *CreateRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1340,10 +1536,10 @@ func (m *OpenRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: OpenRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: CreateRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: OpenRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: CreateRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1403,7 +1599,7 @@ func (m *OpenRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *OpenResponse) Unmarshal(dAtA []byte) error {
+func (m *CreateResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1426,10 +1622,10 @@ func (m *OpenResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: OpenResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: CreateResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: OpenResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: CreateResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1551,26 +1747,6 @@ func (m *CloseRequest) Unmarshal(dAtA []byte) error {
 				return err
 			}
 			iNdEx = postIndex
-		case 2:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Delete", wireType)
-			}
-			var v int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				v |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Delete = bool(v != 0)
 		default:
 			iNdEx = preIndex
 			skippy, err := skipPrimitive(dAtA[iNdEx:])
@@ -1622,6 +1798,178 @@ func (m *CloseResponse) Unmarshal(dAtA []byte) error {
 		}
 		if fieldNum <= 0 {
 			return fmt.Errorf("proto: CloseResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Header", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPrimitive
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthPrimitive
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthPrimitive
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Header.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipPrimitive(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthPrimitive
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthPrimitive
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *DeleteRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowPrimitive
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: DeleteRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: DeleteRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Header", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowPrimitive
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthPrimitive
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthPrimitive
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Header.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipPrimitive(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthPrimitive
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthPrimitive
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *DeleteResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowPrimitive
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: DeleteResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: DeleteResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:

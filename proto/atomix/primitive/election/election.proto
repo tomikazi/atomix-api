@@ -149,7 +149,8 @@ message EventsOutput {
     Term term = 3;
 
     enum Type {
-        CHANGED = 0;
+        NONE = 0;
+        CHANGED = 1;
     }
 }
 

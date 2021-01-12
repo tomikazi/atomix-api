@@ -37,8 +37,7 @@ message GetResponse {
 }
 
 message GetOutput {
-    bytes value = 1;
-    uint64 version = 2;
+    Value value = 1;
 }
 
 message SetRequest {
@@ -47,9 +46,7 @@ message SetRequest {
 }
 
 message SetInput {
-    uint64 expect_version = 1;
-    bytes expect_value = 2;
-    bytes value = 3;
+    Value value = 1;
 }
 
 message SetResponse {
@@ -58,7 +55,7 @@ message SetResponse {
 }
 
 message SetOutput {
-    uint64 version = 1;
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
 }
 
 message EventsRequest {
@@ -76,10 +73,7 @@ message EventsResponse {
 
 message EventsOutput {
     Type type = 1;
-    bytes previous_value = 2;
-    uint64 previous_version = 3;
-    bytes new_value = 4;
-    uint64 new_version = 5;
+    Value value = 2 [(gogoproto.nullable) = false];
 
     enum Type {
         NONE = 0;
@@ -88,7 +82,7 @@ message EventsOutput {
 }
 
 message Value {
-    atomix.primitive.meta.ObjectMeta version = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
     bytes value = 2;
 }
 

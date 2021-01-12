@@ -59,10 +59,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | type | [EventsOutput.Type](#atomix.primitive.value.EventsOutput.Type) |  |  |
-| previous_value | [bytes](#bytes) |  |  |
-| previous_version | [uint64](#uint64) |  |  |
-| new_value | [bytes](#bytes) |  |  |
-| new_version | [uint64](#uint64) |  |  |
+| value | [Value](#atomix.primitive.value.Value) |  |  |
 
 
 
@@ -119,8 +116,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [bytes](#bytes) |  |  |
-| version | [uint64](#uint64) |  |  |
+| value | [Value](#atomix.primitive.value.Value) |  |  |
 
 
 
@@ -198,9 +194,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| expect_version | [uint64](#uint64) |  |  |
-| expect_value | [bytes](#bytes) |  |  |
-| value | [bytes](#bytes) |  |  |
+| value | [Value](#atomix.primitive.value.Value) |  |  |
 
 
 
@@ -215,7 +209,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| version | [uint64](#uint64) |  |  |
+| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
 
 
 
@@ -308,7 +302,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| version | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
+| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
 | value | [bytes](#bytes) |  |  |
 
 

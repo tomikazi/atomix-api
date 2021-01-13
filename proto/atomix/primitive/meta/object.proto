@@ -19,6 +19,7 @@ syntax = "proto3";
 package atomix.primitive.meta;
 
 import "atomix/primitive/meta/timestamp.proto";
+import "gogoproto/gogo.proto";
 
 message ObjectMeta {
     Revision revision = 1;
@@ -28,4 +29,8 @@ message ObjectMeta {
         VectorTimestamp vector_timestamp = 4;
         EpochTimestamp epoch_timestamp = 5;
     }
+}
+
+message Revision {
+    uint64 num = 1 [(gogoproto.casttype) = "RevisionNum"];
 }

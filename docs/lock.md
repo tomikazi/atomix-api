@@ -4,10 +4,10 @@
 ## Table of Contents
 
 - [atomix/primitive/lock/lock.proto](#atomix/primitive/lock/lock.proto)
-    - [IsLockedInput](#atomix.primitive.lock.IsLockedInput)
-    - [IsLockedOutput](#atomix.primitive.lock.IsLockedOutput)
-    - [IsLockedRequest](#atomix.primitive.lock.IsLockedRequest)
-    - [IsLockedResponse](#atomix.primitive.lock.IsLockedResponse)
+    - [GetLockInput](#atomix.primitive.lock.GetLockInput)
+    - [GetLockOutput](#atomix.primitive.lock.GetLockOutput)
+    - [GetLockRequest](#atomix.primitive.lock.GetLockRequest)
+    - [GetLockResponse](#atomix.primitive.lock.GetLockResponse)
     - [Lock](#atomix.primitive.lock.Lock)
     - [LockInput](#atomix.primitive.lock.LockInput)
     - [LockOutput](#atomix.primitive.lock.LockOutput)
@@ -23,6 +23,7 @@
     - [UnlockRequest](#atomix.primitive.lock.UnlockRequest)
     - [UnlockResponse](#atomix.primitive.lock.UnlockResponse)
   
+    - [Lock.State](#atomix.primitive.lock.Lock.State)
   
   
     - [LockService](#atomix.primitive.lock.LockService)
@@ -39,62 +40,62 @@
 
 
 
-<a name="atomix.primitive.lock.IsLockedInput"></a>
+<a name="atomix.primitive.lock.GetLockInput"></a>
 
-### IsLockedInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.lock.IsLockedOutput"></a>
-
-### IsLockedOutput
+### GetLockInput
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| isLocked | [bool](#bool) |  |  |
+| lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
 
 
 
 
 
 
-<a name="atomix.primitive.lock.IsLockedRequest"></a>
+<a name="atomix.primitive.lock.GetLockOutput"></a>
 
-### IsLockedRequest
+### GetLockOutput
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.lock.GetLockRequest"></a>
+
+### GetLockRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [IsLockedInput](#atomix.primitive.lock.IsLockedInput) |  |  |
+| input | [GetLockInput](#atomix.primitive.lock.GetLockInput) |  |  |
 
 
 
 
 
 
-<a name="atomix.primitive.lock.IsLockedResponse"></a>
+<a name="atomix.primitive.lock.GetLockResponse"></a>
 
-### IsLockedResponse
+### GetLockResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [IsLockedOutput](#atomix.primitive.lock.IsLockedOutput) |  |  |
+| output | [GetLockOutput](#atomix.primitive.lock.GetLockOutput) |  |  |
 
 
 
@@ -110,7 +111,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
-| owner | [string](#string) |  |  |
+| state | [Lock.State](#atomix.primitive.lock.Lock.State) |  |  |
+| holder | [string](#string) |  |  |
 
 
 
@@ -140,7 +142,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
+| lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
 
 
 
@@ -265,7 +267,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
+| lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
 
 
 
@@ -280,7 +282,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| unlocked | [bool](#bool) |  |  |
+| lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
 
 
 
@@ -320,6 +322,18 @@
 
  
 
+
+<a name="atomix.primitive.lock.Lock.State"></a>
+
+### Lock.State
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| UNLOCKED | 0 |  |
+| LOCKED | 1 |  |
+
+
  
 
  
@@ -334,7 +348,7 @@ LockService implements a distributed lock
 | ----------- | ------------ | ------------- | ------------|
 | Lock | [LockRequest](#atomix.primitive.lock.LockRequest) | [LockResponse](#atomix.primitive.lock.LockResponse) | Lock attempts to acquire the lock |
 | Unlock | [UnlockRequest](#atomix.primitive.lock.UnlockRequest) | [UnlockResponse](#atomix.primitive.lock.UnlockResponse) | Unlock releases the lock |
-| IsLocked | [IsLockedRequest](#atomix.primitive.lock.IsLockedRequest) | [IsLockedResponse](#atomix.primitive.lock.IsLockedResponse) | IsLocked checks whether the lock is held |
+| GetLock | [GetLockRequest](#atomix.primitive.lock.GetLockRequest) | [GetLockResponse](#atomix.primitive.lock.GetLockResponse) | GetLock gets the lock state |
 | Snapshot | [SnapshotRequest](#atomix.primitive.lock.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.lock.SnapshotResponse) | Snapshot exports a snapshot of the primitive state |
 | Restore | [RestoreRequest](#atomix.primitive.lock.RestoreRequest) | [RestoreResponse](#atomix.primitive.lock.RestoreResponse) | Restore imports a snapshot of the primitive state |
 

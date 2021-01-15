@@ -23,12 +23,7 @@ import "gogoproto/gogo.proto";
 
 message ObjectMeta {
     Revision revision = 1;
-    oneof timestamp {
-        PhysicalTimestamp physical_timestamp = 2;
-        LogicalTimestamp logical_timestamp = 3;
-        VectorTimestamp vector_timestamp = 4;
-        EpochTimestamp epoch_timestamp = 5;
-    }
+    Timestamp timestamp = 2;
 }
 
 message Revision {

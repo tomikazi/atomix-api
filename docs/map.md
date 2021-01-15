@@ -11,18 +11,16 @@
     - [EntriesRequest](#atomix.primitive.map.EntriesRequest)
     - [EntriesResponse](#atomix.primitive.map.EntriesResponse)
     - [Entry](#atomix.primitive.map.Entry)
+    - [Event](#atomix.primitive.map.Event)
     - [EventsInput](#atomix.primitive.map.EventsInput)
     - [EventsOutput](#atomix.primitive.map.EventsOutput)
     - [EventsRequest](#atomix.primitive.map.EventsRequest)
     - [EventsResponse](#atomix.primitive.map.EventsResponse)
-    - [ExistsInput](#atomix.primitive.map.ExistsInput)
-    - [ExistsOutput](#atomix.primitive.map.ExistsOutput)
-    - [ExistsRequest](#atomix.primitive.map.ExistsRequest)
-    - [ExistsResponse](#atomix.primitive.map.ExistsResponse)
     - [GetInput](#atomix.primitive.map.GetInput)
     - [GetOutput](#atomix.primitive.map.GetOutput)
     - [GetRequest](#atomix.primitive.map.GetRequest)
     - [GetResponse](#atomix.primitive.map.GetResponse)
+    - [Precondition](#atomix.primitive.map.Precondition)
     - [PutInput](#atomix.primitive.map.PutInput)
     - [PutOutput](#atomix.primitive.map.PutOutput)
     - [PutRequest](#atomix.primitive.map.PutRequest)
@@ -40,7 +38,7 @@
     - [SnapshotRequest](#atomix.primitive.map.SnapshotRequest)
     - [SnapshotResponse](#atomix.primitive.map.SnapshotResponse)
   
-    - [EventsOutput.Type](#atomix.primitive.map.EventsOutput.Type)
+    - [Event.Type](#atomix.primitive.map.Event.Type)
   
   
     - [MapService](#atomix.primitive.map.MapService)
@@ -155,6 +153,23 @@
 | meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
 | key | [string](#string) |  |  |
 | value | [bytes](#bytes) |  |  |
+| ttl | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.Event"></a>
+
+### Event
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [Event.Type](#atomix.primitive.map.Event.Type) |  |  |
+| entry | [Entry](#atomix.primitive.map.Entry) |  |  |
 
 
 
@@ -185,8 +200,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [EventsOutput.Type](#atomix.primitive.map.EventsOutput.Type) |  |  |
-| entry | [Entry](#atomix.primitive.map.Entry) |  |  |
+| event | [Event](#atomix.primitive.map.Event) |  |  |
 
 
 
@@ -219,68 +233,6 @@
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
 | output | [EventsOutput](#atomix.primitive.map.EventsOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.map.ExistsInput"></a>
-
-### ExistsInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.map.ExistsOutput"></a>
-
-### ExistsOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| contains_key | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.map.ExistsRequest"></a>
-
-### ExistsRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [ExistsInput](#atomix.primitive.map.ExistsInput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.map.ExistsResponse"></a>
-
-### ExistsResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [ExistsOutput](#atomix.primitive.map.ExistsOutput) |  |  |
 
 
 
@@ -349,6 +301,21 @@
 
 
 
+<a name="atomix.primitive.map.Precondition"></a>
+
+### Precondition
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| metadata | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.map.PutInput"></a>
 
 ### PutInput
@@ -357,11 +324,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
-| key | [string](#string) |  |  |
-| value | [bytes](#bytes) |  |  |
-| if_empty | [bool](#bool) |  |  |
-| ttl | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
+| entry | [Entry](#atomix.primitive.map.Entry) |  |  |
+| preconditions | [Precondition](#atomix.primitive.map.Precondition) | repeated |  |
 
 
 
@@ -423,8 +387,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
 | key | [string](#string) |  |  |
+| preconditions | [Precondition](#atomix.primitive.map.Precondition) | repeated |  |
 
 
 
@@ -603,9 +567,9 @@
  
 
 
-<a name="atomix.primitive.map.EventsOutput.Type"></a>
+<a name="atomix.primitive.map.Event.Type"></a>
 
-### EventsOutput.Type
+### Event.Type
 
 
 | Name | Number | Description |
@@ -630,7 +594,6 @@ MapService implements a distributed map
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | Size | [SizeRequest](#atomix.primitive.map.SizeRequest) | [SizeResponse](#atomix.primitive.map.SizeResponse) | Size returns the size of the map |
-| Exists | [ExistsRequest](#atomix.primitive.map.ExistsRequest) | [ExistsResponse](#atomix.primitive.map.ExistsResponse) | Exists checks whether a key exists in the map |
 | Put | [PutRequest](#atomix.primitive.map.PutRequest) | [PutResponse](#atomix.primitive.map.PutResponse) | Put puts an entry into the map |
 | Get | [GetRequest](#atomix.primitive.map.GetRequest) | [GetResponse](#atomix.primitive.map.GetResponse) | Get gets the entry for a key |
 | Remove | [RemoveRequest](#atomix.primitive.map.RemoveRequest) | [RemoveResponse](#atomix.primitive.map.RemoveResponse) | Remove removes an entry from the map |

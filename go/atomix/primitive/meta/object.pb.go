@@ -24,13 +24,8 @@ var _ = math.Inf
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
 type ObjectMeta struct {
-	Revision *Revision `protobuf:"bytes,1,opt,name=revision,proto3" json:"revision,omitempty"`
-	// Types that are valid to be assigned to Timestamp:
-	//	*ObjectMeta_PhysicalTimestamp
-	//	*ObjectMeta_LogicalTimestamp
-	//	*ObjectMeta_VectorTimestamp
-	//	*ObjectMeta_EpochTimestamp
-	Timestamp isObjectMeta_Timestamp `protobuf_oneof:"timestamp"`
+	Revision  *Revision  `protobuf:"bytes,1,opt,name=revision,proto3" json:"revision,omitempty"`
+	Timestamp *Timestamp `protobuf:"bytes,2,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
 }
 
 func (m *ObjectMeta) Reset()         { *m = ObjectMeta{} }
@@ -66,37 +61,6 @@ func (m *ObjectMeta) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ObjectMeta proto.InternalMessageInfo
 
-type isObjectMeta_Timestamp interface {
-	isObjectMeta_Timestamp()
-	MarshalTo([]byte) (int, error)
-	Size() int
-}
-
-type ObjectMeta_PhysicalTimestamp struct {
-	PhysicalTimestamp *PhysicalTimestamp `protobuf:"bytes,2,opt,name=physical_timestamp,json=physicalTimestamp,proto3,oneof" json:"physical_timestamp,omitempty"`
-}
-type ObjectMeta_LogicalTimestamp struct {
-	LogicalTimestamp *LogicalTimestamp `protobuf:"bytes,3,opt,name=logical_timestamp,json=logicalTimestamp,proto3,oneof" json:"logical_timestamp,omitempty"`
-}
-type ObjectMeta_VectorTimestamp struct {
-	VectorTimestamp *VectorTimestamp `protobuf:"bytes,4,opt,name=vector_timestamp,json=vectorTimestamp,proto3,oneof" json:"vector_timestamp,omitempty"`
-}
-type ObjectMeta_EpochTimestamp struct {
-	EpochTimestamp *EpochTimestamp `protobuf:"bytes,5,opt,name=epoch_timestamp,json=epochTimestamp,proto3,oneof" json:"epoch_timestamp,omitempty"`
-}
-
-func (*ObjectMeta_PhysicalTimestamp) isObjectMeta_Timestamp() {}
-func (*ObjectMeta_LogicalTimestamp) isObjectMeta_Timestamp()  {}
-func (*ObjectMeta_VectorTimestamp) isObjectMeta_Timestamp()   {}
-func (*ObjectMeta_EpochTimestamp) isObjectMeta_Timestamp()    {}
-
-func (m *ObjectMeta) GetTimestamp() isObjectMeta_Timestamp {
-	if m != nil {
-		return m.Timestamp
-	}
-	return nil
-}
-
 func (m *ObjectMeta) GetRevision() *Revision {
 	if m != nil {
 		return m.Revision
@@ -104,42 +68,11 @@ func (m *ObjectMeta) GetRevision() *Revision {
 	return nil
 }
 
-func (m *ObjectMeta) GetPhysicalTimestamp() *PhysicalTimestamp {
-	if x, ok := m.GetTimestamp().(*ObjectMeta_PhysicalTimestamp); ok {
-		return x.PhysicalTimestamp
+func (m *ObjectMeta) GetTimestamp() *Timestamp {
+	if m != nil {
+		return m.Timestamp
 	}
 	return nil
-}
-
-func (m *ObjectMeta) GetLogicalTimestamp() *LogicalTimestamp {
-	if x, ok := m.GetTimestamp().(*ObjectMeta_LogicalTimestamp); ok {
-		return x.LogicalTimestamp
-	}
-	return nil
-}
-
-func (m *ObjectMeta) GetVectorTimestamp() *VectorTimestamp {
-	if x, ok := m.GetTimestamp().(*ObjectMeta_VectorTimestamp); ok {
-		return x.VectorTimestamp
-	}
-	return nil
-}
-
-func (m *ObjectMeta) GetEpochTimestamp() *EpochTimestamp {
-	if x, ok := m.GetTimestamp().(*ObjectMeta_EpochTimestamp); ok {
-		return x.EpochTimestamp
-	}
-	return nil
-}
-
-// XXX_OneofWrappers is for the internal use of the proto package.
-func (*ObjectMeta) XXX_OneofWrappers() []interface{} {
-	return []interface{}{
-		(*ObjectMeta_PhysicalTimestamp)(nil),
-		(*ObjectMeta_LogicalTimestamp)(nil),
-		(*ObjectMeta_VectorTimestamp)(nil),
-		(*ObjectMeta_EpochTimestamp)(nil),
-	}
 }
 
 type Revision struct {
@@ -194,28 +127,21 @@ func init() {
 func init() { proto.RegisterFile("atomix/primitive/meta/object.proto", fileDescriptor_5a6b6f53349a8ecc) }
 
 var fileDescriptor_5a6b6f53349a8ecc = []byte{
-	// 326 bytes of a gzipped FileDescriptorProto
+	// 223 bytes of a gzipped FileDescriptorProto
 	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x52, 0x4a, 0x2c, 0xc9, 0xcf,
 	0xcd, 0xac, 0xd0, 0x2f, 0x28, 0xca, 0xcc, 0xcd, 0x2c, 0xc9, 0x2c, 0x4b, 0xd5, 0xcf, 0x4d, 0x2d,
 	0x49, 0xd4, 0xcf, 0x4f, 0xca, 0x4a, 0x4d, 0x2e, 0xd1, 0x2b, 0x28, 0xca, 0x2f, 0xc9, 0x17, 0x12,
 	0x85, 0xa8, 0xd1, 0x83, 0xab, 0xd1, 0x03, 0xa9, 0x91, 0x52, 0xc5, 0xae, 0xb5, 0x24, 0x33, 0x37,
 	0xb5, 0xb8, 0x24, 0x31, 0xb7, 0x00, 0xa2, 0x5b, 0x4a, 0x24, 0x3d, 0x3f, 0x3d, 0x1f, 0xcc, 0xd4,
-	0x07, 0xb1, 0x20, 0xa2, 0x4a, 0x1b, 0x98, 0xb9, 0xb8, 0xfc, 0xc1, 0x96, 0xf8, 0xa6, 0x96, 0x24,
-	0x0a, 0x59, 0x73, 0x71, 0x14, 0xa5, 0x96, 0x65, 0x16, 0x67, 0xe6, 0xe7, 0x49, 0x30, 0x2a, 0x30,
-	0x6a, 0x70, 0x1b, 0xc9, 0xeb, 0x61, 0xb5, 0x55, 0x2f, 0x08, 0xaa, 0x2c, 0x08, 0xae, 0x41, 0x28,
-	0x92, 0x4b, 0xa8, 0x20, 0xa3, 0xb2, 0x38, 0x33, 0x39, 0x31, 0x27, 0x1e, 0x6e, 0xbb, 0x04, 0x13,
-	0xd8, 0x18, 0x0d, 0x1c, 0xc6, 0x04, 0x40, 0x35, 0x84, 0xc0, 0xd4, 0x7b, 0x30, 0x04, 0x09, 0x16,
-	0xa0, 0x0b, 0x0a, 0x85, 0x71, 0x09, 0xe6, 0xe4, 0xa7, 0xa3, 0x99, 0xcc, 0x0c, 0x36, 0x59, 0x1d,
-	0x87, 0xc9, 0x3e, 0x10, 0xf5, 0xc8, 0x06, 0x0b, 0xe4, 0xa0, 0x89, 0x09, 0x05, 0x73, 0x09, 0x94,
-	0xa5, 0x26, 0x97, 0xe4, 0x17, 0x21, 0x19, 0xcb, 0x02, 0x36, 0x56, 0x0d, 0x87, 0xb1, 0x61, 0x60,
-	0xe5, 0xc8, 0xa6, 0xf2, 0x97, 0xa1, 0x0a, 0x09, 0x05, 0x70, 0xf1, 0xa7, 0x16, 0xe4, 0x27, 0x67,
-	0x20, 0x99, 0xc9, 0x0a, 0x36, 0x53, 0x15, 0x87, 0x99, 0xae, 0x20, 0xd5, 0xc8, 0x46, 0xf2, 0xa5,
-	0xa2, 0x88, 0x38, 0x71, 0x73, 0x71, 0xc2, 0xcd, 0x52, 0xd2, 0xe5, 0xe2, 0x80, 0x05, 0xbe, 0x90,
-	0x22, 0x17, 0x73, 0x5e, 0x69, 0x2e, 0x38, 0xaa, 0x58, 0x9c, 0xf8, 0x7f, 0xdd, 0x93, 0xe7, 0x86,
-	0x49, 0xf9, 0x95, 0xe6, 0x06, 0x81, 0xe4, 0x9c, 0x24, 0x4e, 0x3c, 0x92, 0x63, 0xbc, 0xf0, 0x48,
-	0x8e, 0xf1, 0xc1, 0x23, 0x39, 0xc6, 0x09, 0x8f, 0xe5, 0x18, 0x2e, 0x3c, 0x96, 0x63, 0xb8, 0xf1,
-	0x58, 0x8e, 0x21, 0x89, 0x0d, 0x9c, 0x04, 0x8c, 0x01, 0x01, 0x00, 0x00, 0xff, 0xff, 0x3a, 0xe7,
-	0x7d, 0x6a, 0x7c, 0x02, 0x00, 0x00,
+	0x07, 0xb1, 0x20, 0xa2, 0x4a, 0x9d, 0x8c, 0x5c, 0x5c, 0xfe, 0x60, 0x4b, 0x7c, 0x53, 0x4b, 0x12,
+	0x85, 0xac, 0xb9, 0x38, 0x8a, 0x52, 0xcb, 0x32, 0x8b, 0x33, 0xf3, 0xf3, 0x24, 0x18, 0x15, 0x18,
+	0x35, 0xb8, 0x8d, 0xe4, 0xf5, 0xb0, 0xda, 0xaa, 0x17, 0x04, 0x55, 0x16, 0x04, 0xd7, 0x20, 0x64,
+	0xc7, 0xc5, 0x09, 0xb7, 0x54, 0x82, 0x09, 0xac, 0x5b, 0x01, 0x87, 0xee, 0x10, 0x98, 0xba, 0x20,
+	0x84, 0x16, 0x25, 0x5d, 0x2e, 0x0e, 0x98, 0xa9, 0x42, 0x8a, 0x5c, 0xcc, 0x79, 0xa5, 0xb9, 0x60,
+	0x37, 0xb0, 0x38, 0xf1, 0xff, 0xba, 0x27, 0xcf, 0x0d, 0x93, 0xf2, 0x2b, 0xcd, 0x0d, 0x02, 0xc9,
+	0x39, 0x49, 0x9c, 0x78, 0x24, 0xc7, 0x78, 0xe1, 0x91, 0x1c, 0xe3, 0x83, 0x47, 0x72, 0x8c, 0x13,
+	0x1e, 0xcb, 0x31, 0x5c, 0x78, 0x2c, 0xc7, 0x70, 0xe3, 0xb1, 0x1c, 0x43, 0x12, 0x1b, 0xd8, 0x6f,
+	0xc6, 0x80, 0x00, 0x00, 0x00, 0xff, 0xff, 0x37, 0xe0, 0x27, 0xb5, 0x55, 0x01, 0x00, 0x00,
 }
 
 func (m *ObjectMeta) Marshal() (dAtA []byte, err error) {
@@ -240,12 +166,15 @@ func (m *ObjectMeta) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = l
 	if m.Timestamp != nil {
 		{
-			size := m.Timestamp.Size()
-			i -= size
-			if _, err := m.Timestamp.MarshalTo(dAtA[i:]); err != nil {
+			size, err := m.Timestamp.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
 				return 0, err
 			}
+			i -= size
+			i = encodeVarintObject(dAtA, i, uint64(size))
 		}
+		i--
+		dAtA[i] = 0x12
 	}
 	if m.Revision != nil {
 		{
@@ -262,90 +191,6 @@ func (m *ObjectMeta) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *ObjectMeta_PhysicalTimestamp) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *ObjectMeta_PhysicalTimestamp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.PhysicalTimestamp != nil {
-		{
-			size, err := m.PhysicalTimestamp.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintObject(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x12
-	}
-	return len(dAtA) - i, nil
-}
-func (m *ObjectMeta_LogicalTimestamp) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *ObjectMeta_LogicalTimestamp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.LogicalTimestamp != nil {
-		{
-			size, err := m.LogicalTimestamp.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintObject(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x1a
-	}
-	return len(dAtA) - i, nil
-}
-func (m *ObjectMeta_VectorTimestamp) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *ObjectMeta_VectorTimestamp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.VectorTimestamp != nil {
-		{
-			size, err := m.VectorTimestamp.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintObject(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x22
-	}
-	return len(dAtA) - i, nil
-}
-func (m *ObjectMeta_EpochTimestamp) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *ObjectMeta_EpochTimestamp) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	if m.EpochTimestamp != nil {
-		{
-			size, err := m.EpochTimestamp.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintObject(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x2a
-	}
-	return len(dAtA) - i, nil
-}
 func (m *Revision) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
@@ -396,59 +241,12 @@ func (m *ObjectMeta) Size() (n int) {
 		n += 1 + l + sovObject(uint64(l))
 	}
 	if m.Timestamp != nil {
-		n += m.Timestamp.Size()
+		l = m.Timestamp.Size()
+		n += 1 + l + sovObject(uint64(l))
 	}
 	return n
 }
 
-func (m *ObjectMeta_PhysicalTimestamp) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.PhysicalTimestamp != nil {
-		l = m.PhysicalTimestamp.Size()
-		n += 1 + l + sovObject(uint64(l))
-	}
-	return n
-}
-func (m *ObjectMeta_LogicalTimestamp) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.LogicalTimestamp != nil {
-		l = m.LogicalTimestamp.Size()
-		n += 1 + l + sovObject(uint64(l))
-	}
-	return n
-}
-func (m *ObjectMeta_VectorTimestamp) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.VectorTimestamp != nil {
-		l = m.VectorTimestamp.Size()
-		n += 1 + l + sovObject(uint64(l))
-	}
-	return n
-}
-func (m *ObjectMeta_EpochTimestamp) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.EpochTimestamp != nil {
-		l = m.EpochTimestamp.Size()
-		n += 1 + l + sovObject(uint64(l))
-	}
-	return n
-}
 func (m *Revision) Size() (n int) {
 	if m == nil {
 		return 0
@@ -534,7 +332,7 @@ func (m *ObjectMeta) Unmarshal(dAtA []byte) error {
 			iNdEx = postIndex
 		case 2:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PhysicalTimestamp", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Timestamp", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -561,116 +359,12 @@ func (m *ObjectMeta) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			v := &PhysicalTimestamp{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if m.Timestamp == nil {
+				m.Timestamp = &Timestamp{}
+			}
+			if err := m.Timestamp.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
-			m.Timestamp = &ObjectMeta_PhysicalTimestamp{v}
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field LogicalTimestamp", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowObject
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthObject
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthObject
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &LogicalTimestamp{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Timestamp = &ObjectMeta_LogicalTimestamp{v}
-			iNdEx = postIndex
-		case 4:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field VectorTimestamp", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowObject
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthObject
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthObject
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &VectorTimestamp{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Timestamp = &ObjectMeta_VectorTimestamp{v}
-			iNdEx = postIndex
-		case 5:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field EpochTimestamp", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowObject
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthObject
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthObject
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			v := &EpochTimestamp{}
-			if err := v.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			m.Timestamp = &ObjectMeta_EpochTimestamp{v}
 			iNdEx = postIndex
 		default:
 			iNdEx = preIndex

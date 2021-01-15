@@ -37,8 +37,7 @@ message IncrementResponse {
 }
 
 message IncrementOutput {
-    int64 previous_value = 1;
-    int64 next_value = 2;
+    int64 value = 1;
 }
 
 message DecrementRequest {
@@ -56,8 +55,7 @@ message DecrementResponse {
 }
 
 message DecrementOutput {
-    int64 previous_value = 1;
-    int64 next_value = 2;
+    int64 value = 1;
 }
 
 message GetRequest {
@@ -77,6 +75,12 @@ message GetOutput {
     int64 value = 1;
 }
 
+message Precondition {
+    oneof precondition {
+        int64 value = 1;
+    }
+}
+
 message SetRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
     SetInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
@@ -84,6 +88,7 @@ message SetRequest {
 
 message SetInput {
     int64 value = 1;
+    repeated Precondition preconditions = 2 [(gogoproto.nullable) = false];
 }
 
 message SetResponse {
@@ -92,26 +97,7 @@ message SetResponse {
 }
 
 message SetOutput {
-    int64 previous_value = 1;
-}
-
-message CheckAndSetRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    CheckAndSetInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
-}
-
-message CheckAndSetInput {
-    int64 expect = 1;
-    int64 update = 2;
-}
-
-message CheckAndSetResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    CheckAndSetOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
-}
-
-message CheckAndSetOutput {
-    bool succeeded = 1;
+    int64 value = 1;
 }
 
 message Snapshot {
@@ -157,11 +143,6 @@ service CounterService {
 
     // Decrement decrements the counter value
     rpc Decrement (DecrementRequest) returns (DecrementResponse) {
-        option (atomix.primitive.optype) = COMMAND;
-    }
-
-    // CheckAndSet performs a check-and-set operation on the counter value
-    rpc CheckAndSet (CheckAndSetRequest) returns (CheckAndSetResponse) {
         option (atomix.primitive.optype) = COMMAND;
     }
 

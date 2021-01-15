@@ -23,24 +23,6 @@ import "atomix/primitive/descriptor.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
-message ExistsRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    ExistsInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
-}
-
-message ExistsInput {
-    uint64 index = 2;
-}
-
-message ExistsResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    ExistsOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
-}
-
-message ExistsOutput {
-    bool contains_index = 2;
-}
-
 message SizeRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
 }
@@ -70,7 +52,7 @@ message AppendResponse {
 }
 
 message AppendOutput {
-    Entry entry = 1;
+    Entry entry = 1 [(gogoproto.nullable) = false];
 }
 
 message GetRequest {
@@ -88,7 +70,7 @@ message GetResponse {
 }
 
 message GetOutput {
-    Entry entry = 1;
+    Entry entry = 1 [(gogoproto.nullable) = false];
 }
 
 message FirstEntryRequest {
@@ -101,7 +83,7 @@ message FirstEntryResponse {
 }
 
 message FirstEntryOutput {
-    Entry entry = 1;
+    Entry entry = 1 [(gogoproto.nullable) = false];
 }
 
 message LastEntryRequest {
@@ -115,8 +97,7 @@ message LastEntryResponse {
 }
 
 message LastEntryOutput {
-    Entry entry = 1;
-
+    Entry entry = 1 [(gogoproto.nullable) = false];
 }
 
 message PrevEntryRequest {
@@ -134,7 +115,7 @@ message PrevEntryResponse {
 }
 
 message PrevEntryOutput {
-    Entry entry = 1;
+    Entry entry = 1 [(gogoproto.nullable) = false];
 }
 
 message NextEntryRequest {
@@ -152,7 +133,7 @@ message NextEntryResponse {
 }
 
 message NextEntryOutput {
-    Entry entry = 1;
+    Entry entry = 1 [(gogoproto.nullable) = false];
 }
 
 message RemoveRequest {
@@ -161,7 +142,7 @@ message RemoveRequest {
 }
 
 message RemoveInput {
-    Entry entry = 1;
+    Entry entry = 1 [(gogoproto.nullable) = false];
 }
 
 message RemoveResponse {
@@ -170,7 +151,7 @@ message RemoveResponse {
 }
 
 message RemoveOutput {
-    Entry entry = 1;
+    Entry entry = 1 [(gogoproto.nullable) = false];
 }
 
 message ClearRequest {
@@ -195,7 +176,7 @@ message EntriesResponse {
 }
 
 message EntriesOutput {
-    Entry entry = 1;
+    Entry entry = 1 [(gogoproto.nullable) = false];
 }
 
 message EventsRequest {
@@ -214,8 +195,12 @@ message EventsResponse {
 }
 
 message EventsOutput {
+    Event event = 1 [(gogoproto.nullable) = false];
+}
+
+message Event {
     Type type = 1;
-    Entry entry = 2;
+    Entry entry = 2 [(gogoproto.nullable) = false];
 
     enum Type {
         NONE = 0;
@@ -226,7 +211,7 @@ message EventsOutput {
 }
 
 message Entry {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
     uint64 index = 2;
     bytes value = 3;
 }
@@ -259,11 +244,6 @@ service LogService {
 
     // Size returns the size of the log
     rpc Size (SizeRequest) returns (SizeResponse) {
-        option (atomix.primitive.optype) = QUERY;
-    }
-
-    // Exists checks whether an index exists in the log
-    rpc Exists (ExistsRequest) returns (ExistsResponse) {
         option (atomix.primitive.optype) = QUERY;
     }
 

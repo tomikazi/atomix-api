@@ -37,7 +37,13 @@ message GetResponse {
 }
 
 message GetOutput {
-    Value value = 1;
+    Value value = 1 [(gogoproto.nullable) = false];
+}
+
+message Precondition {
+    oneof precondition {
+        atomix.primitive.meta.ObjectMeta metadata = 1;
+    }
 }
 
 message SetRequest {
@@ -46,7 +52,8 @@ message SetRequest {
 }
 
 message SetInput {
-    Value value = 1;
+    Value value = 1 [(gogoproto.nullable) = false];
+    repeated Precondition preconditions = 2 [(gogoproto.nullable) = false];
 }
 
 message SetResponse {
@@ -55,7 +62,7 @@ message SetResponse {
 }
 
 message SetOutput {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
+    Value value = 1 [(gogoproto.nullable) = false];
 }
 
 message EventsRequest {
@@ -72,6 +79,10 @@ message EventsResponse {
 }
 
 message EventsOutput {
+    Event event = 1 [(gogoproto.nullable) = false];
+}
+
+message Event {
     Type type = 1;
     Value value = 2 [(gogoproto.nullable) = false];
 
@@ -82,7 +93,7 @@ message EventsOutput {
 }
 
 message Value {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
     bytes value = 2;
 }
 

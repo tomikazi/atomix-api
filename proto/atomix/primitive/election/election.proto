@@ -38,7 +38,7 @@ message EnterResponse {
 }
 
 message EnterOutput {
-    Term term = 2;
+    Term term = 2 [(gogoproto.nullable) = false];
 }
 
 message WithdrawRequest {
@@ -56,7 +56,7 @@ message WithdrawResponse {
 }
 
 message WithdrawOutput {
-    Term term = 2;
+    Term term = 2 [(gogoproto.nullable) = false];
 }
 
 message AnointRequest {
@@ -74,7 +74,7 @@ message AnointResponse {
 }
 
 message AnointOutput {
-    Term term = 2;
+    Term term = 2 [(gogoproto.nullable) = false];
 }
 
 message PromoteRequest {
@@ -92,7 +92,7 @@ message PromoteResponse {
 }
 
 message PromoteOutput {
-    Term term = 2;
+    Term term = 2 [(gogoproto.nullable) = false];
 }
 
 message EvictRequest {
@@ -110,7 +110,7 @@ message EvictResponse {
 }
 
 message EvictOutput {
-    Term term = 2;
+    Term term = 2 [(gogoproto.nullable) = false];
 }
 
 message GetTermRequest {
@@ -127,7 +127,7 @@ message GetTermResponse {
 }
 
 message GetTermOutput {
-    Term term = 2;
+    Term term = 2 [(gogoproto.nullable) = false];
 }
 
 message EventsRequest {
@@ -144,8 +144,12 @@ message EventsResponse {
 }
 
 message EventsOutput {
-    Type type = 2;
-    Term term = 3;
+    Event event = 1 [(gogoproto.nullable) = false];
+}
+
+message Event {
+    Type type = 1;
+    Term term = 2 [(gogoproto.nullable) = false];
 
     enum Type {
         NONE = 0;
@@ -154,13 +158,13 @@ message EventsOutput {
 }
 
 message Term {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
     string leader = 2;
     repeated string candidates = 3;
 }
 
 message Snapshot {
-    Term term = 1;
+    Term term = 1 [(gogoproto.nullable) = false];
 }
 
 message SnapshotRequest {

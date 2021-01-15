@@ -14,10 +14,12 @@
     - [ContainsOutput](#atomix.primitive.set.ContainsOutput)
     - [ContainsRequest](#atomix.primitive.set.ContainsRequest)
     - [ContainsResponse](#atomix.primitive.set.ContainsResponse)
+    - [Element](#atomix.primitive.set.Element)
     - [ElementsInput](#atomix.primitive.set.ElementsInput)
     - [ElementsOutput](#atomix.primitive.set.ElementsOutput)
     - [ElementsRequest](#atomix.primitive.set.ElementsRequest)
     - [ElementsResponse](#atomix.primitive.set.ElementsResponse)
+    - [Event](#atomix.primitive.set.Event)
     - [EventsInput](#atomix.primitive.set.EventsInput)
     - [EventsOutput](#atomix.primitive.set.EventsOutput)
     - [EventsRequest](#atomix.primitive.set.EventsRequest)
@@ -35,7 +37,7 @@
     - [SnapshotRequest](#atomix.primitive.set.SnapshotRequest)
     - [SnapshotResponse](#atomix.primitive.set.SnapshotResponse)
   
-    - [EventsOutput.Type](#atomix.primitive.set.EventsOutput.Type)
+    - [Event.Type](#atomix.primitive.set.Event.Type)
   
   
     - [SetService](#atomix.primitive.set.SetService)
@@ -60,7 +62,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [string](#string) |  |  |
+| element | [Element](#atomix.primitive.set.Element) |  |  |
 
 
 
@@ -75,7 +77,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| added | [bool](#bool) |  |  |
+| element | [Element](#atomix.primitive.set.Element) |  |  |
 
 
 
@@ -152,7 +154,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [string](#string) |  |  |
+| element | [Element](#atomix.primitive.set.Element) |  |  |
 
 
 
@@ -206,6 +208,22 @@
 
 
 
+<a name="atomix.primitive.set.Element"></a>
+
+### Element
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.set.ElementsInput"></a>
 
 ### ElementsInput
@@ -224,7 +242,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [string](#string) |  |  |
+| element | [Element](#atomix.primitive.set.Element) |  |  |
 
 
 
@@ -263,6 +281,22 @@
 
 
 
+<a name="atomix.primitive.set.Event"></a>
+
+### Event
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [Event.Type](#atomix.primitive.set.Event.Type) |  |  |
+| element | [Element](#atomix.primitive.set.Element) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.set.EventsInput"></a>
 
 ### EventsInput
@@ -286,8 +320,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [EventsOutput.Type](#atomix.primitive.set.EventsOutput.Type) |  |  |
-| value | [string](#string) |  |  |
+| event | [Event](#atomix.primitive.set.Event) |  |  |
 
 
 
@@ -334,7 +367,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [string](#string) |  |  |
+| element | [Element](#atomix.primitive.set.Element) |  |  |
 
 
 
@@ -349,7 +382,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| removed | [bool](#bool) |  |  |
+| element | [Element](#atomix.primitive.set.Element) |  |  |
 
 
 
@@ -473,7 +506,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [string](#string) |  |  |
+| element | [Element](#atomix.primitive.set.Element) |  |  |
 
 
 
@@ -513,9 +546,9 @@
  
 
 
-<a name="atomix.primitive.set.EventsOutput.Type"></a>
+<a name="atomix.primitive.set.Event.Type"></a>
 
-### EventsOutput.Type
+### Event.Type
 
 
 | Name | Number | Description |

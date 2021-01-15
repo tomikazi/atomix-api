@@ -20,6 +20,7 @@ package atomix.primitive.set;
 
 import "atomix/primitive/primitive.proto";
 import "atomix/primitive/descriptor.proto";
+import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
 message SizeRequest {
@@ -41,7 +42,7 @@ message ContainsRequest {
 }
 
 message ContainsInput {
-    string value = 2 [(atomix.primitive.partitionkey) = true];
+    Element element = 1 [(gogoproto.nullable) = false];
 }
 
 message ContainsResponse {
@@ -59,7 +60,7 @@ message AddRequest {
 }
 
 message AddInput {
-    string value = 2 [(atomix.primitive.partitionkey) = true];
+    Element element = 1 [(gogoproto.nullable) = false];
 }
 
 message AddResponse {
@@ -68,7 +69,7 @@ message AddResponse {
 }
 
 message AddOutput {
-    bool added = 3;
+    Element element = 1 [(gogoproto.nullable) = false];
 }
 
 message RemoveRequest {
@@ -77,7 +78,7 @@ message RemoveRequest {
 }
 
 message RemoveInput {
-    string value = 2 [(atomix.primitive.partitionkey) = true];
+    Element element = 1 [(gogoproto.nullable) = false];
 }
 
 message RemoveResponse {
@@ -86,7 +87,7 @@ message RemoveResponse {
 }
 
 message RemoveOutput {
-    bool removed = 3;
+    Element element = 1 [(gogoproto.nullable) = false];
 }
 
 message ClearRequest {
@@ -112,8 +113,12 @@ message EventsResponse {
 }
 
 message EventsOutput {
-    Type type = 2;
-    string value = 3;
+    Event event = 1 [(gogoproto.nullable) = false];
+}
+
+message Event {
+    Type type = 1;
+    Element element = 2 [(gogoproto.nullable) = false];
 
     enum Type {
         NONE = 0;
@@ -137,11 +142,11 @@ message ElementsResponse {
 }
 
 message ElementsOutput {
-    string value = 2;
+    Element element = 1 [(gogoproto.nullable) = false];
 }
 
 message SnapshotEntry {
-    string value = 1;
+    Element element = 1 [(gogoproto.nullable) = false];
 }
 
 message SnapshotRequest {
@@ -160,6 +165,11 @@ message RestoreRequest {
 
 message RestoreResponse {
     atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+}
+
+message Element {
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
+    string value = 2 [(atomix.primitive.partitionkey) = true];
 }
 
 // Set service

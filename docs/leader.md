@@ -4,6 +4,7 @@
 ## Table of Contents
 
 - [atomix/primitive/leader/latch.proto](#atomix/primitive/leader/latch.proto)
+    - [Event](#atomix.primitive.leader.Event)
     - [EventsInput](#atomix.primitive.leader.EventsInput)
     - [EventsOutput](#atomix.primitive.leader.EventsOutput)
     - [EventsRequest](#atomix.primitive.leader.EventsRequest)
@@ -23,7 +24,7 @@
     - [SnapshotRequest](#atomix.primitive.leader.SnapshotRequest)
     - [SnapshotResponse](#atomix.primitive.leader.SnapshotResponse)
   
-    - [EventsOutput.Type](#atomix.primitive.leader.EventsOutput.Type)
+    - [Event.Type](#atomix.primitive.leader.Event.Type)
   
   
     - [LeaderLatchService](#atomix.primitive.leader.LeaderLatchService)
@@ -37,6 +38,22 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## atomix/primitive/leader/latch.proto
+
+
+
+<a name="atomix.primitive.leader.Event"></a>
+
+### Event
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [Event.Type](#atomix.primitive.leader.Event.Type) |  |  |
+| latch | [Latch](#atomix.primitive.leader.Latch) |  |  |
+
+
+
 
 
 
@@ -58,8 +75,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [EventsOutput.Type](#atomix.primitive.leader.EventsOutput.Type) |  |  |
-| latch | [Latch](#atomix.primitive.leader.Latch) |  |  |
+| event | [Event](#atomix.primitive.leader.Event) |  |  |
 
 
 
@@ -308,9 +324,9 @@
  
 
 
-<a name="atomix.primitive.leader.EventsOutput.Type"></a>
+<a name="atomix.primitive.leader.Event.Type"></a>
 
-### EventsOutput.Type
+### Event.Type
 
 
 | Name | Number | Description |

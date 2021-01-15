@@ -18,6 +18,7 @@
     - [ElementsOutput](#atomix.primitive.list.ElementsOutput)
     - [ElementsRequest](#atomix.primitive.list.ElementsRequest)
     - [ElementsResponse](#atomix.primitive.list.ElementsResponse)
+    - [Event](#atomix.primitive.list.Event)
     - [EventsInput](#atomix.primitive.list.EventsInput)
     - [EventsOutput](#atomix.primitive.list.EventsOutput)
     - [EventsRequest](#atomix.primitive.list.EventsRequest)
@@ -30,6 +31,8 @@
     - [InsertOutput](#atomix.primitive.list.InsertOutput)
     - [InsertRequest](#atomix.primitive.list.InsertRequest)
     - [InsertResponse](#atomix.primitive.list.InsertResponse)
+    - [Item](#atomix.primitive.list.Item)
+    - [Precondition](#atomix.primitive.list.Precondition)
     - [RemoveInput](#atomix.primitive.list.RemoveInput)
     - [RemoveOutput](#atomix.primitive.list.RemoveOutput)
     - [RemoveRequest](#atomix.primitive.list.RemoveRequest)
@@ -46,8 +49,9 @@
     - [SnapshotEntry](#atomix.primitive.list.SnapshotEntry)
     - [SnapshotRequest](#atomix.primitive.list.SnapshotRequest)
     - [SnapshotResponse](#atomix.primitive.list.SnapshotResponse)
+    - [Value](#atomix.primitive.list.Value)
   
-    - [EventsOutput.Type](#atomix.primitive.list.EventsOutput.Type)
+    - [Event.Type](#atomix.primitive.list.Event.Type)
   
   
     - [ListService](#atomix.primitive.list.ListService)
@@ -72,7 +76,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [string](#string) |  |  |
+| value | [Value](#atomix.primitive.list.Value) |  |  |
 
 
 
@@ -159,7 +163,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [string](#string) |  |  |
+| value | [Value](#atomix.primitive.list.Value) |  |  |
 
 
 
@@ -231,7 +235,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [string](#string) |  |  |
+| item | [Item](#atomix.primitive.list.Item) |  |  |
 
 
 
@@ -270,6 +274,22 @@
 
 
 
+<a name="atomix.primitive.list.Event"></a>
+
+### Event
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [Event.Type](#atomix.primitive.list.Event.Type) |  |  |
+| item | [Item](#atomix.primitive.list.Item) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.list.EventsInput"></a>
 
 ### EventsInput
@@ -293,9 +313,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [EventsOutput.Type](#atomix.primitive.list.EventsOutput.Type) |  |  |
-| index | [uint32](#uint32) |  |  |
-| value | [string](#string) |  |  |
+| event | [Event](#atomix.primitive.list.Event) |  |  |
 
 
 
@@ -357,7 +375,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [string](#string) |  |  |
+| item | [Item](#atomix.primitive.list.Item) |  |  |
 
 
 
@@ -404,8 +422,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| index | [uint32](#uint32) |  |  |
-| value | [string](#string) |  |  |
+| item | [Item](#atomix.primitive.list.Item) |  |  |
+| preconditions | [Precondition](#atomix.primitive.list.Precondition) | repeated |  |
 
 
 
@@ -416,6 +434,11 @@
 
 ### InsertOutput
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| item | [Item](#atomix.primitive.list.Item) |  |  |
 
 
 
@@ -454,6 +477,37 @@
 
 
 
+<a name="atomix.primitive.list.Item"></a>
+
+### Item
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| index | [uint32](#uint32) |  |  |
+| value | [Value](#atomix.primitive.list.Value) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.list.Precondition"></a>
+
+### Precondition
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| metadata | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.list.RemoveInput"></a>
 
 ### RemoveInput
@@ -463,6 +517,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | index | [uint32](#uint32) |  |  |
+| preconditions | [Precondition](#atomix.primitive.list.Precondition) | repeated |  |
 
 
 
@@ -477,7 +532,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [string](#string) |  |  |
+| item | [Item](#atomix.primitive.list.Item) |  |  |
 
 
 
@@ -555,8 +610,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| index | [uint32](#uint32) |  |  |
-| value | [string](#string) |  |  |
+| item | [Item](#atomix.primitive.list.Item) |  |  |
+| preconditions | [Precondition](#atomix.primitive.list.Precondition) | repeated |  |
 
 
 
@@ -567,6 +622,11 @@
 
 ### SetOutput
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| item | [Item](#atomix.primitive.list.Item) |  |  |
 
 
 
@@ -659,7 +719,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [string](#string) |  |  |
+| item | [Item](#atomix.primitive.list.Item) |  |  |
 
 
 
@@ -696,12 +756,28 @@
 
 
 
+
+<a name="atomix.primitive.list.Value"></a>
+
+### Value
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
  
 
 
-<a name="atomix.primitive.list.EventsOutput.Type"></a>
+<a name="atomix.primitive.list.Event.Type"></a>
 
-### EventsOutput.Type
+### Event.Type
 
 
 | Name | Number | Description |
@@ -725,7 +801,6 @@ ListService implements a distributed list
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | Size | [SizeRequest](#atomix.primitive.list.SizeRequest) | [SizeResponse](#atomix.primitive.list.SizeResponse) | Size gets the number of elements in the list |
-| Contains | [ContainsRequest](#atomix.primitive.list.ContainsRequest) | [ContainsResponse](#atomix.primitive.list.ContainsResponse) | Contains returns whether the list contains a value |
 | Append | [AppendRequest](#atomix.primitive.list.AppendRequest) | [AppendResponse](#atomix.primitive.list.AppendResponse) | Append appends a value to the list |
 | Insert | [InsertRequest](#atomix.primitive.list.InsertRequest) | [InsertResponse](#atomix.primitive.list.InsertResponse) | Insert inserts a value at a specific index in the list |
 | Get | [GetRequest](#atomix.primitive.list.GetRequest) | [GetResponse](#atomix.primitive.list.GetResponse) | Get gets the value at an index in the list |

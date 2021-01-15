@@ -15,14 +15,11 @@
     - [EntriesRequest](#atomix.primitive.log.EntriesRequest)
     - [EntriesResponse](#atomix.primitive.log.EntriesResponse)
     - [Entry](#atomix.primitive.log.Entry)
+    - [Event](#atomix.primitive.log.Event)
     - [EventsInput](#atomix.primitive.log.EventsInput)
     - [EventsOutput](#atomix.primitive.log.EventsOutput)
     - [EventsRequest](#atomix.primitive.log.EventsRequest)
     - [EventsResponse](#atomix.primitive.log.EventsResponse)
-    - [ExistsInput](#atomix.primitive.log.ExistsInput)
-    - [ExistsOutput](#atomix.primitive.log.ExistsOutput)
-    - [ExistsRequest](#atomix.primitive.log.ExistsRequest)
-    - [ExistsResponse](#atomix.primitive.log.ExistsResponse)
     - [FirstEntryOutput](#atomix.primitive.log.FirstEntryOutput)
     - [FirstEntryRequest](#atomix.primitive.log.FirstEntryRequest)
     - [FirstEntryResponse](#atomix.primitive.log.FirstEntryResponse)
@@ -54,7 +51,7 @@
     - [SnapshotRequest](#atomix.primitive.log.SnapshotRequest)
     - [SnapshotResponse](#atomix.primitive.log.SnapshotResponse)
   
-    - [EventsOutput.Type](#atomix.primitive.log.EventsOutput.Type)
+    - [Event.Type](#atomix.primitive.log.Event.Type)
   
   
     - [LogService](#atomix.primitive.log.LogService)
@@ -238,6 +235,22 @@
 
 
 
+<a name="atomix.primitive.log.Event"></a>
+
+### Event
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [Event.Type](#atomix.primitive.log.Event.Type) |  |  |
+| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.log.EventsInput"></a>
 
 ### EventsInput
@@ -262,8 +275,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [EventsOutput.Type](#atomix.primitive.log.EventsOutput.Type) |  |  |
-| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
+| event | [Event](#atomix.primitive.log.Event) |  |  |
 
 
 
@@ -296,68 +308,6 @@
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
 | output | [EventsOutput](#atomix.primitive.log.EventsOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.ExistsInput"></a>
-
-### ExistsInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.ExistsOutput"></a>
-
-### ExistsOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| contains_index | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.ExistsRequest"></a>
-
-### ExistsRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [ExistsInput](#atomix.primitive.log.ExistsInput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.ExistsResponse"></a>
-
-### ExistsResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [ExistsOutput](#atomix.primitive.log.ExistsOutput) |  |  |
 
 
 
@@ -829,9 +779,9 @@
  
 
 
-<a name="atomix.primitive.log.EventsOutput.Type"></a>
+<a name="atomix.primitive.log.Event.Type"></a>
 
-### EventsOutput.Type
+### Event.Type
 
 
 | Name | Number | Description |
@@ -855,7 +805,6 @@ LogService log service
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | Size | [SizeRequest](#atomix.primitive.log.SizeRequest) | [SizeResponse](#atomix.primitive.log.SizeResponse) | Size returns the size of the log |
-| Exists | [ExistsRequest](#atomix.primitive.log.ExistsRequest) | [ExistsResponse](#atomix.primitive.log.ExistsResponse) | Exists checks whether an index exists in the log |
 | Append | [AppendRequest](#atomix.primitive.log.AppendRequest) | [AppendResponse](#atomix.primitive.log.AppendResponse) | Appends appends an entry into the log |
 | Get | [GetRequest](#atomix.primitive.log.GetRequest) | [GetResponse](#atomix.primitive.log.GetResponse) | Get gets the entry for an index |
 | FirstEntry | [FirstEntryRequest](#atomix.primitive.log.FirstEntryRequest) | [FirstEntryResponse](#atomix.primitive.log.FirstEntryResponse) | FirstEntry gets the first entry in the log |

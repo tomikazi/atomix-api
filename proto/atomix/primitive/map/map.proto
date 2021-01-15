@@ -24,24 +24,6 @@ import "atomix/primitive/meta/object.proto";
 import "atomix/primitive/descriptor.proto";
 import "gogoproto/gogo.proto";
 
-message ExistsRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    ExistsInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
-}
-
-message ExistsInput {
-    string key = 1 [(atomix.primitive.partitionkey) = true];
-}
-
-message ExistsResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    ExistsOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
-}
-
-message ExistsOutput {
-    bool contains_key = 1;
-}
-
 message SizeRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
 }
@@ -55,17 +37,20 @@ message SizeOutput {
     uint32 size = 1 [(atomix.primitive.aggregate) = SUM];
 }
 
+message Precondition {
+    oneof precondition {
+        atomix.primitive.meta.ObjectMeta metadata = 1;
+    }
+}
+
 message PutRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
     PutInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
 }
 
 message PutInput {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
-    string key = 2 [(atomix.primitive.partitionkey) = true];
-    bytes value = 3;
-    bool if_empty = 4;
-    google.protobuf.Duration ttl = 5 [(gogoproto.customname) = "TTL", (gogoproto.stdduration) = true];
+    Entry entry = 1 [(gogoproto.nullable) = false];
+    repeated Precondition preconditions = 2 [(gogoproto.nullable) = false];
 }
 
 message PutResponse {
@@ -74,7 +59,7 @@ message PutResponse {
 }
 
 message PutOutput {
-    Entry entry = 1;
+    Entry entry = 1 [(gogoproto.nullable) = false];
 }
 
 message GetRequest {
@@ -92,7 +77,7 @@ message GetResponse {
 }
 
 message GetOutput {
-    Entry entry = 1;
+    Entry entry = 1 [(gogoproto.nullable) = false];
 }
 
 message RemoveRequest {
@@ -101,8 +86,8 @@ message RemoveRequest {
 }
 
 message RemoveInput {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
-    string key = 2 [(atomix.primitive.partitionkey) = true];
+    string key = 1 [(atomix.primitive.partitionkey) = true];
+    repeated Precondition preconditions = 2 [(gogoproto.nullable) = false];
 }
 
 message RemoveResponse {
@@ -111,7 +96,7 @@ message RemoveResponse {
 }
 
 message RemoveOutput {
-    Entry entry = 1;
+    Entry entry = 1 [(gogoproto.nullable) = false];
 }
 
 message ClearRequest {
@@ -155,6 +140,10 @@ message EventsResponse {
 }
 
 message EventsOutput {
+    Event event = 1 [(gogoproto.nullable) = false];
+}
+
+message Event {
     Type type = 1;
     Entry entry = 2 [(gogoproto.nullable) = false];
 
@@ -168,9 +157,10 @@ message EventsOutput {
 }
 
 message Entry {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
-    string key = 2;
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
+    string key = 2 [(atomix.primitive.partitionkey) = true];
     bytes value = 3;
+    google.protobuf.Duration ttl = 4 [(gogoproto.customname) = "TTL", (gogoproto.stdduration) = true];
 }
 
 message SnapshotEntry {
@@ -203,12 +193,6 @@ service MapService {
     // Size returns the size of the map
     rpc Size (SizeRequest) returns (SizeResponse) {
         option (atomix.primitive.optype) = QUERY;
-    }
-
-    // Exists checks whether a key exists in the map
-    rpc Exists (ExistsRequest) returns (ExistsResponse) {
-        option (atomix.primitive.optype) = QUERY;
-        option (atomix.primitive.partitionby) = HASH;
     }
 
     // Put puts an entry into the map

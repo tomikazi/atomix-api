@@ -38,7 +38,7 @@ message LatchResponse {
 }
 
 message LatchOutput {
-    Latch latch = 2;
+    Latch latch = 1 [(gogoproto.nullable) = false];
 }
 
 message GetRequest {
@@ -56,7 +56,7 @@ message GetResponse {
 }
 
 message GetOutput {
-    Latch latch = 2;
+    Latch latch = 1 [(gogoproto.nullable) = false];
 }
 
 message EventsRequest {
@@ -74,8 +74,12 @@ message EventsResponse {
 }
 
 message EventsOutput {
-    Type type = 2;
-    Latch latch = 3;
+    Event event = 1 [(gogoproto.nullable) = false];
+}
+
+message Event {
+    Type type = 1;
+    Latch latch = 2 [(gogoproto.nullable) = false];
 
     enum Type {
         NONE = 0;
@@ -84,7 +88,7 @@ message EventsOutput {
 }
 
 message Latch {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
     string leader = 2;
     repeated string participants = 3;
 }

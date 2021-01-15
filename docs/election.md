@@ -12,6 +12,7 @@
     - [EnterOutput](#atomix.primitive.election.EnterOutput)
     - [EnterRequest](#atomix.primitive.election.EnterRequest)
     - [EnterResponse](#atomix.primitive.election.EnterResponse)
+    - [Event](#atomix.primitive.election.Event)
     - [EventsInput](#atomix.primitive.election.EventsInput)
     - [EventsOutput](#atomix.primitive.election.EventsOutput)
     - [EventsRequest](#atomix.primitive.election.EventsRequest)
@@ -39,7 +40,7 @@
     - [WithdrawRequest](#atomix.primitive.election.WithdrawRequest)
     - [WithdrawResponse](#atomix.primitive.election.WithdrawResponse)
   
-    - [EventsOutput.Type](#atomix.primitive.election.EventsOutput.Type)
+    - [Event.Type](#atomix.primitive.election.Event.Type)
   
   
     - [LeaderElectionService](#atomix.primitive.election.LeaderElectionService)
@@ -175,6 +176,22 @@
 
 
 
+<a name="atomix.primitive.election.Event"></a>
+
+### Event
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [Event.Type](#atomix.primitive.election.Event.Type) |  |  |
+| term | [Term](#atomix.primitive.election.Term) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.election.EventsInput"></a>
 
 ### EventsInput
@@ -193,8 +210,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [EventsOutput.Type](#atomix.primitive.election.EventsOutput.Type) |  |  |
-| term | [Term](#atomix.primitive.election.Term) |  |  |
+| event | [Event](#atomix.primitive.election.Event) |  |  |
 
 
 
@@ -567,9 +583,9 @@
  
 
 
-<a name="atomix.primitive.election.EventsOutput.Type"></a>
+<a name="atomix.primitive.election.Event.Type"></a>
 
-### EventsOutput.Type
+### Event.Type
 
 
 | Name | Number | Description |

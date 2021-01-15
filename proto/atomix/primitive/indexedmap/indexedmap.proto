@@ -24,24 +24,6 @@ import "atomix/primitive/descriptor.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
-message ExistsRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    ExistsInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
-}
-
-message ExistsInput {
-    string key = 1;
-}
-
-message ExistsResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    ExistsOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
-}
-
-message ExistsOutput {
-    bool contains_key = 1;
-}
-
 message SizeRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
 }
@@ -55,6 +37,12 @@ message SizeOutput {
     uint32 size = 1 [(atomix.primitive.aggregate) = SUM];
 }
 
+message Precondition {
+    oneof precondition {
+        atomix.primitive.meta.ObjectMeta metadata = 1;
+    }
+}
+
 message PutRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
     PutInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
@@ -62,7 +50,7 @@ message PutRequest {
 
 message PutInput {
     Entry entry = 1 [(gogoproto.nullable) = false];
-    bool if_empty = 2;
+    repeated Precondition preconditions = 2 [(gogoproto.nullable) = false];
 }
 
 message PutResponse {
@@ -214,6 +202,10 @@ message EventsResponse {
 }
 
 message EventsOutput {
+    Event event = 1 [(gogoproto.nullable) = false];
+}
+
+message Event {
     Type type = 1;
     Entry entry = 2 [(gogoproto.nullable) = false];
 
@@ -231,54 +223,15 @@ message Position {
     string key = 2;
 }
 
-message Entry {
-    Position pos = 1 [(gogoproto.nullable) = false];
-    Value value = 2 [(gogoproto.nullable) = false];
-}
-
 message Value {
-    bytes value = 1;
-    atomix.primitive.meta.ObjectMeta meta = 2 [(gogoproto.nullable) = false];
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
+    bytes value = 2;
     google.protobuf.Duration ttl = 3 [(gogoproto.customname) = "TTL", (gogoproto.stdduration) = true];
 }
 
-message IndexedMapRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    IndexedMapInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
-}
-
-message IndexedMapInput {
-    oneof input {
-        ExistsInput exists = 2;
-        PutInput put = 3;
-        GetInput get = 4;
-        PrevEntryInput prev_entry = 7;
-        NextEntryInput next_entry = 8;
-        RemoveInput remove = 9;
-        EventsInput events = 11;
-        EntriesInput entries = 12;
-    }
-}
-
-message IndexedMapResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    IndexedMapOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
-}
-
-message IndexedMapOutput {
-    oneof output {
-        SizeOutput size = 1;
-        ExistsOutput exists = 2;
-        PutOutput put = 3;
-        GetOutput get = 4;
-        FirstEntryOutput first_entry = 5;
-        LastEntryOutput last_entry = 6;
-        PrevEntryOutput prev_entry = 7;
-        NextEntryOutput next_entry = 8;
-        RemoveOutput remove = 9;
-        EventsOutput events = 11;
-        EntriesOutput entries = 12;
-    }
+message Entry {
+    Position pos = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
+    Value value = 2 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
 }
 
 message SnapshotEntry {
@@ -309,11 +262,6 @@ service IndexedMapService {
 
     // Size returns the size of the map
     rpc Size (SizeRequest) returns (SizeResponse) {
-        option (atomix.primitive.optype) = QUERY;
-    }
-
-    // Exists checks whether a key exists in the map
-    rpc Exists (ExistsRequest) returns (ExistsResponse) {
         option (atomix.primitive.optype) = QUERY;
     }
 

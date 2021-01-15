@@ -4,6 +4,7 @@
 ## Table of Contents
 
 - [atomix/primitive/value/value.proto](#atomix/primitive/value/value.proto)
+    - [Event](#atomix.primitive.value.Event)
     - [EventsInput](#atomix.primitive.value.EventsInput)
     - [EventsOutput](#atomix.primitive.value.EventsOutput)
     - [EventsRequest](#atomix.primitive.value.EventsRequest)
@@ -12,6 +13,7 @@
     - [GetOutput](#atomix.primitive.value.GetOutput)
     - [GetRequest](#atomix.primitive.value.GetRequest)
     - [GetResponse](#atomix.primitive.value.GetResponse)
+    - [Precondition](#atomix.primitive.value.Precondition)
     - [RestoreRequest](#atomix.primitive.value.RestoreRequest)
     - [RestoreResponse](#atomix.primitive.value.RestoreResponse)
     - [SetInput](#atomix.primitive.value.SetInput)
@@ -23,7 +25,7 @@
     - [SnapshotResponse](#atomix.primitive.value.SnapshotResponse)
     - [Value](#atomix.primitive.value.Value)
   
-    - [EventsOutput.Type](#atomix.primitive.value.EventsOutput.Type)
+    - [Event.Type](#atomix.primitive.value.Event.Type)
   
   
     - [ValueService](#atomix.primitive.value.ValueService)
@@ -37,6 +39,22 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## atomix/primitive/value/value.proto
+
+
+
+<a name="atomix.primitive.value.Event"></a>
+
+### Event
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [Event.Type](#atomix.primitive.value.Event.Type) |  |  |
+| value | [Value](#atomix.primitive.value.Value) |  |  |
+
+
+
 
 
 
@@ -58,8 +76,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [EventsOutput.Type](#atomix.primitive.value.EventsOutput.Type) |  |  |
-| value | [Value](#atomix.primitive.value.Value) |  |  |
+| event | [Event](#atomix.primitive.value.Event) |  |  |
 
 
 
@@ -155,6 +172,21 @@
 
 
 
+<a name="atomix.primitive.value.Precondition"></a>
+
+### Precondition
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| metadata | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.value.RestoreRequest"></a>
 
 ### RestoreRequest
@@ -195,6 +227,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | value | [Value](#atomix.primitive.value.Value) |  |  |
+| preconditions | [Precondition](#atomix.primitive.value.Precondition) | repeated |  |
 
 
 
@@ -209,7 +242,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
+| value | [Value](#atomix.primitive.value.Value) |  |  |
 
 
 
@@ -312,9 +345,9 @@
  
 
 
-<a name="atomix.primitive.value.EventsOutput.Type"></a>
+<a name="atomix.primitive.value.Event.Type"></a>
 
-### EventsOutput.Type
+### Event.Type
 
 
 | Name | Number | Description |

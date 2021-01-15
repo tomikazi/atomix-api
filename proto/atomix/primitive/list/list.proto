@@ -20,6 +20,7 @@ package atomix.primitive.list;
 
 import "atomix/primitive/primitive.proto";
 import "atomix/primitive/descriptor.proto";
+import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
 message SizeRequest {
@@ -41,7 +42,7 @@ message ContainsRequest {
 }
 
 message ContainsInput {
-    string value = 2;
+    Value value = 1 [(gogoproto.nullable) = false];
 }
 
 message ContainsResponse {
@@ -53,13 +54,19 @@ message ContainsOutput {
     bool contains = 2;
 }
 
+message Precondition {
+    oneof precondition {
+        atomix.primitive.meta.ObjectMeta metadata = 1;
+    }
+}
+
 message AppendRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
     AppendInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
 }
 
 message AppendInput {
-    string value = 2;
+    Value value = 1 [(gogoproto.nullable) = false];
 }
 
 message AppendResponse {
@@ -85,7 +92,7 @@ message GetResponse {
 }
 
 message GetOutput {
-    string value = 3;
+    Item item = 1 [(gogoproto.nullable) = false];
 }
 
 message SetRequest {
@@ -94,8 +101,8 @@ message SetRequest {
 }
 
 message SetInput {
-    uint32 index = 2;
-    string value = 3;
+    Item item = 1 [(gogoproto.nullable) = false];
+    repeated Precondition preconditions = 2 [(gogoproto.nullable) = false];
 }
 
 message SetResponse {
@@ -104,6 +111,7 @@ message SetResponse {
 }
 
 message SetOutput {
+    Item item = 1 [(gogoproto.nullable) = false];
 }
 
 message InsertRequest {
@@ -112,8 +120,8 @@ message InsertRequest {
 }
 
 message InsertInput {
-    uint32 index = 2;
-    string value = 3;
+    Item item = 1 [(gogoproto.nullable) = false];
+    repeated Precondition preconditions = 2 [(gogoproto.nullable) = false];
 }
 
 message InsertResponse {
@@ -122,6 +130,7 @@ message InsertResponse {
 }
 
 message InsertOutput {
+    Item item = 1 [(gogoproto.nullable) = false];
 }
 
 message RemoveRequest {
@@ -130,7 +139,8 @@ message RemoveRequest {
 }
 
 message RemoveInput {
-    uint32 index = 2;
+    uint32 index = 1;
+    repeated Precondition preconditions = 2 [(gogoproto.nullable) = false];
 }
 
 message RemoveResponse {
@@ -139,7 +149,7 @@ message RemoveResponse {
 }
 
 message RemoveOutput {
-    string value = 3;
+    Item item = 1 [(gogoproto.nullable) = false];
 }
 
 message ClearRequest {
@@ -165,9 +175,12 @@ message EventsResponse {
 }
 
 message EventsOutput {
-    Type type = 2;
-    uint32 index = 3;
-    string value = 4;
+    Event event = 1 [(gogoproto.nullable) = false];
+}
+
+message Event {
+    Type type = 1;
+    Item item = 2 [(gogoproto.nullable) = false];
 
     enum Type {
         NONE = 0;
@@ -191,11 +204,11 @@ message ElementsResponse {
 }
 
 message ElementsOutput {
-    string value = 2;
+    Item item = 1 [(gogoproto.nullable) = false];
 }
 
 message SnapshotEntry {
-    string value = 1;
+    Item item = 1 [(gogoproto.nullable) = false];
 }
 
 message SnapshotRequest {
@@ -216,17 +229,22 @@ message RestoreResponse {
     atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
 }
 
+message Item {
+    uint32 index = 1;
+    Value value = 2 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
+}
+
+message Value {
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
+    string value = 2;
+}
+
 // ListService implements a distributed list
 service ListService {
     option (atomix.primitive.type) = "List";
 
     // Size gets the number of elements in the list
     rpc Size (SizeRequest) returns (SizeResponse) {
-        option (atomix.primitive.optype) = QUERY;
-    }
-
-    // Contains returns whether the list contains a value
-    rpc Contains (ContainsRequest) returns (ContainsResponse) {
         option (atomix.primitive.optype) = QUERY;
     }
 

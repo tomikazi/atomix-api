@@ -39,7 +39,7 @@ message LockResponse {
 }
 
 message LockOutput {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
+    Lock lock = 1 [(gogoproto.nullable) = false];
 }
 
 message UnlockRequest {
@@ -48,7 +48,7 @@ message UnlockRequest {
 }
 
 message UnlockInput {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
+    Lock lock = 1 [(gogoproto.nullable) = false];
 }
 
 message UnlockResponse {
@@ -57,34 +57,40 @@ message UnlockResponse {
 }
 
 message UnlockOutput {
-    bool unlocked = 2;
+    Lock lock = 1 [(gogoproto.nullable) = false];
 }
 
-message IsLockedRequest {
+message GetLockRequest {
     atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    IsLockedInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+    GetLockInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
 }
 
-message IsLockedInput {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
+message GetLockInput {
+    Lock lock = 1 [(gogoproto.nullable) = false];
 }
 
-message IsLockedResponse {
+message GetLockResponse {
     atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    IsLockedOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+    GetLockOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
 }
 
-message IsLockedOutput {
-    bool isLocked = 2;
+message GetLockOutput {
+    Lock lock = 1 [(gogoproto.nullable) = false];
 }
 
 message Lock {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.nullable) = false];
-    string owner = 2;
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
+    State state = 2;
+    string holder = 3;
+
+    enum State {
+        UNLOCKED = 0;
+        LOCKED = 1;
+    }
 }
 
 message Snapshot {
-    Lock lock = 1;
+    Lock lock = 1 [(gogoproto.nullable) = false];
     repeated string queue = 2;
 }
 
@@ -121,8 +127,8 @@ service LockService {
         option (atomix.primitive.optype) = COMMAND;
     }
 
-    // IsLocked checks whether the lock is held
-    rpc IsLocked (IsLockedRequest) returns (IsLockedResponse) {
+    // GetLock gets the lock state
+    rpc GetLock (GetLockRequest) returns (GetLockResponse) {
         option (atomix.primitive.optype) = QUERY;
     }
 

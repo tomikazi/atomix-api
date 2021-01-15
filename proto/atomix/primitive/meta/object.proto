@@ -24,6 +24,11 @@ import "gogoproto/gogo.proto";
 message ObjectMeta {
     Revision revision = 1;
     Timestamp timestamp = 2;
+    Type type = 3;
+    enum Type {
+        OBJECT = 0;
+        TOMBSTONE = 1;
+    }
 }
 
 message Revision {

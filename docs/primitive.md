@@ -3,24 +3,28 @@
 
 ## Table of Contents
 
-- [atomix/primitive/descriptor.proto](#atomix/primitive/descriptor.proto)
+- [atomix/primitive/operation.proto](#atomix/primitive/operation.proto)
   
-    - [AggregateStrategy](#atomix.primitive.AggregateStrategy)
-    - [OperationType](#atomix.primitive.OperationType)
-    - [PartitionStrategy](#atomix.primitive.PartitionStrategy)
+    - [AggregateStrategy](#atomix.primitive.operation.AggregateStrategy)
+    - [OperationType](#atomix.primitive.operation.OperationType)
   
-    - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/descriptor.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
+  
+  
+
+- [atomix/primitive/partition.proto](#atomix/primitive/partition.proto)
+  
+    - [PartitionStrategy](#atomix.primitive.partition.PartitionStrategy)
+  
+    - [File-level Extensions](#atomix/primitive/partition.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/partition.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/partition.proto-extensions)
   
   
 
@@ -42,20 +46,37 @@
     - [PrimitiveService](#atomix.primitive.PrimitiveService)
   
 
+- [atomix/primitive/service.proto](#atomix/primitive/service.proto)
+  
+  
+    - [File-level Extensions](#atomix/primitive/service.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/service.proto-extensions)
+  
+  
+
+- [atomix/primitive/state.proto](#atomix/primitive/state.proto)
+  
+  
+    - [File-level Extensions](#atomix/primitive/state.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/state.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/state.proto-extensions)
+  
+  
+
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/primitive/descriptor.proto"></a>
+<a name="atomix/primitive/operation.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/primitive/descriptor.proto
+## atomix/primitive/operation.proto
 
 
  
 
 
-<a name="atomix.primitive.AggregateStrategy"></a>
+<a name="atomix.primitive.operation.AggregateStrategy"></a>
 
 ### AggregateStrategy
 AggregateStrategy is an enum for indicating the strategy used to aggregate a field
@@ -68,7 +89,7 @@ AggregateStrategy is an enum for indicating the strategy used to aggregate a fie
 
 
 
-<a name="atomix.primitive.OperationType"></a>
+<a name="atomix.primitive.operation.OperationType"></a>
 
 ### OperationType
 OperationType is an enum for specifying the type of operation
@@ -81,8 +102,38 @@ OperationType is an enum for specifying the type of operation
 | RESTORE | 3 |  |
 
 
+ 
 
-<a name="atomix.primitive.PartitionStrategy"></a>
+
+<a name="atomix/primitive/operation.proto-extensions"></a>
+
+### File-level Extensions
+| Extension | Type | Base | Number | Description |
+| --------- | ---- | ---- | ------ | ----------- |
+| aggregate | AggregateStrategy | .google.protobuf.FieldOptions | 62003 |  |
+| header | bool | .google.protobuf.FieldOptions | 62000 |  |
+| input | bool | .google.protobuf.FieldOptions | 62001 |  |
+| output | bool | .google.protobuf.FieldOptions | 62002 |  |
+| async | bool | .google.protobuf.MethodOptions | 61002 |  |
+| name | string | .google.protobuf.MethodOptions | 61000 |  |
+| type | OperationType | .google.protobuf.MethodOptions | 61001 |  |
+
+ 
+
+ 
+
+
+
+<a name="atomix/primitive/partition.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## atomix/primitive/partition.proto
+
+
+ 
+
+
+<a name="atomix.primitive.partition.PartitionStrategy"></a>
 
 ### PartitionStrategy
 PartitionStrategy is an enum for indicating the strategy used to partition a primitive
@@ -99,23 +150,14 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
  
 
 
-<a name="atomix/primitive/descriptor.proto-extensions"></a>
+<a name="atomix/primitive/partition.proto-extensions"></a>
 
 ### File-level Extensions
 | Extension | Type | Base | Number | Description |
 | --------- | ---- | ---- | ------ | ----------- |
-| aggregate | AggregateStrategy | .google.protobuf.FieldOptions | 52005 |  |
-| header | bool | .google.protobuf.FieldOptions | 52000 |  |
-| input | bool | .google.protobuf.FieldOptions | 52001 |  |
-| output | bool | .google.protobuf.FieldOptions | 52002 |  |
-| partitionkey | bool | .google.protobuf.FieldOptions | 52003 |  |
-| partitionrange | bool | .google.protobuf.FieldOptions | 52004 |  |
-| async | bool | .google.protobuf.MethodOptions | 51003 |  |
-| opname | string | .google.protobuf.MethodOptions | 51000 |  |
-| optype | OperationType | .google.protobuf.MethodOptions | 51001 |  |
-| partitionby | PartitionStrategy | .google.protobuf.MethodOptions | 51002 |  |
-| partition | bool | .google.protobuf.ServiceOptions | 50001 |  |
-| type | string | .google.protobuf.ServiceOptions | 50000 |  |
+| key | bool | .google.protobuf.FieldOptions | 72000 |  |
+| range | bool | .google.protobuf.FieldOptions | 72001 |  |
+| strategy | PartitionStrategy | .google.protobuf.MethodOptions | 71000 |  |
 
  
 
@@ -309,6 +351,57 @@ PrimitiveService is a service for managing primitive
 | Create | [CreateRequest](#atomix.primitive.CreateRequest) | [CreateResponse](#atomix.primitive.CreateResponse) | Create creates a primitive |
 | Close | [CloseRequest](#atomix.primitive.CloseRequest) | [CloseResponse](#atomix.primitive.CloseResponse) | Close closes a primitive |
 | Delete | [DeleteRequest](#atomix.primitive.DeleteRequest) | [DeleteResponse](#atomix.primitive.DeleteResponse) | Delete deletes a primitive |
+
+ 
+
+
+
+<a name="atomix/primitive/service.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## atomix/primitive/service.proto
+
+
+ 
+
+ 
+
+
+<a name="atomix/primitive/service.proto-extensions"></a>
+
+### File-level Extensions
+| Extension | Type | Base | Number | Description |
+| --------- | ---- | ---- | ------ | ----------- |
+| partitioned | bool | .google.protobuf.ServiceOptions | 50001 |  |
+| type | string | .google.protobuf.ServiceOptions | 50000 |  |
+
+ 
+
+ 
+
+
+
+<a name="atomix/primitive/state.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## atomix/primitive/state.proto
+
+
+ 
+
+ 
+
+
+<a name="atomix/primitive/state.proto-extensions"></a>
+
+### File-level Extensions
+| Extension | Type | Base | Number | Description |
+| --------- | ---- | ---- | ------ | ----------- |
+| digest | bool | .google.protobuf.FieldOptions | 82002 |  |
+| entry | bool | .google.protobuf.FieldOptions | 82001 |  |
+| key | bool | .google.protobuf.FieldOptions | 82000 |  |
+
+ 
 
  
 

@@ -18,15 +18,17 @@ syntax = "proto3";
 
 import "google/protobuf/duration.proto";
 import "atomix/primitive/primitive.proto";
-import "atomix/primitive/descriptor.proto";
+import "atomix/primitive/service.proto";
+import "atomix/primitive/operation.proto";
+import "atomix/primitive/state.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
 package atomix.primitive.lock;
 
 message LockRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    LockInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    LockInput input = 2 [(atomix.primitive.operation.input) = true, (gogoproto.nullable) = false];
 }
 
 message LockInput {
@@ -34,8 +36,8 @@ message LockInput {
 }
 
 message LockResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    LockOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    LockOutput output = 2 [(atomix.primitive.operation.output) = true, (gogoproto.nullable) = false];
 }
 
 message LockOutput {
@@ -43,8 +45,8 @@ message LockOutput {
 }
 
 message UnlockRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    UnlockInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    UnlockInput input = 2 [(atomix.primitive.operation.input) = true, (gogoproto.nullable) = false];
 }
 
 message UnlockInput {
@@ -52,8 +54,8 @@ message UnlockInput {
 }
 
 message UnlockResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    UnlockOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    UnlockOutput output = 2 [(atomix.primitive.operation.output) = true, (gogoproto.nullable) = false];
 }
 
 message UnlockOutput {
@@ -61,8 +63,8 @@ message UnlockOutput {
 }
 
 message GetLockRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    GetLockInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    GetLockInput input = 2 [(atomix.primitive.operation.input) = true, (gogoproto.nullable) = false];
 }
 
 message GetLockInput {
@@ -70,8 +72,8 @@ message GetLockInput {
 }
 
 message GetLockResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    GetLockOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    GetLockOutput output = 2 [(atomix.primitive.operation.output) = true, (gogoproto.nullable) = false];
 }
 
 message GetLockOutput {
@@ -82,6 +84,7 @@ message Lock {
     atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
     State state = 2;
     string holder = 3;
+    repeated string queue = 4;
 
     enum State {
         UNLOCKED = 0;
@@ -90,26 +93,25 @@ message Lock {
 }
 
 message Snapshot {
-    Lock lock = 1 [(gogoproto.nullable) = false];
-    repeated string queue = 2;
+    Lock lock = 1 [(atomix.primitive.state.entry) = true, (gogoproto.nullable) = false];
 }
 
 message SnapshotRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
 }
 
 message SnapshotResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    Snapshot snapshot = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    Snapshot snapshot = 2 [(atomix.primitive.operation.output) = true, (gogoproto.nullable) = false];
 }
 
 message RestoreRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    Snapshot snapshot = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    Snapshot snapshot = 2 [(atomix.primitive.operation.input) = true, (gogoproto.nullable) = false];
 }
 
 message RestoreResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
 }
 
 // LockService implements a distributed lock
@@ -118,27 +120,27 @@ service LockService {
 
     // Lock attempts to acquire the lock
     rpc Lock (LockRequest) returns (LockResponse) {
-        option (atomix.primitive.optype) = COMMAND;
-        option (atomix.primitive.async) = true;
+        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.operation.async) = true;
     }
 
     // Unlock releases the lock
     rpc Unlock (UnlockRequest) returns (UnlockResponse) {
-        option (atomix.primitive.optype) = COMMAND;
+        option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // GetLock gets the lock state
     rpc GetLock (GetLockRequest) returns (GetLockResponse) {
-        option (atomix.primitive.optype) = QUERY;
+        option (atomix.primitive.operation.type) = QUERY;
     }
 
     // Snapshot exports a snapshot of the primitive state
     rpc Snapshot (SnapshotRequest) returns (SnapshotResponse) {
-        option (atomix.primitive.optype) = SNAPSHOT;
+        option (atomix.primitive.operation.type) = SNAPSHOT;
     }
 
     // Restore imports a snapshot of the primitive state
     rpc Restore (RestoreRequest) returns (RestoreResponse) {
-        option (atomix.primitive.optype) = RESTORE;
+        option (atomix.primitive.operation.type) = RESTORE;
     }
 }

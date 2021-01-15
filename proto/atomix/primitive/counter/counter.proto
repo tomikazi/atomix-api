@@ -17,14 +17,16 @@ limitations under the License.
 syntax = "proto3";
 
 import "atomix/primitive/primitive.proto";
-import "atomix/primitive/descriptor.proto";
+import "atomix/primitive/service.proto";
+import "atomix/primitive/operation.proto";
+import "atomix/primitive/state.proto";
 import "gogoproto/gogo.proto";
 
 package atomix.primitive.counter;
 
 message IncrementRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    IncrementInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    IncrementInput input = 2 [(atomix.primitive.operation.input) = true, (gogoproto.nullable) = false];
 }
 
 message IncrementInput {
@@ -32,8 +34,8 @@ message IncrementInput {
 }
 
 message IncrementResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    IncrementOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    IncrementOutput output = 2 [(atomix.primitive.operation.output) = true, (gogoproto.nullable) = false];
 }
 
 message IncrementOutput {
@@ -41,8 +43,8 @@ message IncrementOutput {
 }
 
 message DecrementRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    DecrementInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    DecrementInput input = 2 [(atomix.primitive.operation.input) = true, (gogoproto.nullable) = false];
 }
 
 message DecrementInput {
@@ -50,8 +52,8 @@ message DecrementInput {
 }
 
 message DecrementResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    DecrementOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    DecrementOutput output = 2 [(atomix.primitive.operation.output) = true, (gogoproto.nullable) = false];
 }
 
 message DecrementOutput {
@@ -59,16 +61,16 @@ message DecrementOutput {
 }
 
 message GetRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    GetInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    GetInput input = 2 [(atomix.primitive.operation.input) = true, (gogoproto.nullable) = false];
 }
 
 message GetInput {
 }
 
 message GetResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    GetOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    GetOutput output = 2 [(atomix.primitive.operation.output) = true, (gogoproto.nullable) = false];
 }
 
 message GetOutput {
@@ -82,8 +84,8 @@ message Precondition {
 }
 
 message SetRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    SetInput input = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    SetInput input = 2 [(atomix.primitive.operation.input) = true, (gogoproto.nullable) = false];
 }
 
 message SetInput {
@@ -92,8 +94,8 @@ message SetInput {
 }
 
 message SetResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    SetOutput output = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    SetOutput output = 2 [(atomix.primitive.operation.output) = true, (gogoproto.nullable) = false];
 }
 
 message SetOutput {
@@ -101,25 +103,25 @@ message SetOutput {
 }
 
 message Snapshot {
-    int64 value = 1;
+    int64 value = 1 [(atomix.primitive.state.entry) = true];
 }
 
 message SnapshotRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
 }
 
 message SnapshotResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    Snapshot snapshot = 2 [(atomix.primitive.output) = true, (gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    Snapshot snapshot = 2 [(atomix.primitive.operation.output) = true, (gogoproto.nullable) = false];
 }
 
 message RestoreRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
-    Snapshot snapshot = 2 [(atomix.primitive.input) = true, (gogoproto.nullable) = false];
+    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
+    Snapshot snapshot = 2 [(atomix.primitive.operation.input) = true, (gogoproto.nullable) = false];
 }
 
 message RestoreResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
 }
 
 // CounterService implements a distributed counter
@@ -128,31 +130,31 @@ service CounterService {
 
     // Set sets the counter value
     rpc Set (SetRequest) returns (SetResponse) {
-        option (atomix.primitive.optype) = COMMAND;
+        option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // Get gets the current counter value
     rpc Get (GetRequest) returns (GetResponse) {
-        option (atomix.primitive.optype) = QUERY;
+        option (atomix.primitive.operation.type) = QUERY;
     }
 
     // Increment increments the counter value
     rpc Increment (IncrementRequest) returns (IncrementResponse) {
-        option (atomix.primitive.optype) = COMMAND;
+        option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // Decrement decrements the counter value
     rpc Decrement (DecrementRequest) returns (DecrementResponse) {
-        option (atomix.primitive.optype) = COMMAND;
+        option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // Snapshot exports a snapshot of the primitive state
     rpc Snapshot (SnapshotRequest) returns (SnapshotResponse) {
-        option (atomix.primitive.optype) = SNAPSHOT;
+        option (atomix.primitive.operation.type) = SNAPSHOT;
     }
 
     // Restore imports a snapshot of the primitive state
     rpc Restore (RestoreRequest) returns (RestoreResponse) {
-        option (atomix.primitive.optype) = RESTORE;
+        option (atomix.primitive.operation.type) = RESTORE;
     }
 }

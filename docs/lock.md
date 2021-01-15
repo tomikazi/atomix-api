@@ -113,6 +113,7 @@
 | meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
 | state | [Lock.State](#atomix.primitive.lock.Lock.State) |  |  |
 | holder | [string](#string) |  |  |
+| queue | [string](#string) | repeated |  |
 
 
 
@@ -221,7 +222,6 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
-| queue | [string](#string) | repeated |  |
 
 
 

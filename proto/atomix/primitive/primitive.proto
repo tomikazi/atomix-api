@@ -19,7 +19,7 @@ syntax = "proto3";
 package atomix.primitive;
 
 import "gogoproto/gogo.proto";
-import "atomix/primitive/descriptor.proto";
+import "atomix/primitive/operation.proto";
 
 // Namespaced primitive identifier
 message PrimitiveId {
@@ -53,27 +53,27 @@ enum ResponseType {
 }
 
 message CreateRequest {
-    RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
 }
 
 message CreateResponse {
-    ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
 }
 
 message CloseRequest {
-    RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
 }
 
 message CloseResponse {
-    ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
 }
 
 message DeleteRequest {
-    RequestHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
 }
 
 message DeleteResponse {
-    ResponseHeader header = 1 [(atomix.primitive.header) = true, (gogoproto.nullable) = false];
+    ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
 }
 
 // PrimitiveService is a service for managing primitive

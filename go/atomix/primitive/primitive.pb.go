@@ -6,6 +6,7 @@ package primitive
 import (
 	context "context"
 	fmt "fmt"
+	_ "github.com/atomix/api/go/atomix/primitive/extensions/operation"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"

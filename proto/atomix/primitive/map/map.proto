@@ -89,7 +89,7 @@ message RemoveRequest {
 }
 
 message RemoveInput {
-    string key = 1 [(atomix.primitive.partition.key) = true];
+    Key key = 1 [(gogoproto.nullable) = false];
     repeated Precondition preconditions = 2 [(gogoproto.nullable) = false];
 }
 
@@ -160,10 +160,18 @@ message Event {
 }
 
 message Entry {
+    Key key = 1 [(gogoproto.nullable) = false];
+    Value value = 2;
+}
+
+message Key {
     atomix.primitive.meta.ObjectMeta meta = 1 [(atomix.primitive.state.digest) = true, (gogoproto.embed) = true, (gogoproto.nullable) = false];
     string key = 2 [(atomix.primitive.state.key) = true, (atomix.primitive.partition.key) = true];
-    bytes value = 3;
-    google.protobuf.Duration ttl = 4 [(gogoproto.customname) = "TTL", (gogoproto.stdduration) = true];
+}
+
+message Value {
+    bytes value = 1;
+    google.protobuf.Duration ttl = 2 [(gogoproto.customname) = "TTL", (gogoproto.stdduration) = true];
 }
 
 message SnapshotEntry {

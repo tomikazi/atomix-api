@@ -20,6 +20,7 @@
     - [GetOutput](#atomix.primitive.map.GetOutput)
     - [GetRequest](#atomix.primitive.map.GetRequest)
     - [GetResponse](#atomix.primitive.map.GetResponse)
+    - [Key](#atomix.primitive.map.Key)
     - [Precondition](#atomix.primitive.map.Precondition)
     - [PutInput](#atomix.primitive.map.PutInput)
     - [PutOutput](#atomix.primitive.map.PutOutput)
@@ -37,6 +38,7 @@
     - [SnapshotEntry](#atomix.primitive.map.SnapshotEntry)
     - [SnapshotRequest](#atomix.primitive.map.SnapshotRequest)
     - [SnapshotResponse](#atomix.primitive.map.SnapshotResponse)
+    - [Value](#atomix.primitive.map.Value)
   
     - [Event.Type](#atomix.primitive.map.Event.Type)
   
@@ -150,10 +152,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
-| key | [string](#string) |  |  |
-| value | [bytes](#bytes) |  |  |
-| ttl | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
+| key | [Key](#atomix.primitive.map.Key) |  |  |
+| value | [Value](#atomix.primitive.map.Value) |  |  |
 
 
 
@@ -301,6 +301,22 @@
 
 
 
+<a name="atomix.primitive.map.Key"></a>
+
+### Key
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
+| key | [string](#string) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.map.Precondition"></a>
 
 ### Precondition
@@ -387,7 +403,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| key | [string](#string) |  |  |
+| key | [Key](#atomix.primitive.map.Key) |  |  |
 | preconditions | [Precondition](#atomix.primitive.map.Precondition) | repeated |  |
 
 
@@ -559,6 +575,22 @@
 | ----- | ---- | ----- | ----------- |
 | header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
 | entry | [SnapshotEntry](#atomix.primitive.map.SnapshotEntry) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.Value"></a>
+
+### Value
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| value | [bytes](#bytes) |  |  |
+| ttl | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
 
 
 

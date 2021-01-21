@@ -16,7 +16,6 @@ limitations under the License.
 
 syntax = "proto3";
 
-import "atomix/primitive/primitive.proto";
 import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
 import "atomix/primitive/state.proto";
@@ -26,56 +25,26 @@ import "gogoproto/gogo.proto";
 package atomix.primitive.leader;
 
 message LatchRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
-    LatchInput input = 2 [(atomix.primitive.operation.input) = true, (gogoproto.nullable) = false];
-}
-
-message LatchInput {
 
 }
 
 message LatchResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
-    LatchOutput output = 2 [(atomix.primitive.operation.output) = true, (gogoproto.nullable) = false];
-}
-
-message LatchOutput {
     Latch latch = 1 [(gogoproto.nullable) = false];
 }
 
 message GetRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
-    GetInput input = 2 [(atomix.primitive.operation.input) = true, (gogoproto.nullable) = false];
-}
-
-message GetInput {
 
 }
 
 message GetResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
-    GetOutput output = 2 [(atomix.primitive.operation.output) = true, (gogoproto.nullable) = false];
-}
-
-message GetOutput {
     Latch latch = 1 [(gogoproto.nullable) = false];
 }
 
 message EventsRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
-    EventsInput input = 2 [(atomix.primitive.operation.input) = true, (gogoproto.nullable) = false];
-}
-
-message EventsInput {
 
 }
 
 message EventsResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
-    EventsOutput output = 2 [(atomix.primitive.operation.output) = true, (gogoproto.nullable) = false];
-}
-
-message EventsOutput {
     Event event = 1 [(gogoproto.nullable) = false];
 }
 
@@ -95,31 +64,10 @@ message Latch {
     repeated string participants = 3;
 }
 
-message Snapshot {
-    Latch latch = 1 [(atomix.primitive.state.entry) = true];
-}
-
-message SnapshotRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
-}
-
-message SnapshotResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
-    Snapshot snapshot = 2 [(atomix.primitive.operation.output) = true, (gogoproto.nullable) = false];
-}
-
-message RestoreRequest {
-    atomix.primitive.RequestHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
-    Snapshot snapshot = 2 [(atomix.primitive.operation.input) = true, (gogoproto.nullable) = false];
-}
-
-message RestoreResponse {
-    atomix.primitive.ResponseHeader header = 1 [(atomix.primitive.operation.header) = true, (gogoproto.nullable) = false];
-}
-
 // Leader latch service
 service LeaderLatchService {
     option (atomix.primitive.type) = "LeaderLatch";
+    option (atomix.primitive.state.valuetype) = "Latch";
 
     // Latch attempts to acquire the leader latch
     rpc Latch (LatchRequest) returns (LatchResponse) {
@@ -134,15 +82,5 @@ service LeaderLatchService {
     // Events listens for leader change events
     rpc Events (EventsRequest) returns (stream EventsResponse) {
         option (atomix.primitive.operation.type) = COMMAND;
-    }
-
-    // Snapshot exports a snapshot of the primitive state
-    rpc Snapshot (SnapshotRequest) returns (SnapshotResponse) {
-        option (atomix.primitive.operation.type) = SNAPSHOT;
-    }
-
-    // Restore imports a snapshot of the primitive state
-    rpc Restore (RestoreRequest) returns (RestoreResponse) {
-        option (atomix.primitive.operation.type) = RESTORE;
     }
 }

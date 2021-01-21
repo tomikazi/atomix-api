@@ -4,51 +4,29 @@
 ## Table of Contents
 
 - [atomix/primitive/list/list.proto](#atomix/primitive/list/list.proto)
-    - [AppendInput](#atomix.primitive.list.AppendInput)
-    - [AppendOutput](#atomix.primitive.list.AppendOutput)
     - [AppendRequest](#atomix.primitive.list.AppendRequest)
     - [AppendResponse](#atomix.primitive.list.AppendResponse)
     - [ClearRequest](#atomix.primitive.list.ClearRequest)
     - [ClearResponse](#atomix.primitive.list.ClearResponse)
-    - [ContainsInput](#atomix.primitive.list.ContainsInput)
-    - [ContainsOutput](#atomix.primitive.list.ContainsOutput)
     - [ContainsRequest](#atomix.primitive.list.ContainsRequest)
     - [ContainsResponse](#atomix.primitive.list.ContainsResponse)
-    - [ElementsInput](#atomix.primitive.list.ElementsInput)
-    - [ElementsOutput](#atomix.primitive.list.ElementsOutput)
     - [ElementsRequest](#atomix.primitive.list.ElementsRequest)
     - [ElementsResponse](#atomix.primitive.list.ElementsResponse)
     - [Event](#atomix.primitive.list.Event)
-    - [EventsInput](#atomix.primitive.list.EventsInput)
-    - [EventsOutput](#atomix.primitive.list.EventsOutput)
     - [EventsRequest](#atomix.primitive.list.EventsRequest)
     - [EventsResponse](#atomix.primitive.list.EventsResponse)
-    - [GetInput](#atomix.primitive.list.GetInput)
-    - [GetOutput](#atomix.primitive.list.GetOutput)
     - [GetRequest](#atomix.primitive.list.GetRequest)
     - [GetResponse](#atomix.primitive.list.GetResponse)
-    - [InsertInput](#atomix.primitive.list.InsertInput)
-    - [InsertOutput](#atomix.primitive.list.InsertOutput)
     - [InsertRequest](#atomix.primitive.list.InsertRequest)
     - [InsertResponse](#atomix.primitive.list.InsertResponse)
     - [Item](#atomix.primitive.list.Item)
     - [Precondition](#atomix.primitive.list.Precondition)
-    - [RemoveInput](#atomix.primitive.list.RemoveInput)
-    - [RemoveOutput](#atomix.primitive.list.RemoveOutput)
     - [RemoveRequest](#atomix.primitive.list.RemoveRequest)
     - [RemoveResponse](#atomix.primitive.list.RemoveResponse)
-    - [RestoreRequest](#atomix.primitive.list.RestoreRequest)
-    - [RestoreResponse](#atomix.primitive.list.RestoreResponse)
-    - [SetInput](#atomix.primitive.list.SetInput)
-    - [SetOutput](#atomix.primitive.list.SetOutput)
     - [SetRequest](#atomix.primitive.list.SetRequest)
     - [SetResponse](#atomix.primitive.list.SetResponse)
-    - [SizeOutput](#atomix.primitive.list.SizeOutput)
     - [SizeRequest](#atomix.primitive.list.SizeRequest)
     - [SizeResponse](#atomix.primitive.list.SizeResponse)
-    - [SnapshotEntry](#atomix.primitive.list.SnapshotEntry)
-    - [SnapshotRequest](#atomix.primitive.list.SnapshotRequest)
-    - [SnapshotResponse](#atomix.primitive.list.SnapshotResponse)
     - [Value](#atomix.primitive.list.Value)
   
     - [Event.Type](#atomix.primitive.list.Event.Type)
@@ -68,31 +46,6 @@
 
 
 
-<a name="atomix.primitive.list.AppendInput"></a>
-
-### AppendInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| value | [Value](#atomix.primitive.list.Value) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.AppendOutput"></a>
-
-### AppendOutput
-
-
-
-
-
-
-
 <a name="atomix.primitive.list.AppendRequest"></a>
 
 ### AppendRequest
@@ -101,8 +54,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [AppendInput](#atomix.primitive.list.AppendInput) |  |  |
+| value | [Value](#atomix.primitive.list.Value) |  |  |
 
 
 
@@ -115,12 +67,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [AppendOutput](#atomix.primitive.list.AppendOutput) |  |  |
-
-
 
 
 
@@ -131,11 +77,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-
-
 
 
 
@@ -144,41 +85,6 @@
 
 ### ClearResponse
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.ContainsInput"></a>
-
-### ContainsInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| value | [Value](#atomix.primitive.list.Value) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.ContainsOutput"></a>
-
-### ContainsOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| contains | [bool](#bool) |  |  |
 
 
 
@@ -193,8 +99,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [ContainsInput](#atomix.primitive.list.ContainsInput) |  |  |
+| value | [Value](#atomix.primitive.list.Value) |  |  |
 
 
 
@@ -209,33 +114,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [ContainsOutput](#atomix.primitive.list.ContainsOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.ElementsInput"></a>
-
-### ElementsInput
-
-
-
-
-
-
-
-<a name="atomix.primitive.list.ElementsOutput"></a>
-
-### ElementsOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| item | [Item](#atomix.primitive.list.Item) |  |  |
+| contains | [bool](#bool) |  |  |
 
 
 
@@ -246,12 +125,6 @@
 
 ### ElementsRequest
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [ElementsInput](#atomix.primitive.list.ElementsInput) |  |  |
 
 
 
@@ -266,8 +139,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [ElementsOutput](#atomix.primitive.list.ElementsOutput) |  |  |
+| item | [Item](#atomix.primitive.list.Item) |  |  |
 
 
 
@@ -290,36 +162,6 @@
 
 
 
-<a name="atomix.primitive.list.EventsInput"></a>
-
-### EventsInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| replay | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.EventsOutput"></a>
-
-### EventsOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| event | [Event](#atomix.primitive.list.Event) |  |  |
-
-
-
-
-
-
 <a name="atomix.primitive.list.EventsRequest"></a>
 
 ### EventsRequest
@@ -328,8 +170,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [EventsInput](#atomix.primitive.list.EventsInput) |  |  |
+| replay | [bool](#bool) |  |  |
 
 
 
@@ -344,38 +185,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [EventsOutput](#atomix.primitive.list.EventsOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.GetInput"></a>
-
-### GetInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| index | [uint32](#uint32) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.GetOutput"></a>
-
-### GetOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| item | [Item](#atomix.primitive.list.Item) |  |  |
+| event | [Event](#atomix.primitive.list.Event) |  |  |
 
 
 
@@ -390,8 +200,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [GetInput](#atomix.primitive.list.GetInput) |  |  |
+| index | [uint32](#uint32) |  |  |
 
 
 
@@ -401,38 +210,6 @@
 <a name="atomix.primitive.list.GetResponse"></a>
 
 ### GetResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [GetOutput](#atomix.primitive.list.GetOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.InsertInput"></a>
-
-### InsertInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| item | [Item](#atomix.primitive.list.Item) |  |  |
-| preconditions | [Precondition](#atomix.primitive.list.Precondition) | repeated |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.InsertOutput"></a>
-
-### InsertOutput
 
 
 
@@ -453,8 +230,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [InsertInput](#atomix.primitive.list.InsertInput) |  |  |
+| item | [Item](#atomix.primitive.list.Item) |  |  |
+| preconditions | [Precondition](#atomix.primitive.list.Precondition) | repeated |  |
 
 
 
@@ -469,8 +246,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [InsertOutput](#atomix.primitive.list.InsertOutput) |  |  |
+| item | [Item](#atomix.primitive.list.Item) |  |  |
 
 
 
@@ -508,9 +284,9 @@
 
 
 
-<a name="atomix.primitive.list.RemoveInput"></a>
+<a name="atomix.primitive.list.RemoveRequest"></a>
 
-### RemoveInput
+### RemoveRequest
 
 
 
@@ -524,103 +300,9 @@
 
 
 
-<a name="atomix.primitive.list.RemoveOutput"></a>
-
-### RemoveOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| item | [Item](#atomix.primitive.list.Item) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.RemoveRequest"></a>
-
-### RemoveRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [RemoveInput](#atomix.primitive.list.RemoveInput) |  |  |
-
-
-
-
-
-
 <a name="atomix.primitive.list.RemoveResponse"></a>
 
 ### RemoveResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [RemoveOutput](#atomix.primitive.list.RemoveOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.RestoreRequest"></a>
-
-### RestoreRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| entry | [SnapshotEntry](#atomix.primitive.list.SnapshotEntry) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.RestoreResponse"></a>
-
-### RestoreResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.SetInput"></a>
-
-### SetInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| item | [Item](#atomix.primitive.list.Item) |  |  |
-| preconditions | [Precondition](#atomix.primitive.list.Precondition) | repeated |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.SetOutput"></a>
-
-### SetOutput
 
 
 
@@ -641,8 +323,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [SetInput](#atomix.primitive.list.SetInput) |  |  |
+| item | [Item](#atomix.primitive.list.Item) |  |  |
+| preconditions | [Precondition](#atomix.primitive.list.Precondition) | repeated |  |
 
 
 
@@ -657,23 +339,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [SetOutput](#atomix.primitive.list.SetOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.SizeOutput"></a>
-
-### SizeOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| size | [uint32](#uint32) |  |  |
+| item | [Item](#atomix.primitive.list.Item) |  |  |
 
 
 
@@ -684,11 +350,6 @@
 
 ### SizeRequest
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
 
 
 
@@ -703,54 +364,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [SizeOutput](#atomix.primitive.list.SizeOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.SnapshotEntry"></a>
-
-### SnapshotEntry
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| item | [Item](#atomix.primitive.list.Item) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.SnapshotRequest"></a>
-
-### SnapshotRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.list.SnapshotResponse"></a>
-
-### SnapshotResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| entry | [SnapshotEntry](#atomix.primitive.list.SnapshotEntry) |  |  |
+| size | [uint32](#uint32) |  |  |
 
 
 
@@ -809,8 +423,6 @@ ListService implements a distributed list
 | Clear | [ClearRequest](#atomix.primitive.list.ClearRequest) | [ClearResponse](#atomix.primitive.list.ClearResponse) | Clear removes all elements from the list |
 | Events | [EventsRequest](#atomix.primitive.list.EventsRequest) | [EventsResponse](#atomix.primitive.list.EventsResponse) stream | Events listens for change events |
 | Elements | [ElementsRequest](#atomix.primitive.list.ElementsRequest) | [ElementsResponse](#atomix.primitive.list.ElementsResponse) stream | Elements streams all elements in the list |
-| Snapshot | [SnapshotRequest](#atomix.primitive.list.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.list.SnapshotResponse) stream | Snapshot exports a snapshot of the primitive state |
-| Restore | [RestoreRequest](#atomix.primitive.list.RestoreRequest) stream | [RestoreResponse](#atomix.primitive.list.RestoreResponse) | Restore imports a snapshot of the primitive state |
 
  
 

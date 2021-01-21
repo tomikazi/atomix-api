@@ -4,39 +4,20 @@
 ## Table of Contents
 
 - [atomix/primitive/election/election.proto](#atomix/primitive/election/election.proto)
-    - [AnointInput](#atomix.primitive.election.AnointInput)
-    - [AnointOutput](#atomix.primitive.election.AnointOutput)
     - [AnointRequest](#atomix.primitive.election.AnointRequest)
     - [AnointResponse](#atomix.primitive.election.AnointResponse)
-    - [EnterInput](#atomix.primitive.election.EnterInput)
-    - [EnterOutput](#atomix.primitive.election.EnterOutput)
     - [EnterRequest](#atomix.primitive.election.EnterRequest)
     - [EnterResponse](#atomix.primitive.election.EnterResponse)
     - [Event](#atomix.primitive.election.Event)
-    - [EventsInput](#atomix.primitive.election.EventsInput)
-    - [EventsOutput](#atomix.primitive.election.EventsOutput)
     - [EventsRequest](#atomix.primitive.election.EventsRequest)
     - [EventsResponse](#atomix.primitive.election.EventsResponse)
-    - [EvictInput](#atomix.primitive.election.EvictInput)
-    - [EvictOutput](#atomix.primitive.election.EvictOutput)
     - [EvictRequest](#atomix.primitive.election.EvictRequest)
     - [EvictResponse](#atomix.primitive.election.EvictResponse)
-    - [GetTermInput](#atomix.primitive.election.GetTermInput)
-    - [GetTermOutput](#atomix.primitive.election.GetTermOutput)
     - [GetTermRequest](#atomix.primitive.election.GetTermRequest)
     - [GetTermResponse](#atomix.primitive.election.GetTermResponse)
-    - [PromoteInput](#atomix.primitive.election.PromoteInput)
-    - [PromoteOutput](#atomix.primitive.election.PromoteOutput)
     - [PromoteRequest](#atomix.primitive.election.PromoteRequest)
     - [PromoteResponse](#atomix.primitive.election.PromoteResponse)
-    - [RestoreRequest](#atomix.primitive.election.RestoreRequest)
-    - [RestoreResponse](#atomix.primitive.election.RestoreResponse)
-    - [Snapshot](#atomix.primitive.election.Snapshot)
-    - [SnapshotRequest](#atomix.primitive.election.SnapshotRequest)
-    - [SnapshotResponse](#atomix.primitive.election.SnapshotResponse)
     - [Term](#atomix.primitive.election.Term)
-    - [WithdrawInput](#atomix.primitive.election.WithdrawInput)
-    - [WithdrawOutput](#atomix.primitive.election.WithdrawOutput)
     - [WithdrawRequest](#atomix.primitive.election.WithdrawRequest)
     - [WithdrawResponse](#atomix.primitive.election.WithdrawResponse)
   
@@ -57,9 +38,9 @@
 
 
 
-<a name="atomix.primitive.election.AnointInput"></a>
+<a name="atomix.primitive.election.AnointRequest"></a>
 
-### AnointInput
+### AnointRequest
 
 
 
@@ -72,66 +53,9 @@
 
 
 
-<a name="atomix.primitive.election.AnointOutput"></a>
-
-### AnointOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| term | [Term](#atomix.primitive.election.Term) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.election.AnointRequest"></a>
-
-### AnointRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [AnointInput](#atomix.primitive.election.AnointInput) |  |  |
-
-
-
-
-
-
 <a name="atomix.primitive.election.AnointResponse"></a>
 
 ### AnointResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [AnointOutput](#atomix.primitive.election.AnointOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.election.EnterInput"></a>
-
-### EnterInput
-
-
-
-
-
-
-
-<a name="atomix.primitive.election.EnterOutput"></a>
-
-### EnterOutput
 
 
 
@@ -150,12 +74,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [EnterInput](#atomix.primitive.election.EnterInput) |  |  |
-
-
 
 
 
@@ -168,8 +86,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [EnterOutput](#atomix.primitive.election.EnterOutput) |  |  |
+| term | [Term](#atomix.primitive.election.Term) |  |  |
 
 
 
@@ -192,41 +109,10 @@
 
 
 
-<a name="atomix.primitive.election.EventsInput"></a>
-
-### EventsInput
-
-
-
-
-
-
-
-<a name="atomix.primitive.election.EventsOutput"></a>
-
-### EventsOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| event | [Event](#atomix.primitive.election.Event) |  |  |
-
-
-
-
-
-
 <a name="atomix.primitive.election.EventsRequest"></a>
 
 ### EventsRequest
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [EventsInput](#atomix.primitive.election.EventsInput) |  |  |
 
 
 
@@ -241,38 +127,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [EventsOutput](#atomix.primitive.election.EventsOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.election.EvictInput"></a>
-
-### EvictInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| candidate_id | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.election.EvictOutput"></a>
-
-### EvictOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| term | [Term](#atomix.primitive.election.Term) |  |  |
+| event | [Event](#atomix.primitive.election.Event) |  |  |
 
 
 
@@ -287,8 +142,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [EvictInput](#atomix.primitive.election.EvictInput) |  |  |
+| candidate_id | [string](#string) |  |  |
 
 
 
@@ -298,32 +152,6 @@
 <a name="atomix.primitive.election.EvictResponse"></a>
 
 ### EvictResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [EvictOutput](#atomix.primitive.election.EvictOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.election.GetTermInput"></a>
-
-### GetTermInput
-
-
-
-
-
-
-
-<a name="atomix.primitive.election.GetTermOutput"></a>
-
-### GetTermOutput
 
 
 
@@ -342,12 +170,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [GetTermInput](#atomix.primitive.election.GetTermInput) |  |  |
-
-
 
 
 
@@ -355,37 +177,6 @@
 <a name="atomix.primitive.election.GetTermResponse"></a>
 
 ### GetTermResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [GetTermOutput](#atomix.primitive.election.GetTermOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.election.PromoteInput"></a>
-
-### PromoteInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| candidate_id | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.election.PromoteOutput"></a>
-
-### PromoteOutput
 
 
 
@@ -406,8 +197,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [PromoteInput](#atomix.primitive.election.PromoteInput) |  |  |
+| candidate_id | [string](#string) |  |  |
 
 
 
@@ -422,85 +212,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [PromoteOutput](#atomix.primitive.election.PromoteOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.election.RestoreRequest"></a>
-
-### RestoreRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| snapshot | [Snapshot](#atomix.primitive.election.Snapshot) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.election.RestoreResponse"></a>
-
-### RestoreResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.election.Snapshot"></a>
-
-### Snapshot
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
 | term | [Term](#atomix.primitive.election.Term) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.election.SnapshotRequest"></a>
-
-### SnapshotRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.election.SnapshotResponse"></a>
-
-### SnapshotResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| snapshot | [Snapshot](#atomix.primitive.election.Snapshot) |  |  |
 
 
 
@@ -524,41 +236,10 @@
 
 
 
-<a name="atomix.primitive.election.WithdrawInput"></a>
-
-### WithdrawInput
-
-
-
-
-
-
-
-<a name="atomix.primitive.election.WithdrawOutput"></a>
-
-### WithdrawOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| term | [Term](#atomix.primitive.election.Term) |  |  |
-
-
-
-
-
-
 <a name="atomix.primitive.election.WithdrawRequest"></a>
 
 ### WithdrawRequest
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [WithdrawInput](#atomix.primitive.election.WithdrawInput) |  |  |
 
 
 
@@ -573,8 +254,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [WithdrawOutput](#atomix.primitive.election.WithdrawOutput) |  |  |
+| term | [Term](#atomix.primitive.election.Term) |  |  |
 
 
 
@@ -613,8 +293,6 @@ LeaderElectionService implements a distributed leader election
 | Evict | [EvictRequest](#atomix.primitive.election.EvictRequest) | [EvictResponse](#atomix.primitive.election.EvictResponse) | Evict evicts a candidate from the election |
 | GetTerm | [GetTermRequest](#atomix.primitive.election.GetTermRequest) | [GetTermResponse](#atomix.primitive.election.GetTermResponse) | GetTerm gets the current leadership term |
 | Events | [EventsRequest](#atomix.primitive.election.EventsRequest) | [EventsResponse](#atomix.primitive.election.EventsResponse) stream | Events listens for leadership events |
-| Snapshot | [SnapshotRequest](#atomix.primitive.election.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.election.SnapshotResponse) | Snapshot exports a snapshot of the primitive state |
-| Restore | [RestoreRequest](#atomix.primitive.election.RestoreRequest) | [RestoreResponse](#atomix.primitive.election.RestoreResponse) | Restore imports a snapshot of the primitive state |
 
  
 

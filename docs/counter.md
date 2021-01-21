@@ -4,28 +4,16 @@
 ## Table of Contents
 
 - [atomix/primitive/counter/counter.proto](#atomix/primitive/counter/counter.proto)
-    - [DecrementInput](#atomix.primitive.counter.DecrementInput)
-    - [DecrementOutput](#atomix.primitive.counter.DecrementOutput)
     - [DecrementRequest](#atomix.primitive.counter.DecrementRequest)
     - [DecrementResponse](#atomix.primitive.counter.DecrementResponse)
-    - [GetInput](#atomix.primitive.counter.GetInput)
-    - [GetOutput](#atomix.primitive.counter.GetOutput)
     - [GetRequest](#atomix.primitive.counter.GetRequest)
     - [GetResponse](#atomix.primitive.counter.GetResponse)
-    - [IncrementInput](#atomix.primitive.counter.IncrementInput)
-    - [IncrementOutput](#atomix.primitive.counter.IncrementOutput)
     - [IncrementRequest](#atomix.primitive.counter.IncrementRequest)
     - [IncrementResponse](#atomix.primitive.counter.IncrementResponse)
     - [Precondition](#atomix.primitive.counter.Precondition)
-    - [RestoreRequest](#atomix.primitive.counter.RestoreRequest)
-    - [RestoreResponse](#atomix.primitive.counter.RestoreResponse)
-    - [SetInput](#atomix.primitive.counter.SetInput)
-    - [SetOutput](#atomix.primitive.counter.SetOutput)
     - [SetRequest](#atomix.primitive.counter.SetRequest)
     - [SetResponse](#atomix.primitive.counter.SetResponse)
-    - [Snapshot](#atomix.primitive.counter.Snapshot)
-    - [SnapshotRequest](#atomix.primitive.counter.SnapshotRequest)
-    - [SnapshotResponse](#atomix.primitive.counter.SnapshotResponse)
+    - [Value](#atomix.primitive.counter.Value)
   
   
   
@@ -43,9 +31,9 @@
 
 
 
-<a name="atomix.primitive.counter.DecrementInput"></a>
+<a name="atomix.primitive.counter.DecrementRequest"></a>
 
-### DecrementInput
+### DecrementRequest
 
 
 
@@ -58,66 +46,9 @@
 
 
 
-<a name="atomix.primitive.counter.DecrementOutput"></a>
-
-### DecrementOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| value | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.counter.DecrementRequest"></a>
-
-### DecrementRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [DecrementInput](#atomix.primitive.counter.DecrementInput) |  |  |
-
-
-
-
-
-
 <a name="atomix.primitive.counter.DecrementResponse"></a>
 
 ### DecrementResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [DecrementOutput](#atomix.primitive.counter.DecrementOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.counter.GetInput"></a>
-
-### GetInput
-
-
-
-
-
-
-
-<a name="atomix.primitive.counter.GetOutput"></a>
-
-### GetOutput
 
 
 
@@ -136,12 +67,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [GetInput](#atomix.primitive.counter.GetInput) |  |  |
-
-
 
 
 
@@ -149,37 +74,6 @@
 <a name="atomix.primitive.counter.GetResponse"></a>
 
 ### GetResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [GetOutput](#atomix.primitive.counter.GetOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.counter.IncrementInput"></a>
-
-### IncrementInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delta | [int64](#int64) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.counter.IncrementOutput"></a>
-
-### IncrementOutput
 
 
 
@@ -200,8 +94,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [IncrementInput](#atomix.primitive.counter.IncrementInput) |  |  |
+| delta | [int64](#int64) |  |  |
 
 
 
@@ -216,8 +109,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [IncrementOutput](#atomix.primitive.counter.IncrementOutput) |  |  |
+| value | [int64](#int64) |  |  |
 
 
 
@@ -239,68 +131,6 @@
 
 
 
-<a name="atomix.primitive.counter.RestoreRequest"></a>
-
-### RestoreRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| snapshot | [Snapshot](#atomix.primitive.counter.Snapshot) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.counter.RestoreResponse"></a>
-
-### RestoreResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.counter.SetInput"></a>
-
-### SetInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| value | [int64](#int64) |  |  |
-| preconditions | [Precondition](#atomix.primitive.counter.Precondition) | repeated |  |
-
-
-
-
-
-
-<a name="atomix.primitive.counter.SetOutput"></a>
-
-### SetOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| value | [int64](#int64) |  |  |
-
-
-
-
-
-
 <a name="atomix.primitive.counter.SetRequest"></a>
 
 ### SetRequest
@@ -309,8 +139,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [SetInput](#atomix.primitive.counter.SetInput) |  |  |
+| value | [int64](#int64) |  |  |
+| preconditions | [Precondition](#atomix.primitive.counter.Precondition) | repeated |  |
 
 
 
@@ -325,22 +155,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [SetOutput](#atomix.primitive.counter.SetOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.counter.Snapshot"></a>
-
-### Snapshot
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
 | value | [int64](#int64) |  |  |
 
 
@@ -348,31 +162,15 @@
 
 
 
-<a name="atomix.primitive.counter.SnapshotRequest"></a>
+<a name="atomix.primitive.counter.Value"></a>
 
-### SnapshotRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.counter.SnapshotResponse"></a>
-
-### SnapshotResponse
+### Value
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| snapshot | [Snapshot](#atomix.primitive.counter.Snapshot) |  |  |
+| value | [int64](#int64) |  |  |
 
 
 
@@ -396,8 +194,6 @@ CounterService implements a distributed counter
 | Get | [GetRequest](#atomix.primitive.counter.GetRequest) | [GetResponse](#atomix.primitive.counter.GetResponse) | Get gets the current counter value |
 | Increment | [IncrementRequest](#atomix.primitive.counter.IncrementRequest) | [IncrementResponse](#atomix.primitive.counter.IncrementResponse) | Increment increments the counter value |
 | Decrement | [DecrementRequest](#atomix.primitive.counter.DecrementRequest) | [DecrementResponse](#atomix.primitive.counter.DecrementResponse) | Decrement decrements the counter value |
-| Snapshot | [SnapshotRequest](#atomix.primitive.counter.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.counter.SnapshotResponse) | Snapshot exports a snapshot of the primitive state |
-| Restore | [RestoreRequest](#atomix.primitive.counter.RestoreRequest) | [RestoreResponse](#atomix.primitive.counter.RestoreResponse) | Restore imports a snapshot of the primitive state |
 
  
 

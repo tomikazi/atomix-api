@@ -4,22 +4,11 @@
 ## Table of Contents
 
 - [atomix/primitive/lock/lock.proto](#atomix/primitive/lock/lock.proto)
-    - [GetLockInput](#atomix.primitive.lock.GetLockInput)
-    - [GetLockOutput](#atomix.primitive.lock.GetLockOutput)
     - [GetLockRequest](#atomix.primitive.lock.GetLockRequest)
     - [GetLockResponse](#atomix.primitive.lock.GetLockResponse)
     - [Lock](#atomix.primitive.lock.Lock)
-    - [LockInput](#atomix.primitive.lock.LockInput)
-    - [LockOutput](#atomix.primitive.lock.LockOutput)
     - [LockRequest](#atomix.primitive.lock.LockRequest)
     - [LockResponse](#atomix.primitive.lock.LockResponse)
-    - [RestoreRequest](#atomix.primitive.lock.RestoreRequest)
-    - [RestoreResponse](#atomix.primitive.lock.RestoreResponse)
-    - [Snapshot](#atomix.primitive.lock.Snapshot)
-    - [SnapshotRequest](#atomix.primitive.lock.SnapshotRequest)
-    - [SnapshotResponse](#atomix.primitive.lock.SnapshotResponse)
-    - [UnlockInput](#atomix.primitive.lock.UnlockInput)
-    - [UnlockOutput](#atomix.primitive.lock.UnlockOutput)
     - [UnlockRequest](#atomix.primitive.lock.UnlockRequest)
     - [UnlockResponse](#atomix.primitive.lock.UnlockResponse)
   
@@ -40,36 +29,6 @@
 
 
 
-<a name="atomix.primitive.lock.GetLockInput"></a>
-
-### GetLockInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.lock.GetLockOutput"></a>
-
-### GetLockOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
-
-
-
-
-
-
 <a name="atomix.primitive.lock.GetLockRequest"></a>
 
 ### GetLockRequest
@@ -78,8 +37,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [GetLockInput](#atomix.primitive.lock.GetLockInput) |  |  |
+| lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
 
 
 
@@ -94,8 +52,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [GetLockOutput](#atomix.primitive.lock.GetLockOutput) |  |  |
+| lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
 
 
 
@@ -120,9 +77,9 @@
 
 
 
-<a name="atomix.primitive.lock.LockInput"></a>
+<a name="atomix.primitive.lock.LockRequest"></a>
 
-### LockInput
+### LockRequest
 
 
 
@@ -135,148 +92,9 @@
 
 
 
-<a name="atomix.primitive.lock.LockOutput"></a>
-
-### LockOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.lock.LockRequest"></a>
-
-### LockRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [LockInput](#atomix.primitive.lock.LockInput) |  |  |
-
-
-
-
-
-
 <a name="atomix.primitive.lock.LockResponse"></a>
 
 ### LockResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [LockOutput](#atomix.primitive.lock.LockOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.lock.RestoreRequest"></a>
-
-### RestoreRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| snapshot | [Snapshot](#atomix.primitive.lock.Snapshot) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.lock.RestoreResponse"></a>
-
-### RestoreResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.lock.Snapshot"></a>
-
-### Snapshot
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.lock.SnapshotRequest"></a>
-
-### SnapshotRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.lock.SnapshotResponse"></a>
-
-### SnapshotResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| snapshot | [Snapshot](#atomix.primitive.lock.Snapshot) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.lock.UnlockInput"></a>
-
-### UnlockInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.lock.UnlockOutput"></a>
-
-### UnlockOutput
 
 
 
@@ -297,8 +115,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [UnlockInput](#atomix.primitive.lock.UnlockInput) |  |  |
+| lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
 
 
 
@@ -313,8 +130,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [UnlockOutput](#atomix.primitive.lock.UnlockOutput) |  |  |
+| lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
 
 
 
@@ -349,8 +165,6 @@ LockService implements a distributed lock
 | Lock | [LockRequest](#atomix.primitive.lock.LockRequest) | [LockResponse](#atomix.primitive.lock.LockResponse) | Lock attempts to acquire the lock |
 | Unlock | [UnlockRequest](#atomix.primitive.lock.UnlockRequest) | [UnlockResponse](#atomix.primitive.lock.UnlockResponse) | Unlock releases the lock |
 | GetLock | [GetLockRequest](#atomix.primitive.lock.GetLockRequest) | [GetLockResponse](#atomix.primitive.lock.GetLockResponse) | GetLock gets the lock state |
-| Snapshot | [SnapshotRequest](#atomix.primitive.lock.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.lock.SnapshotResponse) | Snapshot exports a snapshot of the primitive state |
-| Restore | [RestoreRequest](#atomix.primitive.lock.RestoreRequest) | [RestoreResponse](#atomix.primitive.lock.RestoreResponse) | Restore imports a snapshot of the primitive state |
 
  
 

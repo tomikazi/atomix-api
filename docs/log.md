@@ -4,52 +4,30 @@
 ## Table of Contents
 
 - [atomix/primitive/log/log.proto](#atomix/primitive/log/log.proto)
-    - [AppendInput](#atomix.primitive.log.AppendInput)
-    - [AppendOutput](#atomix.primitive.log.AppendOutput)
     - [AppendRequest](#atomix.primitive.log.AppendRequest)
     - [AppendResponse](#atomix.primitive.log.AppendResponse)
     - [ClearRequest](#atomix.primitive.log.ClearRequest)
     - [ClearResponse](#atomix.primitive.log.ClearResponse)
-    - [EntriesInput](#atomix.primitive.log.EntriesInput)
-    - [EntriesOutput](#atomix.primitive.log.EntriesOutput)
     - [EntriesRequest](#atomix.primitive.log.EntriesRequest)
     - [EntriesResponse](#atomix.primitive.log.EntriesResponse)
     - [Entry](#atomix.primitive.log.Entry)
     - [Event](#atomix.primitive.log.Event)
-    - [EventsInput](#atomix.primitive.log.EventsInput)
-    - [EventsOutput](#atomix.primitive.log.EventsOutput)
     - [EventsRequest](#atomix.primitive.log.EventsRequest)
     - [EventsResponse](#atomix.primitive.log.EventsResponse)
-    - [FirstEntryOutput](#atomix.primitive.log.FirstEntryOutput)
     - [FirstEntryRequest](#atomix.primitive.log.FirstEntryRequest)
     - [FirstEntryResponse](#atomix.primitive.log.FirstEntryResponse)
-    - [GetInput](#atomix.primitive.log.GetInput)
-    - [GetOutput](#atomix.primitive.log.GetOutput)
     - [GetRequest](#atomix.primitive.log.GetRequest)
     - [GetResponse](#atomix.primitive.log.GetResponse)
-    - [LastEntryOutput](#atomix.primitive.log.LastEntryOutput)
     - [LastEntryRequest](#atomix.primitive.log.LastEntryRequest)
     - [LastEntryResponse](#atomix.primitive.log.LastEntryResponse)
-    - [NextEntryInput](#atomix.primitive.log.NextEntryInput)
-    - [NextEntryOutput](#atomix.primitive.log.NextEntryOutput)
     - [NextEntryRequest](#atomix.primitive.log.NextEntryRequest)
     - [NextEntryResponse](#atomix.primitive.log.NextEntryResponse)
-    - [PrevEntryInput](#atomix.primitive.log.PrevEntryInput)
-    - [PrevEntryOutput](#atomix.primitive.log.PrevEntryOutput)
     - [PrevEntryRequest](#atomix.primitive.log.PrevEntryRequest)
     - [PrevEntryResponse](#atomix.primitive.log.PrevEntryResponse)
-    - [RemoveInput](#atomix.primitive.log.RemoveInput)
-    - [RemoveOutput](#atomix.primitive.log.RemoveOutput)
     - [RemoveRequest](#atomix.primitive.log.RemoveRequest)
     - [RemoveResponse](#atomix.primitive.log.RemoveResponse)
-    - [RestoreRequest](#atomix.primitive.log.RestoreRequest)
-    - [RestoreResponse](#atomix.primitive.log.RestoreResponse)
-    - [SizeOutput](#atomix.primitive.log.SizeOutput)
     - [SizeRequest](#atomix.primitive.log.SizeRequest)
     - [SizeResponse](#atomix.primitive.log.SizeResponse)
-    - [SnapshotEntry](#atomix.primitive.log.SnapshotEntry)
-    - [SnapshotRequest](#atomix.primitive.log.SnapshotRequest)
-    - [SnapshotResponse](#atomix.primitive.log.SnapshotResponse)
   
     - [Event.Type](#atomix.primitive.log.Event.Type)
   
@@ -68,37 +46,6 @@
 
 
 
-<a name="atomix.primitive.log.AppendInput"></a>
-
-### AppendInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  |  |
-| value | [bytes](#bytes) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.AppendOutput"></a>
-
-### AppendOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
-
-
-
-
-
-
 <a name="atomix.primitive.log.AppendRequest"></a>
 
 ### AppendRequest
@@ -107,8 +54,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [AppendInput](#atomix.primitive.log.AppendInput) |  |  |
+| index | [uint64](#uint64) |  |  |
+| value | [bytes](#bytes) |  |  |
 
 
 
@@ -123,8 +70,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [AppendOutput](#atomix.primitive.log.AppendOutput) |  |  |
+| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
 
 
 
@@ -137,11 +83,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-
-
 
 
 
@@ -152,36 +93,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.EntriesInput"></a>
-
-### EntriesInput
-
-
-
-
-
-
-
-<a name="atomix.primitive.log.EntriesOutput"></a>
-
-### EntriesOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
-
-
 
 
 
@@ -190,12 +101,6 @@
 
 ### EntriesRequest
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [EntriesInput](#atomix.primitive.log.EntriesInput) |  |  |
 
 
 
@@ -210,8 +115,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [EntriesOutput](#atomix.primitive.log.EntriesOutput) |  |  |
+| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
 
 
 
@@ -251,37 +155,6 @@
 
 
 
-<a name="atomix.primitive.log.EventsInput"></a>
-
-### EventsInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| replay | [bool](#bool) |  |  |
-| index | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.EventsOutput"></a>
-
-### EventsOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| event | [Event](#atomix.primitive.log.Event) |  |  |
-
-
-
-
-
-
 <a name="atomix.primitive.log.EventsRequest"></a>
 
 ### EventsRequest
@@ -290,8 +163,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [EventsInput](#atomix.primitive.log.EventsInput) |  |  |
+| replay | [bool](#bool) |  |  |
+| index | [uint64](#uint64) |  |  |
 
 
 
@@ -306,23 +179,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [EventsOutput](#atomix.primitive.log.EventsOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.FirstEntryOutput"></a>
-
-### FirstEntryOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
+| event | [Event](#atomix.primitive.log.Event) |  |  |
 
 
 
@@ -335,11 +192,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-
-
 
 
 
@@ -347,37 +199,6 @@
 <a name="atomix.primitive.log.FirstEntryResponse"></a>
 
 ### FirstEntryResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [FirstEntryOutput](#atomix.primitive.log.FirstEntryOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.GetInput"></a>
-
-### GetInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.GetOutput"></a>
-
-### GetOutput
 
 
 
@@ -398,8 +219,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [GetInput](#atomix.primitive.log.GetInput) |  |  |
+| index | [uint64](#uint64) |  |  |
 
 
 
@@ -409,22 +229,6 @@
 <a name="atomix.primitive.log.GetResponse"></a>
 
 ### GetResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [GetOutput](#atomix.primitive.log.GetOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.LastEntryOutput"></a>
-
-### LastEntryOutput
 
 
 
@@ -443,11 +247,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-
-
 
 
 
@@ -455,37 +254,6 @@
 <a name="atomix.primitive.log.LastEntryResponse"></a>
 
 ### LastEntryResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [LastEntryOutput](#atomix.primitive.log.LastEntryOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.NextEntryInput"></a>
-
-### NextEntryInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.NextEntryOutput"></a>
-
-### NextEntryOutput
 
 
 
@@ -506,8 +274,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [NextEntryInput](#atomix.primitive.log.NextEntryInput) |  |  |
+| index | [uint64](#uint64) |  |  |
 
 
 
@@ -517,37 +284,6 @@
 <a name="atomix.primitive.log.NextEntryResponse"></a>
 
 ### NextEntryResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [NextEntryOutput](#atomix.primitive.log.NextEntryOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.PrevEntryInput"></a>
-
-### PrevEntryInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| index | [uint64](#uint64) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.PrevEntryOutput"></a>
-
-### PrevEntryOutput
 
 
 
@@ -568,8 +304,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [PrevEntryInput](#atomix.primitive.log.PrevEntryInput) |  |  |
+| index | [uint64](#uint64) |  |  |
 
 
 
@@ -579,37 +314,6 @@
 <a name="atomix.primitive.log.PrevEntryResponse"></a>
 
 ### PrevEntryResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [PrevEntryOutput](#atomix.primitive.log.PrevEntryOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.RemoveInput"></a>
-
-### RemoveInput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.RemoveOutput"></a>
-
-### RemoveOutput
 
 
 
@@ -630,8 +334,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| input | [RemoveInput](#atomix.primitive.log.RemoveInput) |  |  |
+| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
 
 
 
@@ -646,54 +349,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [RemoveOutput](#atomix.primitive.log.RemoveOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.RestoreRequest"></a>
-
-### RestoreRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-| entry | [SnapshotEntry](#atomix.primitive.log.SnapshotEntry) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.RestoreResponse"></a>
-
-### RestoreResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.SizeOutput"></a>
-
-### SizeOutput
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| size | [int32](#int32) |  |  |
+| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
 
 
 
@@ -704,11 +360,6 @@
 
 ### SizeRequest
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
 
 
 
@@ -723,54 +374,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| output | [SizeOutput](#atomix.primitive.log.SizeOutput) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.SnapshotEntry"></a>
-
-### SnapshotEntry
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| entry | [Entry](#atomix.primitive.log.Entry) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.SnapshotRequest"></a>
-
-### SnapshotRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.RequestHeader](#atomix.primitive.RequestHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.log.SnapshotResponse"></a>
-
-### SnapshotResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [atomix.primitive.ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-| entry | [SnapshotEntry](#atomix.primitive.log.SnapshotEntry) |  |  |
+| size | [int32](#int32) |  |  |
 
 
 
@@ -815,8 +419,6 @@ LogService log service
 | Clear | [ClearRequest](#atomix.primitive.log.ClearRequest) | [ClearResponse](#atomix.primitive.log.ClearResponse) | Clear removes all entries from the log |
 | Events | [EventsRequest](#atomix.primitive.log.EventsRequest) | [EventsResponse](#atomix.primitive.log.EventsResponse) stream | Events listens for change events |
 | Entries | [EntriesRequest](#atomix.primitive.log.EntriesRequest) | [EntriesResponse](#atomix.primitive.log.EntriesResponse) stream | Entries lists all entries in the log |
-| Snapshot | [SnapshotRequest](#atomix.primitive.log.SnapshotRequest) | [SnapshotResponse](#atomix.primitive.log.SnapshotResponse) stream | Snapshot exports a snapshot of the primitive state |
-| Restore | [RestoreRequest](#atomix.primitive.log.RestoreRequest) stream | [RestoreResponse](#atomix.primitive.log.RestoreResponse) | Restore imports a snapshot of the primitive state |
 
  
 

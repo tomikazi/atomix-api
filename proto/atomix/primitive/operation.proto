@@ -11,18 +11,13 @@ extend google.protobuf.MethodOptions {
 }
 
 extend google.protobuf.FieldOptions {
-    bool header = 62000;
-    bool input = 62001;
-    bool output = 62002;
-    AggregateStrategy aggregate = 62003;
+    AggregateStrategy aggregate = 62000;
 }
 
 // OperationType is an enum for specifying the type of operation
 enum OperationType {
     COMMAND = 0;
     QUERY = 1;
-    SNAPSHOT = 2;
-    RESTORE = 3;
 }
 
 // AggregateStrategy is an enum for indicating the strategy used to aggregate a field

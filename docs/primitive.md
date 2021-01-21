@@ -12,9 +12,6 @@
     - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
     - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
     - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
   
   
 
@@ -35,12 +32,7 @@
     - [CreateResponse](#atomix.primitive.CreateResponse)
     - [DeleteRequest](#atomix.primitive.DeleteRequest)
     - [DeleteResponse](#atomix.primitive.DeleteResponse)
-    - [PrimitiveId](#atomix.primitive.PrimitiveId)
-    - [RequestHeader](#atomix.primitive.RequestHeader)
-    - [ResponseHeader](#atomix.primitive.ResponseHeader)
   
-    - [RequestType](#atomix.primitive.RequestType)
-    - [ResponseType](#atomix.primitive.ResponseType)
   
   
     - [PrimitiveService](#atomix.primitive.PrimitiveService)
@@ -57,6 +49,7 @@
 - [atomix/primitive/state.proto](#atomix/primitive/state.proto)
   
   
+    - [File-level Extensions](#atomix/primitive/state.proto-extensions)
     - [File-level Extensions](#atomix/primitive/state.proto-extensions)
     - [File-level Extensions](#atomix/primitive/state.proto-extensions)
     - [File-level Extensions](#atomix/primitive/state.proto-extensions)
@@ -98,8 +91,6 @@ OperationType is an enum for specifying the type of operation
 | ---- | ------ | ----------- |
 | COMMAND | 0 |  |
 | QUERY | 1 |  |
-| SNAPSHOT | 2 |  |
-| RESTORE | 3 |  |
 
 
  
@@ -110,10 +101,7 @@ OperationType is an enum for specifying the type of operation
 ### File-level Extensions
 | Extension | Type | Base | Number | Description |
 | --------- | ---- | ---- | ------ | ----------- |
-| aggregate | AggregateStrategy | .google.protobuf.FieldOptions | 62003 |  |
-| header | bool | .google.protobuf.FieldOptions | 62000 |  |
-| input | bool | .google.protobuf.FieldOptions | 62001 |  |
-| output | bool | .google.protobuf.FieldOptions | 62002 |  |
+| aggregate | AggregateStrategy | .google.protobuf.FieldOptions | 62000 |  |
 | async | bool | .google.protobuf.MethodOptions | 61002 |  |
 | name | string | .google.protobuf.MethodOptions | 61000 |  |
 | type | OperationType | .google.protobuf.MethodOptions | 61001 |  |
@@ -180,7 +168,8 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| type | [string](#string) |  |  |
+| name | [string](#string) |  |  |
 
 
 
@@ -191,11 +180,6 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 ### CloseResponse
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
 
 
 
@@ -210,7 +194,8 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| type | [string](#string) |  |  |
+| name | [string](#string) |  |  |
 
 
 
@@ -221,11 +206,6 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 ### CreateResponse
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
 
 
 
@@ -240,7 +220,8 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| header | [RequestHeader](#atomix.primitive.RequestHeader) |  |  |
+| type | [string](#string) |  |  |
+| name | [string](#string) |  |  |
 
 
 
@@ -253,88 +234,10 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| header | [ResponseHeader](#atomix.primitive.ResponseHeader) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.PrimitiveId"></a>
-
-### PrimitiveId
-Namespaced primitive identifier
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.RequestHeader"></a>
-
-### RequestHeader
-Request header
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| client_id | [string](#string) |  |  |
-| primitive_id | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
-| request_id | [uint64](#uint64) |  |  |
-| request_type | [RequestType](#atomix.primitive.RequestType) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.ResponseHeader"></a>
-
-### ResponseHeader
-Response header
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| response_type | [ResponseType](#atomix.primitive.ResponseType) |  |  |
-
-
 
 
 
  
-
-
-<a name="atomix.primitive.RequestType"></a>
-
-### RequestType
-Request type
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| REQUEST | 0 |  |
-| REQUEST_STREAM | 1 |  |
-
-
-
-<a name="atomix.primitive.ResponseType"></a>
-
-### ResponseType
-Response type
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| RESPONSE | 0 |  |
-| RESPONSE_STREAM | 1 |  |
-
 
  
 
@@ -397,9 +300,10 @@ PrimitiveService is a service for managing primitive
 ### File-level Extensions
 | Extension | Type | Base | Number | Description |
 | --------- | ---- | ---- | ------ | ----------- |
-| digest | bool | .google.protobuf.FieldOptions | 82002 |  |
-| entry | bool | .google.protobuf.FieldOptions | 82001 |  |
+| digest | bool | .google.protobuf.FieldOptions | 82001 |  |
 | key | bool | .google.protobuf.FieldOptions | 82000 |  |
+| entrytype | string | .google.protobuf.ServiceOptions | 80001 |  |
+| valuetype | string | .google.protobuf.ServiceOptions | 80000 |  |
 
  
 

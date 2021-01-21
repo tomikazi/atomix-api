@@ -4,8 +4,12 @@ package atomix.primitive.state;
 
 import "google/protobuf/descriptor.proto";
 
+extend google.protobuf.ServiceOptions {
+    string valuetype = 80000;
+    string entrytype = 80001;
+}
+
 extend google.protobuf.FieldOptions {
     bool key = 82000;
-    bool entry = 82001;
-    bool digest = 82002;
+    bool digest = 82001;
 }

@@ -27,6 +27,7 @@ message Timestamp {
         LogicalTimestamp logical_timestamp = 2;
         VectorTimestamp vector_timestamp = 3;
         EpochTimestamp epoch_timestamp = 4;
+        CompositeTimestamp composite_timestamp = 5;
     }
 }
 
@@ -53,4 +54,8 @@ message EpochTimestamp {
 
 message Sequence {
     uint64 num = 1 [(gogoproto.casttype) = "SequenceNum"];
+}
+
+message CompositeTimestamp {
+    repeated Timestamp timestamps = 1 [(gogoproto.nullable) = false];
 }

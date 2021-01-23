@@ -12,6 +12,7 @@
     - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
     - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
     - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
   
   
 
@@ -32,6 +33,8 @@
     - [CreateResponse](#atomix.primitive.CreateResponse)
     - [DeleteRequest](#atomix.primitive.DeleteRequest)
     - [DeleteResponse](#atomix.primitive.DeleteResponse)
+    - [RequestHeaders](#atomix.primitive.RequestHeaders)
+    - [ResponseHeaders](#atomix.primitive.ResponseHeaders)
   
   
   
@@ -101,7 +104,8 @@ OperationType is an enum for specifying the type of operation
 ### File-level Extensions
 | Extension | Type | Base | Number | Description |
 | --------- | ---- | ---- | ------ | ----------- |
-| aggregate | AggregateStrategy | .google.protobuf.FieldOptions | 62000 |  |
+| aggregate | AggregateStrategy | .google.protobuf.FieldOptions | 62001 |  |
+| headers | bool | .google.protobuf.FieldOptions | 62000 |  |
 | async | bool | .google.protobuf.MethodOptions | 61002 |  |
 | name | string | .google.protobuf.MethodOptions | 61000 |  |
 | type | OperationType | .google.protobuf.MethodOptions | 61001 |  |
@@ -232,6 +236,37 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 ### DeleteResponse
 
+
+
+
+
+
+
+<a name="atomix.primitive.RequestHeaders"></a>
+
+### RequestHeaders
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| primitive_id | [string](#string) |  |  |
+| timestamp | [meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.ResponseHeaders"></a>
+
+### ResponseHeaders
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| timestamp | [meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
 
 
 

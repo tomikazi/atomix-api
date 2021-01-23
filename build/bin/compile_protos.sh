@@ -35,8 +35,11 @@ go_import_paths="${go_import_paths},Matomix/primitive/partition.proto=github.com
 go_import_paths="${go_import_paths},Matomix/primitive/state.proto=github.com/atomix/api/go/atomix/primitive/extensions/state"
 
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/protocol,plugins=grpc:go       proto/atomix/protocol/*.proto
-protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/primitive,plugins=grpc:go      proto/atomix/primitive/primitive.proto
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/primitive/meta,plugins=grpc:go proto/atomix/primitive/meta/*.proto
+
+go_import_paths="${go_import_paths},Matomix/primitive/meta/timestamp.proto=github.com/atomix/api/go/atomix/primitive/meta"
+
+protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/primitive,plugins=grpc:go      proto/atomix/primitive/primitive.proto
 
 go_import_paths="${go_import_paths},Matomix/protocol/protocol.proto=github.com/atomix/api/go/atomix/protocol"
 go_import_paths="${go_import_paths},Matomix/primitive/primitive.proto=github.com/atomix/api/go/atomix/primitive"

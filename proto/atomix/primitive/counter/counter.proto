@@ -16,6 +16,7 @@ limitations under the License.
 
 syntax = "proto3";
 
+import "atomix/primitive/primitive.proto";
 import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
 import "atomix/primitive/state.proto";
@@ -24,26 +25,32 @@ import "gogoproto/gogo.proto";
 package atomix.primitive.counter;
 
 message IncrementRequest {
-    int64 delta = 1;
+    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    int64 delta = 2;
 }
 
 message IncrementResponse {
-    int64 value = 1;
+    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    int64 value = 2;
 }
 
 message DecrementRequest {
-    int64 delta = 1;
+    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    int64 delta = 2;
 }
 
 message DecrementResponse {
-    int64 value = 1;
+    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    int64 value = 2;
 }
 
 message GetRequest {
+    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
 }
 
 message GetResponse {
-    int64 value = 1;
+    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    int64 value = 2;
 }
 
 message Precondition {
@@ -53,12 +60,14 @@ message Precondition {
 }
 
 message SetRequest {
-    int64 value = 1;
-    repeated Precondition preconditions = 2 [(gogoproto.nullable) = false];
+    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    int64 value = 2;
+    repeated Precondition preconditions = 3 [(gogoproto.nullable) = false];
 }
 
 message SetResponse {
-    int64 value = 1;
+    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    int64 value = 2;
 }
 
 message Value {

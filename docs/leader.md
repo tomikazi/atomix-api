@@ -52,6 +52,11 @@
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
+
+
 
 
 
@@ -64,6 +69,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | event | [Event](#atomix.primitive.leader.Event) |  |  |
 
 
@@ -75,6 +81,11 @@
 
 ### GetRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 
 
 
@@ -89,6 +100,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | latch | [Latch](#atomix.primitive.leader.Latch) |  |  |
 
 
@@ -119,6 +131,11 @@
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
+
+
 
 
 
@@ -131,6 +148,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | latch | [Latch](#atomix.primitive.leader.Latch) |  |  |
 
 

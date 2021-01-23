@@ -54,6 +54,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | value | [Value](#atomix.primitive.list.Value) |  |  |
 
 
@@ -67,6 +68,11 @@
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
+
+
 
 
 
@@ -77,6 +83,11 @@
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
+
+
 
 
 
@@ -85,6 +96,11 @@
 
 ### ClearResponse
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 
 
 
@@ -99,6 +115,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | value | [Value](#atomix.primitive.list.Value) |  |  |
 
 
@@ -114,6 +131,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | contains | [bool](#bool) |  |  |
 
 
@@ -125,6 +143,11 @@
 
 ### ElementsRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 
 
 
@@ -139,6 +162,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | item | [Item](#atomix.primitive.list.Item) |  |  |
 
 
@@ -170,6 +194,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | replay | [bool](#bool) |  |  |
 
 
@@ -185,6 +210,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | event | [Event](#atomix.primitive.list.Event) |  |  |
 
 
@@ -200,6 +226,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | index | [uint32](#uint32) |  |  |
 
 
@@ -215,6 +242,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | item | [Item](#atomix.primitive.list.Item) |  |  |
 
 
@@ -230,6 +258,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | item | [Item](#atomix.primitive.list.Item) |  |  |
 | preconditions | [Precondition](#atomix.primitive.list.Precondition) | repeated |  |
 
@@ -246,6 +275,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | item | [Item](#atomix.primitive.list.Item) |  |  |
 
 
@@ -292,6 +322,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | index | [uint32](#uint32) |  |  |
 | preconditions | [Precondition](#atomix.primitive.list.Precondition) | repeated |  |
 
@@ -308,6 +339,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | item | [Item](#atomix.primitive.list.Item) |  |  |
 
 
@@ -323,6 +355,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | item | [Item](#atomix.primitive.list.Item) |  |  |
 | preconditions | [Precondition](#atomix.primitive.list.Precondition) | repeated |  |
 
@@ -339,6 +372,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | item | [Item](#atomix.primitive.list.Item) |  |  |
 
 
@@ -350,6 +384,11 @@
 
 ### SizeRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 
 
 
@@ -364,6 +403,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | size | [uint32](#uint32) |  |  |
 
 

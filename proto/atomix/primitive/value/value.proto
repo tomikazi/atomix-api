@@ -18,6 +18,7 @@ syntax = "proto3";
 
 package atomix.primitive.value;
 
+import "atomix/primitive/primitive.proto";
 import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
 import "atomix/primitive/state.proto";
@@ -25,11 +26,12 @@ import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
 message GetRequest {
-
+    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
 }
 
 message GetResponse {
-    Value value = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    Value value = 2 [(gogoproto.nullable) = false];
 }
 
 message Precondition {
@@ -39,20 +41,23 @@ message Precondition {
 }
 
 message SetRequest {
-    Value value = 1 [(gogoproto.nullable) = false];
-    repeated Precondition preconditions = 2 [(gogoproto.nullable) = false];
+    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    Value value = 2 [(gogoproto.nullable) = false];
+    repeated Precondition preconditions = 3 [(gogoproto.nullable) = false];
 }
 
 message SetResponse {
-    Value value = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    Value value = 2 [(gogoproto.nullable) = false];
 }
 
 message EventsRequest {
-
+    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
 }
 
 message EventsResponse {
-    Event event = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    Event event = 2 [(gogoproto.nullable) = false];
 }
 
 message Event {

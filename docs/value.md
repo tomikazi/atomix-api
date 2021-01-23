@@ -53,6 +53,11 @@
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
+
+
 
 
 
@@ -65,6 +70,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | event | [Event](#atomix.primitive.value.Event) |  |  |
 
 
@@ -76,6 +82,11 @@
 
 ### GetRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 
 
 
@@ -90,6 +101,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | value | [Value](#atomix.primitive.value.Value) |  |  |
 
 
@@ -120,6 +132,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | value | [Value](#atomix.primitive.value.Value) |  |  |
 | preconditions | [Precondition](#atomix.primitive.value.Precondition) | repeated |  |
 
@@ -136,6 +149,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | value | [Value](#atomix.primitive.value.Value) |  |  |
 
 

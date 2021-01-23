@@ -16,6 +16,7 @@ limitations under the License.
 
 syntax = "proto3";
 
+import "atomix/primitive/primitive.proto";
 import "atomix/primitive/meta/object.proto";
 import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
@@ -25,57 +26,69 @@ import "gogoproto/gogo.proto";
 package atomix.primitive.election;
 
 message EnterRequest {
-
+    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
 }
 
 message EnterResponse {
-    Term term = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    Term term = 2 [(gogoproto.nullable) = false];
 }
 
 message WithdrawRequest {
-
+    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
 }
 
 message WithdrawResponse {
-    Term term = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    Term term = 2 [(gogoproto.nullable) = false];
 }
 
 message AnointRequest {
-    string candidate_id = 1 [(gogoproto.customname) = "CandidateID"];
+    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    string candidate_id = 2 [(gogoproto.customname) = "CandidateID"];
 }
 
 message AnointResponse {
-    Term term = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    Term term = 2 [(gogoproto.nullable) = false];
 }
 
 message PromoteRequest {
-    string candidate_id = 1 [(gogoproto.customname) = "CandidateID"];
+    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    string candidate_id = 2 [(gogoproto.customname) = "CandidateID"];
 }
 
 message PromoteResponse {
-    Term term = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    Term term = 2 [(gogoproto.nullable) = false];
 }
 
 message EvictRequest {
-    string candidate_id = 1 [(gogoproto.customname) = "CandidateID"];
+    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    string candidate_id = 2 [(gogoproto.customname) = "CandidateID"];
 }
 
 message EvictResponse {
-    Term term = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    Term term = 2 [(gogoproto.nullable) = false];
 }
 
 message GetTermRequest {
+    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
 }
 
 message GetTermResponse {
-    Term term = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    Term term = 2 [(gogoproto.nullable) = false];
 }
 
 message EventsRequest {
+    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
 }
 
 message EventsResponse {
-    Event event = 1 [(gogoproto.nullable) = false];
+    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    Event event = 2 [(gogoproto.nullable) = false];
 }
 
 message Event {

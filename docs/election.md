@@ -46,6 +46,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | candidate_id | [string](#string) |  |  |
 
 
@@ -61,6 +62,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | term | [Term](#atomix.primitive.election.Term) |  |  |
 
 
@@ -72,6 +74,11 @@
 
 ### EnterRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 
 
 
@@ -86,6 +93,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | term | [Term](#atomix.primitive.election.Term) |  |  |
 
 
@@ -115,6 +123,11 @@
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
+
+
 
 
 
@@ -127,6 +140,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | event | [Event](#atomix.primitive.election.Event) |  |  |
 
 
@@ -142,6 +156,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | candidate_id | [string](#string) |  |  |
 
 
@@ -157,6 +172,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | term | [Term](#atomix.primitive.election.Term) |  |  |
 
 
@@ -168,6 +184,11 @@
 
 ### GetTermRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 
 
 
@@ -182,6 +203,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | term | [Term](#atomix.primitive.election.Term) |  |  |
 
 
@@ -197,6 +219,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | candidate_id | [string](#string) |  |  |
 
 
@@ -212,6 +235,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | term | [Term](#atomix.primitive.election.Term) |  |  |
 
 
@@ -242,6 +266,11 @@
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
+
+
 
 
 
@@ -254,6 +283,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | term | [Term](#atomix.primitive.election.Term) |  |  |
 
 

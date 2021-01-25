@@ -19,7 +19,6 @@ syntax = "proto3";
 import "atomix/primitive/primitive.proto";
 import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
-import "atomix/primitive/state.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
@@ -71,7 +70,6 @@ message Latch {
 // Leader latch service
 service LeaderLatchService {
     option (atomix.primitive.type) = "LeaderLatch";
-    option (atomix.primitive.state.valuetype) = "Latch";
 
     // Latch attempts to acquire the leader latch
     rpc Latch (LatchRequest) returns (LatchResponse) {

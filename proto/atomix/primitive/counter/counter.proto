@@ -19,7 +19,6 @@ syntax = "proto3";
 import "atomix/primitive/primitive.proto";
 import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
-import "atomix/primitive/state.proto";
 import "gogoproto/gogo.proto";
 
 package atomix.primitive.counter;
@@ -77,7 +76,6 @@ message Value {
 // CounterService implements a distributed counter
 service CounterService {
     option (atomix.primitive.type) = "Counter";
-    option (atomix.primitive.state.valuetype) = "Value";
 
     // Set sets the counter value
     rpc Set (SetRequest) returns (SetResponse) {

@@ -20,7 +20,6 @@ import "atomix/primitive/primitive.proto";
 import "google/protobuf/duration.proto";
 import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
-import "atomix/primitive/state.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
@@ -71,7 +70,6 @@ message Lock {
 // LockService implements a distributed lock
 service LockService {
     option (atomix.primitive.type) = "Lock";
-    option (atomix.primitive.state.valuetype) = "Lock";
 
     // Lock attempts to acquire the lock
     rpc Lock (LockRequest) returns (LockResponse) {

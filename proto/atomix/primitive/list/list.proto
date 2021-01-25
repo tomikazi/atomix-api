@@ -21,7 +21,6 @@ package atomix.primitive.list;
 import "atomix/primitive/primitive.proto";
 import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
-import "atomix/primitive/state.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
@@ -154,7 +153,6 @@ message Value {
 // ListService implements a distributed list
 service ListService {
     option (atomix.primitive.type) = "List";
-    option (atomix.primitive.state.entrytype) = "Item";
 
     // Size gets the number of elements in the list
     rpc Size (SizeRequest) returns (SizeResponse) {

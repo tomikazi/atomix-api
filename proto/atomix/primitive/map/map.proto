@@ -24,7 +24,6 @@ import "atomix/primitive/meta/object.proto";
 import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
 import "atomix/primitive/partition.proto";
-import "atomix/primitive/state.proto";
 import "gogoproto/gogo.proto";
 
 message SizeRequest {
@@ -121,8 +120,8 @@ message Entry {
 }
 
 message Key {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(atomix.primitive.state.digest) = true, (gogoproto.embed) = true, (gogoproto.nullable) = false];
-    string key = 2 [(atomix.primitive.state.key) = true, (atomix.primitive.partition.key) = true];
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
+    string key = 2 [(atomix.primitive.partition.key) = true];
 }
 
 message Value {
@@ -134,7 +133,6 @@ message Value {
 service MapService {
     option (atomix.primitive.type) = "Map";
     option (atomix.primitive.partitioned) = true;
-    option (atomix.primitive.state.entrytype) = "Entry";
 
     // Size returns the size of the map
     rpc Size (SizeRequest) returns (SizeResponse) {

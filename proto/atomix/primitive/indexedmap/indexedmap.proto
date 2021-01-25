@@ -22,7 +22,6 @@ import "atomix/primitive/primitive.proto";
 import "google/protobuf/duration.proto";
 import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
-import "atomix/primitive/state.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
@@ -170,7 +169,6 @@ message Entry {
 // IndexedMap service
 service IndexedMapService {
     option (atomix.primitive.type) = "IndexedMap";
-    option (atomix.primitive.state.entrytype) = "Entry";
 
     // Size returns the size of the map
     rpc Size (SizeRequest) returns (SizeResponse) {

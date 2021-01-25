@@ -21,7 +21,6 @@ package atomix.primitive.value;
 import "atomix/primitive/primitive.proto";
 import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
-import "atomix/primitive/state.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
@@ -71,14 +70,13 @@ message Event {
 }
 
 message Value {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(atomix.primitive.state.digest) = true, (gogoproto.embed) = true, (gogoproto.nullable) = false];
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
     bytes value = 2;
 }
 
 // ValueService implements a distributed atomic value
 service ValueService {
     option (atomix.primitive.type) = "Value";
-    option (atomix.primitive.state.valuetype) = "Value";
 
     // Set sets the value
     rpc Set (SetRequest) returns (SetResponse) {

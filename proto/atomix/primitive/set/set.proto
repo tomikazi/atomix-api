@@ -22,7 +22,6 @@ import "atomix/primitive/primitive.proto";
 import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
 import "atomix/primitive/partition.proto";
-import "atomix/primitive/state.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
@@ -105,15 +104,14 @@ message ElementsResponse {
 }
 
 message Element {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(atomix.primitive.state.digest) = true, (gogoproto.embed) = true, (gogoproto.nullable) = false];
-    string value = 2 [(atomix.primitive.state.key) = true, (atomix.primitive.partition.key) = true];
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
+    string value = 2 [(atomix.primitive.partition.key) = true];
 }
 
 // Set service
 service SetService {
     option (atomix.primitive.type) = "Set";
     option (atomix.primitive.partitioned) = true;
-    option (atomix.primitive.state.entrytype) = "Element";
 
     // Size gets the number of elements in the set
     rpc Size (SizeRequest) returns (SizeResponse) {

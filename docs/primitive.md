@@ -49,16 +49,6 @@
   
   
 
-- [atomix/primitive/state.proto](#atomix/primitive/state.proto)
-  
-  
-    - [File-level Extensions](#atomix/primitive/state.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/state.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/state.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/state.proto-extensions)
-  
-  
-
 - [Scalar Value Types](#scalar-value-types)
 
 
@@ -312,33 +302,6 @@ PrimitiveService is a service for managing primitive
 | --------- | ---- | ---- | ------ | ----------- |
 | partitioned | bool | .google.protobuf.ServiceOptions | 50001 |  |
 | type | string | .google.protobuf.ServiceOptions | 50000 |  |
-
- 
-
- 
-
-
-
-<a name="atomix/primitive/state.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## atomix/primitive/state.proto
-
-
- 
-
- 
-
-
-<a name="atomix/primitive/state.proto-extensions"></a>
-
-### File-level Extensions
-| Extension | Type | Base | Number | Description |
-| --------- | ---- | ---- | ------ | ----------- |
-| digest | bool | .google.protobuf.FieldOptions | 82001 |  |
-| key | bool | .google.protobuf.FieldOptions | 82000 |  |
-| entrytype | string | .google.protobuf.ServiceOptions | 80001 |  |
-| valuetype | string | .google.protobuf.ServiceOptions | 80000 |  |
 
  
 

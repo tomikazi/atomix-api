@@ -27,30 +27,6 @@ message ProxyMeta {
     int32 port = 3;
 }
 
-// PrimitiveConfig is a primitive configuration
-message PrimitiveConfig {
-    string name = 1;
-    string type = 2;
-    string driver = 3;
-    map<string, string> options = 4;
-}
-
-message AddPrimitiveRequest {
-    PrimitiveConfig primitive = 1 [(gogoproto.nullable) = false];
-}
-
-message AddPrimitiveResponse {
-
-}
-
-message RemovePrimitiveRequest {
-    string name = 1;
-}
-
-message RemovePrimitiveResponse {
-
-}
-
 // Proxy configuration
 message ProxyConfig {
     atomix.protocol.ProtocolConfig protocol = 1 [(gogoproto.nullable) = false];

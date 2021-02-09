@@ -4,14 +4,8 @@
 ## Table of Contents
 
 - [atomix/proxy/proxy.proto](#atomix/proxy/proxy.proto)
-    - [AddPrimitiveRequest](#atomix.proxy.AddPrimitiveRequest)
-    - [AddPrimitiveResponse](#atomix.proxy.AddPrimitiveResponse)
-    - [PrimitiveConfig](#atomix.proxy.PrimitiveConfig)
-    - [PrimitiveConfig.OptionsEntry](#atomix.proxy.PrimitiveConfig.OptionsEntry)
     - [ProxyConfig](#atomix.proxy.ProxyConfig)
     - [ProxyMeta](#atomix.proxy.ProxyMeta)
-    - [RemovePrimitiveRequest](#atomix.proxy.RemovePrimitiveRequest)
-    - [RemovePrimitiveResponse](#atomix.proxy.RemovePrimitiveResponse)
     - [UpdateConfigRequest](#atomix.proxy.UpdateConfigRequest)
     - [UpdateConfigResponse](#atomix.proxy.UpdateConfigResponse)
   
@@ -28,65 +22,6 @@
 <p align="right"><a href="#top">Top</a></p>
 
 ## atomix/proxy/proxy.proto
-
-
-
-<a name="atomix.proxy.AddPrimitiveRequest"></a>
-
-### AddPrimitiveRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| primitive | [PrimitiveConfig](#atomix.proxy.PrimitiveConfig) |  |  |
-
-
-
-
-
-
-<a name="atomix.proxy.AddPrimitiveResponse"></a>
-
-### AddPrimitiveResponse
-
-
-
-
-
-
-
-<a name="atomix.proxy.PrimitiveConfig"></a>
-
-### PrimitiveConfig
-PrimitiveConfig is a primitive configuration
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| type | [string](#string) |  |  |
-| driver | [string](#string) |  |  |
-| options | [PrimitiveConfig.OptionsEntry](#atomix.proxy.PrimitiveConfig.OptionsEntry) | repeated |  |
-
-
-
-
-
-
-<a name="atomix.proxy.PrimitiveConfig.OptionsEntry"></a>
-
-### PrimitiveConfig.OptionsEntry
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [string](#string) |  |  |
-| value | [string](#string) |  |  |
-
-
-
 
 
 
@@ -115,31 +50,6 @@ ProxyMeta is a proxy metadata
 | ----- | ---- | ----- | ----------- |
 | host | [string](#string) |  |  |
 | port | [int32](#int32) |  |  |
-
-
-
-
-
-
-<a name="atomix.proxy.RemovePrimitiveRequest"></a>
-
-### RemovePrimitiveRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.proxy.RemovePrimitiveResponse"></a>
-
-### RemovePrimitiveResponse
-
 
 
 

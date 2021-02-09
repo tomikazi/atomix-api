@@ -33,18 +33,20 @@ go_import_paths="${go_import_paths},Matomix/primitive/service.proto=github.com/a
 go_import_paths="${go_import_paths},Matomix/primitive/operation.proto=github.com/atomix/api/go/atomix/primitive/extensions/operation"
 go_import_paths="${go_import_paths},Matomix/primitive/partition.proto=github.com/atomix/api/go/atomix/primitive/extensions/partition"
 
-protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/proxy,plugins=grpc:go proto/atomix/proxy/*.proto
-
-go_import_paths="${go_import_paths},Matomix/proxy/proxy.proto=github.com/atomix/api/go/atomix/proxy"
-
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/protocol,plugins=grpc:go       proto/atomix/protocol/*.proto
+
+go_import_paths="${go_import_paths},Matomix/protocol/protocol.proto=github.com/atomix/api/go/atomix/protocol"
+
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/primitive/meta,plugins=grpc:go proto/atomix/primitive/meta/*.proto
 
 go_import_paths="${go_import_paths},Matomix/primitive/meta/timestamp.proto=github.com/atomix/api/go/atomix/primitive/meta"
 
+protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/proxy,plugins=grpc:go proto/atomix/proxy/*.proto
+
+go_import_paths="${go_import_paths},Matomix/proxy/proxy.proto=github.com/atomix/api/go/atomix/proxy"
+
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/primitive,plugins=grpc:go      proto/atomix/primitive/primitive.proto
 
-go_import_paths="${go_import_paths},Matomix/protocol/protocol.proto=github.com/atomix/api/go/atomix/protocol"
 go_import_paths="${go_import_paths},Matomix/primitive/primitive.proto=github.com/atomix/api/go/atomix/primitive"
 go_import_paths="${go_import_paths},Matomix/primitive/meta/object.proto=github.com/atomix/api/go/atomix/primitive/meta"
 go_import_paths="${go_import_paths},Matomix/primitive/meta/timestamp.proto=github.com/atomix/api/go/atomix/primitive/meta"

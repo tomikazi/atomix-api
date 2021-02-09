@@ -4,9 +4,9 @@
 package proxy
 
 import (
-	protocol "atomix/protocol"
 	context "context"
 	fmt "fmt"
+	protocol "github.com/atomix/api/go/atomix/protocol"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"

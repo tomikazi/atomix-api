@@ -42,7 +42,6 @@
     - [LookupPrimitiveRequest](#atomix.primitive.LookupPrimitiveRequest)
     - [LookupPrimitiveResponse](#atomix.primitive.LookupPrimitiveResponse)
     - [PrimitiveMeta](#atomix.primitive.PrimitiveMeta)
-    - [PrimitiveMeta.OptionsEntry](#atomix.primitive.PrimitiveMeta.OptionsEntry)
     - [RemovePrimitiveRequest](#atomix.primitive.RemovePrimitiveRequest)
     - [RemovePrimitiveResponse](#atomix.primitive.RemovePrimitiveResponse)
     - [RequestHeaders](#atomix.primitive.RequestHeaders)
@@ -372,23 +371,8 @@ PrimitiveMeta is a primitive metadata
 | name | [string](#string) |  |  |
 | type | [string](#string) |  |  |
 | driver | [string](#string) |  |  |
-| options | [PrimitiveMeta.OptionsEntry](#atomix.primitive.PrimitiveMeta.OptionsEntry) | repeated |  |
-
-
-
-
-
-
-<a name="atomix.primitive.PrimitiveMeta.OptionsEntry"></a>
-
-### PrimitiveMeta.OptionsEntry
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| key | [string](#string) |  |  |
-| value | [string](#string) |  |  |
+| cached | [bool](#bool) |  |  |
+| read_only | [bool](#bool) |  |  |
 
 
 

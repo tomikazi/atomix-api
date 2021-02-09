@@ -75,7 +75,8 @@ message PrimitiveMeta {
     string name = 1;
     string type = 2;
     string driver = 3;
-    map<string, string> options = 4;
+    bool cached = 4;
+    bool read_only = 5;
 }
 
 message GetPrimitiveRequest {

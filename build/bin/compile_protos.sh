@@ -2,6 +2,8 @@
 
 proto_path="./proto:${GOPATH}/src/github.com/gogo/protobuf:${GOPATH}/src/github.com/gogo/protobuf/protobuf:${GOPATH}/src"
 
+protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,driver.md     proto/atomix/driver/*.proto
+protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,proxy.md      proto/atomix/proxy/*.proto
 protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,protocol.md   proto/atomix/protocol/*.proto
 protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,primitive.md  proto/atomix/primitive/*.proto
 protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,counter.md    proto/atomix/primitive/counter/*.proto
@@ -31,6 +33,10 @@ go_import_paths="${go_import_paths},Matomix/primitive/service.proto=github.com/a
 go_import_paths="${go_import_paths},Matomix/primitive/operation.proto=github.com/atomix/api/go/atomix/primitive/extensions/operation"
 go_import_paths="${go_import_paths},Matomix/primitive/partition.proto=github.com/atomix/api/go/atomix/primitive/extensions/partition"
 
+protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/proxy,plugins=grpc:go proto/atomix/proxy/*.proto
+
+go_import_paths="${go_import_paths},Matomix/proxy/proxy.proto=github.com/atomix/api/go/atomix/proxy"
+
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/protocol,plugins=grpc:go       proto/atomix/protocol/*.proto
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/primitive/meta,plugins=grpc:go proto/atomix/primitive/meta/*.proto
 
@@ -43,7 +49,7 @@ go_import_paths="${go_import_paths},Matomix/primitive/primitive.proto=github.com
 go_import_paths="${go_import_paths},Matomix/primitive/meta/object.proto=github.com/atomix/api/go/atomix/primitive/meta"
 go_import_paths="${go_import_paths},Matomix/primitive/meta/timestamp.proto=github.com/atomix/api/go/atomix/primitive/meta"
 
-protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/proxy,plugins=grpc:go proto/atomix/proxy/*.proto
+protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/driver,plugins=grpc:go proto/atomix/driver/*.proto
 
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/primitive/counter,plugins=grpc:go    proto/atomix/primitive/counter/*.proto
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/primitive/election,plugins=grpc:go   proto/atomix/primitive/election/*.proto

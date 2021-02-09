@@ -19,6 +19,7 @@ syntax = "proto3";
 package atomix.primitive;
 
 import "atomix/primitive/meta/timestamp.proto";
+import "atomix/proxy/proxy.proto";
 import "gogoproto/gogo.proto";
 
 message RequestHeaders {
@@ -67,4 +68,65 @@ service PrimitiveService {
 
     // Delete deletes a primitive
     rpc Delete (DeleteRequest) returns (DeleteResponse);
+}
+
+// PrimitiveMeta is a primitive metadata
+message PrimitiveMeta {
+    string name = 1;
+    string type = 2;
+    string driver = 3;
+    map<string, string> options = 4;
+}
+
+message GetPrimitiveRequest {
+    string name = 1;
+}
+
+message GetPrimitiveResponse {
+    PrimitiveMeta primitive = 1 [(gogoproto.nullable) = false];
+}
+
+message ListPrimitivesRequest {
+    string name = 1;
+}
+
+message ListPrimitivesResponse {
+    repeated PrimitiveMeta primitives = 1 [(gogoproto.nullable) = false];
+}
+
+message LookupPrimitiveRequest {
+    string name = 1;
+}
+
+message LookupPrimitiveResponse {
+    atomix.proxy.ProxyMeta proxy = 1 [(gogoproto.nullable) = false];
+}
+
+// Atomix primitive registry service
+service PrimitiveRegistryService {
+    rpc GetPrimitive (GetPrimitiveRequest) returns (GetPrimitiveResponse);
+    rpc ListPrimitives (ListPrimitivesRequest) returns (ListPrimitivesResponse);
+    rpc LookupPrimitive (LookupPrimitiveRequest) returns (LookupPrimitiveResponse);
+}
+
+message AddPrimitiveRequest {
+    PrimitiveMeta primitive = 1 [(gogoproto.nullable) = false];
+}
+
+message AddPrimitiveResponse {
+
+}
+
+message RemovePrimitiveRequest {
+    string name = 1;
+}
+
+message RemovePrimitiveResponse {
+
+}
+
+// Atomix primitive management service
+service PrimitiveManagementService {
+    rpc AddPrimitive (AddPrimitiveRequest) returns (AddPrimitiveResponse);
+    rpc RemovePrimitive (RemovePrimitiveRequest) returns (RemovePrimitiveResponse);
 }

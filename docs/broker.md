@@ -3,40 +3,42 @@
 
 ## Table of Contents
 
-- [atomix/management/coordinator/coordinator.proto](#atomix/management/coordinator/coordinator.proto)
-    - [AddDriverRequest](#atomix.management.coordinator.AddDriverRequest)
-    - [AddDriverResponse](#atomix.management.coordinator.AddDriverResponse)
-    - [AddPrimitiveRequest](#atomix.management.coordinator.AddPrimitiveRequest)
-    - [AddPrimitiveResponse](#atomix.management.coordinator.AddPrimitiveResponse)
-    - [DriverConfig](#atomix.management.coordinator.DriverConfig)
-    - [DriverId](#atomix.management.coordinator.DriverId)
-    - [PrimitiveConfig](#atomix.management.coordinator.PrimitiveConfig)
-    - [PrimitiveId](#atomix.management.coordinator.PrimitiveId)
-    - [ProxyConfig](#atomix.management.coordinator.ProxyConfig)
-    - [RemoveDriverRequest](#atomix.management.coordinator.RemoveDriverRequest)
-    - [RemoveDriverResponse](#atomix.management.coordinator.RemoveDriverResponse)
-    - [RemovePrimitiveRequest](#atomix.management.coordinator.RemovePrimitiveRequest)
-    - [RemovePrimitiveResponse](#atomix.management.coordinator.RemovePrimitiveResponse)
-    - [StorageConfig](#atomix.management.coordinator.StorageConfig)
+- [atomix/management/broker/broker.proto](#atomix/management/broker/broker.proto)
+    - [AddDriverRequest](#atomix.management.broker.AddDriverRequest)
+    - [AddDriverResponse](#atomix.management.broker.AddDriverResponse)
+    - [AddPrimitiveRequest](#atomix.management.broker.AddPrimitiveRequest)
+    - [AddPrimitiveResponse](#atomix.management.broker.AddPrimitiveResponse)
+    - [DriverConfig](#atomix.management.broker.DriverConfig)
+    - [DriverId](#atomix.management.broker.DriverId)
+    - [PrimitiveConfig](#atomix.management.broker.PrimitiveConfig)
+    - [PrimitiveId](#atomix.management.broker.PrimitiveId)
+    - [ProxyConfig](#atomix.management.broker.ProxyConfig)
+    - [RemoveDriverRequest](#atomix.management.broker.RemoveDriverRequest)
+    - [RemoveDriverResponse](#atomix.management.broker.RemoveDriverResponse)
+    - [RemovePrimitiveRequest](#atomix.management.broker.RemovePrimitiveRequest)
+    - [RemovePrimitiveResponse](#atomix.management.broker.RemovePrimitiveResponse)
+    - [StorageConfig](#atomix.management.broker.StorageConfig)
+    - [UpdateDriverRequest](#atomix.management.broker.UpdateDriverRequest)
+    - [UpdateDriverResponse](#atomix.management.broker.UpdateDriverResponse)
   
   
   
-    - [DriverManagementService](#atomix.management.coordinator.DriverManagementService)
-    - [PrimitiveManagementService](#atomix.management.coordinator.PrimitiveManagementService)
+    - [DriverManagementService](#atomix.management.broker.DriverManagementService)
+    - [PrimitiveManagementService](#atomix.management.broker.PrimitiveManagementService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/management/coordinator/coordinator.proto"></a>
+<a name="atomix/management/broker/broker.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/management/coordinator/coordinator.proto
+## atomix/management/broker/broker.proto
 
 
 
-<a name="atomix.management.coordinator.AddDriverRequest"></a>
+<a name="atomix.management.broker.AddDriverRequest"></a>
 
 ### AddDriverRequest
 
@@ -44,14 +46,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| driver | [DriverConfig](#atomix.management.coordinator.DriverConfig) |  |  |
+| driver | [DriverConfig](#atomix.management.broker.DriverConfig) |  |  |
 
 
 
 
 
 
-<a name="atomix.management.coordinator.AddDriverResponse"></a>
+<a name="atomix.management.broker.AddDriverResponse"></a>
 
 ### AddDriverResponse
 
@@ -61,7 +63,7 @@
 
 
 
-<a name="atomix.management.coordinator.AddPrimitiveRequest"></a>
+<a name="atomix.management.broker.AddPrimitiveRequest"></a>
 
 ### AddPrimitiveRequest
 
@@ -69,14 +71,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive | [PrimitiveConfig](#atomix.management.coordinator.PrimitiveConfig) |  |  |
+| primitive | [PrimitiveConfig](#atomix.management.broker.PrimitiveConfig) |  |  |
 
 
 
 
 
 
-<a name="atomix.management.coordinator.AddPrimitiveResponse"></a>
+<a name="atomix.management.broker.AddPrimitiveResponse"></a>
 
 ### AddPrimitiveResponse
 
@@ -86,7 +88,7 @@
 
 
 
-<a name="atomix.management.coordinator.DriverConfig"></a>
+<a name="atomix.management.broker.DriverConfig"></a>
 
 ### DriverConfig
 
@@ -94,7 +96,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [DriverId](#atomix.management.coordinator.DriverId) |  |  |
+| id | [DriverId](#atomix.management.broker.DriverId) |  |  |
 | host | [string](#string) |  |  |
 | port | [int32](#int32) |  |  |
 | protocol | [atomix.protocol.ProtocolConfig](#atomix.protocol.ProtocolConfig) |  |  |
@@ -104,7 +106,7 @@
 
 
 
-<a name="atomix.management.coordinator.DriverId"></a>
+<a name="atomix.management.broker.DriverId"></a>
 
 ### DriverId
 
@@ -121,7 +123,7 @@
 
 
 
-<a name="atomix.management.coordinator.PrimitiveConfig"></a>
+<a name="atomix.management.broker.PrimitiveConfig"></a>
 
 ### PrimitiveConfig
 
@@ -129,16 +131,16 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [PrimitiveId](#atomix.management.coordinator.PrimitiveId) |  |  |
-| driver | [DriverId](#atomix.management.coordinator.DriverId) |  |  |
-| proxy | [ProxyConfig](#atomix.management.coordinator.ProxyConfig) |  |  |
+| id | [PrimitiveId](#atomix.management.broker.PrimitiveId) |  |  |
+| driver | [DriverId](#atomix.management.broker.DriverId) |  |  |
+| proxy | [ProxyConfig](#atomix.management.broker.ProxyConfig) |  |  |
 
 
 
 
 
 
-<a name="atomix.management.coordinator.PrimitiveId"></a>
+<a name="atomix.management.broker.PrimitiveId"></a>
 
 ### PrimitiveId
 
@@ -155,7 +157,7 @@
 
 
 
-<a name="atomix.management.coordinator.ProxyConfig"></a>
+<a name="atomix.management.broker.ProxyConfig"></a>
 
 ### ProxyConfig
 
@@ -172,7 +174,7 @@
 
 
 
-<a name="atomix.management.coordinator.RemoveDriverRequest"></a>
+<a name="atomix.management.broker.RemoveDriverRequest"></a>
 
 ### RemoveDriverRequest
 
@@ -180,14 +182,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| driver_id | [DriverId](#atomix.management.coordinator.DriverId) |  |  |
+| driver_id | [DriverId](#atomix.management.broker.DriverId) |  |  |
 
 
 
 
 
 
-<a name="atomix.management.coordinator.RemoveDriverResponse"></a>
+<a name="atomix.management.broker.RemoveDriverResponse"></a>
 
 ### RemoveDriverResponse
 
@@ -197,7 +199,7 @@
 
 
 
-<a name="atomix.management.coordinator.RemovePrimitiveRequest"></a>
+<a name="atomix.management.broker.RemovePrimitiveRequest"></a>
 
 ### RemovePrimitiveRequest
 
@@ -205,14 +207,14 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive_id | [PrimitiveId](#atomix.management.coordinator.PrimitiveId) |  |  |
+| primitive_id | [PrimitiveId](#atomix.management.broker.PrimitiveId) |  |  |
 
 
 
 
 
 
-<a name="atomix.management.coordinator.RemovePrimitiveResponse"></a>
+<a name="atomix.management.broker.RemovePrimitiveResponse"></a>
 
 ### RemovePrimitiveResponse
 
@@ -222,7 +224,7 @@
 
 
 
-<a name="atomix.management.coordinator.StorageConfig"></a>
+<a name="atomix.management.broker.StorageConfig"></a>
 
 ### StorageConfig
 
@@ -237,33 +239,59 @@
 
 
 
- 
+
+<a name="atomix.management.broker.UpdateDriverRequest"></a>
+
+### UpdateDriverRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| driver | [DriverConfig](#atomix.management.broker.DriverConfig) |  |  |
+
+
+
+
+
+
+<a name="atomix.management.broker.UpdateDriverResponse"></a>
+
+### UpdateDriverResponse
+
+
+
+
+
 
  
 
  
 
+ 
 
-<a name="atomix.management.coordinator.DriverManagementService"></a>
+
+<a name="atomix.management.broker.DriverManagementService"></a>
 
 ### DriverManagementService
 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| AddDriver | [AddDriverRequest](#atomix.management.coordinator.AddDriverRequest) | [AddDriverResponse](#atomix.management.coordinator.AddDriverResponse) |  |
-| RemoveDriver | [RemoveDriverRequest](#atomix.management.coordinator.RemoveDriverRequest) | [RemoveDriverResponse](#atomix.management.coordinator.RemoveDriverResponse) |  |
+| AddDriver | [AddDriverRequest](#atomix.management.broker.AddDriverRequest) | [AddDriverResponse](#atomix.management.broker.AddDriverResponse) |  |
+| UpdateDriver | [UpdateDriverRequest](#atomix.management.broker.UpdateDriverRequest) | [UpdateDriverResponse](#atomix.management.broker.UpdateDriverResponse) |  |
+| RemoveDriver | [RemoveDriverRequest](#atomix.management.broker.RemoveDriverRequest) | [RemoveDriverResponse](#atomix.management.broker.RemoveDriverResponse) |  |
 
 
-<a name="atomix.management.coordinator.PrimitiveManagementService"></a>
+<a name="atomix.management.broker.PrimitiveManagementService"></a>
 
 ### PrimitiveManagementService
 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| AddPrimitive | [AddPrimitiveRequest](#atomix.management.coordinator.AddPrimitiveRequest) | [AddPrimitiveResponse](#atomix.management.coordinator.AddPrimitiveResponse) |  |
-| RemovePrimitive | [RemovePrimitiveRequest](#atomix.management.coordinator.RemovePrimitiveRequest) | [RemovePrimitiveResponse](#atomix.management.coordinator.RemovePrimitiveResponse) |  |
+| AddPrimitive | [AddPrimitiveRequest](#atomix.management.broker.AddPrimitiveRequest) | [AddPrimitiveResponse](#atomix.management.broker.AddPrimitiveResponse) |  |
+| RemovePrimitive | [RemovePrimitiveRequest](#atomix.management.broker.RemovePrimitiveRequest) | [RemovePrimitiveResponse](#atomix.management.broker.RemovePrimitiveResponse) |  |
 
  
 

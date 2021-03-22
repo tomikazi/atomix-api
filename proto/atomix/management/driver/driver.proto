@@ -21,42 +21,38 @@ package atomix.management.driver;
 import "atomix/protocol/protocol.proto";
 import "gogoproto/gogo.proto";
 
-message PrimitiveConfig {
-    PrimitiveId id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "ID"];
-    ProxyConfig proxy = 2 [(gogoproto.nullable) = false];
-}
-
-message PrimitiveId {
+message ProxyId {
     string namespace = 1;
     string name = 2;
     string type = 3;
 }
 
 message ProxyConfig {
-    bool read = 1;
-    bool write = 2;
-    bool cache = 3;
+    ProxyId id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "ID"];
+    bool read = 2;
+    bool write = 3;
+    bool cache = 4;
 }
 
-message AddPrimitiveRequest {
-    PrimitiveConfig primitive = 1 [(gogoproto.nullable) = false];
+message AddProxyRequest {
+    ProxyConfig proxy = 1 [(gogoproto.nullable) = false];
 }
 
-message AddPrimitiveResponse {
-
-}
-
-message RemovePrimitiveRequest {
-    PrimitiveId primitive_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "PrimitiveID"];
-}
-
-message RemovePrimitiveResponse {
+message AddProxyResponse {
 
 }
 
-service PrimitiveManagementService {
-    rpc AddPrimitive (AddPrimitiveRequest) returns (AddPrimitiveResponse);
-    rpc RemovePrimitive (RemovePrimitiveRequest) returns (RemovePrimitiveResponse);
+message RemoveProxyRequest {
+    ProxyId proxy_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "ProxyID"];
+}
+
+message RemoveProxyResponse {
+
+}
+
+service ProxyManagementService {
+    rpc AddProxy (AddProxyRequest) returns (AddProxyResponse);
+    rpc RemoveProxy (RemoveProxyRequest) returns (RemoveProxyResponse);
 }
 
 message DriverConfig {

@@ -16,7 +16,7 @@ limitations under the License.
 
 syntax = "proto3";
 
-package atomix.management.coordinator;
+package atomix.management.broker;
 
 import "atomix/protocol/protocol.proto";
 import "gogoproto/gogo.proto";
@@ -86,6 +86,14 @@ message AddDriverResponse {
 
 }
 
+message UpdateDriverRequest {
+    DriverConfig driver = 1 [(gogoproto.nullable) = false];
+}
+
+message UpdateDriverResponse {
+
+}
+
 message RemoveDriverRequest {
     DriverId driver_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "DriverID"];
 }
@@ -96,5 +104,6 @@ message RemoveDriverResponse {
 
 service DriverManagementService {
     rpc AddDriver (AddDriverRequest) returns (AddDriverResponse);
+    rpc UpdateDriver (UpdateDriverRequest) returns (UpdateDriverResponse);
     rpc RemoveDriver (RemoveDriverRequest) returns (RemoveDriverResponse);
 }

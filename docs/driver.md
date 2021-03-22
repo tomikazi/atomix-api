@@ -4,21 +4,20 @@
 ## Table of Contents
 
 - [atomix/management/driver/driver.proto](#atomix/management/driver/driver.proto)
-    - [AddPrimitiveRequest](#atomix.management.driver.AddPrimitiveRequest)
-    - [AddPrimitiveResponse](#atomix.management.driver.AddPrimitiveResponse)
+    - [AddProxyRequest](#atomix.management.driver.AddProxyRequest)
+    - [AddProxyResponse](#atomix.management.driver.AddProxyResponse)
     - [ConfigureDriverRequest](#atomix.management.driver.ConfigureDriverRequest)
     - [ConfigureDriverResponse](#atomix.management.driver.ConfigureDriverResponse)
     - [DriverConfig](#atomix.management.driver.DriverConfig)
-    - [PrimitiveConfig](#atomix.management.driver.PrimitiveConfig)
-    - [PrimitiveId](#atomix.management.driver.PrimitiveId)
     - [ProxyConfig](#atomix.management.driver.ProxyConfig)
-    - [RemovePrimitiveRequest](#atomix.management.driver.RemovePrimitiveRequest)
-    - [RemovePrimitiveResponse](#atomix.management.driver.RemovePrimitiveResponse)
+    - [ProxyId](#atomix.management.driver.ProxyId)
+    - [RemoveProxyRequest](#atomix.management.driver.RemoveProxyRequest)
+    - [RemoveProxyResponse](#atomix.management.driver.RemoveProxyResponse)
   
   
   
     - [DriverManagementService](#atomix.management.driver.DriverManagementService)
-    - [PrimitiveManagementService](#atomix.management.driver.PrimitiveManagementService)
+    - [ProxyManagementService](#atomix.management.driver.ProxyManagementService)
   
 
 - [Scalar Value Types](#scalar-value-types)
@@ -32,24 +31,24 @@
 
 
 
-<a name="atomix.management.driver.AddPrimitiveRequest"></a>
+<a name="atomix.management.driver.AddProxyRequest"></a>
 
-### AddPrimitiveRequest
+### AddProxyRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive | [PrimitiveConfig](#atomix.management.driver.PrimitiveConfig) |  |  |
+| proxy | [ProxyConfig](#atomix.management.driver.ProxyConfig) |  |  |
 
 
 
 
 
 
-<a name="atomix.management.driver.AddPrimitiveResponse"></a>
+<a name="atomix.management.driver.AddProxyResponse"></a>
 
-### AddPrimitiveResponse
+### AddProxyResponse
 
 
 
@@ -97,25 +96,27 @@
 
 
 
-<a name="atomix.management.driver.PrimitiveConfig"></a>
+<a name="atomix.management.driver.ProxyConfig"></a>
 
-### PrimitiveConfig
+### ProxyConfig
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [PrimitiveId](#atomix.management.driver.PrimitiveId) |  |  |
-| proxy | [ProxyConfig](#atomix.management.driver.ProxyConfig) |  |  |
+| id | [ProxyId](#atomix.management.driver.ProxyId) |  |  |
+| read | [bool](#bool) |  |  |
+| write | [bool](#bool) |  |  |
+| cache | [bool](#bool) |  |  |
 
 
 
 
 
 
-<a name="atomix.management.driver.PrimitiveId"></a>
+<a name="atomix.management.driver.ProxyId"></a>
 
-### PrimitiveId
+### ProxyId
 
 
 
@@ -130,41 +131,24 @@
 
 
 
-<a name="atomix.management.driver.ProxyConfig"></a>
+<a name="atomix.management.driver.RemoveProxyRequest"></a>
 
-### ProxyConfig
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| read | [bool](#bool) |  |  |
-| write | [bool](#bool) |  |  |
-| cache | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="atomix.management.driver.RemovePrimitiveRequest"></a>
-
-### RemovePrimitiveRequest
+### RemoveProxyRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive_id | [PrimitiveId](#atomix.management.driver.PrimitiveId) |  |  |
+| proxy_id | [ProxyId](#atomix.management.driver.ProxyId) |  |  |
 
 
 
 
 
 
-<a name="atomix.management.driver.RemovePrimitiveResponse"></a>
+<a name="atomix.management.driver.RemoveProxyResponse"></a>
 
-### RemovePrimitiveResponse
+### RemoveProxyResponse
 
 
 
@@ -188,15 +172,15 @@
 | ConfigureDriver | [ConfigureDriverRequest](#atomix.management.driver.ConfigureDriverRequest) | [ConfigureDriverResponse](#atomix.management.driver.ConfigureDriverResponse) |  |
 
 
-<a name="atomix.management.driver.PrimitiveManagementService"></a>
+<a name="atomix.management.driver.ProxyManagementService"></a>
 
-### PrimitiveManagementService
+### ProxyManagementService
 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| AddPrimitive | [AddPrimitiveRequest](#atomix.management.driver.AddPrimitiveRequest) | [AddPrimitiveResponse](#atomix.management.driver.AddPrimitiveResponse) |  |
-| RemovePrimitive | [RemovePrimitiveRequest](#atomix.management.driver.RemovePrimitiveRequest) | [RemovePrimitiveResponse](#atomix.management.driver.RemovePrimitiveResponse) |  |
+| AddProxy | [AddProxyRequest](#atomix.management.driver.AddProxyRequest) | [AddProxyResponse](#atomix.management.driver.AddProxyResponse) |  |
+| RemoveProxy | [RemoveProxyRequest](#atomix.management.driver.RemoveProxyRequest) | [RemoveProxyResponse](#atomix.management.driver.RemoveProxyResponse) |  |
 
  
 

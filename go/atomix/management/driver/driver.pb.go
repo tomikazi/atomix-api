@@ -28,76 +28,24 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-type PrimitiveConfig struct {
-	ID    PrimitiveId `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
-	Proxy ProxyConfig `protobuf:"bytes,2,opt,name=proxy,proto3" json:"proxy"`
-}
-
-func (m *PrimitiveConfig) Reset()         { *m = PrimitiveConfig{} }
-func (m *PrimitiveConfig) String() string { return proto.CompactTextString(m) }
-func (*PrimitiveConfig) ProtoMessage()    {}
-func (*PrimitiveConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_475f4bfeda7e9685, []int{0}
-}
-func (m *PrimitiveConfig) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *PrimitiveConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_PrimitiveConfig.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *PrimitiveConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PrimitiveConfig.Merge(m, src)
-}
-func (m *PrimitiveConfig) XXX_Size() int {
-	return m.Size()
-}
-func (m *PrimitiveConfig) XXX_DiscardUnknown() {
-	xxx_messageInfo_PrimitiveConfig.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_PrimitiveConfig proto.InternalMessageInfo
-
-func (m *PrimitiveConfig) GetID() PrimitiveId {
-	if m != nil {
-		return m.ID
-	}
-	return PrimitiveId{}
-}
-
-func (m *PrimitiveConfig) GetProxy() ProxyConfig {
-	if m != nil {
-		return m.Proxy
-	}
-	return ProxyConfig{}
-}
-
-type PrimitiveId struct {
+type ProxyId struct {
 	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
 	Name      string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
 	Type      string `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
 }
 
-func (m *PrimitiveId) Reset()         { *m = PrimitiveId{} }
-func (m *PrimitiveId) String() string { return proto.CompactTextString(m) }
-func (*PrimitiveId) ProtoMessage()    {}
-func (*PrimitiveId) Descriptor() ([]byte, []int) {
-	return fileDescriptor_475f4bfeda7e9685, []int{1}
+func (m *ProxyId) Reset()         { *m = ProxyId{} }
+func (m *ProxyId) String() string { return proto.CompactTextString(m) }
+func (*ProxyId) ProtoMessage()    {}
+func (*ProxyId) Descriptor() ([]byte, []int) {
+	return fileDescriptor_475f4bfeda7e9685, []int{0}
 }
-func (m *PrimitiveId) XXX_Unmarshal(b []byte) error {
+func (m *ProxyId) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *PrimitiveId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *ProxyId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_PrimitiveId.Marshal(b, m, deterministic)
+		return xxx_messageInfo_ProxyId.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -107,33 +55,33 @@ func (m *PrimitiveId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) 
 		return b[:n], nil
 	}
 }
-func (m *PrimitiveId) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PrimitiveId.Merge(m, src)
+func (m *ProxyId) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ProxyId.Merge(m, src)
 }
-func (m *PrimitiveId) XXX_Size() int {
+func (m *ProxyId) XXX_Size() int {
 	return m.Size()
 }
-func (m *PrimitiveId) XXX_DiscardUnknown() {
-	xxx_messageInfo_PrimitiveId.DiscardUnknown(m)
+func (m *ProxyId) XXX_DiscardUnknown() {
+	xxx_messageInfo_ProxyId.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_PrimitiveId proto.InternalMessageInfo
+var xxx_messageInfo_ProxyId proto.InternalMessageInfo
 
-func (m *PrimitiveId) GetNamespace() string {
+func (m *ProxyId) GetNamespace() string {
 	if m != nil {
 		return m.Namespace
 	}
 	return ""
 }
 
-func (m *PrimitiveId) GetName() string {
+func (m *ProxyId) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-func (m *PrimitiveId) GetType() string {
+func (m *ProxyId) GetType() string {
 	if m != nil {
 		return m.Type
 	}
@@ -141,16 +89,17 @@ func (m *PrimitiveId) GetType() string {
 }
 
 type ProxyConfig struct {
-	Read  bool `protobuf:"varint,1,opt,name=read,proto3" json:"read,omitempty"`
-	Write bool `protobuf:"varint,2,opt,name=write,proto3" json:"write,omitempty"`
-	Cache bool `protobuf:"varint,3,opt,name=cache,proto3" json:"cache,omitempty"`
+	ID    ProxyId `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
+	Read  bool    `protobuf:"varint,2,opt,name=read,proto3" json:"read,omitempty"`
+	Write bool    `protobuf:"varint,3,opt,name=write,proto3" json:"write,omitempty"`
+	Cache bool    `protobuf:"varint,4,opt,name=cache,proto3" json:"cache,omitempty"`
 }
 
 func (m *ProxyConfig) Reset()         { *m = ProxyConfig{} }
 func (m *ProxyConfig) String() string { return proto.CompactTextString(m) }
 func (*ProxyConfig) ProtoMessage()    {}
 func (*ProxyConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_475f4bfeda7e9685, []int{2}
+	return fileDescriptor_475f4bfeda7e9685, []int{1}
 }
 func (m *ProxyConfig) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -179,6 +128,13 @@ func (m *ProxyConfig) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_ProxyConfig proto.InternalMessageInfo
 
+func (m *ProxyConfig) GetID() ProxyId {
+	if m != nil {
+		return m.ID
+	}
+	return ProxyId{}
+}
+
 func (m *ProxyConfig) GetRead() bool {
 	if m != nil {
 		return m.Read
@@ -200,22 +156,65 @@ func (m *ProxyConfig) GetCache() bool {
 	return false
 }
 
-type AddPrimitiveRequest struct {
-	Primitive PrimitiveConfig `protobuf:"bytes,1,opt,name=primitive,proto3" json:"primitive"`
+type AddProxyRequest struct {
+	Proxy ProxyConfig `protobuf:"bytes,1,opt,name=proxy,proto3" json:"proxy"`
 }
 
-func (m *AddPrimitiveRequest) Reset()         { *m = AddPrimitiveRequest{} }
-func (m *AddPrimitiveRequest) String() string { return proto.CompactTextString(m) }
-func (*AddPrimitiveRequest) ProtoMessage()    {}
-func (*AddPrimitiveRequest) Descriptor() ([]byte, []int) {
+func (m *AddProxyRequest) Reset()         { *m = AddProxyRequest{} }
+func (m *AddProxyRequest) String() string { return proto.CompactTextString(m) }
+func (*AddProxyRequest) ProtoMessage()    {}
+func (*AddProxyRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_475f4bfeda7e9685, []int{2}
+}
+func (m *AddProxyRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *AddProxyRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_AddProxyRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *AddProxyRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddProxyRequest.Merge(m, src)
+}
+func (m *AddProxyRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *AddProxyRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_AddProxyRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AddProxyRequest proto.InternalMessageInfo
+
+func (m *AddProxyRequest) GetProxy() ProxyConfig {
+	if m != nil {
+		return m.Proxy
+	}
+	return ProxyConfig{}
+}
+
+type AddProxyResponse struct {
+}
+
+func (m *AddProxyResponse) Reset()         { *m = AddProxyResponse{} }
+func (m *AddProxyResponse) String() string { return proto.CompactTextString(m) }
+func (*AddProxyResponse) ProtoMessage()    {}
+func (*AddProxyResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_475f4bfeda7e9685, []int{3}
 }
-func (m *AddPrimitiveRequest) XXX_Unmarshal(b []byte) error {
+func (m *AddProxyResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *AddPrimitiveRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *AddProxyResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_AddPrimitiveRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_AddProxyResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -225,40 +224,34 @@ func (m *AddPrimitiveRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte,
 		return b[:n], nil
 	}
 }
-func (m *AddPrimitiveRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AddPrimitiveRequest.Merge(m, src)
+func (m *AddProxyResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AddProxyResponse.Merge(m, src)
 }
-func (m *AddPrimitiveRequest) XXX_Size() int {
+func (m *AddProxyResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *AddPrimitiveRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_AddPrimitiveRequest.DiscardUnknown(m)
+func (m *AddProxyResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_AddProxyResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_AddPrimitiveRequest proto.InternalMessageInfo
+var xxx_messageInfo_AddProxyResponse proto.InternalMessageInfo
 
-func (m *AddPrimitiveRequest) GetPrimitive() PrimitiveConfig {
-	if m != nil {
-		return m.Primitive
-	}
-	return PrimitiveConfig{}
+type RemoveProxyRequest struct {
+	ProxyID ProxyId `protobuf:"bytes,1,opt,name=proxy_id,json=proxyId,proto3" json:"proxy_id"`
 }
 
-type AddPrimitiveResponse struct {
-}
-
-func (m *AddPrimitiveResponse) Reset()         { *m = AddPrimitiveResponse{} }
-func (m *AddPrimitiveResponse) String() string { return proto.CompactTextString(m) }
-func (*AddPrimitiveResponse) ProtoMessage()    {}
-func (*AddPrimitiveResponse) Descriptor() ([]byte, []int) {
+func (m *RemoveProxyRequest) Reset()         { *m = RemoveProxyRequest{} }
+func (m *RemoveProxyRequest) String() string { return proto.CompactTextString(m) }
+func (*RemoveProxyRequest) ProtoMessage()    {}
+func (*RemoveProxyRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_475f4bfeda7e9685, []int{4}
 }
-func (m *AddPrimitiveResponse) XXX_Unmarshal(b []byte) error {
+func (m *RemoveProxyRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *AddPrimitiveResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *RemoveProxyRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_AddPrimitiveResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_RemoveProxyRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -268,34 +261,40 @@ func (m *AddPrimitiveResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte
 		return b[:n], nil
 	}
 }
-func (m *AddPrimitiveResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AddPrimitiveResponse.Merge(m, src)
+func (m *RemoveProxyRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RemoveProxyRequest.Merge(m, src)
 }
-func (m *AddPrimitiveResponse) XXX_Size() int {
+func (m *RemoveProxyRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *AddPrimitiveResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_AddPrimitiveResponse.DiscardUnknown(m)
+func (m *RemoveProxyRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_RemoveProxyRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_AddPrimitiveResponse proto.InternalMessageInfo
+var xxx_messageInfo_RemoveProxyRequest proto.InternalMessageInfo
 
-type RemovePrimitiveRequest struct {
-	PrimitiveID PrimitiveId `protobuf:"bytes,1,opt,name=primitive_id,json=primitiveId,proto3" json:"primitive_id"`
+func (m *RemoveProxyRequest) GetProxyID() ProxyId {
+	if m != nil {
+		return m.ProxyID
+	}
+	return ProxyId{}
 }
 
-func (m *RemovePrimitiveRequest) Reset()         { *m = RemovePrimitiveRequest{} }
-func (m *RemovePrimitiveRequest) String() string { return proto.CompactTextString(m) }
-func (*RemovePrimitiveRequest) ProtoMessage()    {}
-func (*RemovePrimitiveRequest) Descriptor() ([]byte, []int) {
+type RemoveProxyResponse struct {
+}
+
+func (m *RemoveProxyResponse) Reset()         { *m = RemoveProxyResponse{} }
+func (m *RemoveProxyResponse) String() string { return proto.CompactTextString(m) }
+func (*RemoveProxyResponse) ProtoMessage()    {}
+func (*RemoveProxyResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_475f4bfeda7e9685, []int{5}
 }
-func (m *RemovePrimitiveRequest) XXX_Unmarshal(b []byte) error {
+func (m *RemoveProxyResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *RemovePrimitiveRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *RemoveProxyResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_RemovePrimitiveRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_RemoveProxyResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -305,60 +304,17 @@ func (m *RemovePrimitiveRequest) XXX_Marshal(b []byte, deterministic bool) ([]by
 		return b[:n], nil
 	}
 }
-func (m *RemovePrimitiveRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RemovePrimitiveRequest.Merge(m, src)
+func (m *RemoveProxyResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_RemoveProxyResponse.Merge(m, src)
 }
-func (m *RemovePrimitiveRequest) XXX_Size() int {
+func (m *RemoveProxyResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *RemovePrimitiveRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_RemovePrimitiveRequest.DiscardUnknown(m)
+func (m *RemoveProxyResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_RemoveProxyResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_RemovePrimitiveRequest proto.InternalMessageInfo
-
-func (m *RemovePrimitiveRequest) GetPrimitiveID() PrimitiveId {
-	if m != nil {
-		return m.PrimitiveID
-	}
-	return PrimitiveId{}
-}
-
-type RemovePrimitiveResponse struct {
-}
-
-func (m *RemovePrimitiveResponse) Reset()         { *m = RemovePrimitiveResponse{} }
-func (m *RemovePrimitiveResponse) String() string { return proto.CompactTextString(m) }
-func (*RemovePrimitiveResponse) ProtoMessage()    {}
-func (*RemovePrimitiveResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_475f4bfeda7e9685, []int{6}
-}
-func (m *RemovePrimitiveResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *RemovePrimitiveResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_RemovePrimitiveResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *RemovePrimitiveResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RemovePrimitiveResponse.Merge(m, src)
-}
-func (m *RemovePrimitiveResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *RemovePrimitiveResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_RemovePrimitiveResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RemovePrimitiveResponse proto.InternalMessageInfo
+var xxx_messageInfo_RemoveProxyResponse proto.InternalMessageInfo
 
 type DriverConfig struct {
 	Protocol *protocol.ProtocolConfig `protobuf:"bytes,1,opt,name=protocol,proto3" json:"protocol,omitempty"`
@@ -368,7 +324,7 @@ func (m *DriverConfig) Reset()         { *m = DriverConfig{} }
 func (m *DriverConfig) String() string { return proto.CompactTextString(m) }
 func (*DriverConfig) ProtoMessage()    {}
 func (*DriverConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_475f4bfeda7e9685, []int{7}
+	return fileDescriptor_475f4bfeda7e9685, []int{6}
 }
 func (m *DriverConfig) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -412,7 +368,7 @@ func (m *ConfigureDriverRequest) Reset()         { *m = ConfigureDriverRequest{}
 func (m *ConfigureDriverRequest) String() string { return proto.CompactTextString(m) }
 func (*ConfigureDriverRequest) ProtoMessage()    {}
 func (*ConfigureDriverRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_475f4bfeda7e9685, []int{8}
+	return fileDescriptor_475f4bfeda7e9685, []int{7}
 }
 func (m *ConfigureDriverRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -455,7 +411,7 @@ func (m *ConfigureDriverResponse) Reset()         { *m = ConfigureDriverResponse
 func (m *ConfigureDriverResponse) String() string { return proto.CompactTextString(m) }
 func (*ConfigureDriverResponse) ProtoMessage()    {}
 func (*ConfigureDriverResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_475f4bfeda7e9685, []int{9}
+	return fileDescriptor_475f4bfeda7e9685, []int{8}
 }
 func (m *ConfigureDriverResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -485,13 +441,12 @@ func (m *ConfigureDriverResponse) XXX_DiscardUnknown() {
 var xxx_messageInfo_ConfigureDriverResponse proto.InternalMessageInfo
 
 func init() {
-	proto.RegisterType((*PrimitiveConfig)(nil), "atomix.management.driver.PrimitiveConfig")
-	proto.RegisterType((*PrimitiveId)(nil), "atomix.management.driver.PrimitiveId")
+	proto.RegisterType((*ProxyId)(nil), "atomix.management.driver.ProxyId")
 	proto.RegisterType((*ProxyConfig)(nil), "atomix.management.driver.ProxyConfig")
-	proto.RegisterType((*AddPrimitiveRequest)(nil), "atomix.management.driver.AddPrimitiveRequest")
-	proto.RegisterType((*AddPrimitiveResponse)(nil), "atomix.management.driver.AddPrimitiveResponse")
-	proto.RegisterType((*RemovePrimitiveRequest)(nil), "atomix.management.driver.RemovePrimitiveRequest")
-	proto.RegisterType((*RemovePrimitiveResponse)(nil), "atomix.management.driver.RemovePrimitiveResponse")
+	proto.RegisterType((*AddProxyRequest)(nil), "atomix.management.driver.AddProxyRequest")
+	proto.RegisterType((*AddProxyResponse)(nil), "atomix.management.driver.AddProxyResponse")
+	proto.RegisterType((*RemoveProxyRequest)(nil), "atomix.management.driver.RemoveProxyRequest")
+	proto.RegisterType((*RemoveProxyResponse)(nil), "atomix.management.driver.RemoveProxyResponse")
 	proto.RegisterType((*DriverConfig)(nil), "atomix.management.driver.DriverConfig")
 	proto.RegisterType((*ConfigureDriverRequest)(nil), "atomix.management.driver.ConfigureDriverRequest")
 	proto.RegisterType((*ConfigureDriverResponse)(nil), "atomix.management.driver.ConfigureDriverResponse")
@@ -502,40 +457,38 @@ func init() {
 }
 
 var fileDescriptor_475f4bfeda7e9685 = []byte{
-	// 514 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x52, 0xc1, 0x6e, 0xd3, 0x40,
-	0x10, 0x8d, 0x4d, 0x5b, 0x25, 0xd3, 0x48, 0x91, 0xb6, 0x51, 0x6a, 0x2c, 0xe4, 0x20, 0x4b, 0x45,
-	0x70, 0xc0, 0x81, 0x72, 0xe4, 0x94, 0x90, 0x4b, 0x85, 0x22, 0x55, 0xdb, 0x33, 0x20, 0x63, 0x2f,
-	0x61, 0x25, 0xec, 0x35, 0x1b, 0xd7, 0x4d, 0xce, 0xfc, 0x00, 0x9c, 0xf8, 0xa5, 0x1e, 0x7b, 0xe4,
-	0x54, 0xa1, 0xe4, 0x47, 0xd0, 0x7a, 0x36, 0x9b, 0xb4, 0x89, 0x4b, 0x7b, 0xf2, 0xec, 0x78, 0xe6,
-	0xbd, 0x37, 0x6f, 0x06, 0x8e, 0xc2, 0x5c, 0x24, 0x7c, 0xda, 0x4b, 0xc2, 0x34, 0x1c, 0xb3, 0x84,
-	0xa5, 0x79, 0x2f, 0x96, 0xbc, 0x60, 0x52, 0x7f, 0x82, 0x4c, 0x8a, 0x5c, 0x10, 0x07, 0xcb, 0x82,
-	0x55, 0x59, 0x80, 0xff, 0x5d, 0x4f, 0x03, 0x94, 0x75, 0x91, 0xf8, 0x66, 0x02, 0xec, 0x74, 0xdb,
-	0x63, 0x31, 0x16, 0x65, 0xd8, 0x53, 0x11, 0x66, 0xfd, 0xdf, 0x16, 0xb4, 0x4e, 0x25, 0x4f, 0x78,
-	0xce, 0x0b, 0xf6, 0x4e, 0xa4, 0x5f, 0xf8, 0x98, 0xf4, 0xc1, 0xe6, 0xb1, 0x63, 0x3d, 0xb5, 0x9e,
-	0xef, 0x1f, 0x1f, 0x05, 0x55, 0x84, 0x81, 0x69, 0x3b, 0x89, 0x07, 0x70, 0x79, 0xdd, 0xad, 0xcd,
-	0xaf, 0xbb, 0xf6, 0xc9, 0x90, 0xda, 0x3c, 0x26, 0x7d, 0xd8, 0xcd, 0xa4, 0x98, 0xce, 0x1c, 0xfb,
-	0xff, 0x28, 0x62, 0x3a, 0x43, 0xe2, 0xc1, 0x8e, 0x42, 0xa1, 0xd8, 0xe9, 0x9f, 0xc1, 0xfe, 0x1a,
-	0x03, 0x79, 0x02, 0x8d, 0x34, 0x4c, 0xd8, 0x24, 0x0b, 0x23, 0x56, 0x6a, 0x6b, 0xd0, 0x55, 0x82,
-	0x10, 0xd8, 0x51, 0x8f, 0x92, 0xae, 0x41, 0xcb, 0x58, 0xe5, 0xf2, 0x59, 0xc6, 0x9c, 0x47, 0x98,
-	0x53, 0xb1, 0x3f, 0x52, 0xa0, 0x86, 0x50, 0x95, 0x48, 0x16, 0xe2, 0xac, 0x75, 0x5a, 0xc6, 0xa4,
-	0x0d, 0xbb, 0x17, 0x92, 0xe7, 0x88, 0x55, 0xa7, 0xf8, 0x50, 0xd9, 0x28, 0x8c, 0xbe, 0x22, 0x5a,
-	0x9d, 0xe2, 0xc3, 0x8f, 0xe1, 0xa0, 0x1f, 0xc7, 0x46, 0x26, 0x65, 0xdf, 0xcf, 0xd9, 0x24, 0x27,
-	0x23, 0x68, 0x64, 0xcb, 0x9c, 0xf6, 0xf1, 0xc5, 0x3d, 0x7c, 0xbc, 0xe1, 0xc2, 0x0a, 0xc1, 0xef,
-	0x40, 0xfb, 0x26, 0xcb, 0x24, 0x13, 0xe9, 0x84, 0xf9, 0x17, 0xd0, 0xa1, 0x2c, 0x11, 0x05, 0xdb,
-	0x10, 0xf0, 0x01, 0x9a, 0xa6, 0xfd, 0xd3, 0x43, 0x77, 0x79, 0xa0, 0x77, 0xb9, 0x66, 0xff, 0x90,
-	0xee, 0x67, 0xab, 0x0a, 0xff, 0x31, 0x1c, 0x6e, 0x10, 0x6b, 0x4d, 0xef, 0xa1, 0x39, 0x2c, 0x21,
-	0xb5, 0xc3, 0x6f, 0xa1, 0xbe, 0xbc, 0x43, 0xad, 0xa2, 0xbb, 0x54, 0x61, 0xee, 0xf3, 0x54, 0x07,
-	0xd8, 0x42, 0x4d, 0x83, 0xff, 0x11, 0x3a, 0x98, 0x3b, 0x97, 0x0c, 0x51, 0x97, 0x03, 0x0e, 0x61,
-	0x0f, 0x95, 0x6b, 0xd0, 0x67, 0xd5, 0xa3, 0xad, 0xcb, 0xd1, 0xde, 0xea, 0x5e, 0x35, 0xc7, 0x06,
-	0x3e, 0xce, 0x71, 0xfc, 0xc3, 0x06, 0xd7, 0x4c, 0x37, 0x32, 0xa0, 0x67, 0x4c, 0x16, 0x3c, 0x62,
-	0x24, 0x81, 0xe6, 0xfa, 0x4a, 0xc8, 0xcb, 0x6a, 0xfe, 0x2d, 0x07, 0xe2, 0x06, 0xf7, 0x2d, 0x47,
-	0x35, 0xa4, 0x80, 0xd6, 0x2d, 0xc3, 0xc9, 0xab, 0x6a, 0x88, 0xed, 0x47, 0xe1, 0xbe, 0x7e, 0x40,
-	0x87, 0x76, 0xe1, 0x97, 0x05, 0x87, 0x68, 0xcc, 0xa6, 0x05, 0x05, 0xb4, 0x6e, 0x99, 0x77, 0x97,
-	0xa6, 0xed, 0x7b, 0xbc, 0x4b, 0x53, 0xc5, 0x66, 0x06, 0xce, 0xe5, 0xdc, 0xb3, 0xae, 0xe6, 0x9e,
-	0xf5, 0x77, 0xee, 0x59, 0x3f, 0x17, 0x5e, 0xed, 0x6a, 0xe1, 0xd5, 0xfe, 0x2c, 0xbc, 0xda, 0xe7,
-	0xbd, 0xf2, 0x70, 0xde, 0xfc, 0x0b, 0x00, 0x00, 0xff, 0xff, 0x87, 0xac, 0x18, 0x39, 0x4b, 0x05,
-	0x00, 0x00,
+	// 492 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x52, 0xcd, 0x6e, 0xd3, 0x40,
+	0x10, 0x8e, 0x43, 0xda, 0xa6, 0x13, 0xa4, 0xa0, 0xa5, 0xb4, 0xc6, 0x42, 0x0e, 0x58, 0x2a, 0x02,
+	0x04, 0x0e, 0x94, 0x23, 0xe2, 0xd0, 0x90, 0x4b, 0x85, 0x2a, 0xaa, 0x85, 0x33, 0xc8, 0xd8, 0x43,
+	0x30, 0xc2, 0x5e, 0xb3, 0x71, 0x43, 0xfb, 0x0e, 0x1c, 0xe0, 0xad, 0x7a, 0xec, 0x91, 0x53, 0x85,
+	0x92, 0x03, 0xaf, 0x81, 0x76, 0x66, 0x93, 0xb4, 0x0d, 0x56, 0xdb, 0x93, 0x67, 0x66, 0x67, 0xbe,
+	0x9f, 0x19, 0xc3, 0x66, 0x54, 0xaa, 0x2c, 0x3d, 0xe8, 0x66, 0x51, 0x1e, 0x0d, 0x30, 0xc3, 0xbc,
+	0xec, 0x26, 0x3a, 0x1d, 0xa1, 0xb6, 0x9f, 0xb0, 0xd0, 0xaa, 0x54, 0xc2, 0xe5, 0xb6, 0x70, 0xde,
+	0x16, 0xf2, 0xbb, 0xe7, 0x5b, 0x00, 0xea, 0x8b, 0xd5, 0xd7, 0x59, 0xc0, 0x93, 0xde, 0xda, 0x40,
+	0x0d, 0x14, 0x85, 0x5d, 0x13, 0x71, 0x35, 0x78, 0x03, 0x2b, 0x7b, 0x5a, 0x1d, 0x1c, 0xee, 0x24,
+	0xe2, 0x0e, 0xac, 0xe6, 0x51, 0x86, 0xc3, 0x22, 0x8a, 0xd1, 0x75, 0xee, 0x3a, 0x0f, 0x56, 0xe5,
+	0xbc, 0x20, 0x04, 0x34, 0x4c, 0xe2, 0xd6, 0xe9, 0x81, 0x62, 0x53, 0x2b, 0x0f, 0x0b, 0x74, 0xaf,
+	0x71, 0xcd, 0xc4, 0xc1, 0x0f, 0x07, 0x5a, 0x84, 0xf8, 0x4a, 0xe5, 0x9f, 0xd2, 0x81, 0x78, 0x09,
+	0xf5, 0x34, 0x21, 0xb8, 0xd6, 0xd6, 0xbd, 0xb0, 0x4a, 0x7d, 0x68, 0x45, 0xf4, 0xe0, 0xe8, 0xa4,
+	0x53, 0x1b, 0x9f, 0x74, 0xea, 0x3b, 0x7d, 0x59, 0x4f, 0x13, 0x43, 0xa1, 0x31, 0x4a, 0x88, 0xb6,
+	0x29, 0x29, 0x16, 0x6b, 0xb0, 0xf4, 0x5d, 0xa7, 0x25, 0xf3, 0x36, 0x25, 0x27, 0xa6, 0x1a, 0x47,
+	0xf1, 0x67, 0x74, 0x1b, 0x5c, 0xa5, 0x24, 0x78, 0x07, 0xed, 0xed, 0x24, 0x21, 0x74, 0x89, 0xdf,
+	0xf6, 0x71, 0x58, 0x8a, 0x6d, 0x58, 0x2a, 0x4c, 0x6e, 0x45, 0x6d, 0x5e, 0x20, 0x8a, 0x7d, 0xf4,
+	0x1a, 0x46, 0x98, 0xe4, 0xc9, 0x40, 0xc0, 0x8d, 0x39, 0xea, 0xb0, 0x50, 0xf9, 0x10, 0x83, 0x18,
+	0x84, 0xc4, 0x4c, 0x8d, 0xf0, 0x0c, 0xd9, 0x2e, 0x34, 0x69, 0xe4, 0xc3, 0x55, 0x96, 0xd0, 0xb6,
+	0x4b, 0xb0, 0xa7, 0xe9, 0xcb, 0x95, 0x82, 0x5f, 0x82, 0x5b, 0x70, 0xf3, 0x0c, 0x89, 0xe5, 0x7e,
+	0x0d, 0xd7, 0xfb, 0x04, 0x61, 0x97, 0xfe, 0x82, 0x58, 0xe9, 0xfa, 0x96, 0xb5, 0x33, 0x65, 0x9d,
+	0xfd, 0x15, 0x7b, 0x36, 0xe0, 0x11, 0x39, 0x1b, 0x08, 0xde, 0xc3, 0x3a, 0xd7, 0xf6, 0x35, 0x32,
+	0xea, 0xd4, 0x4c, 0x1f, 0x96, 0x59, 0xa9, 0x05, 0xbd, 0x5f, 0x6d, 0xe5, 0xb4, 0x1c, 0xbb, 0x3b,
+	0x3b, 0x1b, 0xdc, 0x86, 0x8d, 0x05, 0x7c, 0xf6, 0xb1, 0xf5, 0xd7, 0x81, 0x75, 0x72, 0xb6, 0x3b,
+	0x03, 0x7c, 0x8b, 0x7a, 0x94, 0xc6, 0x28, 0x22, 0x68, 0x4e, 0x57, 0x2e, 0x1e, 0x56, 0xf3, 0x9e,
+	0x3b, 0xb6, 0xf7, 0xe8, 0x32, 0xad, 0xcc, 0x2e, 0xbe, 0x40, 0xeb, 0xd4, 0x72, 0xc5, 0xe3, 0xea,
+	0xd1, 0xc5, 0x43, 0x7b, 0x4f, 0x2e, 0xd9, 0x6d, 0x9d, 0xfe, 0x72, 0x60, 0x83, 0xcd, 0x2f, 0x5a,
+	0x1d, 0x41, 0xfb, 0xdc, 0x82, 0xc4, 0xd3, 0x6a, 0xf4, 0xff, 0xdf, 0xca, 0x7b, 0x76, 0x85, 0x09,
+	0xd6, 0xd4, 0x73, 0x8f, 0xc6, 0xbe, 0x73, 0x3c, 0xf6, 0x9d, 0x3f, 0x63, 0xdf, 0xf9, 0x39, 0xf1,
+	0x6b, 0xc7, 0x13, 0xbf, 0xf6, 0x7b, 0xe2, 0xd7, 0x3e, 0x2e, 0xd3, 0xcf, 0xf1, 0xfc, 0x5f, 0x00,
+	0x00, 0x00, 0xff, 0xff, 0xe4, 0xa9, 0x80, 0xb5, 0xa5, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -546,108 +499,108 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// PrimitiveManagementServiceClient is the client API for PrimitiveManagementService service.
+// ProxyManagementServiceClient is the client API for ProxyManagementService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type PrimitiveManagementServiceClient interface {
-	AddPrimitive(ctx context.Context, in *AddPrimitiveRequest, opts ...grpc.CallOption) (*AddPrimitiveResponse, error)
-	RemovePrimitive(ctx context.Context, in *RemovePrimitiveRequest, opts ...grpc.CallOption) (*RemovePrimitiveResponse, error)
+type ProxyManagementServiceClient interface {
+	AddProxy(ctx context.Context, in *AddProxyRequest, opts ...grpc.CallOption) (*AddProxyResponse, error)
+	RemoveProxy(ctx context.Context, in *RemoveProxyRequest, opts ...grpc.CallOption) (*RemoveProxyResponse, error)
 }
 
-type primitiveManagementServiceClient struct {
+type proxyManagementServiceClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewPrimitiveManagementServiceClient(cc *grpc.ClientConn) PrimitiveManagementServiceClient {
-	return &primitiveManagementServiceClient{cc}
+func NewProxyManagementServiceClient(cc *grpc.ClientConn) ProxyManagementServiceClient {
+	return &proxyManagementServiceClient{cc}
 }
 
-func (c *primitiveManagementServiceClient) AddPrimitive(ctx context.Context, in *AddPrimitiveRequest, opts ...grpc.CallOption) (*AddPrimitiveResponse, error) {
-	out := new(AddPrimitiveResponse)
-	err := c.cc.Invoke(ctx, "/atomix.management.driver.PrimitiveManagementService/AddPrimitive", in, out, opts...)
+func (c *proxyManagementServiceClient) AddProxy(ctx context.Context, in *AddProxyRequest, opts ...grpc.CallOption) (*AddProxyResponse, error) {
+	out := new(AddProxyResponse)
+	err := c.cc.Invoke(ctx, "/atomix.management.driver.ProxyManagementService/AddProxy", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *primitiveManagementServiceClient) RemovePrimitive(ctx context.Context, in *RemovePrimitiveRequest, opts ...grpc.CallOption) (*RemovePrimitiveResponse, error) {
-	out := new(RemovePrimitiveResponse)
-	err := c.cc.Invoke(ctx, "/atomix.management.driver.PrimitiveManagementService/RemovePrimitive", in, out, opts...)
+func (c *proxyManagementServiceClient) RemoveProxy(ctx context.Context, in *RemoveProxyRequest, opts ...grpc.CallOption) (*RemoveProxyResponse, error) {
+	out := new(RemoveProxyResponse)
+	err := c.cc.Invoke(ctx, "/atomix.management.driver.ProxyManagementService/RemoveProxy", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// PrimitiveManagementServiceServer is the server API for PrimitiveManagementService service.
-type PrimitiveManagementServiceServer interface {
-	AddPrimitive(context.Context, *AddPrimitiveRequest) (*AddPrimitiveResponse, error)
-	RemovePrimitive(context.Context, *RemovePrimitiveRequest) (*RemovePrimitiveResponse, error)
+// ProxyManagementServiceServer is the server API for ProxyManagementService service.
+type ProxyManagementServiceServer interface {
+	AddProxy(context.Context, *AddProxyRequest) (*AddProxyResponse, error)
+	RemoveProxy(context.Context, *RemoveProxyRequest) (*RemoveProxyResponse, error)
 }
 
-// UnimplementedPrimitiveManagementServiceServer can be embedded to have forward compatible implementations.
-type UnimplementedPrimitiveManagementServiceServer struct {
+// UnimplementedProxyManagementServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedProxyManagementServiceServer struct {
 }
 
-func (*UnimplementedPrimitiveManagementServiceServer) AddPrimitive(ctx context.Context, req *AddPrimitiveRequest) (*AddPrimitiveResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddPrimitive not implemented")
+func (*UnimplementedProxyManagementServiceServer) AddProxy(ctx context.Context, req *AddProxyRequest) (*AddProxyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddProxy not implemented")
 }
-func (*UnimplementedPrimitiveManagementServiceServer) RemovePrimitive(ctx context.Context, req *RemovePrimitiveRequest) (*RemovePrimitiveResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemovePrimitive not implemented")
-}
-
-func RegisterPrimitiveManagementServiceServer(s *grpc.Server, srv PrimitiveManagementServiceServer) {
-	s.RegisterService(&_PrimitiveManagementService_serviceDesc, srv)
+func (*UnimplementedProxyManagementServiceServer) RemoveProxy(ctx context.Context, req *RemoveProxyRequest) (*RemoveProxyResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RemoveProxy not implemented")
 }
 
-func _PrimitiveManagementService_AddPrimitive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddPrimitiveRequest)
+func RegisterProxyManagementServiceServer(s *grpc.Server, srv ProxyManagementServiceServer) {
+	s.RegisterService(&_ProxyManagementService_serviceDesc, srv)
+}
+
+func _ProxyManagementService_AddProxy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddProxyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PrimitiveManagementServiceServer).AddPrimitive(ctx, in)
+		return srv.(ProxyManagementServiceServer).AddProxy(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/atomix.management.driver.PrimitiveManagementService/AddPrimitive",
+		FullMethod: "/atomix.management.driver.ProxyManagementService/AddProxy",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrimitiveManagementServiceServer).AddPrimitive(ctx, req.(*AddPrimitiveRequest))
+		return srv.(ProxyManagementServiceServer).AddProxy(ctx, req.(*AddProxyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _PrimitiveManagementService_RemovePrimitive_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RemovePrimitiveRequest)
+func _ProxyManagementService_RemoveProxy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(RemoveProxyRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(PrimitiveManagementServiceServer).RemovePrimitive(ctx, in)
+		return srv.(ProxyManagementServiceServer).RemoveProxy(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/atomix.management.driver.PrimitiveManagementService/RemovePrimitive",
+		FullMethod: "/atomix.management.driver.ProxyManagementService/RemoveProxy",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrimitiveManagementServiceServer).RemovePrimitive(ctx, req.(*RemovePrimitiveRequest))
+		return srv.(ProxyManagementServiceServer).RemoveProxy(ctx, req.(*RemoveProxyRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _PrimitiveManagementService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "atomix.management.driver.PrimitiveManagementService",
-	HandlerType: (*PrimitiveManagementServiceServer)(nil),
+var _ProxyManagementService_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "atomix.management.driver.ProxyManagementService",
+	HandlerType: (*ProxyManagementServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "AddPrimitive",
-			Handler:    _PrimitiveManagementService_AddPrimitive_Handler,
+			MethodName: "AddProxy",
+			Handler:    _ProxyManagementService_AddProxy_Handler,
 		},
 		{
-			MethodName: "RemovePrimitive",
-			Handler:    _PrimitiveManagementService_RemovePrimitive_Handler,
+			MethodName: "RemoveProxy",
+			Handler:    _ProxyManagementService_RemoveProxy_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -726,7 +679,7 @@ var _DriverManagementService_serviceDesc = grpc.ServiceDesc{
 	Metadata: "atomix/management/driver/driver.proto",
 }
 
-func (m *PrimitiveConfig) Marshal() (dAtA []byte, err error) {
+func (m *ProxyId) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -736,55 +689,12 @@ func (m *PrimitiveConfig) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *PrimitiveConfig) MarshalTo(dAtA []byte) (int, error) {
+func (m *ProxyId) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *PrimitiveConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	{
-		size, err := m.Proxy.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintDriver(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0x12
-	{
-		size, err := m.ID.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintDriver(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0xa
-	return len(dAtA) - i, nil
-}
-
-func (m *PrimitiveId) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *PrimitiveId) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *PrimitiveId) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *ProxyId) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -841,7 +751,7 @@ func (m *ProxyConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			dAtA[i] = 0
 		}
 		i--
-		dAtA[i] = 0x18
+		dAtA[i] = 0x20
 	}
 	if m.Write {
 		i--
@@ -851,7 +761,7 @@ func (m *ProxyConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			dAtA[i] = 0
 		}
 		i--
-		dAtA[i] = 0x10
+		dAtA[i] = 0x18
 	}
 	if m.Read {
 		i--
@@ -861,33 +771,10 @@ func (m *ProxyConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 			dAtA[i] = 0
 		}
 		i--
-		dAtA[i] = 0x8
+		dAtA[i] = 0x10
 	}
-	return len(dAtA) - i, nil
-}
-
-func (m *AddPrimitiveRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *AddPrimitiveRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *AddPrimitiveRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
 	{
-		size, err := m.Primitive.MarshalToSizedBuffer(dAtA[:i])
+		size, err := m.ID.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
 			return 0, err
 		}
@@ -899,7 +786,7 @@ func (m *AddPrimitiveRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *AddPrimitiveResponse) Marshal() (dAtA []byte, err error) {
+func (m *AddProxyRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -909,41 +796,18 @@ func (m *AddPrimitiveResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *AddPrimitiveResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *AddProxyRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *AddPrimitiveResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	return len(dAtA) - i, nil
-}
-
-func (m *RemovePrimitiveRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *RemovePrimitiveRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *RemovePrimitiveRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *AddProxyRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
 	{
-		size, err := m.PrimitiveID.MarshalToSizedBuffer(dAtA[:i])
+		size, err := m.Proxy.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
 			return 0, err
 		}
@@ -955,7 +819,7 @@ func (m *RemovePrimitiveRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 	return len(dAtA) - i, nil
 }
 
-func (m *RemovePrimitiveResponse) Marshal() (dAtA []byte, err error) {
+func (m *AddProxyResponse) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -965,12 +829,68 @@ func (m *RemovePrimitiveResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *RemovePrimitiveResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *AddProxyResponse) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *RemovePrimitiveResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *AddProxyResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *RemoveProxyRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *RemoveProxyRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *RemoveProxyRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.ProxyID.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintDriver(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *RemoveProxyResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *RemoveProxyResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *RemoveProxyResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -1080,20 +1000,7 @@ func encodeVarintDriver(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *PrimitiveConfig) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = m.ID.Size()
-	n += 1 + l + sovDriver(uint64(l))
-	l = m.Proxy.Size()
-	n += 1 + l + sovDriver(uint64(l))
-	return n
-}
-
-func (m *PrimitiveId) Size() (n int) {
+func (m *ProxyId) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1120,6 +1027,8 @@ func (m *ProxyConfig) Size() (n int) {
 	}
 	var l int
 	_ = l
+	l = m.ID.Size()
+	n += 1 + l + sovDriver(uint64(l))
 	if m.Read {
 		n += 2
 	}
@@ -1132,18 +1041,18 @@ func (m *ProxyConfig) Size() (n int) {
 	return n
 }
 
-func (m *AddPrimitiveRequest) Size() (n int) {
+func (m *AddProxyRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = m.Primitive.Size()
+	l = m.Proxy.Size()
 	n += 1 + l + sovDriver(uint64(l))
 	return n
 }
 
-func (m *AddPrimitiveResponse) Size() (n int) {
+func (m *AddProxyResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1152,18 +1061,18 @@ func (m *AddPrimitiveResponse) Size() (n int) {
 	return n
 }
 
-func (m *RemovePrimitiveRequest) Size() (n int) {
+func (m *RemoveProxyRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = m.PrimitiveID.Size()
+	l = m.ProxyID.Size()
 	n += 1 + l + sovDriver(uint64(l))
 	return n
 }
 
-func (m *RemovePrimitiveResponse) Size() (n int) {
+func (m *RemoveProxyResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1211,7 +1120,7 @@ func sovDriver(x uint64) (n int) {
 func sozDriver(x uint64) (n int) {
 	return sovDriver(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (m *PrimitiveConfig) Unmarshal(dAtA []byte) error {
+func (m *ProxyId) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1234,129 +1143,10 @@ func (m *PrimitiveConfig) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: PrimitiveConfig: wiretype end group for non-group")
+			return fmt.Errorf("proto: ProxyId: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: PrimitiveConfig: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ID", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowDriver
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthDriver
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.ID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Proxy", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowDriver
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthDriver
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.Proxy.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipDriver(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *PrimitiveId) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowDriver
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: PrimitiveId: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: PrimitiveId: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: ProxyId: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1509,6 +1299,39 @@ func (m *ProxyConfig) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field ID", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDriver
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDriver
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDriver
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.ID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Read", wireType)
 			}
@@ -1528,7 +1351,7 @@ func (m *ProxyConfig) Unmarshal(dAtA []byte) error {
 				}
 			}
 			m.Read = bool(v != 0)
-		case 2:
+		case 3:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Write", wireType)
 			}
@@ -1548,7 +1371,7 @@ func (m *ProxyConfig) Unmarshal(dAtA []byte) error {
 				}
 			}
 			m.Write = bool(v != 0)
-		case 3:
+		case 4:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field Cache", wireType)
 			}
@@ -1592,7 +1415,7 @@ func (m *ProxyConfig) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *AddPrimitiveRequest) Unmarshal(dAtA []byte) error {
+func (m *AddProxyRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1615,15 +1438,15 @@ func (m *AddPrimitiveRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: AddPrimitiveRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: AddProxyRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: AddPrimitiveRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: AddProxyRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Primitive", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Proxy", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -1650,7 +1473,7 @@ func (m *AddPrimitiveRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Primitive.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.Proxy.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -1678,7 +1501,7 @@ func (m *AddPrimitiveRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *AddPrimitiveResponse) Unmarshal(dAtA []byte) error {
+func (m *AddProxyResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1701,10 +1524,10 @@ func (m *AddPrimitiveResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: AddPrimitiveResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: AddProxyResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: AddPrimitiveResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: AddProxyResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:
@@ -1731,7 +1554,7 @@ func (m *AddPrimitiveResponse) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *RemovePrimitiveRequest) Unmarshal(dAtA []byte) error {
+func (m *RemoveProxyRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1754,15 +1577,15 @@ func (m *RemovePrimitiveRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: RemovePrimitiveRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: RemoveProxyRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: RemovePrimitiveRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: RemoveProxyRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PrimitiveID", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field ProxyID", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -1789,7 +1612,7 @@ func (m *RemovePrimitiveRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.PrimitiveID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.ProxyID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -1817,7 +1640,7 @@ func (m *RemovePrimitiveRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *RemovePrimitiveResponse) Unmarshal(dAtA []byte) error {
+func (m *RemoveProxyResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1840,10 +1663,10 @@ func (m *RemovePrimitiveResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: RemovePrimitiveResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: RemoveProxyResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: RemovePrimitiveResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: RemoveProxyResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

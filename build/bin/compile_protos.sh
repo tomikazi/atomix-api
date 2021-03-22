@@ -2,20 +2,20 @@
 
 proto_path="./proto:${GOPATH}/src/github.com/gogo/protobuf:${GOPATH}/src/github.com/gogo/protobuf/protobuf:${GOPATH}/src"
 
-protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,driver.md     proto/atomix/driver/*.proto
-protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,proxy.md      proto/atomix/proxy/*.proto
-protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,protocol.md   proto/atomix/protocol/*.proto
-protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,primitive.md  proto/atomix/primitive/*.proto
-protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,counter.md    proto/atomix/primitive/counter/*.proto
-protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,election.md   proto/atomix/primitive/election/*.proto
-protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,indexmap.md   proto/atomix/primitive/indexedmap/*.proto
-protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,leader.md     proto/atomix/primitive/leader/*.proto
-protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,list.md       proto/atomix/primitive/list/*.proto
-protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,lock.md       proto/atomix/primitive/lock/*.proto
-protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,log.md        proto/atomix/primitive/log/*.proto
-protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,map.md        proto/atomix/primitive/map/*.proto
-protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,set.md        proto/atomix/primitive/set/*.proto
-protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,value.md      proto/atomix/primitive/value/*.proto
+protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,coordinator.md proto/atomix/management/coordinator/*.proto
+protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,driver.md      proto/atomix/management/driver/*.proto
+protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,protocol.md    proto/atomix/protocol/*.proto
+protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,primitive.md   proto/atomix/primitive/*.proto
+protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,counter.md     proto/atomix/primitive/counter/*.proto
+protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,election.md    proto/atomix/primitive/election/*.proto
+protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,indexmap.md    proto/atomix/primitive/indexedmap/*.proto
+protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,leader.md      proto/atomix/primitive/leader/*.proto
+protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,list.md        proto/atomix/primitive/list/*.proto
+protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,lock.md        proto/atomix/primitive/lock/*.proto
+protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,log.md         proto/atomix/primitive/log/*.proto
+protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,map.md         proto/atomix/primitive/map/*.proto
+protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,set.md         proto/atomix/primitive/set/*.proto
+protoc -I=$proto_path --doc_out=docs  --doc_opt=markdown,value.md       proto/atomix/primitive/value/*.proto
 
 go_import_paths="Mgoogle/protobuf/any.proto=github.com/gogo/protobuf/types"
 go_import_paths="${go_import_paths},Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types"
@@ -41,17 +41,14 @@ protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/a
 
 go_import_paths="${go_import_paths},Matomix/primitive/meta/timestamp.proto=github.com/atomix/api/go/atomix/primitive/meta"
 
-protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/proxy,plugins=grpc:go proto/atomix/proxy/*.proto
-
-go_import_paths="${go_import_paths},Matomix/proxy/proxy.proto=github.com/atomix/api/go/atomix/proxy"
-
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/primitive,plugins=grpc:go      proto/atomix/primitive/primitive.proto
 
 go_import_paths="${go_import_paths},Matomix/primitive/primitive.proto=github.com/atomix/api/go/atomix/primitive"
 go_import_paths="${go_import_paths},Matomix/primitive/meta/object.proto=github.com/atomix/api/go/atomix/primitive/meta"
 go_import_paths="${go_import_paths},Matomix/primitive/meta/timestamp.proto=github.com/atomix/api/go/atomix/primitive/meta"
 
-protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/driver,plugins=grpc:go proto/atomix/driver/*.proto
+protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/management/coordinator,plugins=grpc:go proto/atomix/management/coordinator/*.proto
+protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/management/driver,plugins=grpc:go      proto/atomix/management/driver/*.proto
 
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/primitive/counter,plugins=grpc:go    proto/atomix/primitive/counter/*.proto
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/api/go/atomix/primitive/election,plugins=grpc:go   proto/atomix/primitive/election/*.proto

@@ -27,30 +27,22 @@
   
 
 - [atomix/primitive/primitive.proto](#atomix/primitive/primitive.proto)
-    - [AddPrimitiveRequest](#atomix.primitive.AddPrimitiveRequest)
-    - [AddPrimitiveResponse](#atomix.primitive.AddPrimitiveResponse)
     - [CloseRequest](#atomix.primitive.CloseRequest)
     - [CloseResponse](#atomix.primitive.CloseResponse)
     - [CreateRequest](#atomix.primitive.CreateRequest)
     - [CreateResponse](#atomix.primitive.CreateResponse)
     - [DeleteRequest](#atomix.primitive.DeleteRequest)
     - [DeleteResponse](#atomix.primitive.DeleteResponse)
-    - [GetPrimitiveRequest](#atomix.primitive.GetPrimitiveRequest)
-    - [GetPrimitiveResponse](#atomix.primitive.GetPrimitiveResponse)
-    - [ListPrimitivesRequest](#atomix.primitive.ListPrimitivesRequest)
-    - [ListPrimitivesResponse](#atomix.primitive.ListPrimitivesResponse)
     - [LookupPrimitiveRequest](#atomix.primitive.LookupPrimitiveRequest)
     - [LookupPrimitiveResponse](#atomix.primitive.LookupPrimitiveResponse)
+    - [PrimitiveId](#atomix.primitive.PrimitiveId)
     - [PrimitiveMeta](#atomix.primitive.PrimitiveMeta)
-    - [RemovePrimitiveRequest](#atomix.primitive.RemovePrimitiveRequest)
-    - [RemovePrimitiveResponse](#atomix.primitive.RemovePrimitiveResponse)
     - [RequestHeaders](#atomix.primitive.RequestHeaders)
     - [ResponseHeaders](#atomix.primitive.ResponseHeaders)
   
   
   
-    - [PrimitiveManagementService](#atomix.primitive.PrimitiveManagementService)
-    - [PrimitiveRegistryService](#atomix.primitive.PrimitiveRegistryService)
+    - [PrimitiveDiscoveryService](#atomix.primitive.PrimitiveDiscoveryService)
     - [PrimitiveService](#atomix.primitive.PrimitiveService)
   
 
@@ -167,31 +159,6 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 
 
-<a name="atomix.primitive.AddPrimitiveRequest"></a>
-
-### AddPrimitiveRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| primitive | [PrimitiveMeta](#atomix.primitive.PrimitiveMeta) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.AddPrimitiveResponse"></a>
-
-### AddPrimitiveResponse
-
-
-
-
-
-
-
 <a name="atomix.primitive.CloseRequest"></a>
 
 ### CloseRequest
@@ -270,66 +237,6 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 
 
-<a name="atomix.primitive.GetPrimitiveRequest"></a>
-
-### GetPrimitiveRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.GetPrimitiveResponse"></a>
-
-### GetPrimitiveResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| primitive | [PrimitiveMeta](#atomix.primitive.PrimitiveMeta) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.ListPrimitivesRequest"></a>
-
-### ListPrimitivesRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.ListPrimitivesResponse"></a>
-
-### ListPrimitivesResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| primitives | [PrimitiveMeta](#atomix.primitive.PrimitiveMeta) | repeated |  |
-
-
-
-
-
-
 <a name="atomix.primitive.LookupPrimitiveRequest"></a>
 
 ### LookupPrimitiveRequest
@@ -338,7 +245,7 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
+| primitive_id | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
 
 
 
@@ -353,7 +260,24 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| proxy | [atomix.proxy.ProxyMeta](#atomix.proxy.ProxyMeta) |  |  |
+| primitive | [PrimitiveMeta](#atomix.primitive.PrimitiveMeta) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.PrimitiveId"></a>
+
+### PrimitiveId
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| namespace | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+| type | [string](#string) |  |  |
 
 
 
@@ -363,41 +287,14 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 <a name="atomix.primitive.PrimitiveMeta"></a>
 
 ### PrimitiveMeta
-PrimitiveMeta is a primitive metadata
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| type | [string](#string) |  |  |
-| driver | [string](#string) |  |  |
-| cached | [bool](#bool) |  |  |
-| read_only | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.RemovePrimitiveRequest"></a>
-
-### RemovePrimitiveRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.RemovePrimitiveResponse"></a>
-
-### RemovePrimitiveResponse
-
+| id | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+| host | [string](#string) |  |  |
+| port | [int32](#int32) |  |  |
 
 
 
@@ -441,26 +338,13 @@ PrimitiveMeta is a primitive metadata
  
 
 
-<a name="atomix.primitive.PrimitiveManagementService"></a>
+<a name="atomix.primitive.PrimitiveDiscoveryService"></a>
 
-### PrimitiveManagementService
-Atomix primitive management service
+### PrimitiveDiscoveryService
+
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| AddPrimitive | [AddPrimitiveRequest](#atomix.primitive.AddPrimitiveRequest) | [AddPrimitiveResponse](#atomix.primitive.AddPrimitiveResponse) |  |
-| RemovePrimitive | [RemovePrimitiveRequest](#atomix.primitive.RemovePrimitiveRequest) | [RemovePrimitiveResponse](#atomix.primitive.RemovePrimitiveResponse) |  |
-
-
-<a name="atomix.primitive.PrimitiveRegistryService"></a>
-
-### PrimitiveRegistryService
-Atomix primitive registry service
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| GetPrimitive | [GetPrimitiveRequest](#atomix.primitive.GetPrimitiveRequest) | [GetPrimitiveResponse](#atomix.primitive.GetPrimitiveResponse) |  |
-| ListPrimitives | [ListPrimitivesRequest](#atomix.primitive.ListPrimitivesRequest) | [ListPrimitivesResponse](#atomix.primitive.ListPrimitivesResponse) |  |
 | LookupPrimitive | [LookupPrimitiveRequest](#atomix.primitive.LookupPrimitiveRequest) | [LookupPrimitiveResponse](#atomix.primitive.LookupPrimitiveResponse) |  |
 
 

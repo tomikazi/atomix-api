@@ -3,99 +3,169 @@
 
 ## Table of Contents
 
-- [atomix/driver/driver.proto](#atomix/driver/driver.proto)
-    - [DriverMeta](#atomix.driver.DriverMeta)
-    - [GetDriverRequest](#atomix.driver.GetDriverRequest)
-    - [GetDriverResponse](#atomix.driver.GetDriverResponse)
-    - [ListDriversRequest](#atomix.driver.ListDriversRequest)
-    - [ListDriversResponse](#atomix.driver.ListDriversResponse)
+- [atomix/management/driver/driver.proto](#atomix/management/driver/driver.proto)
+    - [AddPrimitiveRequest](#atomix.management.driver.AddPrimitiveRequest)
+    - [AddPrimitiveResponse](#atomix.management.driver.AddPrimitiveResponse)
+    - [ConfigureDriverRequest](#atomix.management.driver.ConfigureDriverRequest)
+    - [ConfigureDriverResponse](#atomix.management.driver.ConfigureDriverResponse)
+    - [DriverConfig](#atomix.management.driver.DriverConfig)
+    - [PrimitiveConfig](#atomix.management.driver.PrimitiveConfig)
+    - [PrimitiveId](#atomix.management.driver.PrimitiveId)
+    - [ProxyConfig](#atomix.management.driver.ProxyConfig)
+    - [RemovePrimitiveRequest](#atomix.management.driver.RemovePrimitiveRequest)
+    - [RemovePrimitiveResponse](#atomix.management.driver.RemovePrimitiveResponse)
   
   
   
-    - [DriverService](#atomix.driver.DriverService)
+    - [DriverManagementService](#atomix.management.driver.DriverManagementService)
+    - [PrimitiveManagementService](#atomix.management.driver.PrimitiveManagementService)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/driver/driver.proto"></a>
+<a name="atomix/management/driver/driver.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/driver/driver.proto
+## atomix/management/driver/driver.proto
 
 
 
-<a name="atomix.driver.DriverMeta"></a>
+<a name="atomix.management.driver.AddPrimitiveRequest"></a>
 
-### DriverMeta
-DriverMeta is a driver metadata
+### AddPrimitiveRequest
+
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| primitive | [PrimitiveConfig](#atomix.management.driver.PrimitiveConfig) |  |  |
+
+
+
+
+
+
+<a name="atomix.management.driver.AddPrimitiveResponse"></a>
+
+### AddPrimitiveResponse
+
+
+
+
+
+
+
+<a name="atomix.management.driver.ConfigureDriverRequest"></a>
+
+### ConfigureDriverRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| driver | [DriverConfig](#atomix.management.driver.DriverConfig) |  |  |
+
+
+
+
+
+
+<a name="atomix.management.driver.ConfigureDriverResponse"></a>
+
+### ConfigureDriverResponse
+
+
+
+
+
+
+
+<a name="atomix.management.driver.DriverConfig"></a>
+
+### DriverConfig
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| protocol | [atomix.protocol.ProtocolConfig](#atomix.protocol.ProtocolConfig) |  |  |
+
+
+
+
+
+
+<a name="atomix.management.driver.PrimitiveConfig"></a>
+
+### PrimitiveConfig
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [PrimitiveId](#atomix.management.driver.PrimitiveId) |  |  |
+| proxy | [ProxyConfig](#atomix.management.driver.ProxyConfig) |  |  |
+
+
+
+
+
+
+<a name="atomix.management.driver.PrimitiveId"></a>
+
+### PrimitiveId
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| namespace | [string](#string) |  |  |
 | name | [string](#string) |  |  |
-| proxy | [atomix.proxy.ProxyMeta](#atomix.proxy.ProxyMeta) |  |  |
+| type | [string](#string) |  |  |
 
 
 
 
 
 
-<a name="atomix.driver.GetDriverRequest"></a>
+<a name="atomix.management.driver.ProxyConfig"></a>
 
-### GetDriverRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.driver.GetDriverResponse"></a>
-
-### GetDriverResponse
+### ProxyConfig
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| driver | [DriverMeta](#atomix.driver.DriverMeta) |  |  |
+| read | [bool](#bool) |  |  |
+| write | [bool](#bool) |  |  |
+| cache | [bool](#bool) |  |  |
 
 
 
 
 
 
-<a name="atomix.driver.ListDriversRequest"></a>
+<a name="atomix.management.driver.RemovePrimitiveRequest"></a>
 
-### ListDriversRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.driver.ListDriversResponse"></a>
-
-### ListDriversResponse
+### RemovePrimitiveRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| drivers | [DriverMeta](#atomix.driver.DriverMeta) | repeated |  |
+| primitive_id | [PrimitiveId](#atomix.management.driver.PrimitiveId) |  |  |
+
+
+
+
+
+
+<a name="atomix.management.driver.RemovePrimitiveResponse"></a>
+
+### RemovePrimitiveResponse
+
 
 
 
@@ -108,15 +178,25 @@ DriverMeta is a driver metadata
  
 
 
-<a name="atomix.driver.DriverService"></a>
+<a name="atomix.management.driver.DriverManagementService"></a>
 
-### DriverService
-Atomix driver service
+### DriverManagementService
+
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetDriver | [GetDriverRequest](#atomix.driver.GetDriverRequest) | [GetDriverResponse](#atomix.driver.GetDriverResponse) |  |
-| ListDrivers | [ListDriversRequest](#atomix.driver.ListDriversRequest) | [ListDriversResponse](#atomix.driver.ListDriversResponse) |  |
+| ConfigureDriver | [ConfigureDriverRequest](#atomix.management.driver.ConfigureDriverRequest) | [ConfigureDriverResponse](#atomix.management.driver.ConfigureDriverResponse) |  |
+
+
+<a name="atomix.management.driver.PrimitiveManagementService"></a>
+
+### PrimitiveManagementService
+
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| AddPrimitive | [AddPrimitiveRequest](#atomix.management.driver.AddPrimitiveRequest) | [AddPrimitiveResponse](#atomix.management.driver.AddPrimitiveResponse) |  |
+| RemovePrimitive | [RemovePrimitiveRequest](#atomix.management.driver.RemovePrimitiveRequest) | [RemovePrimitiveResponse](#atomix.management.driver.RemovePrimitiveResponse) |  |
 
  
 

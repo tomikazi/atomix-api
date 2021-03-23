@@ -31,7 +31,6 @@ message ProxyConfig {
     ProxyId id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "ID"];
     bool read = 2;
     bool write = 3;
-    bool cache = 4;
 }
 
 message AddProxyRequest {

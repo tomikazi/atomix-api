@@ -107,7 +107,6 @@
 | id | [ProxyId](#atomix.management.driver.ProxyId) |  |  |
 | read | [bool](#bool) |  |  |
 | write | [bool](#bool) |  |  |
-| cache | [bool](#bool) |  |  |
 
 
 

@@ -41,7 +41,6 @@ message StorageConfig {
 message ProxyConfig {
     bool read = 1;
     bool write = 2;
-    bool cache = 3;
 }
 
 message AddPrimitiveRequest {

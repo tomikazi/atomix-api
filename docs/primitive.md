@@ -167,8 +167,7 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| primitive_id | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
 
 
 
@@ -193,8 +192,7 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| primitive_id | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
 
 
 
@@ -219,8 +217,7 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| primitive_id | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
 
 
 
@@ -309,7 +306,7 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive_id | [string](#string) |  |  |
+| primitive_id | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
 | timestamp | [meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
 
 

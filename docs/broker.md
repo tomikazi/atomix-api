@@ -167,7 +167,6 @@
 | ----- | ---- | ----- | ----------- |
 | read | [bool](#bool) |  |  |
 | write | [bool](#bool) |  |  |
-| cache | [bool](#bool) |  |  |
 
 
 

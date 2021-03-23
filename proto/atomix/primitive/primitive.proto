@@ -22,7 +22,7 @@ import "atomix/primitive/meta/timestamp.proto";
 import "gogoproto/gogo.proto";
 
 message RequestHeaders {
-    string primitive_id = 1 [(gogoproto.customname) = "PrimitiveID"];
+    PrimitiveId primitive_id = 1 [(gogoproto.customname) = "PrimitiveID", (gogoproto.nullable) = false];
     atomix.primitive.meta.Timestamp timestamp = 2;
 }
 
@@ -31,8 +31,7 @@ message ResponseHeaders {
 }
 
 message CreateRequest {
-    string type = 1;
-    string name = 2;
+    PrimitiveId primitive_id = 1 [(gogoproto.customname) = "PrimitiveID", (gogoproto.nullable) = false];
 }
 
 message CreateResponse {
@@ -40,8 +39,7 @@ message CreateResponse {
 }
 
 message CloseRequest {
-    string type = 1;
-    string name = 2;
+    PrimitiveId primitive_id = 1 [(gogoproto.customname) = "PrimitiveID", (gogoproto.nullable) = false];
 }
 
 message CloseResponse {
@@ -49,8 +47,7 @@ message CloseResponse {
 }
 
 message DeleteRequest {
-    string type = 1;
-    string name = 2;
+    PrimitiveId primitive_id = 1 [(gogoproto.customname) = "PrimitiveID", (gogoproto.nullable) = false];
 }
 
 message DeleteResponse {

@@ -7,6 +7,7 @@
     - [ProtocolConfig](#atomix.protocol.ProtocolConfig)
     - [ProtocolPartition](#atomix.protocol.ProtocolPartition)
     - [ProtocolReplica](#atomix.protocol.ProtocolReplica)
+    - [ProtocolReplica.ExtraPortsEntry](#atomix.protocol.ProtocolReplica.ExtraPortsEntry)
     - [UpdateConfigRequest](#atomix.protocol.UpdateConfigRequest)
     - [UpdateConfigResponse](#atomix.protocol.UpdateConfigResponse)
   
@@ -70,7 +71,23 @@ Replica configuration
 | node_id | [string](#string) |  | node_id is the ID of the node on which the replica is deployed |
 | host | [string](#string) |  | host is the member host |
 | api_port | [int32](#int32) |  | api_port is the port to use for the client API |
-| protocol_port | [int32](#int32) |  | protocol_port is the port to use for intra-cluster communication |
+| extra_ports | [ProtocolReplica.ExtraPortsEntry](#atomix.protocol.ProtocolReplica.ExtraPortsEntry) | repeated | extra_ports is a set of named ports |
+
+
+
+
+
+
+<a name="atomix.protocol.ProtocolReplica.ExtraPortsEntry"></a>
+
+### ProtocolReplica.ExtraPortsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [int32](#int32) |  |  |
 
 
 

@@ -43,8 +43,8 @@ message ProtocolReplica {
     // api_port is the port to use for the client API
     int32 api_port = 4 [(gogoproto.customname) = "APIPort", (gogoproto.jsontag) = "apiPort"];
 
-    // protocol_port is the port to use for intra-cluster communication
-    int32 protocol_port = 5 [(gogoproto.jsontag) = "protocolPort"];
+    // extra_ports is a set of named ports
+    map<string, int32> extra_ports = 5;
 }
 
 // Partition info

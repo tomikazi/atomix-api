@@ -54,8 +54,8 @@ message DeleteResponse {
 
 }
 
-// PrimitiveService is a service for managing primitive
-service PrimitiveService {
+// Primitive is a service for managing primitive
+service Primitive {
     // Create creates a primitive
     rpc Create (CreateRequest) returns (CreateResponse);
 
@@ -70,22 +70,4 @@ message PrimitiveId {
     string namespace = 1;
     string name = 2;
     string type = 3;
-}
-
-message PrimitiveMeta {
-    PrimitiveId id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "ID"];
-    string host = 2;
-    int32 port = 3;
-}
-
-message LookupPrimitiveRequest {
-    PrimitiveId primitive_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "PrimitiveID"];
-}
-
-message LookupPrimitiveResponse {
-    PrimitiveMeta primitive = 1 [(gogoproto.nullable) = false];
-}
-
-service PrimitiveDiscoveryService {
-    rpc LookupPrimitive (LookupPrimitiveRequest) returns (LookupPrimitiveResponse);
 }

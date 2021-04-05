@@ -28,24 +28,23 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-type ProxyId struct {
+type AgentId struct {
 	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
 	Name      string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Type      string `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
 }
 
-func (m *ProxyId) Reset()         { *m = ProxyId{} }
-func (m *ProxyId) String() string { return proto.CompactTextString(m) }
-func (*ProxyId) ProtoMessage()    {}
-func (*ProxyId) Descriptor() ([]byte, []int) {
+func (m *AgentId) Reset()         { *m = AgentId{} }
+func (m *AgentId) String() string { return proto.CompactTextString(m) }
+func (*AgentId) ProtoMessage()    {}
+func (*AgentId) Descriptor() ([]byte, []int) {
 	return fileDescriptor_475f4bfeda7e9685, []int{0}
 }
-func (m *ProxyId) XXX_Unmarshal(b []byte) error {
+func (m *AgentId) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *ProxyId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *AgentId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_ProxyId.Marshal(b, m, deterministic)
+		return xxx_messageInfo_AgentId.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -55,115 +54,100 @@ func (m *ProxyId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 		return b[:n], nil
 	}
 }
-func (m *ProxyId) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ProxyId.Merge(m, src)
+func (m *AgentId) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentId.Merge(m, src)
 }
-func (m *ProxyId) XXX_Size() int {
+func (m *AgentId) XXX_Size() int {
 	return m.Size()
 }
-func (m *ProxyId) XXX_DiscardUnknown() {
-	xxx_messageInfo_ProxyId.DiscardUnknown(m)
+func (m *AgentId) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentId.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ProxyId proto.InternalMessageInfo
+var xxx_messageInfo_AgentId proto.InternalMessageInfo
 
-func (m *ProxyId) GetNamespace() string {
+func (m *AgentId) GetNamespace() string {
 	if m != nil {
 		return m.Namespace
 	}
 	return ""
 }
 
-func (m *ProxyId) GetName() string {
+func (m *AgentId) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-func (m *ProxyId) GetType() string {
+type AgentAddress struct {
+	Host string `protobuf:"bytes,1,opt,name=host,proto3" json:"host,omitempty"`
+	Port int32  `protobuf:"varint,2,opt,name=port,proto3" json:"port,omitempty"`
+}
+
+func (m *AgentAddress) Reset()         { *m = AgentAddress{} }
+func (m *AgentAddress) String() string { return proto.CompactTextString(m) }
+func (*AgentAddress) ProtoMessage()    {}
+func (*AgentAddress) Descriptor() ([]byte, []int) {
+	return fileDescriptor_475f4bfeda7e9685, []int{1}
+}
+func (m *AgentAddress) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *AgentAddress) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_AgentAddress.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *AgentAddress) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentAddress.Merge(m, src)
+}
+func (m *AgentAddress) XXX_Size() int {
+	return m.Size()
+}
+func (m *AgentAddress) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentAddress.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_AgentAddress proto.InternalMessageInfo
+
+func (m *AgentAddress) GetHost() string {
 	if m != nil {
-		return m.Type
+		return m.Host
 	}
 	return ""
 }
 
-type ProxyConfig struct {
-	ID    ProxyId `protobuf:"bytes,1,opt,name=id,proto3" json:"id"`
-	Read  bool    `protobuf:"varint,2,opt,name=read,proto3" json:"read,omitempty"`
-	Write bool    `protobuf:"varint,3,opt,name=write,proto3" json:"write,omitempty"`
-}
-
-func (m *ProxyConfig) Reset()         { *m = ProxyConfig{} }
-func (m *ProxyConfig) String() string { return proto.CompactTextString(m) }
-func (*ProxyConfig) ProtoMessage()    {}
-func (*ProxyConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_475f4bfeda7e9685, []int{1}
-}
-func (m *ProxyConfig) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *ProxyConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_ProxyConfig.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *ProxyConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ProxyConfig.Merge(m, src)
-}
-func (m *ProxyConfig) XXX_Size() int {
-	return m.Size()
-}
-func (m *ProxyConfig) XXX_DiscardUnknown() {
-	xxx_messageInfo_ProxyConfig.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ProxyConfig proto.InternalMessageInfo
-
-func (m *ProxyConfig) GetID() ProxyId {
+func (m *AgentAddress) GetPort() int32 {
 	if m != nil {
-		return m.ID
+		return m.Port
 	}
-	return ProxyId{}
+	return 0
 }
 
-func (m *ProxyConfig) GetRead() bool {
-	if m != nil {
-		return m.Read
-	}
-	return false
+type AgentConfig struct {
+	Protocol protocol.ProtocolConfig `protobuf:"bytes,1,opt,name=protocol,proto3" json:"protocol"`
 }
 
-func (m *ProxyConfig) GetWrite() bool {
-	if m != nil {
-		return m.Write
-	}
-	return false
-}
-
-type AddProxyRequest struct {
-	Proxy ProxyConfig `protobuf:"bytes,1,opt,name=proxy,proto3" json:"proxy"`
-}
-
-func (m *AddProxyRequest) Reset()         { *m = AddProxyRequest{} }
-func (m *AddProxyRequest) String() string { return proto.CompactTextString(m) }
-func (*AddProxyRequest) ProtoMessage()    {}
-func (*AddProxyRequest) Descriptor() ([]byte, []int) {
+func (m *AgentConfig) Reset()         { *m = AgentConfig{} }
+func (m *AgentConfig) String() string { return proto.CompactTextString(m) }
+func (*AgentConfig) ProtoMessage()    {}
+func (*AgentConfig) Descriptor() ([]byte, []int) {
 	return fileDescriptor_475f4bfeda7e9685, []int{2}
 }
-func (m *AddProxyRequest) XXX_Unmarshal(b []byte) error {
+func (m *AgentConfig) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *AddProxyRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *AgentConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_AddProxyRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_AgentConfig.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -173,201 +157,225 @@ func (m *AddProxyRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, err
 		return b[:n], nil
 	}
 }
-func (m *AddProxyRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AddProxyRequest.Merge(m, src)
+func (m *AgentConfig) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_AgentConfig.Merge(m, src)
 }
-func (m *AddProxyRequest) XXX_Size() int {
+func (m *AgentConfig) XXX_Size() int {
 	return m.Size()
 }
-func (m *AddProxyRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_AddProxyRequest.DiscardUnknown(m)
+func (m *AgentConfig) XXX_DiscardUnknown() {
+	xxx_messageInfo_AgentConfig.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_AddProxyRequest proto.InternalMessageInfo
+var xxx_messageInfo_AgentConfig proto.InternalMessageInfo
 
-func (m *AddProxyRequest) GetProxy() ProxyConfig {
-	if m != nil {
-		return m.Proxy
-	}
-	return ProxyConfig{}
-}
-
-type AddProxyResponse struct {
-}
-
-func (m *AddProxyResponse) Reset()         { *m = AddProxyResponse{} }
-func (m *AddProxyResponse) String() string { return proto.CompactTextString(m) }
-func (*AddProxyResponse) ProtoMessage()    {}
-func (*AddProxyResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_475f4bfeda7e9685, []int{3}
-}
-func (m *AddProxyResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *AddProxyResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_AddProxyResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *AddProxyResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_AddProxyResponse.Merge(m, src)
-}
-func (m *AddProxyResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *AddProxyResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_AddProxyResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_AddProxyResponse proto.InternalMessageInfo
-
-type RemoveProxyRequest struct {
-	ProxyID ProxyId `protobuf:"bytes,1,opt,name=proxy_id,json=proxyId,proto3" json:"proxy_id"`
-}
-
-func (m *RemoveProxyRequest) Reset()         { *m = RemoveProxyRequest{} }
-func (m *RemoveProxyRequest) String() string { return proto.CompactTextString(m) }
-func (*RemoveProxyRequest) ProtoMessage()    {}
-func (*RemoveProxyRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_475f4bfeda7e9685, []int{4}
-}
-func (m *RemoveProxyRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *RemoveProxyRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_RemoveProxyRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *RemoveProxyRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RemoveProxyRequest.Merge(m, src)
-}
-func (m *RemoveProxyRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *RemoveProxyRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_RemoveProxyRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RemoveProxyRequest proto.InternalMessageInfo
-
-func (m *RemoveProxyRequest) GetProxyID() ProxyId {
-	if m != nil {
-		return m.ProxyID
-	}
-	return ProxyId{}
-}
-
-type RemoveProxyResponse struct {
-}
-
-func (m *RemoveProxyResponse) Reset()         { *m = RemoveProxyResponse{} }
-func (m *RemoveProxyResponse) String() string { return proto.CompactTextString(m) }
-func (*RemoveProxyResponse) ProtoMessage()    {}
-func (*RemoveProxyResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_475f4bfeda7e9685, []int{5}
-}
-func (m *RemoveProxyResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *RemoveProxyResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_RemoveProxyResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *RemoveProxyResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RemoveProxyResponse.Merge(m, src)
-}
-func (m *RemoveProxyResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *RemoveProxyResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_RemoveProxyResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RemoveProxyResponse proto.InternalMessageInfo
-
-type DriverConfig struct {
-	Protocol *protocol.ProtocolConfig `protobuf:"bytes,1,opt,name=protocol,proto3" json:"protocol,omitempty"`
-}
-
-func (m *DriverConfig) Reset()         { *m = DriverConfig{} }
-func (m *DriverConfig) String() string { return proto.CompactTextString(m) }
-func (*DriverConfig) ProtoMessage()    {}
-func (*DriverConfig) Descriptor() ([]byte, []int) {
-	return fileDescriptor_475f4bfeda7e9685, []int{6}
-}
-func (m *DriverConfig) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *DriverConfig) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_DriverConfig.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *DriverConfig) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DriverConfig.Merge(m, src)
-}
-func (m *DriverConfig) XXX_Size() int {
-	return m.Size()
-}
-func (m *DriverConfig) XXX_DiscardUnknown() {
-	xxx_messageInfo_DriverConfig.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DriverConfig proto.InternalMessageInfo
-
-func (m *DriverConfig) GetProtocol() *protocol.ProtocolConfig {
+func (m *AgentConfig) GetProtocol() protocol.ProtocolConfig {
 	if m != nil {
 		return m.Protocol
 	}
-	return nil
+	return protocol.ProtocolConfig{}
 }
 
-type ConfigureDriverRequest struct {
-	Driver DriverConfig `protobuf:"bytes,1,opt,name=driver,proto3" json:"driver"`
+type StartAgentRequest struct {
+	AgentID AgentId      `protobuf:"bytes,1,opt,name=agent_id,json=agentId,proto3" json:"agent_id"`
+	Address AgentAddress `protobuf:"bytes,2,opt,name=address,proto3" json:"address"`
+	Config  AgentConfig  `protobuf:"bytes,3,opt,name=config,proto3" json:"config"`
 }
 
-func (m *ConfigureDriverRequest) Reset()         { *m = ConfigureDriverRequest{} }
-func (m *ConfigureDriverRequest) String() string { return proto.CompactTextString(m) }
-func (*ConfigureDriverRequest) ProtoMessage()    {}
-func (*ConfigureDriverRequest) Descriptor() ([]byte, []int) {
+func (m *StartAgentRequest) Reset()         { *m = StartAgentRequest{} }
+func (m *StartAgentRequest) String() string { return proto.CompactTextString(m) }
+func (*StartAgentRequest) ProtoMessage()    {}
+func (*StartAgentRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_475f4bfeda7e9685, []int{3}
+}
+func (m *StartAgentRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *StartAgentRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_StartAgentRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *StartAgentRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StartAgentRequest.Merge(m, src)
+}
+func (m *StartAgentRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *StartAgentRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_StartAgentRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_StartAgentRequest proto.InternalMessageInfo
+
+func (m *StartAgentRequest) GetAgentID() AgentId {
+	if m != nil {
+		return m.AgentID
+	}
+	return AgentId{}
+}
+
+func (m *StartAgentRequest) GetAddress() AgentAddress {
+	if m != nil {
+		return m.Address
+	}
+	return AgentAddress{}
+}
+
+func (m *StartAgentRequest) GetConfig() AgentConfig {
+	if m != nil {
+		return m.Config
+	}
+	return AgentConfig{}
+}
+
+type StartAgentResponse struct {
+}
+
+func (m *StartAgentResponse) Reset()         { *m = StartAgentResponse{} }
+func (m *StartAgentResponse) String() string { return proto.CompactTextString(m) }
+func (*StartAgentResponse) ProtoMessage()    {}
+func (*StartAgentResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_475f4bfeda7e9685, []int{4}
+}
+func (m *StartAgentResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *StartAgentResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_StartAgentResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *StartAgentResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StartAgentResponse.Merge(m, src)
+}
+func (m *StartAgentResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *StartAgentResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_StartAgentResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_StartAgentResponse proto.InternalMessageInfo
+
+type ConfigureAgentRequest struct {
+	AgentID AgentId     `protobuf:"bytes,1,opt,name=agent_id,json=agentId,proto3" json:"agent_id"`
+	Config  AgentConfig `protobuf:"bytes,2,opt,name=config,proto3" json:"config"`
+}
+
+func (m *ConfigureAgentRequest) Reset()         { *m = ConfigureAgentRequest{} }
+func (m *ConfigureAgentRequest) String() string { return proto.CompactTextString(m) }
+func (*ConfigureAgentRequest) ProtoMessage()    {}
+func (*ConfigureAgentRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_475f4bfeda7e9685, []int{5}
+}
+func (m *ConfigureAgentRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *ConfigureAgentRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ConfigureAgentRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *ConfigureAgentRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConfigureAgentRequest.Merge(m, src)
+}
+func (m *ConfigureAgentRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *ConfigureAgentRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConfigureAgentRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ConfigureAgentRequest proto.InternalMessageInfo
+
+func (m *ConfigureAgentRequest) GetAgentID() AgentId {
+	if m != nil {
+		return m.AgentID
+	}
+	return AgentId{}
+}
+
+func (m *ConfigureAgentRequest) GetConfig() AgentConfig {
+	if m != nil {
+		return m.Config
+	}
+	return AgentConfig{}
+}
+
+type ConfigureAgentResponse struct {
+}
+
+func (m *ConfigureAgentResponse) Reset()         { *m = ConfigureAgentResponse{} }
+func (m *ConfigureAgentResponse) String() string { return proto.CompactTextString(m) }
+func (*ConfigureAgentResponse) ProtoMessage()    {}
+func (*ConfigureAgentResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_475f4bfeda7e9685, []int{6}
+}
+func (m *ConfigureAgentResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *ConfigureAgentResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_ConfigureAgentResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *ConfigureAgentResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_ConfigureAgentResponse.Merge(m, src)
+}
+func (m *ConfigureAgentResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *ConfigureAgentResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_ConfigureAgentResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_ConfigureAgentResponse proto.InternalMessageInfo
+
+type StopAgentRequest struct {
+	AgentID AgentId `protobuf:"bytes,1,opt,name=agent_id,json=agentId,proto3" json:"agent_id"`
+}
+
+func (m *StopAgentRequest) Reset()         { *m = StopAgentRequest{} }
+func (m *StopAgentRequest) String() string { return proto.CompactTextString(m) }
+func (*StopAgentRequest) ProtoMessage()    {}
+func (*StopAgentRequest) Descriptor() ([]byte, []int) {
 	return fileDescriptor_475f4bfeda7e9685, []int{7}
 }
-func (m *ConfigureDriverRequest) XXX_Unmarshal(b []byte) error {
+func (m *StopAgentRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *ConfigureDriverRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *StopAgentRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_ConfigureDriverRequest.Marshal(b, m, deterministic)
+		return xxx_messageInfo_StopAgentRequest.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -377,40 +385,40 @@ func (m *ConfigureDriverRequest) XXX_Marshal(b []byte, deterministic bool) ([]by
 		return b[:n], nil
 	}
 }
-func (m *ConfigureDriverRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ConfigureDriverRequest.Merge(m, src)
+func (m *StopAgentRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StopAgentRequest.Merge(m, src)
 }
-func (m *ConfigureDriverRequest) XXX_Size() int {
+func (m *StopAgentRequest) XXX_Size() int {
 	return m.Size()
 }
-func (m *ConfigureDriverRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_ConfigureDriverRequest.DiscardUnknown(m)
+func (m *StopAgentRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_StopAgentRequest.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ConfigureDriverRequest proto.InternalMessageInfo
+var xxx_messageInfo_StopAgentRequest proto.InternalMessageInfo
 
-func (m *ConfigureDriverRequest) GetDriver() DriverConfig {
+func (m *StopAgentRequest) GetAgentID() AgentId {
 	if m != nil {
-		return m.Driver
+		return m.AgentID
 	}
-	return DriverConfig{}
+	return AgentId{}
 }
 
-type ConfigureDriverResponse struct {
+type StopAgentResponse struct {
 }
 
-func (m *ConfigureDriverResponse) Reset()         { *m = ConfigureDriverResponse{} }
-func (m *ConfigureDriverResponse) String() string { return proto.CompactTextString(m) }
-func (*ConfigureDriverResponse) ProtoMessage()    {}
-func (*ConfigureDriverResponse) Descriptor() ([]byte, []int) {
+func (m *StopAgentResponse) Reset()         { *m = StopAgentResponse{} }
+func (m *StopAgentResponse) String() string { return proto.CompactTextString(m) }
+func (*StopAgentResponse) ProtoMessage()    {}
+func (*StopAgentResponse) Descriptor() ([]byte, []int) {
 	return fileDescriptor_475f4bfeda7e9685, []int{8}
 }
-func (m *ConfigureDriverResponse) XXX_Unmarshal(b []byte) error {
+func (m *StopAgentResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
 }
-func (m *ConfigureDriverResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+func (m *StopAgentResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
 	if deterministic {
-		return xxx_messageInfo_ConfigureDriverResponse.Marshal(b, m, deterministic)
+		return xxx_messageInfo_StopAgentResponse.Marshal(b, m, deterministic)
 	} else {
 		b = b[:cap(b)]
 		n, err := m.MarshalToSizedBuffer(b)
@@ -420,28 +428,28 @@ func (m *ConfigureDriverResponse) XXX_Marshal(b []byte, deterministic bool) ([]b
 		return b[:n], nil
 	}
 }
-func (m *ConfigureDriverResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ConfigureDriverResponse.Merge(m, src)
+func (m *StopAgentResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_StopAgentResponse.Merge(m, src)
 }
-func (m *ConfigureDriverResponse) XXX_Size() int {
+func (m *StopAgentResponse) XXX_Size() int {
 	return m.Size()
 }
-func (m *ConfigureDriverResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_ConfigureDriverResponse.DiscardUnknown(m)
+func (m *StopAgentResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_StopAgentResponse.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_ConfigureDriverResponse proto.InternalMessageInfo
+var xxx_messageInfo_StopAgentResponse proto.InternalMessageInfo
 
 func init() {
-	proto.RegisterType((*ProxyId)(nil), "atomix.management.driver.ProxyId")
-	proto.RegisterType((*ProxyConfig)(nil), "atomix.management.driver.ProxyConfig")
-	proto.RegisterType((*AddProxyRequest)(nil), "atomix.management.driver.AddProxyRequest")
-	proto.RegisterType((*AddProxyResponse)(nil), "atomix.management.driver.AddProxyResponse")
-	proto.RegisterType((*RemoveProxyRequest)(nil), "atomix.management.driver.RemoveProxyRequest")
-	proto.RegisterType((*RemoveProxyResponse)(nil), "atomix.management.driver.RemoveProxyResponse")
-	proto.RegisterType((*DriverConfig)(nil), "atomix.management.driver.DriverConfig")
-	proto.RegisterType((*ConfigureDriverRequest)(nil), "atomix.management.driver.ConfigureDriverRequest")
-	proto.RegisterType((*ConfigureDriverResponse)(nil), "atomix.management.driver.ConfigureDriverResponse")
+	proto.RegisterType((*AgentId)(nil), "atomix.management.driver.AgentId")
+	proto.RegisterType((*AgentAddress)(nil), "atomix.management.driver.AgentAddress")
+	proto.RegisterType((*AgentConfig)(nil), "atomix.management.driver.AgentConfig")
+	proto.RegisterType((*StartAgentRequest)(nil), "atomix.management.driver.StartAgentRequest")
+	proto.RegisterType((*StartAgentResponse)(nil), "atomix.management.driver.StartAgentResponse")
+	proto.RegisterType((*ConfigureAgentRequest)(nil), "atomix.management.driver.ConfigureAgentRequest")
+	proto.RegisterType((*ConfigureAgentResponse)(nil), "atomix.management.driver.ConfigureAgentResponse")
+	proto.RegisterType((*StopAgentRequest)(nil), "atomix.management.driver.StopAgentRequest")
+	proto.RegisterType((*StopAgentResponse)(nil), "atomix.management.driver.StopAgentResponse")
 }
 
 func init() {
@@ -449,37 +457,36 @@ func init() {
 }
 
 var fileDescriptor_475f4bfeda7e9685 = []byte{
-	// 479 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0x94, 0x52, 0xcf, 0x6f, 0x94, 0x40,
-	0x14, 0x06, 0xec, 0x0f, 0xfa, 0xd6, 0x64, 0xcd, 0x58, 0x5b, 0x24, 0x86, 0xd5, 0x49, 0x6a, 0xd4,
-	0x28, 0xab, 0xf5, 0x68, 0x3c, 0x74, 0xe5, 0xd2, 0x98, 0xc6, 0x66, 0xf4, 0xac, 0x41, 0x18, 0x09,
-	0x46, 0x18, 0x1c, 0x28, 0xb6, 0xff, 0x85, 0xfe, 0x57, 0x3d, 0xf6, 0xe8, 0xa9, 0x31, 0xec, 0xc1,
-	0x7f, 0xc3, 0x30, 0x6f, 0x96, 0x6d, 0xbb, 0x92, 0xb6, 0x27, 0xde, 0xbc, 0xf7, 0xbe, 0xef, 0x7b,
-	0xdf, 0x7b, 0xc0, 0x56, 0x58, 0x89, 0x2c, 0x3d, 0x1c, 0x67, 0x61, 0x1e, 0x26, 0x3c, 0xe3, 0x79,
-	0x35, 0x8e, 0x65, 0x5a, 0x73, 0xa9, 0x3f, 0x7e, 0x21, 0x45, 0x25, 0x88, 0x83, 0x6d, 0xfe, 0xbc,
-	0xcd, 0xc7, 0xba, 0xeb, 0x69, 0x02, 0xd5, 0x17, 0x89, 0x6f, 0x5d, 0x80, 0x48, 0x77, 0x3d, 0x11,
-	0x89, 0x50, 0xe1, 0xb8, 0x8d, 0x30, 0x4b, 0xdf, 0xc1, 0xea, 0xbe, 0x14, 0x87, 0x47, 0xbb, 0x31,
-	0xb9, 0x07, 0x6b, 0x79, 0x98, 0xf1, 0xb2, 0x08, 0x23, 0xee, 0x98, 0xf7, 0xcd, 0x47, 0x6b, 0x6c,
-	0x9e, 0x20, 0x04, 0x96, 0xda, 0x87, 0x63, 0xa9, 0x82, 0x8a, 0xdb, 0x5c, 0x75, 0x54, 0x70, 0xe7,
-	0x06, 0xe6, 0xda, 0x98, 0xd6, 0x30, 0x50, 0x84, 0x6f, 0x44, 0xfe, 0x25, 0x4d, 0xc8, 0x6b, 0xb0,
-	0xd2, 0x58, 0xb1, 0x0d, 0xb6, 0x1f, 0xf8, 0x7d, 0xc3, 0xfb, 0x7a, 0x86, 0x09, 0x1c, 0x9f, 0x8e,
-	0x8c, 0xe6, 0x74, 0x64, 0xed, 0x06, 0xcc, 0x4a, 0xe3, 0x56, 0x41, 0xf2, 0x30, 0x56, 0xaa, 0x36,
-	0x53, 0x31, 0x59, 0x87, 0xe5, 0x1f, 0x32, 0xad, 0x50, 0xd6, 0x66, 0xf8, 0xa0, 0x1f, 0x60, 0xb8,
-	0x13, 0xc7, 0x8a, 0x87, 0xf1, 0xef, 0x07, 0xbc, 0xac, 0xc8, 0x0e, 0x2c, 0x17, 0xed, 0x5b, 0xcb,
-	0x6f, 0x5d, 0x22, 0x8f, 0x13, 0x4f, 0x96, 0xda, 0x11, 0x18, 0x22, 0x29, 0x81, 0x5b, 0x73, 0xd6,
-	0xb2, 0x10, 0x79, 0xc9, 0x69, 0x04, 0x84, 0xf1, 0x4c, 0xd4, 0xfc, 0x9c, 0xd8, 0x1e, 0xd8, 0x0a,
-	0xf2, 0xe9, 0x3a, 0x76, 0x87, 0xda, 0xae, 0xbe, 0x41, 0xc0, 0x56, 0x0b, 0xac, 0xd0, 0x3b, 0x70,
-	0xfb, 0x9c, 0x88, 0xd6, 0x7e, 0x0b, 0x37, 0x03, 0x45, 0xa1, 0xd7, 0xfb, 0x4a, 0xa9, 0xaa, 0x33,
-	0x6b, 0xd5, 0xd1, 0x4c, 0xb5, 0x3b, 0xff, 0xbe, 0x0e, 0x10, 0xc2, 0x3a, 0x00, 0xfd, 0x08, 0x1b,
-	0x98, 0x3b, 0x90, 0x1c, 0x59, 0x67, 0x66, 0x02, 0x58, 0xc1, 0x49, 0x35, 0xe9, 0xc3, 0x7e, 0x2b,
-	0x67, 0xc7, 0xd1, 0xbb, 0xd3, 0x58, 0x7a, 0x17, 0x36, 0x17, 0xf8, 0xd1, 0xc7, 0xf6, 0x5f, 0x13,
-	0x36, 0x94, 0xb3, 0xbd, 0x8e, 0xf0, 0x3d, 0x97, 0x75, 0x1a, 0x71, 0x12, 0x82, 0x3d, 0x5b, 0x39,
-	0x79, 0xdc, 0xaf, 0x7b, 0xe1, 0xd8, 0xee, 0x93, 0xab, 0xb4, 0xa2, 0x3a, 0xf9, 0x0a, 0x83, 0x33,
-	0xcb, 0x25, 0x4f, 0xfb, 0xa1, 0x8b, 0x87, 0x76, 0x9f, 0x5d, 0xb1, 0x5b, 0x3b, 0xfd, 0x65, 0xc2,
-	0x26, 0x9a, 0x5f, 0xb4, 0x5a, 0xc3, 0xf0, 0xc2, 0x82, 0xc8, 0xf3, 0x7e, 0xf6, 0xff, 0xdf, 0xca,
-	0x7d, 0x71, 0x0d, 0x04, 0xce, 0x34, 0x71, 0x8e, 0x1b, 0xcf, 0x3c, 0x69, 0x3c, 0xf3, 0x4f, 0xe3,
-	0x99, 0x3f, 0xa7, 0x9e, 0x71, 0x32, 0xf5, 0x8c, 0xdf, 0x53, 0xcf, 0xf8, 0xbc, 0xa2, 0x7e, 0x8e,
-	0x97, 0xff, 0x02, 0x00, 0x00, 0xff, 0xff, 0x6f, 0x87, 0x06, 0xab, 0x8e, 0x04, 0x00, 0x00,
+	// 455 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xb4, 0x53, 0xcd, 0xca, 0xd3, 0x40,
+	0x14, 0x4d, 0xea, 0x67, 0xfb, 0xf5, 0x56, 0xfc, 0x19, 0x3f, 0x25, 0x04, 0x49, 0x35, 0x50, 0x11,
+	0x2b, 0x89, 0x54, 0x70, 0xe3, 0xaa, 0x3f, 0x08, 0x2e, 0x84, 0x92, 0x3e, 0x80, 0x8c, 0xcd, 0x18,
+	0x03, 0x26, 0x13, 0x33, 0x53, 0xf1, 0x31, 0x7c, 0x0f, 0x5f, 0xa4, 0x0b, 0x17, 0x5d, 0xba, 0x2a,
+	0x92, 0x3e, 0x80, 0xaf, 0x20, 0xb9, 0x33, 0x4d, 0xac, 0x5a, 0x5b, 0x3e, 0xe8, 0x2a, 0x77, 0x66,
+	0xce, 0x39, 0xf7, 0x9e, 0x33, 0x13, 0xe8, 0x51, 0xc9, 0x93, 0xf8, 0xb3, 0x9f, 0xd0, 0x94, 0x46,
+	0x2c, 0x61, 0xa9, 0xf4, 0xc3, 0x3c, 0xfe, 0xc4, 0x72, 0xfd, 0xf1, 0xb2, 0x9c, 0x4b, 0x4e, 0x2c,
+	0x05, 0xf3, 0x6a, 0x98, 0xa7, 0xce, 0x6d, 0x47, 0x0b, 0x20, 0x6e, 0xce, 0x3f, 0x54, 0x85, 0x62,
+	0xda, 0x17, 0x11, 0x8f, 0x38, 0x96, 0x7e, 0x59, 0xa9, 0x5d, 0xf7, 0x05, 0xb4, 0x86, 0x11, 0x4b,
+	0xe5, 0xab, 0x90, 0xdc, 0x83, 0x76, 0x4a, 0x13, 0x26, 0x32, 0x3a, 0x67, 0x96, 0x79, 0xdf, 0x7c,
+	0xd4, 0x0e, 0xea, 0x0d, 0x42, 0xe0, 0xac, 0x5c, 0x58, 0x0d, 0x3c, 0xc0, 0xda, 0x7d, 0x0e, 0xd7,
+	0x90, 0x3c, 0x0c, 0xc3, 0x9c, 0x09, 0x51, 0x62, 0xde, 0x73, 0x21, 0x35, 0x19, 0xeb, 0x72, 0x2f,
+	0xe3, 0xb9, 0x44, 0xde, 0xd5, 0x00, 0x6b, 0x77, 0x0a, 0x1d, 0xe4, 0x8d, 0x79, 0xfa, 0x2e, 0x8e,
+	0xc8, 0x10, 0xce, 0xb7, 0xb3, 0x22, 0xb5, 0x33, 0xe8, 0x7a, 0xda, 0x66, 0xe5, 0x61, 0xaa, 0x0b,
+	0x45, 0x19, 0x9d, 0x2d, 0xd7, 0x5d, 0x23, 0xa8, 0x68, 0xee, 0x4f, 0x13, 0x6e, 0xcd, 0x24, 0xcd,
+	0x25, 0xea, 0x06, 0xec, 0xe3, 0x82, 0x09, 0x49, 0x5e, 0xc3, 0x39, 0x2d, 0xd7, 0x6f, 0xe2, 0x50,
+	0x0b, 0x3f, 0xf0, 0xf6, 0xe5, 0xe7, 0xe9, 0x18, 0x46, 0x37, 0x4a, 0xe9, 0x62, 0xdd, 0xd5, 0xb9,
+	0x4c, 0x82, 0x16, 0xd5, 0x01, 0xbd, 0x84, 0x16, 0x55, 0x4e, 0xd1, 0x4d, 0x67, 0xf0, 0xf0, 0x80,
+	0x9a, 0xce, 0x45, 0x4f, 0xbb, 0x25, 0x93, 0x31, 0x34, 0xe7, 0x68, 0xc3, 0xba, 0x82, 0x32, 0xbd,
+	0x03, 0x32, 0x3b, 0x9e, 0x35, 0xd5, 0xbd, 0x00, 0xf2, 0xbb, 0x61, 0x91, 0xf1, 0x54, 0x30, 0xf7,
+	0xab, 0x09, 0x77, 0x14, 0x7c, 0x91, 0xb3, 0x53, 0x66, 0x51, 0x7b, 0x68, 0x5c, 0xde, 0x83, 0x05,
+	0x77, 0xff, 0x1c, 0x56, 0xfb, 0xa0, 0x70, 0x73, 0x26, 0x79, 0x76, 0x42, 0x07, 0xee, 0xed, 0xf2,
+	0xc5, 0x54, 0x2d, 0x54, 0xdf, 0xc1, 0xb7, 0x06, 0x34, 0x27, 0xa8, 0x40, 0x22, 0x80, 0x3a, 0x60,
+	0xd2, 0xdf, 0xdf, 0xea, 0xaf, 0x77, 0x67, 0x3f, 0x39, 0x0e, 0xac, 0x7a, 0x12, 0x01, 0xd7, 0x77,
+	0x53, 0x20, 0xfe, 0x7e, 0xfe, 0x3f, 0x2f, 0xd7, 0x7e, 0x7a, 0x3c, 0x41, 0x37, 0x0d, 0xa1, 0x5d,
+	0xb9, 0x27, 0x8f, 0xff, 0x37, 0xef, 0xee, 0x2d, 0xd8, 0xfd, 0xa3, 0xb0, 0xaa, 0xcb, 0xc8, 0x5a,
+	0x16, 0x8e, 0xb9, 0x2a, 0x1c, 0xf3, 0x47, 0xe1, 0x98, 0x5f, 0x36, 0x8e, 0xb1, 0xda, 0x38, 0xc6,
+	0xf7, 0x8d, 0x63, 0xbc, 0x6d, 0xe2, 0xaf, 0xfb, 0xec, 0x57, 0x00, 0x00, 0x00, 0xff, 0xff, 0xac,
+	0x12, 0xac, 0x5f, 0xf7, 0x04, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -490,187 +497,151 @@ var _ grpc.ClientConn
 // is compatible with the grpc package it is being compiled against.
 const _ = grpc.SupportPackageIsVersion4
 
-// ProxyManagementServiceClient is the client API for ProxyManagementService service.
+// DriverClient is the client API for Driver service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type ProxyManagementServiceClient interface {
-	AddProxy(ctx context.Context, in *AddProxyRequest, opts ...grpc.CallOption) (*AddProxyResponse, error)
-	RemoveProxy(ctx context.Context, in *RemoveProxyRequest, opts ...grpc.CallOption) (*RemoveProxyResponse, error)
+type DriverClient interface {
+	StartAgent(ctx context.Context, in *StartAgentRequest, opts ...grpc.CallOption) (*StartAgentResponse, error)
+	ConfigureAgent(ctx context.Context, in *ConfigureAgentRequest, opts ...grpc.CallOption) (*ConfigureAgentResponse, error)
+	StopAgent(ctx context.Context, in *StopAgentRequest, opts ...grpc.CallOption) (*StopAgentResponse, error)
 }
 
-type proxyManagementServiceClient struct {
+type driverClient struct {
 	cc *grpc.ClientConn
 }
 
-func NewProxyManagementServiceClient(cc *grpc.ClientConn) ProxyManagementServiceClient {
-	return &proxyManagementServiceClient{cc}
+func NewDriverClient(cc *grpc.ClientConn) DriverClient {
+	return &driverClient{cc}
 }
 
-func (c *proxyManagementServiceClient) AddProxy(ctx context.Context, in *AddProxyRequest, opts ...grpc.CallOption) (*AddProxyResponse, error) {
-	out := new(AddProxyResponse)
-	err := c.cc.Invoke(ctx, "/atomix.management.driver.ProxyManagementService/AddProxy", in, out, opts...)
+func (c *driverClient) StartAgent(ctx context.Context, in *StartAgentRequest, opts ...grpc.CallOption) (*StartAgentResponse, error) {
+	out := new(StartAgentResponse)
+	err := c.cc.Invoke(ctx, "/atomix.management.driver.Driver/StartAgent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *proxyManagementServiceClient) RemoveProxy(ctx context.Context, in *RemoveProxyRequest, opts ...grpc.CallOption) (*RemoveProxyResponse, error) {
-	out := new(RemoveProxyResponse)
-	err := c.cc.Invoke(ctx, "/atomix.management.driver.ProxyManagementService/RemoveProxy", in, out, opts...)
+func (c *driverClient) ConfigureAgent(ctx context.Context, in *ConfigureAgentRequest, opts ...grpc.CallOption) (*ConfigureAgentResponse, error) {
+	out := new(ConfigureAgentResponse)
+	err := c.cc.Invoke(ctx, "/atomix.management.driver.Driver/ConfigureAgent", in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ProxyManagementServiceServer is the server API for ProxyManagementService service.
-type ProxyManagementServiceServer interface {
-	AddProxy(context.Context, *AddProxyRequest) (*AddProxyResponse, error)
-	RemoveProxy(context.Context, *RemoveProxyRequest) (*RemoveProxyResponse, error)
+func (c *driverClient) StopAgent(ctx context.Context, in *StopAgentRequest, opts ...grpc.CallOption) (*StopAgentResponse, error) {
+	out := new(StopAgentResponse)
+	err := c.cc.Invoke(ctx, "/atomix.management.driver.Driver/StopAgent", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
-// UnimplementedProxyManagementServiceServer can be embedded to have forward compatible implementations.
-type UnimplementedProxyManagementServiceServer struct {
+// DriverServer is the server API for Driver service.
+type DriverServer interface {
+	StartAgent(context.Context, *StartAgentRequest) (*StartAgentResponse, error)
+	ConfigureAgent(context.Context, *ConfigureAgentRequest) (*ConfigureAgentResponse, error)
+	StopAgent(context.Context, *StopAgentRequest) (*StopAgentResponse, error)
 }
 
-func (*UnimplementedProxyManagementServiceServer) AddProxy(ctx context.Context, req *AddProxyRequest) (*AddProxyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method AddProxy not implemented")
-}
-func (*UnimplementedProxyManagementServiceServer) RemoveProxy(ctx context.Context, req *RemoveProxyRequest) (*RemoveProxyResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method RemoveProxy not implemented")
+// UnimplementedDriverServer can be embedded to have forward compatible implementations.
+type UnimplementedDriverServer struct {
 }
 
-func RegisterProxyManagementServiceServer(s *grpc.Server, srv ProxyManagementServiceServer) {
-	s.RegisterService(&_ProxyManagementService_serviceDesc, srv)
+func (*UnimplementedDriverServer) StartAgent(ctx context.Context, req *StartAgentRequest) (*StartAgentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StartAgent not implemented")
+}
+func (*UnimplementedDriverServer) ConfigureAgent(ctx context.Context, req *ConfigureAgentRequest) (*ConfigureAgentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfigureAgent not implemented")
+}
+func (*UnimplementedDriverServer) StopAgent(ctx context.Context, req *StopAgentRequest) (*StopAgentResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StopAgent not implemented")
 }
 
-func _ProxyManagementService_AddProxy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(AddProxyRequest)
+func RegisterDriverServer(s *grpc.Server, srv DriverServer) {
+	s.RegisterService(&_Driver_serviceDesc, srv)
+}
+
+func _Driver_StartAgent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StartAgentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProxyManagementServiceServer).AddProxy(ctx, in)
+		return srv.(DriverServer).StartAgent(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/atomix.management.driver.ProxyManagementService/AddProxy",
+		FullMethod: "/atomix.management.driver.Driver/StartAgent",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProxyManagementServiceServer).AddProxy(ctx, req.(*AddProxyRequest))
+		return srv.(DriverServer).StartAgent(ctx, req.(*StartAgentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ProxyManagementService_RemoveProxy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(RemoveProxyRequest)
+func _Driver_ConfigureAgent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ConfigureAgentRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ProxyManagementServiceServer).RemoveProxy(ctx, in)
+		return srv.(DriverServer).ConfigureAgent(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: "/atomix.management.driver.ProxyManagementService/RemoveProxy",
+		FullMethod: "/atomix.management.driver.Driver/ConfigureAgent",
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ProxyManagementServiceServer).RemoveProxy(ctx, req.(*RemoveProxyRequest))
+		return srv.(DriverServer).ConfigureAgent(ctx, req.(*ConfigureAgentRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-var _ProxyManagementService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "atomix.management.driver.ProxyManagementService",
-	HandlerType: (*ProxyManagementServiceServer)(nil),
+func _Driver_StopAgent_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StopAgentRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DriverServer).StopAgent(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/atomix.management.driver.Driver/StopAgent",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DriverServer).StopAgent(ctx, req.(*StopAgentRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+var _Driver_serviceDesc = grpc.ServiceDesc{
+	ServiceName: "atomix.management.driver.Driver",
+	HandlerType: (*DriverServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "AddProxy",
-			Handler:    _ProxyManagementService_AddProxy_Handler,
+			MethodName: "StartAgent",
+			Handler:    _Driver_StartAgent_Handler,
 		},
 		{
-			MethodName: "RemoveProxy",
-			Handler:    _ProxyManagementService_RemoveProxy_Handler,
+			MethodName: "ConfigureAgent",
+			Handler:    _Driver_ConfigureAgent_Handler,
+		},
+		{
+			MethodName: "StopAgent",
+			Handler:    _Driver_StopAgent_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "atomix/management/driver/driver.proto",
 }
 
-// DriverManagementServiceClient is the client API for DriverManagementService service.
-//
-// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://godoc.org/google.golang.org/grpc#ClientConn.NewStream.
-type DriverManagementServiceClient interface {
-	ConfigureDriver(ctx context.Context, in *ConfigureDriverRequest, opts ...grpc.CallOption) (*ConfigureDriverResponse, error)
-}
-
-type driverManagementServiceClient struct {
-	cc *grpc.ClientConn
-}
-
-func NewDriverManagementServiceClient(cc *grpc.ClientConn) DriverManagementServiceClient {
-	return &driverManagementServiceClient{cc}
-}
-
-func (c *driverManagementServiceClient) ConfigureDriver(ctx context.Context, in *ConfigureDriverRequest, opts ...grpc.CallOption) (*ConfigureDriverResponse, error) {
-	out := new(ConfigureDriverResponse)
-	err := c.cc.Invoke(ctx, "/atomix.management.driver.DriverManagementService/ConfigureDriver", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
-// DriverManagementServiceServer is the server API for DriverManagementService service.
-type DriverManagementServiceServer interface {
-	ConfigureDriver(context.Context, *ConfigureDriverRequest) (*ConfigureDriverResponse, error)
-}
-
-// UnimplementedDriverManagementServiceServer can be embedded to have forward compatible implementations.
-type UnimplementedDriverManagementServiceServer struct {
-}
-
-func (*UnimplementedDriverManagementServiceServer) ConfigureDriver(ctx context.Context, req *ConfigureDriverRequest) (*ConfigureDriverResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ConfigureDriver not implemented")
-}
-
-func RegisterDriverManagementServiceServer(s *grpc.Server, srv DriverManagementServiceServer) {
-	s.RegisterService(&_DriverManagementService_serviceDesc, srv)
-}
-
-func _DriverManagementService_ConfigureDriver_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ConfigureDriverRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(DriverManagementServiceServer).ConfigureDriver(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/atomix.management.driver.DriverManagementService/ConfigureDriver",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(DriverManagementServiceServer).ConfigureDriver(ctx, req.(*ConfigureDriverRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
-var _DriverManagementService_serviceDesc = grpc.ServiceDesc{
-	ServiceName: "atomix.management.driver.DriverManagementService",
-	HandlerType: (*DriverManagementServiceServer)(nil),
-	Methods: []grpc.MethodDesc{
-		{
-			MethodName: "ConfigureDriver",
-			Handler:    _DriverManagementService_ConfigureDriver_Handler,
-		},
-	},
-	Streams:  []grpc.StreamDesc{},
-	Metadata: "atomix/management/driver/driver.proto",
-}
-
-func (m *ProxyId) Marshal() (dAtA []byte, err error) {
+func (m *AgentId) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -680,23 +651,16 @@ func (m *ProxyId) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *ProxyId) MarshalTo(dAtA []byte) (int, error) {
+func (m *AgentId) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *ProxyId) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *AgentId) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if len(m.Type) > 0 {
-		i -= len(m.Type)
-		copy(dAtA[i:], m.Type)
-		i = encodeVarintDriver(dAtA, i, uint64(len(m.Type)))
-		i--
-		dAtA[i] = 0x1a
-	}
 	if len(m.Name) > 0 {
 		i -= len(m.Name)
 		copy(dAtA[i:], m.Name)
@@ -714,7 +678,7 @@ func (m *ProxyId) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	return len(dAtA) - i, nil
 }
 
-func (m *ProxyConfig) Marshal() (dAtA []byte, err error) {
+func (m *AgentAddress) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -724,197 +688,32 @@ func (m *ProxyConfig) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *ProxyConfig) MarshalTo(dAtA []byte) (int, error) {
+func (m *AgentAddress) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *ProxyConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *AgentAddress) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
-	if m.Write {
-		i--
-		if m.Write {
-			dAtA[i] = 1
-		} else {
-			dAtA[i] = 0
-		}
-		i--
-		dAtA[i] = 0x18
-	}
-	if m.Read {
-		i--
-		if m.Read {
-			dAtA[i] = 1
-		} else {
-			dAtA[i] = 0
-		}
+	if m.Port != 0 {
+		i = encodeVarintDriver(dAtA, i, uint64(m.Port))
 		i--
 		dAtA[i] = 0x10
 	}
-	{
-		size, err := m.ID.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintDriver(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0xa
-	return len(dAtA) - i, nil
-}
-
-func (m *AddProxyRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *AddProxyRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *AddProxyRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	{
-		size, err := m.Proxy.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintDriver(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0xa
-	return len(dAtA) - i, nil
-}
-
-func (m *AddProxyResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *AddProxyResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *AddProxyResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	return len(dAtA) - i, nil
-}
-
-func (m *RemoveProxyRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *RemoveProxyRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *RemoveProxyRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	{
-		size, err := m.ProxyID.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintDriver(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0xa
-	return len(dAtA) - i, nil
-}
-
-func (m *RemoveProxyResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *RemoveProxyResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *RemoveProxyResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	return len(dAtA) - i, nil
-}
-
-func (m *DriverConfig) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *DriverConfig) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *DriverConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.Protocol != nil {
-		{
-			size, err := m.Protocol.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintDriver(dAtA, i, uint64(size))
-		}
+	if len(m.Host) > 0 {
+		i -= len(m.Host)
+		copy(dAtA[i:], m.Host)
+		i = encodeVarintDriver(dAtA, i, uint64(len(m.Host)))
 		i--
 		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
 
-func (m *ConfigureDriverRequest) Marshal() (dAtA []byte, err error) {
+func (m *AgentConfig) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -924,18 +723,18 @@ func (m *ConfigureDriverRequest) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *ConfigureDriverRequest) MarshalTo(dAtA []byte) (int, error) {
+func (m *AgentConfig) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *ConfigureDriverRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *AgentConfig) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
 	_ = l
 	{
-		size, err := m.Driver.MarshalToSizedBuffer(dAtA[:i])
+		size, err := m.Protocol.MarshalToSizedBuffer(dAtA[:i])
 		if err != nil {
 			return 0, err
 		}
@@ -947,7 +746,7 @@ func (m *ConfigureDriverRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 	return len(dAtA) - i, nil
 }
 
-func (m *ConfigureDriverResponse) Marshal() (dAtA []byte, err error) {
+func (m *StartAgentRequest) Marshal() (dAtA []byte, err error) {
 	size := m.Size()
 	dAtA = make([]byte, size)
 	n, err := m.MarshalToSizedBuffer(dAtA[:size])
@@ -957,12 +756,187 @@ func (m *ConfigureDriverResponse) Marshal() (dAtA []byte, err error) {
 	return dAtA[:n], nil
 }
 
-func (m *ConfigureDriverResponse) MarshalTo(dAtA []byte) (int, error) {
+func (m *StartAgentRequest) MarshalTo(dAtA []byte) (int, error) {
 	size := m.Size()
 	return m.MarshalToSizedBuffer(dAtA[:size])
 }
 
-func (m *ConfigureDriverResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+func (m *StartAgentRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.Config.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintDriver(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0x1a
+	{
+		size, err := m.Address.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintDriver(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0x12
+	{
+		size, err := m.AgentID.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintDriver(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *StartAgentResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *StartAgentResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *StartAgentResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *ConfigureAgentRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *ConfigureAgentRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *ConfigureAgentRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.Config.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintDriver(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0x12
+	{
+		size, err := m.AgentID.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintDriver(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *ConfigureAgentResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *ConfigureAgentResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *ConfigureAgentResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	return len(dAtA) - i, nil
+}
+
+func (m *StopAgentRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *StopAgentRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *StopAgentRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.AgentID.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintDriver(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *StopAgentResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *StopAgentResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *StopAgentResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	i := len(dAtA)
 	_ = i
 	var l int
@@ -981,7 +955,7 @@ func encodeVarintDriver(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *ProxyId) Size() (n int) {
+func (m *AgentId) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -995,62 +969,52 @@ func (m *ProxyId) Size() (n int) {
 	if l > 0 {
 		n += 1 + l + sovDriver(uint64(l))
 	}
-	l = len(m.Type)
+	return n
+}
+
+func (m *AgentAddress) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Host)
 	if l > 0 {
 		n += 1 + l + sovDriver(uint64(l))
 	}
+	if m.Port != 0 {
+		n += 1 + sovDriver(uint64(m.Port))
+	}
 	return n
 }
 
-func (m *ProxyConfig) Size() (n int) {
+func (m *AgentConfig) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = m.ID.Size()
-	n += 1 + l + sovDriver(uint64(l))
-	if m.Read {
-		n += 2
-	}
-	if m.Write {
-		n += 2
-	}
-	return n
-}
-
-func (m *AddProxyRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = m.Proxy.Size()
+	l = m.Protocol.Size()
 	n += 1 + l + sovDriver(uint64(l))
 	return n
 }
 
-func (m *AddProxyResponse) Size() (n int) {
+func (m *StartAgentRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	return n
-}
-
-func (m *RemoveProxyRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = m.ProxyID.Size()
+	l = m.AgentID.Size()
+	n += 1 + l + sovDriver(uint64(l))
+	l = m.Address.Size()
+	n += 1 + l + sovDriver(uint64(l))
+	l = m.Config.Size()
 	n += 1 + l + sovDriver(uint64(l))
 	return n
 }
 
-func (m *RemoveProxyResponse) Size() (n int) {
+func (m *StartAgentResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1059,31 +1023,40 @@ func (m *RemoveProxyResponse) Size() (n int) {
 	return n
 }
 
-func (m *DriverConfig) Size() (n int) {
+func (m *ConfigureAgentRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	if m.Protocol != nil {
-		l = m.Protocol.Size()
-		n += 1 + l + sovDriver(uint64(l))
-	}
-	return n
-}
-
-func (m *ConfigureDriverRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = m.Driver.Size()
+	l = m.AgentID.Size()
+	n += 1 + l + sovDriver(uint64(l))
+	l = m.Config.Size()
 	n += 1 + l + sovDriver(uint64(l))
 	return n
 }
 
-func (m *ConfigureDriverResponse) Size() (n int) {
+func (m *ConfigureAgentResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	return n
+}
+
+func (m *StopAgentRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.AgentID.Size()
+	n += 1 + l + sovDriver(uint64(l))
+	return n
+}
+
+func (m *StopAgentResponse) Size() (n int) {
 	if m == nil {
 		return 0
 	}
@@ -1098,7 +1071,7 @@ func sovDriver(x uint64) (n int) {
 func sozDriver(x uint64) (n int) {
 	return sovDriver(uint64((x << 1) ^ uint64((int64(x) >> 63))))
 }
-func (m *ProxyId) Unmarshal(dAtA []byte) error {
+func (m *AgentId) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1121,10 +1094,10 @@ func (m *ProxyId) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: ProxyId: wiretype end group for non-group")
+			return fmt.Errorf("proto: AgentId: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: ProxyId: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: AgentId: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1191,9 +1164,62 @@ func (m *ProxyId) Unmarshal(dAtA []byte) error {
 			}
 			m.Name = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
-		case 3:
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDriver(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDriver
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDriver
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *AgentAddress) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDriver
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: AgentAddress: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: AgentAddress: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Type", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Host", wireType)
 			}
 			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
@@ -1221,99 +1247,13 @@ func (m *ProxyId) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			m.Type = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipDriver(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *ProxyConfig) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowDriver
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: ProxyConfig: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: ProxyConfig: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ID", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowDriver
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthDriver
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.ID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
+			m.Host = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
 		case 2:
 			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Read", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field Port", wireType)
 			}
-			var v int
+			m.Port = 0
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowDriver
@@ -1323,32 +1263,11 @@ func (m *ProxyConfig) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				v |= int(b&0x7F) << shift
+				m.Port |= int32(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
-			m.Read = bool(v != 0)
-		case 3:
-			if wireType != 0 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Write", wireType)
-			}
-			var v int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowDriver
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				v |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			m.Write = bool(v != 0)
 		default:
 			iNdEx = preIndex
 			skippy, err := skipDriver(dAtA[iNdEx:])
@@ -1373,7 +1292,7 @@ func (m *ProxyConfig) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *AddProxyRequest) Unmarshal(dAtA []byte) error {
+func (m *AgentConfig) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1396,288 +1315,10 @@ func (m *AddProxyRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: AddProxyRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: AgentConfig: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: AddProxyRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Proxy", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowDriver
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthDriver
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.Proxy.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipDriver(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *AddProxyResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowDriver
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: AddProxyResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: AddProxyResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		default:
-			iNdEx = preIndex
-			skippy, err := skipDriver(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *RemoveProxyRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowDriver
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: RemoveProxyRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: RemoveProxyRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ProxyID", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowDriver
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthDriver
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.ProxyID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipDriver(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *RemoveProxyResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowDriver
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: RemoveProxyResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: RemoveProxyResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		default:
-			iNdEx = preIndex
-			skippy, err := skipDriver(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthDriver
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *DriverConfig) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowDriver
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: DriverConfig: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: DriverConfig: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: AgentConfig: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
@@ -1709,9 +1350,6 @@ func (m *DriverConfig) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if m.Protocol == nil {
-				m.Protocol = &protocol.ProtocolConfig{}
-			}
 			if err := m.Protocol.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
@@ -1740,7 +1378,7 @@ func (m *DriverConfig) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *ConfigureDriverRequest) Unmarshal(dAtA []byte) error {
+func (m *StartAgentRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1763,15 +1401,15 @@ func (m *ConfigureDriverRequest) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: ConfigureDriverRequest: wiretype end group for non-group")
+			return fmt.Errorf("proto: StartAgentRequest: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: ConfigureDriverRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: StartAgentRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		case 1:
 			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Driver", wireType)
+				return fmt.Errorf("proto: wrong wireType = %d for field AgentID", wireType)
 			}
 			var msglen int
 			for shift := uint(0); ; shift += 7 {
@@ -1798,7 +1436,73 @@ func (m *ConfigureDriverRequest) Unmarshal(dAtA []byte) error {
 			if postIndex > l {
 				return io.ErrUnexpectedEOF
 			}
-			if err := m.Driver.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+			if err := m.AgentID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Address", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDriver
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDriver
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDriver
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Address.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 3:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Config", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDriver
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDriver
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDriver
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Config.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex
@@ -1826,7 +1530,7 @@ func (m *ConfigureDriverRequest) Unmarshal(dAtA []byte) error {
 	}
 	return nil
 }
-func (m *ConfigureDriverResponse) Unmarshal(dAtA []byte) error {
+func (m *StartAgentResponse) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
 	iNdEx := 0
 	for iNdEx < l {
@@ -1849,10 +1553,321 @@ func (m *ConfigureDriverResponse) Unmarshal(dAtA []byte) error {
 		fieldNum := int32(wire >> 3)
 		wireType := int(wire & 0x7)
 		if wireType == 4 {
-			return fmt.Errorf("proto: ConfigureDriverResponse: wiretype end group for non-group")
+			return fmt.Errorf("proto: StartAgentResponse: wiretype end group for non-group")
 		}
 		if fieldNum <= 0 {
-			return fmt.Errorf("proto: ConfigureDriverResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+			return fmt.Errorf("proto: StartAgentResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDriver(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDriver
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDriver
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *ConfigureAgentRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDriver
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: ConfigureAgentRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: ConfigureAgentRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AgentID", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDriver
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDriver
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDriver
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.AgentID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Config", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDriver
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDriver
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDriver
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.Config.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDriver(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDriver
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDriver
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *ConfigureAgentResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDriver
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: ConfigureAgentResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: ConfigureAgentResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDriver(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDriver
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDriver
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *StopAgentRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDriver
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: StopAgentRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: StopAgentRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field AgentID", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowDriver
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthDriver
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthDriver
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.AgentID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipDriver(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if skippy < 0 {
+				return ErrInvalidLengthDriver
+			}
+			if (iNdEx + skippy) < 0 {
+				return ErrInvalidLengthDriver
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *StopAgentResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowDriver
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: StopAgentResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: StopAgentResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
 		default:

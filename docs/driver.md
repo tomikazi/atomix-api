@@ -3,110 +3,91 @@
 
 ## Table of Contents
 
-- [atomix/management/driver/driver.proto](#atomix/management/driver/driver.proto)
-    - [AddProxyRequest](#atomix.management.driver.AddProxyRequest)
-    - [AddProxyResponse](#atomix.management.driver.AddProxyResponse)
-    - [ConfigureDriverRequest](#atomix.management.driver.ConfigureDriverRequest)
-    - [ConfigureDriverResponse](#atomix.management.driver.ConfigureDriverResponse)
-    - [DriverConfig](#atomix.management.driver.DriverConfig)
-    - [ProxyConfig](#atomix.management.driver.ProxyConfig)
+- [atomix/management/driver/agent.proto](#atomix/management/driver/agent.proto)
+    - [CreateProxyRequest](#atomix.management.driver.CreateProxyRequest)
+    - [CreateProxyResponse](#atomix.management.driver.CreateProxyResponse)
+    - [DestroyProxyRequest](#atomix.management.driver.DestroyProxyRequest)
+    - [DestroyProxyResponse](#atomix.management.driver.DestroyProxyResponse)
     - [ProxyId](#atomix.management.driver.ProxyId)
-    - [RemoveProxyRequest](#atomix.management.driver.RemoveProxyRequest)
-    - [RemoveProxyResponse](#atomix.management.driver.RemoveProxyResponse)
+    - [ProxyOptions](#atomix.management.driver.ProxyOptions)
   
   
   
-    - [DriverManagementService](#atomix.management.driver.DriverManagementService)
-    - [ProxyManagementService](#atomix.management.driver.ProxyManagementService)
+    - [Agent](#atomix.management.driver.Agent)
+  
+
+- [atomix/management/driver/driver.proto](#atomix/management/driver/driver.proto)
+    - [AgentAddress](#atomix.management.driver.AgentAddress)
+    - [AgentConfig](#atomix.management.driver.AgentConfig)
+    - [AgentId](#atomix.management.driver.AgentId)
+    - [ConfigureAgentRequest](#atomix.management.driver.ConfigureAgentRequest)
+    - [ConfigureAgentResponse](#atomix.management.driver.ConfigureAgentResponse)
+    - [StartAgentRequest](#atomix.management.driver.StartAgentRequest)
+    - [StartAgentResponse](#atomix.management.driver.StartAgentResponse)
+    - [StopAgentRequest](#atomix.management.driver.StopAgentRequest)
+    - [StopAgentResponse](#atomix.management.driver.StopAgentResponse)
+  
+  
+  
+    - [Driver](#atomix.management.driver.Driver)
   
 
 - [Scalar Value Types](#scalar-value-types)
 
 
 
-<a name="atomix/management/driver/driver.proto"></a>
+<a name="atomix/management/driver/agent.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
-## atomix/management/driver/driver.proto
+## atomix/management/driver/agent.proto
 
 
 
-<a name="atomix.management.driver.AddProxyRequest"></a>
+<a name="atomix.management.driver.CreateProxyRequest"></a>
 
-### AddProxyRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proxy | [ProxyConfig](#atomix.management.driver.ProxyConfig) |  |  |
-
-
-
-
-
-
-<a name="atomix.management.driver.AddProxyResponse"></a>
-
-### AddProxyResponse
-
-
-
-
-
-
-
-<a name="atomix.management.driver.ConfigureDriverRequest"></a>
-
-### ConfigureDriverRequest
+### CreateProxyRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| driver | [DriverConfig](#atomix.management.driver.DriverConfig) |  |  |
+| proxy_id | [ProxyId](#atomix.management.driver.ProxyId) |  |  |
+| options | [ProxyOptions](#atomix.management.driver.ProxyOptions) |  |  |
 
 
 
 
 
 
-<a name="atomix.management.driver.ConfigureDriverResponse"></a>
+<a name="atomix.management.driver.CreateProxyResponse"></a>
 
-### ConfigureDriverResponse
-
-
-
-
-
-
-
-<a name="atomix.management.driver.DriverConfig"></a>
-
-### DriverConfig
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| protocol | [atomix.protocol.ProtocolConfig](#atomix.protocol.ProtocolConfig) |  |  |
+### CreateProxyResponse
 
 
 
 
 
 
-<a name="atomix.management.driver.ProxyConfig"></a>
 
-### ProxyConfig
+<a name="atomix.management.driver.DestroyProxyRequest"></a>
+
+### DestroyProxyRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [ProxyId](#atomix.management.driver.ProxyId) |  |  |
-| read | [bool](#bool) |  |  |
-| write | [bool](#bool) |  |  |
+| proxy_id | [ProxyId](#atomix.management.driver.ProxyId) |  |  |
+
+
+
+
+
+
+<a name="atomix.management.driver.DestroyProxyResponse"></a>
+
+### DestroyProxyResponse
+
 
 
 
@@ -121,34 +102,23 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| namespace | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| type | [string](#string) |  |  |
+| primitive_id | [atomix.primitive.PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
 
 
 
 
 
 
-<a name="atomix.management.driver.RemoveProxyRequest"></a>
+<a name="atomix.management.driver.ProxyOptions"></a>
 
-### RemoveProxyRequest
+### ProxyOptions
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| proxy_id | [ProxyId](#atomix.management.driver.ProxyId) |  |  |
-
-
-
-
-
-
-<a name="atomix.management.driver.RemoveProxyResponse"></a>
-
-### RemoveProxyResponse
-
+| read | [bool](#bool) |  |  |
+| write | [bool](#bool) |  |  |
 
 
 
@@ -161,25 +131,168 @@
  
 
 
-<a name="atomix.management.driver.DriverManagementService"></a>
+<a name="atomix.management.driver.Agent"></a>
 
-### DriverManagementService
+### Agent
 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| ConfigureDriver | [ConfigureDriverRequest](#atomix.management.driver.ConfigureDriverRequest) | [ConfigureDriverResponse](#atomix.management.driver.ConfigureDriverResponse) |  |
+| CreateProxy | [CreateProxyRequest](#atomix.management.driver.CreateProxyRequest) | [CreateProxyResponse](#atomix.management.driver.CreateProxyResponse) |  |
+| DestroyProxy | [DestroyProxyRequest](#atomix.management.driver.DestroyProxyRequest) | [DestroyProxyResponse](#atomix.management.driver.DestroyProxyResponse) |  |
+
+ 
 
 
-<a name="atomix.management.driver.ProxyManagementService"></a>
 
-### ProxyManagementService
+<a name="atomix/management/driver/driver.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## atomix/management/driver/driver.proto
+
+
+
+<a name="atomix.management.driver.AgentAddress"></a>
+
+### AgentAddress
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| host | [string](#string) |  |  |
+| port | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="atomix.management.driver.AgentConfig"></a>
+
+### AgentConfig
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| protocol | [atomix.protocol.ProtocolConfig](#atomix.protocol.ProtocolConfig) |  |  |
+
+
+
+
+
+
+<a name="atomix.management.driver.AgentId"></a>
+
+### AgentId
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| namespace | [string](#string) |  |  |
+| name | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="atomix.management.driver.ConfigureAgentRequest"></a>
+
+### ConfigureAgentRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| agent_id | [AgentId](#atomix.management.driver.AgentId) |  |  |
+| config | [AgentConfig](#atomix.management.driver.AgentConfig) |  |  |
+
+
+
+
+
+
+<a name="atomix.management.driver.ConfigureAgentResponse"></a>
+
+### ConfigureAgentResponse
+
+
+
+
+
+
+
+<a name="atomix.management.driver.StartAgentRequest"></a>
+
+### StartAgentRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| agent_id | [AgentId](#atomix.management.driver.AgentId) |  |  |
+| address | [AgentAddress](#atomix.management.driver.AgentAddress) |  |  |
+| config | [AgentConfig](#atomix.management.driver.AgentConfig) |  |  |
+
+
+
+
+
+
+<a name="atomix.management.driver.StartAgentResponse"></a>
+
+### StartAgentResponse
+
+
+
+
+
+
+
+<a name="atomix.management.driver.StopAgentRequest"></a>
+
+### StopAgentRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| agent_id | [AgentId](#atomix.management.driver.AgentId) |  |  |
+
+
+
+
+
+
+<a name="atomix.management.driver.StopAgentResponse"></a>
+
+### StopAgentResponse
+
+
+
+
+
+
+ 
+
+ 
+
+ 
+
+
+<a name="atomix.management.driver.Driver"></a>
+
+### Driver
 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| AddProxy | [AddProxyRequest](#atomix.management.driver.AddProxyRequest) | [AddProxyResponse](#atomix.management.driver.AddProxyResponse) |  |
-| RemoveProxy | [RemoveProxyRequest](#atomix.management.driver.RemoveProxyRequest) | [RemoveProxyResponse](#atomix.management.driver.RemoveProxyResponse) |  |
+| StartAgent | [StartAgentRequest](#atomix.management.driver.StartAgentRequest) | [StartAgentResponse](#atomix.management.driver.StartAgentResponse) |  |
+| ConfigureAgent | [ConfigureAgentRequest](#atomix.management.driver.ConfigureAgentRequest) | [ConfigureAgentResponse](#atomix.management.driver.ConfigureAgentResponse) |  |
+| StopAgent | [StopAgentRequest](#atomix.management.driver.StopAgentRequest) | [StopAgentResponse](#atomix.management.driver.StopAgentResponse) |  |
 
  
 

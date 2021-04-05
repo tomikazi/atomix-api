@@ -4,27 +4,18 @@
 ## Table of Contents
 
 - [atomix/management/broker/broker.proto](#atomix/management/broker/broker.proto)
-    - [AddDriverRequest](#atomix.management.broker.AddDriverRequest)
-    - [AddDriverResponse](#atomix.management.broker.AddDriverResponse)
-    - [AddPrimitiveRequest](#atomix.management.broker.AddPrimitiveRequest)
-    - [AddPrimitiveResponse](#atomix.management.broker.AddPrimitiveResponse)
-    - [DriverConfig](#atomix.management.broker.DriverConfig)
-    - [DriverId](#atomix.management.broker.DriverId)
-    - [PrimitiveConfig](#atomix.management.broker.PrimitiveConfig)
+    - [LookupPrimitiveRequest](#atomix.management.broker.LookupPrimitiveRequest)
+    - [LookupPrimitiveResponse](#atomix.management.broker.LookupPrimitiveResponse)
+    - [PrimitiveAddress](#atomix.management.broker.PrimitiveAddress)
     - [PrimitiveId](#atomix.management.broker.PrimitiveId)
-    - [ProxyConfig](#atomix.management.broker.ProxyConfig)
-    - [RemoveDriverRequest](#atomix.management.broker.RemoveDriverRequest)
-    - [RemoveDriverResponse](#atomix.management.broker.RemoveDriverResponse)
-    - [RemovePrimitiveRequest](#atomix.management.broker.RemovePrimitiveRequest)
-    - [RemovePrimitiveResponse](#atomix.management.broker.RemovePrimitiveResponse)
-    - [StorageConfig](#atomix.management.broker.StorageConfig)
-    - [UpdateDriverRequest](#atomix.management.broker.UpdateDriverRequest)
-    - [UpdateDriverResponse](#atomix.management.broker.UpdateDriverResponse)
+    - [RegisterPrimitiveRequest](#atomix.management.broker.RegisterPrimitiveRequest)
+    - [RegisterPrimitiveResponse](#atomix.management.broker.RegisterPrimitiveResponse)
+    - [UnregisterPrimitiveRequest](#atomix.management.broker.UnregisterPrimitiveRequest)
+    - [UnregisterPrimitiveResponse](#atomix.management.broker.UnregisterPrimitiveResponse)
   
   
   
-    - [DriverManagementService](#atomix.management.broker.DriverManagementService)
-    - [PrimitiveManagementService](#atomix.management.broker.PrimitiveManagementService)
+    - [Broker](#atomix.management.broker.Broker)
   
 
 - [Scalar Value Types](#scalar-value-types)
@@ -38,102 +29,46 @@
 
 
 
-<a name="atomix.management.broker.AddDriverRequest"></a>
+<a name="atomix.management.broker.LookupPrimitiveRequest"></a>
 
-### AddDriverRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| driver | [DriverConfig](#atomix.management.broker.DriverConfig) |  |  |
-
-
-
-
-
-
-<a name="atomix.management.broker.AddDriverResponse"></a>
-
-### AddDriverResponse
-
-
-
-
-
-
-
-<a name="atomix.management.broker.AddPrimitiveRequest"></a>
-
-### AddPrimitiveRequest
+### LookupPrimitiveRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive | [PrimitiveConfig](#atomix.management.broker.PrimitiveConfig) |  |  |
+| primitive_id | [PrimitiveId](#atomix.management.broker.PrimitiveId) |  |  |
 
 
 
 
 
 
-<a name="atomix.management.broker.AddPrimitiveResponse"></a>
+<a name="atomix.management.broker.LookupPrimitiveResponse"></a>
 
-### AddPrimitiveResponse
-
-
-
-
-
-
-
-<a name="atomix.management.broker.DriverConfig"></a>
-
-### DriverConfig
+### LookupPrimitiveResponse
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [DriverId](#atomix.management.broker.DriverId) |  |  |
+| address | [PrimitiveAddress](#atomix.management.broker.PrimitiveAddress) |  |  |
+
+
+
+
+
+
+<a name="atomix.management.broker.PrimitiveAddress"></a>
+
+### PrimitiveAddress
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
 | host | [string](#string) |  |  |
 | port | [int32](#int32) |  |  |
-| protocol | [atomix.protocol.ProtocolConfig](#atomix.protocol.ProtocolConfig) |  |  |
-
-
-
-
-
-
-<a name="atomix.management.broker.DriverId"></a>
-
-### DriverId
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| namespace | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| type | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.management.broker.PrimitiveConfig"></a>
-
-### PrimitiveConfig
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [PrimitiveId](#atomix.management.broker.PrimitiveId) |  |  |
-| driver | [DriverId](#atomix.management.broker.DriverId) |  |  |
-| proxy | [ProxyConfig](#atomix.management.broker.ProxyConfig) |  |  |
 
 
 
@@ -148,59 +83,42 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| namespace | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| type | [string](#string) |  |  |
+| id | [atomix.primitive.PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
 
 
 
 
 
 
-<a name="atomix.management.broker.ProxyConfig"></a>
+<a name="atomix.management.broker.RegisterPrimitiveRequest"></a>
 
-### ProxyConfig
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| read | [bool](#bool) |  |  |
-| write | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="atomix.management.broker.RemoveDriverRequest"></a>
-
-### RemoveDriverRequest
+### RegisterPrimitiveRequest
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| driver_id | [DriverId](#atomix.management.broker.DriverId) |  |  |
+| primitive_id | [PrimitiveId](#atomix.management.broker.PrimitiveId) |  |  |
+| address | [PrimitiveAddress](#atomix.management.broker.PrimitiveAddress) |  |  |
 
 
 
 
 
 
-<a name="atomix.management.broker.RemoveDriverResponse"></a>
+<a name="atomix.management.broker.RegisterPrimitiveResponse"></a>
 
-### RemoveDriverResponse
-
-
+### RegisterPrimitiveResponse
 
 
 
 
 
-<a name="atomix.management.broker.RemovePrimitiveRequest"></a>
 
-### RemovePrimitiveRequest
+
+<a name="atomix.management.broker.UnregisterPrimitiveRequest"></a>
+
+### UnregisterPrimitiveRequest
 
 
 
@@ -213,50 +131,9 @@
 
 
 
-<a name="atomix.management.broker.RemovePrimitiveResponse"></a>
+<a name="atomix.management.broker.UnregisterPrimitiveResponse"></a>
 
-### RemovePrimitiveResponse
-
-
-
-
-
-
-
-<a name="atomix.management.broker.StorageConfig"></a>
-
-### StorageConfig
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| host | [string](#string) |  |  |
-| port | [int32](#int32) |  |  |
-
-
-
-
-
-
-<a name="atomix.management.broker.UpdateDriverRequest"></a>
-
-### UpdateDriverRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| driver | [DriverConfig](#atomix.management.broker.DriverConfig) |  |  |
-
-
-
-
-
-
-<a name="atomix.management.broker.UpdateDriverResponse"></a>
-
-### UpdateDriverResponse
+### UnregisterPrimitiveResponse
 
 
 
@@ -270,27 +147,16 @@
  
 
 
-<a name="atomix.management.broker.DriverManagementService"></a>
+<a name="atomix.management.broker.Broker"></a>
 
-### DriverManagementService
+### Broker
 
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| AddDriver | [AddDriverRequest](#atomix.management.broker.AddDriverRequest) | [AddDriverResponse](#atomix.management.broker.AddDriverResponse) |  |
-| UpdateDriver | [UpdateDriverRequest](#atomix.management.broker.UpdateDriverRequest) | [UpdateDriverResponse](#atomix.management.broker.UpdateDriverResponse) |  |
-| RemoveDriver | [RemoveDriverRequest](#atomix.management.broker.RemoveDriverRequest) | [RemoveDriverResponse](#atomix.management.broker.RemoveDriverResponse) |  |
-
-
-<a name="atomix.management.broker.PrimitiveManagementService"></a>
-
-### PrimitiveManagementService
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| AddPrimitive | [AddPrimitiveRequest](#atomix.management.broker.AddPrimitiveRequest) | [AddPrimitiveResponse](#atomix.management.broker.AddPrimitiveResponse) |  |
-| RemovePrimitive | [RemovePrimitiveRequest](#atomix.management.broker.RemovePrimitiveRequest) | [RemovePrimitiveResponse](#atomix.management.broker.RemovePrimitiveResponse) |  |
+| RegisterPrimitive | [RegisterPrimitiveRequest](#atomix.management.broker.RegisterPrimitiveRequest) | [RegisterPrimitiveResponse](#atomix.management.broker.RegisterPrimitiveResponse) |  |
+| UnregisterPrimitive | [UnregisterPrimitiveRequest](#atomix.management.broker.UnregisterPrimitiveRequest) | [UnregisterPrimitiveResponse](#atomix.management.broker.UnregisterPrimitiveResponse) |  |
+| LookupPrimitive | [LookupPrimitiveRequest](#atomix.management.broker.LookupPrimitiveRequest) | [LookupPrimitiveResponse](#atomix.management.broker.LookupPrimitiveResponse) |  |
 
  
 

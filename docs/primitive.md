@@ -33,17 +33,13 @@
     - [CreateResponse](#atomix.primitive.CreateResponse)
     - [DeleteRequest](#atomix.primitive.DeleteRequest)
     - [DeleteResponse](#atomix.primitive.DeleteResponse)
-    - [LookupPrimitiveRequest](#atomix.primitive.LookupPrimitiveRequest)
-    - [LookupPrimitiveResponse](#atomix.primitive.LookupPrimitiveResponse)
     - [PrimitiveId](#atomix.primitive.PrimitiveId)
-    - [PrimitiveMeta](#atomix.primitive.PrimitiveMeta)
     - [RequestHeaders](#atomix.primitive.RequestHeaders)
     - [ResponseHeaders](#atomix.primitive.ResponseHeaders)
   
   
   
-    - [PrimitiveDiscoveryService](#atomix.primitive.PrimitiveDiscoveryService)
-    - [PrimitiveService](#atomix.primitive.PrimitiveService)
+    - [Primitive](#atomix.primitive.Primitive)
   
 
 - [atomix/primitive/service.proto](#atomix/primitive/service.proto)
@@ -234,36 +230,6 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 
 
-<a name="atomix.primitive.LookupPrimitiveRequest"></a>
-
-### LookupPrimitiveRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| primitive_id | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.LookupPrimitiveResponse"></a>
-
-### LookupPrimitiveResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| primitive | [PrimitiveMeta](#atomix.primitive.PrimitiveMeta) |  |  |
-
-
-
-
-
-
 <a name="atomix.primitive.PrimitiveId"></a>
 
 ### PrimitiveId
@@ -275,23 +241,6 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 | namespace | [string](#string) |  |  |
 | name | [string](#string) |  |  |
 | type | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.PrimitiveMeta"></a>
-
-### PrimitiveMeta
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| id | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
-| host | [string](#string) |  |  |
-| port | [int32](#int32) |  |  |
 
 
 
@@ -335,20 +284,10 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
  
 
 
-<a name="atomix.primitive.PrimitiveDiscoveryService"></a>
+<a name="atomix.primitive.Primitive"></a>
 
-### PrimitiveDiscoveryService
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| LookupPrimitive | [LookupPrimitiveRequest](#atomix.primitive.LookupPrimitiveRequest) | [LookupPrimitiveResponse](#atomix.primitive.LookupPrimitiveResponse) |  |
-
-
-<a name="atomix.primitive.PrimitiveService"></a>
-
-### PrimitiveService
-PrimitiveService is a service for managing primitive
+### Primitive
+Primitive is a service for managing primitive
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|

@@ -21,51 +21,49 @@ package atomix.management.driver;
 import "atomix/protocol/protocol.proto";
 import "gogoproto/gogo.proto";
 
-message ProxyId {
+message AgentId {
     string namespace = 1;
     string name = 2;
-    string type = 3;
 }
 
-message ProxyConfig {
-    ProxyId id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "ID"];
-    bool read = 2;
-    bool write = 3;
+message AgentAddress {
+    string host = 1;
+    int32 port = 2;
 }
 
-message AddProxyRequest {
-    ProxyConfig proxy = 1 [(gogoproto.nullable) = false];
+message AgentConfig {
+    atomix.protocol.ProtocolConfig protocol = 1 [(gogoproto.nullable) = false];
 }
 
-message AddProxyResponse {
-
+message StartAgentRequest {
+    AgentId agent_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "AgentID"];
+    AgentAddress address = 2 [(gogoproto.nullable) = false];
+    AgentConfig config = 3 [(gogoproto.nullable) = false];
 }
 
-message RemoveProxyRequest {
-    ProxyId proxy_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "ProxyID"];
-}
-
-message RemoveProxyResponse {
+message StartAgentResponse {
 
 }
 
-service ProxyManagementService {
-    rpc AddProxy (AddProxyRequest) returns (AddProxyResponse);
-    rpc RemoveProxy (RemoveProxyRequest) returns (RemoveProxyResponse);
+message ConfigureAgentRequest {
+    AgentId agent_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "AgentID"];
+    AgentConfig config = 2 [(gogoproto.nullable) = false];
 }
 
-message DriverConfig {
-    atomix.protocol.ProtocolConfig protocol = 1;
-}
-
-message ConfigureDriverRequest {
-    DriverConfig driver = 1 [(gogoproto.nullable) = false];
-}
-
-message ConfigureDriverResponse {
+message ConfigureAgentResponse {
 
 }
 
-service DriverManagementService {
-    rpc ConfigureDriver (ConfigureDriverRequest) returns (ConfigureDriverResponse);
+message StopAgentRequest {
+    AgentId agent_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "AgentID"];
+}
+
+message StopAgentResponse {
+
+}
+
+service Driver {
+    rpc StartAgent (StartAgentRequest) returns (StartAgentResponse);
+    rpc ConfigureAgent (ConfigureAgentRequest) returns (ConfigureAgentResponse);
+    rpc StopAgent (StopAgentRequest) returns (StopAgentResponse);
 }

@@ -18,91 +18,45 @@ syntax = "proto3";
 
 package atomix.management.broker;
 
-import "atomix/protocol/protocol.proto";
+import "atomix/primitive/primitive.proto";
 import "gogoproto/gogo.proto";
 
-message PrimitiveConfig {
-    PrimitiveId id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "ID"];
-    DriverId driver = 2 [(gogoproto.nullable) = false];
-    ProxyConfig proxy = 3 [(gogoproto.nullable) = false];
-}
-
 message PrimitiveId {
-    string namespace = 1;
-    string name = 2;
-    string type = 3;
+    atomix.primitive.PrimitiveId id = 1 [(gogoproto.nullable) = false, (gogoproto.embed) = true];
 }
 
-message StorageConfig {
+message PrimitiveAddress {
     string host = 1;
     int32 port = 2;
 }
 
-message ProxyConfig {
-    bool read = 1;
-    bool write = 2;
+message RegisterPrimitiveRequest {
+    PrimitiveId primitive_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "PrimitiveID"];
+    PrimitiveAddress address = 2 [(gogoproto.nullable) = false];
 }
 
-message AddPrimitiveRequest {
-    PrimitiveConfig primitive = 1 [(gogoproto.nullable) = false];
-}
-
-message AddPrimitiveResponse {
+message RegisterPrimitiveResponse {
 
 }
 
-message RemovePrimitiveRequest {
+message UnregisterPrimitiveRequest {
     PrimitiveId primitive_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "PrimitiveID"];
 }
 
-message RemovePrimitiveResponse {
+message UnregisterPrimitiveResponse {
 
 }
 
-service PrimitiveManagementService {
-    rpc AddPrimitive (AddPrimitiveRequest) returns (AddPrimitiveResponse);
-    rpc RemovePrimitive (RemovePrimitiveRequest) returns (RemovePrimitiveResponse);
+message LookupPrimitiveRequest {
+    PrimitiveId primitive_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "PrimitiveID"];
 }
 
-message DriverId {
-    string namespace = 1;
-    string name = 2;
-    string type = 3;
+message LookupPrimitiveResponse {
+    PrimitiveAddress address = 1 [(gogoproto.nullable) = false];
 }
 
-message DriverConfig {
-    DriverId id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "ID"];
-    string host = 2;
-    int32 port = 3;
-    atomix.protocol.ProtocolConfig protocol = 4;
-}
-
-message AddDriverRequest {
-    DriverConfig driver = 1 [(gogoproto.nullable) = false];
-}
-
-message AddDriverResponse {
-
-}
-
-message UpdateDriverRequest {
-    DriverConfig driver = 1 [(gogoproto.nullable) = false];
-}
-
-message UpdateDriverResponse {
-
-}
-
-message RemoveDriverRequest {
-    DriverId driver_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "DriverID"];
-}
-
-message RemoveDriverResponse {
-
-}
-
-service DriverManagementService {
-    rpc AddDriver (AddDriverRequest) returns (AddDriverResponse);
-    rpc UpdateDriver (UpdateDriverRequest) returns (UpdateDriverResponse);
-    rpc RemoveDriver (RemoveDriverRequest) returns (RemoveDriverResponse);
+service Broker {
+    rpc RegisterPrimitive (RegisterPrimitiveRequest) returns (RegisterPrimitiveResponse);
+    rpc UnregisterPrimitive (UnregisterPrimitiveRequest) returns (UnregisterPrimitiveResponse);
+    rpc LookupPrimitive (LookupPrimitiveRequest) returns (LookupPrimitiveResponse);
 }

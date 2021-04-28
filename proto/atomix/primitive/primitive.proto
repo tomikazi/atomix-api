@@ -23,7 +23,8 @@ import "gogoproto/gogo.proto";
 
 message RequestHeaders {
     PrimitiveId primitive_id = 1 [(gogoproto.customname) = "PrimitiveID", (gogoproto.nullable) = false];
-    atomix.primitive.meta.Timestamp timestamp = 2;
+    uint32 partition_id = 2 [(gogoproto.customname) = "PartitionID"];
+    atomix.primitive.meta.Timestamp timestamp = 3;
 }
 
 message ResponseHeaders {
@@ -31,27 +32,27 @@ message ResponseHeaders {
 }
 
 message CreateRequest {
-    PrimitiveId primitive_id = 1 [(gogoproto.customname) = "PrimitiveID", (gogoproto.nullable) = false];
+    RequestHeaders headers = 1 [(gogoproto.nullable) = false];
 }
 
 message CreateResponse {
-
+    ResponseHeaders headers = 1 [(gogoproto.nullable) = false];
 }
 
 message CloseRequest {
-    PrimitiveId primitive_id = 1 [(gogoproto.customname) = "PrimitiveID", (gogoproto.nullable) = false];
+    RequestHeaders headers = 1 [(gogoproto.nullable) = false];
 }
 
 message CloseResponse {
-
+    ResponseHeaders headers = 1 [(gogoproto.nullable) = false];
 }
 
 message DeleteRequest {
-    PrimitiveId primitive_id = 1 [(gogoproto.customname) = "PrimitiveID", (gogoproto.nullable) = false];
+    RequestHeaders headers = 1 [(gogoproto.nullable) = false];
 }
 
 message DeleteResponse {
-
+    ResponseHeaders headers = 1 [(gogoproto.nullable) = false];
 }
 
 // Primitive is a service for managing primitive

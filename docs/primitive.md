@@ -163,7 +163,7 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive_id | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+| headers | [RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 
 
 
@@ -174,6 +174,11 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 ### CloseResponse
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 
 
 
@@ -188,7 +193,7 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive_id | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+| headers | [RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 
 
 
@@ -199,6 +204,11 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 ### CreateResponse
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 
 
 
@@ -213,7 +223,7 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive_id | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+| headers | [RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 
 
 
@@ -224,6 +234,11 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 ### DeleteResponse
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| headers | [ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 
 
 
@@ -256,6 +271,7 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | primitive_id | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+| partition_id | [uint32](#uint32) |  |  |
 | timestamp | [meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
 
 

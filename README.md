@@ -1,7 +1,7 @@
-[![Build Status](https://travis-ci.org/atomix/api.svg?branch=master)](https://travis-ci.org/atomix/api)
+[![Build Status](https://travis-ci.org/atomix/atomix-api.svg?branch=master)](https://travis-ci.org/atomix/atomix-api)
 [![Integration Test Status](https://img.shields.io/travis/atomix/go-framework?label=Integration%20Tests&logo=Integration)](https://travis-ci.org/onosproject/onos-test)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/gojp/goreportcard/blob/master/LICENSE)
-[![GoDoc](https://godoc.org/github.com/atomix/api?status.svg)](https://godoc.org/github.com/atomix/api)
+[![GoDoc](https://godoc.org/github.com/atomix/atomix-api?status.svg)](https://godoc.org/github.com/atomix/atomix-api)
 
 
 # Atomix Protobuf API

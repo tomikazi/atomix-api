@@ -6,7 +6,7 @@ package driver
 import (
 	context "context"
 	fmt "fmt"
-	protocol "github.com/atomix/api/go/atomix/protocol"
+	protocol "github.com/atomix/atomix-api/go/atomix/protocol"
 	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"

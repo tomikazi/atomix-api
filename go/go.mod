@@ -1,4 +1,4 @@
-module github.com/atomix/api/go
+module github.com/atomix/atomix-api/go
 
 go 1.15
 

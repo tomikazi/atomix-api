@@ -26,6 +26,7 @@ package atomix.primitive.election;
 
 message EnterRequest {
     atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    string candidate_id = 2 [(gogoproto.customname) = "CandidateID"];
 }
 
 message EnterResponse {
@@ -35,6 +36,7 @@ message EnterResponse {
 
 message WithdrawRequest {
     atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+    string candidate_id = 2 [(gogoproto.customname) = "CandidateID"];
 }
 
 message WithdrawResponse {

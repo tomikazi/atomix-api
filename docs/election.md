@@ -79,6 +79,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
+| candidate_id | [string](#string) |  |  |
 
 
 
@@ -269,6 +270,7 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
+| candidate_id | [string](#string) |  |  |
 
 
 

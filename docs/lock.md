@@ -71,8 +71,6 @@
 | ----- | ---- | ----- | ----------- |
 | meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
 | state | [Lock.State](#atomix.primitive.lock.Lock.State) |  |  |
-| holder | [string](#string) |  |  |
-| queue | [string](#string) | repeated |  |
 
 
 

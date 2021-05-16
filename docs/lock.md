@@ -14,10 +14,8 @@
   
     - [Lock.State](#atomix.primitive.lock.Lock.State)
   
-  
     - [LockService](#atomix.primitive.lock.LockService)
   
-
 - [Scalar Value Types](#scalar-value-types)
 
 

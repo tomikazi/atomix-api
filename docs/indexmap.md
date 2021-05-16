@@ -34,10 +34,8 @@
   
     - [Event.Type](#atomix.primitive.indexedmap.Event.Type)
   
-  
     - [IndexedMapService](#atomix.primitive.indexedmap.IndexedMapService)
   
-
 - [Scalar Value Types](#scalar-value-types)
 
 

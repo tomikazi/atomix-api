@@ -31,10 +31,8 @@
   
     - [Event.Type](#atomix.primitive.list.Event.Type)
   
-  
     - [ListService](#atomix.primitive.list.ListService)
   
-
 - [Scalar Value Types](#scalar-value-types)
 
 

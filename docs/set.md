@@ -23,10 +23,8 @@
   
     - [Event.Type](#atomix.primitive.set.Event.Type)
   
-  
     - [SetService](#atomix.primitive.set.SetService)
   
-
 - [Scalar Value Types](#scalar-value-types)
 
 

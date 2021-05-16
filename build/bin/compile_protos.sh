@@ -66,6 +66,5 @@ protoc --proto_path=$proto_path \
     $(find proto -name "*.proto")
 
 protoc --proto_path=$proto_path \
-    --plugin=protoc-gen-grpc-java=./protoc-gen-grpc-java-1.34.1-osx-x86_64.exe \
     --grpc-java_out=./java \
     $(find proto -name "*.proto")

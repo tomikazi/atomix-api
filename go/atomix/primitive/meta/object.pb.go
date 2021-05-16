@@ -158,7 +158,9 @@ func init() {
 	proto.RegisterType((*Revision)(nil), "atomix.primitive.meta.Revision")
 }
 
-func init() { proto.RegisterFile("atomix/primitive/meta/object.proto", fileDescriptor_5a6b6f53349a8ecc) }
+func init() {
+	proto.RegisterFile("atomix/primitive/meta/object.proto", fileDescriptor_5a6b6f53349a8ecc)
+}
 
 var fileDescriptor_5a6b6f53349a8ecc = []byte{
 	// 284 bytes of a gzipped FileDescriptorProto

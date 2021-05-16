@@ -16,10 +16,8 @@
   
     - [Event.Type](#atomix.primitive.value.Event.Type)
   
-  
     - [ValueService](#atomix.primitive.value.ValueService)
   
-
 - [Scalar Value Types](#scalar-value-types)
 
 

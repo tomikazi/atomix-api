@@ -23,10 +23,8 @@
   
     - [Event.Type](#atomix.primitive.election.Event.Type)
   
-  
     - [LeaderElectionService](#atomix.primitive.election.LeaderElectionService)
   
-
 - [Scalar Value Types](#scalar-value-types)
 
 

@@ -15,11 +15,8 @@
     - [SetResponse](#atomix.primitive.counter.SetResponse)
     - [Value](#atomix.primitive.counter.Value)
   
-  
-  
     - [CounterService](#atomix.primitive.counter.CounterService)
   
-
 - [Scalar Value Types](#scalar-value-types)
 
 

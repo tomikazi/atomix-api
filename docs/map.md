@@ -26,10 +26,8 @@
   
     - [Event.Type](#atomix.primitive.map.Event.Type)
   
-  
     - [MapService](#atomix.primitive.map.MapService)
   
-
 - [Scalar Value Types](#scalar-value-types)
 
 

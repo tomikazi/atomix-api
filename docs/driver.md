@@ -11,11 +11,8 @@
     - [ProxyId](#atomix.management.driver.ProxyId)
     - [ProxyOptions](#atomix.management.driver.ProxyOptions)
   
-  
-  
     - [Agent](#atomix.management.driver.Agent)
   
-
 - [atomix/management/driver/driver.proto](#atomix/management/driver/driver.proto)
     - [AgentAddress](#atomix.management.driver.AgentAddress)
     - [AgentConfig](#atomix.management.driver.AgentConfig)
@@ -27,11 +24,8 @@
     - [StopAgentRequest](#atomix.management.driver.StopAgentRequest)
     - [StopAgentResponse](#atomix.management.driver.StopAgentResponse)
   
-  
-  
     - [Driver](#atomix.management.driver.Driver)
   
-
 - [Scalar Value Types](#scalar-value-types)
 
 

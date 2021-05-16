@@ -542,7 +542,9 @@ func init() {
 	proto.RegisterType((*Value)(nil), "atomix.primitive.value.Value")
 }
 
-func init() { proto.RegisterFile("atomix/primitive/value/value.proto", fileDescriptor_4960694365bb83ed) }
+func init() {
+	proto.RegisterFile("atomix/primitive/value/value.proto", fileDescriptor_4960694365bb83ed)
+}
 
 var fileDescriptor_4960694365bb83ed = []byte{
 	// 550 bytes of a gzipped FileDescriptorProto

@@ -13,11 +13,8 @@
     - [UnregisterPrimitiveRequest](#atomix.management.broker.UnregisterPrimitiveRequest)
     - [UnregisterPrimitiveResponse](#atomix.management.broker.UnregisterPrimitiveResponse)
   
-  
-  
     - [Broker](#atomix.management.broker.Broker)
   
-
 - [Scalar Value Types](#scalar-value-types)
 
 

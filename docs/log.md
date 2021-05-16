@@ -31,10 +31,8 @@
   
     - [Event.Type](#atomix.primitive.log.Event.Type)
   
-  
     - [LogService](#atomix.primitive.log.LogService)
   
-
 - [Scalar Value Types](#scalar-value-types)
 
 

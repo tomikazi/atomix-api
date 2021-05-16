@@ -15,10 +15,8 @@
   
     - [Event.Type](#atomix.primitive.leader.Event.Type)
   
-  
     - [LeaderLatchService](#atomix.primitive.leader.LeaderLatchService)
   
-
 - [Scalar Value Types](#scalar-value-types)
 
 

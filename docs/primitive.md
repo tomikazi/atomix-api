@@ -4,7 +4,6 @@
 ## Table of Contents
 
 - [atomix/primitive/operation.proto](#atomix/primitive/operation.proto)
-  
     - [AggregateStrategy](#atomix.primitive.operation.AggregateStrategy)
     - [OperationType](#atomix.primitive.operation.OperationType)
   
@@ -14,18 +13,13 @@
     - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
     - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
   
-  
-
 - [atomix/primitive/partition.proto](#atomix/primitive/partition.proto)
-  
     - [PartitionStrategy](#atomix.primitive.partition.PartitionStrategy)
   
     - [File-level Extensions](#atomix/primitive/partition.proto-extensions)
     - [File-level Extensions](#atomix/primitive/partition.proto-extensions)
     - [File-level Extensions](#atomix/primitive/partition.proto-extensions)
   
-  
-
 - [atomix/primitive/primitive.proto](#atomix/primitive/primitive.proto)
     - [CloseRequest](#atomix.primitive.CloseRequest)
     - [CloseResponse](#atomix.primitive.CloseResponse)
@@ -37,19 +31,12 @@
     - [RequestHeaders](#atomix.primitive.RequestHeaders)
     - [ResponseHeaders](#atomix.primitive.ResponseHeaders)
   
-  
-  
     - [Primitive](#atomix.primitive.Primitive)
   
-
 - [atomix/primitive/service.proto](#atomix/primitive/service.proto)
-  
-  
     - [File-level Extensions](#atomix/primitive/service.proto-extensions)
     - [File-level Extensions](#atomix/primitive/service.proto-extensions)
   
-  
-
 - [Scalar Value Types](#scalar-value-types)
 
 

@@ -11,11 +11,8 @@
     - [UpdateConfigRequest](#atomix.protocol.UpdateConfigRequest)
     - [UpdateConfigResponse](#atomix.protocol.UpdateConfigResponse)
   
-  
-  
     - [ProtocolConfigService](#atomix.protocol.ProtocolConfigService)
   
-
 - [Scalar Value Types](#scalar-value-types)
 
 

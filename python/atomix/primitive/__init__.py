@@ -11,7 +11,7 @@ import grpclib
 @dataclass(eq=False, repr=False)
 class RequestHeaders(betterproto.Message):
     primitive_id: "PrimitiveId" = betterproto.message_field(1)
-    partition_key: int = betterproto.uint32_field(2)
+    cluster_key: str = betterproto.string_field(2)
     timestamp: "meta.Timestamp" = betterproto.message_field(3)
 
     def __post_init__(self) -> None:

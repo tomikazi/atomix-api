@@ -23,7 +23,7 @@ import "gogoproto/gogo.proto";
 
 message RequestHeaders {
     PrimitiveId primitive_id = 1 [(gogoproto.customname) = "PrimitiveID", (gogoproto.nullable) = false];
-    uint32 partition_key = 2;
+    string cluster_key = 2;
     atomix.primitive.meta.Timestamp timestamp = 3;
 }
 

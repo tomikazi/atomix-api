@@ -258,7 +258,7 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | primitive_id | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
-| partition_key | [uint32](#uint32) |  |  |
+| cluster_key | [string](#string) |  |  |
 | timestamp | [meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
 
 

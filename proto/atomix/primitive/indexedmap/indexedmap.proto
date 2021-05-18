@@ -102,6 +102,7 @@ message NextEntryResponse {
 message RemoveRequest {
     atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Entry entry = 2;
+    repeated Precondition preconditions = 3 [(gogoproto.nullable) = false];
 }
 
 message RemoveResponse {

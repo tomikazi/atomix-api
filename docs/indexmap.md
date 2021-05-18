@@ -405,6 +405,7 @@
 | ----- | ---- | ----- | ----------- |
 | headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | entry | [Entry](#atomix.primitive.indexedmap.Entry) |  |  |
+| preconditions | [Precondition](#atomix.primitive.indexedmap.Precondition) | repeated |  |
 
 
 

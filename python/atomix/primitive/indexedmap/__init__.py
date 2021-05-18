@@ -153,6 +153,7 @@ class NextEntryResponse(betterproto.Message):
 class RemoveRequest(betterproto.Message):
     headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     entry: "Entry" = betterproto.message_field(2)
+    preconditions: List["Precondition"] = betterproto.message_field(3)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -376,15 +377,23 @@ class IndexedMapServiceStub(betterproto.ServiceStub):
         )
 
     async def remove(
-        self, *, headers: "__primitive__.RequestHeaders" = None, entry: "Entry" = None
+        self,
+        *,
+        headers: "__primitive__.RequestHeaders" = None,
+        entry: "Entry" = None,
+        preconditions: Optional[List["Precondition"]] = None,
     ) -> "RemoveResponse":
         """Remove removes an entry from the map"""
+
+        preconditions = preconditions or []
 
         request = RemoveRequest()
         if headers is not None:
             request.headers = headers
         if entry is not None:
             request.entry = entry
+        if preconditions is not None:
+            request.preconditions = preconditions
 
         return await self._unary_unary(
             "/atomix.primitive.indexedmap.IndexedMapService/Remove",

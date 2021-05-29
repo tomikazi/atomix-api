@@ -20,6 +20,7 @@ class ProxyId(betterproto.Message):
 class ProxyOptions(betterproto.Message):
     read: bool = betterproto.bool_field(1)
     write: bool = betterproto.bool_field(2)
+    config: bytes = betterproto.bytes_field(3)
 
     def __post_init__(self) -> None:
         super().__post_init__()

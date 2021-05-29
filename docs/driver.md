@@ -113,6 +113,7 @@
 | ----- | ---- | ----- | ----------- |
 | read | [bool](#bool) |  |  |
 | write | [bool](#bool) |  |  |
+| config | [bytes](#bytes) |  |  |
 
 
 

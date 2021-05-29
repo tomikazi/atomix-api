@@ -28,6 +28,7 @@ message ProxyId {
 message ProxyOptions {
     bool read = 1;
     bool write = 2;
+    bytes config = 3;
 }
 
 message CreateProxyRequest {

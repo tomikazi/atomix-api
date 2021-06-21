@@ -37,6 +37,8 @@ class ProtocolReplica(betterproto.Message):
     extra_ports: Dict[str, int] = betterproto.map_field(
         5, betterproto.TYPE_STRING, betterproto.TYPE_INT32
     )
+    # read_only indicates whether the replica is a read-only replica
+    read_only: bool = betterproto.bool_field(6)
 
     def __post_init__(self) -> None:
         super().__post_init__()

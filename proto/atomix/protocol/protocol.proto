@@ -45,6 +45,9 @@ message ProtocolReplica {
 
     // extra_ports is a set of named ports
     map<string, int32> extra_ports = 5;
+
+    // read_only indicates whether the replica is a read-only replica
+    bool read_only = 6;
 }
 
 // Partition info

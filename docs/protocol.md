@@ -69,6 +69,7 @@ Replica configuration
 | host | [string](#string) |  | host is the member host |
 | api_port | [int32](#int32) |  | api_port is the port to use for the client API |
 | extra_ports | [ProtocolReplica.ExtraPortsEntry](#atomix.protocol.ProtocolReplica.ExtraPortsEntry) | repeated | extra_ports is a set of named ports |
+| read_only | [bool](#bool) |  | read_only indicates whether the replica is a read-only replica |
 
 
 

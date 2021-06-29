@@ -50,6 +50,8 @@ class ProtocolPartition(betterproto.Message):
 
     partition_id: int = betterproto.uint32_field(1)
     replicas: List[str] = betterproto.string_field(2)
+    host: str = betterproto.string_field(3)
+    api_port: int = betterproto.int32_field(4)
 
     def __post_init__(self) -> None:
         super().__post_init__()

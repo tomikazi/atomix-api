@@ -54,6 +54,8 @@ message ProtocolReplica {
 message ProtocolPartition {
     uint32 partition_id = 1 [(gogoproto.customname) = "PartitionID"];
     repeated string replicas = 2;
+    string host = 3;
+    int32 api_port = 4 [(gogoproto.customname) = "APIPort", (gogoproto.jsontag) = "apiPort"];
 }
 
 message UpdateConfigRequest {

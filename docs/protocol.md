@@ -50,6 +50,8 @@ Partition info
 | ----- | ---- | ----- | ----------- |
 | partition_id | [uint32](#uint32) |  |  |
 | replicas | [string](#string) | repeated |  |
+| host | [string](#string) |  |  |
+| api_port | [int32](#int32) |  |  |
 
 
 

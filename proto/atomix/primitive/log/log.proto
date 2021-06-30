@@ -154,56 +154,67 @@ service LogService {
 
     // Size returns the size of the log
     rpc Size (SizeRequest) returns (SizeResponse) {
+        option (atomix.primitive.operation.id) = 1;
         option (atomix.primitive.operation.type) = QUERY;
     }
 
     // Appends appends an entry into the log
     rpc Append (AppendRequest) returns (AppendResponse) {
+        option (atomix.primitive.operation.id) = 2;
         option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // Get gets the entry for an index
     rpc Get (GetRequest) returns (GetResponse) {
+        option (atomix.primitive.operation.id) = 3;
         option (atomix.primitive.operation.type) = QUERY;
     }
 
     // FirstEntry gets the first entry in the log
     rpc FirstEntry (FirstEntryRequest) returns (FirstEntryResponse) {
+        option (atomix.primitive.operation.id) = 4;
         option (atomix.primitive.operation.type) = QUERY;
     }
 
     // LastEntry gets the last entry in the log
     rpc LastEntry (LastEntryRequest) returns (LastEntryResponse) {
+        option (atomix.primitive.operation.id) = 5;
         option (atomix.primitive.operation.type) = QUERY;
     }
 
     // PrevEntry gets the previous entry in the log
     rpc PrevEntry (PrevEntryRequest) returns (PrevEntryResponse) {
+        option (atomix.primitive.operation.id) = 6;
         option (atomix.primitive.operation.type) = QUERY;
     }
 
     // NextEntry gets the next entry in the log
     rpc NextEntry (NextEntryRequest) returns (NextEntryResponse) {
+        option (atomix.primitive.operation.id) = 7;
         option (atomix.primitive.operation.type) = QUERY;
     }
 
     // Remove removes an entry from the log
     rpc Remove (RemoveRequest) returns (RemoveResponse) {
+        option (atomix.primitive.operation.id) = 8;
         option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // Clear removes all entries from the log
     rpc Clear (ClearRequest) returns (ClearResponse) {
+        option (atomix.primitive.operation.id) = 9;
         option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // Events listens for change events
     rpc Events (EventsRequest) returns (stream EventsResponse) {
+        option (atomix.primitive.operation.id) = 10;
         option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // Entries lists all entries in the log
     rpc Entries (EntriesRequest) returns (stream EntriesResponse) {
+        option (atomix.primitive.operation.id) = 11;
         option (atomix.primitive.operation.type) = QUERY;
     }
 }

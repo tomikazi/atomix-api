@@ -8,6 +8,7 @@ extend google.protobuf.MethodOptions {
     string name = 61000;
     OperationType type = 61001;
     bool async = 61002;
+    uint32 id = 61003;
 }
 
 extend google.protobuf.FieldOptions {

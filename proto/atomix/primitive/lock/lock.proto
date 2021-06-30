@@ -71,17 +71,20 @@ service LockService {
 
     // Lock attempts to acquire the lock
     rpc Lock (LockRequest) returns (LockResponse) {
+        option (atomix.primitive.operation.id) = 1;
         option (atomix.primitive.operation.type) = COMMAND;
         option (atomix.primitive.operation.async) = true;
     }
 
     // Unlock releases the lock
     rpc Unlock (UnlockRequest) returns (UnlockResponse) {
+        option (atomix.primitive.operation.id) = 2;
         option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // GetLock gets the lock state
     rpc GetLock (GetLockRequest) returns (GetLockResponse) {
+        option (atomix.primitive.operation.id) = 3;
         option (atomix.primitive.operation.type) = QUERY;
     }
 }

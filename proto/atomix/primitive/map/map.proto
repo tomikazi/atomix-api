@@ -136,39 +136,46 @@ service MapService {
 
     // Size returns the size of the map
     rpc Size (SizeRequest) returns (SizeResponse) {
+        option (atomix.primitive.operation.id) = 1;
         option (atomix.primitive.operation.type) = QUERY;
     }
 
     // Put puts an entry into the map
     rpc Put (PutRequest) returns (PutResponse) {
+        option (atomix.primitive.operation.id) = 2;
         option (atomix.primitive.operation.type) = COMMAND;
         option (atomix.primitive.partition.strategy) = HASH;
     }
 
     // Get gets the entry for a key
     rpc Get (GetRequest) returns (GetResponse) {
+        option (atomix.primitive.operation.id) = 3;
         option (atomix.primitive.operation.type) = QUERY;
         option (atomix.primitive.partition.strategy) = HASH;
     }
 
     // Remove removes an entry from the map
     rpc Remove (RemoveRequest) returns (RemoveResponse) {
+        option (atomix.primitive.operation.id) = 4;
         option (atomix.primitive.operation.type) = COMMAND;
         option (atomix.primitive.partition.strategy) = HASH;
     }
 
     // Clear removes all entries from the map
     rpc Clear (ClearRequest) returns (ClearResponse) {
+        option (atomix.primitive.operation.id) = 5;
         option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // Events listens for change events
     rpc Events (EventsRequest) returns (stream EventsResponse) {
+        option (atomix.primitive.operation.id) = 6;
         option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // Entries lists all entries in the map
     rpc Entries (EntriesRequest) returns (stream EntriesResponse) {
+        option (atomix.primitive.operation.id) = 7;
         option (atomix.primitive.operation.type) = QUERY;
     }
 }

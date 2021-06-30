@@ -12,6 +12,7 @@
     - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
     - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
     - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
   
 - [atomix/primitive/partition.proto](#atomix/primitive/partition.proto)
     - [PartitionStrategy](#atomix.primitive.partition.PartitionStrategy)
@@ -85,6 +86,7 @@ OperationType is an enum for specifying the type of operation
 | aggregate | AggregateStrategy | .google.protobuf.FieldOptions | 62001 |  |
 | headers | bool | .google.protobuf.FieldOptions | 62000 |  |
 | async | bool | .google.protobuf.MethodOptions | 61002 |  |
+| id | uint32 | .google.protobuf.MethodOptions | 61003 |  |
 | name | string | .google.protobuf.MethodOptions | 61000 |  |
 | type | OperationType | .google.protobuf.MethodOptions | 61001 |  |
 

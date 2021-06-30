@@ -114,36 +114,43 @@ service LeaderElectionService {
 
     // Enter enters the leader election
     rpc Enter (EnterRequest) returns (EnterResponse) {
+        option (atomix.primitive.operation.id) = 1;
         option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // Withdraw withdraws a candidate from the leader election
     rpc Withdraw (WithdrawRequest) returns (WithdrawResponse) {
+        option (atomix.primitive.operation.id) = 2;
         option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // Anoint anoints a candidate leader
     rpc Anoint (AnointRequest) returns (AnointResponse) {
+        option (atomix.primitive.operation.id) = 3;
         option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // Promote promotes a candidate
     rpc Promote (PromoteRequest) returns (PromoteResponse) {
+        option (atomix.primitive.operation.id) = 4;
         option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // Evict evicts a candidate from the election
     rpc Evict (EvictRequest) returns (EvictResponse) {
+        option (atomix.primitive.operation.id) = 5;
         option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // GetTerm gets the current leadership term
     rpc GetTerm (GetTermRequest) returns (GetTermResponse) {
+        option (atomix.primitive.operation.id) = 6;
         option (atomix.primitive.operation.type) = QUERY;
     }
 
     // Events listens for leadership events
     rpc Events (EventsRequest) returns (stream EventsResponse) {
+        option (atomix.primitive.operation.id) = 7;
         option (atomix.primitive.operation.type) = COMMAND;
     }
 }

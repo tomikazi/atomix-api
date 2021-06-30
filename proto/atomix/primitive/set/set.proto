@@ -115,39 +115,46 @@ service SetService {
 
     // Size gets the number of elements in the set
     rpc Size (SizeRequest) returns (SizeResponse) {
+        option (atomix.primitive.operation.id) = 1;
         option (atomix.primitive.operation.type) = QUERY;
     }
 
     // Contains returns whether the set contains a value
     rpc Contains (ContainsRequest) returns (ContainsResponse) {
+        option (atomix.primitive.operation.id) = 2;
         option (atomix.primitive.operation.type) = QUERY;
         option (atomix.primitive.partition.strategy) = HASH;
     }
 
     // Add adds a value to the set
     rpc Add (AddRequest) returns (AddResponse) {
+        option (atomix.primitive.operation.id) = 3;
         option (atomix.primitive.operation.type) = COMMAND;
         option (atomix.primitive.partition.strategy) = HASH;
     }
 
     // Remove removes a value from the set
     rpc Remove (RemoveRequest) returns (RemoveResponse) {
+        option (atomix.primitive.operation.id) = 4;
         option (atomix.primitive.operation.type) = COMMAND;
         option (atomix.primitive.partition.strategy) = HASH;
     }
 
     // Clear removes all values from the set
     rpc Clear (ClearRequest) returns (ClearResponse) {
+        option (atomix.primitive.operation.id) = 5;
         option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // Events listens for set change events
     rpc Events (EventsRequest) returns (stream EventsResponse) {
+        option (atomix.primitive.operation.id) = 6;
         option (atomix.primitive.operation.type) = COMMAND;
     }
 
     // Elements lists all elements in the set
     rpc Elements (ElementsRequest) returns (stream ElementsResponse) {
+        option (atomix.primitive.operation.id) = 7;
         option (atomix.primitive.operation.type) = QUERY;
     }
 }

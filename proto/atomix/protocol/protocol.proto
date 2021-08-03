@@ -45,9 +45,6 @@ message ProtocolReplica {
 
     // extra_ports is a set of named ports
     map<string, int32> extra_ports = 5;
-
-    // read_only indicates whether the replica is a read-only replica
-    bool read_only = 6;
 }
 
 // Partition info
@@ -56,6 +53,7 @@ message ProtocolPartition {
     repeated string replicas = 2;
     string host = 3;
     int32 api_port = 4 [(gogoproto.customname) = "APIPort", (gogoproto.jsontag) = "apiPort"];
+    repeated string read_replicas = 5;
 }
 
 message UpdateConfigRequest {

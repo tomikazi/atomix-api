@@ -80,7 +80,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [atomix.primitive.PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+| type | [string](#string) |  |  |
+| name | [string](#string) |  |  |
 
 
 

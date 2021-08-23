@@ -79,37 +79,6 @@ public final class PrimitiveGrpc {
     return getCloseMethod;
   }
 
-  private static volatile io.grpc.MethodDescriptor<atomix.primitive.PrimitiveOuterClass.DeleteRequest,
-      atomix.primitive.PrimitiveOuterClass.DeleteResponse> getDeleteMethod;
-
-  @io.grpc.stub.annotations.RpcMethod(
-      fullMethodName = SERVICE_NAME + '/' + "Delete",
-      requestType = atomix.primitive.PrimitiveOuterClass.DeleteRequest.class,
-      responseType = atomix.primitive.PrimitiveOuterClass.DeleteResponse.class,
-      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
-  public static io.grpc.MethodDescriptor<atomix.primitive.PrimitiveOuterClass.DeleteRequest,
-      atomix.primitive.PrimitiveOuterClass.DeleteResponse> getDeleteMethod() {
-    io.grpc.MethodDescriptor<atomix.primitive.PrimitiveOuterClass.DeleteRequest, atomix.primitive.PrimitiveOuterClass.DeleteResponse> getDeleteMethod;
-    if ((getDeleteMethod = PrimitiveGrpc.getDeleteMethod) == null) {
-      synchronized (PrimitiveGrpc.class) {
-        if ((getDeleteMethod = PrimitiveGrpc.getDeleteMethod) == null) {
-          PrimitiveGrpc.getDeleteMethod = getDeleteMethod =
-              io.grpc.MethodDescriptor.<atomix.primitive.PrimitiveOuterClass.DeleteRequest, atomix.primitive.PrimitiveOuterClass.DeleteResponse>newBuilder()
-              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
-              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "Delete"))
-              .setSampledToLocalTracing(true)
-              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  atomix.primitive.PrimitiveOuterClass.DeleteRequest.getDefaultInstance()))
-              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
-                  atomix.primitive.PrimitiveOuterClass.DeleteResponse.getDefaultInstance()))
-              .setSchemaDescriptor(new PrimitiveMethodDescriptorSupplier("Delete"))
-              .build();
-        }
-      }
-    }
-    return getDeleteMethod;
-  }
-
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -181,16 +150,6 @@ public final class PrimitiveGrpc {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getCloseMethod(), responseObserver);
     }
 
-    /**
-     * <pre>
-     * Delete deletes a primitive
-     * </pre>
-     */
-    public void delete(atomix.primitive.PrimitiveOuterClass.DeleteRequest request,
-        io.grpc.stub.StreamObserver<atomix.primitive.PrimitiveOuterClass.DeleteResponse> responseObserver) {
-      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDeleteMethod(), responseObserver);
-    }
-
     @java.lang.Override public final io.grpc.ServerServiceDefinition bindService() {
       return io.grpc.ServerServiceDefinition.builder(getServiceDescriptor())
           .addMethod(
@@ -207,13 +166,6 @@ public final class PrimitiveGrpc {
                 atomix.primitive.PrimitiveOuterClass.CloseRequest,
                 atomix.primitive.PrimitiveOuterClass.CloseResponse>(
                   this, METHODID_CLOSE)))
-          .addMethod(
-            getDeleteMethod(),
-            io.grpc.stub.ServerCalls.asyncUnaryCall(
-              new MethodHandlers<
-                atomix.primitive.PrimitiveOuterClass.DeleteRequest,
-                atomix.primitive.PrimitiveOuterClass.DeleteResponse>(
-                  this, METHODID_DELETE)))
           .build();
     }
   }
@@ -256,17 +208,6 @@ public final class PrimitiveGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getCloseMethod(), getCallOptions()), request, responseObserver);
     }
-
-    /**
-     * <pre>
-     * Delete deletes a primitive
-     * </pre>
-     */
-    public void delete(atomix.primitive.PrimitiveOuterClass.DeleteRequest request,
-        io.grpc.stub.StreamObserver<atomix.primitive.PrimitiveOuterClass.DeleteResponse> responseObserver) {
-      io.grpc.stub.ClientCalls.asyncUnaryCall(
-          getChannel().newCall(getDeleteMethod(), getCallOptions()), request, responseObserver);
-    }
   }
 
   /**
@@ -304,16 +245,6 @@ public final class PrimitiveGrpc {
     public atomix.primitive.PrimitiveOuterClass.CloseResponse close(atomix.primitive.PrimitiveOuterClass.CloseRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getCloseMethod(), getCallOptions(), request);
-    }
-
-    /**
-     * <pre>
-     * Delete deletes a primitive
-     * </pre>
-     */
-    public atomix.primitive.PrimitiveOuterClass.DeleteResponse delete(atomix.primitive.PrimitiveOuterClass.DeleteRequest request) {
-      return io.grpc.stub.ClientCalls.blockingUnaryCall(
-          getChannel(), getDeleteMethod(), getCallOptions(), request);
     }
   }
 
@@ -355,22 +286,10 @@ public final class PrimitiveGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getCloseMethod(), getCallOptions()), request);
     }
-
-    /**
-     * <pre>
-     * Delete deletes a primitive
-     * </pre>
-     */
-    public com.google.common.util.concurrent.ListenableFuture<atomix.primitive.PrimitiveOuterClass.DeleteResponse> delete(
-        atomix.primitive.PrimitiveOuterClass.DeleteRequest request) {
-      return io.grpc.stub.ClientCalls.futureUnaryCall(
-          getChannel().newCall(getDeleteMethod(), getCallOptions()), request);
-    }
   }
 
   private static final int METHODID_CREATE = 0;
   private static final int METHODID_CLOSE = 1;
-  private static final int METHODID_DELETE = 2;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -396,10 +315,6 @@ public final class PrimitiveGrpc {
         case METHODID_CLOSE:
           serviceImpl.close((atomix.primitive.PrimitiveOuterClass.CloseRequest) request,
               (io.grpc.stub.StreamObserver<atomix.primitive.PrimitiveOuterClass.CloseResponse>) responseObserver);
-          break;
-        case METHODID_DELETE:
-          serviceImpl.delete((atomix.primitive.PrimitiveOuterClass.DeleteRequest) request,
-              (io.grpc.stub.StreamObserver<atomix.primitive.PrimitiveOuterClass.DeleteResponse>) responseObserver);
           break;
         default:
           throw new AssertionError();
@@ -464,7 +379,6 @@ public final class PrimitiveGrpc {
               .setSchemaDescriptor(new PrimitiveFileDescriptorSupplier())
               .addMethod(getCreateMethod())
               .addMethod(getCloseMethod())
-              .addMethod(getDeleteMethod())
               .build();
         }
       }

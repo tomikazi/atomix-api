@@ -36,7 +36,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | delta | [int64](#int64) |  |  |
 
 
@@ -52,7 +51,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | value | [int64](#int64) |  |  |
 
 
@@ -64,11 +62,6 @@
 
 ### GetRequest
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 
 
 
@@ -83,7 +76,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | value | [int64](#int64) |  |  |
 
 
@@ -99,7 +91,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | delta | [int64](#int64) |  |  |
 
 
@@ -115,7 +106,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | value | [int64](#int64) |  |  |
 
 
@@ -146,7 +136,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | value | [int64](#int64) |  |  |
 | preconditions | [Precondition](#atomix.primitive.counter.Precondition) | repeated |  |
 
@@ -163,7 +152,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | value | [int64](#int64) |  |  |
 
 

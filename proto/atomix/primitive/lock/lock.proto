@@ -16,7 +16,6 @@ limitations under the License.
 
 syntax = "proto3";
 
-import "atomix/primitive/primitive.proto";
 import "google/protobuf/duration.proto";
 import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
@@ -26,32 +25,26 @@ import "gogoproto/gogo.proto";
 package atomix.primitive.lock;
 
 message LockRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     google.protobuf.Duration timeout = 2 [(gogoproto.stdduration) = true];
 }
 
 message LockResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Lock lock = 2 [(gogoproto.nullable) = false];
 }
 
 message UnlockRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Lock lock = 2 [(gogoproto.nullable) = false];
 }
 
 message UnlockResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Lock lock = 2 [(gogoproto.nullable) = false];
 }
 
 message GetLockRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Lock lock = 2 [(gogoproto.nullable) = false];
 }
 
 message GetLockResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Lock lock = 2 [(gogoproto.nullable) = false];
 }
 

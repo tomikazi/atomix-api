@@ -18,41 +18,20 @@ syntax = "proto3";
 
 package atomix.primitive;
 
-import "atomix/primitive/meta/timestamp.proto";
-import "gogoproto/gogo.proto";
-
-message RequestHeaders {
-    PrimitiveId primitive_id = 1 [(gogoproto.customname) = "PrimitiveID", (gogoproto.nullable) = false];
-    string cluster_key = 2;
-    atomix.primitive.meta.Timestamp timestamp = 3;
-}
-
-message ResponseHeaders {
-    atomix.primitive.meta.Timestamp timestamp = 1;
-}
-
 message CreateRequest {
-    RequestHeaders headers = 1 [(gogoproto.nullable) = false];
+
 }
 
 message CreateResponse {
-    ResponseHeaders headers = 1 [(gogoproto.nullable) = false];
+
 }
 
 message CloseRequest {
-    RequestHeaders headers = 1 [(gogoproto.nullable) = false];
+
 }
 
 message CloseResponse {
-    ResponseHeaders headers = 1 [(gogoproto.nullable) = false];
-}
 
-message DeleteRequest {
-    RequestHeaders headers = 1 [(gogoproto.nullable) = false];
-}
-
-message DeleteResponse {
-    ResponseHeaders headers = 1 [(gogoproto.nullable) = false];
 }
 
 // Primitive is a service for managing primitive
@@ -62,13 +41,4 @@ service Primitive {
 
     // Close closes a primitive
     rpc Close (CloseRequest) returns (CloseResponse);
-
-    // Delete deletes a primitive
-    rpc Delete (DeleteRequest) returns (DeleteResponse);
-}
-
-message PrimitiveId {
-    string namespace = 1;
-    string name = 2;
-    string type = 3;
 }

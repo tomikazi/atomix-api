@@ -53,11 +53,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
-
-
 
 
 
@@ -68,11 +63,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
-
-
 
 
 
@@ -81,11 +71,6 @@
 
 ### EntriesRequest
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 
 
 
@@ -100,7 +85,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | entry | [Entry](#atomix.primitive.indexedmap.Entry) |  |  |
 
 
@@ -148,7 +132,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | pos | [Position](#atomix.primitive.indexedmap.Position) |  |  |
 | replay | [bool](#bool) |  |  |
 
@@ -165,7 +148,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | event | [Event](#atomix.primitive.indexedmap.Event) |  |  |
 
 
@@ -177,11 +159,6 @@
 
 ### FirstEntryRequest
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 
 
 
@@ -196,7 +173,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | entry | [Entry](#atomix.primitive.indexedmap.Entry) |  |  |
 
 
@@ -212,7 +188,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | position | [Position](#atomix.primitive.indexedmap.Position) |  |  |
 
 
@@ -228,7 +203,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | entry | [Entry](#atomix.primitive.indexedmap.Entry) |  |  |
 
 
@@ -240,11 +214,6 @@
 
 ### LastEntryRequest
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 
 
 
@@ -259,7 +228,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | entry | [Entry](#atomix.primitive.indexedmap.Entry) |  |  |
 
 
@@ -275,7 +243,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | index | [uint64](#uint64) |  |  |
 
 
@@ -291,7 +258,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | entry | [Entry](#atomix.primitive.indexedmap.Entry) |  |  |
 
 
@@ -338,7 +304,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | index | [uint64](#uint64) |  |  |
 
 
@@ -354,7 +319,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | entry | [Entry](#atomix.primitive.indexedmap.Entry) |  |  |
 
 
@@ -370,7 +334,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | entry | [Entry](#atomix.primitive.indexedmap.Entry) |  |  |
 | preconditions | [Precondition](#atomix.primitive.indexedmap.Precondition) | repeated |  |
 
@@ -387,7 +350,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | entry | [Entry](#atomix.primitive.indexedmap.Entry) |  |  |
 
 
@@ -403,7 +365,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | entry | [Entry](#atomix.primitive.indexedmap.Entry) |  |  |
 | preconditions | [Precondition](#atomix.primitive.indexedmap.Precondition) | repeated |  |
 
@@ -420,7 +381,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | entry | [Entry](#atomix.primitive.indexedmap.Entry) |  |  |
 
 
@@ -432,11 +392,6 @@
 
 ### SizeRequest
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 
 
 
@@ -451,7 +406,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | size | [uint32](#uint32) |  |  |
 
 

@@ -16,7 +16,6 @@ class LockState(betterproto.Enum):
 
 @dataclass(eq=False, repr=False)
 class LockRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     timeout: timedelta = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -25,7 +24,6 @@ class LockRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class LockResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     lock: "Lock" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -34,7 +32,6 @@ class LockResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class UnlockRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     lock: "Lock" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -43,7 +40,6 @@ class UnlockRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class UnlockResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     lock: "Lock" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -52,7 +48,6 @@ class UnlockResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GetLockRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     lock: "Lock" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -61,7 +56,6 @@ class GetLockRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GetLockResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     lock: "Lock" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -80,17 +74,10 @@ class Lock(betterproto.Message):
 class LockServiceStub(betterproto.ServiceStub):
     """LockService implements a distributed lock"""
 
-    async def lock(
-        self,
-        *,
-        headers: "__primitive__.RequestHeaders" = None,
-        timeout: timedelta = None,
-    ) -> "LockResponse":
+    async def lock(self, *, timeout: timedelta = None) -> "LockResponse":
         """Lock attempts to acquire the lock"""
 
         request = LockRequest()
-        if headers is not None:
-            request.headers = headers
         if timeout is not None:
             request.timeout = timeout
 
@@ -98,14 +85,10 @@ class LockServiceStub(betterproto.ServiceStub):
             "/atomix.primitive.lock.LockService/Lock", request, LockResponse
         )
 
-    async def unlock(
-        self, *, headers: "__primitive__.RequestHeaders" = None, lock: "Lock" = None
-    ) -> "UnlockResponse":
+    async def unlock(self, *, lock: "Lock" = None) -> "UnlockResponse":
         """Unlock releases the lock"""
 
         request = UnlockRequest()
-        if headers is not None:
-            request.headers = headers
         if lock is not None:
             request.lock = lock
 
@@ -113,14 +96,10 @@ class LockServiceStub(betterproto.ServiceStub):
             "/atomix.primitive.lock.LockService/Unlock", request, UnlockResponse
         )
 
-    async def get_lock(
-        self, *, headers: "__primitive__.RequestHeaders" = None, lock: "Lock" = None
-    ) -> "GetLockResponse":
+    async def get_lock(self, *, lock: "Lock" = None) -> "GetLockResponse":
         """GetLock gets the lock state"""
 
         request = GetLockRequest()
-        if headers is not None:
-            request.headers = headers
         if lock is not None:
             request.lock = lock
 
@@ -130,4 +109,3 @@ class LockServiceStub(betterproto.ServiceStub):
 
 
 from .. import meta as _meta__
-from ... import primitive as __primitive__

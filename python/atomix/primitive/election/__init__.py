@@ -2,7 +2,7 @@
 # sources: atomix/primitive/election/election.proto
 # plugin: python-betterproto
 from dataclasses import dataclass
-from typing import AsyncIterator, List, Optional
+from typing import AsyncIterator, List
 
 import betterproto
 import grpclib
@@ -15,7 +15,6 @@ class EventType(betterproto.Enum):
 
 @dataclass(eq=False, repr=False)
 class EnterRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     candidate_id: str = betterproto.string_field(2)
 
     def __post_init__(self) -> None:
@@ -24,7 +23,6 @@ class EnterRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class EnterResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     term: "Term" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -33,7 +31,6 @@ class EnterResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class WithdrawRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     candidate_id: str = betterproto.string_field(2)
 
     def __post_init__(self) -> None:
@@ -42,7 +39,6 @@ class WithdrawRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class WithdrawResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     term: "Term" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -51,7 +47,6 @@ class WithdrawResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class AnointRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     candidate_id: str = betterproto.string_field(2)
 
     def __post_init__(self) -> None:
@@ -60,7 +55,6 @@ class AnointRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class AnointResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     term: "Term" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -69,7 +63,6 @@ class AnointResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class PromoteRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     candidate_id: str = betterproto.string_field(2)
 
     def __post_init__(self) -> None:
@@ -78,7 +71,6 @@ class PromoteRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class PromoteResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     term: "Term" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -87,7 +79,6 @@ class PromoteResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class EvictRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     candidate_id: str = betterproto.string_field(2)
 
     def __post_init__(self) -> None:
@@ -96,7 +87,6 @@ class EvictRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class EvictResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     term: "Term" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -105,7 +95,7 @@ class EvictResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GetTermRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -113,7 +103,6 @@ class GetTermRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GetTermResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     term: "Term" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -122,7 +111,7 @@ class GetTermResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class EventsRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -130,7 +119,6 @@ class EventsRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class EventsResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     event: "Event" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -159,14 +147,10 @@ class Term(betterproto.Message):
 class LeaderElectionServiceStub(betterproto.ServiceStub):
     """LeaderElectionService implements a distributed leader election"""
 
-    async def enter(
-        self, *, headers: "__primitive__.RequestHeaders" = None, candidate_id: str = ""
-    ) -> "EnterResponse":
+    async def enter(self, *, candidate_id: str = "") -> "EnterResponse":
         """Enter enters the leader election"""
 
         request = EnterRequest()
-        if headers is not None:
-            request.headers = headers
         request.candidate_id = candidate_id
 
         return await self._unary_unary(
@@ -175,14 +159,10 @@ class LeaderElectionServiceStub(betterproto.ServiceStub):
             EnterResponse,
         )
 
-    async def withdraw(
-        self, *, headers: "__primitive__.RequestHeaders" = None, candidate_id: str = ""
-    ) -> "WithdrawResponse":
+    async def withdraw(self, *, candidate_id: str = "") -> "WithdrawResponse":
         """Withdraw withdraws a candidate from the leader election"""
 
         request = WithdrawRequest()
-        if headers is not None:
-            request.headers = headers
         request.candidate_id = candidate_id
 
         return await self._unary_unary(
@@ -191,14 +171,10 @@ class LeaderElectionServiceStub(betterproto.ServiceStub):
             WithdrawResponse,
         )
 
-    async def anoint(
-        self, *, headers: "__primitive__.RequestHeaders" = None, candidate_id: str = ""
-    ) -> "AnointResponse":
+    async def anoint(self, *, candidate_id: str = "") -> "AnointResponse":
         """Anoint anoints a candidate leader"""
 
         request = AnointRequest()
-        if headers is not None:
-            request.headers = headers
         request.candidate_id = candidate_id
 
         return await self._unary_unary(
@@ -207,14 +183,10 @@ class LeaderElectionServiceStub(betterproto.ServiceStub):
             AnointResponse,
         )
 
-    async def promote(
-        self, *, headers: "__primitive__.RequestHeaders" = None, candidate_id: str = ""
-    ) -> "PromoteResponse":
+    async def promote(self, *, candidate_id: str = "") -> "PromoteResponse":
         """Promote promotes a candidate"""
 
         request = PromoteRequest()
-        if headers is not None:
-            request.headers = headers
         request.candidate_id = candidate_id
 
         return await self._unary_unary(
@@ -223,14 +195,10 @@ class LeaderElectionServiceStub(betterproto.ServiceStub):
             PromoteResponse,
         )
 
-    async def evict(
-        self, *, headers: "__primitive__.RequestHeaders" = None, candidate_id: str = ""
-    ) -> "EvictResponse":
+    async def evict(self, *, candidate_id: str = "") -> "EvictResponse":
         """Evict evicts a candidate from the election"""
 
         request = EvictRequest()
-        if headers is not None:
-            request.headers = headers
         request.candidate_id = candidate_id
 
         return await self._unary_unary(
@@ -239,14 +207,10 @@ class LeaderElectionServiceStub(betterproto.ServiceStub):
             EvictResponse,
         )
 
-    async def get_term(
-        self, *, headers: "__primitive__.RequestHeaders" = None
-    ) -> "GetTermResponse":
+    async def get_term(self) -> "GetTermResponse":
         """GetTerm gets the current leadership term"""
 
         request = GetTermRequest()
-        if headers is not None:
-            request.headers = headers
 
         return await self._unary_unary(
             "/atomix.primitive.election.LeaderElectionService/GetTerm",
@@ -254,14 +218,10 @@ class LeaderElectionServiceStub(betterproto.ServiceStub):
             GetTermResponse,
         )
 
-    async def events(
-        self, *, headers: "__primitive__.RequestHeaders" = None
-    ) -> AsyncIterator["EventsResponse"]:
+    async def events(self) -> AsyncIterator["EventsResponse"]:
         """Events listens for leadership events"""
 
         request = EventsRequest()
-        if headers is not None:
-            request.headers = headers
 
         async for response in self._unary_stream(
             "/atomix.primitive.election.LeaderElectionService/Events",
@@ -272,4 +232,3 @@ class LeaderElectionServiceStub(betterproto.ServiceStub):
 
 
 from .. import meta as _meta__
-from ... import primitive as __primitive__

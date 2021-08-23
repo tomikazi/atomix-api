@@ -17,7 +17,7 @@ class EventType(betterproto.Enum):
 
 @dataclass(eq=False, repr=False)
 class SizeRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -25,7 +25,6 @@ class SizeRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class SizeResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     size: int = betterproto.uint32_field(2)
 
     def __post_init__(self) -> None:
@@ -34,7 +33,6 @@ class SizeResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class ContainsRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     value: "Value" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -43,7 +41,6 @@ class ContainsRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class ContainsResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     contains: bool = betterproto.bool_field(2)
 
     def __post_init__(self) -> None:
@@ -60,7 +57,6 @@ class Precondition(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class AppendRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     value: "Value" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -69,7 +65,7 @@ class AppendRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class AppendResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -77,7 +73,6 @@ class AppendResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GetRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     index: int = betterproto.uint32_field(2)
 
     def __post_init__(self) -> None:
@@ -86,7 +81,6 @@ class GetRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GetResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     item: "Item" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -95,7 +89,6 @@ class GetResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class SetRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     item: "Item" = betterproto.message_field(2)
     preconditions: List["Precondition"] = betterproto.message_field(3)
 
@@ -105,7 +98,6 @@ class SetRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class SetResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     item: "Item" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -114,7 +106,6 @@ class SetResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class InsertRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     item: "Item" = betterproto.message_field(2)
     preconditions: List["Precondition"] = betterproto.message_field(3)
 
@@ -124,7 +115,6 @@ class InsertRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class InsertResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     item: "Item" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -133,7 +123,6 @@ class InsertResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class RemoveRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     index: int = betterproto.uint32_field(2)
     preconditions: List["Precondition"] = betterproto.message_field(3)
 
@@ -143,7 +132,6 @@ class RemoveRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class RemoveResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     item: "Item" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -152,7 +140,7 @@ class RemoveResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class ClearRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -160,7 +148,7 @@ class ClearRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class ClearResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -168,7 +156,6 @@ class ClearResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class EventsRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     replay: bool = betterproto.bool_field(2)
 
     def __post_init__(self) -> None:
@@ -177,7 +164,6 @@ class EventsRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class EventsResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     event: "Event" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -195,7 +181,7 @@ class Event(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class ElementsRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -203,7 +189,6 @@ class ElementsRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class ElementsResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     item: "Item" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -231,27 +216,19 @@ class Value(betterproto.Message):
 class ListServiceStub(betterproto.ServiceStub):
     """ListService implements a distributed list"""
 
-    async def size(
-        self, *, headers: "__primitive__.RequestHeaders" = None
-    ) -> "SizeResponse":
+    async def size(self) -> "SizeResponse":
         """Size gets the number of elements in the list"""
 
         request = SizeRequest()
-        if headers is not None:
-            request.headers = headers
 
         return await self._unary_unary(
             "/atomix.primitive.list.ListService/Size", request, SizeResponse
         )
 
-    async def append(
-        self, *, headers: "__primitive__.RequestHeaders" = None, value: "Value" = None
-    ) -> "AppendResponse":
+    async def append(self, *, value: "Value" = None) -> "AppendResponse":
         """Append appends a value to the list"""
 
         request = AppendRequest()
-        if headers is not None:
-            request.headers = headers
         if value is not None:
             request.value = value
 
@@ -262,7 +239,6 @@ class ListServiceStub(betterproto.ServiceStub):
     async def insert(
         self,
         *,
-        headers: "__primitive__.RequestHeaders" = None,
         item: "Item" = None,
         preconditions: Optional[List["Precondition"]] = None,
     ) -> "InsertResponse":
@@ -271,8 +247,6 @@ class ListServiceStub(betterproto.ServiceStub):
         preconditions = preconditions or []
 
         request = InsertRequest()
-        if headers is not None:
-            request.headers = headers
         if item is not None:
             request.item = item
         if preconditions is not None:
@@ -282,14 +256,10 @@ class ListServiceStub(betterproto.ServiceStub):
             "/atomix.primitive.list.ListService/Insert", request, InsertResponse
         )
 
-    async def get(
-        self, *, headers: "__primitive__.RequestHeaders" = None, index: int = 0
-    ) -> "GetResponse":
+    async def get(self, *, index: int = 0) -> "GetResponse":
         """Get gets the value at an index in the list"""
 
         request = GetRequest()
-        if headers is not None:
-            request.headers = headers
         request.index = index
 
         return await self._unary_unary(
@@ -299,7 +269,6 @@ class ListServiceStub(betterproto.ServiceStub):
     async def set(
         self,
         *,
-        headers: "__primitive__.RequestHeaders" = None,
         item: "Item" = None,
         preconditions: Optional[List["Precondition"]] = None,
     ) -> "SetResponse":
@@ -308,8 +277,6 @@ class ListServiceStub(betterproto.ServiceStub):
         preconditions = preconditions or []
 
         request = SetRequest()
-        if headers is not None:
-            request.headers = headers
         if item is not None:
             request.item = item
         if preconditions is not None:
@@ -320,19 +287,13 @@ class ListServiceStub(betterproto.ServiceStub):
         )
 
     async def remove(
-        self,
-        *,
-        headers: "__primitive__.RequestHeaders" = None,
-        index: int = 0,
-        preconditions: Optional[List["Precondition"]] = None,
+        self, *, index: int = 0, preconditions: Optional[List["Precondition"]] = None
     ) -> "RemoveResponse":
         """Remove removes an element from the list"""
 
         preconditions = preconditions or []
 
         request = RemoveRequest()
-        if headers is not None:
-            request.headers = headers
         request.index = index
         if preconditions is not None:
             request.preconditions = preconditions
@@ -341,27 +302,19 @@ class ListServiceStub(betterproto.ServiceStub):
             "/atomix.primitive.list.ListService/Remove", request, RemoveResponse
         )
 
-    async def clear(
-        self, *, headers: "__primitive__.RequestHeaders" = None
-    ) -> "ClearResponse":
+    async def clear(self) -> "ClearResponse":
         """Clear removes all elements from the list"""
 
         request = ClearRequest()
-        if headers is not None:
-            request.headers = headers
 
         return await self._unary_unary(
             "/atomix.primitive.list.ListService/Clear", request, ClearResponse
         )
 
-    async def events(
-        self, *, headers: "__primitive__.RequestHeaders" = None, replay: bool = False
-    ) -> AsyncIterator["EventsResponse"]:
+    async def events(self, *, replay: bool = False) -> AsyncIterator["EventsResponse"]:
         """Events listens for change events"""
 
         request = EventsRequest()
-        if headers is not None:
-            request.headers = headers
         request.replay = replay
 
         async for response in self._unary_stream(
@@ -371,14 +324,10 @@ class ListServiceStub(betterproto.ServiceStub):
         ):
             yield response
 
-    async def elements(
-        self, *, headers: "__primitive__.RequestHeaders" = None
-    ) -> AsyncIterator["ElementsResponse"]:
+    async def elements(self) -> AsyncIterator["ElementsResponse"]:
         """Elements streams all elements in the list"""
 
         request = ElementsRequest()
-        if headers is not None:
-            request.headers = headers
 
         async for response in self._unary_stream(
             "/atomix.primitive.list.ListService/Elements",
@@ -389,4 +338,3 @@ class ListServiceStub(betterproto.ServiceStub):
 
 
 from .. import meta as _meta__
-from ... import primitive as __primitive__

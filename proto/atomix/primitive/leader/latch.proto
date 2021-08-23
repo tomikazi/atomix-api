@@ -16,7 +16,6 @@ limitations under the License.
 
 syntax = "proto3";
 
-import "atomix/primitive/primitive.proto";
 import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
 import "atomix/primitive/meta/object.proto";
@@ -25,29 +24,26 @@ import "gogoproto/gogo.proto";
 package atomix.primitive.leader;
 
 message LatchRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+
 }
 
 message LatchResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Latch latch = 2 [(gogoproto.nullable) = false];
 }
 
 message GetRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+
 }
 
 message GetResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Latch latch = 2 [(gogoproto.nullable) = false];
 }
 
 message EventsRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+
 }
 
 message EventsResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Event event = 2 [(gogoproto.nullable) = false];
 }
 

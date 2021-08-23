@@ -18,11 +18,11 @@ syntax = "proto3";
 
 package atomix.management.driver;
 
-import "atomix/primitive/primitive.proto";
 import "gogoproto/gogo.proto";
 
 message ProxyId {
-    atomix.primitive.PrimitiveId primitive_id = 1 [(gogoproto.nullable) = false, (gogoproto.embed) = true];
+    string type = 1;
+    string name = 2;
 }
 
 message ProxyOptions {

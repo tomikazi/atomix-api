@@ -16,7 +16,6 @@ limitations under the License.
 
 syntax = "proto3";
 
-import "atomix/primitive/primitive.proto";
 import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
 import "gogoproto/gogo.proto";
@@ -24,31 +23,25 @@ import "gogoproto/gogo.proto";
 package atomix.primitive.counter;
 
 message IncrementRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     int64 delta = 2;
 }
 
 message IncrementResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     int64 value = 2;
 }
 
 message DecrementRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     int64 delta = 2;
 }
 
 message DecrementResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     int64 value = 2;
 }
 
 message GetRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
 }
 
 message GetResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     int64 value = 2;
 }
 
@@ -59,13 +52,11 @@ message Precondition {
 }
 
 message SetRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     int64 value = 2;
     repeated Precondition preconditions = 3 [(gogoproto.nullable) = false];
 }
 
 message SetResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     int64 value = 2;
 }
 

@@ -12,7 +12,6 @@
     - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
     - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
     - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/operation.proto-extensions)
   
 - [atomix/primitive/partition.proto](#atomix/primitive/partition.proto)
     - [PartitionStrategy](#atomix.primitive.partition.PartitionStrategy)
@@ -26,11 +25,6 @@
     - [CloseResponse](#atomix.primitive.CloseResponse)
     - [CreateRequest](#atomix.primitive.CreateRequest)
     - [CreateResponse](#atomix.primitive.CreateResponse)
-    - [DeleteRequest](#atomix.primitive.DeleteRequest)
-    - [DeleteResponse](#atomix.primitive.DeleteResponse)
-    - [PrimitiveId](#atomix.primitive.PrimitiveId)
-    - [RequestHeaders](#atomix.primitive.RequestHeaders)
-    - [ResponseHeaders](#atomix.primitive.ResponseHeaders)
   
     - [Primitive](#atomix.primitive.Primitive)
   
@@ -84,7 +78,6 @@ OperationType is an enum for specifying the type of operation
 | Extension | Type | Base | Number | Description |
 | --------- | ---- | ---- | ------ | ----------- |
 | aggregate | AggregateStrategy | .google.protobuf.FieldOptions | 62001 |  |
-| headers | bool | .google.protobuf.FieldOptions | 62000 |  |
 | async | bool | .google.protobuf.MethodOptions | 61002 |  |
 | id | uint32 | .google.protobuf.MethodOptions | 61003 |  |
 | name | string | .google.protobuf.MethodOptions | 61000 |  |
@@ -150,11 +143,6 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| headers | [RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
-
-
 
 
 
@@ -163,11 +151,6 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 ### CloseResponse
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| headers | [ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 
 
 
@@ -180,11 +163,6 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| headers | [RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
-
-
 
 
 
@@ -193,90 +171,6 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
 ### CreateResponse
 
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| headers | [ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.DeleteRequest"></a>
-
-### DeleteRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| headers | [RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.DeleteResponse"></a>
-
-### DeleteResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| headers | [ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.PrimitiveId"></a>
-
-### PrimitiveId
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| namespace | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-| type | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.RequestHeaders"></a>
-
-### RequestHeaders
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| primitive_id | [PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
-| cluster_key | [string](#string) |  |  |
-| timestamp | [meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
-
-
-
-
-
-
-<a name="atomix.primitive.ResponseHeaders"></a>
-
-### ResponseHeaders
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| timestamp | [meta.Timestamp](#atomix.primitive.meta.Timestamp) |  |  |
 
 
 
@@ -298,7 +192,6 @@ Primitive is a service for managing primitive
 | ----------- | ------------ | ------------- | ------------|
 | Create | [CreateRequest](#atomix.primitive.CreateRequest) | [CreateResponse](#atomix.primitive.CreateResponse) | Create creates a primitive |
 | Close | [CloseRequest](#atomix.primitive.CloseRequest) | [CloseResponse](#atomix.primitive.CloseResponse) | Close closes a primitive |
-| Delete | [DeleteRequest](#atomix.primitive.DeleteRequest) | [DeleteResponse](#atomix.primitive.DeleteResponse) | Delete deletes a primitive |
 
  
 

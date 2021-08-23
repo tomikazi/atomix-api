@@ -18,28 +18,24 @@ syntax = "proto3";
 
 package atomix.primitive.list;
 
-import "atomix/primitive/primitive.proto";
 import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
 
 message SizeRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+
 }
 
 message SizeResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     uint32 size = 2;
 }
 
 message ContainsRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Value value = 2 [(gogoproto.nullable) = false];
 }
 
 message ContainsResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     bool contains = 2;
 }
 
@@ -50,72 +46,61 @@ message Precondition {
 }
 
 message AppendRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Value value = 2 [(gogoproto.nullable) = false];
 }
 
 message AppendResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+
 }
 
 message GetRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     uint32 index = 2;
 }
 
 message GetResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Item item = 2 [(gogoproto.nullable) = false];
 }
 
 message SetRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Item item = 2 [(gogoproto.nullable) = false];
     repeated Precondition preconditions = 3 [(gogoproto.nullable) = false];
 }
 
 message SetResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Item item = 2 [(gogoproto.nullable) = false];
 }
 
 message InsertRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Item item = 2 [(gogoproto.nullable) = false];
     repeated Precondition preconditions = 3 [(gogoproto.nullable) = false];
 }
 
 message InsertResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Item item = 2 [(gogoproto.nullable) = false];
 }
 
 message RemoveRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     uint32 index = 2;
     repeated Precondition preconditions = 3 [(gogoproto.nullable) = false];
 }
 
 message RemoveResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Item item = 2 [(gogoproto.nullable) = false];
 }
 
 message ClearRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+
 }
 
 message ClearResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+
 }
 
 message EventsRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     bool replay = 2;
 }
 
 message EventsResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Event event = 2 [(gogoproto.nullable) = false];
 }
 
@@ -132,11 +117,10 @@ message Event {
 }
 
 message ElementsRequest {
-    atomix.primitive.RequestHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
+
 }
 
 message ElementsResponse {
-    atomix.primitive.ResponseHeaders headers = 1 [(atomix.primitive.operation.headers) = true, (gogoproto.nullable) = false];
     Item item = 2 [(gogoproto.nullable) = false];
 }
 

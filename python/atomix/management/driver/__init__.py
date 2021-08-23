@@ -10,7 +10,8 @@ import grpclib
 
 @dataclass(eq=False, repr=False)
 class ProxyId(betterproto.Message):
-    primitive_id: "__primitive__.PrimitiveId" = betterproto.message_field(1)
+    type: str = betterproto.string_field(1)
+    name: str = betterproto.string_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -214,5 +215,4 @@ class DriverStub(betterproto.ServiceStub):
         )
 
 
-from ... import primitive as __primitive__
 from ... import protocol as __protocol__

@@ -96,7 +96,8 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| primitive_id | [atomix.primitive.PrimitiveId](#atomix.primitive.PrimitiveId) |  |  |
+| type | [string](#string) |  |  |
+| name | [string](#string) |  |  |
 
 
 

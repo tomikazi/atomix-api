@@ -35,7 +35,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
 
 
@@ -51,7 +50,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
 
 
@@ -83,7 +81,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | timeout | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
 
 
@@ -99,7 +96,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
 
 
@@ -115,7 +111,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.RequestHeaders](#atomix.primitive.RequestHeaders) |  |  |
 | lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
 
 
@@ -131,7 +126,6 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| headers | [atomix.primitive.ResponseHeaders](#atomix.primitive.ResponseHeaders) |  |  |
 | lock | [Lock](#atomix.primitive.lock.Lock) |  |  |
 
 

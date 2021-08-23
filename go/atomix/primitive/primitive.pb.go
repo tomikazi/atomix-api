@@ -6,8 +6,6 @@ package primitive
 import (
 	context "context"
 	fmt "fmt"
-	meta "github.com/atomix/atomix-api/go/atomix/primitive/meta"
-	_ "github.com/gogo/protobuf/gogoproto"
 	proto "github.com/gogo/protobuf/proto"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
@@ -28,119 +26,14 @@ var _ = math.Inf
 // proto package needs to be updated.
 const _ = proto.GoGoProtoPackageIsVersion3 // please upgrade the proto package
 
-type RequestHeaders struct {
-	PrimitiveID PrimitiveId     `protobuf:"bytes,1,opt,name=primitive_id,json=primitiveId,proto3" json:"primitive_id"`
-	ClusterKey  string          `protobuf:"bytes,2,opt,name=cluster_key,json=clusterKey,proto3" json:"cluster_key,omitempty"`
-	Timestamp   *meta.Timestamp `protobuf:"bytes,3,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
-}
-
-func (m *RequestHeaders) Reset()         { *m = RequestHeaders{} }
-func (m *RequestHeaders) String() string { return proto.CompactTextString(m) }
-func (*RequestHeaders) ProtoMessage()    {}
-func (*RequestHeaders) Descriptor() ([]byte, []int) {
-	return fileDescriptor_056a91a3aedc7ac7, []int{0}
-}
-func (m *RequestHeaders) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *RequestHeaders) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_RequestHeaders.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *RequestHeaders) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_RequestHeaders.Merge(m, src)
-}
-func (m *RequestHeaders) XXX_Size() int {
-	return m.Size()
-}
-func (m *RequestHeaders) XXX_DiscardUnknown() {
-	xxx_messageInfo_RequestHeaders.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_RequestHeaders proto.InternalMessageInfo
-
-func (m *RequestHeaders) GetPrimitiveID() PrimitiveId {
-	if m != nil {
-		return m.PrimitiveID
-	}
-	return PrimitiveId{}
-}
-
-func (m *RequestHeaders) GetClusterKey() string {
-	if m != nil {
-		return m.ClusterKey
-	}
-	return ""
-}
-
-func (m *RequestHeaders) GetTimestamp() *meta.Timestamp {
-	if m != nil {
-		return m.Timestamp
-	}
-	return nil
-}
-
-type ResponseHeaders struct {
-	Timestamp *meta.Timestamp `protobuf:"bytes,1,opt,name=timestamp,proto3" json:"timestamp,omitempty"`
-}
-
-func (m *ResponseHeaders) Reset()         { *m = ResponseHeaders{} }
-func (m *ResponseHeaders) String() string { return proto.CompactTextString(m) }
-func (*ResponseHeaders) ProtoMessage()    {}
-func (*ResponseHeaders) Descriptor() ([]byte, []int) {
-	return fileDescriptor_056a91a3aedc7ac7, []int{1}
-}
-func (m *ResponseHeaders) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *ResponseHeaders) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_ResponseHeaders.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *ResponseHeaders) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_ResponseHeaders.Merge(m, src)
-}
-func (m *ResponseHeaders) XXX_Size() int {
-	return m.Size()
-}
-func (m *ResponseHeaders) XXX_DiscardUnknown() {
-	xxx_messageInfo_ResponseHeaders.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_ResponseHeaders proto.InternalMessageInfo
-
-func (m *ResponseHeaders) GetTimestamp() *meta.Timestamp {
-	if m != nil {
-		return m.Timestamp
-	}
-	return nil
-}
-
 type CreateRequest struct {
-	Headers RequestHeaders `protobuf:"bytes,1,opt,name=headers,proto3" json:"headers"`
 }
 
 func (m *CreateRequest) Reset()         { *m = CreateRequest{} }
 func (m *CreateRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateRequest) ProtoMessage()    {}
 func (*CreateRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_056a91a3aedc7ac7, []int{2}
+	return fileDescriptor_056a91a3aedc7ac7, []int{0}
 }
 func (m *CreateRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -169,22 +62,14 @@ func (m *CreateRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CreateRequest proto.InternalMessageInfo
 
-func (m *CreateRequest) GetHeaders() RequestHeaders {
-	if m != nil {
-		return m.Headers
-	}
-	return RequestHeaders{}
-}
-
 type CreateResponse struct {
-	Headers ResponseHeaders `protobuf:"bytes,1,opt,name=headers,proto3" json:"headers"`
 }
 
 func (m *CreateResponse) Reset()         { *m = CreateResponse{} }
 func (m *CreateResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateResponse) ProtoMessage()    {}
 func (*CreateResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_056a91a3aedc7ac7, []int{3}
+	return fileDescriptor_056a91a3aedc7ac7, []int{1}
 }
 func (m *CreateResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -213,22 +98,14 @@ func (m *CreateResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CreateResponse proto.InternalMessageInfo
 
-func (m *CreateResponse) GetHeaders() ResponseHeaders {
-	if m != nil {
-		return m.Headers
-	}
-	return ResponseHeaders{}
-}
-
 type CloseRequest struct {
-	Headers RequestHeaders `protobuf:"bytes,1,opt,name=headers,proto3" json:"headers"`
 }
 
 func (m *CloseRequest) Reset()         { *m = CloseRequest{} }
 func (m *CloseRequest) String() string { return proto.CompactTextString(m) }
 func (*CloseRequest) ProtoMessage()    {}
 func (*CloseRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_056a91a3aedc7ac7, []int{4}
+	return fileDescriptor_056a91a3aedc7ac7, []int{2}
 }
 func (m *CloseRequest) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -257,22 +134,14 @@ func (m *CloseRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CloseRequest proto.InternalMessageInfo
 
-func (m *CloseRequest) GetHeaders() RequestHeaders {
-	if m != nil {
-		return m.Headers
-	}
-	return RequestHeaders{}
-}
-
 type CloseResponse struct {
-	Headers ResponseHeaders `protobuf:"bytes,1,opt,name=headers,proto3" json:"headers"`
 }
 
 func (m *CloseResponse) Reset()         { *m = CloseResponse{} }
 func (m *CloseResponse) String() string { return proto.CompactTextString(m) }
 func (*CloseResponse) ProtoMessage()    {}
 func (*CloseResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_056a91a3aedc7ac7, []int{5}
+	return fileDescriptor_056a91a3aedc7ac7, []int{3}
 }
 func (m *CloseResponse) XXX_Unmarshal(b []byte) error {
 	return m.Unmarshal(b)
@@ -301,205 +170,29 @@ func (m *CloseResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CloseResponse proto.InternalMessageInfo
 
-func (m *CloseResponse) GetHeaders() ResponseHeaders {
-	if m != nil {
-		return m.Headers
-	}
-	return ResponseHeaders{}
-}
-
-type DeleteRequest struct {
-	Headers RequestHeaders `protobuf:"bytes,1,opt,name=headers,proto3" json:"headers"`
-}
-
-func (m *DeleteRequest) Reset()         { *m = DeleteRequest{} }
-func (m *DeleteRequest) String() string { return proto.CompactTextString(m) }
-func (*DeleteRequest) ProtoMessage()    {}
-func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_056a91a3aedc7ac7, []int{6}
-}
-func (m *DeleteRequest) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *DeleteRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_DeleteRequest.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *DeleteRequest) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteRequest.Merge(m, src)
-}
-func (m *DeleteRequest) XXX_Size() int {
-	return m.Size()
-}
-func (m *DeleteRequest) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteRequest.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteRequest proto.InternalMessageInfo
-
-func (m *DeleteRequest) GetHeaders() RequestHeaders {
-	if m != nil {
-		return m.Headers
-	}
-	return RequestHeaders{}
-}
-
-type DeleteResponse struct {
-	Headers ResponseHeaders `protobuf:"bytes,1,opt,name=headers,proto3" json:"headers"`
-}
-
-func (m *DeleteResponse) Reset()         { *m = DeleteResponse{} }
-func (m *DeleteResponse) String() string { return proto.CompactTextString(m) }
-func (*DeleteResponse) ProtoMessage()    {}
-func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_056a91a3aedc7ac7, []int{7}
-}
-func (m *DeleteResponse) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *DeleteResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_DeleteResponse.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *DeleteResponse) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_DeleteResponse.Merge(m, src)
-}
-func (m *DeleteResponse) XXX_Size() int {
-	return m.Size()
-}
-func (m *DeleteResponse) XXX_DiscardUnknown() {
-	xxx_messageInfo_DeleteResponse.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_DeleteResponse proto.InternalMessageInfo
-
-func (m *DeleteResponse) GetHeaders() ResponseHeaders {
-	if m != nil {
-		return m.Headers
-	}
-	return ResponseHeaders{}
-}
-
-type PrimitiveId struct {
-	Namespace string `protobuf:"bytes,1,opt,name=namespace,proto3" json:"namespace,omitempty"`
-	Name      string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Type      string `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
-}
-
-func (m *PrimitiveId) Reset()         { *m = PrimitiveId{} }
-func (m *PrimitiveId) String() string { return proto.CompactTextString(m) }
-func (*PrimitiveId) ProtoMessage()    {}
-func (*PrimitiveId) Descriptor() ([]byte, []int) {
-	return fileDescriptor_056a91a3aedc7ac7, []int{8}
-}
-func (m *PrimitiveId) XXX_Unmarshal(b []byte) error {
-	return m.Unmarshal(b)
-}
-func (m *PrimitiveId) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	if deterministic {
-		return xxx_messageInfo_PrimitiveId.Marshal(b, m, deterministic)
-	} else {
-		b = b[:cap(b)]
-		n, err := m.MarshalToSizedBuffer(b)
-		if err != nil {
-			return nil, err
-		}
-		return b[:n], nil
-	}
-}
-func (m *PrimitiveId) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_PrimitiveId.Merge(m, src)
-}
-func (m *PrimitiveId) XXX_Size() int {
-	return m.Size()
-}
-func (m *PrimitiveId) XXX_DiscardUnknown() {
-	xxx_messageInfo_PrimitiveId.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_PrimitiveId proto.InternalMessageInfo
-
-func (m *PrimitiveId) GetNamespace() string {
-	if m != nil {
-		return m.Namespace
-	}
-	return ""
-}
-
-func (m *PrimitiveId) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-func (m *PrimitiveId) GetType() string {
-	if m != nil {
-		return m.Type
-	}
-	return ""
-}
-
 func init() {
-	proto.RegisterType((*RequestHeaders)(nil), "atomix.primitive.RequestHeaders")
-	proto.RegisterType((*ResponseHeaders)(nil), "atomix.primitive.ResponseHeaders")
 	proto.RegisterType((*CreateRequest)(nil), "atomix.primitive.CreateRequest")
 	proto.RegisterType((*CreateResponse)(nil), "atomix.primitive.CreateResponse")
 	proto.RegisterType((*CloseRequest)(nil), "atomix.primitive.CloseRequest")
 	proto.RegisterType((*CloseResponse)(nil), "atomix.primitive.CloseResponse")
-	proto.RegisterType((*DeleteRequest)(nil), "atomix.primitive.DeleteRequest")
-	proto.RegisterType((*DeleteResponse)(nil), "atomix.primitive.DeleteResponse")
-	proto.RegisterType((*PrimitiveId)(nil), "atomix.primitive.PrimitiveId")
 }
 
 func init() { proto.RegisterFile("atomix/primitive/primitive.proto", fileDescriptor_056a91a3aedc7ac7) }
 
 var fileDescriptor_056a91a3aedc7ac7 = []byte{
-	// 434 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x94, 0xbf, 0x8e, 0xd3, 0x40,
-	0x10, 0xc6, 0xbd, 0x70, 0x04, 0x79, 0x7c, 0x39, 0xd0, 0x42, 0x61, 0x59, 0x60, 0x9b, 0x48, 0x48,
-	0x57, 0x39, 0xd2, 0xd1, 0x23, 0xc8, 0x5d, 0x71, 0x28, 0x4d, 0xb2, 0x81, 0x3a, 0x32, 0xf1, 0x28,
-	0x58, 0xc4, 0xb1, 0xf1, 0x6e, 0x10, 0x79, 0x0b, 0x1e, 0x2b, 0x65, 0x4a, 0xaa, 0x08, 0x39, 0x0f,
-	0xc0, 0x2b, 0x20, 0xaf, 0xff, 0xc5, 0x89, 0xd3, 0x9c, 0xdc, 0x4d, 0x26, 0x33, 0xbf, 0xfd, 0x66,
-	0xe6, 0x93, 0xc1, 0x76, 0x45, 0x18, 0xf8, 0xbf, 0xfa, 0x51, 0xec, 0x07, 0xbe, 0xf0, 0x7f, 0x62,
-	0x15, 0x39, 0x51, 0x1c, 0x8a, 0x90, 0x3e, 0xcf, 0x2a, 0x9c, 0x32, 0x6f, 0xbc, 0x3d, 0xe9, 0x09,
-	0x50, 0xb8, 0x7d, 0xe1, 0x07, 0xc8, 0x85, 0x1b, 0x44, 0x59, 0xa3, 0xf1, 0x72, 0x1e, 0xce, 0x43,
-	0x19, 0xf6, 0xd3, 0x28, 0xcb, 0xf6, 0x36, 0x04, 0xae, 0x18, 0xfe, 0x58, 0x21, 0x17, 0xf7, 0xe8,
-	0x7a, 0x18, 0x73, 0xfa, 0x05, 0x2e, 0x4b, 0xd4, 0xd4, 0xf7, 0x74, 0x62, 0x93, 0x6b, 0xed, 0xe6,
-	0xb5, 0x73, 0xfc, 0xb0, 0x33, 0x2a, 0xa2, 0x4f, 0xde, 0xe0, 0xc5, 0x66, 0x67, 0x29, 0xc9, 0xce,
-	0xd2, 0xaa, 0xe4, 0x1d, 0xd3, 0xa2, 0xaa, 0x82, 0x5a, 0xa0, 0xcd, 0x16, 0x2b, 0x2e, 0x30, 0x9e,
-	0x7e, 0xc7, 0xb5, 0xfe, 0xc8, 0x26, 0xd7, 0x2a, 0x83, 0x3c, 0x35, 0xc4, 0x35, 0x7d, 0x0f, 0x6a,
-	0xa9, 0x59, 0x7f, 0x2c, 0x1f, 0xb5, 0x4f, 0x1f, 0x4d, 0x67, 0x73, 0x3e, 0x17, 0x75, 0xac, 0x6a,
-	0xe9, 0x8d, 0xe1, 0x19, 0x43, 0x1e, 0x85, 0x4b, 0x8e, 0xc5, 0x28, 0x35, 0x24, 0x79, 0x08, 0xb2,
-	0x7b, 0x1b, 0xa3, 0x2b, 0x30, 0x5f, 0x11, 0xfd, 0x00, 0x4f, 0xbf, 0x65, 0xec, 0xf3, 0xb8, 0xfa,
-	0x3a, 0x07, 0x17, 0xe9, 0x66, 0x58, 0xd1, 0xd6, 0x9b, 0xc0, 0x55, 0x81, 0xcc, 0xb4, 0xd2, 0x8f,
-	0xc7, 0xcc, 0x37, 0x4d, 0xcc, 0xda, 0x60, 0xc7, 0xd0, 0x11, 0x5c, 0xde, 0x2e, 0x42, 0xde, 0xa2,
-	0x4c, 0x06, 0xdd, 0x9c, 0xd8, 0x9e, 0xca, 0x31, 0x74, 0xef, 0x70, 0x81, 0x2d, 0x6f, 0xb3, 0x40,
-	0xb6, 0xa7, 0x73, 0x02, 0x07, 0x2e, 0xf6, 0xe8, 0x2b, 0x50, 0x97, 0x6e, 0x80, 0x3c, 0x72, 0x67,
-	0x28, 0x99, 0x2a, 0xab, 0x12, 0x94, 0xc2, 0x45, 0xfa, 0x23, 0xf7, 0xb3, 0x8c, 0xd3, 0x9c, 0x58,
-	0x47, 0x28, 0x4d, 0xac, 0x32, 0x19, 0xdf, 0xfc, 0x23, 0xa0, 0x96, 0x54, 0x3a, 0x84, 0x4e, 0xe6,
-	0x02, 0x6a, 0x9d, 0xca, 0xab, 0x59, 0xce, 0xb0, 0xcf, 0x17, 0xe4, 0x23, 0xdf, 0xc3, 0x13, 0x79,
-	0x2b, 0x6a, 0x36, 0x94, 0x1e, 0xd8, 0xc2, 0xb0, 0xce, 0xfe, 0x9f, 0x93, 0x86, 0xd0, 0xc9, 0xd6,
-	0xd9, 0x24, 0xab, 0x76, 0xbb, 0x26, 0x59, 0xf5, 0x4b, 0x0c, 0xf4, 0x4d, 0x62, 0x92, 0x6d, 0x62,
-	0x92, 0xbf, 0x89, 0x49, 0x7e, 0xef, 0x4d, 0x65, 0xbb, 0x37, 0x95, 0x3f, 0x7b, 0x53, 0xf9, 0xda,
-	0x91, 0xdf, 0x9e, 0x77, 0xff, 0x03, 0x00, 0x00, 0xff, 0xff, 0x5d, 0x76, 0x4d, 0x0b, 0xee, 0x04,
-	0x00, 0x00,
+	// 182 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xe2, 0x52, 0x48, 0x2c, 0xc9, 0xcf,
+	0xcd, 0xac, 0xd0, 0x2f, 0x28, 0xca, 0xcc, 0xcd, 0x2c, 0xc9, 0x2c, 0x4b, 0x45, 0xb0, 0xf4, 0x0a,
+	0x8a, 0xf2, 0x4b, 0xf2, 0x85, 0x04, 0x20, 0x2a, 0xf4, 0xe0, 0xe2, 0x4a, 0xfc, 0x5c, 0xbc, 0xce,
+	0x45, 0xa9, 0x89, 0x25, 0xa9, 0x41, 0xa9, 0x85, 0xa5, 0xa9, 0xc5, 0x25, 0x4a, 0x02, 0x5c, 0x7c,
+	0x30, 0x81, 0xe2, 0x82, 0xfc, 0xbc, 0xe2, 0x54, 0x25, 0x3e, 0x2e, 0x1e, 0xe7, 0x9c, 0xfc, 0x62,
+	0xb8, 0x0a, 0x90, 0x16, 0x08, 0x1f, 0xa2, 0xc0, 0x68, 0x11, 0x23, 0x17, 0x67, 0x00, 0xcc, 0x44,
+	0x21, 0x6f, 0x2e, 0x36, 0x88, 0x01, 0x42, 0xf2, 0x7a, 0xe8, 0xd6, 0xe9, 0xa1, 0xd8, 0x25, 0xa5,
+	0x80, 0x5b, 0x01, 0xc4, 0x68, 0x21, 0x0f, 0x2e, 0x56, 0xb0, 0x5d, 0x42, 0x72, 0x58, 0x94, 0x22,
+	0x39, 0x4a, 0x4a, 0x1e, 0xa7, 0x3c, 0xc4, 0x24, 0x27, 0x89, 0x13, 0x8f, 0xe4, 0x18, 0x2f, 0x3c,
+	0x92, 0x63, 0x7c, 0xf0, 0x48, 0x8e, 0x71, 0xc2, 0x63, 0x39, 0x86, 0x0b, 0x8f, 0xe5, 0x18, 0x6e,
+	0x3c, 0x96, 0x63, 0x48, 0x62, 0x03, 0x87, 0x8d, 0x31, 0x20, 0x00, 0x00, 0xff, 0xff, 0xf5, 0xdd,
+	0x95, 0xf7, 0x3f, 0x01, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -518,8 +211,6 @@ type PrimitiveClient interface {
 	Create(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
 	// Close closes a primitive
 	Close(ctx context.Context, in *CloseRequest, opts ...grpc.CallOption) (*CloseResponse, error)
-	// Delete deletes a primitive
-	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 }
 
 type primitiveClient struct {
@@ -548,23 +239,12 @@ func (c *primitiveClient) Close(ctx context.Context, in *CloseRequest, opts ...g
 	return out, nil
 }
 
-func (c *primitiveClient) Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error) {
-	out := new(DeleteResponse)
-	err := c.cc.Invoke(ctx, "/atomix.primitive.Primitive/Delete", in, out, opts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // PrimitiveServer is the server API for Primitive service.
 type PrimitiveServer interface {
 	// Create creates a primitive
 	Create(context.Context, *CreateRequest) (*CreateResponse, error)
 	// Close closes a primitive
 	Close(context.Context, *CloseRequest) (*CloseResponse, error)
-	// Delete deletes a primitive
-	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 }
 
 // UnimplementedPrimitiveServer can be embedded to have forward compatible implementations.
@@ -576,9 +256,6 @@ func (*UnimplementedPrimitiveServer) Create(ctx context.Context, req *CreateRequ
 }
 func (*UnimplementedPrimitiveServer) Close(ctx context.Context, req *CloseRequest) (*CloseResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Close not implemented")
-}
-func (*UnimplementedPrimitiveServer) Delete(ctx context.Context, req *DeleteRequest) (*DeleteResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 
 func RegisterPrimitiveServer(s *grpc.Server, srv PrimitiveServer) {
@@ -621,24 +298,6 @@ func _Primitive_Close_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
-func _Primitive_Delete_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(DeleteRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(PrimitiveServer).Delete(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: "/atomix.primitive.Primitive/Delete",
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(PrimitiveServer).Delete(ctx, req.(*DeleteRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 var _Primitive_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "atomix.primitive.Primitive",
 	HandlerType: (*PrimitiveServer)(nil),
@@ -651,100 +310,9 @@ var _Primitive_serviceDesc = grpc.ServiceDesc{
 			MethodName: "Close",
 			Handler:    _Primitive_Close_Handler,
 		},
-		{
-			MethodName: "Delete",
-			Handler:    _Primitive_Delete_Handler,
-		},
 	},
 	Streams:  []grpc.StreamDesc{},
 	Metadata: "atomix/primitive/primitive.proto",
-}
-
-func (m *RequestHeaders) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *RequestHeaders) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *RequestHeaders) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.Timestamp != nil {
-		{
-			size, err := m.Timestamp.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintPrimitive(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0x1a
-	}
-	if len(m.ClusterKey) > 0 {
-		i -= len(m.ClusterKey)
-		copy(dAtA[i:], m.ClusterKey)
-		i = encodeVarintPrimitive(dAtA, i, uint64(len(m.ClusterKey)))
-		i--
-		dAtA[i] = 0x12
-	}
-	{
-		size, err := m.PrimitiveID.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintPrimitive(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0xa
-	return len(dAtA) - i, nil
-}
-
-func (m *ResponseHeaders) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *ResponseHeaders) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *ResponseHeaders) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if m.Timestamp != nil {
-		{
-			size, err := m.Timestamp.MarshalToSizedBuffer(dAtA[:i])
-			if err != nil {
-				return 0, err
-			}
-			i -= size
-			i = encodeVarintPrimitive(dAtA, i, uint64(size))
-		}
-		i--
-		dAtA[i] = 0xa
-	}
-	return len(dAtA) - i, nil
 }
 
 func (m *CreateRequest) Marshal() (dAtA []byte, err error) {
@@ -767,16 +335,6 @@ func (m *CreateRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	{
-		size, err := m.Headers.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintPrimitive(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0xa
 	return len(dAtA) - i, nil
 }
 
@@ -800,16 +358,6 @@ func (m *CreateResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	{
-		size, err := m.Headers.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintPrimitive(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0xa
 	return len(dAtA) - i, nil
 }
 
@@ -833,16 +381,6 @@ func (m *CloseRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	{
-		size, err := m.Headers.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintPrimitive(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0xa
 	return len(dAtA) - i, nil
 }
 
@@ -866,126 +404,6 @@ func (m *CloseResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	{
-		size, err := m.Headers.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintPrimitive(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0xa
-	return len(dAtA) - i, nil
-}
-
-func (m *DeleteRequest) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *DeleteRequest) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *DeleteRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	{
-		size, err := m.Headers.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintPrimitive(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0xa
-	return len(dAtA) - i, nil
-}
-
-func (m *DeleteResponse) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *DeleteResponse) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *DeleteResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	{
-		size, err := m.Headers.MarshalToSizedBuffer(dAtA[:i])
-		if err != nil {
-			return 0, err
-		}
-		i -= size
-		i = encodeVarintPrimitive(dAtA, i, uint64(size))
-	}
-	i--
-	dAtA[i] = 0xa
-	return len(dAtA) - i, nil
-}
-
-func (m *PrimitiveId) Marshal() (dAtA []byte, err error) {
-	size := m.Size()
-	dAtA = make([]byte, size)
-	n, err := m.MarshalToSizedBuffer(dAtA[:size])
-	if err != nil {
-		return nil, err
-	}
-	return dAtA[:n], nil
-}
-
-func (m *PrimitiveId) MarshalTo(dAtA []byte) (int, error) {
-	size := m.Size()
-	return m.MarshalToSizedBuffer(dAtA[:size])
-}
-
-func (m *PrimitiveId) MarshalToSizedBuffer(dAtA []byte) (int, error) {
-	i := len(dAtA)
-	_ = i
-	var l int
-	_ = l
-	if len(m.Type) > 0 {
-		i -= len(m.Type)
-		copy(dAtA[i:], m.Type)
-		i = encodeVarintPrimitive(dAtA, i, uint64(len(m.Type)))
-		i--
-		dAtA[i] = 0x1a
-	}
-	if len(m.Name) > 0 {
-		i -= len(m.Name)
-		copy(dAtA[i:], m.Name)
-		i = encodeVarintPrimitive(dAtA, i, uint64(len(m.Name)))
-		i--
-		dAtA[i] = 0x12
-	}
-	if len(m.Namespace) > 0 {
-		i -= len(m.Namespace)
-		copy(dAtA[i:], m.Namespace)
-		i = encodeVarintPrimitive(dAtA, i, uint64(len(m.Namespace)))
-		i--
-		dAtA[i] = 0xa
-	}
 	return len(dAtA) - i, nil
 }
 
@@ -1000,46 +418,12 @@ func encodeVarintPrimitive(dAtA []byte, offset int, v uint64) int {
 	dAtA[offset] = uint8(v)
 	return base
 }
-func (m *RequestHeaders) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = m.PrimitiveID.Size()
-	n += 1 + l + sovPrimitive(uint64(l))
-	l = len(m.ClusterKey)
-	if l > 0 {
-		n += 1 + l + sovPrimitive(uint64(l))
-	}
-	if m.Timestamp != nil {
-		l = m.Timestamp.Size()
-		n += 1 + l + sovPrimitive(uint64(l))
-	}
-	return n
-}
-
-func (m *ResponseHeaders) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	if m.Timestamp != nil {
-		l = m.Timestamp.Size()
-		n += 1 + l + sovPrimitive(uint64(l))
-	}
-	return n
-}
-
 func (m *CreateRequest) Size() (n int) {
 	if m == nil {
 		return 0
 	}
 	var l int
 	_ = l
-	l = m.Headers.Size()
-	n += 1 + l + sovPrimitive(uint64(l))
 	return n
 }
 
@@ -1049,8 +433,6 @@ func (m *CreateResponse) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = m.Headers.Size()
-	n += 1 + l + sovPrimitive(uint64(l))
 	return n
 }
 
@@ -1060,8 +442,6 @@ func (m *CloseRequest) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = m.Headers.Size()
-	n += 1 + l + sovPrimitive(uint64(l))
 	return n
 }
 
@@ -1071,51 +451,6 @@ func (m *CloseResponse) Size() (n int) {
 	}
 	var l int
 	_ = l
-	l = m.Headers.Size()
-	n += 1 + l + sovPrimitive(uint64(l))
-	return n
-}
-
-func (m *DeleteRequest) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = m.Headers.Size()
-	n += 1 + l + sovPrimitive(uint64(l))
-	return n
-}
-
-func (m *DeleteResponse) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = m.Headers.Size()
-	n += 1 + l + sovPrimitive(uint64(l))
-	return n
-}
-
-func (m *PrimitiveId) Size() (n int) {
-	if m == nil {
-		return 0
-	}
-	var l int
-	_ = l
-	l = len(m.Namespace)
-	if l > 0 {
-		n += 1 + l + sovPrimitive(uint64(l))
-	}
-	l = len(m.Name)
-	if l > 0 {
-		n += 1 + l + sovPrimitive(uint64(l))
-	}
-	l = len(m.Type)
-	if l > 0 {
-		n += 1 + l + sovPrimitive(uint64(l))
-	}
 	return n
 }
 
@@ -1124,249 +459,6 @@ func sovPrimitive(x uint64) (n int) {
 }
 func sozPrimitive(x uint64) (n int) {
 	return sovPrimitive(uint64((x << 1) ^ uint64((int64(x) >> 63))))
-}
-func (m *RequestHeaders) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowPrimitive
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: RequestHeaders: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: RequestHeaders: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field PrimitiveID", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.PrimitiveID.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field ClusterKey", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.ClusterKey = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Timestamp", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Timestamp == nil {
-				m.Timestamp = &meta.Timestamp{}
-			}
-			if err := m.Timestamp.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipPrimitive(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *ResponseHeaders) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowPrimitive
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: ResponseHeaders: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: ResponseHeaders: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Timestamp", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if m.Timestamp == nil {
-				m.Timestamp = &meta.Timestamp{}
-			}
-			if err := m.Timestamp.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipPrimitive(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
 }
 func (m *CreateRequest) Unmarshal(dAtA []byte) error {
 	l := len(dAtA)
@@ -1397,39 +489,6 @@ func (m *CreateRequest) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: CreateRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Headers", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.Headers.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipPrimitive(dAtA[iNdEx:])
@@ -1483,39 +542,6 @@ func (m *CreateResponse) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: CreateResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Headers", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.Headers.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipPrimitive(dAtA[iNdEx:])
@@ -1569,39 +595,6 @@ func (m *CloseRequest) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: CloseRequest: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Headers", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.Headers.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipPrimitive(dAtA[iNdEx:])
@@ -1655,360 +648,6 @@ func (m *CloseResponse) Unmarshal(dAtA []byte) error {
 			return fmt.Errorf("proto: CloseResponse: illegal tag %d (wire type %d)", fieldNum, wire)
 		}
 		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Headers", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.Headers.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipPrimitive(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *DeleteRequest) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowPrimitive
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: DeleteRequest: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: DeleteRequest: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Headers", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.Headers.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipPrimitive(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *DeleteResponse) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowPrimitive
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: DeleteResponse: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: DeleteResponse: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Headers", wireType)
-			}
-			var msglen int
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				msglen |= int(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			if msglen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + msglen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			if err := m.Headers.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
-				return err
-			}
-			iNdEx = postIndex
-		default:
-			iNdEx = preIndex
-			skippy, err := skipPrimitive(dAtA[iNdEx:])
-			if err != nil {
-				return err
-			}
-			if skippy < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if (iNdEx + skippy) > l {
-				return io.ErrUnexpectedEOF
-			}
-			iNdEx += skippy
-		}
-	}
-
-	if iNdEx > l {
-		return io.ErrUnexpectedEOF
-	}
-	return nil
-}
-func (m *PrimitiveId) Unmarshal(dAtA []byte) error {
-	l := len(dAtA)
-	iNdEx := 0
-	for iNdEx < l {
-		preIndex := iNdEx
-		var wire uint64
-		for shift := uint(0); ; shift += 7 {
-			if shift >= 64 {
-				return ErrIntOverflowPrimitive
-			}
-			if iNdEx >= l {
-				return io.ErrUnexpectedEOF
-			}
-			b := dAtA[iNdEx]
-			iNdEx++
-			wire |= uint64(b&0x7F) << shift
-			if b < 0x80 {
-				break
-			}
-		}
-		fieldNum := int32(wire >> 3)
-		wireType := int(wire & 0x7)
-		if wireType == 4 {
-			return fmt.Errorf("proto: PrimitiveId: wiretype end group for non-group")
-		}
-		if fieldNum <= 0 {
-			return fmt.Errorf("proto: PrimitiveId: illegal tag %d (wire type %d)", fieldNum, wire)
-		}
-		switch fieldNum {
-		case 1:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Namespace", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Namespace = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 2:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Name", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Name = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
-		case 3:
-			if wireType != 2 {
-				return fmt.Errorf("proto: wrong wireType = %d for field Type", wireType)
-			}
-			var stringLen uint64
-			for shift := uint(0); ; shift += 7 {
-				if shift >= 64 {
-					return ErrIntOverflowPrimitive
-				}
-				if iNdEx >= l {
-					return io.ErrUnexpectedEOF
-				}
-				b := dAtA[iNdEx]
-				iNdEx++
-				stringLen |= uint64(b&0x7F) << shift
-				if b < 0x80 {
-					break
-				}
-			}
-			intStringLen := int(stringLen)
-			if intStringLen < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			postIndex := iNdEx + intStringLen
-			if postIndex < 0 {
-				return ErrInvalidLengthPrimitive
-			}
-			if postIndex > l {
-				return io.ErrUnexpectedEOF
-			}
-			m.Type = string(dAtA[iNdEx:postIndex])
-			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipPrimitive(dAtA[iNdEx:])

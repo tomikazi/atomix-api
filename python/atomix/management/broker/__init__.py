@@ -10,7 +10,8 @@ import grpclib
 
 @dataclass(eq=False, repr=False)
 class PrimitiveId(betterproto.Message):
-    id: "__primitive__.PrimitiveId" = betterproto.message_field(1)
+    type: str = betterproto.string_field(1)
+    name: str = betterproto.string_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -118,6 +119,3 @@ class BrokerStub(betterproto.ServiceStub):
             request,
             LookupPrimitiveResponse,
         )
-
-
-from ... import primitive as __primitive__

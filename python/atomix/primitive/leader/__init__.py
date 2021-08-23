@@ -2,7 +2,7 @@
 # sources: atomix/primitive/leader/latch.proto
 # plugin: python-betterproto
 from dataclasses import dataclass
-from typing import AsyncIterator, List, Optional
+from typing import AsyncIterator, List
 
 import betterproto
 import grpclib
@@ -15,7 +15,7 @@ class EventType(betterproto.Enum):
 
 @dataclass(eq=False, repr=False)
 class LatchRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -23,7 +23,6 @@ class LatchRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class LatchResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     latch: "Latch" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -32,7 +31,7 @@ class LatchResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GetRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -40,7 +39,6 @@ class GetRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GetResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     latch: "Latch" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -49,7 +47,7 @@ class GetResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class EventsRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -57,7 +55,6 @@ class EventsRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class EventsResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     event: "Event" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -86,40 +83,28 @@ class Latch(betterproto.Message):
 class LeaderLatchServiceStub(betterproto.ServiceStub):
     """Leader latch service"""
 
-    async def latch(
-        self, *, headers: "__primitive__.RequestHeaders" = None
-    ) -> "LatchResponse":
+    async def latch(self) -> "LatchResponse":
         """Latch attempts to acquire the leader latch"""
 
         request = LatchRequest()
-        if headers is not None:
-            request.headers = headers
 
         return await self._unary_unary(
             "/atomix.primitive.leader.LeaderLatchService/Latch", request, LatchResponse
         )
 
-    async def get(
-        self, *, headers: "__primitive__.RequestHeaders" = None
-    ) -> "GetResponse":
+    async def get(self) -> "GetResponse":
         """Get gets the current leader"""
 
         request = GetRequest()
-        if headers is not None:
-            request.headers = headers
 
         return await self._unary_unary(
             "/atomix.primitive.leader.LeaderLatchService/Get", request, GetResponse
         )
 
-    async def events(
-        self, *, headers: "__primitive__.RequestHeaders" = None
-    ) -> AsyncIterator["EventsResponse"]:
+    async def events(self) -> AsyncIterator["EventsResponse"]:
         """Events listens for leader change events"""
 
         request = EventsRequest()
-        if headers is not None:
-            request.headers = headers
 
         async for response in self._unary_stream(
             "/atomix.primitive.leader.LeaderLatchService/Events",
@@ -130,4 +115,3 @@ class LeaderLatchServiceStub(betterproto.ServiceStub):
 
 
 from .. import meta as _meta__
-from ... import primitive as __primitive__

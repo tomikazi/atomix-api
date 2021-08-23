@@ -15,7 +15,7 @@ class EventType(betterproto.Enum):
 
 @dataclass(eq=False, repr=False)
 class GetRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -23,7 +23,6 @@ class GetRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GetResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     value: "Value" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -40,7 +39,6 @@ class Precondition(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class SetRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     value: "Value" = betterproto.message_field(2)
     preconditions: List["Precondition"] = betterproto.message_field(3)
 
@@ -50,7 +48,6 @@ class SetRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class SetResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     value: "Value" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -59,7 +56,7 @@ class SetResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class EventsRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -67,7 +64,6 @@ class EventsRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class EventsResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     event: "Event" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -98,7 +94,6 @@ class ValueServiceStub(betterproto.ServiceStub):
     async def set(
         self,
         *,
-        headers: "__primitive__.RequestHeaders" = None,
         value: "Value" = None,
         preconditions: Optional[List["Precondition"]] = None,
     ) -> "SetResponse":
@@ -107,8 +102,6 @@ class ValueServiceStub(betterproto.ServiceStub):
         preconditions = preconditions or []
 
         request = SetRequest()
-        if headers is not None:
-            request.headers = headers
         if value is not None:
             request.value = value
         if preconditions is not None:
@@ -118,27 +111,19 @@ class ValueServiceStub(betterproto.ServiceStub):
             "/atomix.primitive.value.ValueService/Set", request, SetResponse
         )
 
-    async def get(
-        self, *, headers: "__primitive__.RequestHeaders" = None
-    ) -> "GetResponse":
+    async def get(self) -> "GetResponse":
         """Get gets the value"""
 
         request = GetRequest()
-        if headers is not None:
-            request.headers = headers
 
         return await self._unary_unary(
             "/atomix.primitive.value.ValueService/Get", request, GetResponse
         )
 
-    async def events(
-        self, *, headers: "__primitive__.RequestHeaders" = None
-    ) -> AsyncIterator["EventsResponse"]:
+    async def events(self) -> AsyncIterator["EventsResponse"]:
         """Events listens for value change events"""
 
         request = EventsRequest()
-        if headers is not None:
-            request.headers = headers
 
         async for response in self._unary_stream(
             "/atomix.primitive.value.ValueService/Events",
@@ -149,4 +134,3 @@ class ValueServiceStub(betterproto.ServiceStub):
 
 
 from .. import meta as _meta__
-from ... import primitive as __primitive__

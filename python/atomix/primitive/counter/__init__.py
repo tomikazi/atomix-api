@@ -10,7 +10,6 @@ import grpclib
 
 @dataclass(eq=False, repr=False)
 class IncrementRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     delta: int = betterproto.int64_field(2)
 
     def __post_init__(self) -> None:
@@ -19,7 +18,6 @@ class IncrementRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class IncrementResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     value: int = betterproto.int64_field(2)
 
     def __post_init__(self) -> None:
@@ -28,7 +26,6 @@ class IncrementResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class DecrementRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     delta: int = betterproto.int64_field(2)
 
     def __post_init__(self) -> None:
@@ -37,7 +34,6 @@ class DecrementRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class DecrementResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     value: int = betterproto.int64_field(2)
 
     def __post_init__(self) -> None:
@@ -46,7 +42,7 @@ class DecrementResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GetRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -54,7 +50,6 @@ class GetRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class GetResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     value: int = betterproto.int64_field(2)
 
     def __post_init__(self) -> None:
@@ -71,7 +66,6 @@ class Precondition(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class SetRequest(betterproto.Message):
-    headers: "__primitive__.RequestHeaders" = betterproto.message_field(1)
     value: int = betterproto.int64_field(2)
     preconditions: List["Precondition"] = betterproto.message_field(3)
 
@@ -81,7 +75,6 @@ class SetRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class SetResponse(betterproto.Message):
-    headers: "__primitive__.ResponseHeaders" = betterproto.message_field(1)
     value: int = betterproto.int64_field(2)
 
     def __post_init__(self) -> None:
@@ -100,19 +93,13 @@ class CounterServiceStub(betterproto.ServiceStub):
     """CounterService implements a distributed counter"""
 
     async def set(
-        self,
-        *,
-        headers: "__primitive__.RequestHeaders" = None,
-        value: int = 0,
-        preconditions: Optional[List["Precondition"]] = None,
+        self, *, value: int = 0, preconditions: Optional[List["Precondition"]] = None
     ) -> "SetResponse":
         """Set sets the counter value"""
 
         preconditions = preconditions or []
 
         request = SetRequest()
-        if headers is not None:
-            request.headers = headers
         request.value = value
         if preconditions is not None:
             request.preconditions = preconditions
@@ -121,27 +108,19 @@ class CounterServiceStub(betterproto.ServiceStub):
             "/atomix.primitive.counter.CounterService/Set", request, SetResponse
         )
 
-    async def get(
-        self, *, headers: "__primitive__.RequestHeaders" = None
-    ) -> "GetResponse":
+    async def get(self) -> "GetResponse":
         """Get gets the current counter value"""
 
         request = GetRequest()
-        if headers is not None:
-            request.headers = headers
 
         return await self._unary_unary(
             "/atomix.primitive.counter.CounterService/Get", request, GetResponse
         )
 
-    async def increment(
-        self, *, headers: "__primitive__.RequestHeaders" = None, delta: int = 0
-    ) -> "IncrementResponse":
+    async def increment(self, *, delta: int = 0) -> "IncrementResponse":
         """Increment increments the counter value"""
 
         request = IncrementRequest()
-        if headers is not None:
-            request.headers = headers
         request.delta = delta
 
         return await self._unary_unary(
@@ -150,14 +129,10 @@ class CounterServiceStub(betterproto.ServiceStub):
             IncrementResponse,
         )
 
-    async def decrement(
-        self, *, headers: "__primitive__.RequestHeaders" = None, delta: int = 0
-    ) -> "DecrementResponse":
+    async def decrement(self, *, delta: int = 0) -> "DecrementResponse":
         """Decrement decrements the counter value"""
 
         request = DecrementRequest()
-        if headers is not None:
-            request.headers = headers
         request.delta = delta
 
         return await self._unary_unary(
@@ -165,6 +140,3 @@ class CounterServiceStub(betterproto.ServiceStub):
             request,
             DecrementResponse,
         )
-
-
-from ... import primitive as __primitive__

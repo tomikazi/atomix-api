@@ -36,34 +36,34 @@ protoc -I=$proto_path --doc_out=docs/protocol --doc_opt=markdown,protocol.md  pr
 protoc -I=$proto_path --doc_out=docs/primitive             --doc_opt=markdown,primitive.md proto/atomix/primitive/*.proto
 protoc -I=$proto_path --doc_out=docs/primitive/counter     --doc_opt=markdown,counter.md   proto/atomix/primitive/counter/*.proto
 protoc -I=$proto_path --doc_out=docs/primitive/counter/v1  --doc_opt=markdown,primitive.md proto/atomix/primitive/counter/v1/primitive.proto
-protoc -I=$proto_path --doc_out=docs/primitive/counter/v1  --doc_opt=markdown,manager.md   proto/atomix/primitive/counter/v1/manager.proto
+protoc -I=$proto_path --doc_out=docs/primitive/counter/v1  --doc_opt=markdown,session.md   proto/atomix/primitive/counter/v1/session.proto
 protoc -I=$proto_path --doc_out=docs/primitive/election    --doc_opt=markdown,election.md  proto/atomix/primitive/election/*.proto
-protoc -I=$proto_path --doc_out=docs/primitive/election/v1 --doc_opt=markdown,election.md  proto/atomix/primitive/election/v1/primitive.proto
-protoc -I=$proto_path --doc_out=docs/primitive/election/v1 --doc_opt=markdown,election.md  proto/atomix/primitive/election/v1/manager.proto
+protoc -I=$proto_path --doc_out=docs/primitive/election/v1 --doc_opt=markdown,primitive.md proto/atomix/primitive/election/v1/primitive.proto
+protoc -I=$proto_path --doc_out=docs/primitive/election/v1 --doc_opt=markdown,session.md   proto/atomix/primitive/election/v1/session.proto
 protoc -I=$proto_path --doc_out=docs/primitive/indexmap    --doc_opt=markdown,indexmap.md  proto/atomix/primitive/indexedmap/*.proto
-protoc -I=$proto_path --doc_out=docs/primitive/indexmap/v1 --doc_opt=markdown,indexmap.md  proto/atomix/primitive/indexedmap/v1/primitive.proto
-protoc -I=$proto_path --doc_out=docs/primitive/indexmap/v1 --doc_opt=markdown,indexmap.md  proto/atomix/primitive/indexedmap/v1/manager.proto
+protoc -I=$proto_path --doc_out=docs/primitive/indexmap/v1 --doc_opt=markdown,primitive.md proto/atomix/primitive/indexedmap/v1/primitive.proto
+protoc -I=$proto_path --doc_out=docs/primitive/indexmap/v1 --doc_opt=markdown,session.md   proto/atomix/primitive/indexedmap/v1/session.proto
 protoc -I=$proto_path --doc_out=docs/primitive/leader      --doc_opt=markdown,leader.md    proto/atomix/primitive/leader/*.proto
-protoc -I=$proto_path --doc_out=docs/primitive/leader/v1   --doc_opt=markdown,leader.md    proto/atomix/primitive/leader/v1/primitive.proto
-protoc -I=$proto_path --doc_out=docs/primitive/leader/v1   --doc_opt=markdown,leader.md    proto/atomix/primitive/leader/v1/manager.proto
+protoc -I=$proto_path --doc_out=docs/primitive/leader/v1   --doc_opt=markdown,primitive.md proto/atomix/primitive/leader/v1/primitive.proto
+protoc -I=$proto_path --doc_out=docs/primitive/leader/v1   --doc_opt=markdown,session.md   proto/atomix/primitive/leader/v1/session.proto
 protoc -I=$proto_path --doc_out=docs/primitive/list        --doc_opt=markdown,list.md      proto/atomix/primitive/list/*.proto
-protoc -I=$proto_path --doc_out=docs/primitive/list/v1     --doc_opt=markdown,list.md      proto/atomix/primitive/list/v1/primitive.proto
-protoc -I=$proto_path --doc_out=docs/primitive/list/v1     --doc_opt=markdown,list.md      proto/atomix/primitive/list/v1/manager.proto
+protoc -I=$proto_path --doc_out=docs/primitive/list/v1     --doc_opt=markdown,primitive.md proto/atomix/primitive/list/v1/primitive.proto
+protoc -I=$proto_path --doc_out=docs/primitive/list/v1     --doc_opt=markdown,session.md   proto/atomix/primitive/list/v1/session.proto
 protoc -I=$proto_path --doc_out=docs/primitive/lock        --doc_opt=markdown,lock.md      proto/atomix/primitive/lock/*.proto
-protoc -I=$proto_path --doc_out=docs/primitive/lock/v1     --doc_opt=markdown,lock.md      proto/atomix/primitive/lock/v1/primitive.proto
-protoc -I=$proto_path --doc_out=docs/primitive/lock/v1     --doc_opt=markdown,lock.md      proto/atomix/primitive/lock/v1/manager.proto
+protoc -I=$proto_path --doc_out=docs/primitive/lock/v1     --doc_opt=markdown,primitive.md proto/atomix/primitive/lock/v1/primitive.proto
+protoc -I=$proto_path --doc_out=docs/primitive/lock/v1     --doc_opt=markdown,session.md   proto/atomix/primitive/lock/v1/session.proto
 protoc -I=$proto_path --doc_out=docs/primitive/log         --doc_opt=markdown,log.md       proto/atomix/primitive/log/*.proto
-protoc -I=$proto_path --doc_out=docs/primitive/log/v1      --doc_opt=markdown,log.md       proto/atomix/primitive/log/v1/primitive.proto
-protoc -I=$proto_path --doc_out=docs/primitive/log/v1      --doc_opt=markdown,log.md       proto/atomix/primitive/log/v1/manager.proto
+protoc -I=$proto_path --doc_out=docs/primitive/log/v1      --doc_opt=markdown,primitive.md proto/atomix/primitive/log/v1/primitive.proto
+protoc -I=$proto_path --doc_out=docs/primitive/log/v1      --doc_opt=markdown,session.md   proto/atomix/primitive/log/v1/session.proto
 protoc -I=$proto_path --doc_out=docs/primitive/map         --doc_opt=markdown,map.md       proto/atomix/primitive/map/*.proto
-protoc -I=$proto_path --doc_out=docs/primitive/map/v1      --doc_opt=markdown,map.md       proto/atomix/primitive/map/v1/primitive.proto
-protoc -I=$proto_path --doc_out=docs/primitive/map/v1      --doc_opt=markdown,map.md       proto/atomix/primitive/map/v1/manager.proto
+protoc -I=$proto_path --doc_out=docs/primitive/map/v1      --doc_opt=markdown,primitive.md proto/atomix/primitive/map/v1/primitive.proto
+protoc -I=$proto_path --doc_out=docs/primitive/map/v1      --doc_opt=markdown,session.md   proto/atomix/primitive/map/v1/session.proto
 protoc -I=$proto_path --doc_out=docs/primitive/set         --doc_opt=markdown,set.md       proto/atomix/primitive/set/*.proto
-protoc -I=$proto_path --doc_out=docs/primitive/set/v1      --doc_opt=markdown,set.md       proto/atomix/primitive/set/v1/primitive.proto
-protoc -I=$proto_path --doc_out=docs/primitive/set/v1      --doc_opt=markdown,set.md       proto/atomix/primitive/set/v1/manager.proto
+protoc -I=$proto_path --doc_out=docs/primitive/set/v1      --doc_opt=markdown,primitive.md proto/atomix/primitive/set/v1/primitive.proto
+protoc -I=$proto_path --doc_out=docs/primitive/set/v1      --doc_opt=markdown,session.md   proto/atomix/primitive/set/v1/session.proto
 protoc -I=$proto_path --doc_out=docs/primitive/value       --doc_opt=markdown,value.md     proto/atomix/primitive/value/*.proto
-protoc -I=$proto_path --doc_out=docs/primitive/value/v1    --doc_opt=markdown,value.md     proto/atomix/primitive/value/v1/primitive.proto
-protoc -I=$proto_path --doc_out=docs/primitive/value/v1    --doc_opt=markdown,value.md     proto/atomix/primitive/value/v1/manager.proto
+protoc -I=$proto_path --doc_out=docs/primitive/value/v1    --doc_opt=markdown,primitive.md proto/atomix/primitive/value/v1/primitive.proto
+protoc -I=$proto_path --doc_out=docs/primitive/value/v1    --doc_opt=markdown,session.md   proto/atomix/primitive/value/v1/session.proto
 
 go_import_paths="Mgoogle/protobuf/any.proto=github.com/gogo/protobuf/types"
 go_import_paths="${go_import_paths},Mgoogle/protobuf/timestamp.proto=github.com/gogo/protobuf/types"
@@ -74,14 +74,14 @@ protoc -I=$proto_path --go_out=$go_import_paths,import_path=github.com/atomix/at
 mkdir -p go/atomix/primitive/extensions/primitive && mv go/atomix/primitive/primitive.pb.go go/atomix/primitive/extensions/primitive/primitive.pb.go
 protoc -I=$proto_path --go_out=$go_import_paths,import_path=github.com/atomix/atomix-api/go/atomix/primitive/extensions/operation,plugins=grpc:go proto/atomix/primitive/operation.proto
 mkdir -p go/atomix/primitive/extensions/operation && mv go/atomix/primitive/operation.pb.go go/atomix/primitive/extensions/operation/operation.pb.go
-protoc -I=$proto_path --go_out=$go_import_paths,import_path=github.com/atomix/atomix-api/go/atomix/primitive/extensions/manager,plugins=grpc:go proto/atomix/primitive/manager.proto
-mkdir -p go/atomix/primitive/extensions/manager && mv go/atomix/primitive/manager.pb.go go/atomix/primitive/extensions/manager/manager.pb.go
+protoc -I=$proto_path --go_out=$go_import_paths,import_path=github.com/atomix/atomix-api/go/atomix/primitive/extensions/session,plugins=grpc:go proto/atomix/primitive/session.proto
+mkdir -p go/atomix/primitive/extensions/session && mv go/atomix/primitive/session.pb.go go/atomix/primitive/extensions/session/session.pb.go
 protoc -I=$proto_path --go_out=$go_import_paths,import_path=github.com/atomix/atomix-api/go/atomix/primitive/extensions/partition,plugins=grpc:go proto/atomix/primitive/partition.proto
 mkdir -p go/atomix/primitive/extensions/partition && mv go/atomix/primitive/partition.pb.go go/atomix/primitive/extensions/partition/partition.pb.go
 
 go_import_paths="${go_import_paths},Matomix/primitive/primitive.proto=github.com/atomix/atomix-api/go/atomix/primitive/extensions/primitive"
 go_import_paths="${go_import_paths},Matomix/primitive/operation.proto=github.com/atomix/atomix-api/go/atomix/primitive/extensions/operation"
-go_import_paths="${go_import_paths},Matomix/primitive/manager.proto=github.com/atomix/atomix-api/go/atomix/primitive/extensions/manager"
+go_import_paths="${go_import_paths},Matomix/primitive/session.proto=github.com/atomix/atomix-api/go/atomix/primitive/extensions/session"
 go_import_paths="${go_import_paths},Matomix/primitive/partition.proto=github.com/atomix/atomix-api/go/atomix/primitive/extensions/partition"
 
 protoc -I=$proto_path --gogofaster_out=$go_import_paths,import_path=github.com/atomix/atomix-api/go/atomix/protocol,plugins=grpc:go       proto/atomix/protocol/*.proto

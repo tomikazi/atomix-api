@@ -10,7 +10,7 @@ import grpclib
 
 class ServiceType(betterproto.Enum):
     PRIMITIVE = 0
-    MANAGER = 1
+    SESSION = 1
 
 
 @dataclass(eq=False, repr=False)

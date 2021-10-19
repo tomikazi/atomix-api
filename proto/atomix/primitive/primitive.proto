@@ -30,7 +30,7 @@ extend google.protobuf.ServiceOptions {
 
 enum ServiceType {
     PRIMITIVE = 0;
-    MANAGER = 1;
+    SESSION = 1;
 }
 
 message RequestHeaders {

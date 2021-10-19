@@ -3,12 +3,6 @@
 
 ## Table of Contents
 
-- [atomix/primitive/manager.proto](#atomix/primitive/manager.proto)
-    - [OperationType](#atomix.primitive.manager.OperationType)
-  
-    - [File-level Extensions](#atomix/primitive/manager.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/manager.proto-extensions)
-  
 - [atomix/primitive/operation.proto](#atomix/primitive/operation.proto)
     - [AggregateStrategy](#atomix.primitive.operation.AggregateStrategy)
     - [OperationType](#atomix.primitive.operation.OperationType)
@@ -46,44 +40,13 @@
   
     - [Primitive](#atomix.primitive.Primitive)
   
+- [atomix/primitive/session.proto](#atomix/primitive/session.proto)
+    - [OperationType](#atomix.primitive.session.OperationType)
+  
+    - [File-level Extensions](#atomix/primitive/session.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/session.proto-extensions)
+  
 - [Scalar Value Types](#scalar-value-types)
-
-
-
-<a name="atomix/primitive/manager.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## atomix/primitive/manager.proto
-
-
- 
-
-
-<a name="atomix.primitive.manager.OperationType"></a>
-
-### OperationType
-OperationType is an enum for specifying the type of operation
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| OPEN | 0 |  |
-| CLOSE | 1 |  |
-
-
- 
-
-
-<a name="atomix/primitive/manager.proto-extensions"></a>
-
-### File-level Extensions
-| Extension | Type | Base | Number | Description |
-| --------- | ---- | ---- | ------ | ----------- |
-| operation | OperationType | .google.protobuf.MethodOptions | 70000 |  |
-| primitive_type | string | .google.protobuf.ServiceOptions | 71000 |  |
-
- 
-
- 
 
 
 
@@ -340,7 +303,7 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | PRIMITIVE | 0 |  |
-| MANAGER | 1 |  |
+| SESSION | 1 |  |
 
 
  
@@ -368,6 +331,43 @@ Primitive is a service for managing primitive
 | Create | [CreateRequest](#atomix.primitive.CreateRequest) | [CreateResponse](#atomix.primitive.CreateResponse) | Create creates a primitive |
 | Close | [CloseRequest](#atomix.primitive.CloseRequest) | [CloseResponse](#atomix.primitive.CloseResponse) | Close closes a primitive |
 | Delete | [DeleteRequest](#atomix.primitive.DeleteRequest) | [DeleteResponse](#atomix.primitive.DeleteResponse) | Delete deletes a primitive |
+
+ 
+
+
+
+<a name="atomix/primitive/session.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## atomix/primitive/session.proto
+
+
+ 
+
+
+<a name="atomix.primitive.session.OperationType"></a>
+
+### OperationType
+OperationType is an enum for specifying the type of operation
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| OPEN | 0 |  |
+| CLOSE | 1 |  |
+
+
+ 
+
+
+<a name="atomix/primitive/session.proto-extensions"></a>
+
+### File-level Extensions
+| Extension | Type | Base | Number | Description |
+| --------- | ---- | ---- | ------ | ----------- |
+| operation | OperationType | .google.protobuf.MethodOptions | 70000 |  |
+| primitive_type | string | .google.protobuf.ServiceOptions | 71000 |  |
+
+ 
 
  
 

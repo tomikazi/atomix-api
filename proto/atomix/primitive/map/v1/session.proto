@@ -27,7 +27,7 @@ message OpenSessionRequest {
 }
 
 message OpenSessionResponse {
-    uint64 session_id = 1;
+    string session_id = 1;
 }
 
 message MapSessionOptions {
@@ -47,7 +47,7 @@ enum MapCacheStrategy {
 }
 
 message CloseSessionRequest {
-    uint64 session_id = 1;
+    string session_id = 1;
 }
 
 message CloseSessionResponse {

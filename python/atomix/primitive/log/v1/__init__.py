@@ -222,7 +222,7 @@ class OpenSessionRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionResponse(betterproto.Message):
-    session_id: int = betterproto.uint64_field(1)
+    session_id: str = betterproto.string_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -238,7 +238,7 @@ class LogSessionOptions(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CloseSessionRequest(betterproto.Message):
-    session_id: int = betterproto.uint64_field(1)
+    session_id: str = betterproto.string_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -390,7 +390,7 @@ class LogSessionStub(betterproto.ServiceStub):
             OpenSessionResponse,
         )
 
-    async def close_session(self, *, session_id: int = 0) -> "CloseSessionResponse":
+    async def close_session(self, *, session_id: str = "") -> "CloseSessionResponse":
         """Appends appends an entry into the log"""
 
         request = CloseSessionRequest()

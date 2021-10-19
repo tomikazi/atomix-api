@@ -34,7 +34,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session_id | [uint64](#uint64) |  |  |
+| session_id | [string](#string) |  |  |
 
 
 
@@ -105,7 +105,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session_id | [uint64](#uint64) |  |  |
+| session_id | [string](#string) |  |  |
 
 
 

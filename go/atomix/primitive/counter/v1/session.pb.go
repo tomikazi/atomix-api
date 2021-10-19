@@ -74,7 +74,7 @@ func (m *OpenSessionRequest) GetOptions() CounterSessionOptions {
 }
 
 type OpenSessionResponse struct {
-	SessionId uint64 `protobuf:"varint,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
+	SessionId string `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 }
 
 func (m *OpenSessionResponse) Reset()         { *m = OpenSessionResponse{} }
@@ -110,11 +110,11 @@ func (m *OpenSessionResponse) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_OpenSessionResponse proto.InternalMessageInfo
 
-func (m *OpenSessionResponse) GetSessionId() uint64 {
+func (m *OpenSessionResponse) GetSessionId() string {
 	if m != nil {
 		return m.SessionId
 	}
-	return 0
+	return ""
 }
 
 type CounterSessionOptions struct {
@@ -154,7 +154,7 @@ func (m *CounterSessionOptions) XXX_DiscardUnknown() {
 var xxx_messageInfo_CounterSessionOptions proto.InternalMessageInfo
 
 type CloseSessionRequest struct {
-	SessionId uint64 `protobuf:"varint,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
+	SessionId string `protobuf:"bytes,1,opt,name=session_id,json=sessionId,proto3" json:"session_id,omitempty"`
 }
 
 func (m *CloseSessionRequest) Reset()         { *m = CloseSessionRequest{} }
@@ -190,11 +190,11 @@ func (m *CloseSessionRequest) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_CloseSessionRequest proto.InternalMessageInfo
 
-func (m *CloseSessionRequest) GetSessionId() uint64 {
+func (m *CloseSessionRequest) GetSessionId() string {
 	if m != nil {
 		return m.SessionId
 	}
-	return 0
+	return ""
 }
 
 type CloseSessionResponse struct {
@@ -258,7 +258,7 @@ var fileDescriptor_93799bf0becedaf2 = []byte{
 	0x36, 0x32, 0xd2, 0xc3, 0xe3, 0x38, 0x3d, 0x67, 0x08, 0x13, 0x6a, 0x88, 0x3f, 0x44, 0xa7, 0x13,
 	0xcb, 0x89, 0x7b, 0xf2, 0x0c, 0x41, 0x30, 0x83, 0x94, 0x4c, 0xb8, 0x84, 0x51, 0x6c, 0x2a, 0x2e,
 	0xc8, 0xcf, 0x2b, 0x4e, 0x15, 0x92, 0xe5, 0xe2, 0x82, 0xba, 0x33, 0x3e, 0x33, 0x05, 0x6c, 0x1b,
-	0x4b, 0x10, 0x27, 0x54, 0xc4, 0x33, 0x45, 0x49, 0x9c, 0x4b, 0x14, 0xab, 0xe9, 0x20, 0xe3, 0x9c,
+	0x67, 0x10, 0x27, 0x54, 0xc4, 0x33, 0x45, 0x49, 0x9c, 0x4b, 0x14, 0xab, 0xe9, 0x20, 0xe3, 0x9c,
 	0x73, 0xf2, 0x8b, 0x53, 0xd1, 0x5c, 0x4e, 0xc0, 0x38, 0x31, 0x2e, 0x11, 0x54, 0x5d, 0x10, 0x57,
 	0x18, 0x4d, 0x61, 0xe2, 0xe2, 0x43, 0xb5, 0x47, 0xa8, 0x8c, 0x8b, 0x1b, 0xc9, 0xbd, 0x42, 0xfa,
 	0x78, 0x43, 0x00, 0x33, 0x0c, 0xa5, 0x0c, 0x88, 0xd7, 0x00, 0x71, 0x84, 0x12, 0x4b, 0xc3, 0x74,
@@ -266,7 +266,7 @@ var fileDescriptor_93799bf0becedaf2 = []byte{
 	0x92, 0xa0, 0x03, 0xc9, 0x6a, 0x46, 0x29, 0xfe, 0x43, 0x57, 0x95, 0xd8, 0xa1, 0xc1, 0xd0, 0xd0,
 	0xa1, 0xce, 0xe8, 0x24, 0x71, 0xe2, 0x91, 0x1c, 0xe3, 0x85, 0x47, 0x72, 0x8c, 0x0f, 0x1e, 0xc9,
 	0x31, 0x4e, 0x78, 0x2c, 0xc7, 0x70, 0xe1, 0xb1, 0x1c, 0xc3, 0x8d, 0xc7, 0x72, 0x0c, 0x49, 0x6c,
-	0xe0, 0xe4, 0x63, 0x0c, 0x08, 0x00, 0x00, 0xff, 0xff, 0x5f, 0x7a, 0xa7, 0x81, 0xe0, 0x02, 0x00,
+	0xe0, 0xe4, 0x63, 0x0c, 0x08, 0x00, 0x00, 0xff, 0xff, 0xdb, 0xde, 0xc9, 0xc9, 0xe0, 0x02, 0x00,
 	0x00,
 }
 
@@ -439,10 +439,12 @@ func (m *OpenSessionResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.SessionId != 0 {
-		i = encodeVarintSession(dAtA, i, uint64(m.SessionId))
+	if len(m.SessionId) > 0 {
+		i -= len(m.SessionId)
+		copy(dAtA[i:], m.SessionId)
+		i = encodeVarintSession(dAtA, i, uint64(len(m.SessionId)))
 		i--
-		dAtA[i] = 0x8
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -490,10 +492,12 @@ func (m *CloseSessionRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
 	_ = i
 	var l int
 	_ = l
-	if m.SessionId != 0 {
-		i = encodeVarintSession(dAtA, i, uint64(m.SessionId))
+	if len(m.SessionId) > 0 {
+		i -= len(m.SessionId)
+		copy(dAtA[i:], m.SessionId)
+		i = encodeVarintSession(dAtA, i, uint64(len(m.SessionId)))
 		i--
-		dAtA[i] = 0x8
+		dAtA[i] = 0xa
 	}
 	return len(dAtA) - i, nil
 }
@@ -549,8 +553,9 @@ func (m *OpenSessionResponse) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.SessionId != 0 {
-		n += 1 + sovSession(uint64(m.SessionId))
+	l = len(m.SessionId)
+	if l > 0 {
+		n += 1 + l + sovSession(uint64(l))
 	}
 	return n
 }
@@ -570,8 +575,9 @@ func (m *CloseSessionRequest) Size() (n int) {
 	}
 	var l int
 	_ = l
-	if m.SessionId != 0 {
-		n += 1 + sovSession(uint64(m.SessionId))
+	l = len(m.SessionId)
+	if l > 0 {
+		n += 1 + l + sovSession(uint64(l))
 	}
 	return n
 }
@@ -707,10 +713,10 @@ func (m *OpenSessionResponse) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 0 {
+			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field SessionId", wireType)
 			}
-			m.SessionId = 0
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowSession
@@ -720,11 +726,24 @@ func (m *OpenSessionResponse) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.SessionId |= uint64(b&0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthSession
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthSession
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.SessionId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipSession(dAtA[iNdEx:])
@@ -832,10 +851,10 @@ func (m *CloseSessionRequest) Unmarshal(dAtA []byte) error {
 		}
 		switch fieldNum {
 		case 1:
-			if wireType != 0 {
+			if wireType != 2 {
 				return fmt.Errorf("proto: wrong wireType = %d for field SessionId", wireType)
 			}
-			m.SessionId = 0
+			var stringLen uint64
 			for shift := uint(0); ; shift += 7 {
 				if shift >= 64 {
 					return ErrIntOverflowSession
@@ -845,11 +864,24 @@ func (m *CloseSessionRequest) Unmarshal(dAtA []byte) error {
 				}
 				b := dAtA[iNdEx]
 				iNdEx++
-				m.SessionId |= uint64(b&0x7F) << shift
+				stringLen |= uint64(b&0x7F) << shift
 				if b < 0x80 {
 					break
 				}
 			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthSession
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthSession
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.SessionId = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
 		default:
 			iNdEx = preIndex
 			skippy, err := skipSession(dAtA[iNdEx:])

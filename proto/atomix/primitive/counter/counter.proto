@@ -17,7 +17,6 @@ limitations under the License.
 syntax = "proto3";
 
 import "atomix/primitive/primitive.proto";
-import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
 import "gogoproto/gogo.proto";
 

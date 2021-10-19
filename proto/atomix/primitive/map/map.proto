@@ -21,7 +21,6 @@ package atomix.primitive.map;
 import "google/protobuf/duration.proto";
 import "atomix/primitive/primitive.proto";
 import "atomix/primitive/meta/object.proto";
-import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
 import "atomix/primitive/partition.proto";
 import "gogoproto/gogo.proto";

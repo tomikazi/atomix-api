@@ -19,7 +19,6 @@ syntax = "proto3";
 package atomix.primitive.log;
 
 import "atomix/primitive/primitive.proto";
-import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";

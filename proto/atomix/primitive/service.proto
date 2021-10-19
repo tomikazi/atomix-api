@@ -1,10 +1,14 @@
 syntax = "proto3";
 
-package atomix.primitive;
+package atomix.primitive.service;
 
 import "google/protobuf/descriptor.proto";
 
 extend google.protobuf.ServiceOptions {
-    string type = 50000;
-    bool partitioned = 50001;
+    ServiceType type = 80000;
+}
+
+enum ServiceType {
+    PRIMITIVE = 0;
+    MANAGER = 1;
 }

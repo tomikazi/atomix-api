@@ -10,6 +10,7 @@ import static io.grpc.MethodDescriptor.generateFullMethodName;
 @javax.annotation.Generated(
     value = "by gRPC proto compiler (version 1.37.1)",
     comments = "Source: atomix/primitive/primitive.proto")
+@java.lang.Deprecated
 public final class PrimitiveGrpc {
 
   private PrimitiveGrpc() {}
@@ -159,6 +160,7 @@ public final class PrimitiveGrpc {
    * Primitive is a service for managing primitive
    * </pre>
    */
+  @java.lang.Deprecated
   public static abstract class PrimitiveImplBase implements io.grpc.BindableService {
 
     /**
@@ -223,6 +225,7 @@ public final class PrimitiveGrpc {
    * Primitive is a service for managing primitive
    * </pre>
    */
+  @java.lang.Deprecated
   public static final class PrimitiveStub extends io.grpc.stub.AbstractAsyncStub<PrimitiveStub> {
     private PrimitiveStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
@@ -274,6 +277,7 @@ public final class PrimitiveGrpc {
    * Primitive is a service for managing primitive
    * </pre>
    */
+  @java.lang.Deprecated
   public static final class PrimitiveBlockingStub extends io.grpc.stub.AbstractBlockingStub<PrimitiveBlockingStub> {
     private PrimitiveBlockingStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {
@@ -322,6 +326,7 @@ public final class PrimitiveGrpc {
    * Primitive is a service for managing primitive
    * </pre>
    */
+  @java.lang.Deprecated
   public static final class PrimitiveFutureStub extends io.grpc.stub.AbstractFutureStub<PrimitiveFutureStub> {
     private PrimitiveFutureStub(
         io.grpc.Channel channel, io.grpc.CallOptions callOptions) {

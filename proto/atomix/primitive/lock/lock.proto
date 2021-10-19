@@ -18,7 +18,6 @@ syntax = "proto3";
 
 import "atomix/primitive/primitive.proto";
 import "google/protobuf/duration.proto";
-import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";

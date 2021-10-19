@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package atomix.primitive.manager;
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.ServiceOptions {
+    string primitive_type = 71000;
+}
+
+extend google.protobuf.MethodOptions {
+    OperationType operation = 70000;
+}
+
+// OperationType is an enum for specifying the type of operation
+enum OperationType {
+    OPEN = 0;
+    CLOSE = 1;
+}

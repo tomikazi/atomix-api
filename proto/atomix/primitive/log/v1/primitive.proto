@@ -1,0 +1,204 @@
+/*
+Copyright 2020-present Open Networking Foundation.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+*/
+
+syntax = "proto3";
+
+package atomix.primitive.log.v1;
+
+import "atomix/primitive/service.proto";
+import "atomix/primitive/operation.proto";
+import "atomix/primitive/meta/object.proto";
+import "gogoproto/gogo.proto";
+
+message SizeRequest {
+
+}
+
+message SizeResponse {
+    int32 size = 2;
+}
+
+message AppendRequest {
+    uint64 index = 2;
+    bytes value = 3;
+}
+
+message AppendResponse {
+    Entry entry = 2 [(gogoproto.nullable) = false];
+}
+
+message GetRequest {
+    uint64 index = 2;
+}
+
+message GetResponse {
+    Entry entry = 2 [(gogoproto.nullable) = false];
+}
+
+message FirstEntryRequest {
+
+}
+
+message FirstEntryResponse {
+    Entry entry = 2 [(gogoproto.nullable) = false];
+}
+
+message LastEntryRequest {
+
+}
+
+message LastEntryResponse {
+    Entry entry = 2 [(gogoproto.nullable) = false];
+}
+
+message PrevEntryRequest {
+    uint64 index = 2;
+}
+
+message PrevEntryResponse {
+    Entry entry = 2 [(gogoproto.nullable) = false];
+}
+
+message NextEntryRequest {
+    uint64 index = 2;
+}
+
+message NextEntryResponse {
+    Entry entry = 2 [(gogoproto.nullable) = false];
+}
+
+message RemoveRequest {
+    Entry entry = 2 [(gogoproto.nullable) = false];
+}
+
+message RemoveResponse {
+    Entry entry = 2 [(gogoproto.nullable) = false];
+}
+
+message ClearRequest {
+
+}
+
+message ClearResponse {
+
+}
+
+message EntriesRequest {
+
+}
+
+message EntriesResponse {
+    Entry entry = 2 [(gogoproto.nullable) = false];
+}
+
+message EventsRequest {
+    bool replay = 2;
+    uint64 index = 3;
+}
+
+message EventsResponse {
+    Event event = 2 [(gogoproto.nullable) = false];
+}
+
+message Event {
+    Type type = 1;
+    Entry entry = 2 [(gogoproto.nullable) = false];
+
+    enum Type {
+        NONE = 0;
+        APPEND = 1;
+        REMOVE = 2;
+        REPLAY = 3;
+    }
+}
+
+message Entry {
+    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
+    uint64 index = 2;
+    bytes value = 3;
+}
+
+// Log is a service for a log primitive
+service Log {
+    option (atomix.primitive.service.type) = PRIMITIVE;
+
+    // Size returns the size of the log
+    rpc Size (SizeRequest) returns (SizeResponse) {
+        option (atomix.primitive.operation.id) = 1;
+        option (atomix.primitive.operation.type) = QUERY;
+    }
+
+    // Appends appends an entry into the log
+    rpc Append (AppendRequest) returns (AppendResponse) {
+        option (atomix.primitive.operation.id) = 2;
+        option (atomix.primitive.operation.type) = COMMAND;
+    }
+
+    // Get gets the entry for an index
+    rpc Get (GetRequest) returns (GetResponse) {
+        option (atomix.primitive.operation.id) = 3;
+        option (atomix.primitive.operation.type) = QUERY;
+    }
+
+    // FirstEntry gets the first entry in the log
+    rpc FirstEntry (FirstEntryRequest) returns (FirstEntryResponse) {
+        option (atomix.primitive.operation.id) = 4;
+        option (atomix.primitive.operation.type) = QUERY;
+    }
+
+    // LastEntry gets the last entry in the log
+    rpc LastEntry (LastEntryRequest) returns (LastEntryResponse) {
+        option (atomix.primitive.operation.id) = 5;
+        option (atomix.primitive.operation.type) = QUERY;
+    }
+
+    // PrevEntry gets the previous entry in the log
+    rpc PrevEntry (PrevEntryRequest) returns (PrevEntryResponse) {
+        option (atomix.primitive.operation.id) = 6;
+        option (atomix.primitive.operation.type) = QUERY;
+    }
+
+    // NextEntry gets the next entry in the log
+    rpc NextEntry (NextEntryRequest) returns (NextEntryResponse) {
+        option (atomix.primitive.operation.id) = 7;
+        option (atomix.primitive.operation.type) = QUERY;
+    }
+
+    // Remove removes an entry from the log
+    rpc Remove (RemoveRequest) returns (RemoveResponse) {
+        option (atomix.primitive.operation.id) = 8;
+        option (atomix.primitive.operation.type) = COMMAND;
+    }
+
+    // Clear removes all entries from the log
+    rpc Clear (ClearRequest) returns (ClearResponse) {
+        option (atomix.primitive.operation.id) = 9;
+        option (atomix.primitive.operation.type) = COMMAND;
+    }
+
+    // Events listens for change events
+    rpc Events (EventsRequest) returns (stream EventsResponse) {
+        option (atomix.primitive.operation.id) = 10;
+        option (atomix.primitive.operation.type) = COMMAND;
+    }
+
+    // Entries lists all entries in the log
+    rpc Entries (EntriesRequest) returns (stream EntriesResponse) {
+        option (atomix.primitive.operation.id) = 11;
+        option (atomix.primitive.operation.type) = QUERY;
+    }
+}
+

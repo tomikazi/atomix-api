@@ -3,6 +3,12 @@
 
 ## Table of Contents
 
+- [atomix/primitive/manager.proto](#atomix/primitive/manager.proto)
+    - [OperationType](#atomix.primitive.manager.OperationType)
+  
+    - [File-level Extensions](#atomix/primitive/manager.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/manager.proto-extensions)
+  
 - [atomix/primitive/operation.proto](#atomix/primitive/operation.proto)
     - [AggregateStrategy](#atomix.primitive.operation.AggregateStrategy)
     - [OperationType](#atomix.primitive.operation.OperationType)
@@ -32,13 +38,54 @@
     - [RequestHeaders](#atomix.primitive.RequestHeaders)
     - [ResponseHeaders](#atomix.primitive.ResponseHeaders)
   
+    - [File-level Extensions](#atomix/primitive/primitive.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/primitive.proto-extensions)
+  
     - [Primitive](#atomix.primitive.Primitive)
   
 - [atomix/primitive/service.proto](#atomix/primitive/service.proto)
-    - [File-level Extensions](#atomix/primitive/service.proto-extensions)
+    - [ServiceType](#atomix.primitive.service.ServiceType)
+  
     - [File-level Extensions](#atomix/primitive/service.proto-extensions)
   
 - [Scalar Value Types](#scalar-value-types)
+
+
+
+<a name="atomix/primitive/manager.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## atomix/primitive/manager.proto
+
+
+ 
+
+
+<a name="atomix.primitive.manager.OperationType"></a>
+
+### OperationType
+OperationType is an enum for specifying the type of operation
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| OPEN | 0 |  |
+| CLOSE | 1 |  |
+
+
+ 
+
+
+<a name="atomix/primitive/manager.proto-extensions"></a>
+
+### File-level Extensions
+| Extension | Type | Base | Number | Description |
+| --------- | ---- | ---- | ------ | ----------- |
+| operation | OperationType | .google.protobuf.MethodOptions | 70000 |  |
+| primitive_type | string | .google.protobuf.ServiceOptions | 71000 |  |
+
+ 
+
+ 
 
 
 
@@ -73,6 +120,8 @@ OperationType is an enum for specifying the type of operation
 | ---- | ------ | ----------- |
 | COMMAND | 0 |  |
 | QUERY | 1 |  |
+| CREATE | 2 |  |
+| CLOSE | 3 |  |
 
 
  
@@ -286,6 +335,15 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
  
 
+
+<a name="atomix/primitive/primitive.proto-extensions"></a>
+
+### File-level Extensions
+| Extension | Type | Base | Number | Description |
+| --------- | ---- | ---- | ------ | ----------- |
+| partitioned | bool | .google.protobuf.ServiceOptions | 50001 |  |
+| type | string | .google.protobuf.ServiceOptions | 50000 |  |
+
  
 
 
@@ -312,6 +370,18 @@ Primitive is a service for managing primitive
 
  
 
+
+<a name="atomix.primitive.service.ServiceType"></a>
+
+### ServiceType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| PRIMITIVE | 0 |  |
+| MANAGER | 1 |  |
+
+
  
 
 
@@ -320,8 +390,7 @@ Primitive is a service for managing primitive
 ### File-level Extensions
 | Extension | Type | Base | Number | Description |
 | --------- | ---- | ---- | ------ | ----------- |
-| partitioned | bool | .google.protobuf.ServiceOptions | 50001 |  |
-| type | string | .google.protobuf.ServiceOptions | 50000 |  |
+| type | ServiceType | .google.protobuf.ServiceOptions | 80000 |  |
 
  
 

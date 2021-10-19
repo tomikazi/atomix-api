@@ -11,6 +11,8 @@ class OperationType(betterproto.Enum):
 
     COMMAND = 0
     QUERY = 1
+    CREATE = 2
+    CLOSE = 3
 
 
 class AggregateStrategy(betterproto.Enum):

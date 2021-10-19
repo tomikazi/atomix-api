@@ -16,17 +16,22 @@ limitations under the License.
 
 syntax = "proto3";
 
-import "atomix/primitive/service.proto";
+import "atomix/primitive/primitive.proto";
 import "atomix/primitive/manager.proto";
+import "gogoproto/gogo.proto";
 
 package atomix.primitive.list.v1;
 
 message OpenSessionRequest {
-
+    ListOptions options = 1 [(gogoproto.nullable) = false];
 }
 
 message OpenSessionResponse {
     uint64 session_id = 1;
+}
+
+message ListOptions {
+
 }
 
 message CloseSessionRequest {
@@ -39,7 +44,7 @@ message CloseSessionResponse {
 
 // ListManager is a service for managing list instances
 service ListManager {
-    option (atomix.primitive.service.type) = MANAGER;
+    option (atomix.primitive.service_type) = MANAGER;
     option (atomix.primitive.manager.primitive_type) = "List";
 
     rpc OpenSession (OpenSessionRequest) returns (OpenSessionResponse) {

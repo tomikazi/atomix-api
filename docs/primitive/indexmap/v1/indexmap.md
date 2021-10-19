@@ -6,8 +6,12 @@
 - [atomix/primitive/indexedmap/v1/manager.proto](#atomix/primitive/indexedmap/v1/manager.proto)
     - [CloseSessionRequest](#atomix.primitive.indexedmap.v1.CloseSessionRequest)
     - [CloseSessionResponse](#atomix.primitive.indexedmap.v1.CloseSessionResponse)
+    - [IndexedMapCacheOptions](#atomix.primitive.indexedmap.v1.IndexedMapCacheOptions)
+    - [IndexedMapOptions](#atomix.primitive.indexedmap.v1.IndexedMapOptions)
     - [OpenSessionRequest](#atomix.primitive.indexedmap.v1.OpenSessionRequest)
     - [OpenSessionResponse](#atomix.primitive.indexedmap.v1.OpenSessionResponse)
+  
+    - [IndexedMapCacheStrategy](#atomix.primitive.indexedmap.v1.IndexedMapCacheStrategy)
   
     - [IndexedMapManager](#atomix.primitive.indexedmap.v1.IndexedMapManager)
   
@@ -47,10 +51,46 @@
 
 
 
+<a name="atomix.primitive.indexedmap.v1.IndexedMapCacheOptions"></a>
+
+### IndexedMapCacheOptions
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| enabled | [bool](#bool) |  |  |
+| strategy | [IndexedMapCacheStrategy](#atomix.primitive.indexedmap.v1.IndexedMapCacheStrategy) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.indexedmap.v1.IndexedMapOptions"></a>
+
+### IndexedMapOptions
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cache | [IndexedMapCacheOptions](#atomix.primitive.indexedmap.v1.IndexedMapCacheOptions) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.indexedmap.v1.OpenSessionRequest"></a>
 
 ### OpenSessionRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| options | [IndexedMapOptions](#atomix.primitive.indexedmap.v1.IndexedMapOptions) |  |  |
 
 
 
@@ -72,6 +112,20 @@
 
 
  
+
+
+<a name="atomix.primitive.indexedmap.v1.IndexedMapCacheStrategy"></a>
+
+### IndexedMapCacheStrategy
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NEAR | 0 |  |
+| READ_THROUGH | 1 |  |
+| WRITE_THROUGH | 2 |  |
+| READ_THROUGH_WRITE_THROUGH | 3 |  |
+
 
  
 

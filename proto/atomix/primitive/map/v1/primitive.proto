@@ -21,7 +21,6 @@ package atomix.primitive.map.v1;
 import "google/protobuf/duration.proto";
 import "atomix/primitive/meta/object.proto";
 import "atomix/primitive/primitive.proto";
-import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
 import "atomix/primitive/partition.proto";
 import "gogoproto/gogo.proto";
@@ -121,7 +120,7 @@ message Value {
 
 // Map is a service for a map primitive
 service Map {
-    option (atomix.primitive.service.type) = PRIMITIVE;
+    option (atomix.primitive.service_type) = PRIMITIVE;
     option (atomix.primitive.partitioned) = true;
 
     // Size returns the size of the map

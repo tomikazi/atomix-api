@@ -8,6 +8,13 @@ import betterproto
 import grpclib
 
 
+class SetCacheStrategy(betterproto.Enum):
+    NEAR = 0
+    READ_THROUGH = 1
+    WRITE_THROUGH = 2
+    READ_THROUGH_WRITE_THROUGH = 3
+
+
 class EventType(betterproto.Enum):
     NONE = 0
     ADD = 1
@@ -17,7 +24,7 @@ class EventType(betterproto.Enum):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionRequest(betterproto.Message):
-    pass
+    options: "SetOptions" = betterproto.message_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -26,6 +33,23 @@ class OpenSessionRequest(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class OpenSessionResponse(betterproto.Message):
     session_id: int = betterproto.uint64_field(1)
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+
+
+@dataclass(eq=False, repr=False)
+class SetOptions(betterproto.Message):
+    cache: "SetCacheOptions" = betterproto.message_field(1)
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+
+
+@dataclass(eq=False, repr=False)
+class SetCacheOptions(betterproto.Message):
+    enabled: bool = betterproto.bool_field(1)
+    strategy: "SetCacheStrategy" = betterproto.enum_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -180,9 +204,13 @@ class Element(betterproto.Message):
 class SetManagerStub(betterproto.ServiceStub):
     """SetManager is a service for managing set instances"""
 
-    async def open_session(self) -> "OpenSessionResponse":
+    async def open_session(
+        self, *, options: "SetOptions" = None
+    ) -> "OpenSessionResponse":
 
         request = OpenSessionRequest()
+        if options is not None:
+            request.options = options
 
         return await self._unary_unary(
             "/atomix.primitive.set.v1.SetManager/OpenSession",

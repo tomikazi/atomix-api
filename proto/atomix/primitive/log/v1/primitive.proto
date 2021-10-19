@@ -18,7 +18,7 @@ syntax = "proto3";
 
 package atomix.primitive.log.v1;
 
-import "atomix/primitive/service.proto";
+import "atomix/primitive/primitive.proto";
 import "atomix/primitive/operation.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
@@ -133,7 +133,7 @@ message Entry {
 
 // Log is a service for a log primitive
 service Log {
-    option (atomix.primitive.service.type) = PRIMITIVE;
+    option (atomix.primitive.service_type) = PRIMITIVE;
 
     // Size returns the size of the log
     rpc Size (SizeRequest) returns (SizeResponse) {

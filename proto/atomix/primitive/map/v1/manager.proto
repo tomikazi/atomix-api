@@ -16,17 +16,34 @@ limitations under the License.
 
 syntax = "proto3";
 
-import "atomix/primitive/service.proto";
+import "atomix/primitive/primitive.proto";
 import "atomix/primitive/manager.proto";
+import "gogoproto/gogo.proto";
 
 package atomix.primitive.map.v1;
 
 message OpenSessionRequest {
-
+    MapOptions options = 1 [(gogoproto.nullable) = false];
 }
 
 message OpenSessionResponse {
     uint64 session_id = 1;
+}
+
+message MapOptions {
+    MapCacheOptions cache = 1 [(gogoproto.nullable) = false];
+}
+
+message MapCacheOptions {
+    bool enabled = 1;
+    MapCacheStrategy strategy = 2;
+}
+
+enum MapCacheStrategy {
+    NEAR = 0;
+    READ_THROUGH = 1;
+    WRITE_THROUGH = 2;
+    READ_THROUGH_WRITE_THROUGH = 3;
 }
 
 message CloseSessionRequest {
@@ -39,7 +56,7 @@ message CloseSessionResponse {
 
 // MapManager is a service for managing map instances
 service MapManager {
-    option (atomix.primitive.service.type) = MANAGER;
+    option (atomix.primitive.service_type) = MANAGER;
     option (atomix.primitive.manager.primitive_type) = "Map";
 
     rpc OpenSession (OpenSessionRequest) returns (OpenSessionResponse) {

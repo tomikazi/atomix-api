@@ -38,15 +38,13 @@
     - [RequestHeaders](#atomix.primitive.RequestHeaders)
     - [ResponseHeaders](#atomix.primitive.ResponseHeaders)
   
+    - [ServiceType](#atomix.primitive.ServiceType)
+  
+    - [File-level Extensions](#atomix/primitive/primitive.proto-extensions)
     - [File-level Extensions](#atomix/primitive/primitive.proto-extensions)
     - [File-level Extensions](#atomix/primitive/primitive.proto-extensions)
   
     - [Primitive](#atomix.primitive.Primitive)
-  
-- [atomix/primitive/service.proto](#atomix/primitive/service.proto)
-    - [ServiceType](#atomix.primitive.service.ServiceType)
-  
-    - [File-level Extensions](#atomix/primitive/service.proto-extensions)
   
 - [Scalar Value Types](#scalar-value-types)
 
@@ -333,6 +331,18 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
  
 
+
+<a name="atomix.primitive.ServiceType"></a>
+
+### ServiceType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| PRIMITIVE | 0 |  |
+| MANAGER | 1 |  |
+
+
  
 
 
@@ -342,6 +352,7 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 | Extension | Type | Base | Number | Description |
 | --------- | ---- | ---- | ------ | ----------- |
 | partitioned | bool | .google.protobuf.ServiceOptions | 50001 |  |
+| service_type | ServiceType | .google.protobuf.ServiceOptions | 80000 |  |
 | type | string | .google.protobuf.ServiceOptions | 50000 |  |
 
  
@@ -357,42 +368,6 @@ Primitive is a service for managing primitive
 | Create | [CreateRequest](#atomix.primitive.CreateRequest) | [CreateResponse](#atomix.primitive.CreateResponse) | Create creates a primitive |
 | Close | [CloseRequest](#atomix.primitive.CloseRequest) | [CloseResponse](#atomix.primitive.CloseResponse) | Close closes a primitive |
 | Delete | [DeleteRequest](#atomix.primitive.DeleteRequest) | [DeleteResponse](#atomix.primitive.DeleteResponse) | Delete deletes a primitive |
-
- 
-
-
-
-<a name="atomix/primitive/service.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## atomix/primitive/service.proto
-
-
- 
-
-
-<a name="atomix.primitive.service.ServiceType"></a>
-
-### ServiceType
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| PRIMITIVE | 0 |  |
-| MANAGER | 1 |  |
-
-
- 
-
-
-<a name="atomix/primitive/service.proto-extensions"></a>
-
-### File-level Extensions
-| Extension | Type | Base | Number | Description |
-| --------- | ---- | ---- | ------ | ----------- |
-| type | ServiceType | .google.protobuf.ServiceOptions | 80000 |  |
-
- 
 
  
 

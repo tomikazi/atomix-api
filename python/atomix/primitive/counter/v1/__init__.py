@@ -10,7 +10,7 @@ import grpclib
 
 @dataclass(eq=False, repr=False)
 class OpenSessionRequest(betterproto.Message):
-    pass
+    options: "CounterOptions" = betterproto.message_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -19,6 +19,14 @@ class OpenSessionRequest(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class OpenSessionResponse(betterproto.Message):
     session_id: int = betterproto.uint64_field(1)
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+
+
+@dataclass(eq=False, repr=False)
+class CounterOptions(betterproto.Message):
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -124,9 +132,13 @@ class Value(betterproto.Message):
 class CounterManagerStub(betterproto.ServiceStub):
     """CounterManager is a service for managing counter instances"""
 
-    async def open_session(self) -> "OpenSessionResponse":
+    async def open_session(
+        self, *, options: "CounterOptions" = None
+    ) -> "OpenSessionResponse":
 
         request = OpenSessionRequest()
+        if options is not None:
+            request.options = options
 
         return await self._unary_unary(
             "/atomix.primitive.counter.v1.CounterManager/OpenSession",

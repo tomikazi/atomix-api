@@ -9,6 +9,13 @@ import betterproto
 import grpclib
 
 
+class MapCacheStrategy(betterproto.Enum):
+    NEAR = 0
+    READ_THROUGH = 1
+    WRITE_THROUGH = 2
+    READ_THROUGH_WRITE_THROUGH = 3
+
+
 class EventType(betterproto.Enum):
     NONE = 0
     INSERT = 1
@@ -19,7 +26,7 @@ class EventType(betterproto.Enum):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionRequest(betterproto.Message):
-    pass
+    options: "MapOptions" = betterproto.message_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -28,6 +35,23 @@ class OpenSessionRequest(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class OpenSessionResponse(betterproto.Message):
     session_id: int = betterproto.uint64_field(1)
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+
+
+@dataclass(eq=False, repr=False)
+class MapOptions(betterproto.Message):
+    cache: "MapCacheOptions" = betterproto.message_field(1)
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+
+
+@dataclass(eq=False, repr=False)
+class MapCacheOptions(betterproto.Message):
+    enabled: bool = betterproto.bool_field(1)
+    strategy: "MapCacheStrategy" = betterproto.enum_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -211,9 +235,13 @@ class Value(betterproto.Message):
 class MapManagerStub(betterproto.ServiceStub):
     """MapManager is a service for managing map instances"""
 
-    async def open_session(self) -> "OpenSessionResponse":
+    async def open_session(
+        self, *, options: "MapOptions" = None
+    ) -> "OpenSessionResponse":
 
         request = OpenSessionRequest()
+        if options is not None:
+            request.options = options
 
         return await self._unary_unary(
             "/atomix.primitive.map.v1.MapManager/OpenSession",

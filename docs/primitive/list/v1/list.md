@@ -6,6 +6,7 @@
 - [atomix/primitive/list/v1/manager.proto](#atomix/primitive/list/v1/manager.proto)
     - [CloseSessionRequest](#atomix.primitive.list.v1.CloseSessionRequest)
     - [CloseSessionResponse](#atomix.primitive.list.v1.CloseSessionResponse)
+    - [ListOptions](#atomix.primitive.list.v1.ListOptions)
     - [OpenSessionRequest](#atomix.primitive.list.v1.OpenSessionRequest)
     - [OpenSessionResponse](#atomix.primitive.list.v1.OpenSessionResponse)
   
@@ -47,10 +48,25 @@
 
 
 
+<a name="atomix.primitive.list.v1.ListOptions"></a>
+
+### ListOptions
+
+
+
+
+
+
+
 <a name="atomix.primitive.list.v1.OpenSessionRequest"></a>
 
 ### OpenSessionRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| options | [ListOptions](#atomix.primitive.list.v1.ListOptions) |  |  |
 
 
 

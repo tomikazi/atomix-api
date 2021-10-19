@@ -16,17 +16,22 @@ limitations under the License.
 
 syntax = "proto3";
 
-import "atomix/primitive/service.proto";
+import "atomix/primitive/primitive.proto";
 import "atomix/primitive/manager.proto";
+import "gogoproto/gogo.proto";
 
 package atomix.primitive.log.v1;
 
 message OpenSessionRequest {
-
+    LogOptions options = 1 [(gogoproto.nullable) = false];
 }
 
 message OpenSessionResponse {
     uint64 session_id = 1;
+}
+
+message LogOptions {
+
 }
 
 message CloseSessionRequest {
@@ -39,7 +44,7 @@ message CloseSessionResponse {
 
 // LogManager is a service for managing log instances
 service LogManager {
-    option (atomix.primitive.service.type) = MANAGER;
+    option (atomix.primitive.service_type) = MANAGER;
     option (atomix.primitive.manager.primitive_type) = "Log";
 
     rpc OpenSession (OpenSessionRequest) returns (OpenSessionResponse) {

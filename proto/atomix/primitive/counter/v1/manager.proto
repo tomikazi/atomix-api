@@ -16,17 +16,22 @@ limitations under the License.
 
 syntax = "proto3";
 
-import "atomix/primitive/service.proto";
+import "atomix/primitive/primitive.proto";
 import "atomix/primitive/manager.proto";
+import "gogoproto/gogo.proto";
 
 package atomix.primitive.counter.v1;
 
 message OpenSessionRequest {
-
+    CounterOptions options = 1 [(gogoproto.nullable) = false];
 }
 
 message OpenSessionResponse {
     uint64 session_id = 1;
+}
+
+message CounterOptions {
+
 }
 
 message CloseSessionRequest {
@@ -39,7 +44,7 @@ message CloseSessionResponse {
 
 // CounterManager is a service for managing counter instances
 service CounterManager {
-    option (atomix.primitive.service.type) = MANAGER;
+    option (atomix.primitive.service_type) = MANAGER;
     option (atomix.primitive.manager.primitive_type) = "Counter";
 
     rpc OpenSession (OpenSessionRequest) returns (OpenSessionResponse) {

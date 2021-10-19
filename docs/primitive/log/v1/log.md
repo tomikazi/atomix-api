@@ -6,6 +6,7 @@
 - [atomix/primitive/log/v1/manager.proto](#atomix/primitive/log/v1/manager.proto)
     - [CloseSessionRequest](#atomix.primitive.log.v1.CloseSessionRequest)
     - [CloseSessionResponse](#atomix.primitive.log.v1.CloseSessionResponse)
+    - [LogOptions](#atomix.primitive.log.v1.LogOptions)
     - [OpenSessionRequest](#atomix.primitive.log.v1.OpenSessionRequest)
     - [OpenSessionResponse](#atomix.primitive.log.v1.OpenSessionResponse)
   
@@ -47,10 +48,25 @@
 
 
 
+<a name="atomix.primitive.log.v1.LogOptions"></a>
+
+### LogOptions
+
+
+
+
+
+
+
 <a name="atomix.primitive.log.v1.OpenSessionRequest"></a>
 
 ### OpenSessionRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| options | [LogOptions](#atomix.primitive.log.v1.LogOptions) |  |  |
 
 
 

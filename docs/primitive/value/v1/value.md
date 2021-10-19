@@ -8,6 +8,10 @@
     - [CloseSessionResponse](#atomix.primitive.value.v1.CloseSessionResponse)
     - [OpenSessionRequest](#atomix.primitive.value.v1.OpenSessionRequest)
     - [OpenSessionResponse](#atomix.primitive.value.v1.OpenSessionResponse)
+    - [ValueCacheOptions](#atomix.primitive.value.v1.ValueCacheOptions)
+    - [ValueOptions](#atomix.primitive.value.v1.ValueOptions)
+  
+    - [ValueCacheStrategy](#atomix.primitive.value.v1.ValueCacheStrategy)
   
     - [ValueManager](#atomix.primitive.value.v1.ValueManager)
   
@@ -53,6 +57,11 @@
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| options | [ValueOptions](#atomix.primitive.value.v1.ValueOptions) |  |  |
+
+
 
 
 
@@ -71,7 +80,52 @@
 
 
 
+
+<a name="atomix.primitive.value.v1.ValueCacheOptions"></a>
+
+### ValueCacheOptions
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| enabled | [bool](#bool) |  |  |
+| strategy | [ValueCacheStrategy](#atomix.primitive.value.v1.ValueCacheStrategy) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.value.v1.ValueOptions"></a>
+
+### ValueOptions
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cache | [ValueCacheOptions](#atomix.primitive.value.v1.ValueCacheOptions) |  |  |
+
+
+
+
+
  
+
+
+<a name="atomix.primitive.value.v1.ValueCacheStrategy"></a>
+
+### ValueCacheStrategy
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NEAR | 0 |  |
+| READ_THROUGH | 1 |  |
+| WRITE_THROUGH | 2 |  |
+| READ_THROUGH_WRITE_THROUGH | 3 |  |
+
 
  
 

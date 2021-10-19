@@ -8,6 +8,10 @@
     - [CloseSessionResponse](#atomix.primitive.set.v1.CloseSessionResponse)
     - [OpenSessionRequest](#atomix.primitive.set.v1.OpenSessionRequest)
     - [OpenSessionResponse](#atomix.primitive.set.v1.OpenSessionResponse)
+    - [SetCacheOptions](#atomix.primitive.set.v1.SetCacheOptions)
+    - [SetOptions](#atomix.primitive.set.v1.SetOptions)
+  
+    - [SetCacheStrategy](#atomix.primitive.set.v1.SetCacheStrategy)
   
     - [SetManager](#atomix.primitive.set.v1.SetManager)
   
@@ -53,6 +57,11 @@
 
 
 
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| options | [SetOptions](#atomix.primitive.set.v1.SetOptions) |  |  |
+
+
 
 
 
@@ -71,7 +80,52 @@
 
 
 
+
+<a name="atomix.primitive.set.v1.SetCacheOptions"></a>
+
+### SetCacheOptions
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| enabled | [bool](#bool) |  |  |
+| strategy | [SetCacheStrategy](#atomix.primitive.set.v1.SetCacheStrategy) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.set.v1.SetOptions"></a>
+
+### SetOptions
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cache | [SetCacheOptions](#atomix.primitive.set.v1.SetCacheOptions) |  |  |
+
+
+
+
+
  
+
+
+<a name="atomix.primitive.set.v1.SetCacheStrategy"></a>
+
+### SetCacheStrategy
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NEAR | 0 |  |
+| READ_THROUGH | 1 |  |
+| WRITE_THROUGH | 2 |  |
+| READ_THROUGH_WRITE_THROUGH | 3 |  |
+
 
  
 

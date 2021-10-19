@@ -6,6 +6,7 @@
 - [atomix/primitive/counter/v1/manager.proto](#atomix/primitive/counter/v1/manager.proto)
     - [CloseSessionRequest](#atomix.primitive.counter.v1.CloseSessionRequest)
     - [CloseSessionResponse](#atomix.primitive.counter.v1.CloseSessionResponse)
+    - [CounterOptions](#atomix.primitive.counter.v1.CounterOptions)
     - [OpenSessionRequest](#atomix.primitive.counter.v1.OpenSessionRequest)
     - [OpenSessionResponse](#atomix.primitive.counter.v1.OpenSessionResponse)
   
@@ -47,10 +48,25 @@
 
 
 
+<a name="atomix.primitive.counter.v1.CounterOptions"></a>
+
+### CounterOptions
+
+
+
+
+
+
+
 <a name="atomix.primitive.counter.v1.OpenSessionRequest"></a>
 
 ### OpenSessionRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| options | [CounterOptions](#atomix.primitive.counter.v1.CounterOptions) |  |  |
 
 
 

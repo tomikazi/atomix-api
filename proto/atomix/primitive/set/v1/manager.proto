@@ -16,17 +16,34 @@ limitations under the License.
 
 syntax = "proto3";
 
-import "atomix/primitive/service.proto";
+import "atomix/primitive/primitive.proto";
 import "atomix/primitive/manager.proto";
+import "gogoproto/gogo.proto";
 
 package atomix.primitive.set.v1;
 
 message OpenSessionRequest {
-
+    SetOptions options = 1 [(gogoproto.nullable) = false];
 }
 
 message OpenSessionResponse {
     uint64 session_id = 1;
+}
+
+message SetOptions {
+    SetCacheOptions cache = 1 [(gogoproto.nullable) = false];
+}
+
+message SetCacheOptions {
+    bool enabled = 1;
+    SetCacheStrategy strategy = 2;
+}
+
+enum SetCacheStrategy {
+    NEAR = 0;
+    READ_THROUGH = 1;
+    WRITE_THROUGH = 2;
+    READ_THROUGH_WRITE_THROUGH = 3;
 }
 
 message CloseSessionRequest {
@@ -39,7 +56,7 @@ message CloseSessionResponse {
 
 // SetManager is a service for managing set instances
 service SetManager {
-    option (atomix.primitive.service.type) = MANAGER;
+    option (atomix.primitive.service_type) = MANAGER;
     option (atomix.primitive.manager.primitive_type) = "Set";
 
     rpc OpenSession (OpenSessionRequest) returns (OpenSessionResponse) {

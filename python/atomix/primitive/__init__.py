@@ -8,6 +8,11 @@ import betterproto
 import grpclib
 
 
+class ServiceType(betterproto.Enum):
+    PRIMITIVE = 0
+    MANAGER = 1
+
+
 @dataclass(eq=False, repr=False)
 class RequestHeaders(betterproto.Message):
     primitive_id: "PrimitiveId" = betterproto.message_field(1)

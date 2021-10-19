@@ -17,7 +17,7 @@ class EventType(betterproto.Enum):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionRequest(betterproto.Message):
-    pass
+    options: "ListOptions" = betterproto.message_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -26,6 +26,14 @@ class OpenSessionRequest(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class OpenSessionResponse(betterproto.Message):
     session_id: int = betterproto.uint64_field(1)
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+
+
+@dataclass(eq=False, repr=False)
+class ListOptions(betterproto.Message):
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -248,9 +256,13 @@ class Value(betterproto.Message):
 class ListManagerStub(betterproto.ServiceStub):
     """ListManager is a service for managing list instances"""
 
-    async def open_session(self) -> "OpenSessionResponse":
+    async def open_session(
+        self, *, options: "ListOptions" = None
+    ) -> "OpenSessionResponse":
 
         request = OpenSessionRequest()
+        if options is not None:
+            request.options = options
 
         return await self._unary_unary(
             "/atomix.primitive.list.v1.ListManager/OpenSession",

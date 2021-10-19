@@ -16,17 +16,34 @@ limitations under the License.
 
 syntax = "proto3";
 
-import "atomix/primitive/service.proto";
+import "atomix/primitive/primitive.proto";
 import "atomix/primitive/manager.proto";
+import "gogoproto/gogo.proto";
 
 package atomix.primitive.value.v1;
 
 message OpenSessionRequest {
-
+    ValueOptions options = 1 [(gogoproto.nullable) = false];
 }
 
 message OpenSessionResponse {
     uint64 session_id = 1;
+}
+
+message ValueOptions {
+    ValueCacheOptions cache = 1 [(gogoproto.nullable) = false];
+}
+
+message ValueCacheOptions {
+    bool enabled = 1;
+    ValueCacheStrategy strategy = 2;
+}
+
+enum ValueCacheStrategy {
+    NEAR = 0;
+    READ_THROUGH = 1;
+    WRITE_THROUGH = 2;
+    READ_THROUGH_WRITE_THROUGH = 3;
 }
 
 message CloseSessionRequest {
@@ -39,7 +56,7 @@ message CloseSessionResponse {
 
 // ValueManager is a service for managing value instances
 service ValueManager {
-    option (atomix.primitive.service.type) = MANAGER;
+    option (atomix.primitive.service_type) = MANAGER;
     option (atomix.primitive.manager.primitive_type) = "Value";
 
     rpc OpenSession (OpenSessionRequest) returns (OpenSessionResponse) {

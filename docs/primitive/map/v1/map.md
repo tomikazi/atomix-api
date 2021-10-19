@@ -6,8 +6,12 @@
 - [atomix/primitive/map/v1/manager.proto](#atomix/primitive/map/v1/manager.proto)
     - [CloseSessionRequest](#atomix.primitive.map.v1.CloseSessionRequest)
     - [CloseSessionResponse](#atomix.primitive.map.v1.CloseSessionResponse)
+    - [MapCacheOptions](#atomix.primitive.map.v1.MapCacheOptions)
+    - [MapOptions](#atomix.primitive.map.v1.MapOptions)
     - [OpenSessionRequest](#atomix.primitive.map.v1.OpenSessionRequest)
     - [OpenSessionResponse](#atomix.primitive.map.v1.OpenSessionResponse)
+  
+    - [MapCacheStrategy](#atomix.primitive.map.v1.MapCacheStrategy)
   
     - [MapManager](#atomix.primitive.map.v1.MapManager)
   
@@ -47,10 +51,46 @@
 
 
 
+<a name="atomix.primitive.map.v1.MapCacheOptions"></a>
+
+### MapCacheOptions
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| enabled | [bool](#bool) |  |  |
+| strategy | [MapCacheStrategy](#atomix.primitive.map.v1.MapCacheStrategy) |  |  |
+
+
+
+
+
+
+<a name="atomix.primitive.map.v1.MapOptions"></a>
+
+### MapOptions
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cache | [MapCacheOptions](#atomix.primitive.map.v1.MapCacheOptions) |  |  |
+
+
+
+
+
+
 <a name="atomix.primitive.map.v1.OpenSessionRequest"></a>
 
 ### OpenSessionRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| options | [MapOptions](#atomix.primitive.map.v1.MapOptions) |  |  |
 
 
 
@@ -72,6 +112,20 @@
 
 
  
+
+
+<a name="atomix.primitive.map.v1.MapCacheStrategy"></a>
+
+### MapCacheStrategy
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| NEAR | 0 |  |
+| READ_THROUGH | 1 |  |
+| WRITE_THROUGH | 2 |  |
+| READ_THROUGH_WRITE_THROUGH | 3 |  |
+
 
  
 

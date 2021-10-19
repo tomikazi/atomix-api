@@ -18,7 +18,7 @@ syntax = "proto3";
 
 package atomix.primitive.value.v1;
 
-import "atomix/primitive/service.proto";
+import "atomix/primitive/primitive.proto";
 import "atomix/primitive/operation.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
@@ -71,7 +71,7 @@ message Object {
 
 // Value is a service for a value primitive
 service Value {
-    option (atomix.primitive.service.type) = PRIMITIVE;
+    option (atomix.primitive.service_type) = PRIMITIVE;
 
     // Set sets the value
     rpc Set (SetRequest) returns (SetResponse) {

@@ -19,7 +19,7 @@ syntax = "proto3";
 package atomix.primitive.indexedmap.v1;
 
 import "google/protobuf/duration.proto";
-import "atomix/primitive/service.proto";
+import "atomix/primitive/primitive.proto";
 import "atomix/primitive/operation.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
@@ -152,7 +152,7 @@ message Entry {
 
 // IndexedMap is a service for a sorted/indexed map primitive
 service IndexedMap {
-    option (atomix.primitive.service.type) = PRIMITIVE;
+    option (atomix.primitive.service_type) = PRIMITIVE;
 
     // Size returns the size of the map
     rpc Size (SizeRequest) returns (SizeResponse) {

@@ -6,6 +6,7 @@
 - [atomix/primitive/leader/v1/manager.proto](#atomix/primitive/leader/v1/manager.proto)
     - [CloseSessionRequest](#atomix.primitive.leader.v1.CloseSessionRequest)
     - [CloseSessionResponse](#atomix.primitive.leader.v1.CloseSessionResponse)
+    - [LeaderLatchOptions](#atomix.primitive.leader.v1.LeaderLatchOptions)
     - [OpenSessionRequest](#atomix.primitive.leader.v1.OpenSessionRequest)
     - [OpenSessionResponse](#atomix.primitive.leader.v1.OpenSessionResponse)
   
@@ -47,10 +48,25 @@
 
 
 
+<a name="atomix.primitive.leader.v1.LeaderLatchOptions"></a>
+
+### LeaderLatchOptions
+
+
+
+
+
+
+
 <a name="atomix.primitive.leader.v1.OpenSessionRequest"></a>
 
 ### OpenSessionRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| options | [LeaderLatchOptions](#atomix.primitive.leader.v1.LeaderLatchOptions) |  |  |
 
 
 

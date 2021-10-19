@@ -6,6 +6,7 @@
 - [atomix/primitive/lock/v1/manager.proto](#atomix/primitive/lock/v1/manager.proto)
     - [CloseSessionRequest](#atomix.primitive.lock.v1.CloseSessionRequest)
     - [CloseSessionResponse](#atomix.primitive.lock.v1.CloseSessionResponse)
+    - [LockOptions](#atomix.primitive.lock.v1.LockOptions)
     - [OpenSessionRequest](#atomix.primitive.lock.v1.OpenSessionRequest)
     - [OpenSessionResponse](#atomix.primitive.lock.v1.OpenSessionResponse)
   
@@ -47,10 +48,25 @@
 
 
 
+<a name="atomix.primitive.lock.v1.LockOptions"></a>
+
+### LockOptions
+
+
+
+
+
+
+
 <a name="atomix.primitive.lock.v1.OpenSessionRequest"></a>
 
 ### OpenSessionRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| options | [LockOptions](#atomix.primitive.lock.v1.LockOptions) |  |  |
 
 
 

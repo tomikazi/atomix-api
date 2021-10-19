@@ -2,7 +2,7 @@
 # sources: atomix/primitive/leader/v1/manager.proto, atomix/primitive/leader/v1/primitive.proto
 # plugin: python-betterproto
 from dataclasses import dataclass
-from typing import AsyncIterator, List
+from typing import AsyncIterator, List, Optional
 
 import betterproto
 import grpclib
@@ -15,7 +15,7 @@ class EventType(betterproto.Enum):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionRequest(betterproto.Message):
-    pass
+    options: "LeaderLatchOptions" = betterproto.message_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -24,6 +24,14 @@ class OpenSessionRequest(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class OpenSessionResponse(betterproto.Message):
     session_id: int = betterproto.uint64_field(1)
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+
+
+@dataclass(eq=False, repr=False)
+class LeaderLatchOptions(betterproto.Message):
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -115,9 +123,13 @@ class Latch(betterproto.Message):
 class LeaderLatchManagerStub(betterproto.ServiceStub):
     """LeaderLatchManager is a service for managing leader latch instances"""
 
-    async def open_session(self) -> "OpenSessionResponse":
+    async def open_session(
+        self, *, options: "LeaderLatchOptions" = None
+    ) -> "OpenSessionResponse":
 
         request = OpenSessionRequest()
+        if options is not None:
+            request.options = options
 
         return await self._unary_unary(
             "/atomix.primitive.leader.v1.LeaderLatchManager/OpenSession",

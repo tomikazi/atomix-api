@@ -6,6 +6,7 @@
 - [atomix/primitive/election/v1/manager.proto](#atomix/primitive/election/v1/manager.proto)
     - [CloseSessionRequest](#atomix.primitive.election.v1.CloseSessionRequest)
     - [CloseSessionResponse](#atomix.primitive.election.v1.CloseSessionResponse)
+    - [LeaderElectionOptions](#atomix.primitive.election.v1.LeaderElectionOptions)
     - [OpenSessionRequest](#atomix.primitive.election.v1.OpenSessionRequest)
     - [OpenSessionResponse](#atomix.primitive.election.v1.OpenSessionResponse)
   
@@ -47,10 +48,25 @@
 
 
 
+<a name="atomix.primitive.election.v1.LeaderElectionOptions"></a>
+
+### LeaderElectionOptions
+
+
+
+
+
+
+
 <a name="atomix.primitive.election.v1.OpenSessionRequest"></a>
 
 ### OpenSessionRequest
 
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| options | [LeaderElectionOptions](#atomix.primitive.election.v1.LeaderElectionOptions) |  |  |
 
 
 

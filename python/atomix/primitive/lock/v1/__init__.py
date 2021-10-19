@@ -16,7 +16,7 @@ class LockInstanceState(betterproto.Enum):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionRequest(betterproto.Message):
-    pass
+    options: "LockOptions" = betterproto.message_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -25,6 +25,14 @@ class OpenSessionRequest(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class OpenSessionResponse(betterproto.Message):
     session_id: int = betterproto.uint64_field(1)
+
+    def __post_init__(self) -> None:
+        super().__post_init__()
+
+
+@dataclass(eq=False, repr=False)
+class LockOptions(betterproto.Message):
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -106,9 +114,13 @@ class LockInstance(betterproto.Message):
 class LockManagerStub(betterproto.ServiceStub):
     """LockManager is a service for managing lock instances"""
 
-    async def open_session(self) -> "OpenSessionResponse":
+    async def open_session(
+        self, *, options: "LockOptions" = None
+    ) -> "OpenSessionResponse":
 
         request = OpenSessionRequest()
+        if options is not None:
+            request.options = options
 
         return await self._unary_unary(
             "/atomix.primitive.lock.v1.LockManager/OpenSession",

@@ -18,7 +18,7 @@ syntax = "proto3";
 
 package atomix.primitive.list.v1;
 
-import "atomix/primitive/service.proto";
+import "atomix/primitive/primitive.proto";
 import "atomix/primitive/operation.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
@@ -136,7 +136,7 @@ message Value {
 
 // List is a service for a list primitive
 service List {
-    option (atomix.primitive.service.type) = PRIMITIVE;
+    option (atomix.primitive.service_type) = PRIMITIVE;
 
     // Size gets the number of elements in the list
     rpc Size (SizeRequest) returns (SizeResponse) {

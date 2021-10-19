@@ -27,7 +27,7 @@ message OpenSessionRequest {
 }
 
 message OpenSessionResponse {
-    string session_id = 1;
+    string session_id = 1 [(gogoproto.customname) = "SessionID"];
 }
 
 message LockSessionOptions {
@@ -35,7 +35,7 @@ message LockSessionOptions {
 }
 
 message CloseSessionRequest {
-    string session_id = 1;
+    string session_id = 1 [(gogoproto.customname) = "SessionID"];
 }
 
 message CloseSessionResponse {

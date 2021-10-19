@@ -27,7 +27,7 @@ message OpenSessionRequest {
 }
 
 message OpenSessionResponse {
-    string session_id = 1;
+    string session_id = 1 [(gogoproto.customname) = "SessionID"];
 }
 
 message SetSessionOptions {
@@ -47,7 +47,7 @@ enum SetCacheStrategy {
 }
 
 message CloseSessionRequest {
-    string session_id = 1;
+    string session_id = 1 [(gogoproto.customname) = "SessionID"];
 }
 
 message CloseSessionResponse {

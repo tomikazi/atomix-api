@@ -18,6 +18,7 @@ syntax = "proto3";
 
 import "atomix/primitive/meta/object.proto";
 import "atomix/primitive/primitive.proto";
+import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
 import "gogoproto/gogo.proto";
 
@@ -97,7 +98,8 @@ message Term {
 
 // LeaderElection is a service for a leader election primitive
 service LeaderElection {
-    option (atomix.primitive.service_type) = PRIMITIVE;
+    option (atomix.primitive.type) = "LeaderElection";
+    option (atomix.primitive.service.type) = PRIMITIVE;
 
     // Enter enters the leader election
     rpc Enter (EnterRequest) returns (EnterResponse) {

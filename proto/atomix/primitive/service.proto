@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package atomix.primitive.service;
+
+import "google/protobuf/descriptor.proto";
+
+extend google.protobuf.ServiceOptions {
+    ServiceType type = 80000;
+}
+
+enum ServiceType {
+    PRIMITIVE = 0;
+    SESSION = 1;
+}

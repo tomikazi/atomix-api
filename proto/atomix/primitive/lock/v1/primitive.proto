@@ -18,6 +18,7 @@ syntax = "proto3";
 
 import "google/protobuf/duration.proto";
 import "atomix/primitive/primitive.proto";
+import "atomix/primitive/service.proto";
 import "atomix/primitive/operation.proto";
 import "atomix/primitive/meta/object.proto";
 import "gogoproto/gogo.proto";
@@ -60,7 +61,8 @@ message LockInstance {
 
 // Lock is a service for a lock primitive
 service Lock {
-    option (atomix.primitive.service_type) = PRIMITIVE;
+    option (atomix.primitive.type) = "Lock";
+    option (atomix.primitive.service.type) = PRIMITIVE;
 
     // Lock attempts to acquire the lock
     rpc Lock (LockRequest) returns (LockResponse) {

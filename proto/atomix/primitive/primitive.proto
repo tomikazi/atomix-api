@@ -25,12 +25,6 @@ import "google/protobuf/descriptor.proto";
 extend google.protobuf.ServiceOptions {
     string type = 50000;
     bool partitioned = 50001;
-    ServiceType service_type = 80000;
-}
-
-enum ServiceType {
-    PRIMITIVE = 0;
-    SESSION = 1;
 }
 
 message RequestHeaders {
@@ -90,8 +84,7 @@ service Primitive {
 }
 
 message PrimitiveId {
-    option deprecated = true;
     string namespace = 1;
     string name = 2;
-    string type = 3;
+    string type = 3 [deprecated = true];
 }

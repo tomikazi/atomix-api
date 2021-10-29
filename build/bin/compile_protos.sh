@@ -74,6 +74,8 @@ protoc -I=$proto_path --go_out=$go_import_paths,import_path=github.com/atomix/at
 mkdir -p go/atomix/primitive/extensions/primitive && mv go/atomix/primitive/primitive.pb.go go/atomix/primitive/extensions/primitive/primitive.pb.go
 protoc -I=$proto_path --go_out=$go_import_paths,import_path=github.com/atomix/atomix-api/go/atomix/primitive/extensions/operation,plugins=grpc:go proto/atomix/primitive/operation.proto
 mkdir -p go/atomix/primitive/extensions/operation && mv go/atomix/primitive/operation.pb.go go/atomix/primitive/extensions/operation/operation.pb.go
+protoc -I=$proto_path --go_out=$go_import_paths,import_path=github.com/atomix/atomix-api/go/atomix/primitive/extensions/service,plugins=grpc:go proto/atomix/primitive/service.proto
+mkdir -p go/atomix/primitive/extensions/service && mv go/atomix/primitive/service.pb.go go/atomix/primitive/extensions/service/service.pb.go
 protoc -I=$proto_path --go_out=$go_import_paths,import_path=github.com/atomix/atomix-api/go/atomix/primitive/extensions/session,plugins=grpc:go proto/atomix/primitive/session.proto
 mkdir -p go/atomix/primitive/extensions/session && mv go/atomix/primitive/session.pb.go go/atomix/primitive/extensions/session/session.pb.go
 protoc -I=$proto_path --go_out=$go_import_paths,import_path=github.com/atomix/atomix-api/go/atomix/primitive/extensions/partition,plugins=grpc:go proto/atomix/primitive/partition.proto
@@ -81,6 +83,7 @@ mkdir -p go/atomix/primitive/extensions/partition && mv go/atomix/primitive/part
 
 go_import_paths="${go_import_paths},Matomix/primitive/primitive.proto=github.com/atomix/atomix-api/go/atomix/primitive/extensions/primitive"
 go_import_paths="${go_import_paths},Matomix/primitive/operation.proto=github.com/atomix/atomix-api/go/atomix/primitive/extensions/operation"
+go_import_paths="${go_import_paths},Matomix/primitive/service.proto=github.com/atomix/atomix-api/go/atomix/primitive/extensions/service"
 go_import_paths="${go_import_paths},Matomix/primitive/session.proto=github.com/atomix/atomix-api/go/atomix/primitive/extensions/session"
 go_import_paths="${go_import_paths},Matomix/primitive/partition.proto=github.com/atomix/atomix-api/go/atomix/primitive/extensions/partition"
 

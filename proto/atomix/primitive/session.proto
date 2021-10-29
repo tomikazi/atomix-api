@@ -4,12 +4,13 @@ package atomix.primitive.session;
 
 import "google/protobuf/descriptor.proto";
 
-extend google.protobuf.ServiceOptions {
-    string primitive_type = 71000;
-}
-
 extend google.protobuf.MethodOptions {
     OperationType operation = 70000;
+}
+
+extend google.protobuf.FieldOptions {
+    bool options = 73000;
+    bool session_id = 73001;
 }
 
 // OperationType is an enum for specifying the type of operation

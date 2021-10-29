@@ -17,6 +17,7 @@ limitations under the License.
 syntax = "proto3";
 
 import "atomix/primitive/primitive.proto";
+import "atomix/primitive/service.proto";
 import "atomix/primitive/session.proto";
 import "gogoproto/gogo.proto";
 
@@ -56,8 +57,8 @@ message CloseSessionResponse {
 
 // IndexedMapSession is a service for managing indexed map sessions
 service IndexedMapSession {
-    option (atomix.primitive.service_type) = SESSION;
-    option (atomix.primitive.session.primitive_type) = "IndexedMap";
+    option (atomix.primitive.type) = "IndexedMap";
+    option (atomix.primitive.service.type) = SESSION;
 
     rpc OpenSession (OpenSessionRequest) returns (OpenSessionResponse) {
         option (atomix.primitive.session.operation) = OPEN;

@@ -32,17 +32,20 @@
     - [RequestHeaders](#atomix.primitive.RequestHeaders)
     - [ResponseHeaders](#atomix.primitive.ResponseHeaders)
   
-    - [ServiceType](#atomix.primitive.ServiceType)
-  
-    - [File-level Extensions](#atomix/primitive/primitive.proto-extensions)
     - [File-level Extensions](#atomix/primitive/primitive.proto-extensions)
     - [File-level Extensions](#atomix/primitive/primitive.proto-extensions)
   
     - [Primitive](#atomix.primitive.Primitive)
   
+- [atomix/primitive/service.proto](#atomix/primitive/service.proto)
+    - [ServiceType](#atomix.primitive.service.ServiceType)
+  
+    - [File-level Extensions](#atomix/primitive/service.proto-extensions)
+  
 - [atomix/primitive/session.proto](#atomix/primitive/session.proto)
     - [OperationType](#atomix.primitive.session.OperationType)
   
+    - [File-level Extensions](#atomix/primitive/session.proto-extensions)
     - [File-level Extensions](#atomix/primitive/session.proto-extensions)
     - [File-level Extensions](#atomix/primitive/session.proto-extensions)
   
@@ -254,7 +257,7 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 | ----- | ---- | ----- | ----------- |
 | namespace | [string](#string) |  |  |
 | name | [string](#string) |  |  |
-| type | [string](#string) |  |  |
+| type | [string](#string) |  | **Deprecated.**  |
 
 
 
@@ -294,18 +297,6 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 
  
 
-
-<a name="atomix.primitive.ServiceType"></a>
-
-### ServiceType
-
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| PRIMITIVE | 0 |  |
-| SESSION | 1 |  |
-
-
  
 
 
@@ -315,7 +306,6 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 | Extension | Type | Base | Number | Description |
 | --------- | ---- | ---- | ------ | ----------- |
 | partitioned | bool | .google.protobuf.ServiceOptions | 50001 |  |
-| service_type | ServiceType | .google.protobuf.ServiceOptions | 80000 |  |
 | type | string | .google.protobuf.ServiceOptions | 50000 |  |
 
  
@@ -331,6 +321,42 @@ Primitive is a service for managing primitive
 | Create | [CreateRequest](#atomix.primitive.CreateRequest) | [CreateResponse](#atomix.primitive.CreateResponse) | Create creates a primitive |
 | Close | [CloseRequest](#atomix.primitive.CloseRequest) | [CloseResponse](#atomix.primitive.CloseResponse) | Close closes a primitive |
 | Delete | [DeleteRequest](#atomix.primitive.DeleteRequest) | [DeleteResponse](#atomix.primitive.DeleteResponse) | Delete deletes a primitive |
+
+ 
+
+
+
+<a name="atomix/primitive/service.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## atomix/primitive/service.proto
+
+
+ 
+
+
+<a name="atomix.primitive.service.ServiceType"></a>
+
+### ServiceType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| PRIMITIVE | 0 |  |
+| SESSION | 1 |  |
+
+
+ 
+
+
+<a name="atomix/primitive/service.proto-extensions"></a>
+
+### File-level Extensions
+| Extension | Type | Base | Number | Description |
+| --------- | ---- | ---- | ------ | ----------- |
+| type | ServiceType | .google.protobuf.ServiceOptions | 80000 |  |
+
+ 
 
  
 
@@ -364,8 +390,9 @@ OperationType is an enum for specifying the type of operation
 ### File-level Extensions
 | Extension | Type | Base | Number | Description |
 | --------- | ---- | ---- | ------ | ----------- |
+| options | bool | .google.protobuf.FieldOptions | 73000 |  |
+| session_id | bool | .google.protobuf.FieldOptions | 73001 |  |
 | operation | OperationType | .google.protobuf.MethodOptions | 70000 |  |
-| primitive_type | string | .google.protobuf.ServiceOptions | 71000 |  |
 
  
 

@@ -17,6 +17,7 @@ limitations under the License.
 syntax = "proto3";
 
 import "atomix/primitive/primitive.proto";
+import "atomix/primitive/service.proto";
 import "atomix/primitive/session.proto";
 import "gogoproto/gogo.proto";
 
@@ -44,8 +45,8 @@ message CloseSessionResponse {
 
 // ListSession is a service for managing list sessions
 service ListSession {
-    option (atomix.primitive.service_type) = SESSION;
-    option (atomix.primitive.session.primitive_type) = "List";
+    option (atomix.primitive.type) = "List";
+    option (atomix.primitive.service.type) = SESSION;
 
     rpc OpenSession (OpenSessionRequest) returns (OpenSessionResponse) {
         option (atomix.primitive.session.operation) = OPEN;

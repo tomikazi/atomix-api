@@ -90,6 +90,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| primitive_id | [string](#string) |  |  |
 | options | [MapSessionOptions](#atomix.primitive.map.v1.MapSessionOptions) |  |  |
 
 

@@ -97,7 +97,8 @@ class Object(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionRequest(betterproto.Message):
-    options: "ValueSessionOptions" = betterproto.message_field(1)
+    primitive_id: str = betterproto.string_field(1)
+    options: "ValueSessionOptions" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -193,11 +194,12 @@ class ValueSessionStub(betterproto.ServiceStub):
     """Value is a service for a value primitive"""
 
     async def open_session(
-        self, *, options: "ValueSessionOptions" = None
+        self, *, primitive_id: str = "", options: "ValueSessionOptions" = None
     ) -> "OpenSessionResponse":
         """Set sets the value"""
 
         request = OpenSessionRequest()
+        request.primitive_id = primitive_id
         if options is not None:
             request.options = options
 

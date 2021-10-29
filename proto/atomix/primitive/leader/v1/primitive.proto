@@ -67,7 +67,7 @@ message Latch {
 // LeaderLatch is a service for a leader latch primitive
 service LeaderLatch {
     option (atomix.primitive.type) = "LeaderLatch";
-    option (atomix.primitive.service.type) = PRIMITIVE;
+    option (atomix.service.type) = PRIMITIVE;
 
     // Latch attempts to acquire the leader latch
     rpc Latch (LatchRequest) returns (LatchResponse) {

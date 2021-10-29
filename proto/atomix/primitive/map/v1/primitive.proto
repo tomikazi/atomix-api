@@ -122,7 +122,7 @@ message Value {
 // Map is a service for a map primitive
 service Map {
     option (atomix.primitive.type) = "Map";
-    option (atomix.primitive.service.type) = PRIMITIVE;
+    option (atomix.service.type) = PRIMITIVE;
     option (atomix.primitive.partitioned) = true;
 
     // Size returns the size of the map

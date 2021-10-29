@@ -154,7 +154,7 @@ message Entry {
 // IndexedMap is a service for a sorted/indexed map primitive
 service IndexedMap {
     option (atomix.primitive.type) = "IndexedMap";
-    option (atomix.primitive.service.type) = PRIMITIVE;
+    option (atomix.service.type) = PRIMITIVE;
 
     // Size returns the size of the map
     rpc Size (SizeRequest) returns (SizeResponse) {

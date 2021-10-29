@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package atomix.primitive.session;
+package atomix.session;
 
 import "google/protobuf/descriptor.proto";
 
@@ -10,7 +10,8 @@ extend google.protobuf.MethodOptions {
 
 extend google.protobuf.FieldOptions {
     bool options = 73000;
-    bool session_id = 73001;
+    bool primitive_id = 73001;
+    bool session_id = 73002;
 }
 
 // OperationType is an enum for specifying the type of operation

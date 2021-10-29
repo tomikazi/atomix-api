@@ -73,7 +73,8 @@ class LockInstance(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionRequest(betterproto.Message):
-    options: "LockSessionOptions" = betterproto.message_field(1)
+    primitive_id: str = betterproto.string_field(1)
+    options: "LockSessionOptions" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -152,11 +153,12 @@ class LockSessionStub(betterproto.ServiceStub):
     """Lock is a service for a lock primitive"""
 
     async def open_session(
-        self, *, options: "LockSessionOptions" = None
+        self, *, primitive_id: str = "", options: "LockSessionOptions" = None
     ) -> "OpenSessionResponse":
         """Lock attempts to acquire the lock"""
 
         request = OpenSessionRequest()
+        request.primitive_id = primitive_id
         if options is not None:
             request.options = options
 

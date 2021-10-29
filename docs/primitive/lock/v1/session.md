@@ -66,6 +66,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| primitive_id | [string](#string) |  |  |
 | options | [LockSessionOptions](#atomix.primitive.lock.v1.LockSessionOptions) |  |  |
 
 

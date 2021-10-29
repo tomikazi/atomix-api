@@ -82,7 +82,8 @@ class Latch(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionRequest(betterproto.Message):
-    options: "LeaderLatchSessionOptions" = betterproto.message_field(1)
+    primitive_id: str = betterproto.string_field(1)
+    options: "LeaderLatchSessionOptions" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -158,11 +159,12 @@ class LeaderLatchSessionStub(betterproto.ServiceStub):
     """LeaderLatch is a service for a leader latch primitive"""
 
     async def open_session(
-        self, *, options: "LeaderLatchSessionOptions" = None
+        self, *, primitive_id: str = "", options: "LeaderLatchSessionOptions" = None
     ) -> "OpenSessionResponse":
         """Latch attempts to acquire the leader latch"""
 
         request = OpenSessionRequest()
+        request.primitive_id = primitive_id
         if options is not None:
             request.options = options
 

@@ -16,7 +16,7 @@ limitations under the License.
 
 syntax = "proto3";
 
-package atomix.management.driver;
+package atomix.management.driver.v1;
 
 import "atomix/protocol/protocol.proto";
 import "gogoproto/gogo.proto";

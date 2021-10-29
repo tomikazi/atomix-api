@@ -69,7 +69,7 @@ message Value {
 // Counter is a service for a counter primitive
 service Counter {
     option (atomix.primitive.type) = "Counter";
-    option (atomix.primitive.service.type) = PRIMITIVE;
+    option (atomix.service.type) = PRIMITIVE;
 
     // Set sets the counter value
     rpc Set (SetRequest) returns (SetResponse) {

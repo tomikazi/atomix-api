@@ -154,7 +154,8 @@ class Element(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionRequest(betterproto.Message):
-    options: "SetSessionOptions" = betterproto.message_field(1)
+    primitive_id: str = betterproto.string_field(1)
+    options: "SetSessionOptions" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -285,11 +286,12 @@ class SetSessionStub(betterproto.ServiceStub):
     """Set is a service for a set primitive"""
 
     async def open_session(
-        self, *, options: "SetSessionOptions" = None
+        self, *, primitive_id: str = "", options: "SetSessionOptions" = None
     ) -> "OpenSessionResponse":
         """Size gets the number of elements in the set"""
 
         request = OpenSessionRequest()
+        request.primitive_id = primitive_id
         if options is not None:
             request.options = options
 

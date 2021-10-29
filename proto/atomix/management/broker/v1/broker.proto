@@ -16,13 +16,14 @@ limitations under the License.
 
 syntax = "proto3";
 
-package atomix.management.broker;
+package atomix.management.broker.v1;
 
-import "atomix/primitive/primitive.proto";
 import "gogoproto/gogo.proto";
 
 message PrimitiveId {
-    atomix.primitive.PrimitiveId id = 1 [(gogoproto.nullable) = false, (gogoproto.embed) = true];
+    string type = 1;
+    string namespace = 2;
+    string name = 3;
 }
 
 message PrimitiveAddress {

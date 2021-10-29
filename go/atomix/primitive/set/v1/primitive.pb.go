@@ -6,9 +6,9 @@ package set
 import (
 	context "context"
 	fmt "fmt"
-	_ "github.com/atomix/atomix-api/go/atomix/primitive"
 	_ "github.com/atomix/atomix-api/go/atomix/primitive/extensions/operation"
 	_ "github.com/atomix/atomix-api/go/atomix/primitive/extensions/partition"
+	_ "github.com/atomix/atomix-api/go/atomix/primitive/extensions/primitive"
 	_ "github.com/atomix/atomix-api/go/atomix/primitive/extensions/service"
 	meta "github.com/atomix/atomix-api/go/atomix/primitive/meta"
 	_ "github.com/gogo/protobuf/gogoproto"

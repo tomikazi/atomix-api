@@ -135,7 +135,7 @@ message Entry {
 // Log is a service for a log primitive
 service Log {
     option (atomix.primitive.type) = "Log";
-    option (atomix.primitive.service.type) = PRIMITIVE;
+    option (atomix.service.type) = PRIMITIVE;
 
     // Size returns the size of the log
     rpc Size (SizeRequest) returns (SizeResponse) {

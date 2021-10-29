@@ -101,7 +101,7 @@ message Element {
 // Set is a service for a set primitive
 service Set {
     option (atomix.primitive.type) = "Set";
-    option (atomix.primitive.service.type) = PRIMITIVE;
+    option (atomix.service.type) = PRIMITIVE;
     option (atomix.primitive.partitioned) = true;
 
     // Size gets the number of elements in the set

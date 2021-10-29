@@ -91,7 +91,8 @@ class Value(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionRequest(betterproto.Message):
-    options: "CounterSessionOptions" = betterproto.message_field(1)
+    primitive_id: str = betterproto.string_field(1)
+    options: "CounterSessionOptions" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -182,11 +183,12 @@ class CounterSessionStub(betterproto.ServiceStub):
     """Counter is a service for a counter primitive"""
 
     async def open_session(
-        self, *, options: "CounterSessionOptions" = None
+        self, *, primitive_id: str = "", options: "CounterSessionOptions" = None
     ) -> "OpenSessionResponse":
         """Set sets the counter value"""
 
         request = OpenSessionRequest()
+        request.primitive_id = primitive_id
         if options is not None:
             request.options = options
 

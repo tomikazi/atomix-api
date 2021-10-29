@@ -73,7 +73,7 @@ message Object {
 // Value is a service for a value primitive
 service Value {
     option (atomix.primitive.type) = "Value";
-    option (atomix.primitive.service.type) = PRIMITIVE;
+    option (atomix.service.type) = PRIMITIVE;
 
     // Set sets the value
     rpc Set (SetRequest) returns (SetResponse) {

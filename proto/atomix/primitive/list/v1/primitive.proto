@@ -138,7 +138,7 @@ message Value {
 // List is a service for a list primitive
 service List {
     option (atomix.primitive.type) = "List";
-    option (atomix.primitive.service.type) = PRIMITIVE;
+    option (atomix.service.type) = PRIMITIVE;
 
     // Size gets the number of elements in the list
     rpc Size (SizeRequest) returns (SizeResponse) {

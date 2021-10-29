@@ -66,6 +66,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| primitive_id | [string](#string) |  |  |
 | options | [CounterSessionOptions](#atomix.primitive.counter.v1.CounterSessionOptions) |  |  |
 
 

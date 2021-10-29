@@ -18,73 +18,9 @@ syntax = "proto3";
 
 package atomix.primitive;
 
-import "atomix/primitive/meta/timestamp.proto";
-import "gogoproto/gogo.proto";
 import "google/protobuf/descriptor.proto";
 
 extend google.protobuf.ServiceOptions {
     string type = 50000;
     bool partitioned = 50001;
-}
-
-message RequestHeaders {
-    option deprecated = true;
-    PrimitiveId primitive_id = 1 [(gogoproto.customname) = "PrimitiveID", (gogoproto.nullable) = false];
-    string cluster_key = 2;
-    atomix.primitive.meta.Timestamp timestamp = 3;
-}
-
-message ResponseHeaders {
-    option deprecated = true;
-    atomix.primitive.meta.Timestamp timestamp = 1;
-}
-
-message CreateRequest {
-    option deprecated = true;
-    RequestHeaders headers = 1 [(gogoproto.nullable) = false];
-}
-
-message CreateResponse {
-    option deprecated = true;
-    ResponseHeaders headers = 1 [(gogoproto.nullable) = false];
-}
-
-message CloseRequest {
-    option deprecated = true;
-    RequestHeaders headers = 1 [(gogoproto.nullable) = false];
-}
-
-message CloseResponse {
-    option deprecated = true;
-    ResponseHeaders headers = 1 [(gogoproto.nullable) = false];
-}
-
-message DeleteRequest {
-    option deprecated = true;
-    RequestHeaders headers = 1 [(gogoproto.nullable) = false];
-}
-
-message DeleteResponse {
-    option deprecated = true;
-    ResponseHeaders headers = 1 [(gogoproto.nullable) = false];
-}
-
-// Primitive is a service for managing primitive
-service Primitive {
-    option deprecated = true;
-
-    // Create creates a primitive
-    rpc Create (CreateRequest) returns (CreateResponse);
-
-    // Close closes a primitive
-    rpc Close (CloseRequest) returns (CloseResponse);
-
-    // Delete deletes a primitive
-    rpc Delete (DeleteRequest) returns (DeleteResponse);
-}
-
-message PrimitiveId {
-    string namespace = 1;
-    string name = 2;
-    string type = 3 [deprecated = true];
 }

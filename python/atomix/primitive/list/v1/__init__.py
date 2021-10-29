@@ -215,7 +215,8 @@ class Value(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionRequest(betterproto.Message):
-    options: "ListSessionOptions" = betterproto.message_field(1)
+    primitive_id: str = betterproto.string_field(1)
+    options: "ListSessionOptions" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -381,11 +382,12 @@ class ListSessionStub(betterproto.ServiceStub):
     """List is a service for a list primitive"""
 
     async def open_session(
-        self, *, options: "ListSessionOptions" = None
+        self, *, primitive_id: str = "", options: "ListSessionOptions" = None
     ) -> "OpenSessionResponse":
         """Size gets the number of elements in the list"""
 
         request = OpenSessionRequest()
+        request.primitive_id = primitive_id
         if options is not None:
             request.options = options
 

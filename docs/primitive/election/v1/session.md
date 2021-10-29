@@ -66,6 +66,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| primitive_id | [string](#string) |  |  |
 | options | [LeaderElectionSessionOptions](#atomix.primitive.election.v1.LeaderElectionSessionOptions) |  |  |
 
 

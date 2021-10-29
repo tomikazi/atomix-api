@@ -66,6 +66,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| primitive_id | [string](#string) |  |  |
 | options | [LeaderLatchSessionOptions](#atomix.primitive.leader.v1.LeaderLatchSessionOptions) |  |  |
 
 

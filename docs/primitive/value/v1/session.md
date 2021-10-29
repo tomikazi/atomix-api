@@ -59,6 +59,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| primitive_id | [string](#string) |  |  |
 | options | [ValueSessionOptions](#atomix.primitive.value.v1.ValueSessionOptions) |  |  |
 
 

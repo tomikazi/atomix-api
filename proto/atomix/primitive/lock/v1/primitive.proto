@@ -62,7 +62,7 @@ message LockInstance {
 // Lock is a service for a lock primitive
 service Lock {
     option (atomix.primitive.type) = "Lock";
-    option (atomix.primitive.service.type) = PRIMITIVE;
+    option (atomix.service.type) = PRIMITIVE;
 
     // Lock attempts to acquire the lock
     rpc Lock (LockRequest) returns (LockResponse) {

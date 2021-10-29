@@ -146,7 +146,8 @@ class Term(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionRequest(betterproto.Message):
-    options: "LeaderElectionSessionOptions" = betterproto.message_field(1)
+    primitive_id: str = betterproto.string_field(1)
+    options: "LeaderElectionSessionOptions" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -271,11 +272,12 @@ class LeaderElectionSessionStub(betterproto.ServiceStub):
     """LeaderElection is a service for a leader election primitive"""
 
     async def open_session(
-        self, *, options: "LeaderElectionSessionOptions" = None
+        self, *, primitive_id: str = "", options: "LeaderElectionSessionOptions" = None
     ) -> "OpenSessionResponse":
         """Enter enters the leader election"""
 
         request = OpenSessionRequest()
+        request.primitive_id = primitive_id
         if options is not None:
             request.options = options
 

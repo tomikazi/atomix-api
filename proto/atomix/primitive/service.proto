@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package atomix.primitive.service;
+package atomix.service;
 
 import "google/protobuf/descriptor.proto";
 

@@ -24,11 +24,12 @@ import "gogoproto/gogo.proto";
 package atomix.primitive.leader.v1;
 
 message OpenSessionRequest {
-    LeaderLatchSessionOptions options = 1 [(gogoproto.nullable) = false];
+    string primitive_id = 1 [(atomix.session.primitive_id) = true, (gogoproto.customname) = "PrimitiveID", (gogoproto.casttype) = "github.com/atomix/atomix-api/go/atomix/primitive.ID"];
+    LeaderLatchSessionOptions options = 2 [(atomix.session.options) = true, (gogoproto.nullable) = false];
 }
 
 message OpenSessionResponse {
-    string session_id = 1 [(gogoproto.customname) = "SessionID"];
+    string session_id = 1 [(atomix.session.session_id) = true, (gogoproto.customname) = "SessionID"];
 }
 
 message LeaderLatchSessionOptions {
@@ -36,7 +37,7 @@ message LeaderLatchSessionOptions {
 }
 
 message CloseSessionRequest {
-    string session_id = 1 [(gogoproto.customname) = "SessionID"];
+    string session_id = 1 [(atomix.session.session_id) = true, (gogoproto.customname) = "SessionID"];
 }
 
 message CloseSessionResponse {
@@ -46,13 +47,13 @@ message CloseSessionResponse {
 // LeaderLatchSession is a service for managing leader latch sessions
 service LeaderLatchSession {
     option (atomix.primitive.type) = "LeaderLatch";
-    option (atomix.primitive.service.type) = SESSION;
+    option (atomix.service.type) = SESSION;
 
     rpc OpenSession (OpenSessionRequest) returns (OpenSessionResponse) {
-        option (atomix.primitive.session.operation) = OPEN;
+        option (atomix.session.operation) = OPEN;
     }
 
     rpc CloseSession (CloseSessionRequest) returns (CloseSessionResponse) {
-        option (atomix.primitive.session.operation) = CLOSE;
+        option (atomix.session.operation) = CLOSE;
     }
 }

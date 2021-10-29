@@ -185,7 +185,8 @@ class Value(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionRequest(betterproto.Message):
-    options: "MapSessionOptions" = betterproto.message_field(1)
+    primitive_id: str = betterproto.string_field(1)
+    options: "MapSessionOptions" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -333,11 +334,12 @@ class MapSessionStub(betterproto.ServiceStub):
     """Map is a service for a map primitive"""
 
     async def open_session(
-        self, *, options: "MapSessionOptions" = None
+        self, *, primitive_id: str = "", options: "MapSessionOptions" = None
     ) -> "OpenSessionResponse":
         """Size returns the size of the map"""
 
         request = OpenSessionRequest()
+        request.primitive_id = primitive_id
         if options is not None:
             request.options = options
 

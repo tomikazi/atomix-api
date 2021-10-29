@@ -214,7 +214,8 @@ class Entry(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionRequest(betterproto.Message):
-    options: "LogSessionOptions" = betterproto.message_field(1)
+    primitive_id: str = betterproto.string_field(1)
+    options: "LogSessionOptions" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -376,11 +377,12 @@ class LogSessionStub(betterproto.ServiceStub):
     """Log is a service for a log primitive"""
 
     async def open_session(
-        self, *, options: "LogSessionOptions" = None
+        self, *, primitive_id: str = "", options: "LogSessionOptions" = None
     ) -> "OpenSessionResponse":
         """Size returns the size of the log"""
 
         request = OpenSessionRequest()
+        request.primitive_id = primitive_id
         if options is not None:
             request.options = options
 

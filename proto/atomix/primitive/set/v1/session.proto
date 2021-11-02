@@ -29,7 +29,7 @@ message OpenSessionRequest {
 }
 
 message OpenSessionResponse {
-    string session_id = 1 [(atomix.session.session_id) = true, (gogoproto.customname) = "SessionID"];
+    string session_id = 1 [(atomix.session.session_id) = true, (gogoproto.customname) = "SessionID", (gogoproto.casttype) = "github.com/atomix/atomix-api/go/atomix/primitive.SessionID"];
 }
 
 message SetSessionOptions {
@@ -49,7 +49,7 @@ enum SetCacheStrategy {
 }
 
 message CloseSessionRequest {
-    string session_id = 1 [(atomix.session.session_id) = true, (gogoproto.customname) = "SessionID"];
+    string session_id = 1 [(atomix.session.session_id) = true, (gogoproto.customname) = "SessionID", (gogoproto.casttype) = "github.com/atomix/atomix-api/go/atomix/primitive.SessionID"];
 }
 
 message CloseSessionResponse {

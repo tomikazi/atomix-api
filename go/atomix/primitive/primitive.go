@@ -16,3 +16,6 @@ package primitive
 
 // ID is a primitive identifier
 type ID string
+
+// SessionID is a primitive session identifier
+type SessionID int

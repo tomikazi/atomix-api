@@ -16,20 +16,31 @@ limitations under the License.
 
 syntax = "proto3";
 
-import "atomix/primitive/primitive.proto";
-import "atomix/primitive/service.proto";
-import "atomix/primitive/session.proto";
+import "atomix/primitive/v1/primitive.proto";
+import "atomix/primitive/v1/service.proto";
+import "atomix/primitive/v1/session.proto";
 import "gogoproto/gogo.proto";
 
 package atomix.primitive.election.v1;
 
 message OpenSessionRequest {
-    string primitive_id = 1 [(atomix.session.primitive_id) = true, (gogoproto.customname) = "PrimitiveID", (gogoproto.casttype) = "github.com/atomix/atomix-api/go/atomix/primitive.ID"];
-    LeaderElectionSessionOptions options = 2 [(atomix.session.options) = true, (gogoproto.nullable) = false];
+    string primitive_id = 1 [
+        (atomix.primitive.v1.session.primitive_id) = true,
+        (gogoproto.customname) = "PrimitiveID",
+        (gogoproto.casttype) = "github.com/atomix/atomix-api/go/atomix/primitive/v1.ID"
+    ];
+    LeaderElectionSessionOptions options = 2 [
+        (atomix.primitive.v1.session.options) = true,
+        (gogoproto.nullable) = false
+    ];
 }
 
 message OpenSessionResponse {
-    string session_id = 1 [(atomix.session.session_id) = true, (gogoproto.customname) = "SessionID", (gogoproto.casttype) = "github.com/atomix/atomix-api/go/atomix/primitive.SessionID"];
+    uint64 session_id = 1 [
+        (atomix.primitive.v1.session.session_id) = true,
+        (gogoproto.customname) = "SessionID",
+        (gogoproto.casttype) = "github.com/atomix/atomix-api/go/atomix/primitive/v1.SessionID"
+    ];
 }
 
 message LeaderElectionSessionOptions {
@@ -37,7 +48,11 @@ message LeaderElectionSessionOptions {
 }
 
 message CloseSessionRequest {
-    string session_id = 1 [(atomix.session.session_id) = true, (gogoproto.customname) = "SessionID", (gogoproto.casttype) = "github.com/atomix/atomix-api/go/atomix/primitive.SessionID"];
+    uint64 session_id = 1 [
+        (atomix.primitive.v1.session.session_id) = true,
+        (gogoproto.customname) = "SessionID",
+        (gogoproto.casttype) = "github.com/atomix/atomix-api/go/atomix/primitive/v1.SessionID"
+    ];
 }
 
 message CloseSessionResponse {
@@ -46,14 +61,14 @@ message CloseSessionResponse {
 
 // LeaderElectionSession is a service for managing leader election sessions
 service LeaderElectionSession {
-    option (atomix.primitive.type) = "LeaderElection";
-    option (atomix.service.type) = SESSION;
+    option (atomix.primitive.v1.type) = "LeaderElection";
+    option (atomix.primitive.v1.service.type) = SESSION;
 
     rpc OpenSession (OpenSessionRequest) returns (OpenSessionResponse) {
-        option (atomix.session.operation) = OPEN;
+        option (atomix.primitive.v1.session.operation) = OPEN;
     }
 
     rpc CloseSession (CloseSessionRequest) returns (CloseSessionResponse) {
-        option (atomix.session.operation) = CLOSE;
+        option (atomix.primitive.v1.session.operation) = CLOSE;
     }
 }

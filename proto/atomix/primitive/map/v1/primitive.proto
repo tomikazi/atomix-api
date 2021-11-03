@@ -19,11 +19,11 @@ syntax = "proto3";
 package atomix.primitive.map.v1;
 
 import "google/protobuf/duration.proto";
-import "atomix/primitive/meta/object.proto";
-import "atomix/primitive/primitive.proto";
-import "atomix/primitive/service.proto";
-import "atomix/primitive/operation.proto";
-import "atomix/primitive/partition.proto";
+import "atomix/primitive/meta/v1/object.proto";
+import "atomix/primitive/v1/primitive.proto";
+import "atomix/primitive/v1/service.proto";
+import "atomix/primitive/v1/operation.proto";
+import "atomix/primitive/v1/partition.proto";
 import "gogoproto/gogo.proto";
 
 message SizeRequest {
@@ -31,39 +31,57 @@ message SizeRequest {
 }
 
 message SizeResponse {
-    uint32 size = 2 [(atomix.primitive.operation.aggregate) = SUM];
+    uint32 size = 2 [
+        (atomix.primitive.v1.operation.aggregate) = SUM
+    ];
 }
 
 message Precondition {
     oneof precondition {
-        atomix.primitive.meta.ObjectMeta metadata = 1;
+        atomix.primitive.meta.v1.ObjectMeta metadata = 1;
     }
 }
 
 message PutRequest {
-    Entry entry = 2 [(gogoproto.nullable) = false];
-    repeated Precondition preconditions = 3 [(gogoproto.nullable) = false];
+    Entry entry = 2 [
+        (gogoproto.nullable) = false
+    ];
+    repeated Precondition preconditions = 3 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message PutResponse {
-    Entry entry = 2 [(gogoproto.nullable) = false];
+    Entry entry = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message GetRequest {
-    string key = 2 [(atomix.primitive.partition.key) = true];
+    string key = 2 [
+        (atomix.primitive.v1.partition.key) = true
+    ];
 }
 
 message GetResponse {
-    Entry entry = 2 [(gogoproto.nullable) = false];
+    Entry entry = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message RemoveRequest {
-    Key key = 2 [(gogoproto.nullable) = false];
-    repeated Precondition preconditions = 3 [(gogoproto.nullable) = false];
+    Key key = 2 [
+        (gogoproto.nullable) = false
+    ];
+    repeated Precondition preconditions = 3 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message RemoveResponse {
-    Entry entry = 2 [(gogoproto.nullable) = false];
+    Entry entry = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message ClearRequest {
@@ -79,7 +97,9 @@ message EntriesRequest {
 }
 
 message EntriesResponse {
-    Entry entry = 2 [(gogoproto.nullable) = false];
+    Entry entry = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message EventsRequest {
@@ -88,12 +108,16 @@ message EventsRequest {
 }
 
 message EventsResponse {
-    Event event = 2 [(gogoproto.nullable) = false];
+    Event event = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message Event {
     Type type = 1;
-    Entry entry = 2 [(gogoproto.nullable) = false];
+    Entry entry = 2 [
+        (gogoproto.nullable) = false
+    ];
 
     enum Type {
         NONE = 0;
@@ -105,68 +129,78 @@ message Event {
 }
 
 message Entry {
-    Key key = 1 [(gogoproto.nullable) = false];
+    Key key = 1 [
+        (gogoproto.nullable) = false
+    ];
     Value value = 2;
 }
 
 message Key {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
-    string key = 2 [(atomix.primitive.partition.key) = true];
+    atomix.primitive.meta.v1.ObjectMeta meta = 1 [
+        (gogoproto.embed) = true,
+        (gogoproto.nullable) = false
+    ];
+    string key = 2 [
+        (atomix.primitive.v1.partition.key) = true
+    ];
 }
 
 message Value {
     bytes value = 1;
-    google.protobuf.Duration ttl = 2 [(gogoproto.customname) = "TTL", (gogoproto.stdduration) = true];
+    google.protobuf.Duration ttl = 2 [
+        (gogoproto.customname) = "TTL",
+        (gogoproto.stdduration) = true
+    ];
 }
 
 // Map is a service for a map primitive
 service Map {
-    option (atomix.primitive.type) = "Map";
-    option (atomix.service.type) = PRIMITIVE;
-    option (atomix.primitive.partitioned) = true;
+    option (atomix.primitive.v1.type) = "Map";
+    option (atomix.primitive.v1.service.type) = PRIMITIVE;
+    option (atomix.primitive.v1.partitioned) = true;
 
     // Size returns the size of the map
     rpc Size (SizeRequest) returns (SizeResponse) {
-        option (atomix.primitive.operation.id) = 1;
-        option (atomix.primitive.operation.type) = QUERY;
+        option (atomix.primitive.v1.operation.id) = 1;
+        option (atomix.primitive.v1.operation.type) = QUERY;
     }
 
     // Put puts an entry into the map
     rpc Put (PutRequest) returns (PutResponse) {
-        option (atomix.primitive.operation.id) = 2;
-        option (atomix.primitive.operation.type) = COMMAND;
-        option (atomix.primitive.partition.strategy) = HASH;
+        option (atomix.primitive.v1.operation.id) = 2;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
+        option (atomix.primitive.v1.partition.strategy) = HASH;
     }
 
     // Get gets the entry for a key
     rpc Get (GetRequest) returns (GetResponse) {
-        option (atomix.primitive.operation.id) = 3;
-        option (atomix.primitive.operation.type) = QUERY;
-        option (atomix.primitive.partition.strategy) = HASH;
+        option (atomix.primitive.v1.operation.id) = 3;
+        option (atomix.primitive.v1.operation.type) = QUERY;
+        option (atomix.primitive.v1.partition.strategy) = HASH;
     }
 
     // Remove removes an entry from the map
     rpc Remove (RemoveRequest) returns (RemoveResponse) {
-        option (atomix.primitive.operation.id) = 4;
-        option (atomix.primitive.operation.type) = COMMAND;
-        option (atomix.primitive.partition.strategy) = HASH;
+        option (atomix.primitive.v1.operation.id) = 4;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
+        option (atomix.primitive.v1.partition.strategy) = HASH;
     }
 
     // Clear removes all entries from the map
     rpc Clear (ClearRequest) returns (ClearResponse) {
-        option (atomix.primitive.operation.id) = 5;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 5;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Events listens for change events
     rpc Events (EventsRequest) returns (stream EventsResponse) {
-        option (atomix.primitive.operation.id) = 6;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 6;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Entries lists all entries in the map
     rpc Entries (EntriesRequest) returns (stream EntriesResponse) {
-        option (atomix.primitive.operation.id) = 7;
-        option (atomix.primitive.operation.type) = QUERY;
+        option (atomix.primitive.v1.operation.id) = 7;
+        option (atomix.primitive.v1.operation.type) = QUERY;
     }
 }

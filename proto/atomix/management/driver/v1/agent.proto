@@ -32,8 +32,13 @@ message ProxyOptions {
 }
 
 message CreateProxyRequest {
-    ProxyId proxy_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "ProxyID"];
-    ProxyOptions options = 2 [(gogoproto.nullable) = false];
+    ProxyId proxy_id = 1 [
+        (gogoproto.nullable) = false,
+        (gogoproto.customname) = "ProxyID"
+    ];
+    ProxyOptions options = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message CreateProxyResponse {
@@ -41,7 +46,10 @@ message CreateProxyResponse {
 }
 
 message DestroyProxyRequest {
-    ProxyId proxy_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "ProxyID"];
+    ProxyId proxy_id = 1 [
+        (gogoproto.nullable) = false,
+        (gogoproto.customname) = "ProxyID"
+    ];
 }
 
 message DestroyProxyResponse {

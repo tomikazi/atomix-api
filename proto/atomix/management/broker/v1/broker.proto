@@ -32,8 +32,13 @@ message PrimitiveAddress {
 }
 
 message RegisterPrimitiveRequest {
-    PrimitiveId primitive_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "PrimitiveID"];
-    PrimitiveAddress address = 2 [(gogoproto.nullable) = false];
+    PrimitiveId primitive_id = 1 [
+        (gogoproto.nullable) = false,
+        (gogoproto.customname) = "PrimitiveID"
+    ];
+    PrimitiveAddress address = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message RegisterPrimitiveResponse {
@@ -41,7 +46,10 @@ message RegisterPrimitiveResponse {
 }
 
 message UnregisterPrimitiveRequest {
-    PrimitiveId primitive_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "PrimitiveID"];
+    PrimitiveId primitive_id = 1 [
+        (gogoproto.nullable) = false,
+        (gogoproto.customname) = "PrimitiveID"
+    ];
 }
 
 message UnregisterPrimitiveResponse {
@@ -49,11 +57,16 @@ message UnregisterPrimitiveResponse {
 }
 
 message LookupPrimitiveRequest {
-    PrimitiveId primitive_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "PrimitiveID"];
+    PrimitiveId primitive_id = 1 [
+        (gogoproto.nullable) = false,
+        (gogoproto.customname) = "PrimitiveID"
+    ];
 }
 
 message LookupPrimitiveResponse {
-    PrimitiveAddress address = 1 [(gogoproto.nullable) = false];
+    PrimitiveAddress address = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 service Broker {

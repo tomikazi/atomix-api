@@ -128,7 +128,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
+| meta | [atomix.primitive.meta.v1.ObjectMeta](#atomix.primitive.meta.v1.ObjectMeta) |  |  |
 | index | [uint64](#uint64) |  |  |
 | value | [bytes](#bytes) |  |  |
 

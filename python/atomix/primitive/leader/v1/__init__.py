@@ -72,7 +72,7 @@ class Event(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class Latch(betterproto.Message):
-    meta: "__meta__.ObjectMeta" = betterproto.message_field(1)
+    meta: "__meta_v1__.ObjectMeta" = betterproto.message_field(1)
     leader: str = betterproto.string_field(2)
     participants: List[str] = betterproto.string_field(3)
 
@@ -91,7 +91,7 @@ class OpenSessionRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionResponse(betterproto.Message):
-    session_id: str = betterproto.string_field(1)
+    session_id: int = betterproto.uint64_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -107,7 +107,7 @@ class LeaderLatchSessionOptions(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CloseSessionRequest(betterproto.Message):
-    session_id: str = betterproto.string_field(1)
+    session_id: int = betterproto.uint64_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -174,7 +174,7 @@ class LeaderLatchSessionStub(betterproto.ServiceStub):
             OpenSessionResponse,
         )
 
-    async def close_session(self, *, session_id: str = "") -> "CloseSessionResponse":
+    async def close_session(self, *, session_id: int = 0) -> "CloseSessionResponse":
         """Get gets the current leader"""
 
         request = CloseSessionRequest()
@@ -187,4 +187,4 @@ class LeaderLatchSessionStub(betterproto.ServiceStub):
         )
 
 
-from ... import meta as __meta__
+from ...meta import v1 as __meta_v1__

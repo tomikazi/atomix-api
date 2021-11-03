@@ -16,52 +16,72 @@ limitations under the License.
 
 syntax = "proto3";
 
-import "atomix/primitive/meta/object.proto";
-import "atomix/primitive/primitive.proto";
-import "atomix/primitive/service.proto";
-import "atomix/primitive/operation.proto";
+import "atomix/primitive/meta/v1/object.proto";
+import "atomix/primitive/v1/primitive.proto";
+import "atomix/primitive/v1/service.proto";
+import "atomix/primitive/v1/operation.proto";
 import "gogoproto/gogo.proto";
 
 package atomix.primitive.election.v1;
 
 message EnterRequest {
-    string candidate_id = 2 [(gogoproto.customname) = "CandidateID"];
+    string candidate_id = 2 [
+        (gogoproto.customname) = "CandidateID"
+    ];
 }
 
 message EnterResponse {
-    Term term = 2 [(gogoproto.nullable) = false];
+    Term term = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message WithdrawRequest {
-    string candidate_id = 2 [(gogoproto.customname) = "CandidateID"];
+    string candidate_id = 2 [
+        (gogoproto.customname) = "CandidateID"
+    ];
 }
 
 message WithdrawResponse {
-    Term term = 2 [(gogoproto.nullable) = false];
+    Term term = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message AnointRequest {
-    string candidate_id = 2 [(gogoproto.customname) = "CandidateID"];
+    string candidate_id = 2 [
+        (gogoproto.customname) = "CandidateID"
+    ];
 }
 
 message AnointResponse {
-    Term term = 2 [(gogoproto.nullable) = false];
+    Term term = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message PromoteRequest {
-    string candidate_id = 2 [(gogoproto.customname) = "CandidateID"];
+    string candidate_id = 2 [
+        (gogoproto.customname) = "CandidateID"
+    ];
 }
 
 message PromoteResponse {
-    Term term = 2 [(gogoproto.nullable) = false];
+    Term term = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message EvictRequest {
-    string candidate_id = 2 [(gogoproto.customname) = "CandidateID"];
+    string candidate_id = 2 [
+        (gogoproto.customname) = "CandidateID"
+    ];
 }
 
 message EvictResponse {
-    Term term = 2 [(gogoproto.nullable) = false];
+    Term term = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message GetTermRequest {
@@ -69,7 +89,9 @@ message GetTermRequest {
 }
 
 message GetTermResponse {
-    Term term = 2 [(gogoproto.nullable) = false];
+    Term term = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message EventsRequest {
@@ -77,12 +99,16 @@ message EventsRequest {
 }
 
 message EventsResponse {
-    Event event = 2 [(gogoproto.nullable) = false];
+    Event event = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message Event {
     Type type = 1;
-    Term term = 2 [(gogoproto.nullable) = false];
+    Term term = 2 [
+        (gogoproto.nullable) = false
+    ];
 
     enum Type {
         NONE = 0;
@@ -91,55 +117,58 @@ message Event {
 }
 
 message Term {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
+    atomix.primitive.meta.v1.ObjectMeta meta = 1 [
+        (gogoproto.embed) = true,
+        (gogoproto.nullable) = false
+    ];
     string leader = 2;
     repeated string candidates = 3;
 }
 
 // LeaderElection is a service for a leader election primitive
 service LeaderElection {
-    option (atomix.primitive.type) = "LeaderElection";
-    option (atomix.service.type) = PRIMITIVE;
+    option (atomix.primitive.v1.type) = "LeaderElection";
+    option (atomix.primitive.v1.service.type) = PRIMITIVE;
 
     // Enter enters the leader election
     rpc Enter (EnterRequest) returns (EnterResponse) {
-        option (atomix.primitive.operation.id) = 1;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 1;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Withdraw withdraws a candidate from the leader election
     rpc Withdraw (WithdrawRequest) returns (WithdrawResponse) {
-        option (atomix.primitive.operation.id) = 2;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 2;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Anoint anoints a candidate leader
     rpc Anoint (AnointRequest) returns (AnointResponse) {
-        option (atomix.primitive.operation.id) = 3;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 3;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Promote promotes a candidate
     rpc Promote (PromoteRequest) returns (PromoteResponse) {
-        option (atomix.primitive.operation.id) = 4;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 4;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Evict evicts a candidate from the election
     rpc Evict (EvictRequest) returns (EvictResponse) {
-        option (atomix.primitive.operation.id) = 5;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 5;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // GetTerm gets the current leadership term
     rpc GetTerm (GetTermRequest) returns (GetTermResponse) {
-        option (atomix.primitive.operation.id) = 6;
-        option (atomix.primitive.operation.type) = QUERY;
+        option (atomix.primitive.v1.operation.id) = 6;
+        option (atomix.primitive.v1.operation.type) = QUERY;
     }
 
     // Events listens for leadership events
     rpc Events (EventsRequest) returns (stream EventsResponse) {
-        option (atomix.primitive.operation.id) = 7;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 7;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 }

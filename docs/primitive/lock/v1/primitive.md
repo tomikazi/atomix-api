@@ -65,7 +65,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
+| meta | [atomix.primitive.meta.v1.ObjectMeta](#atomix.primitive.meta.v1.ObjectMeta) |  |  |
 | state | [LockInstance.State](#atomix.primitive.lock.v1.LockInstance.State) |  |  |
 
 

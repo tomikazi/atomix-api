@@ -18,10 +18,10 @@ syntax = "proto3";
 
 package atomix.primitive.value.v1;
 
-import "atomix/primitive/primitive.proto";
-import "atomix/primitive/service.proto";
-import "atomix/primitive/operation.proto";
-import "atomix/primitive/meta/object.proto";
+import "atomix/primitive/v1/primitive.proto";
+import "atomix/primitive/v1/service.proto";
+import "atomix/primitive/v1/operation.proto";
+import "atomix/primitive/meta/v1/object.proto";
 import "gogoproto/gogo.proto";
 
 message GetRequest {
@@ -29,22 +29,30 @@ message GetRequest {
 }
 
 message GetResponse {
-    Object value = 2 [(gogoproto.nullable) = false];
+    Object value = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message Precondition {
     oneof precondition {
-        atomix.primitive.meta.ObjectMeta metadata = 1;
+        atomix.primitive.meta.v1.ObjectMeta metadata = 1;
     }
 }
 
 message SetRequest {
-    Object value = 2 [(gogoproto.nullable) = false];
-    repeated Precondition preconditions = 3 [(gogoproto.nullable) = false];
+    Object value = 2 [
+        (gogoproto.nullable) = false
+    ];
+    repeated Precondition preconditions = 3 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message SetResponse {
-    Object value = 2 [(gogoproto.nullable) = false];
+    Object value = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message EventsRequest {
@@ -52,12 +60,16 @@ message EventsRequest {
 }
 
 message EventsResponse {
-    Event event = 2 [(gogoproto.nullable) = false];
+    Event event = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message Event {
     Type type = 1;
-    Object value = 2 [(gogoproto.nullable) = false];
+    Object value = 2 [
+        (gogoproto.nullable) = false
+    ];
 
     enum Type {
         NONE = 0;
@@ -66,30 +78,33 @@ message Event {
 }
 
 message Object {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
+    atomix.primitive.meta.v1.ObjectMeta meta = 1 [
+        (gogoproto.embed) = true,
+        (gogoproto.nullable) = false
+    ];
     bytes value = 2;
 }
 
 // Value is a service for a value primitive
 service Value {
-    option (atomix.primitive.type) = "Value";
-    option (atomix.service.type) = PRIMITIVE;
+    option (atomix.primitive.v1.type) = "Value";
+    option (atomix.primitive.v1.service.type) = PRIMITIVE;
 
     // Set sets the value
     rpc Set (SetRequest) returns (SetResponse) {
-        option (atomix.primitive.operation.id) = 1;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 1;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Get gets the value
     rpc Get (GetRequest) returns (GetResponse) {
-        option (atomix.primitive.operation.id) = 2;
-        option (atomix.primitive.operation.type) = QUERY;
+        option (atomix.primitive.v1.operation.id) = 2;
+        option (atomix.primitive.v1.operation.type) = QUERY;
     }
 
     // Events listens for value change events
     rpc Events (EventsRequest) returns (stream EventsResponse) {
-        option (atomix.primitive.operation.id) = 3;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 3;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 }

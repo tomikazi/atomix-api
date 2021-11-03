@@ -16,9 +16,9 @@ limitations under the License.
 
 syntax = "proto3";
 
-import "atomix/primitive/primitive.proto";
-import "atomix/primitive/service.proto";
-import "atomix/primitive/operation.proto";
+import "atomix/primitive/v1/primitive.proto";
+import "atomix/primitive/v1/service.proto";
+import "atomix/primitive/v1/operation.proto";
 import "gogoproto/gogo.proto";
 
 package atomix.primitive.counter.v1;
@@ -55,7 +55,9 @@ message Precondition {
 
 message SetRequest {
     int64 value = 2;
-    repeated Precondition preconditions = 3 [(gogoproto.nullable) = false];
+    repeated Precondition preconditions = 3 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message SetResponse {
@@ -68,30 +70,30 @@ message Value {
 
 // Counter is a service for a counter primitive
 service Counter {
-    option (atomix.primitive.type) = "Counter";
-    option (atomix.service.type) = PRIMITIVE;
+    option (atomix.primitive.v1.type) = "Counter";
+    option (atomix.primitive.v1.service.type) = PRIMITIVE;
 
     // Set sets the counter value
     rpc Set (SetRequest) returns (SetResponse) {
-        option (atomix.primitive.operation.id) = 1;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 1;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Get gets the current counter value
     rpc Get (GetRequest) returns (GetResponse) {
-        option (atomix.primitive.operation.id) = 2;
-        option (atomix.primitive.operation.type) = QUERY;
+        option (atomix.primitive.v1.operation.id) = 2;
+        option (atomix.primitive.v1.operation.type) = QUERY;
     }
 
     // Increment increments the counter value
     rpc Increment (IncrementRequest) returns (IncrementResponse) {
-        option (atomix.primitive.operation.id) = 3;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 3;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Decrement decrements the counter value
     rpc Decrement (DecrementRequest) returns (DecrementResponse) {
-        option (atomix.primitive.operation.id) = 4;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 4;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 }

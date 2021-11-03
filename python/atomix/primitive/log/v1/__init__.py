@@ -204,7 +204,7 @@ class Event(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class Entry(betterproto.Message):
-    meta: "__meta__.ObjectMeta" = betterproto.message_field(1)
+    meta: "__meta_v1__.ObjectMeta" = betterproto.message_field(1)
     index: int = betterproto.uint64_field(2)
     value: bytes = betterproto.bytes_field(3)
 
@@ -223,7 +223,7 @@ class OpenSessionRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionResponse(betterproto.Message):
-    session_id: str = betterproto.string_field(1)
+    session_id: int = betterproto.uint64_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -239,7 +239,7 @@ class LogSessionOptions(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CloseSessionRequest(betterproto.Message):
-    session_id: str = betterproto.string_field(1)
+    session_id: int = betterproto.uint64_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -392,7 +392,7 @@ class LogSessionStub(betterproto.ServiceStub):
             OpenSessionResponse,
         )
 
-    async def close_session(self, *, session_id: str = "") -> "CloseSessionResponse":
+    async def close_session(self, *, session_id: int = 0) -> "CloseSessionResponse":
         """Appends appends an entry into the log"""
 
         request = CloseSessionRequest()
@@ -405,4 +405,4 @@ class LogSessionStub(betterproto.ServiceStub):
         )
 
 
-from ... import meta as __meta__
+from ...meta import v1 as __meta_v1__

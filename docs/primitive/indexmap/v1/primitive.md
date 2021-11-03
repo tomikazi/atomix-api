@@ -289,7 +289,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| metadata | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
+| metadata | [atomix.primitive.meta.v1.ObjectMeta](#atomix.primitive.meta.v1.ObjectMeta) |  |  |
 
 
 
@@ -421,7 +421,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| meta | [atomix.primitive.meta.ObjectMeta](#atomix.primitive.meta.ObjectMeta) |  |  |
+| meta | [atomix.primitive.meta.v1.ObjectMeta](#atomix.primitive.meta.v1.ObjectMeta) |  |  |
 | value | [bytes](#bytes) |  |  |
 | ttl | [google.protobuf.Duration](#google.protobuf.Duration) |  |  |
 

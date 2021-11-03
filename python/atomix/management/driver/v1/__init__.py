@@ -62,8 +62,7 @@ class DestroyProxyResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class AgentId(betterproto.Message):
-    namespace: str = betterproto.string_field(1)
-    name: str = betterproto.string_field(2)
+    protocol_id: "___protocol_v1__.ProtocolId" = betterproto.message_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -80,7 +79,7 @@ class AgentAddress(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class AgentConfig(betterproto.Message):
-    protocol: "___protocol__.ProtocolConfig" = betterproto.message_field(1)
+    protocol: "___protocol_v1__.ProtocolConfig" = betterproto.message_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -219,4 +218,4 @@ class DriverStub(betterproto.ServiceStub):
         )
 
 
-from .... import protocol as ___protocol__
+from ....protocol import v1 as ___protocol_v1__

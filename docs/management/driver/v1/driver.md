@@ -3,16 +3,6 @@
 
 ## Table of Contents
 
-- [atomix/management/driver/v1/agent.proto](#atomix/management/driver/v1/agent.proto)
-    - [CreateProxyRequest](#atomix.management.driver.v1.CreateProxyRequest)
-    - [CreateProxyResponse](#atomix.management.driver.v1.CreateProxyResponse)
-    - [DestroyProxyRequest](#atomix.management.driver.v1.DestroyProxyRequest)
-    - [DestroyProxyResponse](#atomix.management.driver.v1.DestroyProxyResponse)
-    - [ProxyId](#atomix.management.driver.v1.ProxyId)
-    - [ProxyOptions](#atomix.management.driver.v1.ProxyOptions)
-  
-    - [Agent](#atomix.management.driver.v1.Agent)
-  
 - [atomix/management/driver/v1/driver.proto](#atomix/management/driver/v1/driver.proto)
     - [AgentAddress](#atomix.management.driver.v1.AgentAddress)
     - [AgentConfig](#atomix.management.driver.v1.AgentConfig)
@@ -27,117 +17,6 @@
     - [Driver](#atomix.management.driver.v1.Driver)
   
 - [Scalar Value Types](#scalar-value-types)
-
-
-
-<a name="atomix/management/driver/v1/agent.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## atomix/management/driver/v1/agent.proto
-
-
-
-<a name="atomix.management.driver.v1.CreateProxyRequest"></a>
-
-### CreateProxyRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proxy_id | [ProxyId](#atomix.management.driver.v1.ProxyId) |  |  |
-| options | [ProxyOptions](#atomix.management.driver.v1.ProxyOptions) |  |  |
-
-
-
-
-
-
-<a name="atomix.management.driver.v1.CreateProxyResponse"></a>
-
-### CreateProxyResponse
-
-
-
-
-
-
-
-<a name="atomix.management.driver.v1.DestroyProxyRequest"></a>
-
-### DestroyProxyRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| proxy_id | [ProxyId](#atomix.management.driver.v1.ProxyId) |  |  |
-
-
-
-
-
-
-<a name="atomix.management.driver.v1.DestroyProxyResponse"></a>
-
-### DestroyProxyResponse
-
-
-
-
-
-
-
-<a name="atomix.management.driver.v1.ProxyId"></a>
-
-### ProxyId
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  |  |
-| name | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="atomix.management.driver.v1.ProxyOptions"></a>
-
-### ProxyOptions
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| read | [bool](#bool) |  |  |
-| write | [bool](#bool) |  |  |
-| config | [bytes](#bytes) |  |  |
-
-
-
-
-
- 
-
- 
-
- 
-
-
-<a name="atomix.management.driver.v1.Agent"></a>
-
-### Agent
-
-
-| Method Name | Request Type | Response Type | Description |
-| ----------- | ------------ | ------------- | ------------|
-| CreateProxy | [CreateProxyRequest](#atomix.management.driver.v1.CreateProxyRequest) | [CreateProxyResponse](#atomix.management.driver.v1.CreateProxyResponse) |  |
-| DestroyProxy | [DestroyProxyRequest](#atomix.management.driver.v1.DestroyProxyRequest) | [DestroyProxyResponse](#atomix.management.driver.v1.DestroyProxyResponse) |  |
-
- 
 
 
 
@@ -172,7 +51,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| protocol | [atomix.protocol.ProtocolConfig](#atomix.protocol.ProtocolConfig) |  |  |
+| protocol | [atomix.protocol.v1.ProtocolConfig](#atomix.protocol.v1.ProtocolConfig) |  |  |
 
 
 
@@ -187,8 +66,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| namespace | [string](#string) |  |  |
-| name | [string](#string) |  |  |
+| protocol_id | [atomix.protocol.v1.ProtocolId](#atomix.protocol.v1.ProtocolId) |  |  |
 
 
 

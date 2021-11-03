@@ -18,10 +18,10 @@ syntax = "proto3";
 
 package atomix.primitive.list.v1;
 
-import "atomix/primitive/primitive.proto";
-import "atomix/primitive/service.proto";
-import "atomix/primitive/operation.proto";
-import "atomix/primitive/meta/object.proto";
+import "atomix/primitive/v1/primitive.proto";
+import "atomix/primitive/v1/service.proto";
+import "atomix/primitive/v1/operation.proto";
+import "atomix/primitive/meta/v1/object.proto";
 import "gogoproto/gogo.proto";
 
 message SizeRequest {
@@ -33,7 +33,9 @@ message SizeResponse {
 }
 
 message ContainsRequest {
-    Value value = 2 [(gogoproto.nullable) = false];
+    Value value = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message ContainsResponse {
@@ -42,12 +44,14 @@ message ContainsResponse {
 
 message Precondition {
     oneof precondition {
-        atomix.primitive.meta.ObjectMeta metadata = 1;
+        atomix.primitive.meta.v1.ObjectMeta metadata = 1;
     }
 }
 
 message AppendRequest {
-    Value value = 2 [(gogoproto.nullable) = false];
+    Value value = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message AppendResponse {
@@ -59,34 +63,52 @@ message GetRequest {
 }
 
 message GetResponse {
-    Item item = 2 [(gogoproto.nullable) = false];
+    Item item = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message SetRequest {
-    Item item = 2 [(gogoproto.nullable) = false];
-    repeated Precondition preconditions = 3 [(gogoproto.nullable) = false];
+    Item item = 2 [
+        (gogoproto.nullable) = false
+    ];
+    repeated Precondition preconditions = 3 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message SetResponse {
-    Item item = 2 [(gogoproto.nullable) = false];
+    Item item = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message InsertRequest {
-    Item item = 2 [(gogoproto.nullable) = false];
-    repeated Precondition preconditions = 3 [(gogoproto.nullable) = false];
+    Item item = 2 [
+        (gogoproto.nullable) = false
+    ];
+    repeated Precondition preconditions = 3 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message InsertResponse {
-    Item item = 2 [(gogoproto.nullable) = false];
+    Item item = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message RemoveRequest {
     uint32 index = 2;
-    repeated Precondition preconditions = 3 [(gogoproto.nullable) = false];
+    repeated Precondition preconditions = 3 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message RemoveResponse {
-    Item item = 2 [(gogoproto.nullable) = false];
+    Item item = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message ClearRequest {
@@ -102,12 +124,16 @@ message EventsRequest {
 }
 
 message EventsResponse {
-    Event event = 2 [(gogoproto.nullable) = false];
+    Event event = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message Event {
     Type type = 1;
-    Item item = 2 [(gogoproto.nullable) = false];
+    Item item = 2 [
+        (gogoproto.nullable) = false
+    ];
 
     enum Type {
         NONE = 0;
@@ -122,75 +148,83 @@ message ElementsRequest {
 }
 
 message ElementsResponse {
-    Item item = 2 [(gogoproto.nullable) = false];
+    Item item = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message Item {
     uint32 index = 1;
-    Value value = 2 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
+    Value value = 2 [
+        (gogoproto.embed) = true,
+        (gogoproto.nullable) = false
+    ];
 }
 
 message Value {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
+    atomix.primitive.meta.v1.ObjectMeta meta = 1 [
+        (gogoproto.embed) = true,
+        (gogoproto.nullable) = false
+    ];
     string value = 2;
 }
 
 // List is a service for a list primitive
 service List {
-    option (atomix.primitive.type) = "List";
-    option (atomix.service.type) = PRIMITIVE;
+    option (atomix.primitive.v1.type) = "List";
+    option (atomix.primitive.v1.service.type) = PRIMITIVE;
 
     // Size gets the number of elements in the list
     rpc Size (SizeRequest) returns (SizeResponse) {
-        option (atomix.primitive.operation.id) = 1;
-        option (atomix.primitive.operation.type) = QUERY;
+        option (atomix.primitive.v1.operation.id) = 1;
+        option (atomix.primitive.v1.operation.type) = QUERY;
     }
 
     // Append appends a value to the list
     rpc Append (AppendRequest) returns (AppendResponse) {
-        option (atomix.primitive.operation.id) = 2;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 2;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Insert inserts a value at a specific index in the list
     rpc Insert (InsertRequest) returns (InsertResponse) {
-        option (atomix.primitive.operation.id) = 3;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 3;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Get gets the value at an index in the list
     rpc Get (GetRequest) returns (GetResponse) {
-        option (atomix.primitive.operation.id) = 4;
-        option (atomix.primitive.operation.type) = QUERY;
+        option (atomix.primitive.v1.operation.id) = 4;
+        option (atomix.primitive.v1.operation.type) = QUERY;
     }
 
     // Set sets the value at an index in the list
     rpc Set (SetRequest) returns (SetResponse) {
-        option (atomix.primitive.operation.id) = 5;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 5;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Remove removes an element from the list
     rpc Remove (RemoveRequest) returns (RemoveResponse) {
-        option (atomix.primitive.operation.id) = 6;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 6;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Clear removes all elements from the list
     rpc Clear (ClearRequest) returns (ClearResponse) {
-        option (atomix.primitive.operation.id) = 7;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 7;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Events listens for change events
     rpc Events (EventsRequest) returns (stream EventsResponse) {
-        option (atomix.primitive.operation.id) = 8;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 8;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Elements streams all elements in the list
     rpc Elements (ElementsRequest) returns (stream ElementsResponse) {
-        option (atomix.primitive.operation.id) = 9;
-        option (atomix.primitive.operation.type) = QUERY;
+        option (atomix.primitive.v1.operation.id) = 9;
+        option (atomix.primitive.v1.operation.type) = QUERY;
     }
 }

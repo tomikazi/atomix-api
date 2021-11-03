@@ -18,11 +18,11 @@ syntax = "proto3";
 
 package atomix.primitive.set.v1;
 
-import "atomix/primitive/primitive.proto";
-import "atomix/primitive/service.proto";
-import "atomix/primitive/operation.proto";
-import "atomix/primitive/partition.proto";
-import "atomix/primitive/meta/object.proto";
+import "atomix/primitive/v1/primitive.proto";
+import "atomix/primitive/v1/service.proto";
+import "atomix/primitive/v1/operation.proto";
+import "atomix/primitive/v1/partition.proto";
+import "atomix/primitive/meta/v1/object.proto";
 import "gogoproto/gogo.proto";
 
 message SizeRequest {
@@ -30,11 +30,15 @@ message SizeRequest {
 }
 
 message SizeResponse {
-    uint32 size = 2 [(atomix.primitive.operation.aggregate) = SUM];
+    uint32 size = 2 [
+        (atomix.primitive.v1.operation.aggregate) = SUM
+    ];
 }
 
 message ContainsRequest {
-    Element element = 2 [(gogoproto.nullable) = false];
+    Element element = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message ContainsResponse {
@@ -42,19 +46,27 @@ message ContainsResponse {
 }
 
 message AddRequest {
-    Element element = 2 [(gogoproto.nullable) = false];
+    Element element = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message AddResponse {
-    Element element = 2 [(gogoproto.nullable) = false];
+    Element element = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message RemoveRequest {
-    Element element = 2 [(gogoproto.nullable) = false];
+    Element element = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message RemoveResponse {
-    Element element = 2 [(gogoproto.nullable) = false];
+    Element element = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message ClearRequest {
@@ -70,12 +82,16 @@ message EventsRequest {
 }
 
 message EventsResponse {
-    Event event = 2 [(gogoproto.nullable) = false];
+    Event event = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message Event {
     Type type = 1;
-    Element element = 2 [(gogoproto.nullable) = false];
+    Element element = 2 [
+        (gogoproto.nullable) = false
+    ];
 
     enum Type {
         NONE = 0;
@@ -90,62 +106,69 @@ message ElementsRequest {
 }
 
 message ElementsResponse {
-    Element element = 2 [(gogoproto.nullable) = false];
+    Element element = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message Element {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
-    string value = 2 [(atomix.primitive.partition.key) = true];
+    atomix.primitive.meta.v1.ObjectMeta meta = 1 [
+        (gogoproto.embed) = true,
+        (gogoproto.nullable) = false
+    ];
+    string value = 2 [
+        (atomix.primitive.v1.partition.key) = true
+    ];
 }
 
 // Set is a service for a set primitive
 service Set {
-    option (atomix.primitive.type) = "Set";
-    option (atomix.service.type) = PRIMITIVE;
-    option (atomix.primitive.partitioned) = true;
+    option (atomix.primitive.v1.type) = "Set";
+    option (atomix.primitive.v1.service.type) = PRIMITIVE;
+    option (atomix.primitive.v1.partitioned) = true;
 
     // Size gets the number of elements in the set
     rpc Size (SizeRequest) returns (SizeResponse) {
-        option (atomix.primitive.operation.id) = 1;
-        option (atomix.primitive.operation.type) = QUERY;
+        option (atomix.primitive.v1.operation.id) = 1;
+        option (atomix.primitive.v1.operation.type) = QUERY;
     }
 
     // Contains returns whether the set contains a value
     rpc Contains (ContainsRequest) returns (ContainsResponse) {
-        option (atomix.primitive.operation.id) = 2;
-        option (atomix.primitive.operation.type) = QUERY;
-        option (atomix.primitive.partition.strategy) = HASH;
+        option (atomix.primitive.v1.operation.id) = 2;
+        option (atomix.primitive.v1.operation.type) = QUERY;
+        option (atomix.primitive.v1.partition.strategy) = HASH;
     }
 
     // Add adds a value to the set
     rpc Add (AddRequest) returns (AddResponse) {
-        option (atomix.primitive.operation.id) = 3;
-        option (atomix.primitive.operation.type) = COMMAND;
-        option (atomix.primitive.partition.strategy) = HASH;
+        option (atomix.primitive.v1.operation.id) = 3;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
+        option (atomix.primitive.v1.partition.strategy) = HASH;
     }
 
     // Remove removes a value from the set
     rpc Remove (RemoveRequest) returns (RemoveResponse) {
-        option (atomix.primitive.operation.id) = 4;
-        option (atomix.primitive.operation.type) = COMMAND;
-        option (atomix.primitive.partition.strategy) = HASH;
+        option (atomix.primitive.v1.operation.id) = 4;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
+        option (atomix.primitive.v1.partition.strategy) = HASH;
     }
 
     // Clear removes all values from the set
     rpc Clear (ClearRequest) returns (ClearResponse) {
-        option (atomix.primitive.operation.id) = 5;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 5;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Events listens for set change events
     rpc Events (EventsRequest) returns (stream EventsResponse) {
-        option (atomix.primitive.operation.id) = 6;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 6;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Elements lists all elements in the set
     rpc Elements (ElementsRequest) returns (stream ElementsResponse) {
-        option (atomix.primitive.operation.id) = 7;
-        option (atomix.primitive.operation.type) = QUERY;
+        option (atomix.primitive.v1.operation.id) = 7;
+        option (atomix.primitive.v1.operation.type) = QUERY;
     }
 }

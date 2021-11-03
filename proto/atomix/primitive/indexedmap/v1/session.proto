@@ -16,24 +16,37 @@ limitations under the License.
 
 syntax = "proto3";
 
-import "atomix/primitive/primitive.proto";
-import "atomix/primitive/service.proto";
-import "atomix/primitive/session.proto";
+import "atomix/primitive/v1/primitive.proto";
+import "atomix/primitive/v1/service.proto";
+import "atomix/primitive/v1/session.proto";
 import "gogoproto/gogo.proto";
 
 package atomix.primitive.indexedmap.v1;
 
 message OpenSessionRequest {
-    string primitive_id = 1 [(atomix.session.primitive_id) = true, (gogoproto.customname) = "PrimitiveID", (gogoproto.casttype) = "github.com/atomix/atomix-api/go/atomix/primitive.ID"];
-    IndexedMapSessionOptions options = 2 [(atomix.session.options) = true, (gogoproto.nullable) = false];
+    string primitive_id = 1 [
+        (atomix.primitive.v1.session.primitive_id) = true,
+        (gogoproto.customname) = "PrimitiveID",
+        (gogoproto.casttype) = "github.com/atomix/atomix-api/go/atomix/primitive/v1.ID"
+    ];
+    IndexedMapSessionOptions options = 2 [
+        (atomix.primitive.v1.session.options) = true,
+        (gogoproto.nullable) = false
+    ];
 }
 
 message OpenSessionResponse {
-    string session_id = 1 [(atomix.session.session_id) = true, (gogoproto.customname) = "SessionID", (gogoproto.casttype) = "github.com/atomix/atomix-api/go/atomix/primitive.SessionID"];
+    uint64 session_id = 1 [
+        (atomix.primitive.v1.session.session_id) = true,
+        (gogoproto.customname) = "SessionID",
+        (gogoproto.casttype) = "github.com/atomix/atomix-api/go/atomix/primitive/v1.SessionID"
+    ];
 }
 
 message IndexedMapSessionOptions {
-    IndexedMapCacheOptions cache = 1 [(gogoproto.nullable) = false];
+    IndexedMapCacheOptions cache = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message IndexedMapCacheOptions {
@@ -49,7 +62,11 @@ enum IndexedMapCacheStrategy {
 }
 
 message CloseSessionRequest {
-    string session_id = 1 [(atomix.session.session_id) = true, (gogoproto.customname) = "SessionID", (gogoproto.casttype) = "github.com/atomix/atomix-api/go/atomix/primitive.SessionID"];
+    uint64 session_id = 1 [
+        (atomix.primitive.v1.session.session_id) = true,
+        (gogoproto.customname) = "SessionID",
+        (gogoproto.casttype) = "github.com/atomix/atomix-api/go/atomix/primitive/v1.SessionID"
+    ];
 }
 
 message CloseSessionResponse {
@@ -58,14 +75,14 @@ message CloseSessionResponse {
 
 // IndexedMapSession is a service for managing indexed map sessions
 service IndexedMapSession {
-    option (atomix.primitive.type) = "IndexedMap";
-    option (atomix.service.type) = SESSION;
+    option (atomix.primitive.v1.type) = "IndexedMap";
+    option (atomix.primitive.v1.service.type) = SESSION;
 
     rpc OpenSession (OpenSessionRequest) returns (OpenSessionResponse) {
-        option (atomix.session.operation) = OPEN;
+        option (atomix.primitive.v1.session.operation) = OPEN;
     }
 
     rpc CloseSession (CloseSessionRequest) returns (CloseSessionResponse) {
-        option (atomix.session.operation) = CLOSE;
+        option (atomix.primitive.v1.session.operation) = CLOSE;
     }
 }

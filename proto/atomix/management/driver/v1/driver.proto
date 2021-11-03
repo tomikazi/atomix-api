@@ -18,12 +18,14 @@ syntax = "proto3";
 
 package atomix.management.driver.v1;
 
-import "atomix/protocol/protocol.proto";
+import "atomix/protocol/v1/config.proto";
 import "gogoproto/gogo.proto";
 
 message AgentId {
-    string namespace = 1;
-    string name = 2;
+    atomix.protocol.v1.ProtocolId protocol_id = 1 [
+        (gogoproto.embed) = true,
+        (gogoproto.nullable) = false
+    ];
 }
 
 message AgentAddress {
@@ -32,13 +34,22 @@ message AgentAddress {
 }
 
 message AgentConfig {
-    atomix.protocol.ProtocolConfig protocol = 1 [(gogoproto.nullable) = false];
+    atomix.protocol.v1.ProtocolConfig protocol = 1 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message StartAgentRequest {
-    AgentId agent_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "AgentID"];
-    AgentAddress address = 2 [(gogoproto.nullable) = false];
-    AgentConfig config = 3 [(gogoproto.nullable) = false];
+    AgentId agent_id = 1 [
+        (gogoproto.nullable) = false,
+        (gogoproto.customname) = "AgentID"
+    ];
+    AgentAddress address = 2 [
+        (gogoproto.nullable) = false
+    ];
+    AgentConfig config = 3 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message StartAgentResponse {
@@ -46,8 +57,13 @@ message StartAgentResponse {
 }
 
 message ConfigureAgentRequest {
-    AgentId agent_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "AgentID"];
-    AgentConfig config = 2 [(gogoproto.nullable) = false];
+    AgentId agent_id = 1 [
+        (gogoproto.nullable) = false,
+        (gogoproto.customname) = "AgentID"
+    ];
+    AgentConfig config = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message ConfigureAgentResponse {
@@ -55,7 +71,10 @@ message ConfigureAgentResponse {
 }
 
 message StopAgentRequest {
-    AgentId agent_id = 1 [(gogoproto.nullable) = false, (gogoproto.customname) = "AgentID"];
+    AgentId agent_id = 1 [
+        (gogoproto.nullable) = false,
+        (gogoproto.customname) = "AgentID"
+    ];
 }
 
 message StopAgentResponse {

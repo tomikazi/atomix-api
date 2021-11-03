@@ -49,7 +49,9 @@ class ContainsResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class Precondition(betterproto.Message):
-    metadata: "__meta__.ObjectMeta" = betterproto.message_field(1, group="precondition")
+    metadata: "__meta_v1__.ObjectMeta" = betterproto.message_field(
+        1, group="precondition"
+    )
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -206,7 +208,7 @@ class Item(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class Value(betterproto.Message):
-    meta: "__meta__.ObjectMeta" = betterproto.message_field(1)
+    meta: "__meta_v1__.ObjectMeta" = betterproto.message_field(1)
     value: str = betterproto.string_field(2)
 
     def __post_init__(self) -> None:
@@ -224,7 +226,7 @@ class OpenSessionRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionResponse(betterproto.Message):
-    session_id: str = betterproto.string_field(1)
+    session_id: int = betterproto.uint64_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -240,7 +242,7 @@ class ListSessionOptions(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CloseSessionRequest(betterproto.Message):
-    session_id: str = betterproto.string_field(1)
+    session_id: int = betterproto.uint64_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -397,7 +399,7 @@ class ListSessionStub(betterproto.ServiceStub):
             OpenSessionResponse,
         )
 
-    async def close_session(self, *, session_id: str = "") -> "CloseSessionResponse":
+    async def close_session(self, *, session_id: int = 0) -> "CloseSessionResponse":
         """Append appends a value to the list"""
 
         request = CloseSessionRequest()
@@ -410,4 +412,4 @@ class ListSessionStub(betterproto.ServiceStub):
         )
 
 
-from ... import meta as __meta__
+from ...meta import v1 as __meta_v1__

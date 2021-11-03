@@ -42,7 +42,9 @@ class SizeResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class Precondition(betterproto.Message):
-    metadata: "__meta__.ObjectMeta" = betterproto.message_field(1, group="precondition")
+    metadata: "__meta_v1__.ObjectMeta" = betterproto.message_field(
+        1, group="precondition"
+    )
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -167,7 +169,7 @@ class Entry(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class Key(betterproto.Message):
-    meta: "__meta__.ObjectMeta" = betterproto.message_field(1)
+    meta: "__meta_v1__.ObjectMeta" = betterproto.message_field(1)
     key: str = betterproto.string_field(2)
 
     def __post_init__(self) -> None:
@@ -194,7 +196,7 @@ class OpenSessionRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionResponse(betterproto.Message):
-    session_id: str = betterproto.string_field(1)
+    session_id: int = betterproto.uint64_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -219,7 +221,7 @@ class MapCacheOptions(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CloseSessionRequest(betterproto.Message):
-    session_id: str = betterproto.string_field(1)
+    session_id: int = betterproto.uint64_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -349,7 +351,7 @@ class MapSessionStub(betterproto.ServiceStub):
             OpenSessionResponse,
         )
 
-    async def close_session(self, *, session_id: str = "") -> "CloseSessionResponse":
+    async def close_session(self, *, session_id: int = 0) -> "CloseSessionResponse":
         """Put puts an entry into the map"""
 
         request = CloseSessionRequest()
@@ -362,4 +364,4 @@ class MapSessionStub(betterproto.ServiceStub):
         )
 
 
-from ... import meta as __meta__
+from ...meta import v1 as __meta_v1__

@@ -100,7 +100,7 @@ class OpenSessionRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionResponse(betterproto.Message):
-    session_id: str = betterproto.string_field(1)
+    session_id: int = betterproto.uint64_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -116,7 +116,7 @@ class CounterSessionOptions(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CloseSessionRequest(betterproto.Message):
-    session_id: str = betterproto.string_field(1)
+    session_id: int = betterproto.uint64_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -198,7 +198,7 @@ class CounterSessionStub(betterproto.ServiceStub):
             OpenSessionResponse,
         )
 
-    async def close_session(self, *, session_id: str = "") -> "CloseSessionResponse":
+    async def close_session(self, *, session_id: int = 0) -> "CloseSessionResponse":
         """Get gets the current counter value"""
 
         request = CloseSessionRequest()

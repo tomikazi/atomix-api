@@ -17,40 +17,55 @@ limitations under the License.
 syntax = "proto3";
 
 import "google/protobuf/duration.proto";
-import "atomix/primitive/primitive.proto";
-import "atomix/primitive/service.proto";
-import "atomix/primitive/operation.proto";
-import "atomix/primitive/meta/object.proto";
+import "atomix/primitive/v1/primitive.proto";
+import "atomix/primitive/v1/service.proto";
+import "atomix/primitive/v1/operation.proto";
+import "atomix/primitive/meta/v1/object.proto";
 import "gogoproto/gogo.proto";
 
 package atomix.primitive.lock.v1;
 
 message LockRequest {
-    google.protobuf.Duration timeout = 2 [(gogoproto.stdduration) = true];
+    google.protobuf.Duration timeout = 2 [
+        (gogoproto.stdduration) = true
+    ];
 }
 
 message LockResponse {
-    LockInstance lock = 2 [(gogoproto.nullable) = false];
+    LockInstance lock = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message UnlockRequest {
-    LockInstance lock = 2 [(gogoproto.nullable) = false];
+    LockInstance lock = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message UnlockResponse {
-    LockInstance lock = 2 [(gogoproto.nullable) = false];
+    LockInstance lock = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message GetLockRequest {
-    LockInstance lock = 2 [(gogoproto.nullable) = false];
+    LockInstance lock = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message GetLockResponse {
-    LockInstance lock = 2 [(gogoproto.nullable) = false];
+    LockInstance lock = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message LockInstance {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
+    atomix.primitive.meta.v1.ObjectMeta meta = 1 [
+        (gogoproto.embed) = true,
+        (gogoproto.nullable) = false
+    ];
     State state = 2;
 
     enum State {
@@ -61,25 +76,25 @@ message LockInstance {
 
 // Lock is a service for a lock primitive
 service Lock {
-    option (atomix.primitive.type) = "Lock";
-    option (atomix.service.type) = PRIMITIVE;
+    option (atomix.primitive.v1.type) = "Lock";
+    option (atomix.primitive.v1.service.type) = PRIMITIVE;
 
     // Lock attempts to acquire the lock
     rpc Lock (LockRequest) returns (LockResponse) {
-        option (atomix.primitive.operation.id) = 1;
-        option (atomix.primitive.operation.type) = COMMAND;
-        option (atomix.primitive.operation.async) = true;
+        option (atomix.primitive.v1.operation.id) = 1;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.async) = true;
     }
 
     // Unlock releases the lock
     rpc Unlock (UnlockRequest) returns (UnlockResponse) {
-        option (atomix.primitive.operation.id) = 2;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 2;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // GetLock gets the lock state
     rpc GetLock (GetLockRequest) returns (GetLockResponse) {
-        option (atomix.primitive.operation.id) = 3;
-        option (atomix.primitive.operation.type) = QUERY;
+        option (atomix.primitive.v1.operation.id) = 3;
+        option (atomix.primitive.v1.operation.type) = QUERY;
     }
 }

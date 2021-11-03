@@ -16,10 +16,10 @@ limitations under the License.
 
 syntax = "proto3";
 
-import "atomix/primitive/primitive.proto";
-import "atomix/primitive/service.proto";
-import "atomix/primitive/operation.proto";
-import "atomix/primitive/meta/object.proto";
+import "atomix/primitive/v1/primitive.proto";
+import "atomix/primitive/v1/service.proto";
+import "atomix/primitive/v1/operation.proto";
+import "atomix/primitive/meta/v1/object.proto";
 import "gogoproto/gogo.proto";
 
 package atomix.primitive.leader.v1;
@@ -29,7 +29,9 @@ message LatchRequest {
 }
 
 message LatchResponse {
-    Latch latch = 2 [(gogoproto.nullable) = false];
+    Latch latch = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message GetRequest {
@@ -37,7 +39,9 @@ message GetRequest {
 }
 
 message GetResponse {
-    Latch latch = 2 [(gogoproto.nullable) = false];
+    Latch latch = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message EventsRequest {
@@ -45,12 +49,16 @@ message EventsRequest {
 }
 
 message EventsResponse {
-    Event event = 2 [(gogoproto.nullable) = false];
+    Event event = 2 [
+        (gogoproto.nullable) = false
+    ];
 }
 
 message Event {
     Type type = 1;
-    Latch latch = 2 [(gogoproto.nullable) = false];
+    Latch latch = 2 [
+        (gogoproto.nullable) = false
+    ];
 
     enum Type {
         NONE = 0;
@@ -59,31 +67,34 @@ message Event {
 }
 
 message Latch {
-    atomix.primitive.meta.ObjectMeta meta = 1 [(gogoproto.embed) = true, (gogoproto.nullable) = false];
+    atomix.primitive.meta.v1.ObjectMeta meta = 1 [
+        (gogoproto.embed) = true,
+        (gogoproto.nullable) = false
+    ];
     string leader = 2;
     repeated string participants = 3;
 }
 
 // LeaderLatch is a service for a leader latch primitive
 service LeaderLatch {
-    option (atomix.primitive.type) = "LeaderLatch";
-    option (atomix.service.type) = PRIMITIVE;
+    option (atomix.primitive.v1.type) = "LeaderLatch";
+    option (atomix.primitive.v1.service.type) = PRIMITIVE;
 
     // Latch attempts to acquire the leader latch
     rpc Latch (LatchRequest) returns (LatchResponse) {
-        option (atomix.primitive.operation.id) = 1;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 1;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 
     // Get gets the current leader
     rpc Get (GetRequest) returns (GetResponse) {
-        option (atomix.primitive.operation.id) = 2;
-        option (atomix.primitive.operation.type) = QUERY;
+        option (atomix.primitive.v1.operation.id) = 2;
+        option (atomix.primitive.v1.operation.type) = QUERY;
     }
 
     // Events listens for leader change events
     rpc Events (EventsRequest) returns (stream EventsResponse) {
-        option (atomix.primitive.operation.id) = 3;
-        option (atomix.primitive.operation.type) = COMMAND;
+        option (atomix.primitive.v1.operation.id) = 3;
+        option (atomix.primitive.v1.operation.type) = COMMAND;
     }
 }

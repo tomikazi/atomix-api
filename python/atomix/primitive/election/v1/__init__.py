@@ -136,7 +136,7 @@ class Event(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class Term(betterproto.Message):
-    meta: "__meta__.ObjectMeta" = betterproto.message_field(1)
+    meta: "__meta_v1__.ObjectMeta" = betterproto.message_field(1)
     leader: str = betterproto.string_field(2)
     candidates: List[str] = betterproto.string_field(3)
 
@@ -155,7 +155,7 @@ class OpenSessionRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class OpenSessionResponse(betterproto.Message):
-    session_id: str = betterproto.string_field(1)
+    session_id: int = betterproto.uint64_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -171,7 +171,7 @@ class LeaderElectionSessionOptions(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class CloseSessionRequest(betterproto.Message):
-    session_id: str = betterproto.string_field(1)
+    session_id: int = betterproto.uint64_field(1)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -287,7 +287,7 @@ class LeaderElectionSessionStub(betterproto.ServiceStub):
             OpenSessionResponse,
         )
 
-    async def close_session(self, *, session_id: str = "") -> "CloseSessionResponse":
+    async def close_session(self, *, session_id: int = 0) -> "CloseSessionResponse":
         """Withdraw withdraws a candidate from the leader election"""
 
         request = CloseSessionRequest()
@@ -300,4 +300,4 @@ class LeaderElectionSessionStub(betterproto.ServiceStub):
         )
 
 
-from ... import meta as __meta__
+from ...meta import v1 as __meta_v1__

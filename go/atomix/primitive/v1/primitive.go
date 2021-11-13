@@ -18,4 +18,4 @@ package v1
 type ID string
 
 // SessionID is a primitive session identifier
-type SessionID int
+type SessionID uint64

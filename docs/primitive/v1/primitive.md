@@ -3,6 +3,14 @@
 
 ## Table of Contents
 
+- [atomix/primitive/v1/manager.proto](#atomix/primitive/v1/manager.proto)
+    - [OperationType](#atomix.primitive.v1.manager.OperationType)
+  
+    - [File-level Extensions](#atomix/primitive/v1/manager.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/v1/manager.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/v1/manager.proto-extensions)
+    - [File-level Extensions](#atomix/primitive/v1/manager.proto-extensions)
+  
 - [atomix/primitive/v1/operation.proto](#atomix/primitive/v1/operation.proto)
     - [AggregateStrategy](#atomix.primitive.v1.operation.AggregateStrategy)
     - [OperationType](#atomix.primitive.v1.operation.OperationType)
@@ -29,15 +37,46 @@
   
     - [File-level Extensions](#atomix/primitive/v1/service.proto-extensions)
   
-- [atomix/primitive/v1/session.proto](#atomix/primitive/v1/session.proto)
-    - [OperationType](#atomix.primitive.v1.session.OperationType)
-  
-    - [File-level Extensions](#atomix/primitive/v1/session.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/v1/session.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/v1/session.proto-extensions)
-    - [File-level Extensions](#atomix/primitive/v1/session.proto-extensions)
-  
 - [Scalar Value Types](#scalar-value-types)
+
+
+
+<a name="atomix/primitive/v1/manager.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## atomix/primitive/v1/manager.proto
+
+
+ 
+
+
+<a name="atomix.primitive.v1.manager.OperationType"></a>
+
+### OperationType
+OperationType is an enum for specifying the type of operation
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| OPEN_SESSION | 0 |  |
+| CLOSE_SESSION | 1 |  |
+
+
+ 
+
+
+<a name="atomix/primitive/v1/manager.proto-extensions"></a>
+
+### File-level Extensions
+| Extension | Type | Base | Number | Description |
+| --------- | ---- | ---- | ------ | ----------- |
+| options | bool | .google.protobuf.FieldOptions | 73000 |  |
+| primitive_id | bool | .google.protobuf.FieldOptions | 73001 |  |
+| session_id | bool | .google.protobuf.FieldOptions | 73002 |  |
+| operation | OperationType | .google.protobuf.MethodOptions | 70000 |  |
+
+ 
+
+ 
 
 
 
@@ -179,7 +218,7 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | PRIMITIVE | 0 |  |
-| SESSION | 1 |  |
+| MANAGER | 1 |  |
 
 
  
@@ -191,45 +230,6 @@ PartitionStrategy is an enum for indicating the strategy used to partition a pri
 | Extension | Type | Base | Number | Description |
 | --------- | ---- | ---- | ------ | ----------- |
 | type | ServiceType | .google.protobuf.ServiceOptions | 80000 |  |
-
- 
-
- 
-
-
-
-<a name="atomix/primitive/v1/session.proto"></a>
-<p align="right"><a href="#top">Top</a></p>
-
-## atomix/primitive/v1/session.proto
-
-
- 
-
-
-<a name="atomix.primitive.v1.session.OperationType"></a>
-
-### OperationType
-OperationType is an enum for specifying the type of operation
-
-| Name | Number | Description |
-| ---- | ------ | ----------- |
-| OPEN | 0 |  |
-| CLOSE | 1 |  |
-
-
- 
-
-
-<a name="atomix/primitive/v1/session.proto-extensions"></a>
-
-### File-level Extensions
-| Extension | Type | Base | Number | Description |
-| --------- | ---- | ---- | ------ | ----------- |
-| options | bool | .google.protobuf.FieldOptions | 73000 |  |
-| primitive_id | bool | .google.protobuf.FieldOptions | 73001 |  |
-| session_id | bool | .google.protobuf.FieldOptions | 73002 |  |
-| operation | OperationType | .google.protobuf.MethodOptions | 70000 |  |
 
  
 

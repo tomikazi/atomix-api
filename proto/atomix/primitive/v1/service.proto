@@ -10,5 +10,5 @@ extend google.protobuf.ServiceOptions {
 
 enum ServiceType {
     PRIMITIVE = 0;
-    SESSION = 1;
+    MANAGER = 1;
 }

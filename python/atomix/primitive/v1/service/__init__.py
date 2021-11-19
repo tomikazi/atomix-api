@@ -8,4 +8,4 @@ import betterproto
 
 class ServiceType(betterproto.Enum):
     PRIMITIVE = 0
-    SESSION = 1
+    MANAGER = 1

@@ -44,7 +44,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| candidate_id | [string](#string) |  |  |
+| candidate_id | [uint64](#uint64) |  |  |
 
 
 
@@ -72,11 +72,6 @@
 
 
 
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| candidate_id | [string](#string) |  |  |
-
-
 
 
 
@@ -89,6 +84,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
+| candidate_id | [uint64](#uint64) |  |  |
 | term | [Term](#atomix.primitive.election.v1.Term) |  |  |
 
 
@@ -145,7 +141,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| candidate_id | [string](#string) |  |  |
+| candidate_id | [uint64](#uint64) |  |  |
 
 
 
@@ -200,7 +196,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| candidate_id | [string](#string) |  |  |
+| candidate_id | [uint64](#uint64) |  |  |
 
 
 
@@ -231,8 +227,8 @@
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | meta | [atomix.primitive.meta.v1.ObjectMeta](#atomix.primitive.meta.v1.ObjectMeta) |  |  |
-| leader | [string](#string) |  |  |
-| candidates | [string](#string) | repeated |  |
+| leader | [uint64](#uint64) |  |  |
+| candidates | [uint64](#uint64) | repeated |  |
 
 
 
@@ -247,7 +243,7 @@
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| candidate_id | [string](#string) |  |  |
+| candidate_id | [uint64](#uint64) |  |  |
 
 
 

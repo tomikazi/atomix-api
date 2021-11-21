@@ -25,19 +25,20 @@ import "gogoproto/gogo.proto";
 package atomix.primitive.election.v1;
 
 message EnterRequest {
-    string candidate_id = 2 [
-        (gogoproto.customname) = "CandidateID"
-    ];
+
 }
 
 message EnterResponse {
+    uint64 candidate_id = 1 [
+        (gogoproto.customname) = "CandidateID"
+    ];
     Term term = 2 [
         (gogoproto.nullable) = false
     ];
 }
 
 message WithdrawRequest {
-    string candidate_id = 2 [
+    uint64 candidate_id = 2 [
         (gogoproto.customname) = "CandidateID"
     ];
 }
@@ -49,7 +50,7 @@ message WithdrawResponse {
 }
 
 message AnointRequest {
-    string candidate_id = 2 [
+    uint64 candidate_id = 2 [
         (gogoproto.customname) = "CandidateID"
     ];
 }
@@ -61,7 +62,7 @@ message AnointResponse {
 }
 
 message PromoteRequest {
-    string candidate_id = 2 [
+    uint64 candidate_id = 2 [
         (gogoproto.customname) = "CandidateID"
     ];
 }
@@ -73,7 +74,7 @@ message PromoteResponse {
 }
 
 message EvictRequest {
-    string candidate_id = 2 [
+    uint64 candidate_id = 2 [
         (gogoproto.customname) = "CandidateID"
     ];
 }
@@ -121,8 +122,8 @@ message Term {
         (gogoproto.embed) = true,
         (gogoproto.nullable) = false
     ];
-    string leader = 2;
-    repeated string candidates = 3;
+    uint64 leader = 2;
+    repeated uint64 candidates = 3;
 }
 
 // LeaderElection is a service for a leader election primitive

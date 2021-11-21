@@ -56,7 +56,7 @@ class CloseSessionResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class EnterRequest(betterproto.Message):
-    candidate_id: str = betterproto.string_field(2)
+    pass
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -64,6 +64,7 @@ class EnterRequest(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class EnterResponse(betterproto.Message):
+    candidate_id: int = betterproto.uint64_field(1)
     term: "Term" = betterproto.message_field(2)
 
     def __post_init__(self) -> None:
@@ -72,7 +73,7 @@ class EnterResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class WithdrawRequest(betterproto.Message):
-    candidate_id: str = betterproto.string_field(2)
+    candidate_id: int = betterproto.uint64_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -88,7 +89,7 @@ class WithdrawResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class AnointRequest(betterproto.Message):
-    candidate_id: str = betterproto.string_field(2)
+    candidate_id: int = betterproto.uint64_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -104,7 +105,7 @@ class AnointResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class PromoteRequest(betterproto.Message):
-    candidate_id: str = betterproto.string_field(2)
+    candidate_id: int = betterproto.uint64_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -120,7 +121,7 @@ class PromoteResponse(betterproto.Message):
 
 @dataclass(eq=False, repr=False)
 class EvictRequest(betterproto.Message):
-    candidate_id: str = betterproto.string_field(2)
+    candidate_id: int = betterproto.uint64_field(2)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -178,8 +179,8 @@ class Event(betterproto.Message):
 @dataclass(eq=False, repr=False)
 class Term(betterproto.Message):
     meta: "__meta_v1__.ObjectMeta" = betterproto.message_field(1)
-    leader: str = betterproto.string_field(2)
-    candidates: List[str] = betterproto.string_field(3)
+    leader: int = betterproto.uint64_field(2)
+    candidates: List[int] = betterproto.uint64_field(3)
 
     def __post_init__(self) -> None:
         super().__post_init__()
@@ -222,16 +223,15 @@ class LeaderElectionStub(betterproto.ServiceStub):
     LeaderElectionManager is a service for managing leader election sessions
     """
 
-    async def enter(self, *, candidate_id: str = "") -> "EnterResponse":
+    async def enter(self) -> "EnterResponse":
 
         request = EnterRequest()
-        request.candidate_id = candidate_id
 
         return await self._unary_unary(
             "/atomix.primitive.election.v1.LeaderElection/Enter", request, EnterResponse
         )
 
-    async def withdraw(self, *, candidate_id: str = "") -> "WithdrawResponse":
+    async def withdraw(self, *, candidate_id: int = 0) -> "WithdrawResponse":
 
         request = WithdrawRequest()
         request.candidate_id = candidate_id
@@ -242,7 +242,7 @@ class LeaderElectionStub(betterproto.ServiceStub):
             WithdrawResponse,
         )
 
-    async def anoint(self, *, candidate_id: str = "") -> "AnointResponse":
+    async def anoint(self, *, candidate_id: int = 0) -> "AnointResponse":
 
         request = AnointRequest()
         request.candidate_id = candidate_id
@@ -253,7 +253,7 @@ class LeaderElectionStub(betterproto.ServiceStub):
             AnointResponse,
         )
 
-    async def promote(self, *, candidate_id: str = "") -> "PromoteResponse":
+    async def promote(self, *, candidate_id: int = 0) -> "PromoteResponse":
 
         request = PromoteRequest()
         request.candidate_id = candidate_id
@@ -264,7 +264,7 @@ class LeaderElectionStub(betterproto.ServiceStub):
             PromoteResponse,
         )
 
-    async def evict(self, *, candidate_id: str = "") -> "EvictResponse":
+    async def evict(self, *, candidate_id: int = 0) -> "EvictResponse":
 
         request = EvictRequest()
         request.candidate_id = candidate_id

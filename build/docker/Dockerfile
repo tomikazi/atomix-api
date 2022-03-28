@@ -1,3 +1,7 @@
+# SPDX-FileCopyrightText: 2019-present Open Networking Foundation <info@opennetworking.org>
+#
+# SPDX-License-Identifier: Apache-2.0
+
 FROM onosproject/protoc-go:v0.6.7
 
 RUN wget "https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/1.37.1/protoc-gen-grpc-java-1.37.1-linux-x86_64.exe" --quiet && \
